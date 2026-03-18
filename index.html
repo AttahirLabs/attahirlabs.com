@@ -12,7 +12,12 @@
         gtag('config', 'G-8QRJWWVMRZ');
     </script>
     <title>Attahir Labs | Shopify Apps for Serious Merchants</title>
-    <meta name="description" content="Attahir Labs builds high-performance Shopify apps. TariffShield, StockClearance, ShelfLife — tools that solve real merchant problems.">
+    <meta name="description" content="Attahir Labs builds high-performance Shopify apps. TariffShield, StoreChronicle, WarrantyShield, StockClearance, ShelfLife, AccessShield — tools that solve real merchant problems.">
+    <link rel="canonical" href="https://attahirlabs.com">
+    <meta property="og:title" content="Attahir Labs | Shopify Apps for Serious Merchants">
+    <meta property="og:description" content="We build Shopify apps that solve real problems. Tariff impact, audit trails, warranty management, dead inventory, expiry tracking, accessibility.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attahirlabs.com">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,6 +27,7 @@
             --indigo: #6366f1;
             --indigo-light: #818cf8;
             --green: #10b981;
+            --amber: #f59e0b;
             --white: #ffffff;
             --gray-50: #f8fafc;
             --gray-100: #f1f5f9;
@@ -125,7 +131,7 @@
         }
         .hero p {
             font-size: 1.15rem;
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto 2.5rem;
             opacity: 0.85;
             line-height: 1.7;
@@ -259,7 +265,7 @@
             letter-spacing: -0.02em;
             margin-bottom: 0.75rem;
         }
-        .featured-app p { opacity: 0.85; margin-bottom: 1.5rem; line-height: 1.7; }
+        .featured-app > div:first-child p { opacity: 0.85; margin-bottom: 1.5rem; line-height: 1.7; }
         .feature-list {
             list-style: none;
             display: flex;
@@ -313,7 +319,7 @@
         /* App grid */
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
         .app-card {
@@ -329,12 +335,10 @@
             border-color: var(--indigo);
             box-shadow: 0 12px 40px rgba(99,102,241,0.1);
         }
-        .coming-soon-badge {
+        .app-badge {
             position: absolute;
             top: 1.25rem;
             right: 1.25rem;
-            background: var(--gray-100);
-            color: var(--gray-500);
             font-size: 0.7rem;
             font-weight: 600;
             padding: 0.2rem 0.6rem;
@@ -342,13 +346,40 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+        .badge-soon {
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+        .badge-new {
+            background: rgba(16,185,129,0.12);
+            color: var(--green);
+            border: 1px solid rgba(16,185,129,0.3);
+        }
         .app-card h3 {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--indigo);
+            margin-bottom: 0.5rem;
+        }
+        .app-card .app-tagline {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
             margin-bottom: 0.75rem;
         }
         .app-card p { color: var(--gray-700); font-size: 0.95rem; margin-bottom: 1rem; }
+        .app-card .app-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        .app-card .app-features li {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding: 0.15rem 0;
+        }
+        .app-card .app-features li::before { content: "✓ "; color: var(--green); font-weight: 700; }
         .app-card .price {
             display: block;
             font-weight: 600;
@@ -356,6 +387,37 @@
             font-size: 0.875rem;
             padding-top: 0.75rem;
             border-top: 1px solid var(--gray-100);
+        }
+
+        /* ── PROBLEMS SECTION ──────────────────────────────────── */
+        .problems-section { background: var(--white); }
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .problem-card {
+            padding: 1.5rem;
+            border-left: 3px solid var(--indigo);
+            background: var(--gray-50);
+            border-radius: 0 8px 8px 0;
+        }
+        .problem-card .problem-q {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+        .problem-card .problem-a {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+        .problem-card .problem-app {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--indigo);
         }
 
         /* ── WHY US ────────────────────────────────────────────── */
@@ -391,6 +453,23 @@
         }
         .about-visual .big-emoji { font-size: 4rem; display: block; margin-bottom: 1rem; }
         .about-visual p { opacity: 0.85; font-size: 0.95rem; line-height: 1.7; }
+
+        /* ── CTA SECTION ───────────────────────────────────────── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #1e1b4b 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
 
         /* ── FOOTER ────────────────────────────────────────────── */
         footer {
@@ -443,6 +522,7 @@
             .about-visual { display: none; }
             .nav-links { display: none; }
             .trust-bar-inner { gap: 1.5rem; }
+            .app-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -454,9 +534,9 @@
             <a href="index.html" class="nav-logo">Attahir<span>Labs</span></a>
             <ul class="nav-links">
                 <li><a href="#apps">Apps</a></li>
+                <li><a href="#problems">Use Cases</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
             </ul>
         </div>
     </nav>
@@ -466,7 +546,7 @@
         <div class="container">
             <div class="hero-badge">🛍️ Shopify Partner</div>
             <h1>Tools that make your store <em>bulletproof</em></h1>
-            <p>We build Shopify apps that solve real problems — from tariff impact to GDPR compliance, dead inventory to accessibility. No fluff. Serious performance.</p>
+            <p>We build Shopify apps that solve real problems — tariff impact, audit trails, warranty management, dead inventory, and more. No fluff. Just tools that work.</p>
             <div class="hero-cta">
                 <a href="#apps" class="btn-primary">Explore Our Apps</a>
                 <a href="contact.html" class="btn-secondary">Get in Touch</a>
@@ -477,9 +557,9 @@
     <!-- TRUST BAR -->
     <div class="trust-bar">
         <div class="trust-bar-inner">
-            <div class="trust-item"><span class="icon">✅</span> Built on Shopify's latest APIs</div>
-            <div class="trust-item"><span class="icon">🔒</span> GDPR & CCPA compliant</div>
-            <div class="trust-item"><span class="icon">⚡</span> Sub-second load times</div>
+            <div class="trust-item"><span class="icon">✅</span> Shopify's latest APIs (2026-04)</div>
+            <div class="trust-item"><span class="icon">🔒</span> GDPR compliant</div>
+            <div class="trust-item"><span class="icon">⚡</span> Remix + Polaris native</div>
             <div class="trust-item"><span class="icon">🌍</span> Multi-market ready</div>
             <div class="trust-item"><span class="icon">📧</span> support@attahirlabs.com</div>
         </div>
@@ -489,25 +569,25 @@
     <section id="apps">
         <div class="container">
             <div class="section-label">Our Apps</div>
-            <h2 class="section-title">Every tool you actually need</h2>
-            <p class="section-sub">Five focused apps. Each one built to solve a specific problem merchants face every day.</p>
+            <h2 class="section-title">Six focused apps. Zero bloat.</h2>
+            <p class="section-sub">Each app solves one expensive problem. Built from scratch, priced fairly, designed to feel native inside Shopify.</p>
 
             <!-- Featured: TariffShield -->
             <div class="featured-app">
                 <div>
-                    <div class="featured-label">✦ New · Live Now</div>
-                    <h3><img src="tariffshield-icon.png" width="36" height="36" style="vertical-align:middle;border-radius:7px;margin-right:10px">TariffShield</h3>
+                    <div class="featured-label">✦ Live on App Store</div>
+                    <h3><img src="tariffshield-icon.png" width="36" height="36" style="vertical-align:middle;border-radius:7px;margin-right:10px" alt="TariffShield icon">TariffShield</h3>
                     <p>See how tariffs destroy your margins — then fix it in one click. Auto-detects your store's home market, analyzes 85+ origin countries across 39 import markets, and suggests repriced prices that protect your profit.</p>
                     <ul class="feature-list">
-                        <li>Auto-detect home market from your Shopify store country</li>
-                        <li>85+ origin countries × 39 import markets (US, CA, EU, UK, AU + 34 more)</li>
+                        <li>Auto-detect home market from your Shopify store</li>
+                        <li>85+ origin countries × 39 import markets</li>
                         <li>One-click bulk repricing to restore target margins</li>
-                        <li>What-if country simulator for sourcing alternatives</li>
-                        <li>Email alerts when margins drop below your threshold</li>
+                        <li>What-if simulator for sourcing alternatives</li>
+                        <li>Email alerts when margins drop below threshold</li>
                         <li>CSV export with full tariff breakdown (Pro)</li>
                     </ul>
                     <div class="featured-pricing">Free (10 products) · Standard $19/mo · Pro $190/yr</div>
-                    <a href="https://tariff-shield-production.up.railway.app" class="btn-primary">Learn More →</a>
+                    <a href="https://apps.shopify.com/tariffshield" class="btn-primary">View on Shopify →</a>
                 </div>
                 <div class="featured-visual">
                     <div class="stat-grid">
@@ -520,42 +600,139 @@
                             <div class="stat-label">Origin countries</div>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-num">1-click</span>
-                            <div class="stat-label">Bulk repricing</div>
+                            <span class="stat-num">986</span>
+                            <div class="stat-label">Tariff rates tracked</div>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-num">0</span>
-                            <div class="stat-label">Competitors</div>
+                            <span class="stat-num">Daily</span>
+                            <div class="stat-label">Rate updates</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Other apps -->
+            <!-- App Grid -->
             <div class="app-grid">
+
+                <!-- StoreChronicle -->
                 <div class="app-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
-                    <h3>🔒 PrivacyShield</h3>
-                    <p>Automated GDPR/CPRA consent management, cookie banners, and DSAR request handling. Stay compliant without the legal headache or expensive lawyers.</p>
-                    <span class="price">Free · Standard $14/mo · Pro $24/mo</span>
+                    <span class="app-badge badge-new">New</span>
+                    <h3>📋 StoreChronicle</h3>
+                    <div class="app-tagline">Compliance-Ready Audit Trail</div>
+                    <p>Every change to your store — products, prices, inventory, themes — logged automatically with who changed what and when. The audit trail your accountant, compliance team, and Shopify Plus audit will ask for.</p>
+                    <ul class="app-features">
+                        <li>Automatic webhook-driven change logging</li>
+                        <li>Field-level diffs (old value → new value)</li>
+                        <li>Staff attribution per change</li>
+                        <li>Custom alerts when critical fields change</li>
+                        <li>Weekly digest emails for stakeholders</li>
+                        <li>CSV export for compliance audits (Pro)</li>
+                    </ul>
+                    <span class="price">Free (50 logs) · Standard $14/mo · Pro $29/mo</span>
                 </div>
+
+                <!-- WarrantyShield -->
                 <div class="app-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="app-badge badge-new">New</span>
+                    <h3>🛡️ WarrantyShield</h3>
+                    <div class="app-tagline">Warranty & Claims Management</div>
+                    <p>Stop managing warranties in spreadsheets. Auto-register warranties on purchase, track serial numbers, process claims with a proper workflow, and give customers a self-service portal.</p>
+                    <ul class="app-features">
+                        <li>Auto-register warranties on order</li>
+                        <li>Serial number tracking per product</li>
+                        <li>Claims workflow (submit → review → resolve)</li>
+                        <li>Customer self-service warranty lookup</li>
+                        <li>Email notifications at every step</li>
+                        <li>Expiry tracking and reminder alerts</li>
+                    </ul>
+                    <span class="price">Free (25 registrations) · Standard $14/mo · Pro $29/mo</span>
+                </div>
+
+                <!-- StockClearance -->
+                <div class="app-card">
+                    <span class="app-badge badge-soon">Coming Soon</span>
                     <h3>📦 StockClearance</h3>
-                    <p>Automatically detect dead inventory that's eating your cash and warehouse space. Smart clearance campaigns, one-click flash sales, and bulk discounts help you free up capital before it's too late.</p>
-                    <span class="price">Free · Standard $9/mo · Pro Annual $90/yr</span>
+                    <div class="app-tagline">Dead Inventory Liquidation</div>
+                    <p>Automatically detect dead inventory eating your cash and warehouse space. Smart clearance campaigns, one-click flash sales, and bulk discounts help you free up capital before it's too late.</p>
+                    <ul class="app-features">
+                        <li>Auto-detect slow-moving and dead stock</li>
+                        <li>One-click flash sales and clearance pricing</li>
+                        <li>Bulk discount campaigns</li>
+                        <li>Revenue recovery tracking</li>
+                    </ul>
+                    <span class="price">Free · Standard $9/mo · Annual $90/yr</span>
                 </div>
+
+                <!-- ShelfLife -->
                 <div class="app-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="app-badge badge-soon">Coming Soon</span>
                     <h3>🧊 ShelfLife</h3>
-                    <p>Track expiration dates and batch/lot numbers across your entire inventory. Get alerts before products expire, auto-discount near-expiry items, and generate FDA-ready compliance reports.</p>
+                    <div class="app-tagline">Product Expiry & Batch Tracker</div>
+                    <p>Track expiration dates and batch/lot numbers across your entire inventory. Get alerts before products expire, auto-discount near-expiry items, and generate FIFO compliance reports.</p>
+                    <ul class="app-features">
+                        <li>Batch/lot number tracking per product</li>
+                        <li>Expiry alerts (30/14/7 day warnings)</li>
+                        <li>Auto-discount near-expiry items</li>
+                        <li>FIFO inventory reports</li>
+                    </ul>
                     <span class="price">Free · Standard $14/mo · Pro $29/mo</span>
                 </div>
+
+                <!-- AccessShield -->
                 <div class="app-card">
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="app-badge badge-soon">Coming Soon</span>
                     <h3>♿ AccessShield</h3>
-                    <p>Real WCAG accessibility compliance with actual code fixes. Not an overlay widget that hides the problems — we fix them in your theme. Make your store truly inclusive.</p>
+                    <div class="app-tagline">Real WCAG Accessibility Fixes</div>
+                    <p>Real WCAG compliance with actual code fixes — not an overlay widget that hides the problems. We scan your theme, find accessibility issues, and fix them. Make your store truly inclusive and legally compliant.</p>
+                    <ul class="app-features">
+                        <li>Automated WCAG 2.1 AA scanning</li>
+                        <li>One-click alt text generation</li>
+                        <li>Issue-by-issue fix suggestions</li>
+                        <li>Compliance score dashboard</li>
+                    </ul>
                     <span class="price">Free · Standard $19/mo · Pro $29/mo</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMS WE SOLVE -->
+    <section id="problems" class="problems-section">
+        <div class="container">
+            <div class="section-label">Use Cases</div>
+            <h2 class="section-title">Problems merchants actually have</h2>
+            <p class="section-sub">We build for pain that costs real money. If merchants are solving it with spreadsheets, we build an app.</p>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-q">"Tariffs just changed and I have no idea how my margins are affected."</div>
+                    <div class="problem-a">TariffShield auto-calculates impact across your entire catalog and suggests new prices in one click.</div>
+                    <span class="problem-app">→ TariffShield</span>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-q">"Someone changed a product price and we can't figure out who or when."</div>
+                    <div class="problem-a">StoreChronicle logs every change with field-level diffs and staff attribution. Compliance-ready audit trail.</div>
+                    <span class="problem-app">→ StoreChronicle</span>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-q">"We're tracking warranty claims in a Google Sheet and it's a mess."</div>
+                    <div class="problem-a">WarrantyShield replaces the spreadsheet with auto-registration, serial tracking, and a claims workflow.</div>
+                    <span class="problem-app">→ WarrantyShield</span>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-q">"We have $40K of dead inventory sitting in our warehouse."</div>
+                    <div class="problem-a">StockClearance identifies dead stock automatically and helps you run flash sales to recover capital.</div>
+                    <span class="problem-app">→ StockClearance</span>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-q">"Products expired on the shelf and we didn't notice until a customer complained."</div>
+                    <div class="problem-a">ShelfLife tracks every batch's expiry date and alerts you 30, 14, and 7 days before expiration.</div>
+                    <span class="problem-app">→ ShelfLife</span>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-q">"We got an ADA lawsuit threat and our accessibility widget is just an overlay."</div>
+                    <div class="problem-a">AccessShield does real WCAG scanning and fixes issues in your theme code. Not an overlay band-aid.</div>
+                    <span class="problem-app">→ AccessShield</span>
                 </div>
             </div>
         </div>
@@ -566,27 +743,27 @@
         <div class="container">
             <div class="section-label">Why Us</div>
             <h2 class="section-title">Built differently</h2>
-            <p class="section-sub">We're a small team that cares about craft. No bloat, no dark patterns, no useless features.</p>
+            <p class="section-sub">We're a small team that cares about craft. No bloat, no dark patterns, no feature-gating to force upgrades.</p>
             <div class="why-grid">
                 <div class="why-card">
                     <span class="why-icon">🎯</span>
-                    <h4>Laser-focused apps</h4>
-                    <p>Each app solves one problem exceptionally well. We don't try to be everything — we try to be indispensable for one thing.</p>
+                    <h4>One app, one problem</h4>
+                    <p>Each app solves one problem exceptionally well. We don't bundle 20 features to justify $99/mo — we build the thing you actually need.</p>
                 </div>
                 <div class="why-card">
                     <span class="why-icon">⚡</span>
-                    <h4>Shopify-native performance</h4>
-                    <p>Built with Shopify's latest APIs, Remix, and Polaris design system. Fast, embedded, and designed to feel native.</p>
+                    <h4>Shopify-native</h4>
+                    <p>Remix, Polaris, latest APIs. Our apps feel like part of Shopify because they're built the way Shopify recommends.</p>
                 </div>
                 <div class="why-card">
                     <span class="why-icon">🔐</span>
                     <h4>Privacy by design</h4>
-                    <p>We collect the minimum data needed to make our apps work. No tracking pixels, no data selling, no nonsense.</p>
+                    <p>Minimum data collection. Full GDPR compliance. No tracking pixels, no data selling, no dark patterns. Your store's data is yours.</p>
                 </div>
                 <div class="why-card">
-                    <span class="why-icon">💬</span>
-                    <h4>Real human support</h4>
-                    <p>Questions go to a real person, not a bot farm. We respond fast because we care about your store's success.</p>
+                    <span class="why-icon">💰</span>
+                    <h4>Fair pricing</h4>
+                    <p>Every app has a free tier that actually works. Paid plans are flat monthly — no per-transaction fees, no revenue-share, no annual lock-in traps.</p>
                 </div>
             </div>
         </div>
@@ -598,13 +775,13 @@
             <div class="about-inner">
                 <div>
                     <div class="section-label">About</div>
-                    <h2>We build the tools<br>we wish we had</h2>
-                    <p>Attahir Labs was built out of frustration with bloated, overpriced Shopify apps that promise everything and deliver little. We focus on real problems — the kind that cost merchants money every day.</p>
-                    <p>Every app we ship is built from scratch, designed to be fast, and priced fairly. We don't do annual-only pricing traps, we don't hide features behind paywalls, and we don't inflate prices to fund sales teams you never asked for.</p>
+                    <h2>We build the tools<br>we wish existed</h2>
+                    <p>Attahir Labs was born from frustration with bloated, overpriced Shopify apps that promise everything and deliver little. We focus on real problems — the kind that cost merchants money every day and get solved with spreadsheets until someone builds the right tool.</p>
+                    <p>Every app we ship is built from scratch, tested obsessively, and priced so that small stores can afford it while enterprise stores get the features they need.</p>
                     <div class="about-stats">
                         <div class="about-stat">
-                            <div class="num">5</div>
-                            <div class="label">Apps building</div>
+                            <div class="num">6</div>
+                            <div class="label">Apps in pipeline</div>
                         </div>
                         <div class="about-stat">
                             <div class="num">39</div>
@@ -619,9 +796,18 @@
                 <div class="about-visual">
                     <span class="big-emoji">🚀</span>
                     <p>"We're not building apps for the sake of it. We're building infrastructure for commerce — tools that merchants can rely on when it matters most."</p>
-                    <p style="margin-top: 1.5rem; opacity: 0.6; font-size: 0.8rem;">— Attahir Labs Team</p>
+                    <p style="margin-top: 1.5rem; opacity: 0.6; font-size: 0.8rem;">— Attahir Labs</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to try something better?</h2>
+            <p>Every app has a free tier. No credit card required. Install, explore, decide.</p>
+            <a href="#apps" class="btn-primary" style="background: var(--white); color: var(--navy);">Browse Apps ↑</a>
         </div>
     </section>
 
