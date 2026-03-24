@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://www.google-analytics.com;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Tariff Rate Table — Import Duty Rates for 85+ Countries | Attahir Labs</title>
+    <meta name="description" content="Browse all tariff rates across US, Canada, EU, UK, and Australia. Search by country, filter by market. Updated weekly from government sources.">
+    <link rel="canonical" href="https://attahirlabs.com/duty/rates/">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8;
+            --green: #10b981; --red: #ef4444; --amber: #f59e0b;
+            --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+            --gray-500: #64748b; --gray-700: #334155; --radius: 12px;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--white); line-height: 1.6; background: var(--navy); }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+        .nav-logo span { color: var(--indigo-light); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
+        .nav-links a:hover { color: var(--white); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .header { margin-bottom: 1.5rem; }
+        .header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .header p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+        .filters { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filters input, .filters select { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.6rem 0.75rem; color: var(--white); font-size: 0.9rem; outline: none; }
+        .filters input { flex: 1; min-width: 200px; }
+        .filters input:focus, .filters select:focus { border-color: var(--indigo); }
+        .filters select { min-width: 150px; }
+        .count { font-size: 0.8rem; color: var(--gray-500); margin-bottom: 0.75rem; }
+        .table-wrap { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { text-align: left; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: var(--gray-500); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .country-name { font-weight: 600; }
+        .country-code { color: var(--gray-500); font-size: 0.8rem; margin-left: 0.4rem; }
+        .rate-high { color: var(--red); font-weight: 700; }
+        .rate-mid { color: var(--amber); font-weight: 700; }
+        .rate-low { color: var(--green); font-weight: 700; }
+        .rate-zero { color: var(--green); font-weight: 700; }
+        .region { color: var(--gray-500); font-size: 0.8rem; }
+        .market-name { color: rgba(255,255,255,0.8); }
+        .empty { text-align: center; padding: 3rem; color: var(--gray-500); }
+        .cta-bar { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.25rem; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .cta-bar p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+        .cta-bar a { background: var(--indigo); color: var(--white); padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+        .cta-bar a:hover { background: #4f46e5; }
+        .source-note { font-size: 0.75rem; color: var(--gray-500); margin-top: 1rem; }
+        footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 2rem 1.5rem; margin-top: 4rem; text-align: center; }
+        footer p { font-size: 0.8rem; color: var(--gray-500); }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        @media (max-width: 768px) {
+            .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; }
+            th, td { padding: 0.5rem 0.6rem; font-size: 0.8rem; }
+            .cta-bar { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/duty/">Calculator</a></li>
+            <li><a href="/duty/rates/">Rates</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>Tariff Rate Table</h1>
+        <p>Browse all import duty rates across 5 major markets. Updated weekly from government sources.</p>
+    </div>
+
+    <div class="filters">
+        <input type="text" id="search" placeholder="Search by country name..." oninput="filterRates()">
+        <select id="marketFilter" onchange="filterRates()">
+            <option value="">All Markets</option>
+        </select>
+    </div>
+
+    <div class="count" id="count">Loading rates...</div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Origin Country</th>
+                    <th>Destination</th>
+                    <th>Region</th>
+                    <th style="text-align:right">Tariff Rate</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr><td colspan="4" class="empty">Loading tariff rates...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cta-bar">
+        <p>Need to calculate your total landed cost including shipping and insurance?</p>
+        <a href="/duty/">Use the Duty Calculator →</a>
+    </div>
+
+    <div class="source-note">
+        Rates updated weekly from USTR, CBSA, EU TARIC, UK Trade Tariff API, and Australian Border Force. 
+        Rates are general estimates for non-product-specific tariffs. Product-specific rates (Section 232 for steel, aluminum, autos) may apply additionally.
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Attahir Labs. Tariff rates are estimates — consult a customs broker for exact rates.</p>
+    <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
+</footer>
+
+<script>
+const API = "https://duty-calc-api-production.up.railway.app";
+const MARKET_NAMES = { US: "United States", CA: "Canada", EU: "European Union", UK: "United Kingdom", AU: "Australia" };
+let allRates = [];
+
+async function init() {
+    try {
+        const [rr, mr] = await Promise.all([
+            fetch(API + "/api/v1/rates?limit=1000"),
+            fetch(API + "/api/v1/markets")
+        ]);
+        const rd = await rr.json(), md = await mr.json();
+        allRates = rd.rates || [];
+        
+        const sel = document.getElementById("marketFilter");
+        (md.markets || []).forEach(m => {
+            const opt = document.createElement("option");
+            opt.value = m.code;
+            opt.textContent = m.name + " (" + m.rateCount + ")";
+            sel.appendChild(opt);
+        });
+        
+        filterRates();
+    } catch (e) {
+        document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">Failed to load rates. Please try again.</td></tr>';
+    }
+}
+
+function filterRates() {
+    const search = (document.getElementById("search").value || "").toLowerCase();
+    const market = document.getElementById("marketFilter").value;
+    
+    let filtered = allRates;
+    if (market) filtered = filtered.filter(r => r.destination === market);
+    if (search) filtered = filtered.filter(r => r.origin.name.toLowerCase().includes(search) || r.origin.code.toLowerCase().includes(search));
+    
+    document.getElementById("count").textContent = filtered.length + " of " + allRates.length + " rates";
+    
+    if (filtered.length === 0) {
+        document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">No rates found matching your search.</td></tr>';
+        return;
+    }
+    
+    let html = "";
+    filtered.forEach(r => {
+        const rateClass = r.rate === 0 ? "rate-zero" : r.rate >= 20 ? "rate-high" : r.rate >= 10 ? "rate-mid" : "rate-low";
+        html += '<tr>' +
+            '<td><span class="country-name">' + esc(r.origin.name) + '</span><span class="country-code">' + esc(r.origin.code) + '</span></td>' +
+            '<td class="market-name">' + esc(MARKET_NAMES[r.destination] || r.destination) + '</td>' +
+            '<td class="region">' + esc(r.region) + '</td>' +
+            '<td style="text-align:right"><span class="' + rateClass + '">' + r.rate + '%</span></td>' +
+            '</tr>';
+    });
+    document.getElementById("tbody").innerHTML = html;
+}
+
+function esc(s) { 
+    if (!s) return "";
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); 
+}
+
+init();
+</script>
+</body>
+</html>
