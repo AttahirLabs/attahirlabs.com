@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "March Sales Slump? 5 Ways to Move Dead Stock Before Q2"
-date: 2026-03-28
+date: 2026-03-26
 categories: [inventory, strategy]
 description: "March 2026 has been brutal for Shopify merchants. Here are 5 practical strategies to clear dead stock and free up cash before Q2 hits."
 author: Attahir Labs
