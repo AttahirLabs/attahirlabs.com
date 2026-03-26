@@ -109,7 +109,7 @@
 
         <h1>WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does</h1>
 
-        <p class="lead">If you own a Shopify store or ecommerce site, you've probably seen ads for accessibility overlays: "Just add our widget and you're ADA compliant." It's tempting. It's also a trap — and courts have started saying so. Here's what you actually need to know about WCAG compliance, why overlays fail, and what genuinely protects your business.</p>
+        <p class="lead">You've probably seen the ads: "Add our widget and you're ADA compliant." If you run a Shopify store or any ecommerce site, that pitch is everywhere. It's also wrong — and courts have started spelling that out explicitly. Here's what actually matters for WCAG compliance, why overlays are a waste of money, and what genuinely reduces your legal exposure.</p>
 
         <div class="toc">
             <h3>In this guide</h3>
@@ -127,29 +127,29 @@
 
         <h2 id="why-now">Why Accessibility Matters NOW (2026)</h2>
 
-        <p>Three things changed in 2025-2026 that make this urgent:</p>
+        <p>Three things happened in 2025-2026 that pushed this issue past the point of "we should probably deal with this someday":</p>
 
         <h3>1. ADA Lawsuits Hit Record Highs</h3>
 
-        <p><strong>4,605 ADA Title III lawsuits were filed in 2024</strong> — the highest year on record, according to the UsableNet annual report. Over 800 of those businesses were specifically sued despite using accessibility overlay widgets. Courts are beginning to recognize that <strong>overlays alone don't satisfy legal requirements</strong>.</p>
+        <p><strong>4,605 ADA Title III lawsuits were filed in 2024</strong> — a record high, per the UsableNet annual report. And here's the part that should get your attention: over 800 of those businesses were sued despite having an accessibility overlay widget installed. Courts are starting to be explicit that <strong>overlays alone don't satisfy legal requirements</strong>.</p>
 
-        <p>The pattern: a plaintiff's attorney finds a business with an accessibility overlay, tests it with a screen reader, finds accessibility barriers, and sues. The overlay is irrelevant if the underlying HTML is broken.</p>
+        <p>The playbook is consistent: a plaintiff's attorney finds a site with an overlay, runs a screen reader through it, finds barriers, and files. The overlay doesn't matter if the underlying HTML is broken.</p>
 
         <h3>2. The European Accessibility Act (EAA) Deadline</h3>
 
-        <p>If you sell to EU customers, mark your calendar: <strong>June 28, 2025</strong> is when the European Accessibility Act takes effect. It requires <strong>all online retailers</strong> selling physical goods or services in the EU to meet WCAG 2.1 Level AA standards. This applies to your Shopify store even if you're based in North America.</p>
+        <p>If you sell to EU customers: <strong>June 28, 2025</strong> is when the European Accessibility Act took effect. It requires <strong>all online retailers</strong> selling physical goods or services in the EU to meet WCAG 2.1 Level AA. This applies to your Shopify store even if you're based in North America, Canada, or anywhere else.</p>
 
-        <p>The EAA covers the same web accessibility standards as the US ADA (WCAG 2.1 AA). No overlays. Real fixes.</p>
+        <p>Same standard as the US ADA — WCAG 2.1 AA. No overlay shortcuts. Real fixes.</p>
 
         <h3>3. Canada's AODA Keeps Growing</h3>
 
-        <p>The <strong>Accessibility for Ontarians with Disabilities Act (AODA)</strong> has required Ontario businesses to meet WCAG 2.1 Level AA standards since 2021. Other Canadian provinces are following suit. For Ontario merchants, this is law.</p>
+        <p>The <strong>Accessibility for Ontarians with Disabilities Act (AODA)</strong> has required Ontario businesses to meet WCAG 2.1 Level AA since 2021. Other Canadian provinces are following. For Ontario merchants, this isn't a guideline — it's law.</p>
 
-        <p><strong>The moral case matters too:</strong> 1 in 5 people in North America have a disability. If your site is hard to use for them, you're literally turning away customers and violating their rights.</p>
+        <p>And beyond the legal stuff: 1 in 5 people in North America have a disability. If your site doesn't work for them, you're turning away customers. That's the moral case in one sentence.</p>
 
         <h2 id="wcag-basics">What is WCAG 2.1 Level AA?</h2>
 
-        <p>WCAG stands for Web Content Accessibility Guidelines. Level AA is the middle-ground standard that regulators actually enforce. Here's what it means:</p>
+        <p>WCAG stands for Web Content Accessibility Guidelines. Level AA is the middle tier — and it's the one regulators actually enforce. Here's the structure:</p>
 
         <h3>The 4 Principles (POUR)</h3>
 
@@ -165,182 +165,183 @@
             </tbody>
         </table>
 
-        <p>WCAG 2.1 Level AA has <strong>50 specific criteria</strong> across these four principles. You don't need to pass every single one to be "compliant" — but courts and regulators expect you to make a good-faith effort and fix violations when you find them.</p>
+        <p>WCAG 2.1 Level AA has <strong>50 specific criteria</strong> across those four principles. You don't need to ace every single one — but courts and regulators expect a genuine effort and a track record of fixing things when you find them.</p>
 
         <h2 id="top-violations">Top 5 Accessibility Violations on Ecommerce Sites</h2>
 
-        <p>Based on WebAIM's annual analysis and WCAG compliance reports, these are the five violations that appear in 99% of inaccessible ecommerce sites:</p>
+        <p>Per WebAIM's annual analysis and WCAG compliance reports, these five violations show up on nearly every non-compliant ecommerce site:</p>
 
         <h3>1. Missing Alt Text on Product Images (The #1 Violation)</h3>
 
-        <p><strong>What it is:</strong> Images without descriptive alt text. A blind user with a screen reader hears nothing; they don't know what the product looks like.</p>
+        <p><strong>What it is:</strong> Images with no alt text. A blind user's screen reader reads nothing — they have no idea what the product looks like or why they should care.</p>
 
         <p><strong>How to fix it:</strong></p>
         <ul>
             <li>Write descriptive alt text for every product image: <code>&lt;img src="shoe.jpg" alt="Red Nike Air Force 1 Low, size 10, leather"&gt;</code></li>
-            <li>Don't just write "shoe" or "product image" — describe the key details</li>
-            <li>For Shopify: Use the "Alt Text" field in your product image settings (takes 30 seconds per image)</li>
-            <li><strong>SEO bonus:</strong> Google uses alt text for image search ranking. Better alt text = more traffic from Google Images</li>
+            <li>"Shoe" or "product image" doesn't cut it — describe the details a buyer would actually want to know</li>
+            <li>Shopify: the "Alt Text" field is right there in your product image settings. Takes 30 seconds per image.</li>
+            <li><strong>SEO bonus:</strong> Google uses alt text for image search ranking. Fix accessibility, get more traffic. Not a bad deal.</li>
         </ul>
 
-        <p><strong>Real impact:</strong> A store with 1,000 products and no alt text has 1,000 accessibility violations. Fix this alone and your accessibility score jumps 40%.</p>
+        <p><strong>Real impact:</strong> A store with 1,000 products and zero alt text has 1,000 accessibility violations. Fix just this one thing and your accessibility score jumps roughly 40%.</p>
 
         <h3>2. Low Color Contrast (Text Hard to Read)</h3>
 
-        <p><strong>What it is:</strong> Light gray text on white, or dark gray on black. Hard for people with low vision, and fails WCAG AA standards.</p>
+        <p><strong>What it is:</strong> Light gray on white. Dark gray on black. Hard to read for anyone with low vision, and it fails WCAG AA.</p>
 
         <p><strong>How to fix it:</strong></p>
         <ul>
-            <li>Test your colors: Use the free <a href="https://www.tpgi.com/color-contrast-checker/" target="_blank" rel="noopener">TPGI Contrast Checker</a></li>
-            <li>Minimum contrast ratio: <strong>4.5:1 for normal text, 3:1 for large text</strong></li>
-            <li>Dark text on light background (or vice versa) is almost always safe</li>
-            <li>Avoid: light gray (#aaa or lighter), especially for body text</li>
+            <li>Test your colors: free <a href="https://www.tpgi.com/color-contrast-checker/" target="_blank" rel="noopener">TPGI Contrast Checker</a></li>
+            <li>Minimum ratios: <strong>4.5:1 for normal text, 3:1 for large text</strong></li>
+            <li>Dark on light (or vice versa) is almost always fine</li>
+            <li>The one to avoid: light gray (#aaa or lighter) for body text. Very common, very often a violation.</li>
         </ul>
 
-        <p><strong>Real impact:</strong> Better contrast also improves readability for everyone on mobile devices in sunlight.</p>
+        <p><strong>Bonus:** Better contrast also makes your site easier to read on a phone in bright sunlight. Accessibility wins frequently turn into usability wins too.</p>
 
         <h3>3. Missing Form Labels and ARIA</h3>
 
-        <p><strong>What it is:</strong> Form fields without labels, or labels not properly connected to inputs. A screen reader user doesn't know what each field is for.</p>
+        <p><strong>What it is:</strong> Form fields with no labels, or labels that aren't properly connected to the input. Screen reader users don't know what they're supposed to type where.</p>
 
         <p><strong>How to fix it:</strong></p>
         <ul>
-            <li>Every input needs a <code>&lt;label&gt;</code> tag: <code>&lt;label for="email"&gt;Email Address&lt;/label&gt;&lt;input id="email" type="email"&gt;</code></li>
-            <li>Use ARIA-label for buttons without text: <code>&lt;button aria-label="Close menu"&gt;✕&lt;/button&gt;</code></li>
-            <li>For Shopify forms: Most built-in forms are fine, but custom forms need checking</li>
+            <li>Every input needs a <code>&lt;label&gt;</code>: <code>&lt;label for="email"&gt;Email Address&lt;/label&gt;&lt;input id="email" type="email"&gt;</code></li>
+            <li>For buttons without visible text, use ARIA: <code>&lt;button aria-label="Close menu"&gt;✕&lt;/button&gt;</code></li>
+            <li>Shopify's built-in forms are mostly fine. Custom forms need checking.</li>
         </ul>
 
         <h3>4. Non-Semantic HTML (Wrong HTML Tags)</h3>
 
-        <p><strong>What it is:</strong> Using <code>&lt;div&gt;</code> for buttons, <code>&lt;span&gt;</code> for headings, or <code>&lt;div&gt;</code> for links. Screen readers don't understand what these elements do.</p>
+        <p><strong>What it is:</strong> Using <code>&lt;div&gt;</code> for buttons, <code>&lt;span&gt;</code> for headings, <code>&lt;div&gt;</code> for links. Screen readers don't know what any of these things are — they just see a block of content with no meaning.</p>
 
         <p><strong>How to fix it:</strong></p>
         <ul>
-            <li>Use semantic HTML: <code>&lt;button&gt;</code> for buttons (not <code>&lt;div onclick&gt;</code>)</li>
-            <li>Use <code>&lt;nav&gt;</code> for navigation, <code>&lt;main&gt;</code> for main content, <code>&lt;article&gt;</code> for articles</li>
-            <li>Use real <code>&lt;a href&gt;</code> links, not <code>&lt;span&gt;</code> with click handlers</li>
-            <li>Use proper heading hierarchy: <code>&lt;h1&gt;</code> once per page, then <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, etc.</li>
+            <li><code>&lt;button&gt;</code> for buttons. Not <code>&lt;div onclick&gt;</code>. Not <code>&lt;span onclick&gt;</code>. An actual button.</li>
+            <li><code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> where appropriate</li>
+            <li>Real <code>&lt;a href&gt;</code> links, not <code>&lt;span&gt;</code> with click handlers bolted on</li>
+            <li>Proper heading hierarchy: one <code>&lt;h1&gt;</code> per page, then <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, in order</li>
         </ul>
 
         <h3>5. No Keyboard Navigation (Mouse-Only)</h3>
 
-        <p><strong>What it is:</strong> Important features only work with a mouse. A keyboard user or screen reader user can't access them.</p>
+        <p><strong>What it is:</strong> Features that only work with a mouse. Keyboard-only users and screen reader users can't get to them at all.</p>
 
-        <p><strong>How to fix it:</strong></p>
+        <p><strong>How to test it right now:</strong></p>
         <ul>
-            <li>Test: Open your site and navigate using only Tab, Shift+Tab, Enter, and arrow keys. Can you add items to cart? Checkout? Complete forms?</li>
-            <li>If you get stuck, something isn't keyboard-accessible</li>
-            <li>All interactive elements need focus styles so users know where they are</li>
-            <li>Most Shopify themes handle this automatically, but custom code often breaks it</li>
+            <li>Open your site. Put the mouse away. Use Tab, Shift+Tab, Enter, and arrow keys only.</li>
+            <li>Can you add items to cart? Get through checkout? Fill out a form?</li>
+            <li>If you get stuck somewhere, that's a violation.</li>
+            <li>All interactive elements need visible focus styles — don't remove the blue outline</li>
+            <li>Most Shopify themes handle this. Custom code frequently breaks it.</li>
         </ul>
 
         <h2 id="why-overlays-fail">Why Overlay Widgets Fail (And What Courts Say)</h2>
 
-        <p>Accessibility overlay companies have raised hundreds of millions in venture capital. They all make the same promise: <strong>"Add our widget, become ADA compliant instantly."</strong> It sounds great. It's also not how accessibility works.</p>
+        <p>Accessibility overlay companies have raised hundreds of millions in venture capital. The pitch is always the same: <strong>"Add our widget, become ADA compliant instantly."</strong> It sounds great. It doesn't work.</p>
 
         <h3>How Overlays Actually Work</h3>
 
-        <p>An accessibility overlay injects JavaScript into your page at runtime. It attempts to:</p>
+        <p>An overlay injects JavaScript into your page at runtime and tries to:</p>
         <ul>
-            <li>Increase text size automatically</li>
+            <li>Bump text size automatically</li>
             <li>Adjust color contrast</li>
             <li>Add "missing" alt text to images</li>
             <li>Simulate keyboard navigation</li>
         </ul>
 
-        <p>The problem: <strong>Overlays can't fix broken HTML.</strong> They can't make a non-semantic <code>&lt;div&gt;</code> button actually work for screen readers. They can't retroactively add proper labels to forms. They can't replace missing alt text in a way that a screen reader understands (they add it visually, but not to the actual DOM).</p>
+        <p>Here's the fundamental problem: <strong>Overlays can't fix broken HTML.</strong> A non-semantic <code>&lt;div&gt;</code> button still doesn't work for screen readers after the overlay runs. Form labels still aren't properly connected. And the "alt text" overlays inject? It goes in visually — not into the actual DOM where screen readers look. It's theater.</p>
 
         <h3>What Courts Are Saying</h3>
 
-        <p><strong>The landmark case:</strong> In <em>Lainey v. Uber</em> (Northern District of California, 2024), a blind user sued Uber because its accessibility overlay failed to make the website usable. The court found that <strong>the overlay was no substitute for building accessible code</strong>.</p>
+        <p><strong>The landmark case:</strong> In <em>Lainey v. Uber</em> (Northern District of California, 2024), a blind user sued Uber because its overlay failed to make the site usable. The court found that <strong>the overlay wasn't a substitute for accessible code</strong>.</p>
 
-        <p><strong>The pattern:</strong> Multiple court filings reference that overlays are "band-aids on fundamental accessibility problems." Even if you install an overlay, if your underlying HTML is broken, you're still liable.</p>
+        <p>Multiple court filings now describe overlays as "band-aids on fundamental accessibility problems." Install an overlay, leave your HTML broken, you're still liable. That's where things stand.</p>
 
-        <p><strong>National Federation of the Blind (NFB) Statement:</strong> The NFB, the largest disability rights organization in the US, has issued formal statements opposing accessibility overlays, saying they <strong>don't meaningfully improve access for screen reader users</strong>.</p>
+        <p>The National Federation of the Blind — the largest disability rights organization in the US — has issued formal statements opposing overlays. Their position: overlays <strong>don't meaningfully improve access for screen reader users</strong>. These are the people the overlays supposedly help.</p>
 
         <p class="source">Sources: <em>Lainey v. Uber Technologies, Inc.</em> (N.D. Cal. 2024), National Federation of the Blind statement on accessibility overlays (2023).</p>
 
         <div class="callout callout-warn">
-            <p><strong>⚠ The Real Risk:</strong> If you have an overlay, a plaintiff's attorney sees this: "They know they have accessibility problems (why else buy an overlay?) but didn't fix them." This can make your legal position worse, not better. Overlays can be evidence of negligence, not compliance.</p>
+            <p><strong>⚠ The real risk:</strong> If you have an overlay installed, a plaintiff's attorney reads it as: "They knew they had accessibility problems — otherwise why buy a widget — and chose not to fix them." That makes your legal position <em>worse</em>. Overlays can become evidence of negligence, not compliance.</p>
         </div>
 
         <h2 id="what-works">What Actually Works: Real Accessibility Fixes</h2>
 
-        <p>Courts, regulators, and the disability community all agree: actual accessibility fixes work. Here's what you need to do:</p>
+        <p>Courts, regulators, and disability organizations are all pointing at the same answer: fix the actual code. Here's what that looks like in practice:</p>
 
         <h3>1. Add Alt Text to All Images</h3>
 
-        <p>This is the single highest-impact fix you can make. Most ecommerce sites have 500+ images with zero alt text.</p>
+        <p>Highest impact, fastest win. Most ecommerce sites have 500+ images with zero alt text.</p>
 
         <ul>
-            <li><strong>Shopify:</strong> Edit each product → Image → Alt text field. Takes ~2 minutes per product for a thorough description</li>
-            <li><strong>AI shortcut:</strong> Tools like <a href="https://www.alt-text-generator.com/" target="_blank" rel="noopener">Alt Text Generator</a> or <a href="https://www.siteimprove.com/" target="_blank" rel="noopener">Siteimprove</a> can auto-generate alt text, but review them — they're not perfect</li>
-            <li><strong>What to write:</strong> Describe the product as if you were describing it to someone who can't see the image. Include color, material, key features</li>
+            <li><strong>Shopify:</strong> Edit product → Image → Alt text field. About 2 minutes per product if you're thorough.</li>
+            <li><strong>AI shortcut:</strong> <a href="https://www.alt-text-generator.com/" target="_blank" rel="noopener">Alt Text Generator</a> or <a href="https://www.siteimprove.com/" target="_blank" rel="noopener">Siteimprove</a> can auto-generate — just review them. AI gets it right most of the time, not all the time.</li>
+            <li><strong>What to write:</strong> Describe the product as if you're explaining it to someone over the phone. Color, material, key features — the things a buyer would actually want to know.</li>
         </ul>
 
         <h3>2. Use Proper HTML Semantics</h3>
 
-        <p>If you built your site with Shopify's standard themes, this is mostly handled for you. If you have custom code:</p>
+        <p>Standard Shopify themes handle most of this for you. If you've written custom code:</p>
 
         <ul>
-            <li>Use <code>&lt;button&gt;</code> for buttons, not <code>&lt;div&gt;</code></li>
-            <li>Use <code>&lt;a href=""&gt;</code> for links</li>
-            <li>Use <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> tags appropriately</li>
-            <li>Use <code>&lt;label&gt;</code> for form fields</li>
+            <li><code>&lt;button&gt;</code> for buttons. Not <code>&lt;div&gt;</code>.</li>
+            <li><code>&lt;a href=""&gt;</code> for links</li>
+            <li><code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> where they make sense</li>
+            <li><code>&lt;label&gt;</code> for form fields, always</li>
         </ul>
 
         <h3>3. Add ARIA Labels Where Needed</h3>
 
-        <p>ARIA = Accessible Rich Internet Applications. It's a set of HTML attributes that tell screen readers what things are.</p>
+        <p>ARIA (Accessible Rich Internet Applications) is a set of HTML attributes that give screen readers context they can't get from the HTML alone.</p>
 
         <ul>
-            <li><code>aria-label</code>: Label for an element with no visible text. Example: <code>&lt;button aria-label="Close menu"&gt;✕&lt;/button&gt;</code></li>
+            <li><code>aria-label</code>: Labels an element with no visible text. Example: <code>&lt;button aria-label="Close menu"&gt;✕&lt;/button&gt;</code></li>
             <li><code>aria-labelledby</code>: Links an element to another element that labels it</li>
-            <li><code>role</code>: Tells screen readers what an element does. Example: <code>&lt;div role="button" tabindex="0"&gt;</code> (but just use <code>&lt;button&gt;</code> instead)</li>
+            <li><code>role</code>: Tells screen readers what something does. <code>&lt;div role="button" tabindex="0"&gt;</code> works — but honestly, just use <code>&lt;button&gt;</code> and skip the ARIA</li>
         </ul>
 
         <h3>4. Ensure Full Keyboard Navigation</h3>
 
-        <p>Every interactive element must work with Tab, Enter, Escape, and arrow keys:</p>
+        <p>Every interactive element must work with Tab, Enter, Escape, and arrow keys — no exceptions:</p>
 
         <ul>
-            <li>All buttons, links, and form fields must be reachable via Tab</li>
-            <li>Focus styles must be visible (don't remove the blue outline!)</li>
-            <li>Dropdown menus must work with arrow keys</li>
-            <li>Modals must trap focus and allow escape to close</li>
+            <li>Buttons, links, and form fields must be reachable via Tab</li>
+            <li>Focus styles must be visible — don't remove the blue outline, it's there for a reason</li>
+            <li>Dropdown menus need to work with arrow keys</li>
+            <li>Modals must trap focus and close on Escape</li>
         </ul>
 
         <h3>5. Fix Color Contrast</h3>
 
         <ul>
-            <li>Test your colors: <a href="https://www.tpgi.com/color-contrast-checker/" target="_blank" rel="noopener">TPGI Contrast Checker</a></li>
+            <li><a href="https://www.tpgi.com/color-contrast-checker/" target="_blank" rel="noopener">TPGI Contrast Checker</a> is free and takes 30 seconds</li>
             <li>Minimum 4.5:1 for normal text, 3:1 for large text (18pt+ or 14pt+ bold)</li>
-            <li>Avoid light gray text; dark text on light backgrounds is safest</li>
+            <li>Light gray body text is the most common failure point</li>
         </ul>
 
-        <h3>6. Provide Captions and Transcripts for Videos</h3>
+        <h3>6. Captions and Transcripts for Videos</h3>
 
         <ul>
-            <li>If you have product demo videos, add captions (YouTube auto-generates them, but review for accuracy)</li>
-            <li>Provide transcripts for any video with spoken content</li>
+            <li>Product demo videos: add captions. YouTube auto-generates them — review for accuracy before publishing.</li>
+            <li>Any video with spoken content needs a transcript for deaf users</li>
         </ul>
 
         <h2 id="audit">How to Audit Your Site for Free</h2>
 
-        <p>You don't need to hire a consultant. Start with these free tools:</p>
+        <p>You don't need to hire anyone. Start with these free tools:</p>
 
         <h3>1. Google Lighthouse (Built Into Chrome)</h3>
 
         <p><strong>How to use:</strong></p>
         <ol>
-            <li>Open your Shopify store in Chrome</li>
+            <li>Open your store in Chrome</li>
             <li>Right-click → Inspect (or Cmd+Option+I on Mac)</li>
-            <li>Go to the "Lighthouse" tab</li>
-            <li>Click "Analyze page load" and select "Accessibility"</li>
-            <li>Wait 30 seconds — you'll get a score (0-100) and a list of violations</li>
+            <li>Click the "Lighthouse" tab</li>
+            <li>Select "Accessibility" and hit "Analyze page load"</li>
+            <li>Wait about 30 seconds — you get a score (0-100) and a list of violations</li>
         </ol>
 
-        <p>Lighthouse is built-in, free, and gives you real, specific fixes. Don't use it as your only test, but it's a great starting point.</p>
+        <p>It's free, built-in, and gives you specific fixes to make. Use it as your first pass — don't rely on it as your only test, but it catches the obvious stuff.</p>
 
         <h3>2. WAVE by WebAIM</h3>
 
@@ -351,7 +352,7 @@
             <li>It highlights accessibility errors directly on your page in red</li>
         </ol>
 
-        <p>Great for visual learners. Shows errors, warnings, and features in context.</p>
+        <p>Good if you learn visually. Shows errors, warnings, and passing features highlighted on the actual page.</p>
 
         <h3>3. axe DevTools (Chrome Extension)</h3>
 
@@ -367,43 +368,43 @@
 
         <h3>4. Manual Screen Reader Testing</h3>
 
-        <p>Tools are helpful, but real screen reader testing is the gold standard:</p>
+        <p>Tools are helpful. Real screen reader testing is the gold standard:</p>
 
         <ul>
-            <li><strong>Mac:</strong> Press Cmd+F5 to enable VoiceOver (built-in)</li>
-            <li><strong>Windows:</strong> NVDA is free (download at <a href="https://www.nvaccess.org/" target="_blank" rel="noopener">nvaccess.org</a>)</li>
-            <li>Use it to navigate your site: Can you add products to cart? Complete checkout? Fill out a contact form?</li>
-            <li>If you get confused, your users will too</li>
+            <li><strong>Mac:</strong> Cmd+F5 enables VoiceOver (built-in)</li>
+            <li><strong>Windows:</strong> NVDA is free — <a href="https://www.nvaccess.org/" target="_blank" rel="noopener">nvaccess.org</a></li>
+            <li>Navigate your site with it: Add to cart? Checkout? Fill a contact form?</li>
+            <li>If you get stuck, your users will too</li>
         </ul>
 
-        <p><strong>Pro tip:</strong> Accessibility isn't just about screen readers. Test your site with:</p>
+        <p><strong>Beyond screen readers:</strong> Accessibility isn't just a screen reader thing. Test with:</p>
         <ul>
-            <li>Keyboard only (no mouse)</li>
+            <li>Keyboard only (mouse unplugged)</li>
             <li>Browser zoom at 200%</li>
-            <li>Text size increased to 125-150%</li>
+            <li>Text size bumped to 125–150%</li>
             <li>Color contrast filters (simulate color blindness)</li>
         </ul>
 
         <h2 id="business-case">The Business Case for Accessibility</h2>
 
-        <p>Accessibility isn't just about legal compliance. It's good business:</p>
+        <p>This isn't just a legal box to tick. It's business sense:</p>
 
         <h3>1. Legal Protection (ADA, EAA, AODA Compliance)</h3>
 
         <ul>
-            <li>4,605 ADA lawsuits in 2024 — you don't want to be one</li>
+            <li>4,605 ADA lawsuits in 2024 alone — don't become #4,606</li>
             <li>EAA applies to all EU retail starting June 2025</li>
-            <li>AODA is law in Ontario (and growing in Canada)</li>
-            <li>Real fixes are your defense; overlays are not</li>
+            <li>AODA is law in Ontario and spreading across Canada</li>
+            <li>Real fixes defend you. Overlays don't.</li>
         </ul>
 
         <h3>2. SEO Improvement</h3>
 
         <ul>
-            <li><strong>Alt text:</strong> Google uses it for image search ranking. Better alt = more traffic from Google Images</li>
-            <li><strong>Semantic HTML:</strong> Helps Google understand your content structure</li>
-            <li><strong>Keyboard navigation:</strong> Makes your site easier to crawl</li>
-            <li><strong>Page speed:</strong> Accessibility-friendly code is often faster code</li>
+            <li><strong>Alt text:</strong> Google ranks image search results partly on alt text. Better alt text = more Google Images traffic</li>
+            <li><strong>Semantic HTML:</strong> Google understands your content structure better</li>
+            <li><strong>Keyboard navigation:</strong> Easier for search crawlers to navigate</li>
+            <li><strong>Page speed:</strong> Accessibility-focused code is often faster code</li>
         </ul>
 
         <h3>3. Expanded Customer Base</h3>
@@ -411,16 +412,16 @@
         <ul>
             <li>1 in 5 people have a disability</li>
             <li>Accessibility helps: blind users, low-vision users, deaf users, motor-disabled users, cognitively disabled users</li>
-            <li>It also helps: elderly users, people on low-bandwidth connections, people using mobile devices in sunlight</li>
-            <li>More accessible = more customers</li>
+            <li>It also helps: elderly users, people on slow connections, people using mobile in bright sunlight</li>
+            <li>More accessible site = more paying customers</li>
         </ul>
 
         <h3>4. Brand Reputation</h3>
 
         <ul>
-            <li>Customers notice accessibility (or lack thereof)</li>
-            <li>Accessibility is part of modern design and brand values</li>
-            <li>Lawsuits are public and damaging to reputation</li>
+            <li>People notice accessibility. Or the lack of it.</li>
+            <li>Accessibility signals modern values and good design</li>
+            <li>Lawsuits are public and damage trust</li>
         </ul>
 
         <h2 id="faq">Frequently Asked Questions</h2>
@@ -428,53 +429,53 @@
         <div class="faq">
             <div class="faq-item">
                 <div class="faq-q">Q: Do I need to be 100% compliant with WCAG 2.1 AA?</div>
-                <div class="faq-a">No. The standard is "reasonable accessibility," not perfection. Courts and regulators expect you to make good-faith effort and fix violations when you find them. Get a Lighthouse score above 85-90, pass major automated audits, and test with real users. If you're at 95%+ compliance and someone finds a bug, you have a strong legal position.</div>
+                <div class="faq-a">No. The standard is "reasonable accessibility," not perfection. Courts and regulators expect good-faith effort and a track record of fixing violations when you find them. Hit 85–90% on Lighthouse, pass the major automated tests, test with real users. If you're at 95%+ and someone finds a minor bug, your legal position is strong.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: Are accessibility overlay widgets ever useful?</div>
-                <div class="faq-a">Not for compliance. Overlays can occasionally help some users with font resizing or color adjustment, but courts have ruled they don't satisfy legal requirements. The National Federation of the Blind opposes them. Save your money and fix your actual HTML instead.</div>
+                <div class="faq-a">Not for compliance. They might help a user adjust font size or colors, but courts have ruled they don't satisfy legal requirements. The National Federation of the Blind formally opposes them. Save the money. Fix your actual HTML.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: Can I use an accessibility service to fix my site?</div>
-                <div class="faq-a">Yes — but choose carefully. Look for services that actually fix your code (modify HTML, add alt text, improve semantics), not services that just add overlays. Many accessibility agencies will audit your site and provide a roadmap for fixes. Budget $1,000-$5,000 for a thorough review and initial fixes on a typical ecommerce site.</div>
+                <div class="faq-a">Yes. Choose carefully. Look for services that actually modify your code — add alt text, fix HTML semantics, improve structure — not services that just inject overlays. Many good agencies will audit your site and give you a prioritized roadmap. Budget $1,000–$5,000 for a thorough review and initial fixes on a typical store.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: I'm on Shopify. Do I need to fix my theme?</div>
-                <div class="faq-a">Most modern Shopify themes are reasonably accessible out of the box. Focus on: (1) adding alt text to product images, (2) checking color contrast in your custom CSS, (3) testing keyboard navigation. If you've customized code heavily, have someone audit it. Default Shopify features are usually fine.</div>
+                <div class="faq-a">Most modern Shopify themes are reasonably accessible out of the box. Focus on: (1) adding alt text to product images, (2) checking color contrast in your custom CSS, (3) testing keyboard navigation. If you've written a lot of custom code, have it audited. Default Shopify stuff is usually fine.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: What happens if I get sued for accessibility violations?</div>
-                <div class="faq-a">If a plaintiff sues under the ADA, they're typically seeking damages + attorney fees. Settlements range from $5,000 to $50,000+, depending on severity and how long you were aware of the issue. Courts are less sympathetic if you had an overlay but never fixed the underlying code. Prevention is much cheaper than litigation.</div>
+                <div class="faq-a">ADA plaintiffs typically seek damages plus attorney fees. Settlements run $5,000 to $50,000+, depending on how severe the violations are and how long you knew about them. Courts are especially unsympathetic if you had an overlay installed but never fixed the underlying code. Prevention is vastly cheaper than litigation.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: Does the EAA actually apply to me if I'm in North America?</div>
-                <div class="faq-a">If you sell to anyone in the EU (even if you don't ship there), the EAA applies to you. Same standard as ADA: WCAG 2.1 AA. Check your Shopify analytics — if you have any EU traffic, you're in scope.</div>
+                <div class="faq-a">If you sell to EU customers — even if you don't ship there — the EAA applies to you. Same standard as ADA: WCAG 2.1 AA. Check your Shopify analytics. If you have any EU traffic, you're in scope.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: I've hired an accessibility firm — what should I look for in a report?</div>
-                <div class="faq-a">Good accessibility reports include: (1) specific violations with examples, (2) how each violation affects users, (3) prioritized fix roadmap (quick wins first), (4) estimated effort for each fix, (5) re-audit plan. If a report just says "you're not compliant" without actionable fixes, get a second opinion.</div>
+                <div class="faq-a">Good reports include: (1) specific violations with examples, (2) how each violation affects users, (3) prioritized fix roadmap with quick wins first, (4) estimated effort per fix, (5) re-audit timeline. If a report just says "you're not compliant" without actionable steps, get a second opinion.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q: Can I use AI to write alt text for all my product images?</div>
-                <div class="faq-a">Yes, with caveats. Tools like GPT-4 Vision or Google's image analysis can generate decent alt text. But review them — AI sometimes misses details or hallucinates. For critical product images, write or edit the alt text yourself. For decorative images, AI is fine. Mix of both approaches saves time while maintaining quality.</div>
+                <div class="faq-a">Yes, with review. Tools like GPT-4 Vision or Google image analysis can generate decent alt text — just review them. AI gets details wrong sometimes, or hallucinates. For key product images, write or edit the alt yourself. For decorative images, AI is fine. Mix both approaches, save time, keep quality high.</div>
             </div>
         </div>
 
         <h2>Your Next Steps</h2>
 
-        <p><strong>Start here, today:</strong></p>
+        <p><strong>This week:</strong></p>
 
         <ol>
             <li>Run your site through <a href="https://wave.webaim.org/" target="_blank" rel="noopener">WAVE</a> or <a href="https://www.deque.com/axe/devtools/" target="_blank" rel="noopener">axe DevTools</a> — takes 5 minutes</li>
-            <li>Pick the top 3 violations and fix them this week</li>
-            <li>Add alt text to your top 20 best-selling products (highest ROI)</li>
-            <li>Test keyboard navigation — open your site, put the mouse away, use Tab to navigate. Can you checkout?</li>
-            <li>If you're selling to the EU, check your EAA timeline (June 28, 2025 deadline)</li>
+            <li>Pick the top 3 violations from the report and fix them</li>
+            <li>Add alt text to your top 20 best-selling products — highest ROI</li>
+            <li>Keyboard-only test: open your site, put the mouse away, use Tab to navigate. Can you complete checkout?</li>
+            <li>If you sell to EU customers: the EAA deadline was June 28, 2025 — you're past it, so audit your compliance now</li>
         </ol>
 
         <div class="cta-box">
-            <h3>Ready for a full accessibility audit?</h3>
-            <p>AccessShield scans your Shopify store for WCAG violations and gives you a prioritized list of fixes — from critical issues to minor improvements.</p>
+            <h3>Get a scan of your site</h3>
+            <p>AccessShield scans your Shopify store for WCAG violations and gives you a prioritized list of fixes — from critical to minor.</p>
             <a href="https://attahirlabs.com/accessibility-check/">Get Your Free Report →</a>
         </div>
 
