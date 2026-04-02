@@ -1,0 +1,77 @@
+name: Notify Search Engines
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sitemap.xml'
+      - 'blog/**'
+      - 'index.html'
+      - 'duty/**'
+
+jobs:
+  ping-search-engines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Ping Google Sitemap
+        run: |
+          echo "Pinging Google..."
+          curl -s "https://www.google.com/ping?sitemap=https://attahirlabs.com/sitemap.xml"
+          echo ""
+
+      - name: Ping Bing Sitemap
+        run: |
+          echo "Pinging Bing..."
+          curl -s "https://www.bing.com/ping?sitemap=https://attahirlabs.com/sitemap.xml"
+          echo ""
+
+      - name: IndexNow - Notify Bing of changed URLs
+        run: |
+          # Find files changed in this push
+          CHANGED=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+          
+          # Build list of URLs from changed blog posts and pages
+          URLS=""
+          while IFS= read -r file; do
+            case "$file" in
+              blog/*/index.html)
+                # Extract blog slug: blog/my-post/index.html -> /blog/my-post/
+                slug=$(echo "$file" | sed 's|/index.html||')
+                URLS="$URLS\"https://attahirlabs.com/$slug/\","
+                ;;
+              index.html)
+                URLS="$URLS\"https://attahirlabs.com/\","
+                ;;
+              duty/index.html)
+                URLS="$URLS\"https://attahirlabs.com/duty/\","
+                ;;
+              sitemap.xml)
+                # Sitemap changed, notify about the sitemap itself
+                ;;
+            esac
+          done <<< "$CHANGED"
+          
+          # Remove trailing comma
+          URLS="${URLS%,}"
+          
+          if [ -z "$URLS" ]; then
+            echo "No indexable URLs changed, skipping IndexNow"
+            exit 0
+          fi
+          
+          echo "Submitting to IndexNow: $URLS"
+          
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"host\": \"attahirlabs.com\",
+              \"key\": \"${{ secrets.INDEXNOW_KEY }}\",
+              \"urlList\": [$URLS]
+            }"
+          echo ""
+          echo "IndexNow submission complete"
