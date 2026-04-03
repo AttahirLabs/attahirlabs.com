@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shopify Import Duties: Cross-Border Selling Guide for 2026 | Attahir Labs</title>
+    <meta name="description" content="Complete guide to import duties for Shopify merchants selling cross-border in 2026. Covers DDP vs DDU, tariff rates by country, HTS codes, landed cost calculation, and how to protect your margins.">
+    <meta name="keywords" content="Shopify import duties, cross border selling Shopify, import duty ecommerce, DDP DDU Shopify, landed cost Shopify, tariff rates Shopify 2026">
+    <link rel="canonical" href="https://attahirlabs.com/blog/shopify-import-duties/">
+    <meta property="og:title" content="Shopify Import Duties: Cross-Border Selling Guide for 2026">
+    <meta property="og:description" content="Everything Shopify merchants need to know about import duties — rates by country, DDP vs DDU, how to calculate landed cost, and protecting your margins in 2026.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://attahirlabs.com/blog/shopify-import-duties/">
+    <meta property="article:published_time" content="2026-04-03">
+    <meta property="article:modified_time" content="2026-04-03">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Shopify Import Duties: Cross-Border Selling Guide for 2026",
+        "datePublished": "2026-04-03",
+        "dateModified": "2026-04-03",
+        "author": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
+        "publisher": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
+        "description": "Complete guide to import duties for Shopify merchants selling cross-border in 2026.",
+        "mainEntityOfPage": "https://attahirlabs.com/blog/shopify-import-duties/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Who pays import duties on Shopify orders — the merchant or the customer?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "It depends on your Incoterms setting. With DDP (Delivered Duty Paid), the merchant collects duties at checkout and remits them. With DDU/DAP (Delivered At Place), the customer pays when the package arrives — leading to surprise fees and frequent refusals. Most merchants selling cross-border should choose DDP to avoid abandoned packages and chargebacks."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I calculate import duties for my Shopify products?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Import duty = Customs Value × Tariff Rate. Customs value is typically the declared product value plus international shipping cost. The tariff rate depends on the HTS (Harmonized Tariff Schedule) code of your product and the destination country. Additional charges include VAT/GST (charged on top of customs value in most countries) and broker/handling fees."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need an HTS code for my Shopify products?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, for international shipping. The HTS (Harmonized Tariff Schedule) code determines the duty rate that applies to your product in the destination country. Shopify lets you enter HS codes in the product editor under Shipping. Correct codes mean accurate duty calculations; wrong codes can mean delayed shipments, fines, or unexpected costs for your customers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the de minimis threshold for duty-free imports in 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The US de minimis threshold is $800 USD — shipments valued under this amount typically enter duty-free. However, goods from China (Section 301 tariff list) and other sanctioned origins lost de minimis eligibility in early 2025. Canada's threshold is CAD $20 (very low — almost everything gets dutied). The EU's threshold is €150. Always verify with a customs broker as rules change frequently."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do tariffs affect my Shopify product pricing strategy?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tariffs directly raise your cost of goods if you source internationally. A product costing $10 from China now carries a 20% US tariff, adding $2 to your landed cost. If you sell to international customers, the duty rates flip — your customer's country charges duty on import. Both sides need to be baked into your pricing. Tools that auto-calculate tariff impact on each SKU help you identify which products are margin-safe to sell cross-border."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which Shopify markets have the highest import duty rates in 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For goods entering the US: China/HK/Macau-origin goods face a 20% baseline (Section 122 + fentanyl surcharge, on top of existing MFN rates for many products). Vietnam and other Southeast Asian goods face 20%. Canada and Mexico face 10% under Section 122 where CUSMA exemptions don't apply. Japan faces 15%. Most EU, India, South Korea, and Bangladesh goods face 10%. For goods entering the EU: US-origin goods face retaliatory tariffs of ~10-25% on certain categories following the 2026 counter-measures."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I automate tariff and duty calculations in my Shopify store?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Shopify's built-in international settings let you collect duties at checkout (available on Shopify Advanced and Plus). For the cost-side — calculating how tariffs affect your product margins before you price or sell — apps like TariffShield let you run what-if scenarios, automatically reprice products based on tariff impacts, and set alerts when rates change. Customer-facing duty collection and merchant-side cost tracking serve different purposes and often need separate tools."
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8; --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --green: #10b981; --red: #ef4444; --amber: #f59e0b; --radius: 12px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--navy); line-height: 1.8; background: var(--white); }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+        .nav-logo span { color: var(--indigo-light); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--white); }
+        article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .breadcrumb { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--indigo); text-decoration: none; }
+        .meta { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 2rem; }
+        .tag { display: inline-block; background: rgba(99,102,241,0.1); color: var(--indigo); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.3rem; }
+        h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--gray-200); }
+        h3 { font-size: 1.15rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--gray-700); font-size: 1.05rem; }
+        .lead { font-size: 1.15rem; color: var(--gray-500); margin-bottom: 2rem; line-height: 1.8; }
+        strong { color: var(--navy); }
+        a { color: var(--indigo); }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+        th { text-align: left; padding: 0.75rem; background: var(--gray-50); border-bottom: 2px solid var(--gray-200); font-weight: 600; color: var(--navy); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); }
+        tr:hover td { background: var(--gray-50); }
+        .rate-high { color: var(--red); font-weight: 700; }
+        .rate-mid { color: var(--amber); font-weight: 700; }
+        .rate-low { color: var(--green); font-weight: 700; }
+        .callout { background: var(--gray-50); border-left: 4px solid var(--indigo); padding: 1.25rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+        .callout-warn { border-left-color: var(--amber); background: #fffbeb; }
+        .callout p { margin: 0; font-size: 0.95rem; }
+        .callout strong { color: var(--navy); }
+        .cta-box { background: linear-gradient(135deg, var(--navy) 0%, #1e1b4b 100%); color: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: center; }
+        .cta-box h3 { color: white; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); }
+        .cta-box a { display: inline-block; background: var(--indigo); color: white; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 0.5rem; }
+        .cta-box a:hover { background: #4f46e5; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; color: var(--gray-700); }
+        .source { font-size: 0.8rem; color: var(--gray-500); font-style: italic; }
+        .toc { background: var(--gray-50); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { margin-top: 0; font-size: 0.95rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 0.3rem; }
+        .toc a { color: var(--indigo); text-decoration: none; font-size: 0.9rem; }
+        .toc a:hover { text-decoration: underline; }
+        .faq { margin-top: 2rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-q { font-weight: 700; color: var(--navy); font-size: 1.05rem; margin-bottom: 0.3rem; }
+        .faq-a { color: var(--gray-700); }
+        .step { display: flex; gap: 1rem; margin-bottom: 1.25rem; }
+        .step-num { flex-shrink: 0; width: 32px; height: 32px; background: var(--indigo); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-top: 0.1rem; }
+        .step-body { flex: 1; }
+        .step-body strong { display: block; margin-bottom: 0.25rem; }
+        footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
+        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/duty/">Duty Calculator</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article>
+        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Shopify Import Duties Guide</div>
+
+        <div class="meta">
+            <span class="tag">Cross-Border</span>
+            <span class="tag">Tariffs</span>
+            <span class="tag">Guide</span>
+            Published April 3, 2026 · Updated April 3, 2026 · 12 min read
+        </div>
+
+        <h1>Shopify Import Duties: The Cross-Border Selling Guide for 2026</h1>
+
+        <p class="lead">Import duties are the tax nobody warns you about until your customer is standing at the door refusing a package. In 2026, with tariff rates moving faster than ever, Shopify merchants need a clear mental model — what duties are, who pays them, how to calculate them, and how to stop them from silently destroying your margins.</p>
+
+        <div class="toc">
+            <h3>In this guide</h3>
+            <ul>
+                <li><a href="#what-are-import-duties">What Are Import Duties (and Why They Hit Shopify Merchants)</a></li>
+                <li><a href="#two-problems">The Two Duty Problems: Selling Cross-Border vs Sourcing Cross-Border</a></li>
+                <li><a href="#ddp-ddu">DDP vs DDU: The Most Expensive Decision You're Not Making</a></li>
+                <li><a href="#tariff-rates">2026 Tariff Rates by Country of Origin (for US Market)</a></li>
+                <li><a href="#landed-cost">How to Calculate Landed Cost for Your Products</a></li>
+                <li><a href="#hts-codes">HTS Codes: The Hidden Key to Correct Duty Rates</a></li>
+                <li><a href="#de-minimis">De Minimis in 2026: The Rules Changed</a></li>
+                <li><a href="#shopify-settings">Shopify Settings for Duties and Import Taxes</a></li>
+                <li><a href="#margin-protection">Protecting Your Margins When Tariffs Change</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+
+        <h2 id="what-are-import-duties">What Are Import Duties (and Why They Hit Shopify Merchants)</h2>
+
+        <p>An import duty is a tax levied by a country's government on goods brought in from abroad. Every country has its own system, its own rates, and its own thresholds — and they don't coordinate with each other or with your pricing spreadsheet.</p>
+
+        <p>For Shopify merchants, import duties create two distinct headaches depending on which direction goods are moving:</p>
+
+        <ul>
+            <li><strong>Sourcing internationally:</strong> When you import inventory from overseas suppliers, you pay import duties to bring goods into your country. These duties are part of your landed cost — the real cost of putting a product on your shelf.</li>
+            <li><strong>Selling internationally:</strong> When your customers are in a different country, they (or you, if you use DDP) pay import duties when the package crosses the border into their country. Unprepared merchants get hit with abandoned packages and furious customer complaints.</li>
+        </ul>
+
+        <p>Both of these affect your margins in different ways, and in 2026, with tariff rates at levels not seen since the 1930s, the math matters more than ever.</p>
+
+        <div class="callout callout-warn">
+            <p><strong>Key distinction:</strong> "Import duties" and "tariffs" are often used interchangeably, but technically tariffs are a type of import duty — specifically, duties assessed as a percentage of the goods' value (ad valorem). Other import duties include specific duties (flat fee per unit) and compound duties (combination). For ecommerce, ad valorem tariffs are what you're dealing with in almost every case.</p>
+        </div>
+
+        <h2 id="two-problems">The Two Duty Problems: Selling Cross-Border vs Sourcing Cross-Border</h2>
+
+        <h3>Problem 1: You Source from Overseas</h3>
+
+        <p>If you manufacture or source inventory from China, Vietnam, India, Mexico, or anywhere outside your home market, you're paying import duties every time a shipment clears customs. In 2026, for US merchants sourcing from China, that baseline is 20% — on top of whatever MFN (Most Favored Nation) rate applies to your specific product category.</p>
+
+        <p>The duty compounds. A product that costs $10 USD from a Chinese factory now has $2 in tariffs (20%) before it reaches your warehouse. Add freight, brokerage, and warehousing, and your real landed cost might be $14 on a $10 factory price. Sell it for $25 and your margin looks comfortable until you realize you're actually working with a 44% margin, not 60%.</p>
+
+        <p>This is where most Shopify merchants get burned: they calculate margins off the invoice price, not the landed cost.</p>
+
+        <h3>Problem 2: You Sell to International Customers</h3>
+
+        <p>When you ship to customers in other countries, the destination country's customs authority charges duties on the incoming package. These charges can range from 0% (many products from FTA partners) to over 30% for certain product categories in high-tariff markets.</p>
+
+        <p>The worst outcome: your customer orders $150 of products, the package arrives at their door, and the carrier demands $35 in duties before releasing the box. Many customers refuse. You get the package back, pay return shipping, and process a chargeback. The math on that one order is deeply negative.</p>
+
+        <p>The solution is choosing the right Incoterms — specifically the DDP vs DDU decision.</p>
+
+        <div class="cta-box">
+            <h3>Calculate Your Tariff Impact Before It Hits</h3>
+            <p>TariffShield automatically calculates tariff costs across your product catalog and shows you exactly which SKUs are margin-safe to sell cross-border — before orders go out.</p>
+            <a href="https://apps.shopify.com/tariff-shield">Try TariffShield Free →</a>
+        </div>
+
+        <h2 id="ddp-ddu">DDP vs DDU: The Most Expensive Decision You're Not Making</h2>
+
+        <p>Incoterms (International Commercial Terms) define who is responsible for duties and customs clearance during an international shipment. For cross-border ecommerce, the two that matter are:</p>
+
+        <h3>DDU / DAP — Delivered At Place (the default most merchants accidentally choose)</h3>
+
+        <p>Under DDU (Delivered Duty Unpaid) or DAP (Delivered At Place — the more modern term), the seller ships the product and the buyer is responsible for paying any duties, taxes, and brokerage fees when it arrives. Your carrier will hold the package and demand payment before releasing it to your customer.</p>
+
+        <p>This sounds like it protects you, but in practice it creates an awful customer experience. Your customers don't expect to pay customs fees on top of what they already paid at checkout. The most common outcome: refused deliveries, chargebacks, and lost customers.</p>
+
+        <h3>DDP — Delivered Duty Paid (what serious cross-border sellers use)</h3>
+
+        <p>Under DDP, you collect duties and taxes at checkout and remit them. The customer pays a single, transparent price at purchase. The package clears customs with no surprises. This dramatically reduces abandoned deliveries and dramatically improves international customer satisfaction.</p>
+
+        <p>The tradeoff: you're responsible for accurately calculating what duties will be owed — by product, by destination country — at the moment the customer checks out. Get it wrong and you either overcharge customers (losing sales) or undercharge (eating the difference).</p>
+
+        <p>Shopify's built-in duties collection (available on Advanced and Plus plans) handles this automatically using HS codes and carrier data. For merchants on lower-tier plans or those who want more visibility into the math, third-party apps can help.</p>
+
+        <div class="callout">
+            <p><strong>Practical rule of thumb:</strong> If you're shipping fewer than 20 international orders per month, DDU is manageable — handle issues case by case. Above that threshold, DDP pays for itself in reduced chargebacks and support tickets within weeks.</p>
+        </div>
+
+        <h2 id="tariff-rates">2026 Tariff Rates by Country of Origin (for the US Market)</h2>
+
+        <p>For US-based merchants importing inventory, or merchants selling to US customers, here are the current effective tariff rates as of April 2026. Note that these are the Section 122 baseline rates established under the 2026 trade framework — product-specific rates (based on HTS codes) add on top for certain categories.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Origin Country</th>
+                    <th>Section 122 Rate</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>China, Hong Kong, Macau</strong></td>
+                    <td class="rate-high">20%</td>
+                    <td>Section 122 (10% reciprocal + 10% fentanyl surcharge). Pre-existing Section 301 rates (7.5–25%) apply on top for specific HTS categories.</td>
+                </tr>
+                <tr>
+                    <td><strong>Vietnam</strong></td>
+                    <td class="rate-high">20%</td>
+                    <td>Section 122. Previously 0% MFN for many goods — major change for apparel and electronics sourced from Vietnam.</td>
+                </tr>
+                <tr>
+                    <td><strong>Japan</strong></td>
+                    <td class="rate-mid">15%</td>
+                    <td>Section 122. No US-Japan FTA in effect.</td>
+                </tr>
+                <tr>
+                    <td><strong>Canada</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>Section 122 where CUSMA exemptions don't apply. CUSMA-qualifying goods may be exempt — depends on Rules of Origin compliance.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mexico</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>Section 122 on non-CUSMA goods. CUSMA-qualifying goods exempted — requires certificate of origin.</td>
+                </tr>
+                <tr>
+                    <td><strong>India</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>Section 122. No US-India FTA. GSP benefits were not renewed.</td>
+                </tr>
+                <tr>
+                    <td><strong>EU (Germany, France, Italy, etc.)</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>Section 122. US-EU FTA never concluded — MFN rates apply for EU exports, Section 122 now overlaid.</td>
+                </tr>
+                <tr>
+                    <td><strong>South Korea</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>KORUS FTA softens some categories; Section 122 applies on non-FTA goods.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bangladesh</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>Section 122. Major apparel sourcing country — significant cost increase for fashion brands.</td>
+                </tr>
+                <tr>
+                    <td><strong>United Kingdom</strong></td>
+                    <td class="rate-mid">10%</td>
+                    <td>No US-UK FTA concluded. Section 122 applies.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="source">Source: US Section 122 tariff schedule, USTR, CBP. Rates reflect the general baseline — specific product HTS categories may carry additional duties. Verify current rates with a licensed customs broker before making sourcing decisions.</p>
+
+        <div class="callout callout-warn">
+            <p><strong>Important:</strong> These are the Section 122 baseline rates for the US market. Section 232 (steel/aluminum), Section 301 (China-specific), and product-specific rates add on top. A Chinese-made steel component might face 20% (Section 122) + 25% (Section 232 steel) + 7.5–25% (Section 301) = 52.5–70% effective rate. Always look up the specific HTS code for your product.</p>
+        </div>
+
+        <h2 id="landed-cost">How to Calculate Landed Cost for Your Products</h2>
+
+        <p>Landed cost is the total cost to get a product to your warehouse or fulfillment center, ready to sell. It goes well beyond the supplier invoice price.</p>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+                <strong>Start with the supplier invoice price</strong>
+                <p>This is your FOB (Free On Board) price — what the supplier charges for the goods, ready to ship from their location.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+                <strong>Add international freight</strong>
+                <p>Ocean freight, air freight, or courier charges. For most consumer goods, ocean freight runs $1–3 per kg (varies widely by route and carrier). Air freight is 4–8x more expensive but much faster.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+                <strong>Calculate the customs value</strong>
+                <p>In most countries (including the US under CIF — Cost, Insurance, Freight), the customs value = invoice price + international freight + insurance. This is the number the tariff rate is applied to.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+                <strong>Apply the tariff rate</strong>
+                <p>Duty = Customs Value × Tariff Rate. For a $10 product from China with $2 in freight, the customs value is $12 and the 20% tariff adds $2.40 in duties.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+                <strong>Add brokerage and handling fees</strong>
+                <p>Customs brokers typically charge $50–200 per entry (shipment) for classification and filing, plus disbursement fees. For high-volume importers, these fees become a fixed overhead. For small importers, they can add 5–15% to landed cost on small shipments.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-body">
+                <strong>Add domestic delivery</strong>
+                <p>The cost to move goods from the port or airport to your warehouse. Often overlooked but adds $0.10–0.50 per unit depending on volume and distance.</p>
+            </div>
+        </div>
+
+        <p>A quick example: You're sourcing a $12 apparel item from Vietnam (20% tariff).</p>
+
+        <table>
+            <thead>
+                <tr><th>Cost Component</th><th>Amount</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Supplier price (FOB)</td><td>$12.00</td></tr>
+                <tr><td>Ocean freight (per unit)</td><td>$1.50</td></tr>
+                <tr><td>Insurance</td><td>$0.15</td></tr>
+                <tr><td>Customs value (CIF)</td><td>$13.65</td></tr>
+                <tr><td>Import duty (20%)</td><td>$2.73</td></tr>
+                <tr><td>Brokerage (per unit, 500-unit shipment)</td><td>$0.30</td></tr>
+                <tr><td>Domestic delivery</td><td>$0.25</td></tr>
+                <tr><td class="rate-high"><strong>Total landed cost</strong></td><td class="rate-high"><strong>$17.03</strong></td></tr>
+            </tbody>
+        </table>
+
+        <p>You're paying 42% more than the supplier price before you've done anything with the product. If you priced based on $12 × 3 = $36 retail, your actual margin at $36 is quite different from what your spreadsheet shows.</p>
+
+        <p>The free <a href="/duty/">duty calculator at attahirlabs.com/duty</a> lets you run this calculation for any product and destination market in seconds.</p>
+
+        <h2 id="hts-codes">HTS Codes: The Hidden Key to Correct Duty Rates</h2>
+
+        <p>The Harmonized Tariff Schedule (HTS) — also called HS codes internationally — is the global classification system for traded goods. Every product has a code, and that code determines the duty rate that applies in the destination country.</p>
+
+        <p>HTS codes are 10 digits in the US (the first 6 are harmonized globally; the last 4 are country-specific). A t-shirt is 6109.10.00 (knit cotton T-shirts). A smartphone is 8517.13.00. A ceramic coffee mug is 6912.00.48.</p>
+
+        <p>Why does this matter for Shopify merchants? Three reasons:</p>
+
+        <ul>
+            <li><strong>Duty rates vary dramatically by HTS code.</strong> "Electronics" can mean 0% duty (laptops) or 15%+ (certain consumer devices). "Apparel" spans 0% to 32% depending on material and construction.</li>
+            <li><strong>Shopify uses HS codes to calculate duties at checkout.</strong> If you enable duty collection in Shopify's international settings, it uses the HS codes you've entered in the product editor. Wrong code = wrong duty collected = you absorbing the difference.</li>
+            <li><strong>Customs penalties for misdeclaration are real.</strong> If your products are consistently classified under the wrong code (especially at a lower duty rate), CBP can assess penalties, interest, and back duties. Not just on the current shipment — on historical imports.</li>
+        </ul>
+
+        <h3>How to Find the Right HTS Code</h3>
+
+        <p>The US International Trade Commission's HTS database (<a href="https://hts.usitc.gov" target="_blank" rel="noopener">hts.usitc.gov</a>) is the authoritative source. The CBP also offers a Binding Ruling program where you can get an official classification for your specific product — this protects you from disputes.</p>
+
+        <p>For Shopify, enter the HTS/HS code in each product's <strong>Shipping</strong> section under "Customs information." Use the full 6-digit international HS code — Shopify will handle country-specific extensions.</p>
+
+        <div class="callout">
+            <p><strong>Tip:</strong> If you sell in multiple categories, classify your top 20 products first — these will account for 80%+ of your duty exposure. A customs broker can do a quick classification audit for a fixed fee and often pays for itself on the first shipment correction.</p>
+        </div>
+
+        <h2 id="de-minimis">De Minimis in 2026: The Rules Changed</h2>
+
+        <p>The de minimis threshold is the value below which goods can enter a country duty-free and with minimal customs processing. It's why a lot of direct-to-consumer brands built their cross-border model around small package shipping.</p>
+
+        <p>In 2026, that model is under serious pressure:</p>
+
+        <ul>
+            <li><strong>US:</strong> The general de minimis threshold remains $800 USD. However, goods on the Section 301 tariff list (primarily Chinese-origin goods) are no longer eligible for de minimis treatment as of early 2025. If you drop-ship from Chinese suppliers to US customers, this change hits you directly — every package now goes through full customs clearance and duty assessment.</li>
+            <li><strong>EU:</strong> The €150 de minimis threshold is unchanged, but EU customs reform (IVOSS — Import Value Overstatement Surveillance System) is cracking down on undervaluation. Packages declaring €149 on €300 goods are getting flagged more aggressively.</li>
+            <li><strong>Canada:</strong> CAD $20 — essentially nothing. Almost all international packages get assessed for duties in Canada. The exception is CUSMA-qualifying goods from the US and Mexico.</li>
+            <li><strong>Australia:</strong> AUD $1,000 — generous, but GST applies to all imports regardless of value (10% on the goods value + freight).</li>
+            <li><strong>UK:</strong> £135 — above this, standard import duty applies based on the product's commodity code.</li>
+        </ul>
+
+        <div class="callout callout-warn">
+            <p><strong>Dropshippers: this section is especially important.</strong> If your business model relies on shipping directly from Chinese suppliers (AliExpress, CJDropshipping, etc.) to US customers, the de minimis exemption removal for Section 301 goods means every order now carries duty liability. Your effective cost of goods just went up 20%+ on most categories.</p>
+        </div>
+
+        <h2 id="shopify-settings">Shopify Settings for Duties and Import Taxes</h2>
+
+        <p>Shopify has built-in tools for managing international duties. Here's where to find them and what they actually do:</p>
+
+        <h3>Duties and Import Taxes (Advanced / Plus plans)</h3>
+
+        <p>Go to <strong>Settings → Markets → [Your market] → Duties and import taxes</strong>. When enabled, Shopify uses HS codes on your products plus the destination country to estimate duties at checkout. Customers see a line item for "Estimated duties and taxes" and pay it upfront. You use a DDP shipping label to clear customs without the customer being charged again.</p>
+
+        <p>Shopify's duty collection is powered by Global-e when using Managed Markets, or by third-party rate data when configured manually. The accuracy depends heavily on your HS codes being correct.</p>
+
+        <h3>International Markets</h3>
+
+        <p>Under <strong>Settings → Markets</strong>, you can enable specific countries, set local currencies, and configure whether duties are included in prices or shown separately. For markets where you don't want to deal with duty complexity, you can restrict shipping to domestic only or to markets where you have clarity on the duty situation.</p>
+
+        <h3>Shipping Labels (DDP)</h3>
+
+        <p>When using Shopify Shipping for international orders with duty collection enabled, DDP label options appear through DHL Express and DHL eCommerce. This is only available to US and Canadian merchants currently. If you use a different carrier or 3PL, you'll need to confirm DDP support with that carrier directly.</p>
+
+        <h3>Product-Level HS Codes</h3>
+
+        <p>In each product editor under <strong>Shipping → Customs information</strong>: enter the HS code, country of origin, and whether the item is a restricted/regulated product. The country of origin affects which preferential trade agreements apply (CUSMA, KORUS, AUSFTA, etc.).</p>
+
+        <h2 id="margin-protection">Protecting Your Margins When Tariffs Change</h2>
+
+        <p>Tariff rates in 2026 move faster than pricing spreadsheets. Section 122 rates were announced with weeks of notice. Section 301 rates have been adjusted multiple times. The EU counter-measures came in tranches. If you're manually tracking tariff impacts on your product margins, you're always catching up.</p>
+
+        <p>The merchants who are surviving the tariff environment are the ones who've built tariff awareness into their operational workflow:</p>
+
+        <h3>1. Track landed cost by SKU, not by category</h3>
+
+        <p>A "20% China tariff" affects a $5 trinket very differently from a $200 electronics component. Build a landed cost model for each SKU and keep it updated. This becomes the input to your pricing decisions, not an afterthought.</p>
+
+        <h3>2. Build tariff buffers into your pricing</h3>
+
+        <p>If you're sourcing from a single origin country with political tariff risk (China, Vietnam, Russia, Iran), build a 10–15% tariff buffer into your pricing above the current rate. When rates move, you have room to absorb before passing costs to customers. When rates don't move, it's margin.</p>
+
+        <h3>3. Diversify origin countries for key products</h3>
+
+        <p>Section 301 and Section 122 have accelerated near-shoring and friend-shoring. Alternatives for Chinese-sourced goods: Vietnam (currently 20%, but political risk is lower), India (10%, improving), Mexico (10%, CUSMA eligible on some goods), Bangladesh (10%, major apparel hub). The transition takes time but the margin difference can be substantial.</p>
+
+        <h3>4. Automate tariff impact monitoring</h3>
+
+        <p>When a rate changes, you want to know immediately which products are affected and by how much. Manual processes mean you find out when your accountant runs the quarterly numbers. Automated tariff monitoring — integrated with your product catalog — means you find out the same day rates change and can adjust prices before orders go out at wrong margins.</p>
+
+        <div class="cta-box">
+            <h3>Stop Losing Margin to Tariff Changes</h3>
+            <p>TariffShield automatically tracks tariff rates across 85+ countries, calculates the impact on each of your products, and alerts you when rates change. Set a target margin — TariffShield shows you which products need repricing.</p>
+            <a href="https://apps.shopify.com/tariff-shield">Install TariffShield Free →</a>
+        </div>
+
+        <h3>5. Audit your HTS classifications regularly</h3>
+
+        <p>Trade policy changes often include new Section 301 tariff lines, new exclusions, and new product-specific rates. A product that was 7.5% last year might be 25% this year because its HTS code got added to a new list. Quarterly HTS audits on your top products catch these changes before they hit your margin silently.</p>
+
+        <h3>6. Know the difference between tariff costs (inbound) and duty collection (outbound)</h3>
+
+        <p>These are two separate optimization problems. Inbound tariffs (you importing goods) are about sourcing strategy, HTS classification, and landed cost modeling. Outbound duties (your customers receiving goods internationally) are about DDP vs DDU, duty collection at checkout, and accurate HS codes on your products. Don't conflate the tools or the solutions.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-q">Who pays import duties on Shopify orders — the merchant or the customer?</div>
+                <div class="faq-a">It depends on your Incoterms setting. With DDP (Delivered Duty Paid), the merchant collects duties at checkout and remits them. With DDU/DAP (Delivered At Place), the customer pays when the package arrives — leading to surprise fees and frequent refusals. Most merchants selling cross-border in volume should choose DDP to avoid abandoned packages and chargebacks.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How do I calculate import duties for my Shopify products?</div>
+                <div class="faq-a">Import duty = Customs Value × Tariff Rate. Customs value is typically the declared product value plus international shipping cost (CIF basis). The tariff rate depends on the HTS code of your product and the destination country. Additional charges include VAT/GST (in most countries) and broker/handling fees. Use the <a href="/duty/">duty calculator</a> to run the numbers quickly.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Do I need an HTS code for my Shopify products?</div>
+                <div class="faq-a">Yes, for international shipping. The HTS code determines the duty rate that applies to your product in the destination country. Shopify lets you enter HS codes in the product editor under Shipping. Correct codes mean accurate duty calculations; wrong codes can mean delayed shipments, fines, or unexpected costs for your customers.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">What is the de minimis threshold for duty-free imports in 2026?</div>
+                <div class="faq-a">The US general threshold is $800 USD, but Chinese-origin goods on the Section 301 list lost de minimis eligibility in 2025 — these now face full duty assessment regardless of value. Canada's threshold is CAD $20. The EU's threshold is €150. Australia's is AUD $1,000, though GST still applies regardless.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How do tariffs affect my Shopify product pricing strategy?</div>
+                <div class="faq-a">Tariffs directly raise your cost of goods when sourcing internationally. A product costing $10 from China now carries a 20% US tariff, adding $2 to your landed cost before freight or brokerage. Tools that auto-calculate tariff impact on each SKU help you identify which products are margin-safe and which ones need repricing.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Which Shopify markets have the highest import duty rates in 2026?</div>
+                <div class="faq-a">For goods entering the US: China/HK/Macau-origin goods face a 20% Section 122 baseline (plus any Section 301 or Section 232 product-specific rates on top). Vietnam also faces 20%. Canada and Mexico face 10% where CUSMA exemptions don't apply. Japan faces 15%. Most EU, India, South Korea, and Bangladesh goods face 10%.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Can I automate tariff and duty calculations in my Shopify store?</div>
+                <div class="faq-a">Yes. Shopify's international settings let you collect duties at checkout on Advanced and Plus plans. For the cost-side — calculating how tariffs affect your product margins — apps like TariffShield let you run what-if scenarios, automatically reprice products based on tariff impacts, and get alerts when rates change. Customer-facing duty collection and merchant-side cost tracking serve different purposes and often need separate tools.</div>
+            </div>
+        </div>
+
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-200);">
+
+        <p class="source"><strong>Sources:</strong> US International Trade Commission (HTS database), USTR (tariff announcements), CBP (import procedures), Shopify Help Center (duties and import taxes documentation), Tax Foundation (tariff analysis), WTO (trade statistics). Tariff rates current as of April 2026 and subject to change. This article is for informational purposes only and does not constitute legal, tax, or customs advice. Consult a licensed customs broker for decisions specific to your business.</p>
+
+    </article>
+
+    <footer>
+        <p>© 2026 Attahir Labs · <a href="/privacy.html" style="color: inherit;">Privacy</a> · <a href="/terms.html" style="color: inherit;">Terms</a></p>
+    </footer>
+</body>
+</html>
