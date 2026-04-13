@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Amazon FBA Landed Cost: Complete Guide for 2026 | Attahir Labs</title>
+    <meta name="description" content="How to calculate Amazon FBA landed cost the right way in 2026. Customs value, duty, MPF, HMF, freight, referral fees, FBA fees, and a full per-unit example for importers and private-label sellers.">
+    <meta name="keywords" content="amazon fba landed cost, FBA fees, amazon import cost calculator, fba profit margin, landed cost amazon seller, customs duty amazon fba">
+    <link rel="canonical" href="https://attahirlabs.com/blog/amazon-fba-landed-cost-guide/">
+    <meta property="og:title" content="Amazon FBA Landed Cost: Complete Guide for 2026">
+    <meta property="og:description" content="The real math behind Amazon FBA landed cost: import duty, customs fees, freight, storage, referral fees, and the mistakes that quietly kill margin.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://attahirlabs.com/blog/amazon-fba-landed-cost-guide/">
+    <meta property="article:published_time" content="2026-04-06">
+    <meta property="article:modified_time" content="2026-04-06">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Amazon FBA Landed Cost: Complete Guide for 2026",
+      "datePublished": "2026-04-06",
+      "dateModified": "2026-04-06",
+      "author": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
+      "publisher": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
+      "description": "How to calculate Amazon FBA landed cost the right way in 2026, including freight, customs duty, MPF, HMF, FBA fees, referral fees, and storage.",
+      "mainEntityOfPage": "https://attahirlabs.com/blog/amazon-fba-landed-cost-guide/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Amazon FBA landed cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Amazon FBA landed cost is the full per-unit cost of getting inventory from your supplier to an Amazon fulfillment center. It usually includes product cost, international freight, customs duty, customs fees, broker fees, inland freight, prep or labeling, and inbound shipping to FBA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do Amazon referral fees count as landed cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Referral fees, fulfillment fees, storage fees, and returns costs affect profit, but they are not part of customs-landed cost. They sit on top of your landed cost when you calculate net margin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate FBA landed cost per unit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add the total shipment costs that get inventory from supplier to Amazon, then divide by total sellable units. Use total product cost + freight + duty + MPF + HMF + broker fees + port charges + trucking + prep + inbound shipping to FBA, then divide by units received."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What government fees matter most for US imports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For formal US entries, the big recurring government fees are duty, the Merchandise Processing Fee, and for ocean freight the Harbor Maintenance Fee. CBP publishes the current MPF minimum, percentage, and maximum, along with the HMF rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do Amazon sellers get landed cost wrong?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because they price from factory cost instead of true delivered cost. They forget broker charges, inbound shipping, prep work, storage drag, and changing duty rates. A product that looks profitable at the invoice level can become mediocre once all per-unit costs are included."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use landed cost to set my Amazon selling price?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but landed cost is only the starting point. To set price correctly, subtract Amazon referral fees, FBA fulfillment fees, storage costs, ad spend, returns reserve, and target profit from your selling price."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8; --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --green: #10b981; --red: #ef4444; --amber: #f59e0b; --radius: 12px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--navy); line-height: 1.8; background: var(--white); }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+        .nav-logo span { color: var(--indigo-light); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--white); }
+        article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .breadcrumb { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--indigo); text-decoration: none; }
+        .meta { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 2rem; }
+        .tag { display: inline-block; background: rgba(99,102,241,0.1); color: var(--indigo); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.3rem; }
+        h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--gray-200); }
+        h3 { font-size: 1.15rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--gray-700); font-size: 1.05rem; }
+        .lead { font-size: 1.15rem; color: var(--gray-500); margin-bottom: 2rem; line-height: 1.8; }
+        strong { color: var(--navy); }
+        a { color: var(--indigo); }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+        th { text-align: left; padding: 0.75rem; background: var(--gray-50); border-bottom: 2px solid var(--gray-200); font-weight: 600; color: var(--navy); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); }
+        tr:hover td { background: var(--gray-50); }
+        .rate-high { color: var(--red); font-weight: 700; }
+        .rate-mid { color: var(--amber); font-weight: 700; }
+        .rate-low { color: var(--green); font-weight: 700; }
+        .callout { background: var(--gray-50); border-left: 4px solid var(--indigo); padding: 1.25rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+        .callout-warn { border-left-color: var(--amber); background: #fffbeb; }
+        .callout-success { border-left-color: var(--green); background: #f0fdf4; }
+        .callout p { margin: 0; font-size: 0.95rem; }
+        .cta-box { background: linear-gradient(135deg, var(--navy) 0%, #1e1b4b 100%); color: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: center; }
+        .cta-box h3 { color: white; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); }
+        .cta-box a { display: inline-block; background: var(--indigo); color: white; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 0.5rem; }
+        .cta-box a:hover { background: #4f46e5; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; color: var(--gray-700); }
+        .source { font-size: 0.9rem; color: var(--gray-500); }
+        .toc { background: var(--gray-50); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { margin-top: 0; font-size: 0.95rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 0.3rem; }
+        .toc a { color: var(--indigo); text-decoration: none; font-size: 0.9rem; }
+        .toc a:hover { text-decoration: underline; }
+        .faq { margin-top: 2rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-q { font-weight: 700; color: var(--navy); font-size: 1.05rem; margin-bottom: 0.3rem; }
+        .faq-a { color: var(--gray-700); }
+        .formula-box { background: var(--navy); color: var(--white); padding: 1.5rem 2rem; border-radius: var(--radius); margin: 1.5rem 0; font-family: "SF Mono", "Fira Code", monospace; font-size: 0.95rem; line-height: 2; }
+        .formula-box .formula-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--indigo-light); margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+        .formula-box .formula-result { color: var(--indigo-light); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem; margin-top: 0.5rem; }
+        footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
+        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/duty/">Duty Calculator</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article>
+        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Amazon FBA Landed Cost</div>
+
+        <div class="meta">
+            <span class="tag">Amazon FBA</span>
+            <span class="tag">Landed Cost</span>
+            <span class="tag">Margins</span>
+            Published April 6, 2026 · Updated April 6, 2026 · 12 min read
+        </div>
+
+        <h1>Amazon FBA Landed Cost: Complete Guide for 2026</h1>
+
+        <p class="lead">Most Amazon sellers know their factory cost. Fewer know their true landed cost. And that gap is where bad product decisions happen. You order because the unit price looks good, then freight shows up ugly, customs grabs its cut, Amazon takes referral and fulfillment fees, and suddenly your "high-margin winner" is a perfectly average product doing cardio in your catalog.</p>
+
+        <p class="lead">This is the clean way to do the math in 2026 — without mixing up customs cost, Amazon fees, and wishful thinking.</p>
+
+        <div class="toc">
+            <h3>In this guide</h3>
+            <ul>
+                <li><a href="#what-is">What Amazon FBA landed cost actually means</a></li>
+                <li><a href="#formula">The formula that matters</a></li>
+                <li><a href="#example">A full per-unit example</a></li>
+                <li><a href="#fba-fees">Where Amazon fees fit</a></li>
+                <li><a href="#mistakes">The mistakes sellers keep making</a></li>
+                <li><a href="#checklist">A practical checklist before you reorder</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+
+        <h2 id="what-is">What Amazon FBA landed cost actually means</h2>
+
+        <p>Amazon FBA landed cost is the <strong>real cost of getting one sellable unit into Amazon's network</strong>. Not your Alibaba quote. Not your ex-factory cost. Not your product cost plus a vague "shipping maybe." The whole thing.</p>
+
+        <p>For most private-label importers, that means:</p>
+        <ul>
+            <li>factory cost</li>
+            <li>international freight</li>
+            <li>duty</li>
+            <li>Merchandise Processing Fee (MPF)</li>
+            <li>Harbor Maintenance Fee (HMF) on ocean imports</li>
+            <li>customs broker charges</li>
+            <li>port or terminal charges</li>
+            <li>trucking or courier movement to prep or fulfillment</li>
+            <li>prep, labeling, cartons, palletization if needed</li>
+            <li>inbound shipping into FBA</li>
+        </ul>
+
+        <p>That's your cost basis. After that, Amazon's referral fee, fulfillment fee, storage fee, returns, and ad spend hit your margin. Those costs matter just as much for profitability, but they are <strong>not the same thing</strong>. Mixing them together is how sellers confuse accounting, overstate margin, and price like maniacs.</p>
+
+        <div class="callout callout-warn">
+            <p><strong>Most common mistake:</strong> sellers say "my landed cost is $12" when what they really mean is "my product cost is $12." Those are not remotely the same number.</p>
+        </div>
+
+        <p>This confusion shows up everywhere. Merchants on Reddit keep describing the same pattern: a tariff, broker fee, or courier charge shows up late, and what looked like a fine SKU turns into a dog. One merchant in r/shopify said the broker fee on small orders was more painful than the tariff itself. That's the point. Tiny misses compound.</p>
+
+        <h2 id="formula">The formula that matters</h2>
+
+        <p>Start with the shipment-level math. Then turn it into a per-unit number.</p>
+
+        <div class="formula-box">
+            <div class="formula-label">Amazon FBA landed cost formula</div>
+            <div>Product cost</div>
+            <div>+ International freight</div>
+            <div>+ Duty</div>
+            <div>+ MPF</div>
+            <div>+ HMF (if ocean)</div>
+            <div>+ Customs broker fee</div>
+            <div>+ Port / terminal / drayage</div>
+            <div>+ Prep, labeling, packaging, palletization</div>
+            <div>+ Inbound shipping to Amazon</div>
+            <div class="formula-result">= Total landed shipment cost ÷ sellable units = landed cost per unit</div>
+        </div>
+
+        <p>Then do the second formula:</p>
+
+        <div class="formula-box">
+            <div class="formula-label">Amazon unit economics formula</div>
+            <div>Selling price</div>
+            <div>- Landed cost per unit</div>
+            <div>- Amazon referral fee</div>
+            <div>- FBA fulfillment fee</div>
+            <div>- Estimated storage cost</div>
+            <div>- Returns reserve</div>
+            <div>- Ad spend / TACoS target</div>
+            <div class="formula-result">= contribution margin per unit</div>
+        </div>
+
+        <p>Two layers. That's it. Keep customs-landed cost separate from Amazon operating costs, then combine them for actual profit math.</p>
+
+        <p>And yes, customs valuation can be messy in the real world. The U.S. uses the HTS and CBP valuation rules, not whatever your supplier casually typed in a WhatsApp message. CBP's published guidance and USITC's tariff resources are the references that matter. Use those, not supplier folklore.</p>
+
+        <h2 id="example">A full per-unit example</h2>
+
+        <p>Let's use a realistic private-label example. You're importing 1,000 stainless steel insulated bottles from Vietnam for sale on Amazon.com.</p>
+
+        <p><strong>Assumptions:</strong> this is an example for planning, not a binding customs ruling or an official Amazon quote. The product classification, duty treatment, and Amazon fee tier always need to be checked against your exact item, packaging, and category.</p>
+
+        <h3>Step 1: Product and freight</h3>
+        <table>
+            <thead><tr><th>Cost component</th><th>Shipment total</th><th>Per unit</th></tr></thead>
+            <tbody>
+                <tr><td>Factory cost</td><td>$6,000.00</td><td>$6.00</td></tr>
+                <tr><td>Ocean freight + origin docs</td><td>$1,050.00</td><td>$1.05</td></tr>
+                <tr><td>Cargo insurance</td><td>$60.00</td><td>$0.06</td></tr>
+                <tr><td><strong>Subtotal before customs</strong></td><td><strong>$7,110.00</strong></td><td><strong>$7.11</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>Step 2: Customs and entry costs</h3>
+        <p>For formal U.S. entries, CBP publishes the Merchandise Processing Fee schedule. As of the current 2026 user fee table, MPF is <strong>0.3464% ad valorem with a $33.58 minimum and $651.50 maximum</strong> for formal entries. CBP also lists the Harbor Maintenance Fee for imports at <strong>0.125%</strong> ad valorem. Those are small on paper. They still count.</p>
+
+        <table>
+            <thead><tr><th>Customs / import cost</th><th>Shipment total</th><th>Per unit</th></tr></thead>
+            <tbody>
+                <tr><td>Estimated duty (example 10% duty treatment)</td><td>$600.00</td><td>$0.60</td></tr>
+                <tr><td>MPF (.3464% with current CBP minimum/maximum rules)</td><td>$33.58</td><td>$0.03</td></tr>
+                <tr><td>HMF (.125% ocean imports)</td><td>$7.50</td><td>$0.01</td></tr>
+                <tr><td>Customs broker entry fee</td><td>$145.00</td><td>$0.15</td></tr>
+                <tr><td>Port / terminal / drayage</td><td>$290.00</td><td>$0.29</td></tr>
+                <tr><td><strong>Customs + entry subtotal</strong></td><td><strong>$1,076.08</strong></td><td><strong>$1.08</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>Step 3: Prep and Amazon inbound movement</h3>
+        <table>
+            <thead><tr><th>Post-customs logistics</th><th>Shipment total</th><th>Per unit</th></tr></thead>
+            <tbody>
+                <tr><td>FNSKU labels + prep labor</td><td>$120.00</td><td>$0.12</td></tr>
+                <tr><td>Carton adjustments / palletization</td><td>$85.00</td><td>$0.09</td></tr>
+                <tr><td>Warehouse transfer + inbound shipping to Amazon</td><td>$380.00</td><td>$0.38</td></tr>
+                <tr><td><strong>Prep + inbound subtotal</strong></td><td><strong>$585.00</strong></td><td><strong>$0.59</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>Step 4: Final landed cost per unit</h3>
+        <table>
+            <thead><tr><th>Line item</th><th>Shipment total</th><th>Per unit</th></tr></thead>
+            <tbody>
+                <tr><td>Product + freight + insurance</td><td>$7,110.00</td><td>$7.11</td></tr>
+                <tr><td>Customs + entry costs</td><td>$1,076.08</td><td>$1.08</td></tr>
+                <tr><td>Prep + inbound to FBA</td><td>$585.00</td><td>$0.59</td></tr>
+                <tr><td><strong>Total landed shipment cost</strong></td><td><strong>$8,771.08</strong></td><td><strong>$8.77</strong></td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>$8.77 landed per unit.</strong> That is the number you should use as your cost basis before Amazon takes a single dollar.</p>
+
+        <p>Now suppose your Amazon selling price is $24.99. If you had been thinking in lazy supplier-quote math, you might have said your cost was about $6 and your margin looked glorious. It wasn't.</p>
+
+        <h2 id="fba-fees">Where Amazon fees fit</h2>
+
+        <p>Now add Amazon. Publicly, Amazon said its 2026 U.S. referral and FBA fees would increase by an average of <strong>$0.08 per unit</strong> and that it was not introducing new FBA fee types. That's useful context, but it doesn't replace checking your exact category and size tier.</p>
+
+        <p>For this example, assume:</p>
+        <ul>
+            <li>selling price: <strong>$24.99</strong></li>
+            <li>referral fee: <strong>15%</strong> of selling price for the category used in this example</li>
+            <li>FBA fulfillment fee: <strong>$4.10</strong> based on the example unit's size/weight profile</li>
+            <li>average monthly storage drag allocated per sold unit: <strong>$0.35</strong></li>
+            <li>returns reserve: <strong>$0.40</strong></li>
+        </ul>
+
+        <table>
+            <thead><tr><th>Amazon economics layer</th><th>Per unit</th></tr></thead>
+            <tbody>
+                <tr><td>Selling price</td><td>$24.99</td></tr>
+                <tr><td>Landed cost</td><td>-$8.77</td></tr>
+                <tr><td>Referral fee (15%)</td><td>-$3.75</td></tr>
+                <tr><td>FBA fulfillment fee</td><td>-$4.10</td></tr>
+                <tr><td>Storage allocation</td><td>-$0.35</td></tr>
+                <tr><td>Returns reserve</td><td>-$0.40</td></tr>
+                <tr><td><strong>Contribution margin before ads</strong></td><td><strong>$7.62</strong></td></tr>
+            </tbody>
+        </table>
+
+        <p>$7.62 before ads looks healthy. But if your blended TACoS lands at 18%, that's another <strong>$4.50</strong> gone. Now you're around <strong>$3.12</strong> contribution per unit. Still workable. Just not the fantasy margin you thought you had when you were staring at a $6 factory quote and feeling invincible.</p>
+
+        <div class="callout">
+            <p><strong>The useful way to think about it:</strong> landed cost tells you whether importing the product makes sense. Amazon fees tell you whether selling it on Amazon makes sense. You need both numbers, separately and together.</p>
+        </div>
+
+        <h2 id="mistakes">The mistakes sellers keep making</h2>
+
+        <h3>1. Pricing from factory cost</h3>
+        <p>This is the classic one. A seller sees a $5.80 quote, wants a 4x retail multiple, and lists at $22.99. Then freight spikes, inbound placement changes, customs hits, and that multiple was nonsense from the start.</p>
+
+        <h3>2. Treating small fees like rounding errors</h3>
+        <p>MPF. HMF. customs bond charges. broker disbursement. prep labor. carton relabeling. appointment fees. These don't look dramatic individually. Together they absolutely can move your per-unit economics by 40 to 80 cents. On a commodity product, that's the whole game.</p>
+
+        <h3>3. Using one average landed cost for everything</h3>
+        <p>If you blend your whole container and say "my average landed cost is $7.40" across multiple SKUs, you've already made life harder than it needs to be. Heavy, bulky, fragile, and low-price SKUs carry different freight and Amazon fee profiles. Model at the SKU level whenever possible.</p>
+
+        <h3>4. Ignoring sell-through speed</h3>
+        <p>Fast sellers and slow sellers can have the same landed cost and wildly different real margin. Storage and aged inventory exposure punish slow movers. This is why two products with the same import cost can behave like completely different businesses inside FBA.</p>
+
+        <h3>5. Forgetting that tariffs and customs treatment change</h3>
+        <p>Reddit threads from Shopify and ecommerce communities keep circling the same anxiety: merchants don't know if a margin squeeze came from tariff changes, brokerage, carrier charges, or a bad quote. The opportunity for TariffShield is obvious here. Merchants want one place to see the cost change before it becomes a bad surprise.</p>
+
+        <h3>6. Not separating estimate from verified cost</h3>
+        <p>Before the shipment moves, you're forecasting. After the shipment clears and gets checked in at Amazon, you're reconciling. Both are useful. But don't pretend they're the same number. Build both: <strong>estimated landed cost</strong> for sourcing decisions and <strong>actual landed cost</strong> for pricing and reorder decisions.</p>
+
+        <h2 id="checklist">A practical checklist before you reorder</h2>
+
+        <p>If you're evaluating an FBA SKU this week, don't overcomplicate it. Run this checklist:</p>
+        <ol>
+            <li><strong>Confirm product classification.</strong> Use the HTS, legal notes, and CBP rulings where needed — not just supplier labels.</li>
+            <li><strong>Estimate duty conservatively.</strong> If your code or origin treatment is uncertain, model the worse reasonable case first.</li>
+            <li><strong>Use current CBP fee numbers.</strong> MPF and HMF are published. Use the published schedule, not an old spreadsheet you copied six months ago.</li>
+            <li><strong>Add every non-obvious logistics charge.</strong> Prep, pallets, labels, transfer, and Amazon inbound all belong in the landed-cost layer.</li>
+            <li><strong>Check exact Amazon fee tier.</strong> Referral fee category and FBA fee size/weight matter. A packaging change can improve margin more than a supplier negotiation sometimes. Annoying, but true.</li>
+            <li><strong>Stress-test margin with slower sell-through.</strong> Add storage drag and higher ad cost assumptions. If the SKU only works in a perfect month, it doesn't work.</li>
+            <li><strong>Compare against your minimum contribution threshold.</strong> Don't reorder on hope.</li>
+        </ol>
+
+        <div class="cta-box">
+            <h3>Model duty before you wire the deposit</h3>
+            <p>Use our free duty calculator to estimate tariff exposure, customs fees, and delivered import cost before you lock in a supplier or reorder inventory.</p>
+            <a href="/duty/">Try the Duty Calculator →</a>
+        </div>
+
+        <h2>Why this matters more in 2026</h2>
+
+        <p>Because merchants are under pressure from both ends. On one side: tariffs, freight volatility, broker friction, and tighter cashflow. On the other: Amazon fees, storage risk, and expensive acquisition. That's why "good enough" margin math isn't good enough anymore.</p>
+
+        <p>Also, the market keeps telling us where the pain is. Shopify and ecommerce forum threads are full of merchants trying to explain surprise tariff bills, broker fees, or broken margin assumptions to themselves in public. The lesson isn't that merchants are careless. It's that the current tool stack is fragmented. One sheet for product cost. Another for freight. A calculator somewhere else. Amazon's fee preview in another tab. That's ridiculous.</p>
+
+        <p>The seller who wins isn't the one with the prettiest spreadsheet. It's the one who knows their real per-unit economics before inventory lands.</p>
+
+        <h2>Sources</h2>
+        <ul>
+            <li class="source">U.S. Customs and Border Protection — <a href="https://www.cbp.gov/trade/basic-import-export/user-fee-table">User Fee Table</a> (MPF and HMF current published rates)</li>
+            <li class="source">U.S. Customs and Border Protection — <a href="https://www.cbp.gov/trade/priority-issues/trade-agreements/merchandise-processing-fee">Merchandise Processing Fee and Preferential Trade Programs</a></li>
+            <li class="source">United States International Trade Commission — <a href="https://www.usitc.gov/harmonized_tariff_information/frequently_asked_questions">HTS classification FAQ</a> and <a href="https://hts.usitc.gov/">Harmonized Tariff Schedule</a></li>
+            <li class="source">Amazon Selling Partners — <a href="https://sellingpartners.aboutamazon.com/update-to-u-s-referral-and-fulfillment-by-amazon-fees-for-2026">2026 U.S. Referral and Fulfillment by Amazon fee update</a></li>
+        </ul>
+
+        <div class="callout callout-success">
+            <p><strong>Disclaimer:</strong> This article is for planning and education, not legal, customs, tax, or accounting advice. Duty treatment, HTS classification, and Amazon fees depend on the exact product, packaging, origin, and destination. Verify your code and fees before importing or pricing inventory.</p>
+        </div>
+
+        <div class="faq" id="faq">
+            <h2>Frequently asked questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: What is Amazon FBA landed cost?</div>
+                <div class="faq-a">It's the full cost of getting inventory from your supplier into Amazon's fulfillment network, ready to sell. Product cost is part of it. It is not the whole thing.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: Do Amazon referral fees count as landed cost?</div>
+                <div class="faq-a">No. They matter to profit, obviously. But they're Amazon selling costs, not import-landed cost.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: How do I calculate FBA landed cost per unit?</div>
+                <div class="faq-a">Add your shipment-level costs from factory to FBA — product cost, freight, duty, MPF, HMF, broker, port charges, prep, and inbound shipping — then divide by the number of sellable units actually received.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: What government fees should U.S. importers watch most closely?</div>
+                <div class="faq-a">Duty first. Then MPF on formal entries, and HMF for ocean imports. They won't usually dominate the math the way duty or freight can, but ignoring them is still sloppy and it adds up fast.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: Should I include storage fees in landed cost?</div>
+                <div class="faq-a">Strictly speaking, no. Operationally, yes — but in a separate profitability layer. I wouldn't stuff storage into customs-landed cost. I would absolutely include it when deciding whether a SKU is worth keeping alive.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: Can a cheap product still be a bad FBA product?</div>
+                <div class="faq-a">Yes, all the time. A low factory price doesn't save you from ugly freight physics, a bad duty classification, high referral fees, slow sell-through, or storage drag. Cheap inventory can still be expensive inventory.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Q: What's the simplest rule for Amazon sellers?</div>
+                <div class="faq-a">Don't reorder unless you know your real per-unit landed cost and your real post-Amazon contribution margin. Anything else is cosplay.</div>
+            </div>
+        </div>
+    </article>
+
+    <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
+</body>
+</html>
