@@ -138,4 +138,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/how-to-find-a-customs-broker/</loc>
+  </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/canada-surtax-on-chinese-goods-2026/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
