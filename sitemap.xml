@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://attahirlabs.com/blog/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -144,6 +144,12 @@
   <url>
     <loc>https://attahirlabs.com/blog/canada-surtax-on-chinese-goods-2026/</loc>
     <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/home-retail-dead-stock-2026/</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
