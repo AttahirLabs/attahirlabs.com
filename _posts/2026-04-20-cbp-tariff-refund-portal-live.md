@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "CBP’s Tariff Refund Portal Is Live. What Importers Should Do Next"
+title: "CBP Tariff Refund Portal: Who Qualifies, What Phase 1 Covers, and What Importers Should Do Next"
 date: 2026-04-20
 categories: [tariffs, importing, compliance]
-description: "CBP’s new CAPE process for certain IEEPA tariff refunds is live. Here’s what Phase 1 covers, what it excludes, and the official links importers will actually need."
+description: "CBP’s CAPE tariff refund portal is live for certain IEEPA duties. Learn who qualifies, what Phase 1 covers, what’s excluded, and the official CBP links importers need."
 author: Attahir Labs
 ---
 
@@ -15,6 +15,10 @@ But most of the coverage so far has been light on the part readers actually need
 
 That’s what this post is for.
 
+## Quick answer
+
+**CBP’s tariff refund portal is live for certain IEEPA duty refund claims through the ACE Portal using CAPE Declarations.** Phase 1 covers some unliquidated and recently liquidated entries, but not every tariff refund scenario. If you think your business may qualify, your next steps are to confirm ACE access, confirm ACH refund setup, identify eligible entry numbers, and coordinate with your customs broker if one filed your entries.
+
 ## First, the official source
 
 Start here, not on social media, not in a thread, not with some guy doing victory laps on LinkedIn:
@@ -24,6 +28,14 @@ Start here, not on social media, not in a thread, not with some guy doing victor
 That page is the main hub. CBP says they’ll keep updating it, and they probably will, because this is clearly being rolled out in stages.
 
 ## What changed
+
+If you're searching for any of these, you're in the right place:
+
+- CBP tariff refund portal
+- CAPE refund process
+- IEEPA tariff refunds
+- ACE Portal tariff refund claim
+- who qualifies for tariff refunds
 
 CBP says importers and authorized customs brokers can now submit certain refund requests for IEEPA duties through the **ACE Secure Data Portal** using a CSV upload called a **CAPE Declaration**.
 
@@ -35,6 +47,14 @@ A few important details:
 - CBP says valid refunds will generally be paid in **60 to 90 days after CAPE acceptance**, unless something needs further review
 
 This is not ABI filing. It’s not entry-by-entry the old-fashioned way either. CBP is trying to batch and consolidate refunds so the process is less chaotic.
+
+## Who qualifies for the CBP tariff refund portal?
+
+The frustrating but accurate answer is: **some importers do, and some don't, at least not in Phase 1.**
+
+You may be in scope if you paid the relevant IEEPA duties and your entries fall into the categories CBP is currently accepting through CAPE. You may be out of scope for now if your entries fall into one of the excluded buckets, like drawback, reconciliation, open protest, or already-final liquidation.
+
+That means the real qualification question is not just, "Did we pay these tariffs?" It's also, **"Are our entries currently eligible for the Phase 1 CAPE workflow?"**
 
 ## What Phase 1 appears to cover
 
@@ -146,7 +166,7 @@ A few details worth remembering:
 
 That’s cleaner than a lot of people expected. But cleaner doesn’t mean small businesses should assume this will be painless.
 
-## The timing question everybody cares about
+## How long do tariff refunds take?
 
 CBP says valid IEEPA refunds will **generally** be issued in **60 to 90 days following acceptance** of the CAPE Declaration.
 
@@ -155,6 +175,15 @@ That word, “generally,” is doing some real work.
 If an entry is under review, suspended, extended, or otherwise messy, the refund path can still be slower. And if your records are a mess, you won’t even get to the “60 to 90 days” part quickly.
 
 ## What importers should do this week
+
+If you only have five minutes, do these four things first:
+
+1. **Confirm who is filing**: you or your customs broker
+2. **Check ACE access** so you're not blocked later
+3. **Make sure ACH refund details are set up**
+4. **Build your list of potentially eligible entry numbers**
+
+Then come back and deal with the messy edge cases.
 
 If this affects your business, here’s the no-nonsense version.
 
@@ -195,6 +224,36 @@ The headlines make it sound like a refund portal just opened and now everybody g
 
 So yes, there may be real money on the table. But if your customs records are a mess, CAPE is not going to magically fix that for you.
 
+## FAQ
+
+### Is the CBP tariff refund portal live now?
+
+Yes. CBP launched Phase 1 of the CAPE process on April 20, 2026.
+
+### Can every importer use it?
+
+No. Phase 1 does not cover every type of entry or every refund scenario.
+
+### Do I need an ACE Portal account?
+
+Yes, if you're filing directly. If your customs broker is filing on your behalf, you still need to know who controls access and refund setup.
+
+### Is this the same as filing through ABI?
+
+No. CBP says CAPE Declarations are filed through the ACE Portal, not ABI.
+
+### How do you submit a refund request?
+
+By uploading a CSV CAPE Declaration through ACE with the relevant entry numbers.
+
+### How long will refunds take?
+
+CBP says valid refunds will generally be issued in 60 to 90 days after CAPE acceptance, unless additional review is needed.
+
+### What if my entries are more complicated?
+
+Then you may be outside Phase 1 and may need to wait for a later phase or a different processing path.
+
 ## Useful links, all in one place
 
 If you just want the bookmark list, here it is:
@@ -220,4 +279,4 @@ And if you don’t, the smartest move isn’t panic. It’s getting organized be
 
 ## Want more tariff updates like this?
 
-If you follow tariff changes, landed cost risk, and import margin pressure, you can also use our free [import duty calculator](/duty/) and keep an eye on the [Attahir Labs blog](/blog/) for future trade and tariff explainers.
+If you follow tariff changes, landed cost risk, and import margin pressure, you can also use our free [import duty calculator](/duty/) to estimate landed cost and keep an eye on the [Attahir Labs blog](/blog/) for future trade and tariff explainers. If you're trying to understand the margin side of import costs before and after duties, start there.
