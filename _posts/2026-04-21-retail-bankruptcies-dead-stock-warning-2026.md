@@ -9,11 +9,11 @@ author: Attahir Labs
 
 If you sell physical products online, big retail bankruptcy headlines are not just gossip. They are warning lights.
 
-This week’s two signals point in the same direction, even though they look different on the surface. David’s Bridal is leaning harder into creator-led content as part of its post-bankruptcy comeback and broader modernization effort. Saks Global, meanwhile, is still tangled in bankruptcy-related fights with creditors seeking information after the company’s Chapter 11 filing. ([Modern Retail](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss), [Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
+This week’s two signals point in the same direction, even though they look different on the surface. David’s Bridal is leaning harder into creator-led content as part of its post-bankruptcy comeback and broader modernization effort, based on executive comments reported by Modern Retail. Saks Global, meanwhile, said in January that it had commenced voluntary chapter 11 cases, and Retail Dive later reported a subpoena fight involving Richard Baker and unsecured creditors in that bankruptcy process. ([Modern Retail](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss), [Saks Global](https://www.saksglobal.com/2026-01-14-Saks-Global-Secures-1-75-Billion-of-Committed-Capital-and-Announces-Return-of-Industry-Veterans-to-Advance-Transformation-of-Iconic-Luxury-Portfolio), [Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
 
 Those are not the same story. But for Shopify merchants, they support the same practical lesson: **inventory problems get more expensive the longer you wait**.
 
-That is the real takeaway here. One retailer is trying to modernize fast enough to improve sell-through and conversion. Another is still dealing with the kind of post-collapse cleanup that leaves vendors, creditors, and insiders fighting over money and information. If you are sitting on soft inventory, slow movers, or products you keep promising yourself will “pick up next month,” that gap matters.
+That is the real takeaway here. One retailer is trying to modernize faster and tighten how it connects content to conversion. Another is still dealing with creditor conflict and bankruptcy-related information requests months after entering chapter 11. If you are sitting on soft inventory, slow movers, or products you keep promising yourself will “pick up next month,” that gap matters.
 
 ## Quick answer
 
@@ -41,11 +41,11 @@ David’s Bridal is not proof that creators solve dead stock by themselves. That
 
 ### Signal 2: Saks Global shows what the ugly later stage looks like
 
-Retail Dive reported that Richard Baker moved to quash a subpoena request from unsecured creditors in the Saks Global bankruptcy case. The article says Saks Global filed voluntary Chapter 11 petitions in January and that unsecured creditors, including many vendors with back invoices that may never be paid in full, are seeking information tied to the merger and related entities. ([Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
+Retail Dive reported that Richard Baker moved to quash a subpoena request from unsecured creditors in the Saks Global bankruptcy case. Separately, Saks Global said on January 14 that it had commenced voluntary chapter 11 cases in the U.S. Bankruptcy Court for the Southern District of Texas. Retail Dive also reported that unsecured creditors, including vendors with back invoices, are seeking information tied to the merger and related entities. ([Saks Global](https://www.saksglobal.com/2026-01-14-Saks-Global-Secures-1-75-Billion-of-Committed-Capital-and-Announces-Return-of-Industry-Veterans-to-Advance-Transformation-of-Iconic-Luxury-Portfolio), [Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
 
 Again, this is not the same thing as a small Shopify brand sitting on too many units of a weak SKU. But the merchant lesson is still obvious: when things deteriorate far enough, the conversation is no longer about optimization. It is about damage allocation.
 
-At that stage, vendors are exposed, creditors are fighting, and every bad operational decision from earlier periods starts showing up as a much more expensive problem. That is why smart merchants should care before they are in trouble, not after.
+At that stage, vendors can be exposed, creditors are fighting over information and recovery, and earlier operating mistakes become much more expensive to unwind. That is why smart merchants should care before they are in trouble, not after.
 
 ## The merchant mistake: treating dead stock like a future problem
 
@@ -190,7 +190,7 @@ That rhythm is boring. It is also how you avoid turning mild inventory drag into
 
 ## The real lesson from these headlines
 
-The David’s Bridal story is about a retailer trying to modernize and tighten the link between content and conversion after bankruptcy stress. The Saks Global story is about how ugly things look when financial distress moves into creditor fights and document battles. ([Modern Retail](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss), [Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
+The David’s Bridal story is about a retailer trying to modernize and tighten the link between content and conversion after bankruptcy stress. The Saks Global story is about what it looks like when a company that has entered chapter 11 is still facing creditor disputes and document fights afterward. ([Modern Retail](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss), [Saks Global](https://www.saksglobal.com/2026-01-14-Saks-Global-Secures-1-75-Billion-of-Committed-Capital-and-Announces-Return-of-Industry-Veterans-to-Advance-Transformation-of-Iconic-Luxury-Portfolio), [Retail Dive](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/))
 
 For merchants, the takeaway is not “copy David’s Bridal” or “panic because Saks filed Chapter 11.”
 
@@ -226,6 +226,7 @@ Start with recent sales velocity, time since last sale, stock coverage, post-dis
 ## Sources
 
 - [Modern Retail: David’s Bridal ramps up its creator strategy as part of its post-bankruptcy comeback](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss)
+- [Saks Global: Saks Global Secures $1.75 Billion of Committed Capital and Announces Return of Industry Veterans to Advance Transformation of Iconic Luxury Portfolio](https://www.saksglobal.com/2026-01-14-Saks-Global-Secures-1-75-Billion-of-Committed-Capital-and-Announces-Return-of-Industry-Veterans-to-Advance-Transformation-of-Iconic-Luxury-Portfolio)
 - [Retail Dive: Richard Baker claps back, moves to quash subpoena in Saks Global bankruptcy case](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/)
 - [Attahir Labs: QVC Bankruptcy Filing, A Dead Stock and Liquidation Playbook for Shopify Merchants](/blog/qvc-bankruptcy-stock-clearance-2026/)
 - [Attahir Labs: Home Retailers Are Under Pressure in 2026. Here’s the Dead Stock Playbook](/blog/home-retail-dead-stock-2026/)
