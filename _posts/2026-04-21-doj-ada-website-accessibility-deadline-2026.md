@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "ADA Website Accessibility Deadline 2026: What Shopify Merchants Need to Know After the DOJ Delay"
+title: "DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk"
 date: 2026-04-21
 categories: [accessibility, compliance, breaking]
-description: "The DOJ delayed Title II accessibility deadlines for government sites, but Shopify merchants still face WCAG risk. Here is what changed, what did not, and what to fix first."
+description: "The DOJ delayed ADA website accessibility deadlines for government sites, but Shopify merchants did not get a free pass. Here is what changed, what did not, and the checklist to use now."
 author: Attahir Labs
 ---
 
