@@ -151,7 +151,17 @@
         .code-example { background: #1e293b; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 8px; font-family: monospace; font-size: 0.9rem; margin: 1rem 0; line-height: 1.6; }
         .code-example .dim { color: #64748b; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            article { padding: 2rem 1rem; }
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            .meta, .breadcrumb { line-height: 1.6; }
+            .callout, .toc, .cta-box { padding: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+            th, td { padding: 0.5rem; }
+        }
     </style>
 </head>
 <body>

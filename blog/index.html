@@ -33,8 +33,21 @@
         .post-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--navy); }
         .post-excerpt { color: var(--gray-700); font-size: 0.95rem; line-height: 1.7; }
         .read-more { color: var(--indigo); font-weight: 600; font-size: 0.9rem; margin-top: 0.75rem; display: inline-block; }
+        .featured-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0 0 2rem; }
+        .featured-link { display: block; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.1rem; text-decoration: none; color: inherit; background: var(--gray-50); }
+        .featured-link:hover { border-color: var(--indigo); }
+        .featured-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--indigo); margin-bottom: 0.35rem; }
+        .featured-title { font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+        .featured-copy { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.8rem; } }
+        @media (max-width: 900px) { .featured-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .container { padding: 2rem 1rem; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; margin-bottom: 2rem; }
+            .post-card { padding: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -53,11 +66,35 @@
         <h1>Blog</h1>
         <p class="subtitle">Practical guides on tariffs, compliance, inventory, and ecommerce operations. Written for merchants who need clear answers and useful next steps.</p>
 
+        <div class="featured-grid">
+            <a class="featured-link" href="/blog/de-minimis-threshold-2026/">
+                <div class="featured-label">Top opportunity</div>
+                <div class="featured-title">De Minimis Threshold 2026</div>
+                <div class="featured-copy">What changed, who now pays duty on small packages, and why the old $800 shortcut no longer works.</div>
+            </a>
+            <a class="featured-link" href="/blog/import-duty-from-vietnam-to-us/">
+                <div class="featured-label">Most actionable</div>
+                <div class="featured-title">Import Duty From Vietnam to the US</div>
+                <div class="featured-copy">A current tariff-rate guide by product category, plus the real landed-cost gap versus China.</div>
+            </a>
+            <a class="featured-link" href="/blog/us-china-tariff-rates-2026/">
+                <div class="featured-label">Core explainer</div>
+                <div class="featured-title">China Tariffs 2026</div>
+                <div class="featured-copy">Section 301, Section 122, Section 232, and the actual duty ranges importers are planning around.</div>
+            </a>
+        </div>
+
         <div class="post-card">
             <a href="/blog/product-expiry-date-management-shopify/">
-                <h2>Product Expiry Date Management for Shopify</h2>
-                <p class="post-meta">April 22, 2026</p>
-                <p class="post-excerpt">Product Expiry Date Management for Shopify — a detailed guide for Shopify merchants.</p>
+                <div class="post-meta">
+                    <span class="post-tag">ShelfLife</span>
+                    <span class="post-tag">Inventory</span>
+                    <span class="post-tag">Operations</span>
+                    April 22, 2026 · 12 min read
+                </div>
+                <div class="post-title">Product Expiry Date Management for Shopify</div>
+                <p class="post-excerpt">A practical guide to expiry tracking, batch control, FEFO workflows, and markdown timing for Shopify merchants selling products with shelf-life risk.</p>
+                <span class="read-more">Read the full guide →</span>
             </a>
         </div>
 
@@ -187,14 +224,6 @@
                 <div class="post-title">How to Find a Customs Broker for Your Shopify Store</div>
                 <p class="post-excerpt">A practical 2026 guide to finding, verifying, and working with a licensed customs broker for your Shopify store, including what to ask, what red flags to avoid, and how to protect margin before inventory ships.</p>
                 <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/how-to-find-a-customs-broker/">
-                <h2>How to Find a Customs Broker for Your Shopify Store in 2026</h2>
-                <p class="post-meta">April 13, 2026 · TariffShield</p>
-                <p class="post-excerpt">A practical guide for Shopify merchants who import goods: what a customs broker actually does, how to vet one, what questions to ask, what red flags to avoid, and how customs operations tie directly to landed cost and margin.</p>
             </a>
         </div>
 

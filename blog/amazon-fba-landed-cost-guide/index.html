@@ -141,7 +141,17 @@
         .formula-box .formula-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--indigo-light); margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .formula-box .formula-result { color: var(--indigo-light); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem; margin-top: 0.5rem; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            article { padding: 2rem 1rem; }
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            .meta, .breadcrumb { line-height: 1.6; }
+            .callout, .toc, .cta-box { padding: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+            th, td { padding: 0.5rem; }
+        }
     </style>
 </head>
 <body>

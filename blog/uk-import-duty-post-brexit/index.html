@@ -55,7 +55,17 @@
         blockquote { background: var(--gray-50); border-left: 4px solid var(--indigo); padding: 1rem 1.25rem; margin: 1.25rem 0; color: var(--gray-700); }
         code { background: var(--gray-100); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.95em; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
-        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            article { padding: 2rem 1rem; }
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            .meta, .breadcrumb { line-height: 1.6; }
+            .callout, .toc, .cta-box { padding: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+            th, td { padding: 0.5rem; }
+        }
     </style>
 </head>
 <body>

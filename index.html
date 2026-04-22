@@ -519,13 +519,24 @@
 
         /* ── RESPONSIVE ────────────────────────────────────────── */
         @media (max-width: 768px) {
+            nav { padding: 0 1rem; }
+            .hero { padding: 5.5rem 1rem 4.5rem; }
+            .hero p { font-size: 1rem; }
             .featured-app { grid-template-columns: 1fr; }
             .featured-visual { display: none; }
             .about-inner { grid-template-columns: 1fr; }
             .about-visual { display: none; }
-            .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; }
-            .trust-bar-inner { gap: 1.5rem; }
+            .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: flex-end; }
+            .nav-links a { font-size: 0.78rem; }
+            .trust-bar-inner { gap: 1rem; }
+            .trust-item { font-size: 0.8rem; }
             .app-grid { grid-template-columns: 1fr; }
+            .featured-app, .problem-grid, .app-grid, .about-inner { gap: 1.25rem; }
+        }
+
+        @media (max-width: 520px) {
+            .nav-inner { height: auto; padding: 0.9rem 0; align-items: flex-start; gap: 0.75rem; }
+            .nav-links { width: 100%; justify-content: flex-start; }
         }
     </style>
 </head>
@@ -534,14 +545,14 @@
     <!-- NAV -->
     <nav>
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">Attahir<span>Labs</span></a>
+            <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
             <ul class="nav-links">
                 <li><a href="#apps">Apps</a></li>
                 <li><a href="/duty/">Duty Calculator</a></li>
                 <li><a href="/blog/">Blog</a></li>
                 <li><a href="#problems">Use Cases</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -554,7 +565,7 @@
             <p>We build Shopify apps that solve real problems — tariff impact, audit trails, warranty management, dead inventory, and more. No fluff. Just tools that work.</p>
             <div class="hero-cta">
                 <a href="#apps" class="btn-primary">Explore Our Apps</a>
-                <a href="contact.html" class="btn-secondary">Get in Touch</a>
+                <a href="/contact.html" class="btn-secondary">Get in Touch</a>
             </div>
         </div>
     </section>
