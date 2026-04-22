@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>UK Import Duty Post-Brexit: What&#x27;s Changed in 2026 | Attahir Labs</title>
+    <meta name="description" content="A practical guide to UK import duty after Brexit, including UK Global Tariff rules, EU zero-tariff origin requirements, VAT, Northern Ireland complications, and how importers should verify landed cost.">
+    <meta name="keywords" content="UK import duty, post-Brexit tariff, UK Global Tariff, rules of origin, import VAT, Northern Ireland tariff">
+    <link rel="canonical" href="https://attahirlabs.com/blog/uk-import-duty-post-brexit/">
+    <meta property="og:title" content="UK Import Duty Post-Brexit: What&#x27;s Changed in 2026">
+    <meta property="og:description" content="A practical guide to UK import duty after Brexit, including UK Global Tariff rules, EU zero-tariff origin requirements, VAT, Northern Ireland complications, and how importers should verify landed cost.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://attahirlabs.com/blog/uk-import-duty-post-brexit/">
+    <meta property="article:published_time" content="2026-04-20">
+    <meta property="article:modified_time" content="2026-04-20">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "UK Import Duty Post-Brexit: What's Changed", "datePublished": "2026-04-20", "dateModified": "2026-04-20", "author": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "publisher": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "description": "A practical guide to UK import duty after Brexit, including UK Global Tariff rules, EU zero-tariff origin requirements, VAT, Northern Ireland complications, and how importers should verify landed cost.", "mainEntityOfPage": "https://attahirlabs.com/blog/uk-import-duty-post-brexit/"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "1. Did Brexit mean the UK started charging tariffs on all EU imports?", "acceptedAnswer": {"@type": "Answer", "text": "No. The UK-EU Trade and Cooperation Agreement provides for zero tariffs and zero quotas on qualifying goods, but only if the goods meet the agreement's rules of origin and the importer can support the claim. If they do not qualify, the standard tariff can still apply."}}, {"@type": "Question", "name": "2. What is the UK Global Tariff?", "acceptedAnswer": {"@type": "Answer", "text": "The UK Global Tariff is the UK's main tariff schedule for goods imported into the UK when no lower preferential rate, relief, or special treatment applies. It replaced reliance on the EU's external tariff structure after Brexit."}}, {"@type": "Question", "name": "3. If my goods ship from the EU, do they automatically qualify for zero duty in the UK?", "acceptedAnswer": {"@type": "Answer", "text": "No. Shipping location and customs origin are not the same thing. Goods routed through the EU may still fail the origin rules if they were actually produced in a third country and did not undergo sufficient qualifying processing."}}, {"@type": "Question", "name": "4. What matters more after Brexit: tariff rates or rules of origin?", "acceptedAnswer": {"@type": "Answer", "text": "Both matter, but rules of origin are often the bigger operational trap. Many businesses can access zero tariffs in principle, but only if they satisfy and document origin correctly."}}, {"@type": "Question", "name": "5. Is import VAT the same as customs duty?", "acceptedAnswer": {"@type": "Answer", "text": "No. Customs duty and import VAT are separate charges. A shipment may have zero customs duty and still trigger import VAT and other clearance costs."}}, {"@type": "Question", "name": "6. Does Northern Ireland follow the same import-duty logic as the rest of the UK?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. Northern Ireland remains a special case in the post-Brexit framework. Goods moving into or through Northern Ireland can involve different tariff considerations, especially where goods may be considered at risk of entering the EU."}}, {"@type": "Question", "name": "7. Can importers recover duty if they claimed the wrong treatment?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes, yes, but it depends on the jurisdiction, legal basis, and timing. For example, CBSA guidance under the Canada-UK continuity framework confirms refund pathways for eligible claims within a defined period. Importers should not assume refunds are simple, automatic, or available forever."}}, {"@type": "Question", "name": "8. What is the safest way to estimate UK landed cost post-Brexit?", "acceptedAnswer": {"@type": "Answer", "text": "Use the exact commodity code, actual origin, applicable preference rules, import VAT treatment, and destination-specific routing assumptions. Avoid generic country-level shortcuts."}}]}</script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8; --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --green: #10b981; --red: #ef4444; --amber: #f59e0b; --radius: 12px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--navy); line-height: 1.8; background: var(--white); }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { color: var(--white); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+        .nav-logo span { color: var(--indigo-light); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--white); }
+        article { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .breadcrumb { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--indigo); text-decoration: none; }
+        .meta { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 2rem; }
+        .tag { display: inline-block; background: rgba(99,102,241,0.1); color: var(--indigo); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.3rem; }
+        h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--gray-200); }
+        h3 { font-size: 1.15rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--gray-700); font-size: 1.05rem; }
+        strong { color: var(--navy); }
+        a { color: var(--indigo); }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+        th { text-align: left; padding: 0.75rem; background: var(--gray-50); border-bottom: 2px solid var(--gray-200); font-weight: 600; color: var(--navy); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+        tr:hover td { background: var(--gray-50); }
+        .toc { background: var(--gray-50); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { margin-top: 0; font-size: 0.95rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 0.3rem; }
+        .toc a { color: var(--indigo); text-decoration: none; font-size: 0.9rem; }
+        .toc a:hover { text-decoration: underline; }
+        ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; color: var(--gray-700); }
+        blockquote { background: var(--gray-50); border-left: 4px solid var(--indigo); padding: 1rem 1.25rem; margin: 1.25rem 0; color: var(--gray-700); }
+        code { background: var(--gray-100); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.95em; }
+        footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
+        @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.6rem; } table { font-size: 0.85rem; } th, td { padding: 0.5rem; } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+    <article>
+        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / UK Import Duty Post-Brexit: What&#x27;s Changed</div>
+        <div class="meta"><span class="tag">Tariffs</span><span class="tag">UK</span><span class="tag">Brexit</span><span class="tag">TariffShield</span> Published April 20, 2026 · Updated April 20, 2026 · 14 min read</div>
+        <h1>UK Import Duty Post-Brexit: What&#x27;s Changed</h1>
+        <div class="toc"><h3>In this guide</h3><ul>                <li><a href="#quick-answer">Quick answer</a></li>
+                <li><a href="#the-biggest-structural-change-the-uk-now-has-its-own-tariff-system">The biggest structural change: the UK now has its own tariff system</a></li>
+                <li><a href="#what-did-not-change-customs-law-is-still-built-on-classification-and-origin">What did not change: customs law is still built on classification and origin</a></li>
+                <li><a href="#brexit-did-not-create-blanket-tariffs-between-the-uk-and-eu">Brexit did not create blanket tariffs between the UK and EU</a></li>
+                <li><a href="#rules-of-origin-are-the-real-post-brexit-pressure-point">Rules of origin are the real post-Brexit pressure point</a></li>
+                <li><a href="#the-uks-wto-position-still-matters-especially-when-no-preference-applies">The UK&#x27;s WTO position still matters, especially when no preference applies</a></li>
+                <li><a href="#import-vat-is-still-separate-from-customs-duty-and-people-still-mix-them-up">Import VAT is still separate from customs duty, and people still mix them up</a></li>
+                <li><a href="#northern-ireland-remains-a-special-case">Northern Ireland remains a special case</a></li></ul></div>
+<p><a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">Background sources: European Commission TCA overview</a>, <a href="https://goods-schedules.wto.org/member/united-kingdom">WTO goods schedules, United Kingdom</a>.</p>
+<blockquote>
+<p>Sources: <a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission TCA overview</a>, <a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP Determining Duty Rates</a>.</p>
+</blockquote>
+<p>If you are still using pre-2021 assumptions to price goods into the United Kingdom, you are probably misquoting landed cost.</p>
+<p>That is the real post-Brexit change. The headline political event happened years ago, but the operational reality is still catching businesses out in 2026. Import duty into the UK is no longer something many traders can treat as a simple extension of EU customs treatment. The UK now runs its own tariff schedule, its own trade agreement framework, and its own customs decision points, even where UK and EU rules still overlap.</p>
+<p>The good news is that “post-Brexit” does <strong>not</strong> mean every shipment suddenly attracts duty. In many cases, goods can still move at zero tariff between the UK and the EU. But that outcome is no longer automatic. It depends on classification, origin, documentation, and routing. If you miss one of those pieces, the default tariff can come back into play.</p>
+<p>This guide explains what actually changed, what did not, and what importers should verify before relying on any “tariff-free” assumption.</p>
+<h2 id="quick-answer">Quick answer</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>Post-Brexit, UK import duty is determined primarily by the <strong>UK Global Tariff (UKGT)</strong> unless a shipment qualifies for a reduced or zero rate under a UK trade agreement, a tariff-rate quota, a relief, or a special regime. For UK-EU trade, zero tariffs are available under the Trade and Cooperation Agreement, but only if the goods meet the agreement’s <strong>rules of origin</strong> and the importer can support the claim. If they do not, standard tariffs can apply. Import VAT, customs declarations, commodity classification, and Northern Ireland rules also matter more than many businesses expected.</p>
+<h2 id="the-biggest-structural-change-the-uk-now-has-its-own-tariff-system">The biggest structural change: the UK now has its own tariff system</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/trade-tariff">GOV.UK Trade Tariff tool</a>.</p>
+</blockquote>
+<p>Before Brexit, the UK was part of the EU customs union and EU common commercial policy. In practice, that meant traders often focused on the EU Common External Tariff and EU-wide customs structures. Since leaving that framework, the UK applies the <strong>UK Global Tariff</strong> to imports unless a different preferential arrangement or exception applies.</p>
+<p>HM Government’s guidance is explicit on this point. The UKGT applies to goods imported into the UK unless one of several exceptions applies, including a UK trade agreement, tariff relief or suspension, or treatment under the Developing Countries Trading Scheme. The same guidance also notes that some goods are subject to tariff-rate quotas, where a limited volume can enter at a zero or reduced rate before a higher duty rate applies.</p>
+<p>That change matters because it means post-Brexit import planning has to start with the UK tariff environment, not with old EU assumptions. Even when the answer ends up being “zero duty,” the route to that result is no longer automatic.</p>
+<h2 id="what-did-not-change-customs-law-is-still-built-on-classification-and-origin">What did not change: customs law is still built on classification and origin</h2>
+<blockquote>
+<p>Sources: <a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP Determining Duty Rates</a>, <a href="https://www.cbp.gov/trade/rulings/informed-compliance-publications/marking-country-origin-us-imports">USITC About the HTS</a>.</p>
+</blockquote>
+<p>A lot of businesses talk about Brexit as though it created a completely new customs universe. It did not. The fundamentals are still the same:</p>
+<ol type="1">
+<li>classify the goods correctly,</li>
+<li>determine origin correctly,</li>
+<li>identify any applicable preference or relief,</li>
+<li>make a compliant declaration,</li>
+<li>calculate duty and import VAT on the correct basis.</li>
+</ol>
+<p>That is true in the UK, and it is also true in other major customs systems.</p>
+<p>CBP’s guidance for U.S. importers makes the same basic point from the American side. Duty rates are determined through the Harmonized Tariff System, and the answer depends on what the product is, how it is classified, where it originates, and whether any special treatment applies. CBP also stresses that the final determination belongs to customs authorities, not to the importer merely because the importer guessed a rate.</p>
+<p>USITC explains the same framework at the schedule level. The Harmonized Tariff Schedule is hierarchical, classification must follow legal interpretation rules, and the “general” rate column reflects normal trade relations duty rates while preferential programs may alter the result. That is a useful reminder for UK traders too: customs outcomes depend on legal classification and legal eligibility, not marketing descriptions or invoice shortcuts.</p>
+<h2 id="brexit-did-not-create-blanket-tariffs-between-the-uk-and-eu">Brexit did not create blanket tariffs between the UK and EU</h2>
+<blockquote>
+<p>Sources: <a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission, EU-UK Trade and Cooperation Agreement</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>One of the most persistent misconceptions is that Brexit automatically meant tariffs on UK-EU trade. That is wrong.</p>
+<p>The EU-UK Trade and Cooperation Agreement created a framework for preferential treatment in goods trade. The practical headline is simple: <strong>zero tariffs and zero quotas are available for qualifying goods</strong>. But the condition matters. The goods have to comply with the agreement’s rules of origin.</p>
+<p>The UK government’s rules-of-origin guidance says this plainly. To export tariff-free under the UK-EU Trade and Cooperation Agreement, goods must meet the preferential rules of origin, meaning there must be a qualifying level of processing in the country of export. If goods do not meet those rules, they can still be traded, but they may have to pay the standard Most Favoured Nation tariff, which for UK imports means the UK Global Tariff.</p>
+<p>That is the operational shift many businesses underestimated. Under the old EU internal market setup, a trader could often think in terms of free circulation. Post-Brexit, preferential access often turns on whether the good is actually <strong>originating</strong> under the agreement, not just whether it was shipped from an EU warehouse or a UK distributor.</p>
+<h2 id="rules-of-origin-are-the-real-post-brexit-pressure-point">Rules of origin are the real post-Brexit pressure point</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>If you want the shortest possible explanation of what changed after Brexit, here it is: <strong>origin matters more now</strong>.</p>
+<p>A product shipped from Germany to the UK is not automatically entitled to zero duty just because it came from the EU. If that product is actually made in a third country and merely stored, repacked, or redistributed in the EU, it may fail the origin test. In that case, the UK importer may face the UK Global Tariff rather than the TCA preference.</p>
+<p>The UK guidance makes this especially clear in two ways:</p>
+<ul>
+<li>zero tariffs require compliance with preferential rules of origin,</li>
+<li>goods imported from outside the UK or EU may not qualify unless sufficient qualifying processing occurred.</li>
+</ul>
+<p>This is why post-Brexit customs compliance is not just a procurement problem. It is a supply chain data problem. Importers need to know:</p>
+<ul>
+<li>where the product was actually manufactured,</li>
+<li>what inputs were used,</li>
+<li>whether product-specific origin rules are met,</li>
+<li>whether the exporter can support an origin declaration,</li>
+<li>whether the importer has records to defend a preference claim.</li>
+</ul>
+<p>A lot of mid-market businesses still do not have this fully under control. They know their supplier country, but not the real origin logic behind the SKU.</p>
+<h2 id="the-uks-wto-position-still-matters-especially-when-no-preference-applies">The UK’s WTO position still matters, especially when no preference applies</h2>
+<blockquote>
+<p>Sources: <a href="https://goods-schedules.wto.org/member/united-kingdom">GOV.UK UK goods and services schedules at the WTO</a>, <a href="https://goods-schedules.wto.org/member/united-kingdom">WTO goods schedules, United Kingdom</a>.</p>
+</blockquote>
+<p>Brexit did not just change UK-EU relations. It also meant the UK needed its own schedules and market access commitments in the multilateral trading system.</p>
+<p>The UK submitted its goods schedule for certification at the WTO and stated that these schedules would form the basis of its trade policy while certification continues. WTO records for the United Kingdom’s goods schedule also note that the UK submitted a full schedule in 2018, with effect from the end of the Brexit transition period on 31 December 2020.</p>
+<p>Why should a working importer care about that? Because when a shipment does <strong>not</strong> qualify for a preferential agreement, customs treatment often falls back to the UK’s MFN framework, embodied domestically through the UK Global Tariff and internationally through the UK’s WTO commitments.</p>
+<p>In other words, Brexit did not create a vacuum. It shifted the UK’s legal architecture from EU-wide treatment to a UK-specific structure layered on top of WTO commitments, UK tariff schedules, and bilateral or regional trade deals.</p>
+<h2 id="import-vat-is-still-separate-from-customs-duty-and-people-still-mix-them-up">Import VAT is still separate from customs duty, and people still mix them up</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad">HMRC import VAT guidance</a>.</p>
+</blockquote>
+<p>Another common post-Brexit mistake is treating duty and VAT as though they are the same charge. They are not.</p>
+<p>Even where customs duty is zero, import VAT can still apply. HMRC tariff guidance explicitly notes that the tariff tool does not cover other import duties such as VAT. That matters because businesses sometimes see “0% duty” and assume the landed cost problem is solved. It is not.</p>
+<p>For many importers, the real budgeting issue is the combined effect of:</p>
+<ul>
+<li>customs duty,</li>
+<li>import VAT,</li>
+<li>customs brokerage fees,</li>
+<li>freight,</li>
+<li>valuation adjustments,</li>
+<li>timing and cash-flow effects.</li>
+</ul>
+<p>The U.S. Department of Commerce’s UK Brexit FAQ also highlights a practical post-Brexit VAT distinction for low-value consignments. For consignments valued at £135 or less sold directly to UK consumers, UK supply VAT can be due at the point of sale rather than import VAT being handled in the old way. That does not replace the broader customs framework, but it is a good reminder that post-Brexit compliance is not only about headline tariff rates.</p>
+<h2 id="northern-ireland-remains-a-special-case">Northern Ireland remains a special case</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/check-if-you-can-declare-goods-you-bring-into-northern-ireland-not-at-risk-of-moving-to-the-eu">GOV.UK Northern Ireland at-risk guidance</a>.</p>
+</blockquote>
+<p>If your business touches Northern Ireland, you should resist the temptation to oversimplify. Northern Ireland has remained one of the trickiest areas of the post-Brexit customs landscape because tariff outcomes may depend on whether goods are considered “at risk” of onward movement into the EU and which tariff regime applies.</p>
+<p>UK government tariff guidance still distinguishes between standard UK tariff treatment and the Northern Ireland Online Tariff in relevant cases. Search guidance and tariff supplements also continue to reflect special treatment around “at risk” determinations and access to tariff mechanisms.</p>
+<p>For most businesses, the safe practical rule is this: <strong>do not assume a mainland UK answer automatically works for Northern Ireland</strong>. If you are routing goods through Great Britain into Northern Ireland, or importing into Northern Ireland with any possibility of onward EU movement, you need a specific review.</p>
+<p>That review should cover customs route, consignee status, origin support, and the precise tariff regime in play.</p>
+<h2 id="trade-agreements-can-reduce-duty-but-only-if-you-actually-claim-them-correctly">Trade agreements can reduce duty, but only if you actually claim them correctly</h2>
+<blockquote>
+<p>Sources: <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-07-eng.html">CBSA Customs Notice 21-07</a>.</p>
+</blockquote>
+<p>The UKGT is not the only rate that matters. Post-Brexit, the UK now operates through its own network of trade agreements. That can create real duty savings, but only if importers identify and claim them properly.</p>
+<p>Canada’s experience with the Canada-United Kingdom Trade Continuity Agreement is a good example. CBSA’s Customs Notice 21-07 confirms that the agreement came into force on 1 April 2021 and introduced a new preferential tariff treatment, the <strong>United Kingdom Tariff (UKT)</strong>. CBSA also states that entitlement to tariff benefits depends on the relevant rules of origin, and that importers need the required origin declaration. The notice further confirms that refund claims may be made within four years for eligible goods imported under the relevant provision.</p>
+<p>Why is that relevant to UK importers generally? Because it shows a pattern common across post-Brexit trade administration:</p>
+<ul>
+<li>there may be a preferential rate available,</li>
+<li>it is tied to origin rules and documentation,</li>
+<li>customs coding matters,</li>
+<li>retrospective correction or refund may be possible, but only within legal limits.</li>
+</ul>
+<p>The same basic compliance mindset applies whether you are importing into the UK, exporting from the UK, or planning a cross-border supply chain that depends on bilateral preferences.</p>
+<h2 id="businesses-should-stop-thinking-in-country-names-and-start-thinking-in-customs-facts">Businesses should stop thinking in country names and start thinking in customs facts</h2>
+<blockquote>
+<p>Sources: <a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP Determining Duty Rates</a>.</p>
+</blockquote>
+<p>A lot of tariff errors happen because people ask the wrong question.</p>
+<p>The wrong question is: “What is the import duty from the EU into the UK?”</p>
+<p>The better question is: “What is the duty on this exact product, under this exact commodity code, from this actual origin, under this specific routing and documentation set, with this claimed preference?”</p>
+<p>That sounds less elegant, but it is how customs authorities think.</p>
+<p>CBP’s duty-rate guidance is instructive here because it emphasizes that even small factual differences can change the rate. Composition, assembly location, qualification for preference, and product details all matter. Post-Brexit UK trade now demands the same discipline. A generic spreadsheet with country-level assumptions is not enough if you are importing serious volume.</p>
+<h2 id="the-cost-of-getting-it-wrong-is-not-just-the-duty-itself">The cost of getting it wrong is not just the duty itself</h2>
+<blockquote>
+<p>Sources: <a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/">Tax Foundation tariff research</a>.</p>
+</blockquote>
+<p>When companies model post-Brexit customs exposure, they often focus on overpaying duty. That is only part of the risk.</p>
+<p>A bad tariff assumption can also cause:</p>
+<ul>
+<li>underquoted landed cost to customers,</li>
+<li>margin compression,</li>
+<li>delayed shipments at the border,</li>
+<li>retroactive assessments,</li>
+<li>refund complexity if overpaid,</li>
+<li>incorrect VAT handling,</li>
+<li>disputes with suppliers over origin declarations,</li>
+<li>marketplace pricing errors.</li>
+</ul>
+<p>Tax Foundation’s trade work is useful here not because it gives a UK import matrix, but because it reminds businesses that tariffs are still taxes on cross-border goods and that tariff changes meaningfully affect cost structure, economic behavior, and compliance burdens. The broad lesson holds: even when the rate sounds modest, tariff friction can materially change commercial outcomes.</p>
+<h2 id="what-importers-should-do-differently-in-2026">What importers should do differently in 2026</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>If you are importing into the UK post-Brexit, the practical playbook should be tighter than it was before.</p>
+<h3 id="confirm-the-commodity-code">1. Confirm the commodity code</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/trade-tariff">GOV.UK Trade Tariff tool</a>, <a href="https://www.gov.uk/guidance/finding-commodity-codes-for-imports-or-exports">Finding commodity codes for imports into or exports out of the UK</a>.</p>
+</blockquote>
+<p>Do not price a shipment from a product title alone. Use the UK trade tariff tools and supporting classification logic. If the value is meaningful or the product is ambiguous, get specialist review.</p>
+<h3 id="separate-origin-from-shipping-location">2. Separate origin from shipping location</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>A shipment sent from the EU is not necessarily EU-origin. A shipment sent from the UK is not necessarily UK-origin. If the zero-tariff strategy depends on origin, make sure you can prove it.</p>
+<h3 id="check-whether-a-preferential-agreement-applies">3. Check whether a preferential agreement applies</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>, <a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission TCA overview</a>.</p>
+</blockquote>
+<p>For UK-EU trade, ask whether the good qualifies under the TCA rules of origin. For other partner countries, verify the specific UK trade agreement and documentation requirements.</p>
+<h3 id="budget-vat-separately">4. Budget VAT separately</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad">HMRC import VAT guidance</a>.</p>
+</blockquote>
+<p>Do not let a “0% customs duty” result trick finance into underbudgeting. Import VAT and cash-flow timing still matter.</p>
+<h3 id="review-northern-ireland-flows-independently">5. Review Northern Ireland flows independently</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>.</p>
+</blockquote>
+<p>If a shipment touches Northern Ireland, run a separate customs check. It is not the place for generic assumptions.</p>
+<h3 id="keep-records-that-can-survive-an-audit">6. Keep records that can survive an audit</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>Preference claims are only as good as the documents behind them. Retain origin declarations, supplier statements, product data, tariff classification reasoning, and customs entries.</p>
+<h3 id="revisit-old-landed-cost-logic">7. Revisit old landed-cost logic</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/">Tax Foundation tariff research</a>.</p>
+</blockquote>
+<p>Many businesses built pricing logic during the pre-Brexit or early-transition period and never fully updated it. If you have not reviewed those rules recently, there is a good chance they are now too simplistic.</p>
+<h2 id="a-practical-example">A practical example</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>, <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>.</p>
+</blockquote>
+<p>Imagine a UK retailer imports kitchen appliances from a supplier in the Netherlands. The invoice says the shipment comes from the EU, so the buyer assumes zero duty.</p>
+<p>That assumption may be wrong.</p>
+<p>If the appliances were actually manufactured in a third country and the Dutch supplier did not carry out sufficient qualifying processing, the goods may fail the TCA origin test. In that case, the UK importer may owe the standard UK tariff rate on import, plus import VAT. If the pricing model assumed tariff-free entry, the retailer may discover the margin problem only after customs clearance.</p>
+<p>Now compare that with a second case. The same importer buys a product genuinely originating in the EU, receives the right origin support, uses the correct commodity code, and claims the preference correctly. In that case, zero tariff may be available, even though Brexit happened years ago.</p>
+<p>Same route, different customs facts, different result.</p>
+<p>That is why lazy post-Brexit commentary is not very helpful anymore. The real question is not whether Brexit changed import duty in theory. It is how Brexit changed the decision tree importers have to follow in practice.</p>
+<h2 id="faq">FAQ</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>, <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-07-eng.html">CBSA Customs Notice 21-07</a>.</p>
+</blockquote>
+<h3 id="did-brexit-mean-the-uk-started-charging-tariffs-on-all-eu-imports">1. Did Brexit mean the UK started charging tariffs on all EU imports?</h3>
+<blockquote>
+<p>Sources: <a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission TCA overview</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>No. The UK-EU Trade and Cooperation Agreement provides for zero tariffs and zero quotas on qualifying goods, but only if the goods meet the agreement’s rules of origin and the importer can support the claim. If they do not qualify, the standard tariff can still apply.</p>
+<h3 id="what-is-the-uk-global-tariff">2. What is the UK Global Tariff?</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>.</p>
+</blockquote>
+<p>The UK Global Tariff is the UK’s main tariff schedule for goods imported into the UK when no lower preferential rate, relief, or special treatment applies. It replaced reliance on the EU’s external tariff structure after Brexit.</p>
+<h3 id="if-my-goods-ship-from-the-eu-do-they-automatically-qualify-for-zero-duty-in-the-uk">3. If my goods ship from the EU, do they automatically qualify for zero duty in the UK?</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>No. Shipping location and customs origin are not the same thing. Goods routed through the EU may still fail the origin rules if they were actually produced in a third country and did not undergo sufficient qualifying processing.</p>
+<h3 id="what-matters-more-after-brexit-tariff-rates-or-rules-of-origin">4. What matters more after Brexit: tariff rates or rules of origin?</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>Both matter, but rules of origin are often the bigger operational trap. Many businesses can access zero tariffs in principle, but only if they satisfy and document origin correctly.</p>
+<h3 id="is-import-vat-the-same-as-customs-duty">5. Is import VAT the same as customs duty?</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad">HMRC import VAT guidance</a>.</p>
+</blockquote>
+<p>No. Customs duty and import VAT are separate charges. A shipment may have zero customs duty and still trigger import VAT and other clearance costs.</p>
+<h3 id="does-northern-ireland-follow-the-same-import-duty-logic-as-the-rest-of-the-uk">6. Does Northern Ireland follow the same import-duty logic as the rest of the UK?</h3>
+<blockquote>
+<p>Source: <a href="https://www.gov.uk/guidance/check-if-you-can-declare-goods-you-bring-into-northern-ireland-not-at-risk-of-moving-to-the-eu">GOV.UK Northern Ireland at-risk guidance</a>.</p>
+</blockquote>
+<p>Not always. Northern Ireland remains a special case in the post-Brexit framework. Goods moving into or through Northern Ireland can involve different tariff considerations, especially where goods may be considered at risk of entering the EU.</p>
+<h3 id="can-importers-recover-duty-if-they-claimed-the-wrong-treatment">7. Can importers recover duty if they claimed the wrong treatment?</h3>
+<blockquote>
+<p>Source: <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-07-eng.html">CBSA Customs Notice 21-07</a>.</p>
+</blockquote>
+<p>Sometimes, yes, but it depends on the jurisdiction, legal basis, and timing. For example, CBSA guidance under the Canada-UK continuity framework confirms refund pathways for eligible claims within a defined period. Importers should not assume refunds are simple, automatic, or available forever.</p>
+<h3 id="what-is-the-safest-way-to-estimate-uk-landed-cost-post-brexit">8. What is the safest way to estimate UK landed cost post-Brexit?</h3>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>.</p>
+</blockquote>
+<p>Use the exact commodity code, actual origin, applicable preference rules, import VAT treatment, and destination-specific routing assumptions. Avoid generic country-level shortcuts.</p>
+<h2 id="final-takeaway">Final takeaway</h2>
+<blockquote>
+<p>Sources: <a href="https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk">GOV.UK Tariffs on goods imported into the UK</a>, <a href="https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements">GOV.UK preference agreements and rules of origin guidance</a>, <a href="https://goods-schedules.wto.org/member/united-kingdom">WTO goods schedules, United Kingdom</a>.</p>
+</blockquote>
+<p>Post-Brexit UK import duty is not best understood as a single tariff increase or a single tariff cut. It is better understood as a shift from old EU-wide assumptions to a more explicit customs decision framework.</p>
+<p>The UK now has its own tariff schedule, its own trade agreement administration, and its own compliance logic around origin, VAT, and border declarations. Some goods still move at zero tariff. Some do not. The difference is usually not politics at the point of import. It is paperwork, product facts, and legal eligibility.</p>
+<p>That is why the businesses handling Brexit best in 2026 are not the ones arguing about headlines. They are the ones maintaining clean product classification, origin support, and landed-cost calculations.</p>
+<h2 id="cta-check-your-duty-exposure-before-you-quote-the-shipment">CTA: check your duty exposure before you quote the shipment</h2>
+<blockquote>
+<p>Sources: <a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission TCA overview</a>, <a href="https://goods-schedules.wto.org/member/united-kingdom">WTO goods schedules, United Kingdom</a>.</p>
+</blockquote>
+<p>If you are pricing cross-border goods into the UK, do not rely on memory, supplier assumptions, or old pre-Brexit spreadsheets.</p>
+<p>Use the <strong><a href="https://attahirlabs.com/duty/">TariffShield duty calculator</a></strong> to sanity-check commodity-code, origin, and landed-cost assumptions before you publish a price, approve a shipment, or commit margin. It is the fastest way to catch whether a shipment is truly preference-eligible or whether standard duty may still apply.</p>
+<h2 id="sources">Sources</h2>
+<ol type="1">
+<li><a href="https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en">European Commission, <em>The EU-UK Trade and Cooperation Agreement</em></a></li>
+<li><a href="https://goods-schedules.wto.org/member/united-kingdom">WTO Goods Schedules eLibrary, <em>United Kingdom</em></a></li>
+<li><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">U.S. Customs and Border Protection, <em>Determining Duty Rates</em></a></li>
+<li><a href="https://www.cbp.gov/trade/rulings/informed-compliance-publications/marking-country-origin-us-imports">U.S. Customs and Border Protection, <em>Marking of Country of Origin on U.S. Imports</em></a></li>
+<li><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn21-07-eng.html">Canada Border Services Agency, <em>Customs Notice 21-07 - Implementation of the Canada-United Kingdom Trade Continuity Agreement</em></a></li>
+<li><a href="https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad">HMRC, <em>Paying VAT on imports from outside the UK to Great Britain and from outside the EU to Northern Ireland</em></a></li>
+<li><a href="https://www.gov.uk/guidance/check-if-you-can-declare-goods-you-bring-into-northern-ireland-not-at-risk-of-moving-to-the-eu">GOV.UK, <em>Moving goods you bring into Northern Ireland as not at risk of moving to the EU</em></a></li>
+<li><a href="https://www.gov.uk/trade-tariff">GOV.UK, <em>Trade Tariff: look up commodity codes, duty and VAT rates</em></a></li>
+</ol>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This article is for general informational purposes only and does not constitute legal, customs, tax, or brokerage advice. Duty outcomes depend on the specific goods, tariff classification, origin, valuation, routing, and documentation involved. Always confirm treatment with the relevant customs authority, broker, or qualified trade professional before relying on a tariff assumption in a live transaction.</p>
+
+    </article>
+    <footer><p>&copy; 2026 Attahir Labs. Practical tools for merchants navigating tariffs, compliance, and ecommerce operations.</p></footer>
+</body>
+</html>
