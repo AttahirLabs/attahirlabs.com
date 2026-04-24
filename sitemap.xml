@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://attahirlabs.com/blog/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -192,6 +192,18 @@
   <url>
     <loc>https://attahirlabs.com/blog/product-expiry-date-management-shopify/</loc>
     <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/gamestop-retro-inventory-playbook-2026/</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/</loc>
+    <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+  <title>ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports | Attahir Labs</title>
+  <meta name="description" content="Shopify added MATCHES to ShopifyQL in Analytics. Here’s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.">
+  <meta name="keywords" content="ShopifyQL MATCHES, Shopify reports customer behavior">
+  <link rel="canonical" href="https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/">
+  <meta property="og:title" content="ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports">
+  <meta property="og:description" content="Shopify added MATCHES to ShopifyQL in Analytics. Here’s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/">
+  <meta property="article:published_time" content="2026-04-24">
+  <meta property="article:modified_time" content="2026-04-24">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports", "datePublished": "2026-04-24", "dateModified": "2026-04-24", "author": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "publisher": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "description": "Shopify added MATCHES to ShopifyQL in Analytics. Here\u2019s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.", "mainEntityOfPage": "https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/", "keywords": ["ShopifyQL MATCHES, Shopify reports customer behavior", "StoreChangelog", "Analytics", "Shopify"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What did Shopify actually change?", "acceptedAnswer": {"@type": "Answer", "text": "Shopify officially added the MATCHES operator to the ShopifyQL editor in Analytics, allowing merchants to filter reports using customer-behavior conditions such as products purchased or orders placed."}}, {"@type": "Question", "name": "Does MATCHES only work for customer segments?", "acceptedAnswer": {"@type": "Answer", "text": "No.\u00a0Shopify\u2019s announcement specifically says the same MATCHES logic used in Customer Segmentation now works in Analytics, which is the whole point of this update."}}, {"@type": "Question", "name": "What kinds of behavior can merchants filter on?", "acceptedAnswer": {"@type": "Answer", "text": "According to Shopify\u2019s syntax reference, MATCHES can be used with expressions such as products purchased, orders placed, certain Shopify Email events, some storefront view events, store credit accounts, and geographic distance conditions."}}, {"@type": "Question", "name": "Is MATCHES enough to fix analytics quality problems by itself?", "acceptedAnswer": {"@type": "Answer", "text": "No.\u00a0It improves how merchants can define behavior-based filters, but teams still need canonical query definitions, QA checks, and a way to understand operational changes around the numbers."}}, {"@type": "Question", "name": "Why connect this to a changelog or audit-trail app?", "acceptedAnswer": {"@type": "Answer", "text": "Because better reporting logic tells you what customers did, while a store-change audit trail tells you what your team changed when those numbers moved. You need both to debug real-world store operations well."}}, {"@type": "Question", "name": "Should merchants rewrite all of their reports now?", "acceptedAnswer": {"@type": "Answer", "text": "Probably not. The smarter move is to replace the ugliest manual work first: a few repeated behavior questions, a few repeated exports, and any report/segment pair that currently drifts."}}]}</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0f172a;--navy-mid:#1e293b;--indigo:#6366f1;--indigo-light:#818cf8;--white:#ffffff;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-500:#64748b;--gray-700:#334155;--radius:12px}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--navy);line-height:1.8;background:var(--white)}
+    nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(10px);padding:0 1.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{color:var(--white);font-weight:700;font-size:1.15rem;text-decoration:none}
+    .nav-logo span{color:var(--indigo-light)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.9rem;transition:color .15s}
+    .nav-links a:hover{color:var(--white)}
+    article{max-width:780px;margin:0 auto;padding:3rem 1.5rem}
+    .breadcrumb{font-size:.85rem;color:var(--gray-500);margin-bottom:1rem}
+    .breadcrumb a{color:var(--indigo);text-decoration:none}
+    .meta{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;font-size:.85rem;color:var(--gray-500);margin-bottom:2rem}
+    .tag{display:inline-block;background:rgba(99,102,241,.1);color:var(--indigo);font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:999px}
+    h1{font-size:2.45rem;font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:1.1rem}
+    h2{font-size:1.55rem;font-weight:800;line-height:1.3;margin:2.5rem 0 1rem;padding-bottom:.55rem;border-bottom:1px solid var(--gray-200)}
+    h3{font-size:1.16rem;font-weight:750;line-height:1.35;margin:1.6rem 0 .55rem}
+    p,li{color:var(--gray-700);font-size:1.04rem}
+    p{margin:0 0 1rem}
+    ul,ol{margin:0 0 1rem;padding-left:1.45rem}
+    li{margin:0 0 .55rem}
+    a{color:var(--indigo)}
+    blockquote{margin:1.4rem 0;padding:1rem 1.2rem;border-left:4px solid var(--indigo);background:var(--gray-50);border-radius:0 10px 10px 0}
+    blockquote p{margin:0}
+    pre{background:var(--navy);color:var(--white);padding:1rem 1.1rem;border-radius:12px;overflow:auto;margin:1.25rem 0}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;background:var(--gray-100);padding:.12rem .32rem;border-radius:6px;font-size:.93em}
+    pre code{background:transparent;padding:0;border-radius:0;color:inherit}
+    table{width:100%;border-collapse:collapse;margin:1.3rem 0;background:var(--white)}
+    th,td{border:1px solid var(--gray-200);padding:.75rem .8rem;text-align:left;vertical-align:top}
+    th{background:var(--gray-50);font-weight:700}
+    .cta-box{margin:2rem 0;padding:1.35rem 1.4rem;border:1px solid rgba(99,102,241,.2);background:linear-gradient(135deg, rgba(99,102,241,.08), rgba(129,140,248,.06));border-radius:16px}
+    .cta-eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);margin-bottom:.35rem}
+    .cta-box h2{border:0;margin:.1rem 0 .6rem;padding:0;font-size:1.25rem}
+    .cta-box p{margin:0}
+    .related-box{margin:1rem 0 2rem;padding:1rem 1.15rem;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px}
+    .related-label{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);margin-bottom:.35rem}
+    .related-link{text-decoration:none}
+    .source-note-hidden{display:none}
+    footer{background:var(--navy);color:var(--white);padding:2rem 1.5rem;text-align:center;font-size:.8rem;opacity:.65;margin-top:4rem}
+    @media (max-width:768px){
+      .nav-links{display:none}
+      article{padding:2rem 1rem}
+      h1{font-size:1.82rem}
+      h2{font-size:1.35rem}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/duty/">Duty Calculator</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <article>
+    <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ShopifyQL MATCHES</div>
+    <div class="meta"><span class="tag">StoreChangelog</span><span class="tag">Analytics</span><span class="tag">Shopify</span><span class="tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span><span>April 24, 2026 · 13 min read</span></div>
+    <div class="source-note-hidden"><p><em>Primary sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</em></p></div>
+    <h1 id="shopifyql-matches-in-2026-how-to-filter-customer-behavior-faster-in-shopify-reports">ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports</h1>
+<p>A lot of Shopify changelog items look small until you think about what they do to a merchant workflow.</p>
+<p>This is one of those.</p>
+<p>Shopify has officially added <strong>MATCHES</strong> to the ShopifyQL editor in Analytics, which means merchants can now filter reports by <strong>what customers did</strong>, not only by static customer attributes. Shopify’s own example is simple and useful: you can look for customers who purchased at least two products in the last 30 days. More importantly, Shopify says the same MATCHES logic already used in <strong>Customer Segmentation</strong> now works in <strong>Analytics</strong>, so segments and reports can stay aligned instead of drifting apart.</p>
+<p>That is a bigger operational improvement than it sounds.</p>
+<p>For most stores, the real pain is not “we lack data.” The pain is that the logic used by marketing, merchandising, retention, and reporting often drifts into four slightly different versions of the truth. One team is looking at a saved segment, another is looking at a custom report, and a third is exporting data to a spreadsheet just to recreate the condition they actually care about.</p>
+<p>MATCHES does not solve analytics by itself. But it does make Shopify’s native reporting layer more behavior-aware, more consistent, and more useful for merchants who want to answer practical questions faster.</p>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<h2 id="quick-answer">Quick answer</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>If you just want the short version: <strong>MATCHES lets Shopify merchants filter Analytics queries using customer-behavior conditions that were previously associated with segmentation logic</strong>. Shopify’s official changelog says this works in the ShopifyQL editor in Analytics and specifically notes that the same MATCHES logic used in Customer Segmentation now works in reports. The ShopifyQL reference shows that MATCHES supports filtering related collections of customer activity such as orders placed, products purchased, email events, and some storefront behaviors. In practice, that means merchants can build much more useful “show me customers who actually did X” reports without hand-rolling the logic elsewhere.</p>
+<h2 id="what-shopify-actually-announced">What Shopify actually announced</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>.</p>
+</blockquote>
+<p>The official changelog wording matters here.</p>
+<p>Shopify says it has added MATCHES to the ShopifyQL editor in Analytics so merchants can “filter your reports by what customers did, not just who they are.” The example given by Shopify is:</p>
+<pre class="shopifyql"><code>FROM customers
+SHOW customer_id, email
+WHERE products_purchased MATCHES (quantity &gt;= 2, date &gt;= -30d)
+GROUP BY customer_id</code></pre>
+<p>That example alone tells you three useful things.</p>
+<p>First, Shopify is clearly positioning MATCHES as a <strong>behavior filter</strong>, not just a fancy syntax improvement. The point is not prettier queries. The point is that a merchant can move from static customer properties to action-based conditions.</p>
+<p>Second, Shopify is applying this inside <strong>Analytics</strong>, which is important because reporting is where merchants usually need the “what happened?” layer, not just the “who fits this label?” layer.</p>
+<p>Third, Shopify explicitly says the same MATCHES logic used in Customer Segmentation works in Analytics. That is the part operators should care about. It reduces the odds that your segment definition says one thing while your report logic says something slightly different.</p>
+<p>That is not magic. It is just better internal consistency. But better internal consistency is exactly what prevents bad decisions.</p>
+<h2 id="what-matches-means-in-plain-english">What MATCHES means in plain English</h2>
+<blockquote>
+<p>Sources: <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>The ShopifyQL reference describes MATCHES as a way to filter <strong>collections of related entities</strong> using named parameters. In plain English, it lets you ask Shopify for customers connected to a behavior pattern instead of filtering only by flat fields.</p>
+<p>That distinction matters.</p>
+<p>Without behavior-aware filtering, merchants often fall back to rough proxies such as:</p>
+<ul>
+<li>customers with more than one lifetime order,</li>
+<li>customers tagged by a manual workflow,</li>
+<li>email subscribers who might or might not still be engaged,</li>
+<li>exported CSVs that try to reconstruct event history outside Shopify.</li>
+</ul>
+<p>MATCHES gets closer to the real question.</p>
+<p>Instead of asking “who has attribute Y,” you can ask questions more like:</p>
+<ul>
+<li>who placed orders in a specific window,</li>
+<li>who purchased products under a specific condition,</li>
+<li>who opened or clicked a specific Shopify Email activity,</li>
+<li>who did not match a recent purchase behavior.</li>
+</ul>
+<p>That is a meaningful difference because merchants do not usually act on identity alone. They act on behavior.</p>
+<p>The better your reporting reflects actual behavior, the better your decisions on promotions, lifecycle campaigns, merchandising, and follow-up become.</p>
+<h2 id="the-official-use-cases-shopify-now-documents">The official use cases Shopify now documents</h2>
+<blockquote>
+<p>Sources: <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>Shopify’s own reference is already enough to sketch the core use cases.</p>
+<p>In the ShopifyQL syntax reference, Shopify documents MATCHES and NOT MATCHES for semi-join expressions and gives examples such as:</p>
+<ul>
+<li><code>orders_placed MATCHES (date &gt; 2025-01-01)</code></li>
+<li><code>shopify_email.opened MATCHES (activity_id = 5240029206, date &gt; 2025-01-01)</code></li>
+<li><code>products_purchased NOT MATCHES (date &gt; 2025-01-01)</code></li>
+</ul>
+<p>The same reference lists supported expressions including:</p>
+<ul>
+<li><code>products_purchased</code></li>
+<li><code>orders_placed</code></li>
+<li><code>shopify_email.opened</code></li>
+<li><code>shopify_email.clicked</code></li>
+<li><code>shopify_email.bounced</code></li>
+<li><code>shopify_email.marked_as_spam</code></li>
+<li><code>shopify_email.unsubscribed</code></li>
+<li><code>storefront.product_viewed</code></li>
+<li><code>storefront.collection_viewed</code></li>
+<li><code>store_credit_accounts</code></li>
+<li><code>customer_within_distance</code></li>
+</ul>
+<p>That is already a practical set.</p>
+<p>It means merchants can start answering questions like:</p>
+<ul>
+<li>Which customers bought at least two units recently?</li>
+<li>Which customers placed orders above a threshold in a period?</li>
+<li>Which customers opened or clicked a specific email campaign?</li>
+<li>Which customers have not purchased a product class since a given date?</li>
+<li>Which customers engaged with a storefront behavior but did not convert later?</li>
+</ul>
+<p>Not every merchant needs all of those. But almost every merchant needs at least one of them.</p>
+<h2 id="why-this-matters-more-than-it-looks">Why this matters more than it looks</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>On paper, MATCHES is “just” a query operator.</p>
+<p>Operationally, it reduces one of the most annoying problems in ecommerce analytics: <strong>logic fragmentation</strong>.</p>
+<p>A merchant team often ends up with four layers of customer logic:</p>
+<ol type="1">
+<li>a segment built by marketing,</li>
+<li>a report built by analytics,</li>
+<li>a manual export built by ops,</li>
+<li>a spreadsheet or dashboard built by whoever got tired of the first three disagreeing.</li>
+</ol>
+<p>When those layers drift, bad things happen.</p>
+<p>Marketing targets the wrong cohort. Retention reports overstate or understate real engagement. Merchandising decisions are made off approximate behavior instead of actual behavior. Staff spend time reconciling definitions instead of acting on them.</p>
+<p>Shopify’s changelog specifically says the same MATCHES logic used in Customer Segmentation now works in Analytics. That matters because the less translation work you force between segment logic and reporting logic, the less room there is for silent mistakes.</p>
+<p>It is not glamorous, but this is the kind of quality-of-analysis improvement that compounds.</p>
+<h2 id="what-merchants-can-do-with-matches-right-away">What merchants can do with MATCHES right away</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>.</p>
+</blockquote>
+<p>Here are the immediate merchant use cases that feel most realistic.</p>
+<h3 id="build-better-repeat-purchase-views">1. Build better repeat-purchase views</h3>
+<p>Shopify’s own example already points here: customers who purchased at least two products in the last 30 days. That is not the same thing as “customers with more than one lifetime order.” It is a more behavior-timed view of recent buying.</p>
+<p>That makes it more useful for:</p>
+<ul>
+<li>replenishment campaigns,</li>
+<li>VIP detection,</li>
+<li>loyalty nudges,</li>
+<li>retention reporting,</li>
+<li>identifying unusually active customers.</li>
+</ul>
+<h3 id="audit-campaign-engagement-inside-reporting">2. Audit campaign engagement inside reporting</h3>
+<p>The ShopifyQL reference documents MATCHES support for Shopify Email engagement events like opens and clicks. That gives merchants a cleaner way to inspect campaign-related customer behavior in a reporting workflow instead of treating the email tool and the analytics tool like separate universes.</p>
+<p>That can help answer practical questions such as:</p>
+<ul>
+<li>did customers who opened campaign X buy differently afterward?</li>
+<li>did clickers produce better repeat behavior than openers?</li>
+<li>are certain segments engaged but not converting?</li>
+</ul>
+<h3 id="compare-browsing-behavior-against-buying-behavior">3. Compare browsing behavior against buying behavior</h3>
+<p>The syntax reference also lists storefront product-view and collection-view expressions. Even if a merchant only uses this lightly, it can help isolate customers who showed product interest but did not follow through the way expected.</p>
+<p>That is valuable for:</p>
+<ul>
+<li>weak PDP diagnosis,</li>
+<li>merchandising analysis,</li>
+<li>remarketing logic,</li>
+<li>figuring out whether a problem is traffic quality or conversion friction.</li>
+</ul>
+<h3 id="stop-overusing-rough-customer-tags">4. Stop overusing rough customer tags</h3>
+<p>A lot of stores use customer tags as a permanent crutch because tags are visible and convenient. But tags often lag reality, depend on someone remembering to apply them, or reflect an old workflow the team no longer trusts.</p>
+<p>Behavior-aware reporting does not kill tags, but it reduces the need to pretend a static tag is the same thing as a current behavior condition.</p>
+<p>That is healthy.</p>
+<h2 id="where-merchants-still-need-to-be-careful">Where merchants still need to be careful</h2>
+<blockquote>
+<p>Sources: <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>MATCHES is useful, but Shopify’s own documentation also makes the limits clear.</p>
+<h3 id="matches-is-not-a-license-to-write-sloppy-logic">MATCHES is not a license to write sloppy logic</h3>
+<p>The ShopifyQL reference notes that each parameter can only be used once per MATCHES filter. Shopify gives an example where using <code>date</code> twice in one MATCHES filter is not valid.</p>
+<p>That matters because a lot of merchants will instinctively try to write “between” logic by repeating the same parameter. You need to follow the syntax Shopify actually supports, not the syntax you wish it supported.</p>
+<h3 id="where-still-has-rules">WHERE still has rules</h3>
+<p>ShopifyQL’s WHERE clause filters by dimensions before aggregation. Shopify’s reference explicitly says WHERE supports dimensions, not metrics. So merchants still need to understand whether the condition belongs in WHERE, HAVING, or somewhere else in the query.</p>
+<p>This is important because people routinely blame a tool for a query-design mistake.</p>
+<h3 id="segments-and-analytics-are-closer-not-identical-in-every-context">Segments and analytics are closer, not identical in every context</h3>
+<p>The segment query language reference describes segmentation as a subset of ShopifyQL that uses the WHERE clause to filter customers by attributes. That is helpful context. MATCHES brings logic closer across tools, but merchants should still test important business queries instead of assuming every analytics and segmentation workflow behaves identically in every edge case.</p>
+<p>That is normal QA, not skepticism.</p>
+<h2 id="the-operational-playbook-how-to-use-this-change-without-creating-new-confusion">The operational playbook: how to use this change without creating new confusion</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>A changelog improvement becomes useful only if the team operationalizes it.</p>
+<p>Here is the best practical approach.</p>
+<h3 id="pick-three-behavior-questions-you-already-care-about">1. Pick three behavior questions you already care about</h3>
+<p>Do not start by rewriting your entire analytics stack. Start with three recurring questions you already ask often.</p>
+<p>For example:</p>
+<ul>
+<li>customers who bought twice in 30 days,</li>
+<li>customers who clicked a campaign and ordered later,</li>
+<li>customers who viewed a product class but did not buy recently.</li>
+</ul>
+<p>If the query can replace a manual export or a messy spreadsheet, it is already worth doing.</p>
+<h3 id="define-the-query-in-one-canonical-place">2. Define the query in one canonical place</h3>
+<p>The biggest hidden risk with useful new reporting features is that six people will build six near-identical versions and then argue about which one is correct.</p>
+<p>Document the canonical query. Name it clearly. Explain what business question it answers. Make sure the team knows whether it is for reporting, targeting, or both.</p>
+<h3 id="compare-the-report-result-to-the-segment-result-once">3. Compare the report result to the segment result once</h3>
+<p>Because Shopify says the logic now stays consistent between segmentation and analytics, do one quick sanity check on high-value queries. If the cohort count is directionally what you expect, great. If not, catch the mismatch early.</p>
+<p>You do not need a month-long audit. You need one clean checkpoint.</p>
+<h3 id="track-interpretation-changes-not-just-query-changes">4. Track interpretation changes, not just query changes</h3>
+<p>This is the part teams skip.</p>
+<p>A reporting change can alter decisions even when the underlying data is fine. If your team changes the way it defines “engaged customer” or “repeat customer,” log that change somewhere visible. Otherwise the business quietly rewrites its KPIs without admitting it.</p>
+<h2 id="why-this-is-a-storechronicle-problem-not-just-an-analytics-problem">Why this is a StoreChronicle problem, not just an analytics problem</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, verified product behavior from the StoreChronicle app codebase.</p>
+</blockquote>
+<p>This is where the StoreChangelog tie-in becomes practical.</p>
+<p>The actual app behind the product tracks store changes across resources like products, collections, inventory, themes, orders, and pages, surfaces recent change logs, supports filters by actor and action, flags suspicious activity patterns, and can even revert certain product-field changes from the changelog view. That matters because analytics improvements are only half the truth.</p>
+<p>If a report changes, you still need to know what in the store changed around the same time.</p>
+<p>Did a staff member change product titles? Did someone edit pricing? Did a theme change affect a collection page? Did a bulk update happen off-hours? Did a store workflow change and quietly alter the customer behavior you are now measuring?</p>
+<p>Better behavior filtering helps you see what customers did. A good audit trail helps you see what <strong>your team</strong> did.</p>
+<p>Those two layers belong together.</p>
+<p>If you want cleaner operations, the question is not only “can Shopify report this better now?” It is also “if the number changes next week, will we know why?”</p>
+<p>That is exactly the sort of operational gap that gets expensive once a store grows.</p>
+<h2 id="the-real-strategic-takeaway">The real strategic takeaway</h2>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>The most important part of this changelog item is not the syntax.</p>
+<p>It is the direction.</p>
+<p>Shopify is continuing to make native analytics more behavior-aware and more consistent with native segmentation logic. That is good for merchants because behavior is what actually drives merchandising, retention, and campaign decisions.</p>
+<p>The stores that benefit most will not be the ones that merely notice MATCHES exists.</p>
+<p>They will be the ones that:</p>
+<ul>
+<li>choose a few high-value behavior questions,</li>
+<li>standardize the query logic,</li>
+<li>keep segment/report definitions aligned,</li>
+<li>document interpretation changes,</li>
+<li>connect analytics changes to store-change visibility.</li>
+</ul>
+<p>That is how a “small” platform update turns into better operating discipline.</p>
+<div class="cta-box">
+  <div class="cta-eyebrow">Tool</div>
+  <h2>Need landed-cost context too?</h2>
+  <p>If reporting changes are driving pricing decisions across markets, sanity-check the margin impact in our duty calculator before you act on the numbers. <a href="/duty/">Open the duty calculator</a>.</p>
+</div>
+<h2 id="faq">FAQ</h2>
+<h3 id="what-did-shopify-actually-change">What did Shopify actually change?</h3>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>.</p>
+</blockquote>
+<p>Shopify officially added the MATCHES operator to the ShopifyQL editor in Analytics, allowing merchants to filter reports using customer-behavior conditions such as products purchased or orders placed.</p>
+<h3 id="does-matches-only-work-for-customer-segments">Does MATCHES only work for customer segments?</h3>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>No. Shopify’s announcement specifically says the same MATCHES logic used in Customer Segmentation now works in Analytics, which is the whole point of this update.</p>
+<h3 id="what-kinds-of-behavior-can-merchants-filter-on">What kinds of behavior can merchants filter on?</h3>
+<blockquote>
+<p>Sources: <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>.</p>
+</blockquote>
+<p>According to Shopify’s syntax reference, MATCHES can be used with expressions such as products purchased, orders placed, certain Shopify Email events, some storefront view events, store credit accounts, and geographic distance conditions.</p>
+<h3 id="is-matches-enough-to-fix-analytics-quality-problems-by-itself">Is MATCHES enough to fix analytics quality problems by itself?</h3>
+<blockquote>
+<p>Sources: <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</p>
+</blockquote>
+<p>No. It improves how merchants can define behavior-based filters, but teams still need canonical query definitions, QA checks, and a way to understand operational changes around the numbers.</p>
+<h3 id="why-connect-this-to-a-changelog-or-audit-trail-app">Why connect this to a changelog or audit-trail app?</h3>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, verified product behavior from the StoreChronicle app codebase.</p>
+</blockquote>
+<p>Because better reporting logic tells you what customers did, while a store-change audit trail tells you what your team changed when those numbers moved. You need both to debug real-world store operations well.</p>
+<h3 id="should-merchants-rewrite-all-of-their-reports-now">Should merchants rewrite all of their reports now?</h3>
+<blockquote>
+<p>Sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>.</p>
+</blockquote>
+<p>Probably not. The smarter move is to replace the ugliest manual work first: a few repeated behavior questions, a few repeated exports, and any report/segment pair that currently drifts.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify Changelog: Use MATCHES in ShopifyQL to filter by what customers did</a></li>
+<li><a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a></li>
+<li><a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Shopify segment query language reference</a></li>
+</ul>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This article is for operational and educational purposes only. It is not legal, tax, or platform-compliance advice. Shopify platform behavior, syntax support, and analytics capabilities can change over time, so merchants should verify important workflows in their own admin before relying on them for financial, lifecycle, or compliance decisions.</p>
+  </article>
+  <footer>© 2026 Attahir Labs. Practical tools and guides for cross-border commerce and Shopify operations.</footer>
+</body>
+</html>
