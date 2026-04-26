@@ -14,6 +14,12 @@
     <meta property="og:description" content="Canada's surtax regime on Chinese imports: current steel and aluminum measures, the March 2026 EV quota shift, and how to calculate your total landed cost.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://attahirlabs.com/blog/canada-surtax-on-chinese-goods-2026/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg">
+    <meta property="og:image:width" content="2048">
+    <meta property="og:image:height" content="1152">
+    <meta property="og:image:alt" content="Editorial illustration of Canada-China import compliance, customs documents, and tariff calculations for ecommerce merchants">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg">
     <meta property="article:published_time" content="2026-04-14">
     <meta property="article:modified_time" content="2026-04-26">
     <script type="application/ld+json">
@@ -25,6 +31,7 @@
       "dateModified": "2026-04-26",
       "author": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
       "publisher": { "@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com" },
+      "image": "https://attahirlabs.com/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg",
       "description": "Canada still applies multiple China-linked import measures in 2026, including 25% surtaxes on steel and aluminum products, while the EV regime shifted on March 1, 2026 from a flat surtax to a quota-based framework. This guide breaks down what is currently in force and what Shopify merchants should verify before pricing products.",
       "mainEntityOfPage": "https://attahirlabs.com/blog/canada-surtax-on-chinese-goods-2026/"
     }
@@ -138,6 +145,10 @@
         .formula-box { background: var(--navy); color: var(--white); padding: 1.5rem 2rem; border-radius: var(--radius); margin: 1.5rem 0; font-family: "SF Mono", "Fira Code", monospace; font-size: 0.95rem; line-height: 2; }
         .formula-box .formula-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--indigo-light); margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .formula-box .formula-result { color: var(--indigo-light); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem; margin-top: 0.5rem; }
+        .post-figure { margin: 2rem 0; }
+        .post-figure picture, .post-figure img { display: block; width: 100%; }
+        .post-figure img { height: auto; border-radius: var(--radius); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid var(--gray-200); }
+        .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500); font-size: 0.88rem; line-height: 1.5; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -178,6 +189,14 @@
         <h1>Canada Surtax on Chinese Goods 2026: What Importers and Shopify Merchants Must Know</h1>
 
         <p class="lead">Canada still has significant China-linked import measures in force in 2026, especially 25% surtaxes on covered steel and aluminum goods. But one part of the regime changed materially on March 1, 2026: the flat 100% surtax on Chinese EVs was repealed and replaced by an import quota framework now under consultation for longer-term administration. This refreshed guide focuses on what is currently in force, what changed, and what Shopify merchants should re-check before setting prices or margins.</p>
+
+        <figure class="post-figure">
+            <picture>
+                <source srcset="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.webp" type="image/webp">
+                <img src="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg" width="2048" height="1152" alt="Editorial illustration of Canada-China import compliance, customs documents, and tariff calculations for ecommerce merchants" fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Canada's China-linked surtaxes are not just a customs footnote. For covered goods, they can change product margin before inventory even reaches the warehouse.</figcaption>
+        </figure>
 
         <div class="toc">
             <h3>In this guide</h3>
@@ -332,6 +351,11 @@
         <h2 id="stacking">How Surtaxes Stack With Regular Import Duties</h2>
 
         <p>Canada's surtaxes are imposed <em>in addition to</em> regular MFN import duties under the Customs Tariff. They do not replace standard duties — they layer on top.</p>
+
+        <figure class="post-figure">
+            <img src="/assets/blog/canada-surtax-on-chinese-goods-2026/surtax-stack-diagram.svg" width="1200" height="720" alt="Diagram showing value for duty, MFN duty, Canada China surtax, GST or HST, and brokerage combining into total landed cost" loading="lazy" decoding="async">
+            <figcaption>The part merchants miss: surtax math starts with value for duty, then regular duties, GST/HST, brokerage, and permit friction still have to be accounted for.</figcaption>
+        </figure>
 
         <p><strong>Example calculation — Chinese steel angle bar:</strong></p>
 
