@@ -64,6 +64,12 @@ Hero images should be:
 - Varied across posts. If the last post used a laptop-and-boxes desk scene, shift the next one toward warehouse, support desk, customs documents, product samples, or another truthful angle.
 - Full-quality on the article page; cropped shorter on `/blog/` cards so mobile cards don't become giant image blocks.
 
+Raw image QA happens before page QA:
+- Build a contact sheet with `python3 tools/blog-pipeline/review_blog_images.py`.
+- Reject/regenerate anything that has readable fake text, logos, weird hands, malformed products, nonsense documents, generic infographic composition, or a mismatch with the article angle.
+- Check the set as a group for variety. The blog should not become 20 nearly identical laptop-and-boxes shots.
+- Only after raw images pass should they be wired into article heroes and `/blog/` cards.
+
 ### Blog Surface QA:
 
 Before any public blog deploy is called done:
