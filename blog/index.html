@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>Blog — Attahir Labs | Import Duties, Tariffs & Ecommerce Tools</title>
-    <meta name="description" content="Practical guides on import duties, tariff rates, landed cost calculation, and Shopify store management. Written for merchants and importers.">
-    <link rel="canonical" href="https://attahirlabs.com/blog/">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;" http-equiv="Content-Security-Policy"/>
+<meta content="nosniff" http-equiv="X-Content-Type-Options"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+<title>Blog — Attahir Labs | Import Duties, Tariffs &amp; Ecommerce Tools</title>
+<meta content="Practical guides on import duties, tariff rates, landed cost calculation, and Shopify store management. Written for merchants and importers." name="description"/>
+<link href="https://attahirlabs.com/blog/" rel="canonical"/>
+<style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root { --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8; --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --radius: 12px; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--navy); line-height: 1.6; background: var(--white); }
@@ -59,408 +60,385 @@
             .nav-links li { flex: 0 0 auto; }
             .nav-links a { display: block; font-size: 0.85rem; }
         }
+
+        .post-card-image { display: block; width: calc(100% + 4rem); max-width: none; aspect-ratio: 16 / 9; object-fit: cover; margin: -2rem -2rem 1.25rem; border-radius: var(--radius) var(--radius) 0 0; background: var(--gray-100); }
+        .post-card.has-image { overflow: hidden; }
+
+        @media (max-width: 768px) { .post-card-image { width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 1rem; } }
 </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-inner">
-            <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/duty/">Duty Calculator</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <h1>Blog</h1>
-        <p class="subtitle">Practical guides on tariffs, compliance, inventory, and ecommerce operations. Written for merchants who need clear answers and useful next steps.</p>
-
-        <div class="featured-grid">
-            <a class="featured-link" href="/blog/de-minimis-threshold-2026/">
-                <div class="featured-label">Top opportunity</div>
-                <div class="featured-title">De Minimis Threshold 2026</div>
-                <div class="featured-copy">What changed, who now pays duty on small packages, and why the old $800 shortcut no longer works.</div>
-            </a>
-            <a class="featured-link" href="/blog/import-duty-from-vietnam-to-us/">
-                <div class="featured-label">Most actionable</div>
-                <div class="featured-title">Import Duty From Vietnam to the US</div>
-                <div class="featured-copy">A current tariff-rate guide by product category, plus the real landed-cost gap versus China.</div>
-            </a>
-            <a class="featured-link" href="/blog/us-china-tariff-rates-2026/">
-                <div class="featured-label">Core explainer</div>
-                <div class="featured-title">China Tariffs 2026</div>
-                <div class="featured-copy">Section 301, Section 122, Section 232, and the actual duty ranges importers are planning around.</div>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/import-duty-from-mexico-to-us-2026/">
-                <h2>Import Duty from Mexico to US in 2026: Current Tariff Rates by Product</h2>
-                <p class="post-meta">April 28, 2026</p>
-                <p class="post-excerpt">Import Duty from Mexico to US in 2026: Current Tariff Rates by Product — a detailed guide for Shopify merchants.</p>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/gamestop-retro-inventory-playbook-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">StockClearance</span>
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag">Merchandising</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<nav>
+<div class="nav-inner">
+<a class="nav-logo" href="/">Attahir<span>Labs</span></a>
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="/duty/">Duty Calculator</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+</div>
+</nav>
+<div class="container">
+<h1>Blog</h1>
+<p class="subtitle">Practical guides on tariffs, compliance, inventory, and ecommerce operations. Written for merchants who need clear answers and useful next steps.</p>
+<div class="featured-grid">
+<a class="featured-link" href="/blog/de-minimis-threshold-2026/">
+<div class="featured-label">Top opportunity</div>
+<div class="featured-title">De Minimis Threshold 2026</div>
+<div class="featured-copy">What changed, who now pays duty on small packages, and why the old $800 shortcut no longer works.</div>
+</a>
+<a class="featured-link" href="/blog/import-duty-from-vietnam-to-us/">
+<div class="featured-label">Most actionable</div>
+<div class="featured-title">Import Duty From Vietnam to the US</div>
+<div class="featured-copy">A current tariff-rate guide by product category, plus the real landed-cost gap versus China.</div>
+</a>
+<a class="featured-link" href="/blog/us-china-tariff-rates-2026/">
+<div class="featured-label">Core explainer</div>
+<div class="featured-title">China Tariffs 2026</div>
+<div class="featured-copy">Section 301, Section 122, Section 232, and the actual duty ranges importers are planning around.</div>
+</a>
+</div>
+<div class="post-card has-image">
+<a href="/blog/import-duty-from-mexico-to-us-2026/"><img alt="Editorial photo of ecommerce import paperwork, product cartons, and origin documents for US import duty from Mexico and USMCA landed-cost planning." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/import-duty-from-mexico-to-us-2026/hero.jpg" width="3840"/>
+<h2>Import Duty from Mexico to US in 2026: Current Tariff Rates by Product</h2>
+<p class="post-meta">April 28, 2026</p>
+<p class="post-excerpt">Import Duty from Mexico to US in 2026: Current Tariff Rates by Product — a detailed guide for Shopify merchants.</p>
+</a>
+</div>
+<div class="post-card has-image">
+<a href="/blog/gamestop-retro-inventory-playbook-2026/"><img alt="Editorial photo of retro gaming inventory, barcode labels, bins, and a blurred inventory screen representing long-tail stock management." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/gamestop-retro-inventory-playbook-2026/hero.jpg" width="3840"/>
+<div class="post-meta">
+<span class="post-tag">StockClearance</span>
+<span class="post-tag">Inventory</span>
+<span class="post-tag">Merchandising</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     April 24, 2026 · 12 min read
                 </div>
-                <div class="post-title">GameStop’s Retro Push in 2026: The Inventory Lesson Shopify Merchants Should Steal</div>
-                <p class="post-excerpt">GameStop’s official retro and pre-owned surfaces point to a sharper inventory lesson for merchants: classify collectible long-tail stock differently from true dead stock, then clear weak SKUs earlier.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/shopifyql-matches-shopify-reports-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">StoreChangelog</span>
-                    <span class="post-tag">Analytics</span>
-                    <span class="post-tag">Shopify</span>
-                    <span class="post-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span>
+<div class="post-title">GameStop’s Retro Push in 2026: The Inventory Lesson Shopify Merchants Should Steal</div>
+<p class="post-excerpt">GameStop’s official retro and pre-owned surfaces point to a sharper inventory lesson for merchants: classify collectible long-tail stock differently from true dead stock, then clear weak SKUs earlier.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card has-image">
+<a href="/blog/shopifyql-matches-shopify-reports-2026/"><img alt="Editorial photo of an ecommerce analytics desk with blurred dashboards and order notes, representing ShopifyQL MATCHES customer behavior reporting." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg" width="3840"/>
+<div class="post-meta">
+<span class="post-tag">StoreChangelog</span>
+<span class="post-tag">Analytics</span>
+<span class="post-tag">Shopify</span>
+<span class="post-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span>
                     April 24, 2026 · 13 min read
                 </div>
-                <div class="post-title">ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports</div>
-                <p class="post-excerpt">ShopifyQL MATCHES makes native Shopify reporting more behavior-aware. Here is what changed, where it helps, and why merchants should pair shared report logic with a clean audit trail.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/product-expiry-date-management-shopify/">
-                <div class="post-meta">
-                    <span class="post-tag">ShelfLife</span>
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag">Operations</span>
+<div class="post-title">ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports</div>
+<p class="post-excerpt">ShopifyQL MATCHES makes native Shopify reporting more behavior-aware. Here is what changed, where it helps, and why merchants should pair shared report logic with a clean audit trail.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card has-image">
+<a href="/blog/product-expiry-date-management-shopify/"><img alt="Editorial photo of packaged goods, lot labels, barcodes, and a warehouse checklist representing expiry date and batch management for Shopify." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/product-expiry-date-management-shopify/hero.jpg" width="3840"/>
+<div class="post-meta">
+<span class="post-tag">ShelfLife</span>
+<span class="post-tag">Inventory</span>
+<span class="post-tag">Operations</span>
                     April 22, 2026 · 12 min read
                 </div>
-                <div class="post-title">Product Expiry Date Management for Shopify</div>
-                <p class="post-excerpt">A practical guide to expiry tracking, batch control, FEFO workflows, and markdown timing for Shopify merchants selling products with shelf-life risk.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/uk-import-duty-post-brexit/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">UK</span>
-                    <span class="post-tag">Brexit</span>
+<div class="post-title">Product Expiry Date Management for Shopify</div>
+<p class="post-excerpt">A practical guide to expiry tracking, batch control, FEFO workflows, and markdown timing for Shopify merchants selling products with shelf-life risk.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/uk-import-duty-post-brexit/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">UK</span>
+<span class="post-tag">Brexit</span>
                     April 20, 2026 · 14 min read
                 </div>
-                <div class="post-title">UK Import Duty Post-Brexit: What's Changed in 2026</div>
-                <p class="post-excerpt">A practical guide to UK import duty after Brexit, including UK Global Tariff rules, origin traps, import VAT, Northern Ireland edge cases, and the landed-cost checks importers should make before quoting.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/retail-bankruptcies-dead-stock-warning-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag">Liquidation</span>
-                    <span class="post-tag">StockClearance</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<div class="post-title">UK Import Duty Post-Brexit: What's Changed in 2026</div>
+<p class="post-excerpt">A practical guide to UK import duty after Brexit, including UK Global Tariff rules, origin traps, import VAT, Northern Ireland edge cases, and the landed-cost checks importers should make before quoting.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card has-image">
+<a href="/blog/retail-bankruptcies-dead-stock-warning-2026/"><img alt="Editorial photo of unsold boxed inventory and a markdown planning sheet in a small retail stockroom, representing dead stock risk." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/retail-bankruptcies-dead-stock-warning-2026/hero.jpg" width="3840"/>
+<div class="post-meta">
+<span class="post-tag">Inventory</span>
+<span class="post-tag">Liquidation</span>
+<span class="post-tag">StockClearance</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     April 21, 2026 · 9 min read
                 </div>
-                <div class="post-title">Retail Bankruptcies Are a Warning Sign: How Shopify Merchants Should Handle Dead Stock in 2026</div>
-                <p class="post-excerpt">David’s Bridal’s comeback push and the Saks Global bankruptcy fight point to the same merchant lesson: move weak inventory earlier, protect margin, and do not wait for dead stock to become a crisis.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/doj-ada-website-accessibility-deadline-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Accessibility</span>
-                    <span class="post-tag">Legal</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<div class="post-title">Retail Bankruptcies Are a Warning Sign: How Shopify Merchants Should Handle Dead Stock in 2026</div>
+<p class="post-excerpt">David’s Bridal’s comeback push and the Saks Global bankruptcy fight point to the same merchant lesson: move weak inventory earlier, protect margin, and do not wait for dead stock to become a crisis.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/doj-ada-website-accessibility-deadline-2026/">
+<div class="post-meta">
+<span class="post-tag">Accessibility</span>
+<span class="post-tag">Legal</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     April 21, 2026 · 9 min read
                 </div>
-                <div class="post-title">DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk</div>
-                <p class="post-excerpt">The DOJ moved government accessibility deadlines to 2027 and 2028, but private ecommerce stores did not get a free pass. Here is what changed, what did not, and the merchant checklist to use now.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/cbp-tariff-refund-portal-live/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">CBP</span>
-                    <span class="post-tag">Compliance</span>
-                    <span class="post-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span>
+<div class="post-title">DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk</div>
+<p class="post-excerpt">The DOJ moved government accessibility deadlines to 2027 and 2028, but private ecommerce stores did not get a free pass. Here is what changed, what did not, and the merchant checklist to use now.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/cbp-tariff-refund-portal-live/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">CBP</span>
+<span class="post-tag">Compliance</span>
+<span class="post-tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span>
                     April 20, 2026 · 10 min read
                 </div>
-                <div class="post-title">CBP Tariff Refund Portal Is Live. Who Qualifies and What Importers Should Do Next</div>
-                <p class="post-excerpt">CBP’s CAPE refund portal is open for certain IEEPA duties. Here is who may qualify, what Phase 1 includes, what is still excluded, and how to avoid wasting time on the wrong claims.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/qvc-bankruptcy-stock-clearance-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag">Liquidation</span>
-                    <span class="post-tag">StockClearance</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<div class="post-title">CBP Tariff Refund Portal Is Live. Who Qualifies and What Importers Should Do Next</div>
+<p class="post-excerpt">CBP’s CAPE refund portal is open for certain IEEPA duties. Here is who may qualify, what Phase 1 includes, what is still excluded, and how to avoid wasting time on the wrong claims.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/qvc-bankruptcy-stock-clearance-2026/">
+<div class="post-meta">
+<span class="post-tag">Inventory</span>
+<span class="post-tag">Liquidation</span>
+<span class="post-tag">StockClearance</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     April 16, 2026 · 14 min read
                 </div>
-                <div class="post-title">QVC Bankruptcy Filing: A Dead Stock and Liquidation Playbook for Shopify Merchants</div>
-                <p class="post-excerpt">QVC’s bankruptcy setup is a warning shot for merchants sitting on weak inventory. Here is the practical playbook for dead stock, liquidation pressure, and getting trapped cash moving again.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/eu-tariff-rates-importing-to-europe-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">EU</span>
-                    <span class="post-tag">Importing</span>
+<div class="post-title">QVC Bankruptcy Filing: A Dead Stock and Liquidation Playbook for Shopify Merchants</div>
+<p class="post-excerpt">QVC’s bankruptcy setup is a warning shot for merchants sitting on weak inventory. Here is the practical playbook for dead stock, liquidation pressure, and getting trapped cash moving again.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/eu-tariff-rates-importing-to-europe-2026/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">EU</span>
+<span class="post-tag">Importing</span>
                     April 16, 2026 · 11 min read
                 </div>
-                <div class="post-title">EU Tariff Rates in 2026: What Shopify Merchants Need to Know Before Importing to Europe</div>
-                <p class="post-excerpt">Selling into Europe is not just VAT and shipping. Here is the practical guide to EU tariff exposure, landed-cost surprises, and what merchants should check before inventory moves.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/home-retail-dead-stock-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag">Home Retail</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<div class="post-title">EU Tariff Rates in 2026: What Shopify Merchants Need to Know Before Importing to Europe</div>
+<p class="post-excerpt">Selling into Europe is not just VAT and shipping. Here is the practical guide to EU tariff exposure, landed-cost surprises, and what merchants should check before inventory moves.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/home-retail-dead-stock-2026/">
+<div class="post-meta">
+<span class="post-tag">Inventory</span>
+<span class="post-tag">Home Retail</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     April 15, 2026 · 14 min read
                 </div>
-                <div class="post-title">Home Retailers Are Under Pressure in 2026. Here’s the Dead Stock Playbook</div>
-                <p class="post-excerpt">Housing softness and slower demand are squeezing home-category merchants. Here is how to spot dead stock early, protect margin, and free trapped cash before inventory gets uglier.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/canada-surtax-on-chinese-goods-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Canada</span>
-                    <span class="post-tag">China</span>
+<div class="post-title">Home Retailers Are Under Pressure in 2026. Here’s the Dead Stock Playbook</div>
+<p class="post-excerpt">Housing softness and slower demand are squeezing home-category merchants. Here is how to spot dead stock early, protect margin, and free trapped cash before inventory gets uglier.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/canada-surtax-on-chinese-goods-2026/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Canada</span>
+<span class="post-tag">China</span>
                     April 14, 2026 · Updated Apr 26 · 12 min read
                 </div>
-                <div class="post-title">Canada’s 2026 Surtax on Chinese Goods: What Importers and Shopify Merchants Need to Know</div>
-                <p class="post-excerpt">Canada’s China surtax regime now includes updated EV quota/permit rules, steel derivative coverage, and remission-code details. Here is what merchants should re-check before pricing shipments.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/customs-broker-shopify/">
-                <div class="post-meta">
-                    <span class="post-tag">Customs</span>
-                    <span class="post-tag">Shopify</span>
-                    <span class="post-tag">Importing</span>
+<div class="post-title">Canada’s 2026 Surtax on Chinese Goods: What Importers and Shopify Merchants Need to Know</div>
+<p class="post-excerpt">Canada’s China surtax regime now includes updated EV quota/permit rules, steel derivative coverage, and remission-code details. Here is what merchants should re-check before pricing shipments.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/customs-broker-shopify/">
+<div class="post-meta">
+<span class="post-tag">Customs</span>
+<span class="post-tag">Shopify</span>
+<span class="post-tag">Importing</span>
                     April 13, 2026 · 14 min read
                 </div>
-                <div class="post-title">How to Find a Customs Broker for Your Shopify Store</div>
-                <p class="post-excerpt">A practical 2026 guide to finding, verifying, and working with a licensed customs broker for your Shopify store, including what to ask, what red flags to avoid, and how to protect margin before inventory ships.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/amazon-fba-landed-cost-guide/">
-                <div class="post-meta">
-                    <span class="post-tag">Amazon FBA</span>
-                    <span class="post-tag">Margins</span>
-                    <span class="post-tag">Importing</span>
+<div class="post-title">How to Find a Customs Broker for Your Shopify Store</div>
+<p class="post-excerpt">A practical 2026 guide to finding, verifying, and working with a licensed customs broker for your Shopify store, including what to ask, what red flags to avoid, and how to protect margin before inventory ships.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/amazon-fba-landed-cost-guide/">
+<div class="post-meta">
+<span class="post-tag">Amazon FBA</span>
+<span class="post-tag">Margins</span>
+<span class="post-tag">Importing</span>
                     April 6, 2026 · 12 min read
                 </div>
-                <div class="post-title">Amazon FBA Landed Cost: Complete Guide for 2026</div>
-                <p class="post-excerpt">Your supplier quote is not your cost. Here's the actual Amazon FBA landed-cost math for 2026: freight, duty, MPF, HMF, broker fees, prep, inbound shipping, referral fees, FBA fees, and the per-unit margin mistakes that quietly wreck good products.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/shopify-import-duties/">
-                <div class="post-meta">
-                    <span class="post-tag">Cross-Border</span>
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Guide</span>
+<div class="post-title">Amazon FBA Landed Cost: Complete Guide for 2026</div>
+<p class="post-excerpt">Your supplier quote is not your cost. Here's the actual Amazon FBA landed-cost math for 2026: freight, duty, MPF, HMF, broker fees, prep, inbound shipping, referral fees, FBA fees, and the per-unit margin mistakes that quietly wreck good products.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/shopify-import-duties/">
+<div class="post-meta">
+<span class="post-tag">Cross-Border</span>
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Guide</span>
                     April 3, 2026 · 12 min read
                 </div>
-                <div class="post-title">Shopify Import Duties: Cross-Border Selling Guide for 2026</div>
-                <p class="post-excerpt">Import duties are the tax nobody warns you about until your customer is refusing a package at the door. DDP vs DDU explained, 2026 tariff rates by country, HTS codes, landed cost formulas, and how to stop duties from silently destroying your margins.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/hts-code-lookup/">
-                <div class="post-meta">
-                    <span class="post-tag">Customs</span>
-                    <span class="post-tag">Classification</span>
+<div class="post-title">Shopify Import Duties: Cross-Border Selling Guide for 2026</div>
+<p class="post-excerpt">Import duties are the tax nobody warns you about until your customer is refusing a package at the door. DDP vs DDU explained, 2026 tariff rates by country, HTS codes, landed cost formulas, and how to stop duties from silently destroying your margins.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/hts-code-lookup/">
+<div class="post-meta">
+<span class="post-tag">Customs</span>
+<span class="post-tag">Classification</span>
                     April 1, 2026 · 11 min read
                 </div>
-                <div class="post-title">HTS Code Lookup: How to Classify Your Product (And Not Get Burned)</div>
-                <p class="post-excerpt">Most importers copy their HTS code from their supplier or pick the first search result. Both work until they don't. In 2026 — when the wrong code can mean 25% more in duties — here's the step-by-step: USITC lookup tool, CROSS database, binding CBP rulings, and the common misclassification traps.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/hts-code-reclassification-tariff-margin/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">HTS Codes</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Must Read</span>
+<div class="post-title">HTS Code Lookup: How to Classify Your Product (And Not Get Burned)</div>
+<p class="post-excerpt">Most importers copy their HTS code from their supplier or pick the first search result. Both work until they don't. In 2026 — when the wrong code can mean 25% more in duties — here's the step-by-step: USITC lookup tool, CROSS database, binding CBP rulings, and the common misclassification traps.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/hts-code-reclassification-tariff-margin/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">HTS Codes</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Must Read</span>
                     March 31, 2026 · 10 min read
                 </div>
-                <div class="post-title">My HTS Code Changed and Wiped Out My Margin</div>
-                <p class="post-excerpt">You didn't change your product. Your supplier didn't change. But your customs broker called with a number you weren't expecting — and suddenly your $4.50 profit per unit is gone. This is the HTS reclassification problem, and it hits more merchants than you'd think. Real examples, real numbers, and what to do about it.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/warranty-policy-reduce-refunds/">
-                <div class="post-meta">
-                    <span class="post-tag">Operations</span>
-                    <span class="post-tag">Customer Experience</span>
+<div class="post-title">My HTS Code Changed and Wiped Out My Margin</div>
+<p class="post-excerpt">You didn't change your product. Your supplier didn't change. But your customs broker called with a number you weren't expecting — and suddenly your $4.50 profit per unit is gone. This is the HTS reclassification problem, and it hits more merchants than you'd think. Real examples, real numbers, and what to do about it.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/warranty-policy-reduce-refunds/">
+<div class="post-meta">
+<span class="post-tag">Operations</span>
+<span class="post-tag">Customer Experience</span>
                     March 31, 2026 · 9 min read
                 </div>
-                <div class="post-title">How a Clear Warranty Policy Can Reduce Refunds by Up to 40%</div>
-                <p class="post-excerpt">US retail returns hit $890 billion in 2024. For online merchants, the return rate averages 16.9% — nearly double physical stores. A well-designed warranty policy doesn't just handle defective products; it actively converts return requests into claims, reduces chargebacks, and builds buyer confidence. Here's the data and the playbook.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/dead-stock-clearance-q2-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Inventory</span>
-                    <span class="post-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Timely</span>
+<div class="post-title">How a Clear Warranty Policy Can Reduce Refunds by Up to 40%</div>
+<p class="post-excerpt">US retail returns hit $890 billion in 2024. For online merchants, the return rate averages 16.9% — nearly double physical stores. A well-designed warranty policy doesn't just handle defective products; it actively converts return requests into claims, reduces chargebacks, and builds buyer confidence. Here's the data and the playbook.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/dead-stock-clearance-q2-2026/">
+<div class="post-meta">
+<span class="post-tag">Inventory</span>
+<span class="post-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Timely</span>
                     March 26, 2026 · 8 min read
                 </div>
-                <div class="post-title">March Sales Slump? How to Clear Dead Stock Before Q2</div>
-                <p class="post-excerpt">Merchants are posting about their worst March since 2020. If your inventory is stacking up, the next two weeks are your window to clear it — before Q2 inventory arrives and your cash stays trapped.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/shopify-account-takeover-protection/">
-                <div class="post-meta">
-                    <span class="post-tag">Security</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
+<div class="post-title">March Sales Slump? How to Clear Dead Stock Before Q2</div>
+<p class="post-excerpt">Merchants are posting about their worst March since 2020. If your inventory is stacking up, the next two weeks are your window to clear it — before Q2 inventory arrives and your cash stays trapped.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/shopify-account-takeover-protection/">
+<div class="post-meta">
+<span class="post-tag">Security</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>
                     March 25, 2026 · 11 min read
                 </div>
-                <div class="post-title">How to Protect Your Shopify Store from Account Takeover Attacks in 2026</div>
-                <p class="post-excerpt">A coordinated attack is hitting Shopify merchants right now — email bombing to bury security alerts, then draining $25K+ through Shopify Credit. Even 2FA users are getting hit. Here's exactly how it works and 7 steps to protect your store today.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/wcag-accessibility-guide/">
-                <div class="post-meta">
-                    <span class="post-tag">Accessibility</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Legal</span>
+<div class="post-title">How to Protect Your Shopify Store from Account Takeover Attacks in 2026</div>
+<p class="post-excerpt">A coordinated attack is hitting Shopify merchants right now — email bombing to bury security alerts, then draining $25K+ through Shopify Credit. Even 2FA users are getting hit. Here's exactly how it works and 7 steps to protect your store today.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/wcag-accessibility-guide/">
+<div class="post-meta">
+<span class="post-tag">Accessibility</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Legal</span>
                     March 25, 2026 · 11 min read
                 </div>
-                <div class="post-title">WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does</div>
-                <p class="post-excerpt">4,605 ADA lawsuits in 2024. Over 800 businesses using overlays were sued. The European Accessibility Act kicks in June 2025. Here's the definitive guide to what actually makes your store accessible — and what doesn't.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/import-duty-from-vietnam-to-us/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Vietnam</span>
+<div class="post-title">WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does</div>
+<p class="post-excerpt">4,605 ADA lawsuits in 2024. Over 800 businesses using overlays were sued. The European Accessibility Act kicks in June 2025. Here's the definitive guide to what actually makes your store accessible — and what doesn't.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/import-duty-from-vietnam-to-us/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Vietnam</span>
                     March 25, 2026 · 9 min read
                 </div>
-                <div class="post-title">Import Duty from Vietnam to US in 2026: Tariff Rates & Complete Guide</div>
-                <p class="post-excerpt">As merchants flee sky-high China tariffs, Vietnam has become the supply chain alternative of choice. But what does importing from Vietnam actually cost? Here's the complete picture: current rates, how Vietnam compares to China, the transshipment risk, and how to calculate your true landed cost.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/de-minimis-threshold-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Dropshipping</span>
-                    <span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Urgent</span>
+<div class="post-title">Import Duty from Vietnam to US in 2026: Tariff Rates &amp; Complete Guide</div>
+<p class="post-excerpt">As merchants flee sky-high China tariffs, Vietnam has become the supply chain alternative of choice. But what does importing from Vietnam actually cost? Here's the complete picture: current rates, how Vietnam compares to China, the transshipment risk, and how to calculate your true landed cost.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/de-minimis-threshold-2026/">
+<div class="post-meta">
+<span class="post-tag">Dropshipping</span>
+<span class="post-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Urgent</span>
                     March 24, 2026 · 10 min read
                 </div>
-                <div class="post-title">De Minimis Threshold Changes 2026: What Dropshippers and Small Importers Need to Know</div>
-                <p class="post-excerpt">The $800 duty-free threshold for small packages is gone. Executive Order 14324 suspended de minimis treatment for all countries. If you dropship or order from AliExpress, your costs just went up. Here's exactly what changed and how to adapt.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/section-232-tariffs-explained/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Manufacturing</span>
+<div class="post-title">De Minimis Threshold Changes 2026: What Dropshippers and Small Importers Need to Know</div>
+<p class="post-excerpt">The $800 duty-free threshold for small packages is gone. Executive Order 14324 suspended de minimis treatment for all countries. If you dropship or order from AliExpress, your costs just went up. Here's exactly what changed and how to adapt.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/section-232-tariffs-explained/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Manufacturing</span>
                     March 24, 2026 · 8 min read
                 </div>
-                <div class="post-title">Section 232 Tariffs Explained: Steel, Aluminum, Autos, and Copper in 2026</div>
-                <p class="post-excerpt">Steel at 50%. Aluminum at 50%. Autos at 25%. Copper at 50%. Section 232 tariffs are the heaviest product-specific duties in the US — and they stack on top of everything else. Here's what importers and manufacturers need to know.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/us-china-tariff-rates-2026/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Guide</span>
+<div class="post-title">Section 232 Tariffs Explained: Steel, Aluminum, Autos, and Copper in 2026</div>
+<p class="post-excerpt">Steel at 50%. Aluminum at 50%. Autos at 25%. Copper at 50%. Section 232 tariffs are the heaviest product-specific duties in the US — and they stack on top of everything else. Here's what importers and manufacturers need to know.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/us-china-tariff-rates-2026/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Guide</span>
                     March 24, 2026 · Updated April 19, 2026 · 9 min read
                 </div>
-                <div class="post-title">US-China Tariff Rates 2026: Current China Import Duties Explained</div>
-                <p class="post-excerpt">A refreshed guide to the tariff stack importers are actually dealing with now: the Section 122 baseline, China-specific Section 301 duties, product-specific Section 232 exposure, and the practical ranges you should use for landed-cost planning.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/how-to-calculate-landed-cost/">
-                <div class="post-meta">
-                    <span class="post-tag">Guide</span>
-                    <span class="post-tag">Calculator</span>
+<div class="post-title">US-China Tariff Rates 2026: Current China Import Duties Explained</div>
+<p class="post-excerpt">A refreshed guide to the tariff stack importers are actually dealing with now: the Section 122 baseline, China-specific Section 301 duties, product-specific Section 232 exposure, and the practical ranges you should use for landed-cost planning.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/how-to-calculate-landed-cost/">
+<div class="post-meta">
+<span class="post-tag">Guide</span>
+<span class="post-tag">Calculator</span>
                     March 24, 2026 · 6 min read
                 </div>
-                <div class="post-title">How to Calculate Landed Cost: The Complete Guide for Ecommerce Sellers</div>
-                <p class="post-excerpt">Your product costs $10 from the factory. But by the time it reaches your warehouse — after shipping, insurance, customs duties, and handling — the real cost might be $14.50. That $4.50 gap is where margins die. Here's how to calculate your true landed cost.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-
-        <div class="post-card">
-            <a href="/blog/cusma-usmca-guide/">
-                <div class="post-meta">
-                    <span class="post-tag">Tariffs</span>
-                    <span class="post-tag">Canada</span>
+<div class="post-title">How to Calculate Landed Cost: The Complete Guide for Ecommerce Sellers</div>
+<p class="post-excerpt">Your product costs $10 from the factory. But by the time it reaches your warehouse — after shipping, insurance, customs duties, and handling — the real cost might be $14.50. That $4.50 gap is where margins die. Here's how to calculate your true landed cost.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+<div class="post-card">
+<a href="/blog/cusma-usmca-guide/">
+<div class="post-meta">
+<span class="post-tag">Tariffs</span>
+<span class="post-tag">Canada</span>
                     March 24, 2026 · 5 min read
                 </div>
-                <div class="post-title">CUSMA/USMCA Explained: Does Your Product Qualify for Duty-Free Treatment?</div>
-                <p class="post-excerpt">If you're shipping between the US, Canada, and Mexico, CUSMA (formerly USMCA/NAFTA) could save you thousands in duties. But qualifying isn't automatic — your products must meet specific rules of origin. Here's how to check.</p>
-                <span class="read-more">Read the full guide →</span>
-            </a>
-        </div>
-    </div>
-    <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
+<div class="post-title">CUSMA/USMCA Explained: Does Your Product Qualify for Duty-Free Treatment?</div>
+<p class="post-excerpt">If you're shipping between the US, Canada, and Mexico, CUSMA (formerly USMCA/NAFTA) could save you thousands in duties. But qualifying isn't automatic — your products must meet specific rules of origin. Here's how to check.</p>
+<span class="read-more">Read the full guide →</span>
+</a>
+</div>
+</div>
+<footer>© 2026 Attahir Labs. All rights reserved.</footer>
 </body>
 </html>
