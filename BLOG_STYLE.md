@@ -53,6 +53,28 @@ Write like a sharp friend who happens to know this stuff. Not a professor. Not a
 - Tables are fine but don't overuse them. A quick sentence often beats a table.
 - Code blocks only when showing actual code. Don't put terminal commands in code blocks unless the reader will copy-paste them.
 
+### Visual Standard:
+
+**Article first, image last.** Do not make the hero image until the article is finalized enough to know the real angle.
+
+Hero images should be:
+- Article-specific editorial/stock-photo-style images, not generic SEO infographics.
+- Realistic ecommerce, logistics, retail, compliance, or operations scenes tied to the article's actual argument.
+- Free of readable text, fake UI copy, logos, flags-as-wallpaper, or chart/infographic gimmicks.
+- Varied across posts. If the last post used a laptop-and-boxes desk scene, shift the next one toward warehouse, support desk, customs documents, product samples, or another truthful angle.
+- Full-quality on the article page; cropped shorter on `/blog/` cards so mobile cards don't become giant image blocks.
+
+### Blog Surface QA:
+
+Before any public blog deploy is called done:
+- Every real article page must have exactly one editorial hero figure with `data-generated-visual="editorial-gpt-image-2"` and `/assets/blog/{slug}/hero.jpg`.
+- Every visible `/blog/` card must have a short cropped `post-card-image` using that same hero asset.
+- The primary nav must show **Home · Duty Calculator · Blog · Contact** on every article, including older templates and moved/redirect pages.
+- No stale `hero.webp` references after editorial image replacement.
+- No visible frontmatter or source-callout cruft such as `--- title:` or `Background sources:`.
+
+Run `python3 tools/blog-pipeline/audit_blog_surface.py` from the workspace root after local edits and again conceptually/live after deployment checks.
+
 ### FAQ sections:
 - Write answers conversationally, not like a legal document.
 - Vary answer length — some are one sentence, some are a paragraph.
