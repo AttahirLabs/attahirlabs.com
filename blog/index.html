@@ -61,10 +61,10 @@
             .nav-links a { display: block; font-size: 0.85rem; }
         }
 
-        .post-card-image { display: block; width: calc(100% + 4rem); max-width: none; aspect-ratio: 16 / 9; object-fit: cover; margin: -2rem -2rem 1.25rem; border-radius: var(--radius) var(--radius) 0 0; background: var(--gray-100); }
+        .post-card-image { display: block; width: calc(100% + 4rem); max-width: none; height: clamp(150px, 24vw, 220px); object-fit: cover; object-position: center; margin: -2rem -2rem 1.25rem; border-radius: var(--radius) var(--radius) 0 0; background: var(--gray-100); }
         .post-card.has-image { overflow: hidden; }
 
-        @media (max-width: 768px) { .post-card-image { width: calc(100% + 2.5rem); margin: -1.25rem -1.25rem 1rem; } }
+        @media (max-width: 768px) { .post-card-image { width: calc(100% + 2.5rem); height: 140px; margin: -1.25rem -1.25rem 1rem; } }
 </style>
 </head>
 <body>
