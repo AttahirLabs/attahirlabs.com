@@ -16,9 +16,42 @@
   <meta property="og:description" content="Shopify added MATCHES to ShopifyQL in Analytics. Here’s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg">
+    <meta property="og:image:width" content="1536">
+    <meta property="og:image:height" content="864">
+    <meta property="og:image:alt" content="ShopifyQL MATCHES workflow visual for ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports, showing a pattern filter narrowing customer segments into faster report review and action steps">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg">
   <meta property="article:published_time" content="2026-04-24">
   <meta property="article:modified_time" content="2026-04-24">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports", "datePublished": "2026-04-24", "dateModified": "2026-04-24", "author": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "publisher": {"@type": "Organization", "name": "Attahir Labs", "url": "https://attahirlabs.com"}, "description": "Shopify added MATCHES to ShopifyQL in Analytics. Here\u2019s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.", "mainEntityOfPage": "https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/", "keywords": ["ShopifyQL MATCHES, Shopify reports customer behavior", "StoreChangelog", "Analytics", "Shopify"]}</script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports",
+      "datePublished": "2026-04-24",
+      "dateModified": "2026-04-24",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs",
+        "url": "https://attahirlabs.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs",
+        "url": "https://attahirlabs.com"
+      },
+      "description": "Shopify added MATCHES to ShopifyQL in Analytics. Here\u2019s what merchants can filter, where it helps, and how to operationalize the change without analytics drift.",
+      "mainEntityOfPage": "https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/",
+      "keywords": [
+        "ShopifyQL MATCHES, Shopify reports customer behavior",
+        "StoreChangelog",
+        "Analytics",
+        "Shopify"
+      ],
+      "image": "https://attahirlabs.com/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg"
+    }
+    </script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What did Shopify actually change?", "acceptedAnswer": {"@type": "Answer", "text": "Shopify officially added the MATCHES operator to the ShopifyQL editor in Analytics, allowing merchants to filter reports using customer-behavior conditions such as products purchased or orders placed."}}, {"@type": "Question", "name": "Does MATCHES only work for customer segments?", "acceptedAnswer": {"@type": "Answer", "text": "No.\u00a0Shopify\u2019s announcement specifically says the same MATCHES logic used in Customer Segmentation now works in Analytics, which is the whole point of this update."}}, {"@type": "Question", "name": "What kinds of behavior can merchants filter on?", "acceptedAnswer": {"@type": "Answer", "text": "According to Shopify\u2019s syntax reference, MATCHES can be used with expressions such as products purchased, orders placed, certain Shopify Email events, some storefront view events, store credit accounts, and geographic distance conditions."}}, {"@type": "Question", "name": "Is MATCHES enough to fix analytics quality problems by itself?", "acceptedAnswer": {"@type": "Answer", "text": "No.\u00a0It improves how merchants can define behavior-based filters, but teams still need canonical query definitions, QA checks, and a way to understand operational changes around the numbers."}}, {"@type": "Question", "name": "Why connect this to a changelog or audit-trail app?", "acceptedAnswer": {"@type": "Answer", "text": "Because better reporting logic tells you what customers did, while a store-change audit trail tells you what your team changed when those numbers moved. You need both to debug real-world store operations well."}}, {"@type": "Question", "name": "Should merchants rewrite all of their reports now?", "acceptedAnswer": {"@type": "Answer", "text": "Probably not. The smarter move is to replace the ugliest manual work first: a few repeated behavior questions, a few repeated exports, and any report/segment pair that currently drifts."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -67,7 +100,12 @@
       h1{font-size:1.82rem}
       h2{font-size:1.35rem}
     }
-  </style>
+  
+        .post-figure { margin: 2rem 0; }
+        .post-figure picture, .post-figure img { display: block; width: 100%; }
+        .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
+        .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+    </style>
 </head>
 <body>
   <nav>
@@ -86,6 +124,15 @@
     <div class="meta"><span class="tag">StoreChangelog</span><span class="tag">Analytics</span><span class="tag">Shopify</span><span class="tag" style="background:rgba(16,185,129,0.15);color:#10b981;">New</span><span>April 24, 2026 · 13 min read</span></div>
     <div class="source-note-hidden"><p><em>Primary sources: <a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did">Shopify changelog announcement</a>, <a href="https://shopify.dev/docs/api/shopifyql">ShopifyQL syntax reference</a>, <a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference">Segment query language reference</a>.</em></p></div>
     <h1 id="shopifyql-matches-in-2026-how-to-filter-customer-behavior-faster-in-shopify-reports">ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+            <picture>
+                <source srcset="/assets/blog/shopifyql-matches-shopify-reports-2026/hero.webp" type="image/webp">
+                <img src="/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg" width="1536" height="864" alt="ShopifyQL MATCHES workflow visual for ShopifyQL MATCHES in 2026: How to Filter Customer Behavior Faster in Shopify Reports, showing a pattern filter narrowing customer segments into faster report review and action steps" fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>ShopifyQL MATCHES is most useful when one readable pattern turns into a repeatable customer segment and a faster reporting workflow.</figcaption>
+        </figure>
+
 <p>A lot of Shopify changelog items look small until you think about what they do to a merchant workflow.</p>
 <p>This is one of those.</p>
 <p>Shopify has officially added <strong>MATCHES</strong> to the ShopifyQL editor in Analytics, which means merchants can now filter reports by <strong>what customers did</strong>, not only by static customer attributes. Shopify’s own example is simple and useful: you can look for customers who purchased at least two products in the last 30 days. More importantly, Shopify says the same MATCHES logic already used in <strong>Customer Segmentation</strong> now works in <strong>Analytics</strong>, so segments and reports can stay aligned instead of drifting apart.</p>
