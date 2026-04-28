@@ -8,6 +8,7 @@ on:
       - 'blog/**'
       - 'index.html'
       - 'duty/**'
+      - 'shipping/**'
 
 jobs:
   ping-search-engines:
@@ -49,6 +50,9 @@ jobs:
                 ;;
               duty/index.html)
                 URLS="$URLS\"https://attahirlabs.com/duty/\","
+                ;;
+              shipping/index.html)
+                URLS="$URLS\"https://attahirlabs.com/shipping/\","
                 ;;
               sitemap.xml)
                 # Sitemap changed, notify about the sitemap itself
