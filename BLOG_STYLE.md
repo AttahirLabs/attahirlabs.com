@@ -61,13 +61,16 @@ Hero images should be:
 - Article-specific editorial/stock-photo-style images, not generic SEO infographics.
 - Realistic ecommerce, logistics, retail, compliance, or operations scenes tied to the article's actual argument.
 - Free of readable text, fake UI copy, logos, flags-as-wallpaper, or chart/infographic gimmicks.
-- Varied across posts. If the last post used a laptop-and-boxes desk scene, shift the next one toward warehouse, support desk, customs documents, product samples, or another truthful angle.
+- Varied across posts. **Do not default to boxes in the background + laptop on a desk.** That motif is now considered overused and should require a specific reason.
+- Rotate compositions deliberately: boutique/back-room racks, receiving dock, customs paperwork flat lay, product sample table, support desk, accessibility testing scene, returns counter, expiry/batch shelf, shipping scale, empty rack, supplier paperwork, or other article-specific physical evidence.
+- For each new hero, compare against the last 6–10 blog heroes. If two nearby posts already use the same setting, camera angle, or prop cluster, regenerate with a different concept before publishing.
 - Full-quality on the article page; cropped shorter on `/blog/` cards so mobile cards don't become giant image blocks.
 
 Raw image QA happens before page QA:
 - Build a contact sheet with `python3 tools/blog-pipeline/review_blog_images.py`.
 - Reject/regenerate anything that has readable fake text, logos, weird hands, malformed products, nonsense documents, generic infographic composition, or a mismatch with the article angle.
 - Check the set as a group for variety. The blog should not become 20 nearly identical laptop-and-boxes shots.
+- Specifically reject repeated “desk + laptop + cardboard boxes” ecommerce stock-photo compositions unless the article is literally about that workspace setup.
 - Only after raw images pass should they be wired into article heroes and `/blog/` cards.
 
 ### Blog Surface QA:
