@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shipping Cost Calculator: Retail Benchmark Estimates | Attahir Labs</title>
+    <meta name="description" content="Estimate retail benchmark shipping costs for domestic, cross-border, and international packages. Compare economy, standard, and express ranges before you price an order.">
+    <link rel="canonical" href="https://attahirlabs.com/shipping/">
+    <meta property="og:title" content="Shipping Cost Calculator | Attahir Labs">
+    <meta property="og:description" content="Free retail benchmark shipping calculator with economy, standard, and express estimate ranges.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attahirlabs.com/shipping/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Shipping Cost Calculator | Attahir Labs">
+    <meta name="twitter:description" content="Compare retail benchmark shipping estimates by route, weight, dimensions, value, and delivery speed.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Shipping Cost Calculator","url":"https://attahirlabs.com/shipping/","description":"Free retail benchmark shipping calculator for domestic, cross-border, and international package estimates.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Attahir Labs","url":"https://attahirlabs.com"},"potentialAction":{"@type":"UseAction","target":"https://attahirlabs.com/shipping/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these Shopify checkout rates?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator returns retail benchmark estimates. Actual Shopify checkout, carrier account, negotiated, fuel surcharge, address, and fulfillment rates may differ."}},{"@type":"Question","name":"Does the calculator call carrier APIs?","acceptedAnswer":{"@type":"Answer","text":"No. Phase 1 uses deterministic client-side constants for zones, dimensional weight, base rates, multipliers, and a handling buffer."}}]}</script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --navy:#0f172a; --navy-mid:#1e293b; --indigo:#6366f1; --indigo-light:#818cf8; --green:#10b981; --amber:#f59e0b; --white:#fff; --gray-50:#f8fafc; --gray-100:#f1f5f9; --gray-200:#e2e8f0; --gray-500:#64748b; --gray-700:#334155; --radius:14px; }
+        html, body { overflow-x:hidden; }
+        body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--white); line-height:1.6; background:linear-gradient(150deg,var(--navy) 0%,#1e1b4b 55%,var(--navy-mid) 100%); min-height:100vh; }
+        nav { position:sticky; top:0; z-index:100; background:rgba(15,23,42,0.97); backdrop-filter:blur(10px); padding:0 1.5rem; border-bottom:1px solid rgba(255,255,255,0.07); }
+        .nav-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:64px; }
+        .nav-logo { color:var(--white); font-weight:700; font-size:1.15rem; text-decoration:none; letter-spacing:-0.01em; }
+        .nav-logo span { color:var(--indigo-light); }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.9rem; transition:color .15s; }
+        .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--white); }
+        .hero { text-align:center; padding:5rem 1.5rem 2.5rem; position:relative; overflow:hidden; }
+        .hero::before { content:""; position:absolute; width:560px; height:560px; border-radius:999px; background:radial-gradient(circle,rgba(99,102,241,.22),transparent 68%); top:-220px; right:-140px; pointer-events:none; }
+        .hero > * { position:relative; }
+        .hero-badge { display:inline-block; background:rgba(99,102,241,.2); border:1px solid rgba(99,102,241,.4); color:var(--indigo-light); font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:.3rem .9rem; border-radius:999px; margin-bottom:1rem; }
+        h1 { font-size:clamp(2.1rem,5vw,3.55rem); line-height:1.1; font-weight:850; letter-spacing:-.035em; max-width:820px; margin:0 auto 1rem; overflow-wrap:break-word; }
+        h1 em { font-style:normal; background:linear-gradient(135deg,#818cf8,#6ee7b7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero p { color:rgba(255,255,255,.76); font-size:1.08rem; max-width:680px; margin:0 auto; }
+        .container { max-width:1100px; margin:0 auto; padding:2rem 1.5rem; }
+        .calculator-grid { display:grid; grid-template-columns:minmax(0, .95fr) minmax(0, 1.05fr); gap:1.5rem; align-items:start; }
+        .card { background:rgba(30,41,59,.82); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); box-shadow:0 24px 80px rgba(0,0,0,.22); padding:1.5rem; }
+        .card h2 { font-size:1.12rem; margin-bottom:1rem; letter-spacing:-.01em; }
+        .field-group { margin-bottom:.9rem; }
+        label { display:block; font-size:.82rem; font-weight:650; color:rgba(255,255,255,.7); margin-bottom:.35rem; }
+        input, select { width:100%; border:1px solid rgba(255,255,255,.14); background:rgba(15,23,42,.86); color:var(--white); border-radius:9px; padding:.7rem .8rem; font-size:.95rem; outline:none; }
+        input:focus, select:focus { border-color:var(--indigo-light); box-shadow:0 0 0 3px rgba(99,102,241,.18); }
+        .row { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+        .triple { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; }
+        .btn { width:100%; border:0; border-radius:10px; background:var(--indigo); color:var(--white); font-size:1rem; font-weight:750; padding:.85rem 1rem; cursor:pointer; transition:background .2s, transform .15s; }
+        .btn:hover { background:#4f46e5; transform:translateY(-1px); }
+        .helper { font-size:.78rem; color:rgba(255,255,255,.52); margin-top:.45rem; }
+        .error { display:none; color:#fecaca; background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.28); border-radius:9px; padding:.65rem .75rem; margin-bottom:.9rem; font-size:.86rem; }
+        .results-empty { min-height:380px; display:flex; align-items:center; justify-content:center; text-align:center; color:rgba(255,255,255,.55); }
+        .results-empty .icon { font-size:3.2rem; display:block; margin-bottom:.65rem; }
+        .results { display:none; }
+        .summary { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; margin:1rem 0 1.25rem; }
+        .summary-box { background:rgba(15,23,42,.68); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:.8rem; text-align:center; }
+        .summary-box strong { display:block; color:#c4b5fd; font-size:1.35rem; line-height:1.1; }
+        .summary-box span { display:block; color:rgba(255,255,255,.55); font-size:.72rem; margin-top:.2rem; }
+        .estimate-list { display:grid; gap:.8rem; }
+        .estimate { background:rgba(15,23,42,.72); border:1px solid rgba(255,255,255,.09); border-radius:12px; padding:1rem; display:grid; grid-template-columns:1fr auto; gap:.75rem; align-items:center; }
+        .estimate h3 { font-size:1rem; margin-bottom:.1rem; }
+        .estimate p { color:rgba(255,255,255,.58); font-size:.83rem; }
+        .estimate .price { text-align:right; font-weight:850; font-size:1.18rem; color:#6ee7b7; }
+        .note { margin-top:1rem; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.28); color:rgba(253,230,138,.92); border-radius:10px; padding:.85rem; font-size:.86rem; }
+        .cta-panel { margin-top:1rem; background:rgba(99,102,241,.13); border:1px solid rgba(129,140,248,.28); border-radius:12px; padding:1rem; }
+        .cta-panel a { color:var(--white); font-weight:750; }
+        .seo { max-width:760px; margin:1.5rem auto 0; color:rgba(255,255,255,.72); }
+        .seo h2, .seo h3 { color:var(--white); letter-spacing:-.015em; margin:.75rem 0 .5rem; }
+        .seo p, .seo li { margin-bottom:.7rem; }
+        .seo ul { padding-left:1.2rem; }
+        .seo a { color:var(--indigo-light); }
+        footer { border-top:1px solid rgba(255,255,255,.08); padding:2rem 1.5rem; margin-top:3rem; text-align:center; color:rgba(255,255,255,.52); font-size:.82rem; }
+        footer a { color:rgba(255,255,255,.68); text-decoration:none; }
+        @media (max-width: 820px) { .calculator-grid { grid-template-columns:1fr; } .summary { grid-template-columns:1fr 1fr 1fr; } }
+        @media (max-width: 768px) { nav { overflow-x:auto; -webkit-overflow-scrolling:touch; } .nav-inner { height:auto; min-height:64px; padding:.75rem 0; align-items:flex-start; gap:.75rem; flex-wrap:wrap; } .nav-logo { flex:0 0 auto; } .nav-links { display:flex !important; width:100%; justify-content:flex-start; gap:.85rem; flex-wrap:nowrap; overflow-x:auto; white-space:nowrap; padding:.2rem 0 .4rem; margin:0; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } .nav-links li { flex:0 0 auto; } .nav-links a { display:block; font-size:.85rem; } .hero { padding:3.2rem 1rem 2.25rem; } h1 { font-size:clamp(1.9rem,9vw,2.5rem); max-width:18.5rem; } .hero p { max-width:19rem; } .container { padding:1.25rem 1rem; } .card { padding:1.15rem; } .row, .triple { grid-template-columns:1fr; } .estimate { grid-template-columns:1fr; } .estimate .price { text-align:left; } }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/duty/">Duty Calculator</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">Free Phase 1 Tool</div>
+    <h1>Shipping Cost <em>Calculator</em></h1>
+    <p>Estimate retail benchmark shipping costs for domestic, cross-border, and international packages — with dimensional weight, order value, and speed preference included.</p>
+</section>
+
+<main class="container">
+    <div class="calculator-grid">
+        <section class="card" aria-labelledby="calc-title">
+            <h2 id="calc-title">Package details</h2>
+            <form id="shippingForm">
+                <div class="row">
+                    <div class="field-group"><label for="originCountry">Origin country</label><select id="originCountry" required><option value="CA">Canada</option><option value="US">United States</option><option value="MX">Mexico</option><option value="GB">United Kingdom</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="CN">China</option><option value="VN">Vietnam</option></select></div>
+                    <div class="field-group"><label for="originPostal">Origin postal code</label><input id="originPostal" autocomplete="postal-code" placeholder="H2X 1Y4" value="H2X 1Y4"></div>
+                </div>
+                <div class="row">
+                    <div class="field-group"><label for="destinationCountry">Destination country</label><select id="destinationCountry" required><option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="GB">United Kingdom</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="FR">France</option><option value="JP">Japan</option></select></div>
+                    <div class="field-group"><label for="destinationPostal">Destination postal/ZIP</label><input id="destinationPostal" autocomplete="postal-code" placeholder="10001" value="10001"></div>
+                </div>
+                <div class="row">
+                    <div class="field-group"><label for="weight">Package weight (lb)</label><input type="number" id="weight" min="0.1" step="0.1" value="5" required></div>
+                    <div class="field-group"><label for="orderValue">Order value (USD)</label><input type="number" id="orderValue" min="0" step="1" value="120" required></div>
+                </div>
+                <div class="triple">
+                    <div class="field-group"><label for="length">Length (in)</label><input type="number" id="length" min="0.1" step="0.1" value="20" required></div>
+                    <div class="field-group"><label for="width">Width (in)</label><input type="number" id="width" min="0.1" step="0.1" value="10" required></div>
+                    <div class="field-group"><label for="height">Height (in)</label><input type="number" id="height" min="0.1" step="0.1" value="8" required></div>
+                </div>
+                <div class="field-group"><label for="speedPreference">Delivery speed preference</label><select id="speedPreference"><option value="economy">Lowest cost</option><option value="balanced" selected>Balanced</option><option value="urgent">Urgent / fastest practical</option></select><div class="helper">No carrier API calls. All estimates are deterministic Phase 1 retail benchmarks.</div></div>
+                <div class="error" id="formError" role="alert"></div>
+                <button class="btn" type="submit">Estimate shipping ranges</button>
+            </form>
+        </section>
+
+        <section class="card" aria-labelledby="results-title">
+            <h2 id="results-title">Retail estimate ranges</h2>
+            <div class="results-empty" id="emptyState"><div><span class="icon">📦</span><p>Enter package details to compare Economy, Standard, and Express retail estimate ranges.</p></div></div>
+            <div class="results" id="results">
+                <div class="summary">
+                    <div class="summary-box"><strong id="zoneLabel">—</strong><span>Route zone</span></div>
+                    <div class="summary-box"><strong id="billableWeight">—</strong><span>Billable lb</span></div>
+                    <div class="summary-box"><strong id="dimWeight">—</strong><span>Dimensional lb</span></div>
+                </div>
+                <div class="estimate-list" id="estimateList">
+                    <article class="estimate"><div><h3>Economy</h3><p>Estimated delivery window</p></div><div class="price">—</div></article>
+                    <article class="estimate"><div><h3>Standard</h3><p>Estimated delivery window</p></div><div class="price">—</div></article>
+                    <article class="estimate"><div><h3>Express</h3><p>Estimated delivery window</p></div><div class="price">—</div></article>
+                </div>
+                <div class="note"><strong>Important:</strong> retail benchmark estimates may differ from Shopify checkout/carrier account rates. Actual quotes can change with negotiated discounts, address validation, fuel/residential surcharges, dimensional rules, fulfillment location, duties, taxes, and carrier availability.</div>
+                <div class="cta-panel"><strong>Want this inside Shopify?</strong><br>We are using this public calculator to validate the eventual Shopify estimator app. <a href="/contact.html">Contact Attahir Labs</a> if you want merchant-specific checkout-rate logic or beta access.</div>
+            </div>
+        </section>
+    </div>
+
+    <section class="seo">
+        <h2>How the retail shipping estimate works</h2>
+        <p>This calculator uses clear constants for route zones, dimensional weight, retail base rates, per-pound pricing, delivery-speed multipliers, order-value surcharges, and a small handling buffer. It is meant for planning and benchmarking before you quote a shopper or compare fulfillment options.</p>
+        <h3>What to enter</h3>
+        <ul>
+            <li><strong>Origin and destination:</strong> country plus postal or ZIP code for the shipping lane.</li>
+            <li><strong>Weight and dimensions:</strong> carriers often charge the greater of actual and dimensional weight.</li>
+            <li><strong>Order value:</strong> higher-value parcels may need more careful handling or included coverage.</li>
+            <li><strong>Speed preference:</strong> compare lower-cost, balanced, and urgent retail benchmarks.</li>
+        </ul>
+        <h3>Planning landed cost too?</h3>
+        <p>Shipping cost is only one part of cross-border margin. Use the <a href="/duty/">free Duty Calculator</a> when import duties and landed cost matter.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Attahir Labs. Shipping estimates are planning benchmarks, not carrier quotes.</p>
+    <p style="margin-top:.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a></p>
+</footer>
+
+<script src="/shipping/calculator.js"></script>
+<script>
+(function () {
+    const form = document.getElementById('shippingForm');
+    const error = document.getElementById('formError');
+    const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+    function value(id) { return document.getElementById(id).value; }
+    function numberValue(id) { return Number(value(id)); }
+
+    function render() {
+        error.style.display = 'none';
+        const input = {
+            originCountry: value('originCountry'), originPostal: value('originPostal'),
+            destinationCountry: value('destinationCountry'), destinationPostal: value('destinationPostal'),
+            weight: numberValue('weight'), length: numberValue('length'), width: numberValue('width'), height: numberValue('height'),
+            orderValue: numberValue('orderValue'), speedPreference: value('speedPreference')
+        };
+        if (!input.originCountry || !input.destinationCountry || input.weight <= 0 || input.length <= 0 || input.width <= 0 || input.height <= 0 || input.orderValue < 0) {
+            error.textContent = 'Please enter positive package measurements and a valid order value.';
+            error.style.display = 'block';
+            return;
+        }
+        const result = window.ShippingCalculator.estimateShipping(input);
+        document.getElementById('emptyState').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('zoneLabel').textContent = result.zoneLabel;
+        document.getElementById('billableWeight').textContent = result.billableWeight;
+        document.getElementById('dimWeight').textContent = result.dimensionalWeight;
+        document.getElementById('estimateList').innerHTML = result.estimates.map(function (estimate) {
+            return '<article class="estimate"><div><h3>' + estimate.service + '</h3><p>' + estimate.window + '</p></div><div class="price">' + currency.format(estimate.low) + '–' + currency.format(estimate.high) + '</div></article>';
+        }).join('');
+    }
+
+    form.addEventListener('submit', function (event) { event.preventDefault(); render(); });
+    render();
+})();
+</script>
+</body>
+</html>
