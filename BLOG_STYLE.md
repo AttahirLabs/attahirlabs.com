@@ -75,6 +75,8 @@ Before any public blog deploy is called done:
 
 Run `python3 tools/blog-pipeline/audit_blog_surface.py` from the workspace root after local edits and again conceptually/live after deployment checks.
 
+For visual/UI-sensitive work, also capture screenshots with `python3 tools/blog-pipeline/capture_blog_screenshots.py` and review both mobile and desktop views before final reporting. HTML checks are necessary, but screenshots catch the real problems: missing-looking nav links, awkward crops, giant mobile cards, weird spacing, and template drift.
+
 ### FAQ sections:
 - Write answers conversationally, not like a legal document.
 - Vary answer length — some are one sentence, some are a paragraph.
