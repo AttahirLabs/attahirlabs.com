@@ -181,7 +181,18 @@
         .references h2 { margin-top: 0; }
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
-    </style>
+
+        /* Mobile nav: keep primary site links visible instead of hiding them. */
+        @media (max-width: 768px) {
+            nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .nav-logo { flex: 0 0 auto; }
+            .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; margin: 0; scrollbar-width: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex: 0 0 auto; }
+            .nav-links a { display: block; font-size: 0.85rem; }
+        }
+</style>
 </head>
 <body>
     <nav>

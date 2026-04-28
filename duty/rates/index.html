@@ -62,7 +62,18 @@
             th, td { padding: 0.5rem 0.6rem; font-size: 0.8rem; }
             .cta-bar { flex-direction: column; text-align: center; }
         }
-    </style>
+
+        /* Mobile nav: keep primary site links visible instead of hiding them. */
+        @media (max-width: 768px) {
+            nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .nav-logo { flex: 0 0 auto; }
+            .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; margin: 0; scrollbar-width: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li { flex: 0 0 auto; }
+            .nav-links a { display: block; font-size: 0.85rem; }
+        }
+</style>
 </head>
 <body>
 
@@ -115,7 +126,7 @@
     </div>
 
     <div class="source-note">
-        Rates updated weekly from USTR, CBSA, EU TARIC, UK Trade Tariff API, and Australian Border Force. 
+        Rates updated weekly from USTR, CBSA, EU TARIC, UK Trade Tariff API, and Australian Border Force.
         Rates are general estimates for non-product-specific tariffs. Product-specific rates (Section 232 for steel, aluminum, autos) may apply additionally.
     </div>
 </div>
@@ -138,7 +149,7 @@ async function init() {
         ]);
         const rd = await rr.json(), md = await mr.json();
         allRates = rd.rates || [];
-        
+
         const sel = document.getElementById("marketFilter");
         (md.markets || []).forEach(m => {
             const opt = document.createElement("option");
@@ -146,7 +157,7 @@ async function init() {
             opt.textContent = m.name + " (" + m.rateCount + ")";
             sel.appendChild(opt);
         });
-        
+
         filterRates();
     } catch (e) {
         document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">Failed to load rates. Please try again.</td></tr>';
@@ -156,18 +167,18 @@ async function init() {
 function filterRates() {
     const search = (document.getElementById("search").value || "").toLowerCase();
     const market = document.getElementById("marketFilter").value;
-    
+
     let filtered = allRates;
     if (market) filtered = filtered.filter(r => r.destination === market);
     if (search) filtered = filtered.filter(r => r.origin.name.toLowerCase().includes(search) || r.origin.code.toLowerCase().includes(search));
-    
+
     document.getElementById("count").textContent = filtered.length + " of " + allRates.length + " rates";
-    
+
     if (filtered.length === 0) {
         document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">No rates found matching your search.</td></tr>';
         return;
     }
-    
+
     let html = "";
     filtered.forEach(r => {
         const rateClass = r.rate === 0 ? "rate-zero" : r.rate >= 20 ? "rate-high" : r.rate >= 10 ? "rate-mid" : "rate-low";
@@ -181,9 +192,9 @@ function filterRates() {
     document.getElementById("tbody").innerHTML = html;
 }
 
-function esc(s) { 
+function esc(s) {
     if (!s) return "";
-    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); 
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
 init();
