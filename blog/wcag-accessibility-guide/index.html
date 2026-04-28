@@ -1,28 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work | Attahir Labs</title>
-    <meta name="description" content="Why accessibility overlays fail WCAG compliance. The definitive guide to ADA lawsuits, WCAG 2.1 AA standards, and what actually fixes your ecommerce site. Courts have ruled overlays insufficient.">
-    <meta name="keywords" content="WCAG compliance shopify, ADA compliance ecommerce, accessibility overlay alternative, web accessibility audit, WCAG 2.1 AA, ecommerce accessibility, ADA lawsuit">
-    <link rel="canonical" href="https://attahirlabs.com/blog/wcag-accessibility-guide/">
-    <meta property="og:title" content="WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does">
-    <meta property="og:description" content="Why accessibility overlays fail compliance. Real fixes for ADA lawsuits: alt text, ARIA, semantic HTML, keyboard nav, color contrast. Free audit tools.">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://attahirlabs.com/blog/wcag-accessibility-guide/">
-    <meta property="og:image" content="https://attahirlabs.com/assets/blog/wcag-accessibility-guide/hero.jpg">
-    <meta property="og:image:width" content="1536">
-    <meta property="og:image:height" content="864">
-    <meta property="og:image:alt" content="WCAG ecommerce blocker map for WCAG Accessibility for Ecommerce: Why Overlay Widgets Don&#x27;t Work and What Actually Does, showing navigation, image, form, and checkout issues that need real fixes instead of overlay shortcuts">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/wcag-accessibility-guide/hero.jpg">
-    <meta property="article:published_time" content="2026-03-25">
-    <meta property="article:modified_time" content="2026-03-25">
-    <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;" http-equiv="Content-Security-Policy"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+<title>WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work | Attahir Labs</title>
+<meta content="Why accessibility overlays fail WCAG compliance. The definitive guide to ADA lawsuits, WCAG 2.1 AA standards, and what actually fixes your ecommerce site. Courts have ruled overlays insufficient." name="description"/>
+<meta content="WCAG compliance shopify, ADA compliance ecommerce, accessibility overlay alternative, web accessibility audit, WCAG 2.1 AA, ecommerce accessibility, ADA lawsuit" name="keywords"/>
+<link href="https://attahirlabs.com/blog/wcag-accessibility-guide/" rel="canonical"/>
+<meta content="WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does" property="og:title"/>
+<meta content="Why accessibility overlays fail compliance. Real fixes for ADA lawsuits: alt text, ARIA, semantic HTML, keyboard nav, color contrast. Free audit tools." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://attahirlabs.com/blog/wcag-accessibility-guide/" property="og:url"/>
+<meta content="https://attahirlabs.com/assets/blog/wcag-accessibility-guide/hero.jpg" property="og:image"/>
+<meta content="1536" property="og:image:width"/>
+<meta content="864" property="og:image:height"/>
+<meta content="WCAG ecommerce blocker map for WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does, showing navigation, image, form, and checkout issues that need real fixes instead of overlay shortcuts" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://attahirlabs.com/assets/blog/wcag-accessibility-guide/hero.jpg" name="twitter:image"/>
+<meta content="2026-03-25" property="article:published_time"/>
+<meta content="2026-03-25" property="article:modified_time"/>
+<script type="application/ld+json">
 
     {
       "@context": "https://schema.org",
@@ -45,7 +46,7 @@
       "image": "https://attahirlabs.com/assets/blog/wcag-accessibility-guide/hero.jpg"
     }
     </script>
-    <style>
+<style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root { --navy: #0f172a; --navy-mid: #1e293b; --indigo: #6366f1; --indigo-light: #818cf8; --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --green: #10b981; --red: #ef4444; --amber: #f59e0b; --radius: 12px; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--navy); line-height: 1.8; background: var(--white); }
@@ -136,34 +137,30 @@
 </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-inner">
-            <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/duty/">Duty Calculator</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <article>
+<nav>
+<div class="nav-inner">
+<a class="nav-logo" href="/">Attahir<span>Labs</span></a>
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="/duty/">Duty Calculator</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+</div>
+</nav>
+<article>
 <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / WCAG Accessibility Guide</div>
 <div class="meta">
 <span class="tag">Accessibility</span>
 <span class="tag">Compliance</span>
             Published March 25, 2026 · Updated March 25, 2026 · 12 min read
         </div>
-<h1>WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does</h1>
-<p class="lead">You've probably seen the ads: "Add our widget and you're ADA compliant." If you run a Shopify store or any ecommerce site, that pitch is everywhere. It's also wrong — and courts have started spelling that out explicitly. Here's what actually matters for WCAG compliance, why overlays are a waste of money, and what genuinely reduces your legal exposure.</p>
-<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-<picture>
-<source srcset="/assets/blog/wcag-accessibility-guide/hero.webp" type="image/webp"/>
-<img alt="WCAG ecommerce blocker map for WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does, showing navigation, image, form, and checkout issues that need real fixes instead of overlay shortcuts" decoding="async" fetchpriority="high" height="864" src="/assets/blog/wcag-accessibility-guide/hero.jpg" width="1536"/>
-</picture>
-<figcaption>Real ecommerce accessibility work maps blocker paths in navigation, images, forms, and checkout instead of relying on overlay shortcuts.</figcaption>
+<h1>WCAG Accessibility for Ecommerce: Why Overlay Widgets Don't Work and What Actually Does</h1><figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+<img alt="Editorial photo of an ecommerce accessibility audit desk with a blurred product page, checklist, contrast swatches, keyboard keys, and headphones." decoding="async" fetchpriority="high" height="2160" src="/assets/blog/wcag-accessibility-guide/hero.jpg" width="3840"/>
+<figcaption>Real accessibility comes from fixing product pages, contrast, alt text, keyboard paths, and HTML structure — not hiding problems behind overlays.</figcaption>
 </figure>
+<p class="lead">You've probably seen the ads: "Add our widget and you're ADA compliant." If you run a Shopify store or any ecommerce site, that pitch is everywhere. It's also wrong — and courts have started spelling that out explicitly. Here's what actually matters for WCAG compliance, why overlays are a waste of money, and what genuinely reduces your legal exposure.</p>
+
 <div class="toc">
 <h3>In this guide</h3>
 <ul>
@@ -439,7 +436,6 @@
 <strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal or accessibility advice. Accessibility requirements vary by jurisdiction and use case. Consult with legal counsel about your specific compliance obligations. Regulatory standards and court precedents evolve — check official sources like the W3C and US Department of Justice for the latest guidance. Information accurate as of March 25, 2026.
         </p>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.tpgi.com/color-contrast-checker/" rel="noopener" target="_blank">TPGI Contrast Checker</a></li><li id="ref-2"><a href="https://www.alt-text-generator.com/" rel="noopener" target="_blank">Alt Text Generator</a></li><li id="ref-3"><a href="https://www.siteimprove.com/" rel="noopener" target="_blank">Siteimprove</a></li><li id="ref-4"><a href="https://wave.webaim.org/" rel="noopener" target="_blank">wave.webaim.org</a></li><li id="ref-5"><a href="https://www.deque.com/axe/devtools/" rel="noopener" target="_blank">axe DevTools extension</a></li><li id="ref-6"><a href="https://www.nvaccess.org/" rel="noopener" target="_blank">nvaccess.org</a></li><li id="ref-7"><a href="https://www.usablenet.com/research/2024-ada-remediation-report" rel="noopener" target="_blank">UsableNet: 2024 ADA Remediation Report</a></li><li id="ref-8"><a href="https://www.w3.org/WAI/WCAG21/quickref/" rel="noopener" target="_blank">W3C: WCAG 2.1 Quick Reference</a></li><li id="ref-9"><a href="https://webaim.org/" rel="noopener" target="_blank">WebAIM: Web Accessibility Resources</a></li><li id="ref-10"><a href="https://www.nfb.org/" rel="noopener" target="_blank">National Federation of the Blind: Statement on Accessibility Overlays</a></li><li id="ref-11"><a href="https://ec.europa.eu/info/policies/digital-europe/european-accessibility-act_en" rel="noopener" target="_blank">European Accessibility Act (EAA) Official Details</a></li><li id="ref-12"><a href="https://www.ontario.ca/page/accessibility-ontarians-disabilities-act" rel="noopener" target="_blank">AODA: Accessibility for Ontarians with Disabilities Act</a></li><li>Lainey v. Uber Technologies, Inc. (N.D. Cal. 2024), National Federation of the Blind statement on accessibility overlays (2023).</li></ol></section></article>
-
-    <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
+<footer>© 2026 Attahir Labs. All rights reserved.</footer>
 </body>
 </html>
