@@ -173,6 +173,14 @@
             table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
             th, td { padding: 0.5rem; }
         }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -189,362 +197,286 @@
     </nav>
 
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Canada Surtax on Chinese Goods 2026</div>
-
-        <div class="meta">
-            <span class="tag">Canada Trade</span>
-            <span class="tag">Surtax</span>
-            <span class="tag">Shopify Merchants</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Canada Surtax on Chinese Goods 2026</div>
+<div class="meta">
+<span class="tag">Canada Trade</span>
+<span class="tag">Surtax</span>
+<span class="tag">Shopify Merchants</span>
             Published April 14, 2026 · Updated April 26, 2026 · 12 min read
         </div>
-
-        <h1>Canada Surtax on Chinese Goods 2026: What Importers and Shopify Merchants Must Know</h1>
-
-        <p class="lead">Canada still has significant China-linked import measures in force in 2026, especially 25% surtaxes on covered steel and aluminum goods. But one part of the regime changed materially on March 1, 2026: the flat 100% surtax on Chinese EVs was repealed and replaced by an import quota framework now under consultation for longer-term administration. This refreshed guide focuses on what is currently in force, what changed, and what Shopify merchants should re-check before setting prices or margins.</p>
-
-        <figure class="post-figure">
-            <picture>
-                <source srcset="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.webp" type="image/webp">
-                <img src="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg" width="1536" height="864" alt="Illustrated Canada-China import surtax cost card showing value for duty, MFN duty, surtax scope checks, and landed cost inputs for ecommerce merchants" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>Canada's China-linked surtaxes are not just a customs footnote. For selected covered goods, they can change product margin before inventory even reaches the warehouse.</figcaption>
-        </figure>
-
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#background">Background: Why Canada introduced these surtaxes</a></li>
-                <li><a href="#current-rates">Current surtax rates by product category (2026)</a></li>
-                <li><a href="#ev-trq">Electric vehicles: From 100% surtax to tariff-rate quota</a></li>
-                <li><a href="#steel-aluminum">Steel and aluminum: The 25% surtax and its layers</a></li>
-                <li><a href="#horizon">What's on the horizon: Batteries, solar, semiconductors</a></li>
-                <li><a href="#stacking">How surtaxes stack with regular import duties</a></li>
-                <li><a href="#remission">Remission programs and duty relief</a></li>
-                <li><a href="#shopify-impact">Impact on Shopify and e-commerce merchants</a></li>
-                <li><a href="#landed-cost">How to calculate your total landed cost</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#sources">Sources</a></li>
-            </ul>
-        </div>
-
-        <h2 id="background">Background: Why Canada Introduced These Surtaxes</h2>
-
-        <p>Canada's surtax regime targeting Chinese goods did not emerge in a vacuum. Beginning in mid-2024, the Government of Canada announced a series of targeted surtaxes in direct response to what it characterized as unfair trade practices — specifically the use of state subsidies to flood global markets with underpriced goods.</p>
-
-        <p>The measures align closely with U.S. actions under Section 301 of the Trade Act of 1974 and reflect a broader G7 consensus that Chinese state subsidies in the manufacturing sector distort competition in strategic industries. Canada's approach, however, is implemented through Orders-in-Council rather than through Section 301-style legislative authority, meaning the surtaxes are imposed at the executive level and administered by the Canada Border Services Agency (CBSA).</p>
-
-        <p>The stated policy goals are threefold:</p>
-        <ol>
-            <li><strong>Protect Canadian workers</strong> in steel, aluminum, and emerging clean-technology sectors</li>
-            <li><strong>Level the playing field</strong> for domestic manufacturers against artificially cheap Chinese imports</li>
-            <li><strong>Align with allied nations</strong> — particularly the United States, the European Union, and the United Kingdom — who have enacted similar protective measures</li>
-        </ol>
-
-        <p>For importers and Shopify merchants sourcing products from China, the practical result is higher landed costs, more complex customs declarations, and heightened compliance obligations.</p>
-
-        <h2 id="current-rates">Current Surtax Rates by Product Category (2026)</h2>
-
-        <p>As of April 26, 2026, the following China-linked surtax or quota regimes are in force or actively governing imports under current Canadian notices and consultation materials:</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Product Category</th>
-                    <th>Surtax Rate</th>
-                    <th>Effective Date</th>
-                    <th>Legal Authority</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Steel and aluminum goods (Chinese origin)</td>
-                    <td><strong>25%</strong></td>
-                    <td>October 22, 2024</td>
-                    <td>China Surtax Order (2024)</td>
-                </tr>
-                <tr>
-                    <td>Steel outside tariff-rate quotas (non-CUSMA countries)</td>
-                    <td><strong>50%</strong></td>
-                    <td>June 27, 2025; amended August 1 and December 26, 2025</td>
-                    <td>Order Imposing a Surtax on the Importation of Certain Steel Goods / CBSA CN25-24</td>
-                </tr>
-                <tr>
-                    <td>Steel derivative goods (certain commercial imports)</td>
-                    <td><strong>25%</strong></td>
-                    <td>December 26, 2025</td>
-                    <td>Steel Derivative Goods Surtax Order / CBSA CN25-33</td>
-                </tr>
-                <tr>
-                    <td>Electric vehicles from China (with required GAC import permit)</td>
-                    <td><strong>6.1% MFN; 100% surtax repealed</strong></td>
-                    <td>March 1, 2026</td>
-                    <td>CBSA CN24-32 update + GAC Notice to Importers No. 1162</td>
-                </tr>
-                <tr>
-                    <td>Electric vehicles from China (without shipment-specific permit)</td>
-                    <td><strong>Import prohibited</strong></td>
-                    <td>March 1, 2026</td>
-                    <td>GAC Notice to Importers No. 1162; consultation open Apr. 7–May 1, 2026</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="cta-box">
-            <h3>Before you price the next shipment</h3>
-            <p><strong>TariffShield</strong> helps merchants sanity-check duty exposure before a product lands — useful when a China-origin SKU may be subject to a surtax, TRQ permit, remission code, or updated CBSA notice.</p>
-            <a href="https://attahirlabs.com/duty/">Check a landed-cost scenario →</a>
-        </div>
-
-        <div class="callout">
-            <p><strong>Important note on precedence:</strong> CBSA notices now make the non-stacking rule explicit for steel measures. When multiple steel surtax orders could apply, only one applies. The stated order of precedence puts the general steel TRQ surtax first, then U.S./China/non-U.S. China-melted-and-poured measures, then steel derivative products. For non-steel categories, verify the specific order or notice rather than assuming one surtax can be layered on top of another.</p>
-        </div>
-
-        <h2 id="ev-trq">Electric Vehicles: From 100% Surtax to Tariff-Rate Quota</h2>
-
-        <p>The 100% surtax on Chinese-made electric vehicles — announced August 26, 2024 and effective October 1, 2024 — was one of Canada's most aggressive recent trade measures. It applied on top of the standard 6.1% MFN tariff and sharply raised the landed cost of importing EVs manufactured in China.</p>
-
-        <p><strong>The March 2026 pivot:</strong> official Canadian guidance now shows a different structure. CBSA's updated Customs Notice 24-32 states that, effective March 1, 2026, the amendment to the China Surtax Order repealed the EV surtax provisions, so these imports are <strong>no longer subject to the 100% surtax</strong>. Separately, Global Affairs Canada Notice to Importers No. 1162 says a <strong>shipment-specific import permit is required</strong> for covered EVs, permit-free imports are prohibited, and eligible EVs imported under the quota are assessed at the 6.1% MFN rate. Global Affairs Canada also opened an April 7–May 1, 2026 consultation on the longer-term quota allocation method.</p>
-
-        <ul>
-            <li><strong>Current tariff treatment:</strong> 6.1% Most-Favoured-Nation (MFN) tariff applies; the 100% surtax was repealed effective March 1, 2026 per CBSA's updated notice</li>
-            <li><strong>Current market-access control:</strong> quota-based administration now governs EV imports from China, and covered shipments need a GAC permit</li>
-            <li><strong>Initial quota volume:</strong> 49,000 vehicles for the first year; 24,500 vehicles are available during the first six months on a first-come, first-served basis</li>
-            <li><strong>Next policy milestone:</strong> Canada is consulting until May 1, 2026 on a longer-term allocation method expected to begin September 1, 2026</li>
-        </ul>
-
-        <p>That means importers should stop relying on older summaries that still describe a flat 100% EV surtax as the live rule. The right question in late April 2026 is not just "what tariff rate applies?" but also "how is the quota being administered, and do I have documentary support for eligibility and timing?"</p>
-
-        <div class="callout callout-warn">
-            <p><strong>What this means for importers:</strong> the EV story is now a moving-target compliance issue rather than a simple fixed surtax. Verify both the current tariff treatment and the live quota-administration rules before pricing inventory, signing purchase orders, or promising delivery windows.</p>
-        </div>
-
-        <h2 id="steel-aluminum">Steel and Aluminum: The 25% Surtax and Its Layers</h2>
-
-        <p>The 25% surtax on Chinese steel and aluminum (effective October 22, 2024, under the China Surtax Order 2024) applies to goods classified in Schedule 2 of that Order. This covers a broad range of products including:</p>
-
-        <ul>
-            <li>Hot-rolled and cold-rolled steel sheet and strip</li>
-            <li>Galvanized and coated steel products</li>
-            <li>Stainless steel products</li>
-            <li>Aluminum sheet, plate, and extrusions</li>
-            <li>Wire and wire products of steel or aluminum</li>
-        </ul>
-
-        <p>The surtax is calculated on the <strong>value for duty (VFD)</strong> of the imported goods — not on the duty-included value. So if you import $10,000 worth of Chinese aluminum extrusions, you owe $2,500 in surtax on top of any applicable MFN duties.</p>
-
-        <p><strong>Additional steel layers in 2025–2026:</strong></p>
-        <p>Canada did not stop at a single steel measure. A cascade of additional orders followed:</p>
-
-        <ol>
-            <li><strong>Steel Goods and Aluminum Goods Surtax Order (CN25-28):</strong> Introduced a 25% surtax on steel goods with Chinese melted-and-poured provenance — effectively targeting transshipment through third countries. If steel was melted and poured in China, the surtax applies regardless of where the final product was manufactured.</li>
-            <li><strong>Steel Derivative Goods Surtax Order (CN25-33):</strong> Effective December 26, 2025, extended 25% surtax coverage to certain commercial steel derivative goods. CBSA explicitly says this measure is non-stackable with the China Surtax Order, U.S. steel/aluminum surtax, general steel TRQ surtax, and Steel Goods and Aluminum Goods Surtax Order.</li>
-            <li><strong>General Steel TRQ Surtax (CN25-24):</strong> A 50% surtax applies to specified steel goods from countries other than Canada, the U.S., or Mexico when imports exceed TRQ limits or arrive without a valid shipment-specific permit. CN25-24 was first effective June 27, 2025 and was amended on August 1 and December 26, 2025.</li>
-        </ol>
-
-        <div class="callout callout-warn">
-            <p><strong>Remission note:</strong> China surtax remission is now highly item-specific. CBSA Customs Notice 25-05 was updated April 8, 2026 and lists multiple special authorization codes with different eligibility windows — some expired in 2025 or early 2026, while others run to July 31 or December 31, 2026. Do not assume an old remission still applies; verify the exact schedule item, importer, tariff item, import period, and special authorization code before accounting.</p>
-        </div>
-
-        <h2 id="horizon">What's on the Horizon: Batteries, Solar, Semiconductors</h2>
-
-        <p>Canada has also signalled continued willingness to expand trade measures into additional strategic categories. The areas most often discussed in prior government communications include:</p>
-
-        <ul>
-            <li><strong>Batteries and battery parts</strong> (including lithium-ion battery cells and packs)</li>
-            <li><strong>Solar products</strong> (panels, inverters, mounting hardware)</li>
-            <li><strong>Semiconductors and microelectronics</strong></li>
-            <li><strong>Critical mineral products</strong> (processed rare earths, lithium compounds, cobalt products)</li>
-        </ul>
-
-        <p>As of April 26, 2026, this article has not identified a current CBSA surtax notice putting those additional categories into force. Merchants sourcing any of these categories from China should treat them as watch-list items rather than live surtax categories until a specific Canadian notice or order is published.</p>
-
-        <p>The risk is not hypothetical. The U.S. has already enacted steep Section 301 tariffs on Chinese solar panels (50%) and batteries (25% rising to higher levels), and Canada has historically aligned its trade measures with U.S. equivalents.</p>
-
-        <h2 id="stacking">How Surtaxes Stack With Regular Import Duties</h2>
-
-        <p>Canada's surtaxes are imposed <em>in addition to</em> regular MFN import duties under the Customs Tariff. They do not replace standard duties — they layer on top.</p>
-
-        <div class="tariff-stack-visual" role="img" aria-label="Diagram showing value for duty, MFN duty, Canada China surtax, GST or HST, and brokerage combining into total landed cost">
-            <div class="tariff-stack-kicker">Attahir Labs · TariffShield</div>
-            <h3>Canada China surtax stack</h3>
-            <p>Regular duty does not disappear. The surtax layers on top of the import-cost math.</p>
-            <div class="tariff-stack-grid">
-                <div class="tariff-step">
-                    <span class="tariff-step-number">Step 1</span>
-                    <span class="tariff-step-title">Value for duty</span>
-                    <span class="tariff-step-detail">Invoice value, freight, and insurance where applicable.</span>
-                </div>
-                <div class="tariff-step">
-                    <span class="tariff-step-number">Step 2</span>
-                    <span class="tariff-step-title">MFN duty</span>
-                    <span class="tariff-step-detail">The regular customs duty for the HS code.</span>
-                </div>
-                <div class="tariff-step">
-                    <span class="tariff-step-number">Step 3</span>
-                    <span class="tariff-step-title">China surtax</span>
-                    <span class="tariff-step-detail">Often 25% for covered steel or aluminum goods.</span>
-                </div>
-                <div class="tariff-step">
-                    <span class="tariff-step-number">Step 4</span>
-                    <span class="tariff-step-title">Tax and fees</span>
-                    <span class="tariff-step-detail">GST/HST, brokerage, permits, and other landed-cost friction.</span>
-                </div>
-            </div>
-            <div class="tariff-total">Total landed cost = <span>product cost + duty + surtax + tax + fees</span></div>
-        </div>
-
-        <p><strong>Example calculation — Chinese steel angle bar:</strong></p>
-
-        <table>
-            <thead><tr><th>Component</th><th>Rate</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Value for Duty</td><td>—</td><td>$5,000</td></tr>
-                <tr><td>MFN Duty (HS 7216.31)</td><td>0%</td><td>$0</td></tr>
-                <tr><td>China Surtax (Steel)</td><td>25%</td><td>$1,250</td></tr>
-                <tr><td><strong>Total Payable</strong></td><td></td><td><strong>$6,250</strong></td></tr>
-            </tbody>
-        </table>
-
-        <p><strong>Example calculation — Chinese aluminum extrusion:</strong></p>
-
-        <table>
-            <thead><tr><th>Component</th><th>Rate</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Value for Duty</td><td>—</td><td>$8,000</td></tr>
-                <tr><td>MFN Duty (HS 7604.10)</td><td>6%</td><td>$480</td></tr>
-                <tr><td>China Surtax (Aluminum)</td><td>25%</td><td>$2,000</td></tr>
-                <tr><td><strong>Total Payable</strong></td><td></td><td><strong>$10,480</strong></td></tr>
-            </tbody>
-        </table>
-
-        <p><strong>Key point:</strong> The surtax is always calculated on the value for duty, not on the duty-included price. This is consistent with how Canada applies most ad valorem surtaxes under the Customs Act.</p>
-
-        <p>For goods subject to multiple surtax orders (e.g., Chinese melted-and-poured steel arriving via a third country), the CBSA's precedence rules determine which single surtax applies. You cannot be charged two surtaxes simultaneously for the same underlying measure — but you can be charged a regular duty <em>plus</em> one surtax.</p>
-
-        <h2 id="remission">Remission Programs and Duty Relief</h2>
-
-        <p>Despite the tightening regime, several relief mechanisms remain available:</p>
-
-        <p><strong>Duties Relief Program:</strong> Available for goods that are imported, processed or used in Canada, and then exported. Steel and aluminum inputs that go into manufactured goods subsequently exported may qualify for surtax relief through the CBSA's Duties Relief Program. Applications are processed through CARM (CBSA Assessment and Revenue Management system).</p>
-
-        <p><strong>Duty Drawback:</strong> Importers who have paid surtax on goods later exported from Canada can claim a refund under the Duty Drawback program, subject to CUSMA provisions.</p>
-
-        <p><strong>China Surtax Remission Orders:</strong> A series of temporary remission orders have provided targeted relief for specific industries — for example, certain solar racking components, specialized manufacturing inputs, and infrastructure projects. These orders have narrow eligibility criteria, time-limited periods, and require documentation of prior supply chain commitments. Importantly, the remission order covering steel used in food/beverage packaging <strong>expired February 1, 2026.</strong></p>
-
-        <div class="callout">
-            <p><strong>Practical advice:</strong> If you believe your goods may qualify for remission, work with a licensed customs broker or trade counsel before filing your B3 entry. Retroactive remission claims are possible but administratively complex — it's better to identify eligibility upfront.</p>
-        </div>
-
-        <h2 id="shopify-impact">Impact on Shopify and E-Commerce Merchants</h2>
-
-        <p>For Shopify merchants who source from China, Canada's surtax regime creates three distinct pressure points:</p>
-
-        <h3>Product Cost Increases</h3>
-
-        <p>A 25% surtax on steel components means that a product with $3 worth of Chinese steel in it could carry $0.75+ in additional duty liability that many merchants haven't priced in. If you're selling kitchen tools, hardware, electronics enclosures, or fitness equipment, you almost certainly have affected inputs.</p>
-
-        <h3>HS Code Classification Matters More Than Ever</h3>
-
-        <p>The applicability of Canada's China surtaxes depends entirely on HS code classification. Products misclassified into the wrong tariff item might inadvertently <em>avoid</em> a surtax (an audit risk) or get hit with a higher one than necessary (a cost risk). With multiple overlapping surtax orders — each with its own schedule of HS codes — getting classification right is no longer optional.</p>
-
-        <h3>Country-of-Origin Documentation</h3>
-
-        <p>The surtax applies to goods that <em>originate</em> in China, determined under the Marking Goods (Non-CUSMA Countries) Regulations. Goods transshipped through Vietnam, Mexico, or Malaysia and claimed as originating there must genuinely undergo substantial transformation in those countries. The CBSA has increased scrutiny of country-of-origin claims since 2024, and goods that are merely repackaged or assembled using Chinese components with no substantial transformation will still be treated as Chinese-origin.</p>
-
-        <p>For merchants using drop-shipping suppliers or overseas 3PLs, this is a significant compliance risk. The onus is on the importer of record to have documentation supporting origin claims.</p>
-
-        <h3>Competitive Dynamics</h3>
-
-        <p>Merchants who have already shifted sourcing to Vietnam, Bangladesh, India, or Mexico are at a structural cost advantage over those still primarily sourcing from China. The surtax regime can add 25–50 percentage points to covered steel and aluminum costs, while the EV regime now creates quota and permit risk instead of a flat 100% surtax. Either way, thin-margin merchants cannot treat China-origin exposure as a rounding error.</p>
-
-        <h2 id="landed-cost">How to Calculate Your Total Landed Cost</h2>
-
-        <p>Total landed cost (TLC) for Canadian imports from China is calculated as follows:</p>
-
-        <div class="formula-box">
-            <div class="formula-label">Canada China Import — Total Landed Cost Formula</div>
-            <div>Product Cost + Freight + Insurance</div>
-            <div>+ MFN Duty (on value for duty)</div>
-            <div>+ China Surtax (on value for duty)</div>
-            <div>+ GST/HST (on [value for duty + duties + surtaxes])</div>
-            <div>+ Brokerage + Other Fees</div>
-            <div class="formula-result">= Total Landed Cost</div>
-        </div>
-
-        <p><strong>Worked example — Chinese stainless steel cookware:</strong></p>
-
-        <p class="source">Verification note: refreshed April 26, 2026 against CBSA Customs Notices 24-36, 24-32, 25-05, 25-24, 25-28, 25-33, plus Global Affairs Canada Notice to Importers No. 1162 and the April 7, 2026 EV quota consultation page.</p>
-
-        <table>
-            <thead><tr><th>Line Item</th><th>Calculation</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Value for Duty (VFD)</td><td>Invoice + freight</td><td>$4,000</td></tr>
-                <tr><td>MFN Duty @ 0%</td><td>HS 7323.93</td><td>$0</td></tr>
-                <tr><td>China Surtax @ 25%</td><td>25% × $4,000</td><td>$1,000</td></tr>
-                <tr><td>GST @ 5%</td><td>5% × ($4,000 + $0 + $1,000)</td><td>$250</td></tr>
-                <tr><td>Brokerage</td><td>Flat fee estimate</td><td>$150</td></tr>
-                <tr><td><strong>Total Landed Cost</strong></td><td></td><td><strong>$5,400</strong></td></tr>
-                <tr><td><strong>Effective rate over invoice</strong></td><td></td><td><strong>+35%</strong></td></tr>
-            </tbody>
-        </table>
-
-        <p>This kind of calculation needs to be run for every SKU, every shipment, every season — not just once. Rates can change with new Orders-in-Council, HS code reclassifications, or quota fills. Manual spreadsheets break down quickly at scale.</p>
-
-        <div class="cta-box">
-            <h3>Automate your landed cost calculations</h3>
-            <p><strong>TariffShield</strong> helps merchants sanity-check landed cost assumptions, compare duty exposure across products, and spot where China-origin measures or classification changes may be eating into margin before the next shipment lands.</p>
-            <a href="https://attahirlabs.com/duty/">Try the Free Duty Calculator →</a>
-        </div>
-
-        <div class="faq" id="faq">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: Does the Canada China surtax apply to goods shipped from the U.S. but made in China?</div>
-                <div class="faq-a">Yes. The China Surtax Order applies based on <em>origin</em>, not shipping country. If goods originate in China under Canada's Non-CUSMA Country of Origin Regulations — meaning China is where the goods were grown, extracted, or last substantially transformed — the surtax applies regardless of whether they are shipped directly from China, transshipped via the U.S., or re-exported from a bonded warehouse in a third country. The CBSA can and does verify origin through supplier documentation requests.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: I sell consumer goods on Shopify. Does the 25% steel surtax affect me if my products just contain some steel?</div>
-                <div class="faq-a">It depends on how your product is classified. The original 25% steel surtax under the China Surtax Order (2024) applies to goods in Schedule 2 — primarily steel and aluminum mill products, not every finished consumer product containing metal. However, the <strong>Steel Derivative Goods Surtax Order</strong> (CN25-33, effective December 26, 2025) added a separate 25% surtax on certain commercial steel derivative goods. If your product's HS code appears in the schedule of that order, you may owe the surtax even if you are selling a finished product rather than raw steel. Always verify your specific HS codes and any non-stacking exceptions against CBSA's published schedules.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: Are there any exemptions for small importers or small shipments?</div>
-                <div class="faq-a">There is no de minimis exemption from the China surtax. Canada's de minimis threshold for duties and taxes is CAD $40 for courier/postal imports, but surtaxes under Orders-in-Council are not subject to the same threshold. Both commercial and personal importations are covered — the CBSA explicitly addresses this in Customs Notice 24-36 (paragraph 8). For B2C Shopify orders shipped directly to Canadian consumers from China, the surtax should be collected at the border.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: What happened to the 100% EV surtax? Is it completely gone?</div>
-                <div class="faq-a">CBSA's updated Customs Notice 24-32 says that effective March 1, 2026, the amendment to the China Surtax Order repealed the EV surtax provisions, so imports are no longer subject to the 100% surtax. But that does <em>not</em> mean EV imports from China are frictionless: Global Affairs Canada Notice to Importers No. 1162 says covered EVs need a shipment-specific import permit, eligible imports under the quota are assessed at the 6.1% MFN tariff rate, and imports not accompanied by a permit are prohibited. So the 100% surtax is gone, but quota and permit administration is now the key operational issue.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: Can I claim back surtax I've already paid if I export the goods?</div>
-                <div class="faq-a">Yes, in many cases. Canada's Duty Drawback Program allows importers to claim a refund of duties and surtaxes paid on goods that are subsequently exported from Canada. The claim must be filed within four years of the date of import, and you must have documentation linking the exported goods to the original import entry. For goods used in manufacturing (inputs that become part of an exported finished product), the Duties Relief Program may be a better fit — it provides an upfront exemption rather than a retroactive claim.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">Q: Is the Canada surtax on Chinese goods permanent?</div>
-                <div class="faq-a">No. These measures are policy tools created through specific notices and orders, and they can be amended, replaced, or extended. The EV surtax is the clearest example: Canada changed that regime on March 1, 2026. Steel-related measures are still live, but importers should treat every major China-linked surtax as something that needs periodic re-verification rather than assuming last quarter's summary is still correct.</div>
-            </div>
-        </div>
-
-        <h2 id="sources">Sources</h2>
-        <ul>
-            <li class="source">Canada Border Services Agency. <em>Customs Notice 24-36: China Surtax Order (2024) – Steel and Aluminum.</em> <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-36-eng.html">cbsa-asfc.gc.ca</a></li>
-            <li class="source">Canada Border Services Agency. <em>Customs Notice 24-32: China Surtax Order (2024) – Electric Vehicles.</em> <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-32-eng.html">cbsa-asfc.gc.ca</a></li>
-            <li class="source">Canada Border Services Agency. <em>Customs Notice 25-33: Steel Derivative Goods Surtax Order.</em> <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-33-eng.html">cbsa-asfc.gc.ca</a></li>
-            <li class="source">Canada Border Services Agency. <em>Customs Notice 25-28: Steel Goods and Aluminum Goods Surtax Order.</em> <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-28-eng.html">cbsa-asfc.gc.ca</a></li>
-            <li class="source">Canada Border Services Agency. <em>Customs Notice 25-24: Order Imposing a Surtax on the Importation of Certain Steel Goods (SOR/2025-155).</em> <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-24-eng.html">cbsa-asfc.gc.ca</a></li>
-            <li class="source">Global Affairs Canada. <em>Share your views: Canada's allocation and administration of the import quota for electric vehicles from China.</em> April 7, 2026. <a href="https://international.canada.ca/en/global-affairs/consultations/trade/2026-04-07-electric-vehicules">international.canada.ca</a></li>
-            <li class="source">Determination of Country of Origin for the Purposes of Marking Goods (Non-CUSMA Countries) Regulations (SOR/94-16). <a href="https://laws-lois.justice.gc.ca/eng/regulations/SOR-94-16/index.html">laws-lois.justice.gc.ca</a></li>
-        </ul>
-
-        <div class="callout callout-success">
-            <p><strong>Disclaimer:</strong> This article is provided for general informational and educational purposes only and does not constitute legal, customs, or tax advice. Surtax rates, schedules, and applicable categories are set by Orders-in-Council and are subject to change without advance notice by the Government of Canada. The information in this article was accurate as of the publication date (April 14, 2026) but may not reflect subsequent amendments. Importers and merchants are strongly encouraged to consult with a licensed Canadian customs broker, trade lawyer, or qualified tax professional before making sourcing, pricing, or compliance decisions based on the information herein. TariffShield and Attahir Labs Inc. are not responsible for any losses, penalties, or compliance failures arising from reliance on this article.</p>
-        </div>
-    </article>
+<h1>Canada Surtax on Chinese Goods 2026: What Importers and Shopify Merchants Must Know</h1>
+<p class="lead">Canada still has significant China-linked import measures in force in 2026, especially 25% surtaxes on covered steel and aluminum goods. But one part of the regime changed materially on March 1, 2026: the flat 100% surtax on Chinese EVs was repealed and replaced by an import quota framework now under consultation for longer-term administration. This refreshed guide focuses on what is currently in force, what changed, and what Shopify merchants should re-check before setting prices or margins.</p>
+<figure class="post-figure">
+<picture>
+<source srcset="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.webp" type="image/webp"/>
+<img alt="Illustrated Canada-China import surtax cost card showing value for duty, MFN duty, surtax scope checks, and landed cost inputs for ecommerce merchants" decoding="async" fetchpriority="high" height="864" src="/assets/blog/canada-surtax-on-chinese-goods-2026/hero.jpg" width="1536"/>
+</picture>
+<figcaption>Canada's China-linked surtaxes are not just a customs footnote. For selected covered goods, they can change product margin before inventory even reaches the warehouse.</figcaption>
+</figure>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#background">Background: Why Canada introduced these surtaxes</a></li>
+<li><a href="#current-rates">Current surtax rates by product category (2026)</a></li>
+<li><a href="#ev-trq">Electric vehicles: From 100% surtax to tariff-rate quota</a></li>
+<li><a href="#steel-aluminum">Steel and aluminum: The 25% surtax and its layers</a></li>
+<li><a href="#horizon">What's on the horizon: Batteries, solar, semiconductors</a></li>
+<li><a href="#stacking">How surtaxes stack with regular import duties</a></li>
+<li><a href="#remission">Remission programs and duty relief</a></li>
+<li><a href="#shopify-impact">Impact on Shopify and e-commerce merchants</a></li>
+<li><a href="#landed-cost">How to calculate your total landed cost</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#sources">Sources</a></li>
+</ul>
+</div>
+<h2 id="background">Background: Why Canada Introduced These Surtaxes</h2>
+<p>Canada's surtax regime targeting Chinese goods did not emerge in a vacuum. Beginning in mid-2024, the Government of Canada announced a series of targeted surtaxes in direct response to what it characterized as unfair trade practices — specifically the use of state subsidies to flood global markets with underpriced goods.</p>
+<p>The measures align closely with U.S. actions under Section 301 of the Trade Act of 1974 and reflect a broader G7 consensus that Chinese state subsidies in the manufacturing sector distort competition in strategic industries. Canada's approach, however, is implemented through Orders-in-Council rather than through Section 301-style legislative authority, meaning the surtaxes are imposed at the executive level and administered by the Canada Border Services Agency (CBSA).</p>
+<p>The stated policy goals are threefold:</p>
+<ol>
+<li><strong>Protect Canadian workers</strong> in steel, aluminum, and emerging clean-technology sectors</li>
+<li><strong>Level the playing field</strong> for domestic manufacturers against artificially cheap Chinese imports</li>
+<li><strong>Align with allied nations</strong> — particularly the United States, the European Union, and the United Kingdom — who have enacted similar protective measures</li>
+</ol>
+<p>For importers and Shopify merchants sourcing products from China, the practical result is higher landed costs, more complex customs declarations, and heightened compliance obligations.</p>
+<h2 id="current-rates">Current Surtax Rates by Product Category (2026)</h2>
+<p>As of April 26, 2026, the following China-linked surtax or quota regimes are in force or actively governing imports under current Canadian notices and consultation materials:</p>
+<table>
+<thead>
+<tr>
+<th>Product Category</th>
+<th>Surtax Rate</th>
+<th>Effective Date</th>
+<th>Legal Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Steel and aluminum goods (Chinese origin)</td>
+<td><strong>25%</strong></td>
+<td>October 22, 2024</td>
+<td>China Surtax Order (2024)</td>
+</tr>
+<tr>
+<td>Steel outside tariff-rate quotas (non-CUSMA countries)</td>
+<td><strong>50%</strong></td>
+<td>June 27, 2025; amended August 1 and December 26, 2025</td>
+<td>Order Imposing a Surtax on the Importation of Certain Steel Goods / CBSA CN25-24</td>
+</tr>
+<tr>
+<td>Steel derivative goods (certain commercial imports)</td>
+<td><strong>25%</strong></td>
+<td>December 26, 2025</td>
+<td>Steel Derivative Goods Surtax Order / CBSA CN25-33</td>
+</tr>
+<tr>
+<td>Electric vehicles from China (with required GAC import permit)</td>
+<td><strong>6.1% MFN; 100% surtax repealed</strong></td>
+<td>March 1, 2026</td>
+<td>CBSA CN24-32 update + GAC Notice to Importers No. 1162</td>
+</tr>
+<tr>
+<td>Electric vehicles from China (without shipment-specific permit)</td>
+<td><strong>Import prohibited</strong></td>
+<td>March 1, 2026</td>
+<td>GAC Notice to Importers No. 1162; consultation open Apr. 7–May 1, 2026</td>
+</tr>
+</tbody>
+</table>
+<div class="cta-box">
+<h3>Before you price the next shipment</h3>
+<p><strong>TariffShield</strong> helps merchants sanity-check duty exposure before a product lands — useful when a China-origin SKU may be subject to a surtax, TRQ permit, remission code, or updated CBSA notice.</p>
+<a href="https://attahirlabs.com/duty/">Check a landed-cost scenario →</a>
+</div>
+<div class="callout">
+<p><strong>Important note on precedence:</strong> CBSA notices now make the non-stacking rule explicit for steel measures. When multiple steel surtax orders could apply, only one applies. The stated order of precedence puts the general steel TRQ surtax first, then U.S./China/non-U.S. China-melted-and-poured measures, then steel derivative products. For non-steel categories, verify the specific order or notice rather than assuming one surtax can be layered on top of another.</p>
+</div>
+<h2 id="ev-trq">Electric Vehicles: From 100% Surtax to Tariff-Rate Quota</h2>
+<p>The 100% surtax on Chinese-made electric vehicles — announced August 26, 2024 and effective October 1, 2024 — was one of Canada's most aggressive recent trade measures. It applied on top of the standard 6.1% MFN tariff and sharply raised the landed cost of importing EVs manufactured in China.</p>
+<p><strong>The March 2026 pivot:</strong> official Canadian guidance now shows a different structure. CBSA's updated Customs Notice 24-32 states that, effective March 1, 2026, the amendment to the China Surtax Order repealed the EV surtax provisions, so these imports are <strong>no longer subject to the 100% surtax</strong>. Separately, Global Affairs Canada Notice to Importers No. 1162 says a <strong>shipment-specific import permit is required</strong> for covered EVs, permit-free imports are prohibited, and eligible EVs imported under the quota are assessed at the 6.1% MFN rate. Global Affairs Canada also opened an April 7–May 1, 2026 consultation on the longer-term quota allocation method.</p>
+<ul>
+<li><strong>Current tariff treatment:</strong> 6.1% Most-Favoured-Nation (MFN) tariff applies; the 100% surtax was repealed effective March 1, 2026 per CBSA's updated notice</li>
+<li><strong>Current market-access control:</strong> quota-based administration now governs EV imports from China, and covered shipments need a GAC permit</li>
+<li><strong>Initial quota volume:</strong> 49,000 vehicles for the first year; 24,500 vehicles are available during the first six months on a first-come, first-served basis</li>
+<li><strong>Next policy milestone:</strong> Canada is consulting until May 1, 2026 on a longer-term allocation method expected to begin September 1, 2026</li>
+</ul>
+<p>That means importers should stop relying on older summaries that still describe a flat 100% EV surtax as the live rule. The right question in late April 2026 is not just "what tariff rate applies?" but also "how is the quota being administered, and do I have documentary support for eligibility and timing?"</p>
+<div class="callout callout-warn">
+<p><strong>What this means for importers:</strong> the EV story is now a moving-target compliance issue rather than a simple fixed surtax. Verify both the current tariff treatment and the live quota-administration rules before pricing inventory, signing purchase orders, or promising delivery windows.</p>
+</div>
+<h2 id="steel-aluminum">Steel and Aluminum: The 25% Surtax and Its Layers</h2>
+<p>The 25% surtax on Chinese steel and aluminum (effective October 22, 2024, under the China Surtax Order 2024) applies to goods classified in Schedule 2 of that Order. This covers a broad range of products including:</p>
+<ul>
+<li>Hot-rolled and cold-rolled steel sheet and strip</li>
+<li>Galvanized and coated steel products</li>
+<li>Stainless steel products</li>
+<li>Aluminum sheet, plate, and extrusions</li>
+<li>Wire and wire products of steel or aluminum</li>
+</ul>
+<p>The surtax is calculated on the <strong>value for duty (VFD)</strong> of the imported goods — not on the duty-included value. So if you import $10,000 worth of Chinese aluminum extrusions, you owe $2,500 in surtax on top of any applicable MFN duties.</p>
+<p><strong>Additional steel layers in 2025–2026:</strong></p>
+<p>Canada did not stop at a single steel measure. A cascade of additional orders followed:</p>
+<ol>
+<li><strong>Steel Goods and Aluminum Goods Surtax Order (CN25-28):</strong> Introduced a 25% surtax on steel goods with Chinese melted-and-poured provenance — effectively targeting transshipment through third countries. If steel was melted and poured in China, the surtax applies regardless of where the final product was manufactured.</li>
+<li><strong>Steel Derivative Goods Surtax Order (CN25-33):</strong> Effective December 26, 2025, extended 25% surtax coverage to certain commercial steel derivative goods. CBSA explicitly says this measure is non-stackable with the China Surtax Order, U.S. steel/aluminum surtax, general steel TRQ surtax, and Steel Goods and Aluminum Goods Surtax Order.</li>
+<li><strong>General Steel TRQ Surtax (CN25-24):</strong> A 50% surtax applies to specified steel goods from countries other than Canada, the U.S., or Mexico when imports exceed TRQ limits or arrive without a valid shipment-specific permit. CN25-24 was first effective June 27, 2025 and was amended on August 1 and December 26, 2025.</li>
+</ol>
+<div class="callout callout-warn">
+<p><strong>Remission note:</strong> China surtax remission is now highly item-specific. CBSA Customs Notice 25-05 was updated April 8, 2026 and lists multiple special authorization codes with different eligibility windows — some expired in 2025 or early 2026, while others run to July 31 or December 31, 2026. Do not assume an old remission still applies; verify the exact schedule item, importer, tariff item, import period, and special authorization code before accounting.</p>
+</div>
+<h2 id="horizon">What's on the Horizon: Batteries, Solar, Semiconductors</h2>
+<p>Canada has also signalled continued willingness to expand trade measures into additional strategic categories. The areas most often discussed in prior government communications include:</p>
+<ul>
+<li><strong>Batteries and battery parts</strong> (including lithium-ion battery cells and packs)</li>
+<li><strong>Solar products</strong> (panels, inverters, mounting hardware)</li>
+<li><strong>Semiconductors and microelectronics</strong></li>
+<li><strong>Critical mineral products</strong> (processed rare earths, lithium compounds, cobalt products)</li>
+</ul>
+<p>As of April 26, 2026, this article has not identified a current CBSA surtax notice putting those additional categories into force. Merchants sourcing any of these categories from China should treat them as watch-list items rather than live surtax categories until a specific Canadian notice or order is published.</p>
+<p>The risk is not hypothetical. The U.S. has already enacted steep Section 301 tariffs on Chinese solar panels (50%) and batteries (25% rising to higher levels), and Canada has historically aligned its trade measures with U.S. equivalents.</p>
+<h2 id="stacking">How Surtaxes Stack With Regular Import Duties</h2>
+<p>Canada's surtaxes are imposed <em>in addition to</em> regular MFN import duties under the Customs Tariff. They do not replace standard duties — they layer on top.</p>
+<div aria-label="Diagram showing value for duty, MFN duty, Canada China surtax, GST or HST, and brokerage combining into total landed cost" class="tariff-stack-visual" role="img">
+<div class="tariff-stack-kicker">Attahir Labs · TariffShield</div>
+<h3>Canada China surtax stack</h3>
+<p>Regular duty does not disappear. The surtax layers on top of the import-cost math.</p>
+<div class="tariff-stack-grid">
+<div class="tariff-step">
+<span class="tariff-step-number">Step 1</span>
+<span class="tariff-step-title">Value for duty</span>
+<span class="tariff-step-detail">Invoice value, freight, and insurance where applicable.</span>
+</div>
+<div class="tariff-step">
+<span class="tariff-step-number">Step 2</span>
+<span class="tariff-step-title">MFN duty</span>
+<span class="tariff-step-detail">The regular customs duty for the HS code.</span>
+</div>
+<div class="tariff-step">
+<span class="tariff-step-number">Step 3</span>
+<span class="tariff-step-title">China surtax</span>
+<span class="tariff-step-detail">Often 25% for covered steel or aluminum goods.</span>
+</div>
+<div class="tariff-step">
+<span class="tariff-step-number">Step 4</span>
+<span class="tariff-step-title">Tax and fees</span>
+<span class="tariff-step-detail">GST/HST, brokerage, permits, and other landed-cost friction.</span>
+</div>
+</div>
+<div class="tariff-total">Total landed cost = <span>product cost + duty + surtax + tax + fees</span></div>
+</div>
+<p><strong>Example calculation — Chinese steel angle bar:</strong></p>
+<table>
+<thead><tr><th>Component</th><th>Rate</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Value for Duty</td><td>—</td><td>$5,000</td></tr>
+<tr><td>MFN Duty (HS 7216.31)</td><td>0%</td><td>$0</td></tr>
+<tr><td>China Surtax (Steel)</td><td>25%</td><td>$1,250</td></tr>
+<tr><td><strong>Total Payable</strong></td><td></td><td><strong>$6,250</strong></td></tr>
+</tbody>
+</table>
+<p><strong>Example calculation — Chinese aluminum extrusion:</strong></p>
+<table>
+<thead><tr><th>Component</th><th>Rate</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Value for Duty</td><td>—</td><td>$8,000</td></tr>
+<tr><td>MFN Duty (HS 7604.10)</td><td>6%</td><td>$480</td></tr>
+<tr><td>China Surtax (Aluminum)</td><td>25%</td><td>$2,000</td></tr>
+<tr><td><strong>Total Payable</strong></td><td></td><td><strong>$10,480</strong></td></tr>
+</tbody>
+</table>
+<p><strong>Key point:</strong> The surtax is always calculated on the value for duty, not on the duty-included price. This is consistent with how Canada applies most ad valorem surtaxes under the Customs Act.</p>
+<p>For goods subject to multiple surtax orders (e.g., Chinese melted-and-poured steel arriving via a third country), the CBSA's precedence rules determine which single surtax applies. You cannot be charged two surtaxes simultaneously for the same underlying measure — but you can be charged a regular duty <em>plus</em> one surtax.</p>
+<h2 id="remission">Remission Programs and Duty Relief</h2>
+<p>Despite the tightening regime, several relief mechanisms remain available:</p>
+<p><strong>Duties Relief Program:</strong> Available for goods that are imported, processed or used in Canada, and then exported. Steel and aluminum inputs that go into manufactured goods subsequently exported may qualify for surtax relief through the CBSA's Duties Relief Program. Applications are processed through CARM (CBSA Assessment and Revenue Management system).</p>
+<p><strong>Duty Drawback:</strong> Importers who have paid surtax on goods later exported from Canada can claim a refund under the Duty Drawback program, subject to CUSMA provisions.</p>
+<p><strong>China Surtax Remission Orders:</strong> A series of temporary remission orders have provided targeted relief for specific industries — for example, certain solar racking components, specialized manufacturing inputs, and infrastructure projects. These orders have narrow eligibility criteria, time-limited periods, and require documentation of prior supply chain commitments. Importantly, the remission order covering steel used in food/beverage packaging <strong>expired February 1, 2026.</strong></p>
+<div class="callout">
+<p><strong>Practical advice:</strong> If you believe your goods may qualify for remission, work with a licensed customs broker or trade counsel before filing your B3 entry. Retroactive remission claims are possible but administratively complex — it's better to identify eligibility upfront.</p>
+</div>
+<h2 id="shopify-impact">Impact on Shopify and E-Commerce Merchants</h2>
+<p>For Shopify merchants who source from China, Canada's surtax regime creates three distinct pressure points:</p>
+<h3>Product Cost Increases</h3>
+<p>A 25% surtax on steel components means that a product with $3 worth of Chinese steel in it could carry $0.75+ in additional duty liability that many merchants haven't priced in. If you're selling kitchen tools, hardware, electronics enclosures, or fitness equipment, you almost certainly have affected inputs.</p>
+<h3>HS Code Classification Matters More Than Ever</h3>
+<p>The applicability of Canada's China surtaxes depends entirely on HS code classification. Products misclassified into the wrong tariff item might inadvertently <em>avoid</em> a surtax (an audit risk) or get hit with a higher one than necessary (a cost risk). With multiple overlapping surtax orders — each with its own schedule of HS codes — getting classification right is no longer optional.</p>
+<h3>Country-of-Origin Documentation</h3>
+<p>The surtax applies to goods that <em>originate</em> in China, determined under the Marking Goods (Non-CUSMA Countries) Regulations. Goods transshipped through Vietnam, Mexico, or Malaysia and claimed as originating there must genuinely undergo substantial transformation in those countries. The CBSA has increased scrutiny of country-of-origin claims since 2024, and goods that are merely repackaged or assembled using Chinese components with no substantial transformation will still be treated as Chinese-origin.</p>
+<p>For merchants using drop-shipping suppliers or overseas 3PLs, this is a significant compliance risk. The onus is on the importer of record to have documentation supporting origin claims.</p>
+<h3>Competitive Dynamics</h3>
+<p>Merchants who have already shifted sourcing to Vietnam, Bangladesh, India, or Mexico are at a structural cost advantage over those still primarily sourcing from China. The surtax regime can add 25–50 percentage points to covered steel and aluminum costs, while the EV regime now creates quota and permit risk instead of a flat 100% surtax. Either way, thin-margin merchants cannot treat China-origin exposure as a rounding error.</p>
+<h2 id="landed-cost">How to Calculate Your Total Landed Cost</h2>
+<p>Total landed cost (TLC) for Canadian imports from China is calculated as follows:</p>
+<div class="formula-box">
+<div class="formula-label">Canada China Import — Total Landed Cost Formula</div>
+<div>Product Cost + Freight + Insurance</div>
+<div>+ MFN Duty (on value for duty)</div>
+<div>+ China Surtax (on value for duty)</div>
+<div>+ GST/HST (on [value for duty + duties + surtaxes])</div>
+<div>+ Brokerage + Other Fees</div>
+<div class="formula-result">= Total Landed Cost</div>
+</div>
+<p><strong>Worked example — Chinese stainless steel cookware:</strong></p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-36-eng.html" rel="noopener" target="_blank">cbsa-asfc.gc.ca</a></li><li id="ref-2"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-32-eng.html" rel="noopener" target="_blank">cbsa-asfc.gc.ca</a></li><li id="ref-3"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-33-eng.html" rel="noopener" target="_blank">cbsa-asfc.gc.ca</a></li><li id="ref-4"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-28-eng.html" rel="noopener" target="_blank">cbsa-asfc.gc.ca</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-24-eng.html" rel="noopener" target="_blank">cbsa-asfc.gc.ca</a></li><li id="ref-6"><a href="https://international.canada.ca/en/global-affairs/consultations/trade/2026-04-07-electric-vehicules" rel="noopener" target="_blank">international.canada.ca</a></li><li id="ref-7"><a href="https://laws-lois.justice.gc.ca/eng/regulations/SOR-94-16/index.html" rel="noopener" target="_blank">laws-lois.justice.gc.ca</a></li></ol></section><p class="source">Verification note: refreshed April 26, 2026 against CBSA Customs Notices 24-36, 24-32, 25-05, 25-24, 25-28, 25-33, plus Global Affairs Canada Notice to Importers No. 1162 and the April 7, 2026 EV quota consultation page.</p>
+<table>
+<thead><tr><th>Line Item</th><th>Calculation</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Value for Duty (VFD)</td><td>Invoice + freight</td><td>$4,000</td></tr>
+<tr><td>MFN Duty @ 0%</td><td>HS 7323.93</td><td>$0</td></tr>
+<tr><td>China Surtax @ 25%</td><td>25% × $4,000</td><td>$1,000</td></tr>
+<tr><td>GST @ 5%</td><td>5% × ($4,000 + $0 + $1,000)</td><td>$250</td></tr>
+<tr><td>Brokerage</td><td>Flat fee estimate</td><td>$150</td></tr>
+<tr><td><strong>Total Landed Cost</strong></td><td></td><td><strong>$5,400</strong></td></tr>
+<tr><td><strong>Effective rate over invoice</strong></td><td></td><td><strong>+35%</strong></td></tr>
+</tbody>
+</table>
+<p>This kind of calculation needs to be run for every SKU, every shipment, every season — not just once. Rates can change with new Orders-in-Council, HS code reclassifications, or quota fills. Manual spreadsheets break down quickly at scale.</p>
+<div class="cta-box">
+<h3>Automate your landed cost calculations</h3>
+<p><strong>TariffShield</strong> helps merchants sanity-check landed cost assumptions, compare duty exposure across products, and spot where China-origin measures or classification changes may be eating into margin before the next shipment lands.</p>
+<a href="https://attahirlabs.com/duty/">Try the Free Duty Calculator →</a>
+</div>
+<div class="faq" id="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<div class="faq-q">Q: Does the Canada China surtax apply to goods shipped from the U.S. but made in China?</div>
+<div class="faq-a">Yes. The China Surtax Order applies based on <em>origin</em>, not shipping country. If goods originate in China under Canada's Non-CUSMA Country of Origin Regulations — meaning China is where the goods were grown, extracted, or last substantially transformed — the surtax applies regardless of whether they are shipped directly from China, transshipped via the U.S., or re-exported from a bonded warehouse in a third country. The CBSA can and does verify origin through supplier documentation requests.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: I sell consumer goods on Shopify. Does the 25% steel surtax affect me if my products just contain some steel?</div>
+<div class="faq-a">It depends on how your product is classified. The original 25% steel surtax under the China Surtax Order (2024) applies to goods in Schedule 2 — primarily steel and aluminum mill products, not every finished consumer product containing metal. However, the <strong>Steel Derivative Goods Surtax Order</strong> (CN25-33, effective December 26, 2025) added a separate 25% surtax on certain commercial steel derivative goods. If your product's HS code appears in the schedule of that order, you may owe the surtax even if you are selling a finished product rather than raw steel. Always verify your specific HS codes and any non-stacking exceptions against CBSA's published schedules.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Are there any exemptions for small importers or small shipments?</div>
+<div class="faq-a">There is no de minimis exemption from the China surtax. Canada's de minimis threshold for duties and taxes is CAD $40 for courier/postal imports, but surtaxes under Orders-in-Council are not subject to the same threshold. Both commercial and personal importations are covered — the CBSA explicitly addresses this in Customs Notice 24-36 (paragraph 8). For B2C Shopify orders shipped directly to Canadian consumers from China, the surtax should be collected at the border.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: What happened to the 100% EV surtax? Is it completely gone?</div>
+<div class="faq-a">CBSA's updated Customs Notice 24-32 says that effective March 1, 2026, the amendment to the China Surtax Order repealed the EV surtax provisions, so imports are no longer subject to the 100% surtax. But that does <em>not</em> mean EV imports from China are frictionless: Global Affairs Canada Notice to Importers No. 1162 says covered EVs need a shipment-specific import permit, eligible imports under the quota are assessed at the 6.1% MFN tariff rate, and imports not accompanied by a permit are prohibited. So the 100% surtax is gone, but quota and permit administration is now the key operational issue.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Can I claim back surtax I've already paid if I export the goods?</div>
+<div class="faq-a">Yes, in many cases. Canada's Duty Drawback Program allows importers to claim a refund of duties and surtaxes paid on goods that are subsequently exported from Canada. The claim must be filed within four years of the date of import, and you must have documentation linking the exported goods to the original import entry. For goods used in manufacturing (inputs that become part of an exported finished product), the Duties Relief Program may be a better fit — it provides an upfront exemption rather than a retroactive claim.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Is the Canada surtax on Chinese goods permanent?</div>
+<div class="faq-a">No. These measures are policy tools created through specific notices and orders, and they can be amended, replaced, or extended. The EV surtax is the clearest example: Canada changed that regime on March 1, 2026. Steel-related measures are still live, but importers should treat every major China-linked surtax as something that needs periodic re-verification rather than assuming last quarter's summary is still correct.</div>
+</div>
+</div>
+
+<ul>
+<li class="source">Canada Border Services Agency. <em>Customs Notice 24-36: China Surtax Order (2024) – Steel and Aluminum.</em> cbsa-asfc.gc.ca<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li class="source">Canada Border Services Agency. <em>Customs Notice 24-32: China Surtax Order (2024) – Electric Vehicles.</em> cbsa-asfc.gc.ca<sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li class="source">Canada Border Services Agency. <em>Customs Notice 25-33: Steel Derivative Goods Surtax Order.</em> cbsa-asfc.gc.ca<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
+<li class="source">Canada Border Services Agency. <em>Customs Notice 25-28: Steel Goods and Aluminum Goods Surtax Order.</em> cbsa-asfc.gc.ca<sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+<li class="source">Canada Border Services Agency. <em>Customs Notice 25-24: Order Imposing a Surtax on the Importation of Certain Steel Goods (SOR/2025-155).</em> cbsa-asfc.gc.ca<sup class="citation"><a href="#ref-5">[5]</a></sup></li>
+<li class="source">Global Affairs Canada. <em>Share your views: Canada's allocation and administration of the import quota for electric vehicles from China.</em> April 7, 2026. international.canada.ca<sup class="citation"><a href="#ref-6">[6]</a></sup></li>
+<li class="source">Determination of Country of Origin for the Purposes of Marking Goods (Non-CUSMA Countries) Regulations (SOR/94-16). laws-lois.justice.gc.ca<sup class="citation"><a href="#ref-7">[7]</a></sup></li>
+</ul>
+<div class="callout callout-success">
+<p><strong>Disclaimer:</strong> This article is provided for general informational and educational purposes only and does not constitute legal, customs, or tax advice. Surtax rates, schedules, and applicable categories are set by Orders-in-Council and are subject to change without advance notice by the Government of Canada. The information in this article was accurate as of the publication date (April 14, 2026) but may not reflect subsequent amendments. Importers and merchants are strongly encouraged to consult with a licensed Canadian customs broker, trade lawyer, or qualified tax professional before making sourcing, pricing, or compliance decisions based on the information herein. TariffShield and Attahir Labs Inc. are not responsible for any losses, penalties, or compliance failures arising from reliance on this article.</p>
+</div>
+</article>
 
     <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
 </body>

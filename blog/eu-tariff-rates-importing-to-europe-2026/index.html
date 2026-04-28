@@ -23,8 +23,8 @@
     <meta property="article:published_time" content="2026-04-16">
     <meta property="article:modified_time" content="2026-04-16">
     <script type="application/ld+json">
-    
-    
+
+
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -168,11 +168,19 @@
             table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
             th, td { padding: 0.5rem; }
         }
-    
+
         .post-figure { margin: 2rem 0; }
         .post-figure picture, .post-figure img { display: block; width: 100%; }
         .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
         .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -188,44 +196,40 @@
         </div>
     </nav>
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / EU Tariff Rates: Importing to Europe in 2026</div>
-        <div class="meta">
-            <span class="tag">EU Trade</span>
-            <span class="tag">Tariffs</span>
-            <span class="tag">TariffShield</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / EU Tariff Rates: Importing to Europe in 2026</div>
+<div class="meta">
+<span class="tag">EU Trade</span>
+<span class="tag">Tariffs</span>
+<span class="tag">TariffShield</span>
             Published April 16, 2026 · Updated April 16, 2026 · 12 min read
         </div>
-        <h1>EU Tariff Rates: Importing to Europe in 2026</h1>
-        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-            <picture>
-                <source srcset="/assets/blog/eu-tariff-rates-importing-to-europe-2026/hero.webp" type="image/webp">
-                <img src="/assets/blog/eu-tariff-rates-importing-to-europe-2026/hero.jpg" width="1536" height="864" alt="EU tariff-rate matrix for EU Tariff Rates: Importing to Europe in 2026, showing TARIC classification, origin, customs value, VAT, and member-state import checks" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>EU import rates need a product-line matrix: TARIC/CN classification, origin measures, customs value, VAT, and member-state handling details.</figcaption>
-        </figure>
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#short-version">What “EU tariff rates” actually means</a></li>
-                <li><a href="#structure-2026">How the EU tariff system is structured in 2026</a></li>
-                <li><a href="#five-inputs">The five inputs that determine your EU tariff rate</a></li>
-                <li><a href="#changes-2026">What changed for 2026</a></li>
-                <li><a href="#workflow">A practical workflow for checking rates correctly</a></li>
-                <li><a href="#common-mistakes">Common importer mistakes</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#sources">Sources</a></li>
-            </ul>
-        </div>
-
-        <div class="callout"><p>
-<p>Official sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">Combined
+<h1>EU Tariff Rates: Importing to Europe in 2026</h1>
+<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+<picture>
+<source srcset="/assets/blog/eu-tariff-rates-importing-to-europe-2026/hero.webp" type="image/webp"/>
+<img alt="EU tariff-rate matrix for EU Tariff Rates: Importing to Europe in 2026, showing TARIC classification, origin, customs value, VAT, and member-state import checks" decoding="async" fetchpriority="high" height="864" src="/assets/blog/eu-tariff-rates-importing-to-europe-2026/hero.jpg" width="1536"/>
+</picture>
+<figcaption>EU import rates need a product-line matrix: TARIC/CN classification, origin measures, customs value, VAT, and member-state handling details.</figcaption>
+</figure>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#short-version">What “EU tariff rates” actually means</a></li>
+<li><a href="#structure-2026">How the EU tariff system is structured in 2026</a></li>
+<li><a href="#five-inputs">The five inputs that determine your EU tariff rate</a></li>
+<li><a href="#changes-2026">What changed for 2026</a></li>
+<li><a href="#workflow">A practical workflow for checking rates correctly</a></li>
+<li><a href="#common-mistakes">Common importer mistakes</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#sources">Sources</a></li>
+</ul>
+</div>
+<div class="callout"><p>
+<p>Official sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Combined
 Nomenclature and Common Customs Tariff applicable in the EU from 1
-January 2026</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+January 2026<sup class="citation"><a href="#ref-2">[2]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Importers searching for <strong>EU tariff rates</strong> in 2026
 usually want one simple answer: <em>what duty will I pay when my product
@@ -262,9 +266,8 @@ surprises.</p>
 <h2 id="the-short-version-what-eu-tariff-rates-really-means">The short
 version: what “EU tariff rates” really means</h2>
 <div class="callout"><p>
-<p>Source: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Source: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>When people say “EU tariff rate,” they often mean one of several
 different charges or rules:</p>
@@ -291,11 +294,9 @@ transaction?</strong></p>
 <h2 id="how-the-eu-tariff-system-is-structured-in-2026">How the EU
 tariff system is structured in 2026</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">2026
-Combined Nomenclature update</a>, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Sources: 2026
+Combined Nomenclature update<sup class="citation"><a href="#ref-2">[2]</a></sup>, EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>The European Commission describes the <strong>Combined
 Nomenclature</strong> as the tool used to classify goods for EU customs
@@ -330,12 +331,10 @@ code as last year” assumption is especially risky.</p>
 <h2 id="why-there-is-no-single-average-rate-you-can-rely-on">Why there
 is no single average rate you can rely on</h2>
 <div class="callout"><p>
-<p>Sources: <a href="https://ttd.wto.org/en/profiles/european-union">WTO
-tariff profiles</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a>, <a
-href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP
-determining duty rates</a></p>
+<p>Sources: WTO
+tariff profiles<sup class="citation"><a href="#ref-4">[4]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup>, CBP
+determining duty rates<sup class="citation"><a href="#ref-5">[5]</a></sup></p>
 </p></div>
 <p>At a macro level, the WTO's tariff profile data can help you
 understand broad averages for the European Union. But average tariff
@@ -356,11 +355,9 @@ but not casual.</p>
 <h2 id="the-five-inputs-that-determine-your-eu-tariff-rate">The five
 inputs that determine your EU tariff rate</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <h3 id="1-product-classification">1. Product classification</h3>
 <p>Classification is the starting point. If you misclassify the goods,
@@ -418,9 +415,8 @@ linked to trade disputes, checking trade remedies is not optional.</p>
 <h3 id="5-customs-value-and-non-duty-charges">5. Customs value and
 non-duty charges</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Even when you identify the right rate, you still need the correct
 customs value basis. Then you must distinguish customs duty from
@@ -430,11 +426,9 @@ charges, brokerage, and logistics costs.</p>
 still badly miss the true landed cost.</p>
 <h2 id="what-changed-for-2026">What changed for 2026</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">2026
-Combined Nomenclature update</a>, <a
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202501926">Commission
-Implementing Regulation (EU) 2025/1926</a></p>
+<p>Sources: 2026
+Combined Nomenclature update<sup class="citation"><a href="#ref-2">[2]</a></sup>, Commission
+Implementing Regulation (EU) 2025/1926<sup class="citation"><a href="#ref-6">[6]</a></sup></p>
 </p></div>
 <p>For 2026, the most important change is not one universal rate
 increase or decrease. It is the updated nomenclature and tariff schedule
@@ -462,11 +456,9 @@ customs disputes.</p>
 <h2 id="a-practical-workflow-for-checking-eu-tariff-rates-correctly">A
 practical workflow for checking EU tariff rates correctly</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a>, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Sources: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup>, EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>If you need a reliable answer, this is the workflow that actually
 works.</p>
@@ -511,9 +503,8 @@ fastest ways to create customs reassessments.</p>
 <h3 id="step-5-build-full-landed-cost-not-just-duty">Step 5: Build full
 landed cost, not just duty</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Include:</p>
 <ul>
@@ -531,11 +522,9 @@ quoting landed cost.</p>
 <h2 id="common-mistakes-importers-make-with-eu-tariff-rates">Common
 mistakes importers make with EU tariff rates</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <h3 id="treating-a-search-result-as-final">Treating a search result as
 final</h3>
@@ -555,8 +544,7 @@ for preferential treatment.</p>
 duties</h3>
 <p>This is one of the most expensive misses. Base duty can look fine
 while an anti-dumping duty destroys margin.</p>
-<h3
-id="assuming-the-us-or-canadian-code-maps-perfectly-to-the-eu-result">Assuming
+<h3 id="assuming-the-us-or-canadian-code-maps-perfectly-to-the-eu-result">Assuming
 the U.S. or Canadian code maps perfectly to the EU result</h3>
 <p>CBP, USITC, and CBSA tools are useful cross-checks for understanding
 HS-based classification logic and trade administration, but they do not
@@ -566,22 +554,18 @@ measures.</p>
 <h3 id="treating-tariff-rates-as-the-whole-tax-burden">Treating tariff
 rates as the whole tax burden</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Even when duty is low, VAT can still be substantial. Depending on the
 goods, regulatory costs can matter more than customs duty.</p>
-<h2
-id="why-tariff-strategy-is-now-an-operations-issue-not-just-a-customs-issue">Why
+<h2 id="why-tariff-strategy-is-now-an-operations-issue-not-just-a-customs-issue">Why
 tariff strategy is now an operations issue, not just a customs
 issue</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxfoundation.org/topics/tariffs-and-trade/">Tax
-Foundation tariffs and trade</a>, <a
-href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/">Tax
-Foundation tariff tracker</a></p>
+<p>Sources: Tax
+Foundation tariffs and trade<sup class="citation"><a href="#ref-7">[7]</a></sup>, Tax
+Foundation tariff tracker<sup class="citation"><a href="#ref-8">[8]</a></sup></p>
 </p></div>
 <p>Tariffs are no longer a back-office afterthought. They affect
 pricing, sourcing, margin planning, supplier negotiations, and inventory
@@ -606,11 +590,9 @@ is part of product and finance strategy.</p>
 <h2 id="how-small-importers-should-approach-eu-tariff-rates-in-2026">How
 small importers should approach EU tariff rates in 2026</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>If you are a smaller ecommerce brand, Amazon seller, private-label
 importer, or wholesale operator, the goal is not to become a customs
@@ -647,8 +629,8 @@ structure</li>
 <h3 id="use-wto-data-for-context-not-sku-level-decisions">Use WTO data
 for context, not SKU-level decisions</h3>
 <div class="callout"><p>
-<p>Source: <a href="https://ttd.wto.org/en/profiles/european-union">WTO
-tariff profiles</a></p>
+<p>Source: WTO
+tariff profiles<sup class="citation"><a href="#ref-4">[4]</a></sup></p>
 </p></div>
 <p>WTO tariff data is excellent for understanding broad applied tariffs,
 trade relationships, and policy context. It is not a substitute for live
@@ -685,11 +667,9 @@ erosion.</p>
 <h2 id="the-business-case-for-using-a-duty-calculator">The business case
 for using a duty calculator</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>A good duty calculator does not replace official customs databases.
 It operationalizes them.</p>
@@ -711,11 +691,9 @@ earlier in the workflow.</p>
 <h2 id="bottom-line-how-to-think-about-eu-tariff-rates-in-2026">Bottom
 line: how to think about EU tariff rates in 2026</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">2026
-Combined Nomenclature update</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, 2026
+Combined Nomenclature update<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
 </p></div>
 <p>In 2026, the right way to think about <strong>EU tariff
 rates</strong> is not as a single static percentage but as a dynamic
@@ -740,9 +718,8 @@ get fewer customs surprises.</p>
 <h3 id="1-what-is-the-standard-eu-tariff-rate-in-2026">1. What is the
 standard EU tariff rate in 2026?</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Source: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>There is no single standard rate that applies to all products. The EU
 Common Customs Tariff assigns different duty rates depending on the
@@ -751,9 +728,8 @@ quotas, and possible trade defense measures.</p>
 <h3 id="2-how-do-i-find-the-correct-eu-tariff-rate-for-my-product">2.
 How do I find the correct EU tariff rate for my product?</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Start by identifying the correct HS/CN classification, then check the
 EU's TARIC database for the applicable duty, origin treatment, and any
@@ -768,11 +744,9 @@ anti-dumping duties, and restrictions.</p>
 <h3 id="4-does-country-of-shipment-determine-the-eu-tariff-rate">4. Does
 country of shipment determine the EU tariff rate?</h3>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a>, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Sources: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup>, EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>Not by itself. Customs duty treatment often depends on
 <strong>origin</strong>, not simply the country from which the goods are
@@ -781,21 +755,18 @@ automatically change origin.</p>
 <h3 id="5-can-my-product-be-duty-free-in-the-eu">5. Can my product be
 duty-free in the EU?</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Yes, in some cases. Some products have a zero duty rate under the
 Common Customs Tariff, some qualify for preferences under trade
 agreements, and others may benefit from suspensions or quotas. But the
 favorable rate only applies if the legal conditions are met.</p>
-<h3
-id="6-are-anti-dumping-duties-included-in-normal-eu-tariff-lookups">6.
+<h3 id="6-are-anti-dumping-duties-included-in-normal-eu-tariff-lookups">6.
 Are anti-dumping duties included in normal EU tariff lookups?</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a></p>
+<p>Source: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 </p></div>
 <p>They should be if you are checking the right source. TARIC includes
 anti-dumping, countervailing, and safeguard measures. If your tool shows
@@ -803,9 +774,8 @@ only a base customs duty and nothing else, it may be incomplete.</p>
 <h3 id="7-do-i-also-pay-vat-when-importing-into-the-eu">7. Do I also pay
 VAT when importing into the EU?</h3>
 <div class="callout"><p>
-<p>Source: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Source: Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Usually yes. Import VAT is generally separate from customs duty, and
 it should be included in landed cost analysis. Depending on the product,
@@ -813,11 +783,9 @@ excise or other charges may also apply.</p>
 <h3 id="8-did-eu-tariff-codes-change-in-2026">8. Did EU tariff codes
 change in 2026?</h3>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">2026
-Combined Nomenclature update</a>, <a
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202501926">Commission
-Implementing Regulation (EU) 2025/1926</a></p>
+<p>Sources: 2026
+Combined Nomenclature update<sup class="citation"><a href="#ref-2">[2]</a></sup>, Commission
+Implementing Regulation (EU) 2025/1926<sup class="citation"><a href="#ref-6">[6]</a></sup></p>
 </p></div>
 <p>Yes. The European Commission published the 2026 version of the
 Combined Nomenclature and Common Customs Tariff effective 1 January
@@ -825,11 +793,9 @@ Combined Nomenclature and Common Customs Tariff effective 1 January
 categories.</p>
 <h2 id="cta">CTA</h2>
 <div class="callout"><p>
-<p>Sources: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1">Access2Markets
-tariffs guidance</a></p>
+<p>Sources: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Access2Markets
+tariffs guidance<sup class="citation"><a href="#ref-3">[3]</a></sup></p>
 </p></div>
 <p>Need a faster way to estimate landed cost before you place a PO or
 quote a customer?</p>
@@ -841,57 +807,39 @@ extra charges, you can turn tariff planning into a repeatable pricing
 workflow.</p>
 <p>If you're importing into Europe in 2026, that kind of visibility is
 not a luxury anymore. It's margin protection.</p>
-<h2 id="sources">Sources</h2>
+
 <div class="callout"><p>
-<p>Source list: <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en">EU
-Customs Tariff (TARIC)</a>, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/combined-nomenclature_en">Combined
-Nomenclature</a>, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026">2026
-Combined Nomenclature and Common Customs Tariff update</a>, <a
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202501926">Commission
-Implementing Regulation (EU) 2025/1926</a>, <a
-href="https://ttd.wto.org/en/profiles/european-union">WTO European Union
-tariff profile</a>, <a
-href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP
-determining duty rates</a>, <a
-href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/menu-eng.html">CBSA
-Customs Tariff 2026</a>, <a
-href="https://taxfoundation.org/topics/tariffs-and-trade/">Tax
-Foundation tariffs and trade</a>, <a
-href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/">Tax
-Foundation tariff tracker</a></p>
+<p>Source list: EU
+Customs Tariff (TARIC)<sup class="citation"><a href="#ref-1">[1]</a></sup>, Combined
+Nomenclature<sup class="citation"><a href="#ref-9">[9]</a></sup>, 2026
+Combined Nomenclature and Common Customs Tariff update<sup class="citation"><a href="#ref-2">[2]</a></sup>, Commission
+Implementing Regulation (EU) 2025/1926<sup class="citation"><a href="#ref-6">[6]</a></sup>, WTO European Union
+tariff profile<sup class="citation"><a href="#ref-4">[4]</a></sup>, CBP
+determining duty rates<sup class="citation"><a href="#ref-5">[5]</a></sup>, CBSA
+Customs Tariff 2026<sup class="citation"><a href="#ref-10">[10]</a></sup>, Tax
+Foundation tariffs and trade<sup class="citation"><a href="#ref-7">[7]</a></sup>, Tax
+Foundation tariff tracker<sup class="citation"><a href="#ref-8">[8]</a></sup></p>
 </p></div>
 <ul>
-<li>European Commission, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en"><strong>EU
-Customs Tariff (TARIC)</strong></a></li>
-<li>European Commission, <a
-href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/combined-nomenclature_en"><strong>Combined
-Nomenclature</strong></a></li>
-<li>European Commission, <a
-href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026"><strong>Combined
+<li>European Commission, <strong>EU
+Customs Tariff (TARIC)</strong><sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>European Commission, <strong>Combined
+Nomenclature</strong><sup class="citation"><a href="#ref-9">[9]</a></sup></li>
+<li>European Commission, <strong>Combined
 Nomenclature and Common Customs Tariff applicable in the EU from 1
-January 2026</strong></a></li>
-<li>EUR-Lex, <a
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202501926"><strong>Commission
-Implementing Regulation (EU) 2025/1926</strong></a></li>
-<li>WTO Tariff &amp; Trade Data, <a
-href="https://ttd.wto.org/en/profiles/european-union"><strong>European
-Union profile</strong></a></li>
-<li>U.S. Customs and Border Protection, <a
-href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates"><strong>Determining
-Duty Rates</strong></a></li>
-<li>Canada Border Services Agency, <a
-href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/menu-eng.html"><strong>Customs
-Tariff 2026</strong></a></li>
-<li>Tax Foundation, <a
-href="https://taxfoundation.org/topics/tariffs-and-trade/"><strong>Tariffs
-and Trade</strong></a></li>
-<li>Tax Foundation, <a
-href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/"><strong>Tracking
-the Impact of the Trump Tariffs &amp; Trade War</strong></a></li>
+January 2026</strong><sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li>EUR-Lex, <strong>Commission
+Implementing Regulation (EU) 2025/1926</strong><sup class="citation"><a href="#ref-6">[6]</a></sup></li>
+<li>WTO Tariff &amp; Trade Data, <strong>European
+Union profile</strong><sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+<li>U.S. Customs and Border Protection, <strong>Determining
+Duty Rates</strong><sup class="citation"><a href="#ref-5">[5]</a></sup></li>
+<li>Canada Border Services Agency, <strong>Customs
+Tariff 2026</strong><sup class="citation"><a href="#ref-10">[10]</a></sup></li>
+<li>Tax Foundation, <strong>Tariffs
+and Trade</strong><sup class="citation"><a href="#ref-7">[7]</a></sup></li>
+<li>Tax Foundation, <strong>Tracking
+the Impact of the Trump Tariffs &amp; Trade War</strong><sup class="citation"><a href="#ref-8">[8]</a></sup></li>
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>This article is for general informational purposes only and does not
@@ -901,8 +849,7 @@ exposure depend on the specific facts of each product and transaction.
 Always verify current measures in official EU sources, especially TARIC
 and applicable legal texts, before relying on any duty estimate for a
 live import decision.</p>
-
-    </article>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/eu-customs-tariff-taric_en" rel="noopener" target="_blank">EU Customs Tariff (TARIC)</a></li><li id="ref-2"><a href="https://trade.ec.europa.eu/access-to-markets/en/news/combined-nomenclature-and-common-customs-tariff-applicable-eu-1-january-2026" rel="noopener" target="_blank">Combined Nomenclature and Common Customs Tariff applicable in the EU from 1 January 2026</a></li><li id="ref-3"><a href="https://trade.ec.europa.eu/access-to-markets/en/content/tariffs-1" rel="noopener" target="_blank">Access2Markets tariffs guidance</a></li><li id="ref-4"><a href="https://ttd.wto.org/en/profiles/european-union" rel="noopener" target="_blank">WTO tariff profiles</a></li><li id="ref-5"><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP determining duty rates</a></li><li id="ref-6"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202501926" rel="noopener" target="_blank">Commission Implementing Regulation (EU) 2025/1926</a></li><li id="ref-7"><a href="https://taxfoundation.org/topics/tariffs-and-trade/" rel="noopener" target="_blank">Tax Foundation tariffs and trade</a></li><li id="ref-8"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-9"><a href="https://taxation-customs.ec.europa.eu/customs/common-customs-tariff-cct/tariff-classification-goods/combined-nomenclature_en" rel="noopener" target="_blank">Combined Nomenclature</a></li><li id="ref-10"><a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/menu-eng.html" rel="noopener" target="_blank">CBSA Customs Tariff 2026</a></li></ol></section></article>
     <footer>© 2026 Attahir Labs. Built for merchants who want fewer customs surprises.</footer>
 </body>
 </html>

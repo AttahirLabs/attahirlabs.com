@@ -97,6 +97,14 @@
         .faq-a { color: var(--gray-700); }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
         @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.7rem; } }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -113,139 +121,123 @@
     </nav>
 
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / CBP Tariff Refund Portal</div>
-
-        <div class="meta">
-            <span class="tag">Tariffs</span>
-            <span class="tag">CBP</span>
-            <span class="tag">Compliance</span>
-            <span class="tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">New</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / CBP Tariff Refund Portal</div>
+<div class="meta">
+<span class="tag">Tariffs</span>
+<span class="tag">CBP</span>
+<span class="tag">Compliance</span>
+<span class="tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">New</span>
             April 20, 2026 · 10 min read
         </div>
-
-        <h1>CBP Tariff Refund Portal: Who Qualifies, What Phase 1 Covers, and What Importers Should Do Next</h1>
-
-        <p class="lead">If you saw headlines about a new tariff refund website going live, the short version is this: yes, there is now a real refund process, and no, it is not as simple as clicking a button and getting paid two days later.</p>
-
-        <div class="callout">
-            <p><strong>Quick answer:</strong> CBP’s tariff refund portal is live for certain IEEPA duty refund claims through the ACE Portal using CAPE Declarations. Phase 1 covers some unliquidated and recently liquidated entries, but not every refund scenario.</p>
-        </div>
-
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#what-changed">What changed</a></li>
-                <li><a href="#who-qualifies">Who qualifies</a></li>
-                <li><a href="#phase1">What Phase 1 covers</a></li>
-                <li><a href="#excluded">What is excluded</a></li>
-                <li><a href="#next">What importers should do next</a></li>
-                <li><a href="#faq">Frequently asked questions</a></li>
-                <li><a href="#links">Official links</a></li>
-            </ul>
-        </div>
-
-        <h2 id="what-changed">What changed</h2>
-        <p>U.S. Customs and Border Protection has launched Phase 1 of a new refund workflow for certain IEEPA duties through the ACE Portal, using a tool called CAPE, short for Consolidated Administration and Processing of Entries.</p>
-        <p>CBP says importers and authorized customs brokers can now submit certain refund requests through the ACE Secure Data Portal using a CSV upload called a CAPE Declaration.</p>
-        <ul>
-            <li>Phase 1 went live April 20, 2026</li>
-            <li>the process is rolling out in phases</li>
-            <li>Phase 1 covers some, not all, refund scenarios</li>
-            <li>CBP says valid refunds will generally be paid in 60 to 90 days after CAPE acceptance, unless further review is needed</li>
-        </ul>
-        <p>Start with CBP’s main hub: <a href="https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds" target="_blank" rel="noopener">IEEPA Duty Refunds</a>.</p>
-
-        <h2 id="who-qualifies">Who qualifies for the CBP tariff refund portal?</h2>
-        <p>The frustrating but accurate answer is: some importers do, and some do not, at least not in Phase 1.</p>
-        <p>You may be in scope if you paid the relevant IEEPA duties and your entries fall into the categories CBP is currently accepting through CAPE. You may be out of scope for now if your entries fall into one of the excluded buckets, like drawback, reconciliation, open protest, or already-final liquidation.</p>
-        <p>So the real qualification question is not just, “Did we pay these tariffs?” It is also, “Are our entries currently eligible for the Phase 1 CAPE workflow?”</p>
-
-        <h2 id="phase1">What Phase 1 appears to cover</h2>
-        <p>Based on CBP’s refund page and the CAPE guidance, Phase 1 is mainly aimed at:</p>
-        <ul>
-            <li>certain unliquidated entries</li>
-            <li>certain entries within 80 days of liquidation</li>
-            <li>some entries that are extended, suspended, or under review</li>
-            <li>some warehouse and warehouse withdrawal entries</li>
-        </ul>
-
-        <h2 id="excluded">What Phase 1 does not cover</h2>
-        <p>This is the part many summaries bury. At least in Phase 1, CBP says some entries will not be accepted through CAPE yet, including categories such as:</p>
-        <ul>
-            <li>entries flagged for reconciliation</li>
-            <li>drawback entries</li>
-            <li>entries covered by an open protest</li>
-            <li>entries not filed in ACE or without a liquidation status in ACE</li>
-            <li>some AD/CVD-related situations</li>
-            <li>entries where liquidation is already final</li>
-        </ul>
-
-        <h2>Who can submit the request?</h2>
-        <p>CBP says the CAPE Declaration can be filed by the Importer of Record or the authorized customs broker who filed the entries for that importer.</p>
-        <p>That means plenty of businesses are going to need to coordinate with their broker instead of trying to wing this alone.</p>
-
-        <h2 id="next">What importers should do next</h2>
-        <p>If you only have five minutes, do these four things first:</p>
-        <ol>
-            <li><strong>Confirm who is filing</strong>, you or your customs broker</li>
-            <li><strong>Check ACE access</strong> so you are not blocked later</li>
-            <li><strong>Make sure ACH refund details are set up</strong></li>
-            <li><strong>Build your list of potentially eligible entry numbers</strong></li>
-        </ol>
-        <p>Then come back and deal with the messy edge cases.</p>
-
-        <h3>Practical checklist</h3>
-        <ul>
-            <li>Apply for ACE access if you do not already have it</li>
-            <li>Confirm ACH refund enrollment is handled</li>
-            <li>Figure out who should receive the refund</li>
-            <li>Assemble a clean list of potentially relevant entry numbers</li>
-        </ul>
-        <p>If you rely on a customs broker, ask directly which entries appear eligible for Phase 1, whether they will file on your behalf, and whether your refund-recipient setup needs updating.</p>
-
-        <div class="cta-box">
-            <h3>Want more tariff updates like this?</h3>
-            <p>If you follow tariff changes, landed cost risk, and import margin pressure, use our free import duty calculator and keep an eye on the Attahir Labs blog for future trade explainers.</p>
-            <a href="/duty/">Try the Duty Calculator →</a>
-        </div>
-
-        <h2 id="faq">Frequently asked questions</h2>
-        <div class="faq-item">
-            <div class="faq-q">Is the CBP tariff refund portal live now?</div>
-            <div class="faq-a">Yes. CBP launched Phase 1 of the CAPE process on April 20, 2026.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">Can every importer use it?</div>
-            <div class="faq-a">No. Phase 1 does not cover every type of entry or every refund scenario.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">Do I need an ACE Portal account?</div>
-            <div class="faq-a">Yes, if you are filing directly. If your customs broker is filing on your behalf, you still need to know who controls access and refund setup.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">Is this the same as filing through ABI?</div>
-            <div class="faq-a">No. CBP says CAPE Declarations are filed through the ACE Portal, not ABI.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q">How long will refunds take?</div>
-            <div class="faq-a">CBP says valid refunds will generally be issued in 60 to 90 days after CAPE acceptance, unless additional review is needed.</div>
-        </div>
-
-        <h2 id="links">Useful official links</h2>
-        <ul>
-            <li><a href="https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds" target="_blank" rel="noopener">CBP IEEPA Duty Refunds page</a></li>
-            <li><a href="https://www.cbp.gov/trade/automated/how-to-use-ace/portal-applying" target="_blank" rel="noopener">ACE Portal account application</a></li>
-            <li><a href="https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs" target="_blank" rel="noopener">ACE Portal and ACH Refunds FAQs</a></li>
-            <li><a href="https://www.cbp.gov/trade/automated/ach/refund" target="_blank" rel="noopener">ACH Refund page</a></li>
-            <li><a href="https://www.cbp.gov/sites/default/files/2026-04/electronic-refund-enrollment-one-pager_508c.pdf" target="_blank" rel="noopener">Electronic refund enrollment one-pager</a></li>
-            <li><a href="https://www.cbp.gov/document/guidance/ace-portal-cape-declarations-quick-reference-guide" target="_blank" rel="noopener">CAPE quick reference guide</a></li>
-            <li><a href="https://www.cbp.gov/document/guidance/trade-information-notice-cape" target="_blank" rel="noopener">Trade Information Notice: CAPE</a></li>
-            <li><a href="https://www.cbp.gov/document/forms/form-4811-special-address-notification" target="_blank" rel="noopener">CBP Form 4811</a></li>
-            <li><a href="https://www.cbp.gov/document/guidance/ace-portal-notify-party-information-qrc" target="_blank" rel="noopener">ACE Notify Party Information guidance</a></li>
-        </ul>
-
-        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;"><strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal, customs, or tax advice. Always verify current guidance with CBP or a licensed customs broker before making filing decisions.</p>
-    </article>
+<h1>CBP Tariff Refund Portal: Who Qualifies, What Phase 1 Covers, and What Importers Should Do Next</h1>
+<p class="lead">If you saw headlines about a new tariff refund website going live, the short version is this: yes, there is now a real refund process, and no, it is not as simple as clicking a button and getting paid two days later.</p>
+<div class="callout">
+<p><strong>Quick answer:</strong> CBP’s tariff refund portal is live for certain IEEPA duty refund claims through the ACE Portal using CAPE Declarations. Phase 1 covers some unliquidated and recently liquidated entries, but not every refund scenario.</p>
+</div>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#what-changed">What changed</a></li>
+<li><a href="#who-qualifies">Who qualifies</a></li>
+<li><a href="#phase1">What Phase 1 covers</a></li>
+<li><a href="#excluded">What is excluded</a></li>
+<li><a href="#next">What importers should do next</a></li>
+<li><a href="#faq">Frequently asked questions</a></li>
+<li><a href="#links">Official links</a></li>
+</ul>
+</div>
+<h2 id="what-changed">What changed</h2>
+<p>U.S. Customs and Border Protection has launched Phase 1 of a new refund workflow for certain IEEPA duties through the ACE Portal, using a tool called CAPE, short for Consolidated Administration and Processing of Entries.</p>
+<p>CBP says importers and authorized customs brokers can now submit certain refund requests through the ACE Secure Data Portal using a CSV upload called a CAPE Declaration.</p>
+<ul>
+<li>Phase 1 went live April 20, 2026</li>
+<li>the process is rolling out in phases</li>
+<li>Phase 1 covers some, not all, refund scenarios</li>
+<li>CBP says valid refunds will generally be paid in 60 to 90 days after CAPE acceptance, unless further review is needed</li>
+</ul>
+<p>Start with CBP’s main hub: IEEPA Duty Refunds<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
+<h2 id="who-qualifies">Who qualifies for the CBP tariff refund portal?</h2>
+<p>The frustrating but accurate answer is: some importers do, and some do not, at least not in Phase 1.</p>
+<p>You may be in scope if you paid the relevant IEEPA duties and your entries fall into the categories CBP is currently accepting through CAPE. You may be out of scope for now if your entries fall into one of the excluded buckets, like drawback, reconciliation, open protest, or already-final liquidation.</p>
+<p>So the real qualification question is not just, “Did we pay these tariffs?” It is also, “Are our entries currently eligible for the Phase 1 CAPE workflow?”</p>
+<h2 id="phase1">What Phase 1 appears to cover</h2>
+<p>Based on CBP’s refund page and the CAPE guidance, Phase 1 is mainly aimed at:</p>
+<ul>
+<li>certain unliquidated entries</li>
+<li>certain entries within 80 days of liquidation</li>
+<li>some entries that are extended, suspended, or under review</li>
+<li>some warehouse and warehouse withdrawal entries</li>
+</ul>
+<h2 id="excluded">What Phase 1 does not cover</h2>
+<p>This is the part many summaries bury. At least in Phase 1, CBP says some entries will not be accepted through CAPE yet, including categories such as:</p>
+<ul>
+<li>entries flagged for reconciliation</li>
+<li>drawback entries</li>
+<li>entries covered by an open protest</li>
+<li>entries not filed in ACE or without a liquidation status in ACE</li>
+<li>some AD/CVD-related situations</li>
+<li>entries where liquidation is already final</li>
+</ul>
+<h2>Who can submit the request?</h2>
+<p>CBP says the CAPE Declaration can be filed by the Importer of Record or the authorized customs broker who filed the entries for that importer.</p>
+<p>That means plenty of businesses are going to need to coordinate with their broker instead of trying to wing this alone.</p>
+<h2 id="next">What importers should do next</h2>
+<p>If you only have five minutes, do these four things first:</p>
+<ol>
+<li><strong>Confirm who is filing</strong>, you or your customs broker</li>
+<li><strong>Check ACE access</strong> so you are not blocked later</li>
+<li><strong>Make sure ACH refund details are set up</strong></li>
+<li><strong>Build your list of potentially eligible entry numbers</strong></li>
+</ol>
+<p>Then come back and deal with the messy edge cases.</p>
+<h3>Practical checklist</h3>
+<ul>
+<li>Apply for ACE access if you do not already have it</li>
+<li>Confirm ACH refund enrollment is handled</li>
+<li>Figure out who should receive the refund</li>
+<li>Assemble a clean list of potentially relevant entry numbers</li>
+</ul>
+<p>If you rely on a customs broker, ask directly which entries appear eligible for Phase 1, whether they will file on your behalf, and whether your refund-recipient setup needs updating.</p>
+<div class="cta-box">
+<h3>Want more tariff updates like this?</h3>
+<p>If you follow tariff changes, landed cost risk, and import margin pressure, use our free import duty calculator and keep an eye on the Attahir Labs blog for future trade explainers.</p>
+<a href="/duty/">Try the Duty Calculator →</a>
+</div>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="faq-item">
+<div class="faq-q">Is the CBP tariff refund portal live now?</div>
+<div class="faq-a">Yes. CBP launched Phase 1 of the CAPE process on April 20, 2026.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Can every importer use it?</div>
+<div class="faq-a">No. Phase 1 does not cover every type of entry or every refund scenario.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Do I need an ACE Portal account?</div>
+<div class="faq-a">Yes, if you are filing directly. If your customs broker is filing on your behalf, you still need to know who controls access and refund setup.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Is this the same as filing through ABI?</div>
+<div class="faq-a">No. CBP says CAPE Declarations are filed through the ACE Portal, not ABI.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">How long will refunds take?</div>
+<div class="faq-a">CBP says valid refunds will generally be issued in 60 to 90 days after CAPE acceptance, unless additional review is needed.</div>
+</div>
+<h2 id="links">Useful official links</h2>
+<ul>
+<li>CBP IEEPA Duty Refunds page<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>ACE Portal account application<sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li>ACE Portal and ACH Refunds FAQs<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
+<li>ACH Refund page<sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+<li>Electronic refund enrollment one-pager<sup class="citation"><a href="#ref-5">[5]</a></sup></li>
+<li>CAPE quick reference guide<sup class="citation"><a href="#ref-6">[6]</a></sup></li>
+<li>Trade Information Notice: CAPE<sup class="citation"><a href="#ref-7">[7]</a></sup></li>
+<li>CBP Form 4811<sup class="citation"><a href="#ref-8">[8]</a></sup></li>
+<li>ACE Notify Party Information guidance<sup class="citation"><a href="#ref-9">[9]</a></sup></li>
+</ul>
+<p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;"><strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal, customs, or tax advice. Always verify current guidance with CBP or a licensed customs broker before making filing decisions.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cbp.gov/trade/programs-administration/trade-remedies/ieepa-duty-refunds" rel="noopener" target="_blank">IEEPA Duty Refunds</a></li><li id="ref-2"><a href="https://www.cbp.gov/trade/automated/how-to-use-ace/portal-applying" rel="noopener" target="_blank">ACE Portal account application</a></li><li id="ref-3"><a href="https://www.cbp.gov/trade/automated/ace-portal-and-ach-refunds-faqs" rel="noopener" target="_blank">ACE Portal and ACH Refunds FAQs</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/automated/ach/refund" rel="noopener" target="_blank">ACH Refund page</a></li><li id="ref-5"><a href="https://www.cbp.gov/sites/default/files/2026-04/electronic-refund-enrollment-one-pager_508c.pdf" rel="noopener" target="_blank">Electronic refund enrollment one-pager</a></li><li id="ref-6"><a href="https://www.cbp.gov/document/guidance/ace-portal-cape-declarations-quick-reference-guide" rel="noopener" target="_blank">CAPE quick reference guide</a></li><li id="ref-7"><a href="https://www.cbp.gov/document/guidance/trade-information-notice-cape" rel="noopener" target="_blank">Trade Information Notice: CAPE</a></li><li id="ref-8"><a href="https://www.cbp.gov/document/forms/form-4811-special-address-notification" rel="noopener" target="_blank">CBP Form 4811</a></li><li id="ref-9"><a href="https://www.cbp.gov/document/guidance/ace-portal-notify-party-information-qrc" rel="noopener" target="_blank">ACE Notify Party Information guidance</a></li></ol></section></article>
 
     <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
 </body>

@@ -23,11 +23,11 @@
     <meta property="article:published_time" content="2026-03-24">
     <meta property="article:modified_time" content="2026-04-19">
     <script type="application/ld+json">
-    
-    
-    
-    
-    
+
+
+
+
+
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -119,11 +119,19 @@
             table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
             th, td { padding: 0.5rem; }
         }
-    
+
         .post-figure { margin: 2rem 0; }
         .post-figure picture, .post-figure img { display: block; width: 100%; }
         .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
         .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -140,259 +148,214 @@
     </nav>
 
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / US-China Tariff Rates 2026</div>
-
-        <div class="meta">
-            <span class="tag">Tariffs</span>
-            <span class="tag">Guide</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / US-China Tariff Rates 2026</div>
+<div class="meta">
+<span class="tag">Tariffs</span>
+<span class="tag">Guide</span>
             Published March 24, 2026 · Updated April 20, 2026 · 9 min read
         </div>
-
-        <h1>China Tariffs 2026: Section 301, Section 122, and Actual Import Duty Rates</h1>
-
-        <p class="lead">If you're trying to find the current US tariff rate on goods from China, the real answer is usually a stack, not one clean number. Most importers are dealing with the 10% Section 122 baseline plus whatever Section 301 and Section 232 duties apply to the product.</p>
-        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-            <picture>
-                <source srcset="/assets/blog/us-china-tariff-rates-2026/hero.webp" type="image/webp">
-                <img src="/assets/blog/us-china-tariff-rates-2026/hero.jpg" width="1536" height="864" alt="Rate-stack visual for China Tariffs 2026: Section 301, Section 122, and Actual Import Duty Rates, showing HTS base duty, China-specific measures, Chapter 99 lines, exclusions, and final landed-cost review" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
-        </figure>
-        <div class="snapshot-list">
-            <h3>Current China tariff snapshot</h3>
-            <ul>
-                <li>Most Chinese goods are currently landing around <strong>17.5% to 35%</strong> total duty.</li>
-                <li><strong>Section 301</strong> is still the main China-specific layer for most products.</li>
-                <li><strong>Section 122</strong> adds a temporary 10% baseline to nearly all imports.</li>
-                <li><strong>Section 232</strong> can push steel, aluminum, autos, and copper much higher.</li>
-            </ul>
-        </div>
-
-        <div class="callout">
-            <p><strong>Quick answer:</strong> most Chinese goods in 2026 are landing somewhere around <strong>17.5% to 35%</strong> total duty, with some categories much higher. The exact rate depends on your HTS code, whether Section 232 applies, and your full CIF value. If you want the landed-cost version instead of the headline version, use the <a href="/duty/">free duty calculator</a>.</p>
-        </div>
-
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#current">Current US Tariff Rates on Chinese Goods</a></li>
-                <li><a href="#layers">The Three Tariff Layers Explained</a></li>
-                <li><a href="#calculate">How to Calculate Your Actual Duty</a></li>
-                <li><a href="#products">Product-Specific Rates (Section 232)</a></li>
-                <li><a href="#timeline">Timeline: How We Got Here</a></li>
-                <li><a href="#coming">What's Coming Next</a></li>
-                <li><a href="#faq">Frequently Asked Questions</a></li>
-            </ul>
-        </div>
-
-        <h2 id="current">Current US Tariff Rates on Chinese Goods (April 2026)</h2>
-
-        <p>Most goods imported from China right now face a <strong>combined tariff rate of roughly 17.5% to 35%</strong>, depending on the product category. Three overlapping tariff regimes explain that range:</p>
-
-        <table>
-            <thead>
-                <tr><th>Tariff Layer</th><th>Rate</th><th>Status</th><th>Applies To</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Section 122 (baseline)</td><td class="rate-mid">10%</td><td>Active (temporary — expires ~July 23, 2026)</td><td>Nearly all imports</td></tr>
-                <tr><td>Section 301 (China-specific)</td><td class="rate-high">7.5–25%</td><td>Active (ongoing from Trump 1.0)</td><td>Varies by product HTS code</td></tr>
-                <tr><td>Section 232 (product-specific)</td><td class="rate-high">25–50%</td><td>Active</td><td>Steel, aluminum, autos, copper, heavy trucks</td></tr>
-            </tbody>
-        </table>
-
-        <p class="source">Source: <a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank" rel="noopener">Tax Foundation tariff tracker</a> for the Section 122 baseline and average-rate estimates, <a href="https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions" target="_blank" rel="noopener">USTR's Section 301 tariff actions page</a> for list structure, and the <a href="https://www.usitc.gov/harmonized_tariff_information" target="_blank" rel="noopener">USITC Harmonized Tariff Schedule</a> for product classification.</p>
-
-        <div class="callout callout-warn">
-            <p><strong>⚠ Quick note:</strong> The triple-digit China tariff headlines from the IEEPA period are not the right planning number for most importers today. What is generally live now is the 10% Section 122 baseline plus any Section 301 and Section 232 duties that apply to your HTS code and product category.</p>
-        </div>
-
-        <h2 id="layers">The Three Tariff Layers Explained</h2>
-
-        <h3>1. Section 122: The 10% Baseline (Temporary)</h3>
-
-        <p>Four days after the Supreme Court invalidated the IEEPA tariffs — February 24, 2026 — President Trump invoked Section 122 of the Trade Act to slap a <strong>10% temporary tariff on nearly all US imports</strong>. This is a rarely-used emergency trade provision with a hard 150-day cap.</p>
-
-        <p>What you need to know:</p>
-        <ul>
-            <li><strong>Duration:</strong> 150 days — expires around <strong>July 23, 2026</strong></li>
-            <li><strong>Scope:</strong> Nearly all countries, not just China</li>
-            <li><strong>Legal basis:</strong> Section 122 stands on firmer legal ground than IEEPA</li>
-            <li><strong>Rate:</strong> Currently 10%, with some discussion of raising it to 15%</li>
-        </ul>
-
-        <p>According to the Tax Foundation, this 10% baseline pushed the weighted-average applied US tariff rate to <strong>10.2%</strong> — the highest it's been since the early 1970s.</p>
-
-        <h3>2. Section 301: China-Specific Tariffs (7.5–25%)</h3>
-
-        <p>The original trade war tariffs from Trump's first term, targeting Chinese goods only. Imposed in four rounds between 2018 and 2019 — and they <strong>never went away</strong>:</p>
-
-        <table>
-            <thead>
-                <tr><th>Section 301 List</th><th>Rate</th><th>Products</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>List 1 (July 2018)</td><td class="rate-high">25%</td><td>Industrial machinery, electronics components</td></tr>
-                <tr><td>List 2 (August 2018)</td><td class="rate-high">25%</td><td>Chemicals, plastics, motorcycles</td></tr>
-                <tr><td>List 3 (various)</td><td class="rate-high">25%</td><td>Furniture, auto parts, handbags, textiles</td></tr>
-                <tr><td>List 4A (various)</td><td class="rate-mid">7.5%</td><td>Consumer electronics, apparel, footwear</td></tr>
-            </tbody>
-        </table>
-
-        <p>Your rate depends on your product's <strong>HTS code</strong>. Consumer goods like clothing and electronics generally land on List 4A at 7.5%. Industrial goods are usually on Lists 1-3 at 25%. If you're not sure which list you're on, that's the first thing to figure out.</p>
-
-        <h3>3. Section 232: Product-Specific Tariffs (25–50%)</h3>
-
-        <p>These apply based on what the product is, not where it's from — though they hit China particularly hard since China dominates global steel and aluminum production:</p>
-
-        <table>
-            <thead>
-                <tr><th>Product</th><th>Tariff Rate</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Steel</td><td class="rate-high">50%</td></tr>
-                <tr><td>Aluminum</td><td class="rate-high">50%</td></tr>
-                <tr><td>Autos and auto parts</td><td class="rate-high">25%</td></tr>
-                <tr><td>Copper</td><td class="rate-high">50%</td></tr>
-                <tr><td>Heavy trucks and parts</td><td class="rate-mid">~25%</td></tr>
-                <tr><td>Furniture, kitchen cabinets, lumber</td><td class="rate-mid">~25%</td></tr>
-            </tbody>
-        </table>
-
-        <p>Section 232 stacks <strong>on top of</strong> everything else. Importing steel from China? That's 50% (Section 232) + 10% (Section 122) + 25% (Section 301) = <strong>85% combined</strong>. That's not a typo.</p>
-
-        <h2 id="calculate">How to Calculate Your Actual Duty</h2>
-
-        <p>Three things determine your total duty:</p>
-        <ol>
-            <li><strong>What your product is</strong> — determines which Section 301 list applies and whether Section 232 kicks in</li>
-            <li><strong>Your CIF value</strong> — product cost + shipping + insurance. Duty is calculated on this number, not just the product cost</li>
-            <li><strong>Whether any exemptions apply</strong> — some products have exclusions worth checking</li>
-        </ol>
-
-        <p><strong>Example:</strong> You're importing $10,000 in consumer electronics (List 4A) from China. Shipping is $1,500, insurance $200.</p>
-
-        <table>
-            <thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Product cost</td><td>$10,000</td></tr>
-                <tr><td>Shipping</td><td>$1,500</td></tr>
-                <tr><td>Insurance</td><td>$200</td></tr>
-                <tr><td><strong>CIF Value</strong></td><td><strong>$11,700</strong></td></tr>
-                <tr><td>Section 122 (10%)</td><td class="rate-mid">$1,170</td></tr>
-                <tr><td>Section 301 List 4A (7.5%)</td><td class="rate-mid">$877.50</td></tr>
-                <tr><td><strong>Total Duty</strong></td><td class="rate-high"><strong>$2,047.50</strong></td></tr>
-                <tr><td><strong>Total Landed Cost</strong></td><td><strong>$13,747.50</strong></td></tr>
-            </tbody>
-        </table>
-
-        <p>That's a <strong>20.5% effective tariff rate</strong> on your product cost. Every $100 of electronics costs you $20.50 in duties on top of everything else.</p>
-
-        <div class="cta-box">
-            <h3>Check your actual China landed cost</h3>
-            <p>Use the free duty calculator to compare product cost, shipping, and stacked tariff exposure before you commit to a PO.</p>
-            <a href="/duty/">Calculate China Import Duty →</a>
-        </div>
-
-        <h2 id="products">Product-Specific Rates: The Section 232 Impact</h2>
-
-        <p>If your product falls under Section 232, the math gets a lot worse. The Tax Foundation estimates Section 232 tariffs alone will cost the US economy <strong>154,000 full-time equivalent jobs</strong> and reduce GDP by 0.2%.</p>
-
-        <p>The categories hit hardest:</p>
-        <ul>
-            <li><strong>Steel products (50% tariff):</strong> Raw steel, steel pipe, structural steel, steel wire, nails, screws</li>
-            <li><strong>Aluminum products (50% tariff):</strong> Raw aluminum, aluminum extrusions, foil, cans, auto parts</li>
-            <li><strong>Automobiles (25% tariff):</strong> Complete vehicles, engines, transmissions, body panels</li>
-            <li><strong>Copper (50% tariff):</strong> Raw copper, copper wire, plumbing fittings</li>
-        </ul>
-
-        <p>For these products, the combined tariff (Section 232 + Section 122 + Section 301) lands between <strong>60% and 85%</strong>. Plan accordingly.</p>
-
-        <h2 id="timeline">Timeline: How We Got Here</h2>
-
-        <table>
-            <thead><tr><th>Date</th><th>Event</th><th>Impact</th></tr></thead>
-            <tbody>
-                <tr><td>2018-2019</td><td>Section 301 tariffs on China (Lists 1-4)</td><td>7.5-25% on most Chinese goods</td></tr>
-                <tr><td>Mar 2025</td><td>Section 232 tariffs expanded (steel, aluminum, autos)</td><td>25-50% on specific product categories</td></tr>
-                <tr><td>Apr 2025</td><td>"Liberation Day" — IEEPA tariffs announced</td><td>Reciprocal tariffs reached 82-145% on China</td></tr>
-                <tr><td>Jun 2025</td><td>US-China deal — China tariff reduced to 20%</td><td>Some relief, but still high</td></tr>
-                <tr><td>Feb 20, 2026</td><td>Supreme Court strikes down IEEPA tariffs</td><td>Reciprocal tariffs invalidated</td></tr>
-                <tr><td>Feb 24, 2026</td><td>Section 122 — 10% baseline tariff</td><td>Replaced IEEPA with temporary 10%</td></tr>
-                <tr><td>~Jul 23, 2026</td><td>Section 122 expires (150 days)</td><td>Baseline drops unless renewed</td></tr>
-            </tbody>
-        </table>
-
-        <h2 id="coming">What's Coming Next</h2>
-
-        <p>Things are still moving. Four developments to watch:</p>
-
-        <ul>
-            <li><strong>Section 122 expiry (~July 23, 2026):</strong> The 10% baseline is temporary. If it expires without replacement, average tariff rates drop significantly. But the administration could also extend it or replace it through another mechanism.</li>
-            <li><strong>Section 301 list and exclusion changes:</strong> The USTR Section 301 page remains the best place to watch for official tariff-action updates, exclusion guidance, and list-level changes.</li>
-            <li><strong>Section 232 expansions:</strong> Product-specific national-security tariffs can change the math quickly for metals, autos, and other covered categories, so importers need to watch category-level updates instead of relying on a single headline rate.</li>
-            <li><strong>De minimis changes:</strong> The $800 duty-free threshold for small shipments is still politically vulnerable. If it changes, low-value ecommerce and dropship flows get hit first.</li>
-        </ul>
-
-        <div class="callout">
-            <p><strong>💡 Worth bookmarking:</strong> We update our <a href="/duty/">tariff calculator</a> weekly with rates from government sources. Check it before placing any significant order — these numbers can shift.</p>
-        </div>
-
-        <h2 id="faq">Frequently Asked Questions</h2>
-
-        <div class="faq">
-            <div class="faq-item">
-                <div class="faq-q">Q: Are the 82-104% China tariffs still in effect?</div>
-                <div class="faq-a">No. Those headline numbers came from the earlier IEEPA tariff framework, not the combination most importers are planning around today. For many Chinese goods, the practical starting range is roughly 17.5–35% before any product-specific Section 232 duties.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: What rate should I use for import cost calculations?</div>
-                <div class="faq-a">Consumer goods from China: start with <strong>17.5%</strong> (10% Section 122 + 7.5% Section 301 List 4A). Industrial goods: use <strong>35%</strong> (10% Section 122 + 25% Section 301 Lists 1-3). Steel, aluminum, or autos: add Section 232 on top of that. Use our <a href="/duty/">free calculator</a> if you want exact numbers without doing the arithmetic yourself.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Is duty calculated on the product cost or the total cost including shipping?</div>
-                <div class="faq-a">On the <strong>CIF value</strong> — Cost, Insurance, and Freight. Your shipping and insurance costs increase the base that duty is calculated on. A lot of people miss this.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Will the 10% baseline tariff expire?</div>
-                <div class="faq-a">Section 122 has a 150-day cap, so the current 10% baseline is temporary, with an expected expiry around <strong>late July 2026</strong>. What happens after that is still uncertain as of April 2026. It could expire, get extended, or get replaced.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: How does this compare to tariffs on other countries?</div>
-                <div class="faq-a">China still tends to sit at the high end because Section 301 duties stack on top of the current Section 122 baseline. But exact comparisons depend on the destination market, trade agreement coverage, and whether your product falls into a special category. See our <a href="/duty/rates/">full rate table</a> for current country-level comparisons.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: I'm importing from China. Is there a quick way to estimate the duty?</div>
-                <div class="faq-a">Yes. You can use our <a href="/duty/">free duty calculator</a> for a fast estimate, then confirm the final classification and broker fees separately if the shipment is large or high risk.</div>
-            </div>
-        </div>
-
-        <h2>Sources</h2>
-        <ul style="font-size: 0.9rem; color: var(--gray-500);">
-            <li><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank" rel="noopener">Tax Foundation: 2026 Trump Tariffs & Trade War by the Numbers</a></li>
-            <li><a href="https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions" target="_blank" rel="noopener">USTR: China Section 301 Tariff Actions and Exclusion Process</a></li>
-            <li><a href="https://www.usitc.gov/harmonized_tariff_information" target="_blank" rel="noopener">USITC: Harmonized Tariff Schedule</a></li>
-            <li><a href="https://www.cbp.gov/trade" target="_blank" rel="noopener">US Customs and Border Protection: Trade</a></li>
-        </ul>
-
-        <div class="cta-box" style="margin-top: 3rem;">
-            <h3>Stop guessing</h3>
-            <p>Our free duty calculator gives you exact tariff rates for 85+ origin countries across 5 major markets. No signup. No spreadsheets.</p>
-            <a href="/duty/">Calculate Your Duty Free →</a>
-        </div>
-
-        <div class="related-guides">
-            <h3>Related guides</h3>
-            <ul>
-                <li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US in 2026</a></li>
-                <li><a href="/blog/de-minimis-threshold-2026/">De Minimis Threshold 2026</a></li>
-                <li><a href="/blog/how-to-calculate-landed-cost/">How to Calculate Landed Cost for Imported Goods</a></li>
-            </ul>
-        </div>
-
-        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
-            <strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal or tax advice. Tariff rates change frequently. Always verify current rates with US Customs and Border Protection or a licensed customs broker before making import decisions. Rates and examples in this article were refreshed on April 19, 2026.
+<h1>China Tariffs 2026: Section 301, Section 122, and Actual Import Duty Rates</h1>
+<p class="lead">If you're trying to find the current US tariff rate on goods from China, the real answer is usually a stack, not one clean number. Most importers are dealing with the 10% Section 122 baseline plus whatever Section 301 and Section 232 duties apply to the product.</p>
+<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+<picture>
+<source srcset="/assets/blog/us-china-tariff-rates-2026/hero.webp" type="image/webp"/>
+<img alt="Rate-stack visual for China Tariffs 2026: Section 301, Section 122, and Actual Import Duty Rates, showing HTS base duty, China-specific measures, Chapter 99 lines, exclusions, and final landed-cost review" decoding="async" fetchpriority="high" height="864" src="/assets/blog/us-china-tariff-rates-2026/hero.jpg" width="1536"/>
+</picture>
+<figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
+</figure>
+<div class="snapshot-list">
+<h3>Current China tariff snapshot</h3>
+<ul>
+<li>Most Chinese goods are currently landing around <strong>17.5% to 35%</strong> total duty.</li>
+<li><strong>Section 301</strong> is still the main China-specific layer for most products.</li>
+<li><strong>Section 122</strong> adds a temporary 10% baseline to nearly all imports.</li>
+<li><strong>Section 232</strong> can push steel, aluminum, autos, and copper much higher.</li>
+</ul>
+</div>
+<div class="callout">
+<p><strong>Quick answer:</strong> most Chinese goods in 2026 are landing somewhere around <strong>17.5% to 35%</strong> total duty, with some categories much higher. The exact rate depends on your HTS code, whether Section 232 applies, and your full CIF value. If you want the landed-cost version instead of the headline version, use the <a href="/duty/">free duty calculator</a>.</p>
+</div>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#current">Current US Tariff Rates on Chinese Goods</a></li>
+<li><a href="#layers">The Three Tariff Layers Explained</a></li>
+<li><a href="#calculate">How to Calculate Your Actual Duty</a></li>
+<li><a href="#products">Product-Specific Rates (Section 232)</a></li>
+<li><a href="#timeline">Timeline: How We Got Here</a></li>
+<li><a href="#coming">What's Coming Next</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+</ul>
+</div>
+<h2 id="current">Current US Tariff Rates on Chinese Goods (April 2026)</h2>
+<p>Most goods imported from China right now face a <strong>combined tariff rate of roughly 17.5% to 35%</strong>, depending on the product category. Three overlapping tariff regimes explain that range:</p>
+<table>
+<thead>
+<tr><th>Tariff Layer</th><th>Rate</th><th>Status</th><th>Applies To</th></tr>
+</thead>
+<tbody>
+<tr><td>Section 122 (baseline)</td><td class="rate-mid">10%</td><td>Active (temporary — expires ~July 23, 2026)</td><td>Nearly all imports</td></tr>
+<tr><td>Section 301 (China-specific)</td><td class="rate-high">7.5–25%</td><td>Active (ongoing from Trump 1.0)</td><td>Varies by product HTS code</td></tr>
+<tr><td>Section 232 (product-specific)</td><td class="rate-high">25–50%</td><td>Active</td><td>Steel, aluminum, autos, copper, heavy trucks</td></tr>
+</tbody>
+</table>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-2"><a href="https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions" rel="noopener" target="_blank">USTR's Section 301 tariff actions page</a></li><li id="ref-3"><a href="https://www.usitc.gov/harmonized_tariff_information" rel="noopener" target="_blank">USITC Harmonized Tariff Schedule</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade" rel="noopener" target="_blank">US Customs and Border Protection: Trade</a></li></ol></section><p class="source">Source: Tax Foundation tariff tracker<sup class="citation"><a href="#ref-1">[1]</a></sup> for the Section 122 baseline and average-rate estimates, USTR's Section 301 tariff actions page<sup class="citation"><a href="#ref-2">[2]</a></sup> for list structure, and the USITC Harmonized Tariff Schedule<sup class="citation"><a href="#ref-3">[3]</a></sup> for product classification.</p>
+<div class="callout callout-warn">
+<p><strong>⚠ Quick note:</strong> The triple-digit China tariff headlines from the IEEPA period are not the right planning number for most importers today. What is generally live now is the 10% Section 122 baseline plus any Section 301 and Section 232 duties that apply to your HTS code and product category.</p>
+</div>
+<h2 id="layers">The Three Tariff Layers Explained</h2>
+<h3>1. Section 122: The 10% Baseline (Temporary)</h3>
+<p>Four days after the Supreme Court invalidated the IEEPA tariffs — February 24, 2026 — President Trump invoked Section 122 of the Trade Act to slap a <strong>10% temporary tariff on nearly all US imports</strong>. This is a rarely-used emergency trade provision with a hard 150-day cap.</p>
+<p>What you need to know:</p>
+<ul>
+<li><strong>Duration:</strong> 150 days — expires around <strong>July 23, 2026</strong></li>
+<li><strong>Scope:</strong> Nearly all countries, not just China</li>
+<li><strong>Legal basis:</strong> Section 122 stands on firmer legal ground than IEEPA</li>
+<li><strong>Rate:</strong> Currently 10%, with some discussion of raising it to 15%</li>
+</ul>
+<p>According to the Tax Foundation, this 10% baseline pushed the weighted-average applied US tariff rate to <strong>10.2%</strong> — the highest it's been since the early 1970s.</p>
+<h3>2. Section 301: China-Specific Tariffs (7.5–25%)</h3>
+<p>The original trade war tariffs from Trump's first term, targeting Chinese goods only. Imposed in four rounds between 2018 and 2019 — and they <strong>never went away</strong>:</p>
+<table>
+<thead>
+<tr><th>Section 301 List</th><th>Rate</th><th>Products</th></tr>
+</thead>
+<tbody>
+<tr><td>List 1 (July 2018)</td><td class="rate-high">25%</td><td>Industrial machinery, electronics components</td></tr>
+<tr><td>List 2 (August 2018)</td><td class="rate-high">25%</td><td>Chemicals, plastics, motorcycles</td></tr>
+<tr><td>List 3 (various)</td><td class="rate-high">25%</td><td>Furniture, auto parts, handbags, textiles</td></tr>
+<tr><td>List 4A (various)</td><td class="rate-mid">7.5%</td><td>Consumer electronics, apparel, footwear</td></tr>
+</tbody>
+</table>
+<p>Your rate depends on your product's <strong>HTS code</strong>. Consumer goods like clothing and electronics generally land on List 4A at 7.5%. Industrial goods are usually on Lists 1-3 at 25%. If you're not sure which list you're on, that's the first thing to figure out.</p>
+<h3>3. Section 232: Product-Specific Tariffs (25–50%)</h3>
+<p>These apply based on what the product is, not where it's from — though they hit China particularly hard since China dominates global steel and aluminum production:</p>
+<table>
+<thead>
+<tr><th>Product</th><th>Tariff Rate</th></tr>
+</thead>
+<tbody>
+<tr><td>Steel</td><td class="rate-high">50%</td></tr>
+<tr><td>Aluminum</td><td class="rate-high">50%</td></tr>
+<tr><td>Autos and auto parts</td><td class="rate-high">25%</td></tr>
+<tr><td>Copper</td><td class="rate-high">50%</td></tr>
+<tr><td>Heavy trucks and parts</td><td class="rate-mid">~25%</td></tr>
+<tr><td>Furniture, kitchen cabinets, lumber</td><td class="rate-mid">~25%</td></tr>
+</tbody>
+</table>
+<p>Section 232 stacks <strong>on top of</strong> everything else. Importing steel from China? That's 50% (Section 232) + 10% (Section 122) + 25% (Section 301) = <strong>85% combined</strong>. That's not a typo.</p>
+<h2 id="calculate">How to Calculate Your Actual Duty</h2>
+<p>Three things determine your total duty:</p>
+<ol>
+<li><strong>What your product is</strong> — determines which Section 301 list applies and whether Section 232 kicks in</li>
+<li><strong>Your CIF value</strong> — product cost + shipping + insurance. Duty is calculated on this number, not just the product cost</li>
+<li><strong>Whether any exemptions apply</strong> — some products have exclusions worth checking</li>
+</ol>
+<p><strong>Example:</strong> You're importing $10,000 in consumer electronics (List 4A) from China. Shipping is $1,500, insurance $200.</p>
+<table>
+<thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Product cost</td><td>$10,000</td></tr>
+<tr><td>Shipping</td><td>$1,500</td></tr>
+<tr><td>Insurance</td><td>$200</td></tr>
+<tr><td><strong>CIF Value</strong></td><td><strong>$11,700</strong></td></tr>
+<tr><td>Section 122 (10%)</td><td class="rate-mid">$1,170</td></tr>
+<tr><td>Section 301 List 4A (7.5%)</td><td class="rate-mid">$877.50</td></tr>
+<tr><td><strong>Total Duty</strong></td><td class="rate-high"><strong>$2,047.50</strong></td></tr>
+<tr><td><strong>Total Landed Cost</strong></td><td><strong>$13,747.50</strong></td></tr>
+</tbody>
+</table>
+<p>That's a <strong>20.5% effective tariff rate</strong> on your product cost. Every $100 of electronics costs you $20.50 in duties on top of everything else.</p>
+<div class="cta-box">
+<h3>Check your actual China landed cost</h3>
+<p>Use the free duty calculator to compare product cost, shipping, and stacked tariff exposure before you commit to a PO.</p>
+<a href="/duty/">Calculate China Import Duty →</a>
+</div>
+<h2 id="products">Product-Specific Rates: The Section 232 Impact</h2>
+<p>If your product falls under Section 232, the math gets a lot worse. The Tax Foundation estimates Section 232 tariffs alone will cost the US economy <strong>154,000 full-time equivalent jobs</strong> and reduce GDP by 0.2%.</p>
+<p>The categories hit hardest:</p>
+<ul>
+<li><strong>Steel products (50% tariff):</strong> Raw steel, steel pipe, structural steel, steel wire, nails, screws</li>
+<li><strong>Aluminum products (50% tariff):</strong> Raw aluminum, aluminum extrusions, foil, cans, auto parts</li>
+<li><strong>Automobiles (25% tariff):</strong> Complete vehicles, engines, transmissions, body panels</li>
+<li><strong>Copper (50% tariff):</strong> Raw copper, copper wire, plumbing fittings</li>
+</ul>
+<p>For these products, the combined tariff (Section 232 + Section 122 + Section 301) lands between <strong>60% and 85%</strong>. Plan accordingly.</p>
+<h2 id="timeline">Timeline: How We Got Here</h2>
+<table>
+<thead><tr><th>Date</th><th>Event</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>2018-2019</td><td>Section 301 tariffs on China (Lists 1-4)</td><td>7.5-25% on most Chinese goods</td></tr>
+<tr><td>Mar 2025</td><td>Section 232 tariffs expanded (steel, aluminum, autos)</td><td>25-50% on specific product categories</td></tr>
+<tr><td>Apr 2025</td><td>"Liberation Day" — IEEPA tariffs announced</td><td>Reciprocal tariffs reached 82-145% on China</td></tr>
+<tr><td>Jun 2025</td><td>US-China deal — China tariff reduced to 20%</td><td>Some relief, but still high</td></tr>
+<tr><td>Feb 20, 2026</td><td>Supreme Court strikes down IEEPA tariffs</td><td>Reciprocal tariffs invalidated</td></tr>
+<tr><td>Feb 24, 2026</td><td>Section 122 — 10% baseline tariff</td><td>Replaced IEEPA with temporary 10%</td></tr>
+<tr><td>~Jul 23, 2026</td><td>Section 122 expires (150 days)</td><td>Baseline drops unless renewed</td></tr>
+</tbody>
+</table>
+<h2 id="coming">What's Coming Next</h2>
+<p>Things are still moving. Four developments to watch:</p>
+<ul>
+<li><strong>Section 122 expiry (~July 23, 2026):</strong> The 10% baseline is temporary. If it expires without replacement, average tariff rates drop significantly. But the administration could also extend it or replace it through another mechanism.</li>
+<li><strong>Section 301 list and exclusion changes:</strong> The USTR Section 301 page remains the best place to watch for official tariff-action updates, exclusion guidance, and list-level changes.</li>
+<li><strong>Section 232 expansions:</strong> Product-specific national-security tariffs can change the math quickly for metals, autos, and other covered categories, so importers need to watch category-level updates instead of relying on a single headline rate.</li>
+<li><strong>De minimis changes:</strong> The $800 duty-free threshold for small shipments is still politically vulnerable. If it changes, low-value ecommerce and dropship flows get hit first.</li>
+</ul>
+<div class="callout">
+<p><strong>💡 Worth bookmarking:</strong> We update our <a href="/duty/">tariff calculator</a> weekly with rates from government sources. Check it before placing any significant order — these numbers can shift.</p>
+</div>
+<h2 id="faq">Frequently Asked Questions</h2>
+<div class="faq">
+<div class="faq-item">
+<div class="faq-q">Q: Are the 82-104% China tariffs still in effect?</div>
+<div class="faq-a">No. Those headline numbers came from the earlier IEEPA tariff framework, not the combination most importers are planning around today. For many Chinese goods, the practical starting range is roughly 17.5–35% before any product-specific Section 232 duties.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: What rate should I use for import cost calculations?</div>
+<div class="faq-a">Consumer goods from China: start with <strong>17.5%</strong> (10% Section 122 + 7.5% Section 301 List 4A). Industrial goods: use <strong>35%</strong> (10% Section 122 + 25% Section 301 Lists 1-3). Steel, aluminum, or autos: add Section 232 on top of that. Use our <a href="/duty/">free calculator</a> if you want exact numbers without doing the arithmetic yourself.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Is duty calculated on the product cost or the total cost including shipping?</div>
+<div class="faq-a">On the <strong>CIF value</strong> — Cost, Insurance, and Freight. Your shipping and insurance costs increase the base that duty is calculated on. A lot of people miss this.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Will the 10% baseline tariff expire?</div>
+<div class="faq-a">Section 122 has a 150-day cap, so the current 10% baseline is temporary, with an expected expiry around <strong>late July 2026</strong>. What happens after that is still uncertain as of April 2026. It could expire, get extended, or get replaced.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: How does this compare to tariffs on other countries?</div>
+<div class="faq-a">China still tends to sit at the high end because Section 301 duties stack on top of the current Section 122 baseline. But exact comparisons depend on the destination market, trade agreement coverage, and whether your product falls into a special category. See our <a href="/duty/rates/">full rate table</a> for current country-level comparisons.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: I'm importing from China. Is there a quick way to estimate the duty?</div>
+<div class="faq-a">Yes. You can use our <a href="/duty/">free duty calculator</a> for a fast estimate, then confirm the final classification and broker fees separately if the shipment is large or high risk.</div>
+</div>
+</div>
+<h2>Sources</h2>
+<ul style="font-size: 0.9rem; color: var(--gray-500);">
+<li>Tax Foundation: 2026 Trump Tariffs &amp; Trade War by the Numbers<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>USTR: China Section 301 Tariff Actions and Exclusion Process<sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li>USITC: Harmonized Tariff Schedule<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
+<li>US Customs and Border Protection: Trade<sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+</ul>
+<div class="cta-box" style="margin-top: 3rem;">
+<h3>Stop guessing</h3>
+<p>Our free duty calculator gives you exact tariff rates for 85+ origin countries across 5 major markets. No signup. No spreadsheets.</p>
+<a href="/duty/">Calculate Your Duty Free →</a>
+</div>
+<div class="related-guides">
+<h3>Related guides</h3>
+<ul>
+<li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US in 2026</a></li>
+<li><a href="/blog/de-minimis-threshold-2026/">De Minimis Threshold 2026</a></li>
+<li><a href="/blog/how-to-calculate-landed-cost/">How to Calculate Landed Cost for Imported Goods</a></li>
+</ul>
+</div>
+<p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
+<strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal or tax advice. Tariff rates change frequently. Always verify current rates with US Customs and Border Protection or a licensed customs broker before making import decisions. Rates and examples in this article were refreshed on April 19, 2026.
         </p>
-    </article>
+</article>
 
     <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
 </body>

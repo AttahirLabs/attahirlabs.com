@@ -23,8 +23,8 @@
     <meta property="article:published_time" content="2026-03-24">
     <meta property="article:modified_time" content="2026-04-20">
     <script type="application/ld+json">
-    
-    
+
+
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -124,11 +124,19 @@
             table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
             th, td { padding: 0.5rem; }
         }
-    
+
         .post-figure { margin: 2rem 0; }
         .post-figure picture, .post-figure img { display: block; width: 100%; }
         .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
         .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -145,335 +153,273 @@
     </nav>
 
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / US De Minimis Threshold 2026</div>
-
-        <div class="meta">
-            <span class="tag">De Minimis</span>
-            <span class="tag">Dropshipping</span>
-            <span class="tag">Urgent</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / US De Minimis Threshold 2026</div>
+<div class="meta">
+<span class="tag">De Minimis</span>
+<span class="tag">Dropshipping</span>
+<span class="tag">Urgent</span>
             Published March 24, 2026 · Updated April 20, 2026 · 10 min read
         </div>
-
-        <h1>De Minimis Threshold 2026: Is the US $800 Rule Still in Effect?</h1>
-
-        <p class="lead">If you're asking whether the US $800 de minimis rule still protects small packages in 2026, the answer is no, not in the simple way importers got used to. Small shipments that used to slide through duty-free now need proper tariff math, and that hits AliExpress buyers, Temu shoppers, dropshippers, and small importers first.</p>
-        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-            <picture>
-                <source srcset="/assets/blog/de-minimis-threshold-2026/hero.webp" type="image/webp">
-                <img src="/assets/blog/de-minimis-threshold-2026/hero.jpg" width="1536" height="864" alt="De minimis threshold visual for De Minimis Threshold 2026: Is the US $800 Rule Still in Effect?, showing a shipment-value cutoff and the shift from under-threshold entry to duty and tax review" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
-        </figure>
-        <div class="quick-answer-grid">
-            <div class="quick-answer-card">
-                <div class="quick-answer-label">Still in effect?</div>
-                <p>Not as a safe default. Importers should not assume US-bound small packages still clear duty-free under the old $800 logic.</p>
-            </div>
-            <div class="quick-answer-card">
-                <div class="quick-answer-label">Who gets hit first?</div>
-                <p>Dropshippers, China-origin small parcels, direct-to-consumer imports, and anyone relying on low-value cross-border shipments.</p>
-            </div>
-            <div class="quick-answer-card">
-                <div class="quick-answer-label">What should you do now?</div>
-                <p>Check origin, HTS classification, and landed cost before pricing, because duty is now part of the order math.</p>
-            </div>
-        </div>
-
-        <div class="callout">
-            <p><strong>Quick answer:</strong> the old de minimis shortcut is no longer safe planning logic for US-bound small packages. If you're importing or dropshipping into the US, assume you need to check duty exposure and landed cost before you price or ship. You can use our <a href="/duty/">free duty calculator</a> to estimate the hit.</p>
-        </div>
-
-        <div class="callout callout-danger">
-            <p><strong>🚨 This is not a drill:</strong> US Customs and Border Protection has already issued operational guidance (CSMS #66311990) telling carriers how to collect duties on international mail shipments. The exemption is gone. CBP is collecting duties now.</p>
-        </div>
-
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#what-was">What Was the De Minimis Exemption? (The $800 Rule)</a></li>
-                <li><a href="#what-changed">What Changed in 2026 — Executive Order 14324</a></li>
-                <li><a href="#who-affected">Who's Affected: Dropshippers, AliExpress Buyers, Small Importers</a></li>
-                <li><a href="#how-duties-work">How Duties Now Work on Small Packages</a></li>
-                <li><a href="#dropshipping-impact">The Real Impact on the Dropshipping Business Model</a></li>
-                <li><a href="#global">Canada, EU, UK: How Does the US Change Compare?</a></li>
-                <li><a href="#calculate">How to Calculate Duty on Small Shipments Now</a></li>
-                <li><a href="#faq">Frequently Asked Questions</a></li>
-            </ul>
-        </div>
-
-        <h2 id="what-was">What Was the De Minimis Exemption? (The $800 Rule)</h2>
-
-        <p>For years, US law had one beautifully simple rule: if a package was worth <strong>under $800</strong>, it entered the United States duty-free. No tariffs. No customs forms beyond a basic postal declaration. No broker. Just arrive and go.</p>
-
-        <p>This came from <strong>19 U.S.C. § 1321</strong> — the "de minimis" provision. The $800 threshold was set in 2015 and it was ludicrously generous by global standards. Canada's is CAD $20. The EU's is €150.</p>
-
-        <p>What that created:</p>
-        <ul>
-            <li>A consumer ordering a $50 phone case from AliExpress paid <strong>zero duty</strong></li>
-            <li>A dropshipper shipping direct from China to US customers paid <strong>zero per shipment</strong></li>
-            <li>Temu and Shein shipped individual orders straight to US buyers, sidestepping the 7.5–25% tariffs that bulk importers paid</li>
-            <li>Small importers testing products brought in samples with no customs hassle</li>
-        </ul>
-
-        <p>By 2023, CBP reported these shipments had passed <strong>1 billion packages annually</strong> — roughly 2.7 million per day. Volume grew 600% in a decade. Almost all of it driven by Chinese e-commerce.</p>
-
-        <div class="callout">
-            <p><strong>💡 Why did this tilt so hard in favor of Chinese sellers?</strong> A Temu or Shein package shipped directly from China owed zero duty. A US-based importer bringing in the same item in bulk paid 7.5–25%. That's not a small edge — it's a structural cost advantage that made it nearly impossible for domestic distributors to compete on price.</p>
-        </div>
-
-        <h2 id="what-changed">What Changed in 2026 — Executive Order 14324</h2>
-
-        <p>On February 1, 2025, President Trump signed an executive order targeting de minimis — starting with China. The rules expanded fast. By early 2026 the administration made its broadest move:</p>
-
-        <p><strong>Executive Order 14324 suspended duty-free de minimis for ALL countries.</strong> Not just China. Not just certain shipping methods. Everything. Every international small package lost its automatic pass.</p>
-
-        <p>CBP followed with <strong>CSMS #66311990</strong> — operational guidance to postal operators and carriers on actually collecting the duties. That's the document that turned policy into reality at the border.</p>
-
-        <p>The Tax Foundation estimates closing de minimis raises roughly <strong>$72.9 billion in federal revenue</strong> over 2026–2035. That's how much was flowing through duty-free every year. It's now tariff revenue.</p>
-
-        <table>
-            <thead>
-                <tr><th>Timeline</th><th>Action</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Feb 1, 2025</td><td>Initial EO targeting de minimis for China shipments</td></tr>
-                <tr><td>Mid-2025</td><td>Scope expanded; postal carriers begin collecting duties on Chinese goods</td></tr>
-                <tr><td>Early 2026</td><td>Executive Order 14324 — de minimis suspended for ALL countries</td></tr>
-                <tr><td>2026 (ongoing)</td><td>CBP CSMS #66311990 operational guidance issued; duties collected on international mail</td></tr>
-            </tbody>
-        </table>
-
-        <p class="source">Sources: US Customs and Border Protection CSMS #66311990; Tax Foundation "Tariffs and the De Minimis Exemption" (2026)</p>
-
-        <h2 id="who-affected">Who's Affected: Dropshippers, AliExpress Buyers, Small Importers</h2>
-
-        <p>Pretty much everyone who relied on cheap overseas shipping. Here's the breakdown:</p>
-
-        <h3>Dropshippers Shipping Direct from China</h3>
-        <p>Classic AliExpress-to-Shopify dropshipping ran entirely on de minimis. Every order under $800, every order duty-free. That's done. Each customer shipment now owes duty on the product value at whatever tariff rate applies. On a $40 item from China, that's $10–15 in duties — which you either absorb (margins gone) or pass to the customer (conversions tank). Neither option is fun.</p>
-
-        <h3>AliExpress and Temu Buyers</h3>
-        <p>Regular consumers buying from AliExpress, Temu, or Shein are catching this too. That $35 phone case or $22 LED strip now crosses the border carrying a customs bill. Some platforms are pre-collecting duty at checkout. Others let it hit the customer on delivery — which makes for very unhappy unboxing moments.</p>
-
-        <p>Temu had already paused US advertising on Meta in 2025 because the de minimis changes and China tariffs together wrecked their cost model. The full suspension of de minimis made it worse.</p>
-
-        <h3>DTC Brands Sourcing from China</h3>
-        <p>Direct-to-consumer brands shipping small batches from Chinese manufacturers used de minimis as a margin buffer they never had to think about. Now those sub-$800 orders that used to clear automatically are generating duty bills. That's straight-up margin erosion with nowhere to hide.</p>
-
-        <h3>Small Business Importers and Product Testers</h3>
-        <p>A 10-unit test order at $50/unit ($500 total) used to clear duty-free. Now you're paying customs before you've proven the product will even sell. That changes how you run experiments.</p>
-
-        <div class="callout callout-warn">
-            <p><strong>⚠ There's a hidden cost beyond the duty.</strong> De minimis shipments used to bypass detailed customs entry requirements entirely. Now carriers must submit proper entry data for every package — which means brokerage fees, processing delays, and admin overhead even when the duty amount itself is tiny.</p>
-        </div>
-
-        <h2 id="how-duties-work">How Duties Now Work on Small Packages</h2>
-
-        <p>Every international package now pays the applicable duty. Here's how it works:</p>
-
-        <h3>Duty Is Based on Product Value + Country of Origin</h3>
-        <p>Three things determine what you owe:</p>
-        <ol>
-            <li><strong>Country of origin</strong> — where the goods were actually made (not just where they shipped from)</li>
-            <li><strong>HTS code</strong> — the product classification that sets the tariff rate</li>
-            <li><strong>Declared value</strong> — what you or the seller declares the goods are worth</li>
-        </ol>
-
-        <h3>For China-Origin Goods</h3>
-        <p>Chinese goods don't just lose their duty-free pass — they also face elevated tariff rates. A small package from China now owes:</p>
-        <ul>
-            <li><strong>Section 301 tariff:</strong> 7.5–25% depending on product category</li>
-            <li><strong>Section 122 tariff:</strong> 10% (currently active)</li>
-            <li><strong>MFN (base) tariff rate:</strong> typically 0–12% for most consumer goods</li>
-        </ul>
-
-        <p>Stack those up and most Chinese consumer goods face <strong>17.5–35%</strong> in total duties. Consumer electronics specifically tend to sit around 17.5–20% (Section 301 List 4A is 7.5% for that category).</p>
-
-        <h3>For Non-China Goods</h3>
-        <p>Vietnam, India, Turkey, Mexico — packages from these countries face their MFN rate plus the 10% Section 122 baseline. MFN rates for most consumer goods run 0–5%, so you're looking at 10–15% total. Still a cost that didn't exist a year ago. But nothing like China.</p>
-
-        <h3>Who Collects the Duty</h3>
-        <p>For postal shipments, customs fees are assessed and held before delivery. For express carriers (DHL, FedEx, UPS), duties are typically collected from the recipient on delivery — or pre-billed to the shipper's account. Either way, CBP's CSMS #66311990 guidance spells out how carriers are supposed to handle it.</p>
-
-        <h2 id="dropshipping-impact">The Real Impact on the Dropshipping Business Model</h2>
-
-        <p>Classic AliExpress-to-Shopify dropshipping is in serious trouble. Here's the math:</p>
-
-        <h3>The Old Math (Pre-2026)</h3>
-        <table>
-            <thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Product cost (AliExpress)</td><td>$15</td></tr>
-                <tr><td>Shipping (ePacket / China Post)</td><td>$3</td></tr>
-                <tr><td>Duty</td><td class="rate-low">$0 (de minimis)</td></tr>
-                <tr><td>Selling price</td><td>$39.99</td></tr>
-                <tr><td><strong>Gross margin</strong></td><td class="rate-low"><strong>~54%</strong></td></tr>
-            </tbody>
-        </table>
-
-        <h3>The New Math (Post-2026)</h3>
-        <table>
-            <thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Product cost (AliExpress)</td><td>$15</td></tr>
-                <tr><td>Shipping</td><td>$3</td></tr>
-                <tr><td>Duty (17.5% on $15 product)</td><td class="rate-high">$2.63</td></tr>
-                <tr><td>CBP processing / brokerage</td><td class="rate-mid">$1–3 (estimated)</td></tr>
-                <tr><td>Selling price</td><td>$39.99</td></tr>
-                <tr><td><strong>Gross margin</strong></td><td class="rate-high"><strong>~42–45%</strong> (down ~10 pts)</td></tr>
-            </tbody>
-        </table>
-
-        <p>Ten percentage points off gross margin is brutal when ad costs are already eating you alive. A lot of dropshippers ran 40–50% gross and were barely profitable after ad spend. Another 10-point haircut pushes many of those stores underwater — you either raise prices or you lose money on every order.</p>
-
-        <h3>What Dropshippers Should Do Now</h3>
-        <ul>
-            <li><strong>Reprice immediately.</strong> Your cost basis changed. Update pricing to reflect the real landed cost including duty.</li>
-            <li><strong>Look at US-based 3PLs.</strong> Inventory in a US warehouse ships domestically — no import duty. Product cost is higher, but you get predictability.</li>
-            <li><strong>Explore Vietnam or India suppliers</strong> where you can find equivalent products. 10–15% total duty beats 17.5–35% from China.</li>
-            <li><strong>Consolidate orders where possible.</strong> Fewer, larger shipments reduce per-unit brokerage overhead (though not the duty rate itself).</li>
-            <li><strong>Handle duty at checkout.</strong> If duties hit customers at delivery, you'll get chargebacks and package refusals. Pre-collect it at checkout with DDP (Delivered Duty Paid) if your platform supports it.</li>
-        </ul>
-
-        <div class="cta-box">
-            <h3>Estimate duty on small packages before you ship</h3>
-            <p>If de minimis no longer saves the order, landed cost matters a lot more. Use our free duty calculator to estimate tariff exposure before you set prices or approve ads.</p>
-            <a href="/duty/">Check Duty on a Shipment →</a>
-        </div>
-
-        <h2 id="global">Canada, EU, UK: How Does the US Change Compare?</h2>
-
-        <p>The US had the most generous de minimis threshold in the developed world. Most other markets set the bar much lower — which means foreign sellers already dealt with this reality when shipping into those countries.</p>
-
-        <table>
-            <thead>
-                <tr><th>Country / Region</th><th>De Minimis Threshold</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>🇺🇸 United States</td><td class="rate-high">$0 (was $800 USD)</td><td class="rate-high">Suspended — duties apply on all shipments</td></tr>
-                <tr><td>🇨🇦 Canada</td><td class="rate-high">CAD $20 (~$15 USD)</td><td>Active — duty-free only up to CAD $20</td></tr>
-                <tr><td>🇪🇺 European Union</td><td class="rate-mid">€150 (~$165 USD)</td><td>Active — customs duty waived under €150; VAT always applies</td></tr>
-                <tr><td>🇬🇧 United Kingdom</td><td class="rate-mid">£135 (~$170 USD)</td><td>Active — duty-free under £135; VAT always applies</td></tr>
-                <tr><td>🇦🇺 Australia</td><td class="rate-mid">AUD $1,000 (~$650 USD)</td><td>Active — GST applies on all imports; duty waived under AUD $1,000</td></tr>
-            </tbody>
-        </table>
-
-        <p>Canada's CAD $20 (~$15 USD) threshold means virtually every cross-border parcel pays duty. Canadian consumers have always lived in this world. The US just joined them.</p>
-
-        <p>The EU and UK sit in the middle — €150/£135 covers a lot of small purchases but not all. And <strong>VAT always applied in the EU and UK</strong> regardless of threshold — so even low-value Chinese packages owed tax before the US rules ever changed.</p>
-
-        <div class="callout">
-            <p><strong>💡 Selling into multiple markets?</strong> The duty burden varies a lot by destination. A pricing strategy that works for US customers won't necessarily cover your costs on Canadian or EU orders. Our <a href="/duty/">duty calculator</a> handles all major markets so you can model each one properly.</p>
-        </div>
-
-        <h2 id="calculate">How to Calculate Duty on Small Shipments Now</h2>
-
-        <p>Three inputs: your product's HTS code, your declared value, and your country of origin. Here's how to work through it:</p>
-
-        <h3>Step 1: Find Your HTS Code</h3>
-        <p>Your HTS code is what sets the base tariff rate. Look it up at the <a href="https://www.usitc.gov/harmonized_tariff_information" target="_blank" rel="noopener">USITC website</a>. For China-origin goods, here's roughly what you're dealing with by category:</p>
-        <ul>
-            <li><strong>Electronics (phone cases, cables, gadgets):</strong> MFN ~0–3.9% + Section 301 List 4A 7.5% + Section 122 10% = ~17.5–21%</li>
-            <li><strong>Apparel and footwear:</strong> MFN ~12–67% + Section 301 7.5% + Section 122 10% = can get very ugly very fast</li>
-            <li><strong>Toys and sporting goods:</strong> MFN ~0% + Section 301 7.5% + Section 122 10% = ~17.5%</li>
-            <li><strong>Home goods and furniture:</strong> MFN ~0–6% + Section 301 List 3 25% + Section 122 10% = ~35–41%</li>
-        </ul>
-
-        <h3>Step 2: Use the Actual Declared Value</h3>
-        <p>Duty is calculated on the <strong>transaction value</strong> — what the buyer paid, or a fair market value. Undervaluing packages is customs fraud. Use the real number.</p>
-
-        <h3>Step 3: Multiply</h3>
-        <p>Declared value × applicable duty rate = duty owed. That's it.</p>
-
-        <p><strong>Example — $45 gadget from China:</strong></p>
-        <table>
-            <thead><tr><th>Component</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>Declared value</td><td>$45</td></tr>
-                <tr><td>MFN rate (~0%)</td><td>$0</td></tr>
-                <tr><td>Section 301 List 4A (7.5%)</td><td>$3.38</td></tr>
-                <tr><td>Section 122 (10%)</td><td>$4.50</td></tr>
-                <tr><td><strong>Total duty owed</strong></td><td class="rate-high"><strong>$7.88</strong></td></tr>
-            </tbody>
-        </table>
-
-        <p>Your customer's $45 gadget now arrives with a ~$8 customs bill attached. If you're absorbing it as the seller, that's 17.5% of product cost straight out of margin. If you're passing it to the customer, expect some friction.</p>
-
-        <h3>Other Fees to Factor In</h3>
-        <ul>
-            <li><strong>CBP Merchandise Processing Fee (MPF):</strong> 0.3464% of value (minimum $32.71, maximum $634.62 per entry) for formal entries</li>
-            <li><strong>Harbor Maintenance Fee (HMF):</strong> 0.125% on ocean shipments</li>
-            <li><strong>Brokerage fees:</strong> $25–150+ per entry if a customs broker files on your behalf</li>
-        </ul>
-
-        <div class="cta-box">
-            <h3>Stop guessing. Calculate your exact duty.</h3>
-            <p>Our free duty calculator covers the US, Canada, UK, EU, and Australia. Enter your product value, country of origin, and product category — get your exact landed cost in seconds.</p>
-            <a href="/duty/">Try the Free Duty Calculator →</a>
-        </div>
-
-        <h2 id="faq">Frequently Asked Questions</h2>
-
-        <div class="faq">
-            <div class="faq-item">
-                <div class="faq-q">Q: Is the de minimis $800 threshold really completely gone?</div>
-                <div class="faq-a">Yes — for now. Executive Order 14324 suspended duty-free de minimis for all countries, and CBP has issued operational guidance (CSMS #66311990) to carriers on actually collecting it. No floor, no minimum, no exceptions. Executive orders can be reversed or challenged, but as of March 2026, every international small package owes duty.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: What happens if a package arrives and I didn't pay duty upfront?</div>
-                <div class="faq-a">CBP or the carrier holds it and sends a notice that duty is owed before delivery. For postal shipments it's usually a notice card with a bill. For express carriers like DHL or FedEx, the carrier typically pays on your behalf and invoices you later — which can show up as a surprise charge weeks after your customer already received the package.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Should I update my Shopify store pricing right now?</div>
-                <div class="faq-a">Yes. Your landed cost went up. If you're absorbing the duty, you're already losing money on in-transit orders. For everything going forward, factor duty into your cost basis before you set your selling price — not after.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Do non-China shipments also face duty now?</div>
-                <div class="faq-a">Yes. EO 14324 suspended de minimis for all countries. Vietnam, India, Turkey, Bangladesh — all of it. Non-China goods face lower rates (usually just the 10% Section 122 baseline plus MFN, which might be 0%) but the automatic duty-free pass is gone across the board.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Why did Temu pause US advertising?</div>
-                <div class="faq-a">Temu's whole US model was built on direct-from-China shipments under $800. When de minimis started closing and China tariffs stayed elevated, the margin math stopped working. They paused US advertising on Meta in 2025 and pivoted toward a US-warehouse model for some products. The full de minimis suspension made it worse. Direct-ship volume from China has dropped dramatically.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Is there any way to legally avoid these duties?</div>
-                <div class="faq-a">Yes, but they're all real supply chain decisions, not loopholes. Source from countries with lower tariff exposure — Vietnam or India-origin goods face 10–15% versus China's 17.5–35%. Use a US-based 3PL: domestic inventory ships domestically, no import duty. Or use a Bonded Warehouse or Foreign Trade Zone to store goods duty-free until they're sold. None of these are magic, but they're legitimate and worth modeling out.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Will the de minimis exemption come back?</div>
-                <div class="faq-a">Maybe. It was created by executive action and can be undone the same way. Congress could restore a threshold. Trade deals could carve out exceptions. But the Tax Foundation estimates it'll raise ~$72.9 billion over 2026–2035, which is serious fiscal motivation to keep it gone. Plan for the current reality; stay informed about changes.</div>
-            </div>
-        </div>
-
-        <h2>Sources</h2>
-        <ul style="font-size: 0.9rem; color: var(--gray-500);">
-            <li><a href="https://www.whitehouse.gov/presidential-actions/" target="_blank" rel="noopener">Executive Order 14324 — Suspension of De Minimis Treatment (White House, 2026)</a></li>
-            <li><a href="https://www.cbp.gov/trade/trade-community/outreach-programs/automated-systems/csms" target="_blank" rel="noopener">CBP CSMS #66311990 — Guidance on Duties for International Mail Shipments</a></li>
-            <li><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank" rel="noopener">Tax Foundation: De Minimis and Tariff Revenue Estimates (2026)</a></li>
-            <li><a href="https://www.usitc.gov/harmonized_tariff_information" target="_blank" rel="noopener">US International Trade Commission: Harmonized Tariff Schedule</a></li>
-            <li><a href="https://www.cbp.gov/trade/basic-import-export/de-minimis" target="_blank" rel="noopener">US Customs and Border Protection: De Minimis Overview</a></li>
-            <li><a href="https://ustr.gov/" target="_blank" rel="noopener">US Trade Representative: Section 301 Tariff Information</a></li>
-        </ul>
-
-        <div class="cta-box" style="margin-top: 3rem;">
-            <h3>Know exactly what you're paying before your next order</h3>
-            <p>Our free duty calculator covers the US, Canada, UK, EU, and Australia — updated weekly with current tariff rates. No spreadsheets, no guesswork.</p>
-            <a href="/duty/">Calculate My Import Duty →</a>
-        </div>
-
-        <div class="related-guides">
-            <h3>Related guides</h3>
-            <ul>
-                <li><a href="/blog/us-china-tariff-rates-2026/">US-China Tariff Rates 2026: What Importers Are Actually Paying Now</a></li>
-                <li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US in 2026</a></li>
-                <li><a href="/blog/how-to-calculate-landed-cost/">How to Calculate Landed Cost for Imported Goods</a></li>
-            </ul>
-        </div>
-
-        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
-            <strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal or tax advice. Customs rules and tariff rates change frequently. Always verify current requirements with US Customs and Border Protection or a licensed customs broker before making import decisions. Information in this article is accurate as of March 24, 2026.
+<h1>De Minimis Threshold 2026: Is the US $800 Rule Still in Effect?</h1>
+<p class="lead">If you're asking whether the US $800 de minimis rule still protects small packages in 2026, the answer is no, not in the simple way importers got used to. Small shipments that used to slide through duty-free now need proper tariff math, and that hits AliExpress buyers, Temu shoppers, dropshippers, and small importers first.</p>
+<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+<picture>
+<source srcset="/assets/blog/de-minimis-threshold-2026/hero.webp" type="image/webp"/>
+<img alt="De minimis threshold visual for De Minimis Threshold 2026: Is the US $800 Rule Still in Effect?, showing a shipment-value cutoff and the shift from under-threshold entry to duty and tax review" decoding="async" fetchpriority="high" height="864" src="/assets/blog/de-minimis-threshold-2026/hero.jpg" width="1536"/>
+</picture>
+<figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
+</figure>
+<div class="quick-answer-grid">
+<div class="quick-answer-card">
+<div class="quick-answer-label">Still in effect?</div>
+<p>Not as a safe default. Importers should not assume US-bound small packages still clear duty-free under the old $800 logic.</p>
+</div>
+<div class="quick-answer-card">
+<div class="quick-answer-label">Who gets hit first?</div>
+<p>Dropshippers, China-origin small parcels, direct-to-consumer imports, and anyone relying on low-value cross-border shipments.</p>
+</div>
+<div class="quick-answer-card">
+<div class="quick-answer-label">What should you do now?</div>
+<p>Check origin, HTS classification, and landed cost before pricing, because duty is now part of the order math.</p>
+</div>
+</div>
+<div class="callout">
+<p><strong>Quick answer:</strong> the old de minimis shortcut is no longer safe planning logic for US-bound small packages. If you're importing or dropshipping into the US, assume you need to check duty exposure and landed cost before you price or ship. You can use our <a href="/duty/">free duty calculator</a> to estimate the hit.</p>
+</div>
+<div class="callout callout-danger">
+<p><strong>🚨 This is not a drill:</strong> US Customs and Border Protection has already issued operational guidance (CSMS #66311990) telling carriers how to collect duties on international mail shipments. The exemption is gone. CBP is collecting duties now.</p>
+</div>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#what-was">What Was the De Minimis Exemption? (The $800 Rule)</a></li>
+<li><a href="#what-changed">What Changed in 2026 — Executive Order 14324</a></li>
+<li><a href="#who-affected">Who's Affected: Dropshippers, AliExpress Buyers, Small Importers</a></li>
+<li><a href="#how-duties-work">How Duties Now Work on Small Packages</a></li>
+<li><a href="#dropshipping-impact">The Real Impact on the Dropshipping Business Model</a></li>
+<li><a href="#global">Canada, EU, UK: How Does the US Change Compare?</a></li>
+<li><a href="#calculate">How to Calculate Duty on Small Shipments Now</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+</ul>
+</div>
+<h2 id="what-was">What Was the De Minimis Exemption? (The $800 Rule)</h2>
+<p>For years, US law had one beautifully simple rule: if a package was worth <strong>under $800</strong>, it entered the United States duty-free. No tariffs. No customs forms beyond a basic postal declaration. No broker. Just arrive and go.</p>
+<p>This came from <strong>19 U.S.C. § 1321</strong> — the "de minimis" provision. The $800 threshold was set in 2015 and it was ludicrously generous by global standards. Canada's is CAD $20. The EU's is €150.</p>
+<p>What that created:</p>
+<ul>
+<li>A consumer ordering a $50 phone case from AliExpress paid <strong>zero duty</strong></li>
+<li>A dropshipper shipping direct from China to US customers paid <strong>zero per shipment</strong></li>
+<li>Temu and Shein shipped individual orders straight to US buyers, sidestepping the 7.5–25% tariffs that bulk importers paid</li>
+<li>Small importers testing products brought in samples with no customs hassle</li>
+</ul>
+<p>By 2023, CBP reported these shipments had passed <strong>1 billion packages annually</strong> — roughly 2.7 million per day. Volume grew 600% in a decade. Almost all of it driven by Chinese e-commerce.</p>
+<div class="callout">
+<p><strong>💡 Why did this tilt so hard in favor of Chinese sellers?</strong> A Temu or Shein package shipped directly from China owed zero duty. A US-based importer bringing in the same item in bulk paid 7.5–25%. That's not a small edge — it's a structural cost advantage that made it nearly impossible for domestic distributors to compete on price.</p>
+</div>
+<h2 id="what-changed">What Changed in 2026 — Executive Order 14324</h2>
+<p>On February 1, 2025, President Trump signed an executive order targeting de minimis — starting with China. The rules expanded fast. By early 2026 the administration made its broadest move:</p>
+<p><strong>Executive Order 14324 suspended duty-free de minimis for ALL countries.</strong> Not just China. Not just certain shipping methods. Everything. Every international small package lost its automatic pass.</p>
+<p>CBP followed with <strong>CSMS #66311990</strong> — operational guidance to postal operators and carriers on actually collecting the duties. That's the document that turned policy into reality at the border.</p>
+<p>The Tax Foundation estimates closing de minimis raises roughly <strong>$72.9 billion in federal revenue</strong> over 2026–2035. That's how much was flowing through duty-free every year. It's now tariff revenue.</p>
+<table>
+<thead>
+<tr><th>Timeline</th><th>Action</th></tr>
+</thead>
+<tbody>
+<tr><td>Feb 1, 2025</td><td>Initial EO targeting de minimis for China shipments</td></tr>
+<tr><td>Mid-2025</td><td>Scope expanded; postal carriers begin collecting duties on Chinese goods</td></tr>
+<tr><td>Early 2026</td><td>Executive Order 14324 — de minimis suspended for ALL countries</td></tr>
+<tr><td>2026 (ongoing)</td><td>CBP CSMS #66311990 operational guidance issued; duties collected on international mail</td></tr>
+</tbody>
+</table>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.usitc.gov/harmonized_tariff_information" rel="noopener" target="_blank">USITC website</a></li><li id="ref-2"><a href="https://www.whitehouse.gov/presidential-actions/" rel="noopener" target="_blank">Executive Order 14324 — Suspension of De Minimis Treatment (White House, 2026)</a></li><li id="ref-3"><a href="https://www.cbp.gov/trade/trade-community/outreach-programs/automated-systems/csms" rel="noopener" target="_blank">CBP CSMS #66311990 — Guidance on Duties for International Mail Shipments</a></li><li id="ref-4"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation: De Minimis and Tariff Revenue Estimates (2026)</a></li><li id="ref-5"><a href="https://www.cbp.gov/trade/basic-import-export/de-minimis" rel="noopener" target="_blank">US Customs and Border Protection: De Minimis Overview</a></li><li id="ref-6"><a href="https://ustr.gov/" rel="noopener" target="_blank">US Trade Representative: Section 301 Tariff Information</a></li></ol></section><p class="source">Sources: US Customs and Border Protection CSMS #66311990; Tax Foundation "Tariffs and the De Minimis Exemption" (2026)</p>
+<h2 id="who-affected">Who's Affected: Dropshippers, AliExpress Buyers, Small Importers</h2>
+<p>Pretty much everyone who relied on cheap overseas shipping. Here's the breakdown:</p>
+<h3>Dropshippers Shipping Direct from China</h3>
+<p>Classic AliExpress-to-Shopify dropshipping ran entirely on de minimis. Every order under $800, every order duty-free. That's done. Each customer shipment now owes duty on the product value at whatever tariff rate applies. On a $40 item from China, that's $10–15 in duties — which you either absorb (margins gone) or pass to the customer (conversions tank). Neither option is fun.</p>
+<h3>AliExpress and Temu Buyers</h3>
+<p>Regular consumers buying from AliExpress, Temu, or Shein are catching this too. That $35 phone case or $22 LED strip now crosses the border carrying a customs bill. Some platforms are pre-collecting duty at checkout. Others let it hit the customer on delivery — which makes for very unhappy unboxing moments.</p>
+<p>Temu had already paused US advertising on Meta in 2025 because the de minimis changes and China tariffs together wrecked their cost model. The full suspension of de minimis made it worse.</p>
+<h3>DTC Brands Sourcing from China</h3>
+<p>Direct-to-consumer brands shipping small batches from Chinese manufacturers used de minimis as a margin buffer they never had to think about. Now those sub-$800 orders that used to clear automatically are generating duty bills. That's straight-up margin erosion with nowhere to hide.</p>
+<h3>Small Business Importers and Product Testers</h3>
+<p>A 10-unit test order at $50/unit ($500 total) used to clear duty-free. Now you're paying customs before you've proven the product will even sell. That changes how you run experiments.</p>
+<div class="callout callout-warn">
+<p><strong>⚠ There's a hidden cost beyond the duty.</strong> De minimis shipments used to bypass detailed customs entry requirements entirely. Now carriers must submit proper entry data for every package — which means brokerage fees, processing delays, and admin overhead even when the duty amount itself is tiny.</p>
+</div>
+<h2 id="how-duties-work">How Duties Now Work on Small Packages</h2>
+<p>Every international package now pays the applicable duty. Here's how it works:</p>
+<h3>Duty Is Based on Product Value + Country of Origin</h3>
+<p>Three things determine what you owe:</p>
+<ol>
+<li><strong>Country of origin</strong> — where the goods were actually made (not just where they shipped from)</li>
+<li><strong>HTS code</strong> — the product classification that sets the tariff rate</li>
+<li><strong>Declared value</strong> — what you or the seller declares the goods are worth</li>
+</ol>
+<h3>For China-Origin Goods</h3>
+<p>Chinese goods don't just lose their duty-free pass — they also face elevated tariff rates. A small package from China now owes:</p>
+<ul>
+<li><strong>Section 301 tariff:</strong> 7.5–25% depending on product category</li>
+<li><strong>Section 122 tariff:</strong> 10% (currently active)</li>
+<li><strong>MFN (base) tariff rate:</strong> typically 0–12% for most consumer goods</li>
+</ul>
+<p>Stack those up and most Chinese consumer goods face <strong>17.5–35%</strong> in total duties. Consumer electronics specifically tend to sit around 17.5–20% (Section 301 List 4A is 7.5% for that category).</p>
+<h3>For Non-China Goods</h3>
+<p>Vietnam, India, Turkey, Mexico — packages from these countries face their MFN rate plus the 10% Section 122 baseline. MFN rates for most consumer goods run 0–5%, so you're looking at 10–15% total. Still a cost that didn't exist a year ago. But nothing like China.</p>
+<h3>Who Collects the Duty</h3>
+<p>For postal shipments, customs fees are assessed and held before delivery. For express carriers (DHL, FedEx, UPS), duties are typically collected from the recipient on delivery — or pre-billed to the shipper's account. Either way, CBP's CSMS #66311990 guidance spells out how carriers are supposed to handle it.</p>
+<h2 id="dropshipping-impact">The Real Impact on the Dropshipping Business Model</h2>
+<p>Classic AliExpress-to-Shopify dropshipping is in serious trouble. Here's the math:</p>
+<h3>The Old Math (Pre-2026)</h3>
+<table>
+<thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Product cost (AliExpress)</td><td>$15</td></tr>
+<tr><td>Shipping (ePacket / China Post)</td><td>$3</td></tr>
+<tr><td>Duty</td><td class="rate-low">$0 (de minimis)</td></tr>
+<tr><td>Selling price</td><td>$39.99</td></tr>
+<tr><td><strong>Gross margin</strong></td><td class="rate-low"><strong>~54%</strong></td></tr>
+</tbody>
+</table>
+<h3>The New Math (Post-2026)</h3>
+<table>
+<thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Product cost (AliExpress)</td><td>$15</td></tr>
+<tr><td>Shipping</td><td>$3</td></tr>
+<tr><td>Duty (17.5% on $15 product)</td><td class="rate-high">$2.63</td></tr>
+<tr><td>CBP processing / brokerage</td><td class="rate-mid">$1–3 (estimated)</td></tr>
+<tr><td>Selling price</td><td>$39.99</td></tr>
+<tr><td><strong>Gross margin</strong></td><td class="rate-high"><strong>~42–45%</strong> (down ~10 pts)</td></tr>
+</tbody>
+</table>
+<p>Ten percentage points off gross margin is brutal when ad costs are already eating you alive. A lot of dropshippers ran 40–50% gross and were barely profitable after ad spend. Another 10-point haircut pushes many of those stores underwater — you either raise prices or you lose money on every order.</p>
+<h3>What Dropshippers Should Do Now</h3>
+<ul>
+<li><strong>Reprice immediately.</strong> Your cost basis changed. Update pricing to reflect the real landed cost including duty.</li>
+<li><strong>Look at US-based 3PLs.</strong> Inventory in a US warehouse ships domestically — no import duty. Product cost is higher, but you get predictability.</li>
+<li><strong>Explore Vietnam or India suppliers</strong> where you can find equivalent products. 10–15% total duty beats 17.5–35% from China.</li>
+<li><strong>Consolidate orders where possible.</strong> Fewer, larger shipments reduce per-unit brokerage overhead (though not the duty rate itself).</li>
+<li><strong>Handle duty at checkout.</strong> If duties hit customers at delivery, you'll get chargebacks and package refusals. Pre-collect it at checkout with DDP (Delivered Duty Paid) if your platform supports it.</li>
+</ul>
+<div class="cta-box">
+<h3>Estimate duty on small packages before you ship</h3>
+<p>If de minimis no longer saves the order, landed cost matters a lot more. Use our free duty calculator to estimate tariff exposure before you set prices or approve ads.</p>
+<a href="/duty/">Check Duty on a Shipment →</a>
+</div>
+<h2 id="global">Canada, EU, UK: How Does the US Change Compare?</h2>
+<p>The US had the most generous de minimis threshold in the developed world. Most other markets set the bar much lower — which means foreign sellers already dealt with this reality when shipping into those countries.</p>
+<table>
+<thead>
+<tr><th>Country / Region</th><th>De Minimis Threshold</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>🇺🇸 United States</td><td class="rate-high">$0 (was $800 USD)</td><td class="rate-high">Suspended — duties apply on all shipments</td></tr>
+<tr><td>🇨🇦 Canada</td><td class="rate-high">CAD $20 (~$15 USD)</td><td>Active — duty-free only up to CAD $20</td></tr>
+<tr><td>🇪🇺 European Union</td><td class="rate-mid">€150 (~$165 USD)</td><td>Active — customs duty waived under €150; VAT always applies</td></tr>
+<tr><td>🇬🇧 United Kingdom</td><td class="rate-mid">£135 (~$170 USD)</td><td>Active — duty-free under £135; VAT always applies</td></tr>
+<tr><td>🇦🇺 Australia</td><td class="rate-mid">AUD $1,000 (~$650 USD)</td><td>Active — GST applies on all imports; duty waived under AUD $1,000</td></tr>
+</tbody>
+</table>
+<p>Canada's CAD $20 (~$15 USD) threshold means virtually every cross-border parcel pays duty. Canadian consumers have always lived in this world. The US just joined them.</p>
+<p>The EU and UK sit in the middle — €150/£135 covers a lot of small purchases but not all. And <strong>VAT always applied in the EU and UK</strong> regardless of threshold — so even low-value Chinese packages owed tax before the US rules ever changed.</p>
+<div class="callout">
+<p><strong>💡 Selling into multiple markets?</strong> The duty burden varies a lot by destination. A pricing strategy that works for US customers won't necessarily cover your costs on Canadian or EU orders. Our <a href="/duty/">duty calculator</a> handles all major markets so you can model each one properly.</p>
+</div>
+<h2 id="calculate">How to Calculate Duty on Small Shipments Now</h2>
+<p>Three inputs: your product's HTS code, your declared value, and your country of origin. Here's how to work through it:</p>
+<h3>Step 1: Find Your HTS Code</h3>
+<p>Your HTS code is what sets the base tariff rate. Look it up at the USITC website<sup class="citation"><a href="#ref-1">[1]</a></sup>. For China-origin goods, here's roughly what you're dealing with by category:</p>
+<ul>
+<li><strong>Electronics (phone cases, cables, gadgets):</strong> MFN ~0–3.9% + Section 301 List 4A 7.5% + Section 122 10% = ~17.5–21%</li>
+<li><strong>Apparel and footwear:</strong> MFN ~12–67% + Section 301 7.5% + Section 122 10% = can get very ugly very fast</li>
+<li><strong>Toys and sporting goods:</strong> MFN ~0% + Section 301 7.5% + Section 122 10% = ~17.5%</li>
+<li><strong>Home goods and furniture:</strong> MFN ~0–6% + Section 301 List 3 25% + Section 122 10% = ~35–41%</li>
+</ul>
+<h3>Step 2: Use the Actual Declared Value</h3>
+<p>Duty is calculated on the <strong>transaction value</strong> — what the buyer paid, or a fair market value. Undervaluing packages is customs fraud. Use the real number.</p>
+<h3>Step 3: Multiply</h3>
+<p>Declared value × applicable duty rate = duty owed. That's it.</p>
+<p><strong>Example — $45 gadget from China:</strong></p>
+<table>
+<thead><tr><th>Component</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>Declared value</td><td>$45</td></tr>
+<tr><td>MFN rate (~0%)</td><td>$0</td></tr>
+<tr><td>Section 301 List 4A (7.5%)</td><td>$3.38</td></tr>
+<tr><td>Section 122 (10%)</td><td>$4.50</td></tr>
+<tr><td><strong>Total duty owed</strong></td><td class="rate-high"><strong>$7.88</strong></td></tr>
+</tbody>
+</table>
+<p>Your customer's $45 gadget now arrives with a ~$8 customs bill attached. If you're absorbing it as the seller, that's 17.5% of product cost straight out of margin. If you're passing it to the customer, expect some friction.</p>
+<h3>Other Fees to Factor In</h3>
+<ul>
+<li><strong>CBP Merchandise Processing Fee (MPF):</strong> 0.3464% of value (minimum $32.71, maximum $634.62 per entry) for formal entries</li>
+<li><strong>Harbor Maintenance Fee (HMF):</strong> 0.125% on ocean shipments</li>
+<li><strong>Brokerage fees:</strong> $25–150+ per entry if a customs broker files on your behalf</li>
+</ul>
+<div class="cta-box">
+<h3>Stop guessing. Calculate your exact duty.</h3>
+<p>Our free duty calculator covers the US, Canada, UK, EU, and Australia. Enter your product value, country of origin, and product category — get your exact landed cost in seconds.</p>
+<a href="/duty/">Try the Free Duty Calculator →</a>
+</div>
+<h2 id="faq">Frequently Asked Questions</h2>
+<div class="faq">
+<div class="faq-item">
+<div class="faq-q">Q: Is the de minimis $800 threshold really completely gone?</div>
+<div class="faq-a">Yes — for now. Executive Order 14324 suspended duty-free de minimis for all countries, and CBP has issued operational guidance (CSMS #66311990) to carriers on actually collecting it. No floor, no minimum, no exceptions. Executive orders can be reversed or challenged, but as of March 2026, every international small package owes duty.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: What happens if a package arrives and I didn't pay duty upfront?</div>
+<div class="faq-a">CBP or the carrier holds it and sends a notice that duty is owed before delivery. For postal shipments it's usually a notice card with a bill. For express carriers like DHL or FedEx, the carrier typically pays on your behalf and invoices you later — which can show up as a surprise charge weeks after your customer already received the package.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Should I update my Shopify store pricing right now?</div>
+<div class="faq-a">Yes. Your landed cost went up. If you're absorbing the duty, you're already losing money on in-transit orders. For everything going forward, factor duty into your cost basis before you set your selling price — not after.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Do non-China shipments also face duty now?</div>
+<div class="faq-a">Yes. EO 14324 suspended de minimis for all countries. Vietnam, India, Turkey, Bangladesh — all of it. Non-China goods face lower rates (usually just the 10% Section 122 baseline plus MFN, which might be 0%) but the automatic duty-free pass is gone across the board.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Why did Temu pause US advertising?</div>
+<div class="faq-a">Temu's whole US model was built on direct-from-China shipments under $800. When de minimis started closing and China tariffs stayed elevated, the margin math stopped working. They paused US advertising on Meta in 2025 and pivoted toward a US-warehouse model for some products. The full de minimis suspension made it worse. Direct-ship volume from China has dropped dramatically.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Is there any way to legally avoid these duties?</div>
+<div class="faq-a">Yes, but they're all real supply chain decisions, not loopholes. Source from countries with lower tariff exposure — Vietnam or India-origin goods face 10–15% versus China's 17.5–35%. Use a US-based 3PL: domestic inventory ships domestically, no import duty. Or use a Bonded Warehouse or Foreign Trade Zone to store goods duty-free until they're sold. None of these are magic, but they're legitimate and worth modeling out.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Will the de minimis exemption come back?</div>
+<div class="faq-a">Maybe. It was created by executive action and can be undone the same way. Congress could restore a threshold. Trade deals could carve out exceptions. But the Tax Foundation estimates it'll raise ~$72.9 billion over 2026–2035, which is serious fiscal motivation to keep it gone. Plan for the current reality; stay informed about changes.</div>
+</div>
+</div>
+<h2>Sources</h2>
+<ul style="font-size: 0.9rem; color: var(--gray-500);">
+<li>Executive Order 14324 — Suspension of De Minimis Treatment (White House, 2026)<sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li>CBP CSMS #66311990 — Guidance on Duties for International Mail Shipments<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
+<li>Tax Foundation: De Minimis and Tariff Revenue Estimates (2026)<sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+<li>US International Trade Commission: Harmonized Tariff Schedule<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>US Customs and Border Protection: De Minimis Overview<sup class="citation"><a href="#ref-5">[5]</a></sup></li>
+<li>US Trade Representative: Section 301 Tariff Information<sup class="citation"><a href="#ref-6">[6]</a></sup></li>
+</ul>
+<div class="cta-box" style="margin-top: 3rem;">
+<h3>Know exactly what you're paying before your next order</h3>
+<p>Our free duty calculator covers the US, Canada, UK, EU, and Australia — updated weekly with current tariff rates. No spreadsheets, no guesswork.</p>
+<a href="/duty/">Calculate My Import Duty →</a>
+</div>
+<div class="related-guides">
+<h3>Related guides</h3>
+<ul>
+<li><a href="/blog/us-china-tariff-rates-2026/">US-China Tariff Rates 2026: What Importers Are Actually Paying Now</a></li>
+<li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US in 2026</a></li>
+<li><a href="/blog/how-to-calculate-landed-cost/">How to Calculate Landed Cost for Imported Goods</a></li>
+</ul>
+</div>
+<p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
+<strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal or tax advice. Customs rules and tariff rates change frequently. Always verify current requirements with US Customs and Border Protection or a licensed customs broker before making import decisions. Information in this article is accurate as of March 24, 2026.
         </p>
-    </article>
+</article>
 
     <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
 </body>

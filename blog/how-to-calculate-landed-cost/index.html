@@ -23,10 +23,10 @@
     <meta property="article:published_time" content="2026-03-24">
     <meta property="article:modified_time" content="2026-04-20">
     <script type="application/ld+json">
-    
-    
-    
-    
+
+
+
+
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -119,11 +119,19 @@
             table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
             th, td { padding: 0.5rem; }
         }
-    
+
         .post-figure { margin: 2rem 0; }
         .post-figure picture, .post-figure img { display: block; width: 100%; }
         .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
         .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -140,317 +148,257 @@
     </nav>
 
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / How to Calculate Landed Cost</div>
-
-        <div class="meta">
-            <span class="tag">Importing</span>
-            <span class="tag">Guide</span>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / How to Calculate Landed Cost</div>
+<div class="meta">
+<span class="tag">Importing</span>
+<span class="tag">Guide</span>
             Published March 24, 2026 · Updated April 20, 2026 · 10 min read
         </div>
-
-        <h1>How to Calculate Landed Cost in 2026 (Formula, Duty, Freight, Example)</h1>
-
-        <p class="lead">If you're trying to calculate landed cost, the basic idea is simple: product cost plus freight plus insurance plus duty plus all the destination charges that show up after the supplier invoice. The problem is that most sellers stop too early and underestimate what the shipment really costs.</p>
-        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-            <picture>
-                <source srcset="/assets/blog/how-to-calculate-landed-cost/hero.webp" type="image/webp">
-                <img src="/assets/blog/how-to-calculate-landed-cost/hero.jpg" width="1536" height="864" alt="Landed-cost formula visual for How to Calculate Landed Cost in 2026 (Formula, Duty, Freight, Example), showing goods value, duty, freight, insurance, fees, taxes, and margin review" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
-        </figure>
-        <div class="callout">
-            <p><strong>Quick answer:</strong> landed cost is your total delivered import cost, not just the supplier invoice. That usually means FOB or product cost, freight, insurance, duty, broker fees, port charges, inland freight, and taxes. If you want a faster estimate before working through the full article, use the <a href="/duty/">free duty calculator</a>.</p>
-        </div>
-
-        <div class="toc">
-            <h3>In this guide</h3>
-            <ul>
-                <li><a href="#what-is">What Is Landed Cost? (And Why You're Probably Getting It Wrong)</a></li>
-                <li><a href="#formula">The Complete Landed Cost Formula</a></li>
-                <li><a href="#example">Step-by-Step Example: $5,000 Order from China</a></li>
-                <li><a href="#incoterms">FOB vs CIF vs DDP — Which Incoterm Are You Using?</a></li>
-                <li><a href="#hidden">The Hidden Costs Most Sellers Forget</a></li>
-                <li><a href="#deminimis">De Minimis: What Changed in 2026</a></li>
-                <li><a href="#faq">Frequently Asked Questions</a></li>
-            </ul>
-        </div>
-
-        <h2 id="what-is">What Is Landed Cost? (And Why You're Probably Getting It Wrong)</h2>
-
-        <p>Landed cost is the <strong>total cost of getting a product from your supplier to your warehouse</strong> — cleared customs, fully delivered, ready to sell. It's the number you need for margin calculations, pricing decisions, and supplier comparisons. Not the invoice price. Not the invoice price plus a guess.</p>
-
-        <p>But most sellers price from the invoice. One person put it plainly in r/AmazonFBA:</p>
-
-        <div class="callout">
-            <p><em>"I've been managing this manually with spreadsheets — taking retail price, subtracting Amazon's cut, then layering in duty, freight, and packaging... it always feels like I'm guessing."</em></p>
-        </div>
-
-        <p>That's most importers. And the guessing is expensive. When you don't know your real landed cost:</p>
-        <ul>
-            <li>You set prices too low to be profitable</li>
-            <li>You pick suppliers on invoice price when a higher-invoice supplier might actually cost less landed</li>
-            <li>One customs bill wipes your margin on an entire shipment</li>
-            <li>You can't tell if a product is worth selling at all</li>
-        </ul>
-
-        <p>The fix is simple once you know the formula.</p>
-
-        <h2 id="formula">The Complete Landed Cost Formula</h2>
-
-        <p>Same core formula every time:</p>
-
-        <div class="formula-box">
-            <div class="formula-label">Landed Cost Formula</div>
-            <div class="formula-line">FOB price (product cost at origin port)</div>
-            <div class="formula-line">+ International freight</div>
-            <div class="formula-line">+ Marine insurance</div>
-            <div class="formula-line">= <strong style="color:#818cf8;">CIF Value</strong> (Cost + Insurance + Freight)</div>
-            <div class="formula-line" style="margin-top:0.5rem;">CIF Value × duty rate = Import duty</div>
-            <div class="formula-line">+ Import duty</div>
-            <div class="formula-line">+ Customs broker fee</div>
-            <div class="formula-line">+ Port/terminal handling charges</div>
-            <div class="formula-line">+ Inland freight (port to warehouse)</div>
-            <div class="formula-line">+ Import taxes (VAT, GST, MPF, HMF)</div>
-            <div class="formula-result">= Total Landed Cost</div>
-        </div>
-
-        <p>The part everyone gets wrong: <strong>duty is not calculated on your product cost alone</strong>. CBP uses the <strong>CIF value</strong> as the dutiable base — that means your freight and insurance get included before duty is applied. Ship a $5,000 order with $600 freight and duty applies to $5,655, not $5,000.</p>
-
-        <p>CBP's main valuation method is the <strong>transaction value</strong> — what you actually paid for the goods, adjusted to include freight and insurance if they're not already in the price. That's 19 U.S.C. § 1401a.</p>
-
-        <div class="callout callout-warn">
-            <p><strong>⚠ The #1 mistake:</strong> Calculating duty on your FOB price instead of your CIF value. If your freight is $800 on a $5,000 order, you're under-counting your dutiable value by 16%. On a 15% duty rate, that's over $100 in unexpected charges per shipment.</p>
-        </div>
-
-        <h2 id="example">Step-by-Step Example: $5,000 Order from China</h2>
-
-        <p>You're importing <strong>500 units of a silicone kitchen accessory set</strong> from a factory in Guangzhou. HTS code lands you in consumer goods — Section 301 List 4A rate of 7.5%, plus the current 10% Section 122 baseline.</p>
-
-        <h3>Step 1: Establish the FOB Price</h3>
-        <p>Your supplier quotes <strong>$5,000 FOB Guangzhou</strong>. That price gets your goods to the origin port and loaded. Everything after — freight, insurance, destination charges — is on you.</p>
-
-        <h3>Step 2: Calculate the CIF Value</h3>
-        <table>
-            <thead><tr><th>Component</th><th>Amount</th><th>Notes</th></tr></thead>
-            <tbody>
-                <tr><td>FOB price</td><td>$5,000.00</td><td>Supplier invoice</td></tr>
-                <tr><td>Ocean freight</td><td>$600.00</td><td>LCL from Guangzhou to Los Angeles</td></tr>
-                <tr><td>Marine insurance</td><td>$55.00</td><td>~1.1% of shipment value (typical rate)</td></tr>
-                <tr><td><strong>CIF Value</strong></td><td><strong>$5,655.00</strong></td><td><strong>Dutiable value</strong></td></tr>
-            </tbody>
-        </table>
-
-        <h3>Step 3: Calculate Import Duty</h3>
-        <table>
-            <thead><tr><th>Tariff Layer</th><th>Rate</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>MFN (Most Favored Nation) base rate</td><td>0%</td><td>$0.00</td></tr>
-                <tr><td>Section 301 List 4A (consumer goods from China)</td><td class="rate-mid">7.5%</td><td class="rate-mid">$424.13</td></tr>
-                <tr><td>Section 122 baseline tariff</td><td class="rate-mid">10%</td><td class="rate-mid">$565.50</td></tr>
-                <tr><td><strong>Total duty on CIF value</strong></td><td class="rate-high"><strong>17.5%</strong></td><td class="rate-high"><strong>$989.63</strong></td></tr>
-            </tbody>
-        </table>
-
-        <h3>Step 4: Add All Other Import Costs</h3>
-        <table>
-            <thead><tr><th>Cost Item</th><th>Amount</th><th>Notes</th></tr></thead>
-            <tbody>
-                <tr><td>Import duty (from Step 3)</td><td>$989.63</td><td>Based on CIF × 17.5%</td></tr>
-                <tr><td>Merchandise Processing Fee (MPF)</td><td>$27.23</td><td>0.3464% of CIF, min $27.23, max $528.33</td></tr>
-                <tr><td>Harbor Maintenance Fee (HMF)</td><td>$2.83</td><td>0.125% of CIF (ocean freight only)</td></tr>
-                <tr><td>Customs broker fee</td><td>$150.00</td><td>Standard ISF + entry filing fee</td></tr>
-                <tr><td>Port terminal handling (THC/DRAY)</td><td>$175.00</td><td>Destination port charges</td></tr>
-                <tr><td>Inland freight (Los Angeles → warehouse)</td><td>$280.00</td><td>Drayage + FTL/LTL to fulfillment center</td></tr>
-                <tr><td><strong>Total additional costs</strong></td><td><strong>$1,624.69</strong></td><td></td></tr>
-            </tbody>
-        </table>
-
-        <h3>Step 5: Your True Landed Cost</h3>
-        <table>
-            <thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
-            <tbody>
-                <tr><td>FOB product cost</td><td>$5,000.00</td></tr>
-                <tr><td>Ocean freight</td><td>$600.00</td></tr>
-                <tr><td>Marine insurance</td><td>$55.00</td></tr>
-                <tr><td>Duties + taxes + fees</td><td>$1,624.69</td></tr>
-                <tr><td><strong>Total Landed Cost</strong></td><td><strong>$7,279.69</strong></td></tr>
-                <tr><td><strong>Cost per unit (500 units)</strong></td><td><strong>$14.56</strong></td></tr>
-                <tr><td><em>vs. FOB cost per unit</em></td><td><em>$10.00</em></td></tr>
-            </tbody>
-        </table>
-
-        <p><strong>$14.56 per unit.</strong> That's 45.6% higher than your $10 FOB cost. If you were pricing off the invoice with a rough markup, you were costing this product completely wrong.</p>
-
-        <div class="cta-box">
-            <h3>Get a faster landed-cost estimate</h3>
-            <p>Use the free calculator to estimate duty and total landed cost before you build out the full spreadsheet model.</p>
-            <a href="/duty/">Estimate Landed Cost →</a>
-        </div>
-
-        <h2 id="incoterms">FOB vs CIF vs DDP — Which Incoterm Are You Using?</h2>
-
-        <p>Your Incoterm determines where the supplier's job ends and yours begins. Get this wrong and your entire landed cost calc is off.</p>
-
-        <table>
-            <thead>
-                <tr><th>Incoterm</th><th>What's Included</th><th>Your Risk Starts</th><th>Best For</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>FOB</strong><br><em>Free On Board</em></td>
-                    <td>Supplier delivers goods to origin port, loaded on vessel</td>
-                    <td>Once goods are on the ship</td>
-                    <td>Experienced importers who arrange their own freight</td>
-                </tr>
-                <tr>
-                    <td><strong>CIF</strong><br><em>Cost, Insurance &amp; Freight</em></td>
-                    <td>Supplier pays freight + insurance to destination port</td>
-                    <td>Once goods arrive at destination port</td>
-                    <td>Buyers who want supplier to arrange shipping</td>
-                </tr>
-                <tr>
-                    <td><strong>DDP</strong><br><em>Delivered Duty Paid</em></td>
-                    <td>Supplier handles everything — freight, customs, duty, delivery</td>
-                    <td>When goods arrive at your door</td>
-                    <td>First-time importers or when supplier offers competitive all-in pricing</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>FOB (standard for experienced importers)</h3>
-        <p>FOB is the baseline for landed cost calculations. <strong>$5,000 FOB Guangzhou</strong> means $5,000 gets your goods loaded on a ship — from that point, freight, insurance, customs, and delivery are your problem. Everything in the example above applies to an FOB buyer.</p>
-
-        <h3>CIF (the one people misread most)</h3>
-        <p>CIF quotes already include freight and insurance to the destination port. That means your CIF invoice price <em>is</em> your dutiable value — CBP uses it directly. <strong>You can't back out the freight to lower your duty calculation.</strong> A lot of sellers try this. It's wrong. Duty applies to the full CIF price, freight and all.</p>
-
-        <h3>DDP (simple, but usually pricier)</h3>
-        <p>DDP is one number, everything included, product arrives duty-paid at your door. Great for simplicity. But suppliers mark up their freight handling and duty on DDP quotes, and you lose visibility into the actual cost breakdown. For any significant volume, you're almost always better off arranging your own freight and customs and getting a clear line-item breakdown.</p>
-
-        <div class="callout">
-            <p><strong>💡 Tip:</strong> For Amazon FBA, most experienced sellers use FOB with a freight forwarder who delivers directly to an Amazon fulfillment center. The freight forwarder handles customs, you pay duty directly, and you get a clear cost breakdown for accounting purposes.</p>
-        </div>
-
-        <h2 id="hidden">The Hidden Costs Most Sellers Forget</h2>
-
-        <p>Everyone budgets for duty. These are the ones that tend to get missed:</p>
-
-        <h3>Merchandise Processing Fee (MPF)</h3>
-        <p>0.3464% of CIF value on formal entries (shipments over $2,500). Minimum $27.23, maximum $528.33. It's a small line item on a $5,000 shipment, but it hits every single entry.</p>
-
-        <h3>Harbor Maintenance Fee (HMF)</h3>
-        <p>0.125% of CIF on ocean freight arriving at US ports. Air freight is exempt. On a $5,655 CIF value that's $7.07 — not large, but consistently missing from cost models.</p>
-
-        <h3>ISF Filing Fee (10+2)</h3>
-        <p>You're required to file an Importer Security Filing at least 24 hours before cargo loads at the foreign port. Your broker charges $25–$50 per shipment. Late or missing ISFs carry CBP penalties up to $10,000. Not optional.</p>
-
-        <h3>Customs Entry Filing</h3>
-        <p>Your broker charges $75–$175 to prepare and file your customs entry (CBP Form 7501). Some brokers bundle ISF + entry filing into one flat fee. Ask.</p>
-
-        <h3>Container Examination / Exam Fees</h3>
-        <p>CBP can pull any container for examination — X-ray, intensive, or tailgate. If yours gets selected, you pay the exam fees: $200 to $1,000+ depending on exam type. It happens to roughly 3–7% of containers, so build it into your margin assumptions even though it's unpredictable.</p>
-
-        <h3>Destination Terminal Handling (THC / DRAY)</h3>
-        <p>Moving your container off the ship and through the destination port. Varies by port. Typically $100–$300+ per LCL shipment.</p>
-
-        <h3>Inland Freight</h3>
-        <p>Port to your warehouse or FBA fulfillment center. For FBA sellers, this usually means drayage plus a trucking leg to an Amazon FC. $150–$400 per LCL shipment for the LA-to-inland run is a common range.</p>
-
-        <h3>Product Testing and Compliance</h3>
-        <p>Toys, electronics, food-contact items — anything regulated needs third-party testing certs. Usually $200–$1,500 per product, one-time. Amortize these into your first production run's landed cost.</p>
-
-        <h2 id="deminimis">De Minimis: What Changed in 2026</h2>
-
-        <p>For most of the past decade, any US-bound shipment valued under <strong>$800</strong> entered duty-free. No customs entry, no broker, no tariff. That was the de minimis rule.</p>
-
-        <p>It's gone now.</p>
-
-        <p><strong>Executive Order 14324</strong>, signed February 1, 2025 and expanded through 2025–2026, <strong>suspended duty-free de minimis for shipments from all countries</strong>. Every international package now owes duty regardless of value.</p>
-
-        <div class="callout callout-warn">
-            <p><strong>⚠ If your model ran on direct-from-China under $800:</strong> That's over. Every shipment, any value, is now dutiable. The math changed.</p>
-        </div>
-
-        <p>Who this hits hardest:</p>
-        <ul>
-            <li><strong>Dropshippers</strong> on AliExpress or Shein shipping individual orders direct</li>
-            <li><strong>Direct-from-factory models</strong> where Chinese manufacturers ship B2C orders</li>
-            <li><strong>Test orders and samples</strong> — even a 5-unit sample order under $800 now owes duty</li>
-        </ul>
-
-        <p>Traditional FBA and Shopify sellers importing full shipments are less affected — you were already running landed cost calculations on container loads. But if you were using de minimis as a cost buffer, that buffer is gone.</p>
-
-        <p class="source">Source: <a href="https://www.federalregister.gov/" target="_blank" rel="noopener">Federal Register: Executive Order 14324</a>; <a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank" rel="noopener">Tax Foundation Tariff Analysis</a>, March 2026.</p>
-
-        <h2>What a Realistic Effective Rate Looks Like in 2026</h2>
-
-        <p>The Tax Foundation calculated the US <strong>weighted-average applied tariff rate at 10.2%</strong> — the highest since the early 1970s. That's across all imports, all countries, all products.</p>
-
-        <p>For China specifically it's much higher. Most consumer goods face a minimum 17.5%, industrial goods can hit 35%+, and steel and aluminum can reach 85%.</p>
-
-        <p>A 1% margin miscalculation was survivable when duty was 2–3%. At 17–35%, getting this wrong kills products — and sometimes businesses. Know your actual landed cost before you price anything.</p>
-
-        <h2 id="faq">Frequently Asked Questions</h2>
-
-        <div class="faq">
-            <div class="faq-item">
-                <div class="faq-q">Q: What is landed cost?</div>
-                <div class="faq-a">The total cost of getting a product from your supplier's facility to your warehouse, ready to sell. That means FOB price + freight + insurance + import duty + broker fees + port charges + inland freight. It's always higher than your invoice price — sometimes a lot higher.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Is duty calculated on FOB or CIF value?</div>
-                <div class="faq-a">CIF. CBP calculates duty on Cost + Insurance + Freight, not just the FOB product price. If your order is $5,000 FOB and you pay $600 freight and $55 insurance, duty applies to $5,655. Not $5,000. This is the most common mistake people make when they first start importing.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: How do I calculate landed cost per unit?</div>
-                <div class="faq-a">Add up total landed cost for the whole shipment (FOB + freight + insurance + duty + all fees + inland freight), then divide by units. From the example: $7,279.69 ÷ 500 units = $14.56 per unit. Use that number for pricing, not the invoice.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: What's the difference between landed cost and total cost of import?</div>
-                <div class="faq-a">Nothing. Same concept, different labels. "Landed cost," "total cost of import," "fully loaded cost" — they all mean the all-in cost to get goods to your facility.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: What is a good landed cost calculator tool?</div>
-                <div class="faq-a">For quick lookups, our <a href="/duty/">free duty calculator</a> covers 85+ origin countries and the major import markets (US, EU, Canada, UK, Australia). If you're managing multiple SKUs, use it as a fast first-pass estimate before you validate the final numbers with your broker or freight partner.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: Does the $800 de minimis threshold still apply?</div>
-                <div class="faq-a">No. Executive Order 14324 suspended it for all countries. Every international shipment, regardless of value, now owes duty. The $800 rule is gone as of early 2026.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">Q: How do Amazon FBA sellers calculate landed cost?</div>
-                <div class="faq-a">FBA landed cost = FOB price + international freight (usually via freight forwarder) + insurance + US import duty + customs broker fee + drayage from port to Amazon FC + Amazon inbound freight. Amazon's referral fees and FBA fulfillment fees are separate — those come out of revenue. Landed cost is your cost basis. Amazon fees eat into gross profit from there.</div>
-            </div>
-        </div>
-
-        <h2>Sources</h2>
-        <ul style="font-size: 0.9rem; color: var(--gray-500);">
-            <li><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank" rel="noopener">Tax Foundation: 2026 Trump Tariffs & Trade War by the Numbers — US weighted-average tariff rate 10.2%</a> (March 2026)</li>
-            <li><a href="https://www.cbp.gov/trade/basic-import-export/importing-commercial-goods" target="_blank" rel="noopener">US Customs and Border Protection: Importing Commercial Goods</a></li>
-            <li><a href="https://www.law.cornell.edu/uscode/text/19/1401a" target="_blank" rel="noopener">19 U.S.C. § 1401a — Customs Valuation (Transaction Value)</a></li>
-            <li><a href="https://www.federalregister.gov/" target="_blank" rel="noopener">Federal Register: Executive Order 14324 — De Minimis suspension</a></li>
-            <li><a href="https://www.usitc.gov/harmonized_tariff_information" target="_blank" rel="noopener">US International Trade Commission: Harmonized Tariff Schedule</a></li>
-            <li><a href="https://iccwbo.org/resources-for-business/incoterms-rules/incoterms-2020/" target="_blank" rel="noopener">ICC: Incoterms 2020 Rules</a></li>
-        </ul>
-
-        <div class="cta-box" style="margin-top: 3rem;">
-            <h3>Calculate your exact landed cost in seconds</h3>
-            <p>Enter your FOB price, origin country, and HTS code. Get the full breakdown — duty, MPF, HMF, and total landed cost. Free, no account needed.</p>
-            <a href="/duty/">Open the Duty Calculator →</a>
-        </div>
-
-        <div class="related-guides">
-            <h3>Related guides</h3>
-            <ul>
-                <li><a href="/blog/us-china-tariff-rates-2026/">China Tariffs 2026</a></li>
-                <li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US</a></li>
-                <li><a href="/blog/de-minimis-threshold-2026/">De Minimis Threshold 2026</a></li>
-            </ul>
-        </div>
-
-        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
-            <strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal, tax, or customs advice. Tariff rates and import regulations change frequently. Always verify current rates with US Customs and Border Protection or a licensed customs broker before making import decisions. Rates in this article are accurate as of March 24, 2026.
+<h1>How to Calculate Landed Cost in 2026 (Formula, Duty, Freight, Example)</h1>
+<p class="lead">If you're trying to calculate landed cost, the basic idea is simple: product cost plus freight plus insurance plus duty plus all the destination charges that show up after the supplier invoice. The problem is that most sellers stop too early and underestimate what the shipment really costs.</p>
+<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+<picture>
+<source srcset="/assets/blog/how-to-calculate-landed-cost/hero.webp" type="image/webp"/>
+<img alt="Landed-cost formula visual for How to Calculate Landed Cost in 2026 (Formula, Duty, Freight, Example), showing goods value, duty, freight, insurance, fees, taxes, and margin review" decoding="async" fetchpriority="high" height="864" src="/assets/blog/how-to-calculate-landed-cost/hero.jpg" width="1536"/>
+</picture>
+<figcaption>A practical landed-cost check beats generic tariff summaries: verify classification, origin, official notices, taxes, fees, and margin impact before the shipment lands.</figcaption>
+</figure>
+<div class="callout">
+<p><strong>Quick answer:</strong> landed cost is your total delivered import cost, not just the supplier invoice. That usually means FOB or product cost, freight, insurance, duty, broker fees, port charges, inland freight, and taxes. If you want a faster estimate before working through the full article, use the <a href="/duty/">free duty calculator</a>.</p>
+</div>
+<div class="toc">
+<h3>In this guide</h3>
+<ul>
+<li><a href="#what-is">What Is Landed Cost? (And Why You're Probably Getting It Wrong)</a></li>
+<li><a href="#formula">The Complete Landed Cost Formula</a></li>
+<li><a href="#example">Step-by-Step Example: $5,000 Order from China</a></li>
+<li><a href="#incoterms">FOB vs CIF vs DDP — Which Incoterm Are You Using?</a></li>
+<li><a href="#hidden">The Hidden Costs Most Sellers Forget</a></li>
+<li><a href="#deminimis">De Minimis: What Changed in 2026</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+</ul>
+</div>
+<h2 id="what-is">What Is Landed Cost? (And Why You're Probably Getting It Wrong)</h2>
+<p>Landed cost is the <strong>total cost of getting a product from your supplier to your warehouse</strong> — cleared customs, fully delivered, ready to sell. It's the number you need for margin calculations, pricing decisions, and supplier comparisons. Not the invoice price. Not the invoice price plus a guess.</p>
+<p>But most sellers price from the invoice. One person put it plainly in r/AmazonFBA:</p>
+<div class="callout">
+<p><em>"I've been managing this manually with spreadsheets — taking retail price, subtracting Amazon's cut, then layering in duty, freight, and packaging... it always feels like I'm guessing."</em></p>
+</div>
+<p>That's most importers. And the guessing is expensive. When you don't know your real landed cost:</p>
+<ul>
+<li>You set prices too low to be profitable</li>
+<li>You pick suppliers on invoice price when a higher-invoice supplier might actually cost less landed</li>
+<li>One customs bill wipes your margin on an entire shipment</li>
+<li>You can't tell if a product is worth selling at all</li>
+</ul>
+<p>The fix is simple once you know the formula.</p>
+<h2 id="formula">The Complete Landed Cost Formula</h2>
+<p>Same core formula every time:</p>
+<div class="formula-box">
+<div class="formula-label">Landed Cost Formula</div>
+<div class="formula-line">FOB price (product cost at origin port)</div>
+<div class="formula-line">+ International freight</div>
+<div class="formula-line">+ Marine insurance</div>
+<div class="formula-line">= <strong style="color:#818cf8;">CIF Value</strong> (Cost + Insurance + Freight)</div>
+<div class="formula-line" style="margin-top:0.5rem;">CIF Value × duty rate = Import duty</div>
+<div class="formula-line">+ Import duty</div>
+<div class="formula-line">+ Customs broker fee</div>
+<div class="formula-line">+ Port/terminal handling charges</div>
+<div class="formula-line">+ Inland freight (port to warehouse)</div>
+<div class="formula-line">+ Import taxes (VAT, GST, MPF, HMF)</div>
+<div class="formula-result">= Total Landed Cost</div>
+</div>
+<p>The part everyone gets wrong: <strong>duty is not calculated on your product cost alone</strong>. CBP uses the <strong>CIF value</strong> as the dutiable base — that means your freight and insurance get included before duty is applied. Ship a $5,000 order with $600 freight and duty applies to $5,655, not $5,000.</p>
+<p>CBP's main valuation method is the <strong>transaction value</strong> — what you actually paid for the goods, adjusted to include freight and insurance if they're not already in the price. That's 19 U.S.C. § 1401a.</p>
+<div class="callout callout-warn">
+<p><strong>⚠ The #1 mistake:</strong> Calculating duty on your FOB price instead of your CIF value. If your freight is $800 on a $5,000 order, you're under-counting your dutiable value by 16%. On a 15% duty rate, that's over $100 in unexpected charges per shipment.</p>
+</div>
+<h2 id="example">Step-by-Step Example: $5,000 Order from China</h2>
+<p>You're importing <strong>500 units of a silicone kitchen accessory set</strong> from a factory in Guangzhou. HTS code lands you in consumer goods — Section 301 List 4A rate of 7.5%, plus the current 10% Section 122 baseline.</p>
+<h3>Step 1: Establish the FOB Price</h3>
+<p>Your supplier quotes <strong>$5,000 FOB Guangzhou</strong>. That price gets your goods to the origin port and loaded. Everything after — freight, insurance, destination charges — is on you.</p>
+<h3>Step 2: Calculate the CIF Value</h3>
+<table>
+<thead><tr><th>Component</th><th>Amount</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>FOB price</td><td>$5,000.00</td><td>Supplier invoice</td></tr>
+<tr><td>Ocean freight</td><td>$600.00</td><td>LCL from Guangzhou to Los Angeles</td></tr>
+<tr><td>Marine insurance</td><td>$55.00</td><td>~1.1% of shipment value (typical rate)</td></tr>
+<tr><td><strong>CIF Value</strong></td><td><strong>$5,655.00</strong></td><td><strong>Dutiable value</strong></td></tr>
+</tbody>
+</table>
+<h3>Step 3: Calculate Import Duty</h3>
+<table>
+<thead><tr><th>Tariff Layer</th><th>Rate</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>MFN (Most Favored Nation) base rate</td><td>0%</td><td>$0.00</td></tr>
+<tr><td>Section 301 List 4A (consumer goods from China)</td><td class="rate-mid">7.5%</td><td class="rate-mid">$424.13</td></tr>
+<tr><td>Section 122 baseline tariff</td><td class="rate-mid">10%</td><td class="rate-mid">$565.50</td></tr>
+<tr><td><strong>Total duty on CIF value</strong></td><td class="rate-high"><strong>17.5%</strong></td><td class="rate-high"><strong>$989.63</strong></td></tr>
+</tbody>
+</table>
+<h3>Step 4: Add All Other Import Costs</h3>
+<table>
+<thead><tr><th>Cost Item</th><th>Amount</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Import duty (from Step 3)</td><td>$989.63</td><td>Based on CIF × 17.5%</td></tr>
+<tr><td>Merchandise Processing Fee (MPF)</td><td>$27.23</td><td>0.3464% of CIF, min $27.23, max $528.33</td></tr>
+<tr><td>Harbor Maintenance Fee (HMF)</td><td>$2.83</td><td>0.125% of CIF (ocean freight only)</td></tr>
+<tr><td>Customs broker fee</td><td>$150.00</td><td>Standard ISF + entry filing fee</td></tr>
+<tr><td>Port terminal handling (THC/DRAY)</td><td>$175.00</td><td>Destination port charges</td></tr>
+<tr><td>Inland freight (Los Angeles → warehouse)</td><td>$280.00</td><td>Drayage + FTL/LTL to fulfillment center</td></tr>
+<tr><td><strong>Total additional costs</strong></td><td><strong>$1,624.69</strong></td><td></td></tr>
+</tbody>
+</table>
+<h3>Step 5: Your True Landed Cost</h3>
+<table>
+<thead><tr><th>Line Item</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td>FOB product cost</td><td>$5,000.00</td></tr>
+<tr><td>Ocean freight</td><td>$600.00</td></tr>
+<tr><td>Marine insurance</td><td>$55.00</td></tr>
+<tr><td>Duties + taxes + fees</td><td>$1,624.69</td></tr>
+<tr><td><strong>Total Landed Cost</strong></td><td><strong>$7,279.69</strong></td></tr>
+<tr><td><strong>Cost per unit (500 units)</strong></td><td><strong>$14.56</strong></td></tr>
+<tr><td><em>vs. FOB cost per unit</em></td><td><em>$10.00</em></td></tr>
+</tbody>
+</table>
+<p><strong>$14.56 per unit.</strong> That's 45.6% higher than your $10 FOB cost. If you were pricing off the invoice with a rough markup, you were costing this product completely wrong.</p>
+<div class="cta-box">
+<h3>Get a faster landed-cost estimate</h3>
+<p>Use the free calculator to estimate duty and total landed cost before you build out the full spreadsheet model.</p>
+<a href="/duty/">Estimate Landed Cost →</a>
+</div>
+<h2 id="incoterms">FOB vs CIF vs DDP — Which Incoterm Are You Using?</h2>
+<p>Your Incoterm determines where the supplier's job ends and yours begins. Get this wrong and your entire landed cost calc is off.</p>
+<table>
+<thead>
+<tr><th>Incoterm</th><th>What's Included</th><th>Your Risk Starts</th><th>Best For</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FOB</strong><br/><em>Free On Board</em></td>
+<td>Supplier delivers goods to origin port, loaded on vessel</td>
+<td>Once goods are on the ship</td>
+<td>Experienced importers who arrange their own freight</td>
+</tr>
+<tr>
+<td><strong>CIF</strong><br/><em>Cost, Insurance &amp; Freight</em></td>
+<td>Supplier pays freight + insurance to destination port</td>
+<td>Once goods arrive at destination port</td>
+<td>Buyers who want supplier to arrange shipping</td>
+</tr>
+<tr>
+<td><strong>DDP</strong><br/><em>Delivered Duty Paid</em></td>
+<td>Supplier handles everything — freight, customs, duty, delivery</td>
+<td>When goods arrive at your door</td>
+<td>First-time importers or when supplier offers competitive all-in pricing</td>
+</tr>
+</tbody>
+</table>
+<h3>FOB (standard for experienced importers)</h3>
+<p>FOB is the baseline for landed cost calculations. <strong>$5,000 FOB Guangzhou</strong> means $5,000 gets your goods loaded on a ship — from that point, freight, insurance, customs, and delivery are your problem. Everything in the example above applies to an FOB buyer.</p>
+<h3>CIF (the one people misread most)</h3>
+<p>CIF quotes already include freight and insurance to the destination port. That means your CIF invoice price <em>is</em> your dutiable value — CBP uses it directly. <strong>You can't back out the freight to lower your duty calculation.</strong> A lot of sellers try this. It's wrong. Duty applies to the full CIF price, freight and all.</p>
+<h3>DDP (simple, but usually pricier)</h3>
+<p>DDP is one number, everything included, product arrives duty-paid at your door. Great for simplicity. But suppliers mark up their freight handling and duty on DDP quotes, and you lose visibility into the actual cost breakdown. For any significant volume, you're almost always better off arranging your own freight and customs and getting a clear line-item breakdown.</p>
+<div class="callout">
+<p><strong>💡 Tip:</strong> For Amazon FBA, most experienced sellers use FOB with a freight forwarder who delivers directly to an Amazon fulfillment center. The freight forwarder handles customs, you pay duty directly, and you get a clear cost breakdown for accounting purposes.</p>
+</div>
+<h2 id="hidden">The Hidden Costs Most Sellers Forget</h2>
+<p>Everyone budgets for duty. These are the ones that tend to get missed:</p>
+<h3>Merchandise Processing Fee (MPF)</h3>
+<p>0.3464% of CIF value on formal entries (shipments over $2,500). Minimum $27.23, maximum $528.33. It's a small line item on a $5,000 shipment, but it hits every single entry.</p>
+<h3>Harbor Maintenance Fee (HMF)</h3>
+<p>0.125% of CIF on ocean freight arriving at US ports. Air freight is exempt. On a $5,655 CIF value that's $7.07 — not large, but consistently missing from cost models.</p>
+<h3>ISF Filing Fee (10+2)</h3>
+<p>You're required to file an Importer Security Filing at least 24 hours before cargo loads at the foreign port. Your broker charges $25–$50 per shipment. Late or missing ISFs carry CBP penalties up to $10,000. Not optional.</p>
+<h3>Customs Entry Filing</h3>
+<p>Your broker charges $75–$175 to prepare and file your customs entry (CBP Form 7501). Some brokers bundle ISF + entry filing into one flat fee. Ask.</p>
+<h3>Container Examination / Exam Fees</h3>
+<p>CBP can pull any container for examination — X-ray, intensive, or tailgate. If yours gets selected, you pay the exam fees: $200 to $1,000+ depending on exam type. It happens to roughly 3–7% of containers, so build it into your margin assumptions even though it's unpredictable.</p>
+<h3>Destination Terminal Handling (THC / DRAY)</h3>
+<p>Moving your container off the ship and through the destination port. Varies by port. Typically $100–$300+ per LCL shipment.</p>
+<h3>Inland Freight</h3>
+<p>Port to your warehouse or FBA fulfillment center. For FBA sellers, this usually means drayage plus a trucking leg to an Amazon FC. $150–$400 per LCL shipment for the LA-to-inland run is a common range.</p>
+<h3>Product Testing and Compliance</h3>
+<p>Toys, electronics, food-contact items — anything regulated needs third-party testing certs. Usually $200–$1,500 per product, one-time. Amortize these into your first production run's landed cost.</p>
+<h2 id="deminimis">De Minimis: What Changed in 2026</h2>
+<p>For most of the past decade, any US-bound shipment valued under <strong>$800</strong> entered duty-free. No customs entry, no broker, no tariff. That was the de minimis rule.</p>
+<p>It's gone now.</p>
+<p><strong>Executive Order 14324</strong>, signed February 1, 2025 and expanded through 2025–2026, <strong>suspended duty-free de minimis for shipments from all countries</strong>. Every international package now owes duty regardless of value.</p>
+<div class="callout callout-warn">
+<p><strong>⚠ If your model ran on direct-from-China under $800:</strong> That's over. Every shipment, any value, is now dutiable. The math changed.</p>
+</div>
+<p>Who this hits hardest:</p>
+<ul>
+<li><strong>Dropshippers</strong> on AliExpress or Shein shipping individual orders direct</li>
+<li><strong>Direct-from-factory models</strong> where Chinese manufacturers ship B2C orders</li>
+<li><strong>Test orders and samples</strong> — even a 5-unit sample order under $800 now owes duty</li>
+</ul>
+<p>Traditional FBA and Shopify sellers importing full shipments are less affected — you were already running landed cost calculations on container loads. But if you were using de minimis as a cost buffer, that buffer is gone.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.federalregister.gov/" rel="noopener" target="_blank">Federal Register: Executive Order 14324</a></li><li id="ref-2"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation Tariff Analysis</a></li><li id="ref-3"><a href="https://www.cbp.gov/trade/basic-import-export/importing-commercial-goods" rel="noopener" target="_blank">US Customs and Border Protection: Importing Commercial Goods</a></li><li id="ref-4"><a href="https://www.law.cornell.edu/uscode/text/19/1401a" rel="noopener" target="_blank">19 U.S.C. § 1401a — Customs Valuation (Transaction Value)</a></li><li id="ref-5"><a href="https://www.usitc.gov/harmonized_tariff_information" rel="noopener" target="_blank">US International Trade Commission: Harmonized Tariff Schedule</a></li><li id="ref-6"><a href="https://iccwbo.org/resources-for-business/incoterms-rules/incoterms-2020/" rel="noopener" target="_blank">ICC: Incoterms 2020 Rules</a></li></ol></section><p class="source">Source: Federal Register: Executive Order 14324<sup class="citation"><a href="#ref-1">[1]</a></sup>; Tax Foundation Tariff Analysis<sup class="citation"><a href="#ref-2">[2]</a></sup>, March 2026.</p>
+<h2>What a Realistic Effective Rate Looks Like in 2026</h2>
+<p>The Tax Foundation calculated the US <strong>weighted-average applied tariff rate at 10.2%</strong> — the highest since the early 1970s. That's across all imports, all countries, all products.</p>
+<p>For China specifically it's much higher. Most consumer goods face a minimum 17.5%, industrial goods can hit 35%+, and steel and aluminum can reach 85%.</p>
+<p>A 1% margin miscalculation was survivable when duty was 2–3%. At 17–35%, getting this wrong kills products — and sometimes businesses. Know your actual landed cost before you price anything.</p>
+<h2 id="faq">Frequently Asked Questions</h2>
+<div class="faq">
+<div class="faq-item">
+<div class="faq-q">Q: What is landed cost?</div>
+<div class="faq-a">The total cost of getting a product from your supplier's facility to your warehouse, ready to sell. That means FOB price + freight + insurance + import duty + broker fees + port charges + inland freight. It's always higher than your invoice price — sometimes a lot higher.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Is duty calculated on FOB or CIF value?</div>
+<div class="faq-a">CIF. CBP calculates duty on Cost + Insurance + Freight, not just the FOB product price. If your order is $5,000 FOB and you pay $600 freight and $55 insurance, duty applies to $5,655. Not $5,000. This is the most common mistake people make when they first start importing.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: How do I calculate landed cost per unit?</div>
+<div class="faq-a">Add up total landed cost for the whole shipment (FOB + freight + insurance + duty + all fees + inland freight), then divide by units. From the example: $7,279.69 ÷ 500 units = $14.56 per unit. Use that number for pricing, not the invoice.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: What's the difference between landed cost and total cost of import?</div>
+<div class="faq-a">Nothing. Same concept, different labels. "Landed cost," "total cost of import," "fully loaded cost" — they all mean the all-in cost to get goods to your facility.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: What is a good landed cost calculator tool?</div>
+<div class="faq-a">For quick lookups, our <a href="/duty/">free duty calculator</a> covers 85+ origin countries and the major import markets (US, EU, Canada, UK, Australia). If you're managing multiple SKUs, use it as a fast first-pass estimate before you validate the final numbers with your broker or freight partner.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Does the $800 de minimis threshold still apply?</div>
+<div class="faq-a">No. Executive Order 14324 suspended it for all countries. Every international shipment, regardless of value, now owes duty. The $800 rule is gone as of early 2026.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: How do Amazon FBA sellers calculate landed cost?</div>
+<div class="faq-a">FBA landed cost = FOB price + international freight (usually via freight forwarder) + insurance + US import duty + customs broker fee + drayage from port to Amazon FC + Amazon inbound freight. Amazon's referral fees and FBA fulfillment fees are separate — those come out of revenue. Landed cost is your cost basis. Amazon fees eat into gross profit from there.</div>
+</div>
+</div>
+<h2>Sources</h2>
+<ul style="font-size: 0.9rem; color: var(--gray-500);">
+<li>Tax Foundation: 2026 Trump Tariffs &amp; Trade War by the Numbers — US weighted-average tariff rate 10.2%<sup class="citation"><a href="#ref-2">[2]</a></sup> (March 2026)</li>
+<li>US Customs and Border Protection: Importing Commercial Goods<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
+<li>19 U.S.C. § 1401a — Customs Valuation (Transaction Value)<sup class="citation"><a href="#ref-4">[4]</a></sup></li>
+<li>Federal Register: Executive Order 14324 — De Minimis suspension<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>US International Trade Commission: Harmonized Tariff Schedule<sup class="citation"><a href="#ref-5">[5]</a></sup></li>
+<li>ICC: Incoterms 2020 Rules<sup class="citation"><a href="#ref-6">[6]</a></sup></li>
+</ul>
+<div class="cta-box" style="margin-top: 3rem;">
+<h3>Calculate your exact landed cost in seconds</h3>
+<p>Enter your FOB price, origin country, and HTS code. Get the full breakdown — duty, MPF, HMF, and total landed cost. Free, no account needed.</p>
+<a href="/duty/">Open the Duty Calculator →</a>
+</div>
+<div class="related-guides">
+<h3>Related guides</h3>
+<ul>
+<li><a href="/blog/us-china-tariff-rates-2026/">China Tariffs 2026</a></li>
+<li><a href="/blog/import-duty-from-vietnam-to-us/">Import Duty From Vietnam to the US</a></li>
+<li><a href="/blog/de-minimis-threshold-2026/">De Minimis Threshold 2026</a></li>
+</ul>
+</div>
+<p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray-500); font-style: italic;">
+<strong>Disclaimer:</strong> This article is for informational purposes only and does not constitute legal, tax, or customs advice. Tariff rates and import regulations change frequently. Always verify current rates with US Customs and Border Protection or a licensed customs broker before making import decisions. Rates in this article are accurate as of March 24, 2026.
         </p>
-    </article>
+</article>
 
     <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
 </body>

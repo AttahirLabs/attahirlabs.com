@@ -51,23 +51,31 @@
         code { background: var(--gray-100); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.95em; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
         @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.7rem; } article { padding: 2rem 1rem; } }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
     <nav><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
     <article>
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Product Expiry Date Management for Shopify</div>
-        <div class="meta"><span class="tag">Shopify</span><span class="tag">Inventory</span><span class="tag">ShelfLife</span> Published April 22, 2026 · Updated April 22, 2026 · 13 min read</div>
-        <h1>Product Expiry Date Management for Shopify</h1>
-        <div class="toc"><h3>In this guide</h3><ul><li><a href="#quick-answer">Quick answer</a></li><li><a href="#why-expiry-date-tracking-matters-more-than-most-shopify-merchants-think">Why expiry date tracking matters more than most Shopify merchants think</a></li><li><a href="#the-five-core-jobs-of-good-shelf-life-management">The five core jobs of good shelf life management</a></li><li><a href="#what-good-product-expiry-date-management-looks-like-on-shopify">What “good” product expiry date management looks like on Shopify</a></li><li><a href="#where-merchants-usually-break-the-process">Where merchants usually break the process</a></li><li><a href="#importing-makes-shelf-life-management-harder">Importing makes shelf life management harder</a></li><li><a href="#tariffs-matter-too-even-when-the-product-itself-does-not-spoil-quickly">Tariffs matter too, even when the product itself does not spoil quickly</a></li><li><a href="#best-before-expiration-date-and-durable-life-are-not-the-same-thing">Best before, expiration date, and durable life are not the same thing</a></li><li><a href="#how-to-build-a-shopify-expiry-workflow-that-actually-works">How to build a Shopify expiry workflow that actually works</a></li><li><a href="#where-shelflife-fits">Where ShelfLife fits</a></li><li><a href="#faq">FAQ</a></li><li><a href="#final-takeaway">Final takeaway</a></li><li><a href="#cta">CTA</a></li></ul></div>
-        <p>If you sell products with a limited shelf life, expiry date management is not a side task. It is part inventory control, part customer protection, part margin protection, and part compliance.</p>
-<p>That is especially true on Shopify, where many merchants still try to manage expiry dates with a product note, a spreadsheet, or somebody&#x27;s memory.</p>
-<p>That works, until it really doesn&#x27;t.</p>
+<div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / Product Expiry Date Management for Shopify</div>
+<div class="meta"><span class="tag">Shopify</span><span class="tag">Inventory</span><span class="tag">ShelfLife</span> Published April 22, 2026 · Updated April 22, 2026 · 13 min read</div>
+<h1>Product Expiry Date Management for Shopify</h1>
+<div class="toc"><h3>In this guide</h3><ul><li><a href="#quick-answer">Quick answer</a></li><li><a href="#why-expiry-date-tracking-matters-more-than-most-shopify-merchants-think">Why expiry date tracking matters more than most Shopify merchants think</a></li><li><a href="#the-five-core-jobs-of-good-shelf-life-management">The five core jobs of good shelf life management</a></li><li><a href="#what-good-product-expiry-date-management-looks-like-on-shopify">What “good” product expiry date management looks like on Shopify</a></li><li><a href="#where-merchants-usually-break-the-process">Where merchants usually break the process</a></li><li><a href="#importing-makes-shelf-life-management-harder">Importing makes shelf life management harder</a></li><li><a href="#tariffs-matter-too-even-when-the-product-itself-does-not-spoil-quickly">Tariffs matter too, even when the product itself does not spoil quickly</a></li><li><a href="#best-before-expiration-date-and-durable-life-are-not-the-same-thing">Best before, expiration date, and durable life are not the same thing</a></li><li><a href="#how-to-build-a-shopify-expiry-workflow-that-actually-works">How to build a Shopify expiry workflow that actually works</a></li><li><a href="#where-shelflife-fits">Where ShelfLife fits</a></li><li><a href="#faq">FAQ</a></li><li><a href="#final-takeaway">Final takeaway</a></li><li><a href="#cta">CTA</a></li></ul></div>
+<p>If you sell products with a limited shelf life, expiry date management is not a side task. It is part inventory control, part customer protection, part margin protection, and part compliance.</p>
+<p>That is especially true on Shopify, where many merchants still try to manage expiry dates with a product note, a spreadsheet, or somebody's memory.</p>
+<p>That works, until it really doesn't.</p>
 <p>A single batch received late, stored incorrectly, mis-labeled, or oversold past its useful window can create a nasty chain reaction: write-offs, refunds, support tickets, chargebacks, reputation damage, and in regulated categories, a real safety or compliance problem.</p>
 <p>The good news is that product expiry date management on Shopify is fixable. You do not need a giant ERP to get the basics right. You do need a system.</p>
 <p>This guide walks through what good shelf life management actually looks like for Shopify merchants, where most stores go wrong, and how to build a workflow around batch tracking, FEFO, expiry alerts, markdown timing, and import-aware inventory planning.</p>
 <blockquote>
-<p>Sources: <a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/traceability-lot-code">FDA Traceability Lot Code</a>, <a href="https://inspection.canada.ca/en/food-safety-industry/traceability/traceability">CFIA traceability requirements</a>, <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-03-eng.html">CBSA Customs Notice 24-03</a>.</p>
+<p>Sources: FDA Traceability Lot Code<sup class="citation"><a href="#ref-1">[1]</a></sup>, CFIA traceability requirements<sup class="citation"><a href="#ref-2">[2]</a></sup>, CBSA Customs Notice 24-03<sup class="citation"><a href="#ref-3">[3]</a></sup>.</p>
 </blockquote>
 <h2 id="quick-answer">Quick answer</h2>
 <p><strong>Product expiry date management for Shopify means tracking inventory by batch or lot, recording expiry or best-before windows, selling the oldest viable stock first, and acting early enough to prevent waste, recalls, and margin loss.</strong></p>
@@ -111,7 +119,7 @@
 <li>storage history</li>
 </ul>
 <p>If your store only tracks quantity at the SKU level, you can know you have 500 units and still have no idea which 120 need to move first.</p>
-<p>For food traceability, regulators already think in these terms. FDA&#x27;s Food Traceability Rule requires records around critical tracking events and key data elements for certain foods, and FDA describes the traceability lot code as a unique identifier used to track a lot through the supply chain. CFIA and Canada&#x27;s Safe Food for Canadians framework likewise emphasize lot codes and traceability to the immediate supplier and immediate customer.</p>
+<p>For food traceability, regulators already think in these terms. FDA's Food Traceability Rule requires records around critical tracking events and key data elements for certain foods, and FDA describes the traceability lot code as a unique identifier used to track a lot through the supply chain. CFIA and Canada's Safe Food for Canadians framework likewise emphasize lot codes and traceability to the immediate supplier and immediate customer.</p>
 <p>That does not mean every Shopify merchant is directly subject to every one of those recordkeeping rules. It does mean the regulatory direction is very clear: <strong>lot-level visibility is the serious standard.</strong></p>
 <h3>2. It uses FEFO instead of naive FIFO</h3>
 <p>FIFO, first in first out, is better than random picking. But expiry-sensitive inventory often needs <strong>FEFO, first expired first out</strong>, or more accurately, first to expire, first out.</p>
@@ -185,13 +193,13 @@
 <p>Merchants often know stock is aging but have no preplanned response. So the response comes late, under pressure, and often with worse margin damage than necessary.</p>
 <h3>No import-aware buffer</h3>
 <blockquote>
-<p>Source: <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-03-eng.html">CBSA Customs Notice 24-03</a>.</p>
+<p>Source: CBSA Customs Notice 24-03<sup class="citation"><a href="#ref-3">[3]</a></sup>.</p>
 </blockquote>
 <p>This one is easy to miss. A merchant buys goods with a nominal twelve-month shelf life, but by the time manufacturing, ocean freight, customs clearance, inland transfer, and receiving are done, the store may only control nine or ten useful months. Sometimes less.</p>
 <p>That is not a date-label problem. That is a planning problem.</p>
 <h2 id="importing-makes-shelf-life-management-harder">Importing makes shelf life management harder</h2>
 <blockquote>
-<p>Sources: <a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates">CBP Determining Duty Rates</a>, <a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-03-eng.html">CBSA Customs Notice 24-03</a>, <a href="https://www.wto.org/english/tratop_e/sps_e/spsund_e.htm">WTO SPS overview</a>.</p>
+<p>Sources: CBP Determining Duty Rates<sup class="citation"><a href="#ref-4">[4]</a></sup>, CBSA Customs Notice 24-03<sup class="citation"><a href="#ref-3">[3]</a></sup>, WTO SPS overview<sup class="citation"><a href="#ref-5">[5]</a></sup>.</p>
 </blockquote>
 <p>This is where product expiry date management starts to overlap with customs, tariffs, and border compliance.</p>
 <p>If you import shelf-life-sensitive goods, the “real” shelf life available for sale depends on more than the printed date.</p>
@@ -205,12 +213,12 @@
 <li>domestic transfer</li>
 <li>receiving backlog</li>
 </ul>
-<p>For U.S. importers, USITC&#x27;s tariff guidance is a reminder that classification is not just a search-box exercise. The Harmonized Tariff Schedule is a legal framework, and importers often need to read notes and apply the correct classification logic instead of relying on common product names alone. CBP then administers those classifications at the border. If goods are misclassified, under-documented, or tied to the wrong compliance assumptions, delay risk increases.</p>
-<p>For Canadian importers, CBSA&#x27;s 2024 notice on Safe Food for Canadians licence verification makes the consequence even more concrete: importers who do not declare a valid required licence may have shipments delayed or refused entry. If you sell date-sensitive food products, that is not just an administrative annoyance. It can erase sellable shelf life before the customer ever sees the product.</p>
-<p>WTO&#x27;s SPS framework also matters conceptually here. Countries can apply food safety and plant/animal health measures, but those measures must be science-based and necessary for protection. For merchants, the operational takeaway is simple: cross-border movement of food and related products is governed by real safety rules, not just shipping optimism.</p>
+<p>For U.S. importers, USITC's tariff guidance is a reminder that classification is not just a search-box exercise. The Harmonized Tariff Schedule is a legal framework, and importers often need to read notes and apply the correct classification logic instead of relying on common product names alone. CBP then administers those classifications at the border. If goods are misclassified, under-documented, or tied to the wrong compliance assumptions, delay risk increases.</p>
+<p>For Canadian importers, CBSA's 2024 notice on Safe Food for Canadians licence verification makes the consequence even more concrete: importers who do not declare a valid required licence may have shipments delayed or refused entry. If you sell date-sensitive food products, that is not just an administrative annoyance. It can erase sellable shelf life before the customer ever sees the product.</p>
+<p>WTO's SPS framework also matters conceptually here. Countries can apply food safety and plant/animal health measures, but those measures must be science-based and necessary for protection. For merchants, the operational takeaway is simple: cross-border movement of food and related products is governed by real safety rules, not just shipping optimism.</p>
 <h2 id="tariffs-matter-too-even-when-the-product-itself-does-not-spoil-quickly">Tariffs matter too, even when the product itself does not spoil quickly</h2>
 <blockquote>
-<p>Source: <a href="https://taxfoundation.org/taxedu/glossary/tariffs/">Tax Foundation, What Are Tariffs?</a>.</p>
+<p>Source: Tax Foundation, What Are Tariffs?<sup class="citation"><a href="#ref-6">[6]</a></sup>.</p>
 </blockquote>
 <p>At first glance tariffs sound unrelated to expiry date tracking.</p>
 <p>They are not.</p>
@@ -293,7 +301,7 @@
 <p>That protects revenue and reduces confusion.</p>
 <h3>Step 6: Measure waste and rescue rate</h3>
 <blockquote>
-<p>Source: <a href="https://www.fda.gov/food/consumers/how-cut-food-waste-and-maintain-food-safety">FDA, How to Cut Food Waste and Maintain Food Safety</a>.</p>
+<p>Source: FDA, How to Cut Food Waste and Maintain Food Safety<sup class="citation"><a href="#ref-7">[7]</a></sup>.</p>
 </blockquote>
 <p>If you do not measure expiry loss, you cannot improve it.</p>
 <p>Track:</p>
@@ -320,12 +328,12 @@
 <h3>4. Can customs delays really create expiry problems?</h3>
 <p>Yes. For imported products, every extra day in transit, clearance, or receiving reduces the remaining sellable window. CBSA explicitly warns that missing required food import licence data can lead to delay or refusal. Even when goods are eventually released, that lost time still matters.</p>
 <h3>5. Why should tariff data matter for shelf life management?</h3>
-<p>Source: <a href="https://taxfoundation.org/taxedu/glossary/tariffs/">Tax Foundation, What Are Tariffs?</a></p>
+<p>Source: Tax Foundation, What Are Tariffs?<sup class="citation"><a href="#ref-6">[6]</a></sup></p>
 <p>Because tariffs change purchasing behavior. When imported stock becomes more expensive, merchants may over-order to protect unit economics or hesitate to markdown aging stock. That increases expiry risk. Shelf life planning and landed-cost planning belong in the same conversation.</p>
 <h3>6. What should I store for each batch or lot?</h3>
 <p>At minimum: SKU, lot code, quantity, received date, expiry or best-before date, supplier, and status. Import-heavy businesses should also consider country of origin, landed cost, and customs references.</p>
 <h3>7. What is a traceability lot code?</h3>
-<p>FDA describes a traceability lot code as a unique identifier used to identify a traceability lot within the assigning firm&#x27;s records. In practice, it is the batch identity that lets you connect receiving, transformation, shipping, and recall activity across the supply chain.</p>
+<p>FDA describes a traceability lot code as a unique identifier used to identify a traceability lot within the assigning firm's records. In practice, it is the batch identity that lets you connect receiving, transformation, shipping, and recall activity across the supply chain.</p>
 <h3>8. How early should I start markdowns on aging inventory?</h3>
 <p>Earlier than most merchants think. The right timing depends on category and sales velocity, but many teams should begin intervention when there is still enough shelf life left for the customer to feel comfortable buying. If you wait until the stock is obviously old, your options narrow fast.</p>
 <h2 id="final-takeaway">Final takeaway</h2>
@@ -345,7 +353,7 @@
 <p>If you sell imported products, do not manage expiry risk without understanding duty and landed-cost pressure too.</p>
 <p>Use the <strong><a href="/duty/">TariffShield duty calculator</a></strong> to estimate landed cost more clearly before you overbuy slow-moving stock, and pair that with a proper ShelfLife-style workflow for batch tracking, FEFO, expiry alerts, and markdown timing.</p>
 <p>Better landed-cost planning upstream makes better expiry management downstream.</p>
-<h2 id="sources">Sources</h2>
+
 <ul>
 <li>U.S. Food and Drug Administration, <strong>FSMA Final Rule on Requirements for Additional Traceability Records for Certain Foods</strong>: https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods</li>
 <li>U.S. Food and Drug Administration, <strong>Traceability Lot Code</strong>: https://www.fda.gov/food/food-safety-modernization-act-fsma/traceability-lot-code</li>
@@ -361,7 +369,7 @@
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>This article is for general educational information only and does not constitute legal, customs, regulatory, food-safety, tax, or professional compliance advice. Requirements vary by product category, country, labeling regime, storage condition, and supply-chain role. If you sell regulated goods or import shelf-life-sensitive products, verify your obligations with qualified legal, customs, regulatory, and food-safety professionals before acting.</p>
-    </article>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/traceability-lot-code" rel="noopener" target="_blank">FDA Traceability Lot Code</a></li><li id="ref-2"><a href="https://inspection.canada.ca/en/food-safety-industry/traceability/traceability" rel="noopener" target="_blank">CFIA traceability requirements</a></li><li id="ref-3"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn24-03-eng.html" rel="noopener" target="_blank">CBSA Customs Notice 24-03</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP Determining Duty Rates</a></li><li id="ref-5"><a href="https://www.wto.org/english/tratop_e/sps_e/spsund_e.htm" rel="noopener" target="_blank">WTO SPS overview</a></li><li id="ref-6"><a href="https://taxfoundation.org/taxedu/glossary/tariffs/" rel="noopener" target="_blank">Tax Foundation, What Are Tariffs?</a></li><li id="ref-7"><a href="https://www.fda.gov/food/consumers/how-cut-food-waste-and-maintain-food-safety" rel="noopener" target="_blank">FDA, How to Cut Food Waste and Maintain Food Safety</a></li></ol></section></article>
     <footer>© 2026 Attahir Labs. Built for practical operators.</footer>
 </body>
 </html>

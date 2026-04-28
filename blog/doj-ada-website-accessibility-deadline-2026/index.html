@@ -84,11 +84,19 @@
         code { background: var(--gray-50); padding: 0.1rem 0.3rem; border-radius: 4px; font-size: 0.95em; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
         @media (max-width: 768px) { .nav-links { display: none; } h1 { font-size: 1.7rem; } article { padding: 2rem 1rem; } }
-    
+
         .post-figure { margin: 2rem 0; }
         .post-figure picture, .post-figure img { display: block; width: 100%; }
         .post-figure img { height: auto; border-radius: var(--radius, 12px); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14); border: 1px solid #e2e8f0; }
         .post-figure figcaption { margin-top: 0.65rem; color: var(--gray-500, #64748b); font-size: 0.88rem; line-height: 1.5; }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
 </head>
 <body>
@@ -97,15 +105,13 @@
 <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ADA Accessibility Deadline Update</div>
 <div class="meta"><span class="tag">Accessibility</span><span class="tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Breaking</span>Updated April 21, 2026 · Merchant checklist included</div>
 <h1>DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk</h1>
-
-        <figure class="post-figure blog-hero-figure" data-generated-visual="hero">
-            <picture>
-                <source srcset="/assets/blog/doj-ada-website-accessibility-deadline-2026/hero.webp" type="image/webp">
-                <img src="/assets/blog/doj-ada-website-accessibility-deadline-2026/hero.jpg" width="1536" height="864" alt="Accessibility risk timeline for DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk, showing delayed DOJ timing alongside ongoing shopper friction, legal exposure, and the need for prioritized fixes" fetchpriority="high" decoding="async">
-            </picture>
-            <figcaption>A delayed ADA deadline is not the same as reduced merchant risk: shopper blockers, complaints, and legal exposure still depend on what the storefront actually does today.</figcaption>
-        </figure>
-
+<figure class="post-figure blog-hero-figure" data-generated-visual="hero">
+<picture>
+<source srcset="/assets/blog/doj-ada-website-accessibility-deadline-2026/hero.webp" type="image/webp"/>
+<img alt="Accessibility risk timeline for DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk, showing delayed DOJ timing alongside ongoing shopper friction, legal exposure, and the need for prioritized fixes" decoding="async" fetchpriority="high" height="864" src="/assets/blog/doj-ada-website-accessibility-deadline-2026/hero.jpg" width="1536"/>
+</picture>
+<figcaption>A delayed ADA deadline is not the same as reduced merchant risk: shopper blockers, complaints, and legal exposure still depend on what the storefront actually does today.</figcaption>
+</figure>
 <p>The DOJ just pushed back the <strong>Title II</strong> web
 accessibility compliance deadlines for government websites and apps by
 roughly a year. A lot of people are going to read that headline and
@@ -117,10 +123,8 @@ government acknowledged that many public entities were not ready to hit
 the original deadlines, while also saying the underlying accessibility
 standard still stands and litigation risk did not magically go away.
 That's straight from the Interim Final Rule and DOJ guidance, not a hot
-take from LinkedIn. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>, <a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>)</p>
+take from LinkedIn. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>, ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>)</p>
 <p>For Shopify merchants, the real lesson is pretty simple:
 <strong>don't confuse a government deadline extension under Title II
 with a free pass for private ecommerce sites under Title III or with a
@@ -131,18 +135,14 @@ order, and overlay-widget nonsense, you still have a problem.</p>
 <p>If you just need the fast version:</p>
 <ul>
 <li><strong>What changed:</strong> the DOJ extended Title II website and
-app accessibility deadlines for covered state and local governments. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</li>
+app accessibility deadlines for covered state and local governments. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li><strong>Who it applies to:</strong> public entities, not private
-Shopify merchants directly. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</li>
+Shopify merchants directly. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li><strong>What did not change:</strong> WCAG-style accessibility work
-still matters, and litigation risk did not vanish. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>, <a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>)</li>
+still matters, and litigation risk did not vanish. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>, ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>)</li>
 <li><strong>What merchants should do now:</strong> audit the core
 shopping flow, fix obvious barriers first, and stop relying on overlays
 as a fake solution.</li>
@@ -150,37 +150,31 @@ as a fake solution.</li>
 <p>If you want the short version, here it is:</p>
 <ul>
 <li>The DOJ extended <strong>government</strong> web accessibility
-deadlines under <strong>Title II</strong>. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</li>
+deadlines under <strong>Title II</strong>. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li>The new dates are <strong>April 26, 2027</strong> for public
 entities serving populations of 50,000 or more, and <strong>April 26,
 2028</strong> for smaller public entities and special district
-governments. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</li>
+governments. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li>The DOJ did <strong>not</strong> say accessibility no longer
 matters. It explicitly said the substantive rule remains in place and
-litigation risk remains. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</li>
+litigation risk remains. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li>If you sell online, the smart move is still to fix your site.</li>
 </ul>
 <div class="callout callout-warn">
 <p><strong>The part most merchants will miss:</strong> this was a delay for public entities, not a pardon for private ecommerce stores. If your store is inaccessible today, you still have business risk, conversion loss, and legal exposure.</p>
 </div>
-
 <h2 id="what-exactly-changed">What exactly changed</h2>
 <p>The official rule is an <strong>Interim Final Rule</strong> from the
 DOJ's Civil Rights Division. It revises the compliance dates for the
 2024 Title II web and mobile accessibility rule. The original rule
 adopted <strong>WCAG 2.1 Level AA</strong> as the technical standard for
 covered state and local government websites and apps. The April 2026
-update did not throw that standard out. It just moved the deadlines. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>,
-<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+update did not throw that standard out. It just moved the deadlines. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>,
+Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>Here are the new deadline buckets:</p>
 <table>
 <thead>
@@ -204,9 +198,8 @@ governments</td>
 </tr>
 </tbody>
 </table>
-<p>Source: <a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register Interim Final Rule</a></p>
+<p>Source: Federal
+Register Interim Final Rule<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 <table>
 <thead>
 <tr>
@@ -243,9 +236,8 @@ technological readiness and institutional capacity. It flagged staffing
 shortages, budget limits, technical complexity, and uncertainty around
 evolving WCAG-linked materials. That's a pretty blunt admission that
 accessibility work is real engineering and content work, not a checkbox
-you slap on four days before a deadline. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+you slap on four days before a deadline. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>And honestly, that part tracks. Anyone who has actually cleaned up a
 real theme knows the ugly truth. Accessibility is not one ticket. It's
 navigation, semantics, forms, contrast, modals, filters, product media,
@@ -257,11 +249,9 @@ start with concrete remediation steps instead of waiting until the last
 minute. That's written for governments, but the operational lesson
 applies just as cleanly to ecommerce teams: you need ownership, a plan,
 and a running fix list. If you leave accessibility as a vague someday
-project, it turns into expensive chaos. (<a
-href="https://www.ada.gov/resources/web-rule-first-steps/">ADA.gov first
-steps</a>, <a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov fact
-sheet</a>)</p>
+project, it turns into expensive chaos. (ADA.gov first
+steps<sup class="citation"><a href="#ref-3">[3]</a></sup>, ADA.gov fact
+sheet<sup class="citation"><a href="#ref-2">[2]</a></sup>)</p>
 <h2 id="why-shopify-merchants-should-still-care">Why Shopify merchants
 should still care</h2>
 <p>Because this is where people get lazy and hurt themselves.</p>
@@ -270,10 +260,8 @@ Shopify merchants usually care about <strong>private-site risk</strong>,
 customer usability, and broader accessibility obligations. The federal
 government did not announce, "Private companies can chill for a year."
 It said public deadlines moved while the rule itself still points to
-WCAG 2.1 Level AA and while litigation risk still exists. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>, <a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>)</p>
+WCAG 2.1 Level AA and while litigation risk still exists. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>, ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>)</p>
 <p>That matters for ecommerce for three reasons.</p>
 <h3 id="1-risk-did-not-disappear">1. Risk did not disappear</h3>
 <p>The Federal Register notice goes out of its way to say the extension
@@ -282,9 +270,8 @@ period. That sentence was written for governments, but the bigger signal
 is obvious: accessibility claims remain alive while deadlines move
 around. If even the government's own notice is still warning about
 litigation risk, private merchants should not be reading this as
-permission to ignore accessibility. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+permission to ignore accessibility. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <h3 id="2-wcag-21-aa-is-still-the-practical-benchmark">2. WCAG 2.1 AA is
 still the practical benchmark</h3>
 <p>The 2024 DOJ materials are very clear that the Title II rule uses
@@ -292,10 +279,9 @@ still the practical benchmark</h3>
 also the benchmark most accessibility professionals, demand letters,
 audits, and remediation projects keep circling back to. If your store
 materially fails WCAG basics, nobody is going to be impressed that a
-separate government deadline moved. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>,
-<a href="https://www.ada.gov/resources/web-rule-first-steps/">ADA.gov
-first steps</a>)</p>
+separate government deadline moved. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>,
+ADA.gov
+first steps<sup class="citation"><a href="#ref-3">[3]</a></sup>)</p>
 <h3 id="3-bad-accessibility-is-still-bad-business">3. Bad accessibility
 is still bad business</h3>
 <p>Even if you ignore the legal side entirely, inaccessible ecommerce UX
@@ -320,17 +306,14 @@ clean up the semantic mess inside a heavily customized theme.</p>
 <p>What the April 2026 update actually reinforces is the opposite:
 accessibility work got delayed for many governments because the work is
 hard, operationally heavy, and impossible to fake at scale with a
-superficial patch. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+superficial patch. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>If you want a deeper breakdown of why overlays don't solve the
-underlying problem, read our earlier guide: <a
-href="/blog/wcag-accessibility-guide/">WCAG Accessibility for Ecommerce:
+underlying problem, read our earlier guide: <a href="/blog/wcag-accessibility-guide/">WCAG Accessibility for Ecommerce:
 Why Overlay Widgets Don't Work and What Actually Does</a>.</p>
 <h2 id="what-merchants-should-do-now">What merchants should do now</h2>
 <p>Don't wait for another scary headline. Use this moment properly.</p>
-<h3
-id="audit-your-store-against-the-stuff-that-actually-breaks-shopping">Audit
+<h3 id="audit-your-store-against-the-stuff-that-actually-breaks-shopping">Audit
 your store against the stuff that actually breaks shopping</h3>
 <p>Start with the places where customers get blocked:</p>
 <ul>
@@ -353,11 +336,9 @@ obligations in plain English and point back to the actual standard. The
 DOJ fact sheet and first-steps guide are good sanity checks for what
 "real accessibility work" looks like: planning, inventorying content,
 finding barriers, fixing templates, and maintaining accessibility over
-time. Not buying a badge and calling it done. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov fact
-sheet</a>, <a
-href="https://www.ada.gov/resources/web-rule-first-steps/">ADA.gov first
-steps</a>)</p>
+time. Not buying a badge and calling it done. (ADA.gov fact
+sheet<sup class="citation"><a href="#ref-2">[2]</a></sup>, ADA.gov first
+steps<sup class="citation"><a href="#ref-3">[3]</a></sup>)</p>
 <h3 id="fix-the-obvious-failures-first">Fix the obvious failures
 first</h3>
 <p>You do not need a six-month committee before you touch anything.
@@ -377,8 +358,7 @@ components</li>
 </ol>
 <p>That list is not glamorous. It's also where a huge amount of real
 risk lives.</p>
-<h3
-id="treat-app-blocks-and-theme-customizations-as-part-of-the-problem">Treat
+<h3 id="treat-app-blocks-and-theme-customizations-as-part-of-the-problem">Treat
 app blocks and theme customizations as part of the problem</h3>
 <p>A lot of Shopify merchants assume accessibility is a theme issue
 only. It isn't. Apps, app embeds, injected widgets, promotional bars,
@@ -408,9 +388,8 @@ It's the admission underneath it.</p>
 <p>The government effectively said: this work is complicated, some
 entities do not have the staff or technical capability to finish it on
 the original timeline, and ambiguity around dynamic WCAG-linked guidance
-created extra confusion. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+created extra confusion. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>That should tell private merchants two things.</p>
 <p>First, you should stop pretending accessibility can be solved with a
 banner, a plugin, or one frantic sprint after you get a complaint.</p>
@@ -440,17 +419,14 @@ problems</li>
 </ul>
 <p>That's a lot more honest than the overlay sales pitch. And it maps
 much better to what the DOJ's own materials imply: accessibility
-requires ongoing operational work, not a fake finish line. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>,
-<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+requires ongoing operational work, not a fake finish line. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>,
+Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <div class="cta-box">
-  <h3>Need a starting point?</h3>
-  <p>If your Shopify store has accessibility debt, start with the WCAG guide and use it as a remediation checklist for your highest-traffic templates before the next theme update.</p>
-  <p><a href="/blog/wcag-accessibility-guide/">Read the WCAG guide</a> · <a href="/contact.html">Contact Attahir Labs</a></p>
+<h3>Need a starting point?</h3>
+<p>If your Shopify store has accessibility debt, start with the WCAG guide and use it as a remediation checklist for your highest-traffic templates before the next theme update.</p>
+<p><a href="/blog/wcag-accessibility-guide/">Read the WCAG guide</a> · <a href="/contact.html">Contact Attahir Labs</a></p>
 </div>
-
 <h2 id="my-practical-advice-if-you-run-a-shopify-store">My practical
 advice if you run a Shopify store</h2>
 <p>If you read this headline and felt relief, fine. But use that relief
@@ -504,34 +480,30 @@ DOJ extension apply to Shopify merchants?</h3>
 <p>No, not directly. The April 2026 DOJ update extends <strong>Title
 II</strong> accessibility deadlines for state and local government
 entities, not a general compliance deadline for all private ecommerce
-stores. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+stores. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <h3 id="so-can-private-stores-relax-for-a-year">So can private stores
 relax for a year?</h3>
 <p>No.</p>
 <p>That would be a bad read of the situation. The DOJ did not say
 accessibility requirements stopped mattering, and the notice
 specifically says litigation risk remains during the extension period.
-(<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+(Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <h3 id="what-standard-should-merchants-still-use">What standard should
 merchants still use?</h3>
 <p><strong>WCAG 2.1 Level AA</strong> is still the practical benchmark
 most teams use for web accessibility remediation and review. The DOJ's
 2024 Title II materials explicitly point to WCAG 2.1 Level AA as the
-technical standard in that rule. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>,
-<a href="https://www.ada.gov/resources/web-rule-first-steps/">ADA.gov
-first steps</a>)</p>
+technical standard in that rule. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>,
+ADA.gov
+first steps<sup class="citation"><a href="#ref-3">[3]</a></sup>)</p>
 <h3 id="why-did-the-doj-move-the-deadlines">Why did the DOJ move the
 deadlines?</h3>
 <p>The DOJ said it had overestimated technological readiness and
 institutional capacity, and it discussed staffing, budget, technical,
-and compliance-clarity issues affecting public entities. (<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>)</p>
+and compliance-clarity issues affecting public entities. (Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <h3 id="are-overlay-widgets-enough">Are overlay widgets enough?</h3>
 <p>No. They don't fix the underlying code and content failures that make
 stores inaccessible in the first place.</p>
@@ -540,20 +512,18 @@ next step for a merchant?</h3>
 <p>Audit the real shopping flows, fix the obvious failures first, and
 keep a remediation log. Fancy promises are cheap. Verified fixes are
 what matter.</p>
-<h2 id="sources">Sources</h2>
+
 <ul>
-<li><a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
+<li>Federal
 Register: Extension of Compliance Dates for Nondiscrimination on the
 Basis of Disability; Accessibility of Web Information and Services of
-State and Local Government Entities</a></li>
-<li><a href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov
+State and Local Government Entities<sup class="citation"><a href="#ref-1">[1]</a></sup></li>
+<li>ADA.gov
 Fact Sheet: New Rule on the Accessibility of Web Content and Mobile Apps
-Provided by State and Local Governments</a></li>
-<li><a
-href="https://www.ada.gov/resources/web-rule-first-steps/">ADA.gov:
+Provided by State and Local Governments<sup class="citation"><a href="#ref-2">[2]</a></sup></li>
+<li>ADA.gov:
 State and Local Governments, First Steps Toward Complying with the Title
-II Web and Mobile Application Accessibility Rule</a></li>
+II Web and Mobile Application Accessibility Rule<sup class="citation"><a href="#ref-3">[3]</a></sup></li>
 <li><a href="/blog/wcag-accessibility-guide/">Attahir Labs: WCAG
 Accessibility for Ecommerce, Why Overlay Widgets Don't Work and What
 Actually Does</a></li>
@@ -565,12 +535,9 @@ Accessibility obligations depend on your jurisdiction, business model,
 and the specific functionality of your site. For legal interpretation,
 talk to qualified counsel. For technical remediation, validate issues
 against official sources and real testing workflows such as the DOJ
-materials and rule text. (<a
-href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov</a>,
-<a
-href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">Federal
-Register</a>) Information is current as of April 21, 2026.</p>
-
-</article>
+materials and rule text. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>,
+Federal
+Register<sup class="citation"><a href="#ref-1">[1]</a></sup>) Information is current as of April 21, 2026.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web" rel="noopener" target="_blank">Federal Register</a></li><li id="ref-2"><a href="https://www.ada.gov/resources/2024-03-08-web-rule/" rel="noopener" target="_blank">ADA.gov</a></li><li id="ref-3"><a href="https://www.ada.gov/resources/web-rule-first-steps/" rel="noopener" target="_blank">ADA.gov first steps</a></li></ol></section></article>
 <footer>© 2026 Attahir Labs. Tools for Shopify merchants who need clarity, not fluff.</footer>
 </body></html>
