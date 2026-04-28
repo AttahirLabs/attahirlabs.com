@@ -70,5 +70,10 @@ for (const service of ['Economy', 'Standard', 'Express']) {
 
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.match(home, /href="\/shipping\/"/i, 'homepage should link to the shipping calculator');
+const homeNav = home.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
+assert.match(homeNav, /href="\/shipping\/"[^>]*>Shipping Calculator</i, 'homepage top nav should include Shipping Calculator');
+for (const sectionLink of ['#apps', '#problems', '#about']) {
+  assert.ok(!homeNav.includes(`href="${sectionLink}"`), `homepage top nav should not link to ${sectionLink}`);
+}
 
 console.log('shipping calculator tests passed');
