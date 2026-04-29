@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Attahir Labs logo">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="432" y2="472" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.58" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="126" y1="124" x2="388" y2="388" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="394" cy="118" r="44" fill="#818cf8" opacity="0.26"/>
+  <path d="M104 374 214 138h86l108 236h-74l-20-50H199l-20 50h-75Zm117-106h70l-35-88-35 88Z" fill="#ffffff"/>
+  <path d="M318 138h70v236H244v-61h74V138Z" fill="url(#accent)"/>
+  <path d="M104 374 214 138h86l108 236h-74l-20-50H199l-20 50h-75Zm117-106h70l-35-88-35 88Z" fill="#ffffff" opacity="0.94"/>
+</svg>
