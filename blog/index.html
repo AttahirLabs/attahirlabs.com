@@ -40,6 +40,18 @@
         .featured-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--indigo); margin-bottom: 0.35rem; }
         .featured-title { font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
         .featured-copy { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; }
+
+        .tag-filter { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1rem; margin: -0.75rem 0 2rem; background: var(--gray-50); }
+        .tag-filter-header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+        .tag-filter-title { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; }
+        .tag-filter-count { font-size: 0.85rem; color: var(--gray-500); }
+        .tag-filter-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag-filter-button { appearance: none; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-700); border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 600; line-height: 1; padding: 0.55rem 0.8rem; transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s; }
+        .tag-filter-button:hover { border-color: var(--indigo); color: var(--indigo); }
+        .tag-filter-button[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: var(--white); box-shadow: 0 8px 22px rgba(99,102,241,0.18); }
+        .post-card.is-hidden-by-tag { display: none; }
+        .empty-filter-state { display: none; border: 1px dashed var(--gray-200); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: var(--gray-500); background: var(--gray-50); margin-bottom: 1.5rem; }
+        .empty-filter-state.is-visible { display: block; }
         footer { background: var(--navy); color: var(--white); padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; opacity: 0.6; margin-top: 4rem; }
         @media (max-width: 900px) { .featured-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) {
@@ -48,6 +60,11 @@
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 1rem; margin-bottom: 2rem; }
             .post-card { padding: 1.25rem; }
+
+            .tag-filter { margin-top: -0.5rem; padding: 0.9rem; }
+            .tag-filter-header { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
+            .tag-filter-options { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.25rem; -webkit-overflow-scrolling: touch; }
+            .tag-filter-button { flex: 0 0 auto; }
         }
 
         /* Mobile nav: keep primary site links visible instead of hiding them. */
@@ -100,6 +117,14 @@
 <div class="featured-copy">Section 301, Section 122, Section 232, and the actual duty ranges importers are planning around.</div>
 </a>
 </div>
+<section class="tag-filter" aria-labelledby="tag-filter-title">
+<div class="tag-filter-header">
+<div class="tag-filter-title" id="tag-filter-title">Filter by topic</div>
+<div class="tag-filter-count" id="tag-filter-count">Showing all posts</div>
+</div>
+<div class="tag-filter-options" id="tag-filter-options" role="list" aria-label="Blog topic filters"></div>
+</section>
+<div class="empty-filter-state" id="empty-filter-state">No posts match that topic yet.</div>
 <div class="post-card has-image">
 <a href="/blog/saks-global-inventory-lessons-shopify-2026/"><img alt="Editorial photo of a boutique retail stockroom with partially empty clothing racks, garment bags, folded apparel, and purchase-order paperwork, representing vendor-payment pressure and inventory risk." class="post-card-image" decoding="async" height="2160" loading="lazy" src="/assets/blog/saks-global-inventory-lessons-shopify-2026/hero.jpg" width="3840"/>
 <div class="post-meta">
@@ -455,5 +480,80 @@
 </div>
 </div>
 <footer>© 2026 Attahir Labs. All rights reserved.</footer>
+
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.post-card'));
+  var options = document.getElementById('tag-filter-options');
+  var count = document.getElementById('tag-filter-count');
+  var emptyState = document.getElementById('empty-filter-state');
+  if (!cards.length || !options || !count) return;
+
+  function normalizeTag(tag) {
+    return tag.trim().replace(/\s+/g, ' ');
+  }
+
+  var tagMap = new Map();
+  cards.forEach(function (card) {
+    var tags = Array.prototype.slice.call(card.querySelectorAll('.post-tag'))
+      .map(function (tag) { return normalizeTag(tag.textContent || ''); })
+      .filter(Boolean);
+    var uniqueTags = Array.from(new Set(tags));
+    card.dataset.tags = uniqueTags.map(function (tag) { return tag.toLowerCase(); }).join('|');
+    uniqueTags.forEach(function (tag) {
+      var key = tag.toLowerCase();
+      if (!tagMap.has(key)) tagMap.set(key, { label: tag, count: 0 });
+      tagMap.get(key).count += 1;
+    });
+  });
+
+  var tags = Array.from(tagMap.entries()).sort(function (a, b) {
+    if (b[1].count !== a[1].count) return b[1].count - a[1].count;
+    return a[1].label.localeCompare(b[1].label);
+  });
+
+  function makeButton(label, value, total, pressed) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tag-filter-button';
+    button.dataset.filterTag = value;
+    button.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    button.textContent = total === null ? label : label + ' (' + total + ')';
+    return button;
+  }
+
+  options.appendChild(makeButton('All', 'all', cards.length, true));
+  tags.forEach(function (_ref) {
+    var key = _ref[0];
+    var tag = _ref[1];
+    options.appendChild(makeButton(tag.label, key, tag.count, false));
+  });
+
+  function applyFilter(filter) {
+    var shown = 0;
+    cards.forEach(function (card) {
+      var visible = filter === 'all' || (card.dataset.tags || '').split('|').indexOf(filter) !== -1;
+      card.classList.toggle('is-hidden-by-tag', !visible);
+      if (visible) shown += 1;
+    });
+    Array.prototype.slice.call(options.querySelectorAll('.tag-filter-button')).forEach(function (button) {
+      button.setAttribute('aria-pressed', button.dataset.filterTag === filter ? 'true' : 'false');
+    });
+    var activeLabel = filter === 'all' ? 'all posts' : tagMap.get(filter).label;
+    count.textContent = filter === 'all'
+      ? 'Showing all ' + shown + ' posts'
+      : 'Showing ' + shown + ' post' + (shown === 1 ? '' : 's') + ' tagged “' + activeLabel + '”';
+    if (emptyState) emptyState.classList.toggle('is-visible', shown === 0);
+  }
+
+  options.addEventListener('click', function (event) {
+    var button = event.target.closest('.tag-filter-button');
+    if (!button) return;
+    applyFilter(button.dataset.filterTag || 'all');
+  });
+
+  applyFilter('all');
+})();
+</script>
 </body>
 </html>
