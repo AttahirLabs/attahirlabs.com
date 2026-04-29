@@ -41,8 +41,10 @@
         .featured-title { font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
         .featured-copy { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; }
 
-        .tag-filter { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 0.65rem; margin: -1rem 0 1.5rem; background: var(--gray-50); display: flex; justify-content: flex-end; }
-        .tag-filter-select { width: min(100%, 260px); appearance: none; border: 1px solid var(--gray-200); border-radius: 9px; background: var(--white); color: var(--navy); cursor: pointer; font: inherit; font-size: 0.9rem; padding: 0.58rem 2.2rem 0.58rem 0.75rem; box-shadow: 0 6px 18px rgba(15,23,42,0.04); background-image: linear-gradient(45deg, transparent 50%, var(--gray-500) 50%), linear-gradient(135deg, var(--gray-500) 50%, transparent 50%); background-position: calc(100% - 1rem) 52%, calc(100% - 0.7rem) 52%; background-size: 0.3rem 0.3rem, 0.3rem 0.3rem; background-repeat: no-repeat; }
+        .tag-filter { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 0.75rem 0.85rem; margin: -1rem 0 1.5rem; background: var(--gray-50); display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 260px); gap: 0.75rem; align-items: center; }
+        .tag-filter-title { font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+        .tag-filter-count { font-size: 0.8rem; color: var(--gray-500); }
+        .tag-filter-select { width: 100%; appearance: none; border: 1px solid var(--gray-200); border-radius: 9px; background: var(--white); color: var(--navy); cursor: pointer; font: inherit; font-size: 0.9rem; padding: 0.58rem 2.2rem 0.58rem 0.75rem; box-shadow: 0 6px 18px rgba(15,23,42,0.04); background-image: linear-gradient(45deg, transparent 50%, var(--gray-500) 50%), linear-gradient(135deg, var(--gray-500) 50%, transparent 50%); background-position: calc(100% - 1rem) 52%, calc(100% - 0.7rem) 52%; background-size: 0.3rem 0.3rem, 0.3rem 0.3rem; background-repeat: no-repeat; }
         .tag-filter-select:focus { outline: 3px solid rgba(99,102,241,0.18); border-color: var(--indigo); }
         .post-card.is-hidden-by-tag { display: none; }
         .empty-filter-state { display: none; border: 1px dashed var(--gray-200); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: var(--gray-500); background: var(--gray-50); margin-bottom: 1.5rem; }
@@ -56,8 +58,7 @@
             .subtitle { font-size: 1rem; margin-bottom: 2rem; }
             .post-card { padding: 1.25rem; }
 
-            .tag-filter { margin-top: -0.75rem; padding: 0.65rem; }
-            .tag-filter-select { width: 100%; }
+            .tag-filter { grid-template-columns: 1fr; margin-top: -0.75rem; padding: 0.75rem; gap: 0.55rem; }
         }
 
         /* Mobile nav: keep primary site links visible instead of hiding them. */
@@ -110,8 +111,14 @@
 <div class="featured-copy">Section 301, Section 122, Section 232, and the actual duty ranges importers are planning around.</div>
 </a>
 </div>
-<section class="tag-filter" aria-label="Filter blog posts by topic">
+<section class="tag-filter" aria-labelledby="tag-filter-title">
+<div>
+<div class="tag-filter-title" id="tag-filter-title">Filter by topic</div>
+<div class="tag-filter-count" id="tag-filter-count">Showing all posts</div>
+</div>
+<div>
 <select class="tag-filter-select" id="tag-filter-select" aria-label="Filter blog posts by topic"></select>
+</div>
 </section>
 <div class="empty-filter-state" id="empty-filter-state">No posts match that topic yet.</div>
 <div class="post-card has-image">
@@ -474,8 +481,9 @@
 (function () {
   var cards = Array.prototype.slice.call(document.querySelectorAll('.post-card'));
   var select = document.getElementById('tag-filter-select');
+  var count = document.getElementById('tag-filter-count');
   var emptyState = document.getElementById('empty-filter-state');
-  if (!cards.length || !select) return;
+  if (!cards.length || !select || !count) return;
 
   function normalizeTag(tag) {
     return tag.trim().replace(/\s+/g, ' ');
@@ -522,6 +530,10 @@
       if (visible) shown += 1;
     });
     select.value = filter;
+    var activeLabel = filter === 'all' ? 'all posts' : tagMap.get(filter).label;
+    count.textContent = filter === 'all'
+      ? 'Showing all ' + shown + ' posts'
+      : 'Showing ' + shown + ' post' + (shown === 1 ? '' : 's') + ' tagged “' + activeLabel + '”';
     if (emptyState) emptyState.classList.toggle('is-visible', shown === 0);
   }
 
