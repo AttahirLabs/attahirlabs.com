@@ -57,6 +57,14 @@ Write like a sharp friend who happens to know this stuff. Not a professor. Not a
 
 **Article first, image last.** Do not make the hero image until the article is finalized enough to know the real angle.
 
+Before generating a public hero, run the art-direction step:
+
+```bash
+python3 tools/blog-pipeline/art_director.py --slug {slug} --candidates 4
+```
+
+This creates `tmp/{slug}-visual-brief.json` and `tmp/{slug}-candidate-prompts.md` by comparing the article against recent hero compositions. Use one of those candidate prompts, or regenerate the brief if the concepts are still too similar.
+
 Hero images should be:
 - Article-specific editorial/stock-photo-style images, not generic SEO infographics.
 - Realistic ecommerce, logistics, retail, compliance, or operations scenes tied to the article's actual argument.
@@ -76,7 +84,7 @@ Raw image QA happens before page QA:
 ### Blog Surface QA:
 
 Before any public blog deploy is called done:
-- Every real article page must have exactly one editorial hero figure with `data-generated-visual="editorial-gpt-image-2"` and `/assets/blog/{slug}/hero.jpg`.
+- Every real article page must have exactly one editorial hero figure with `data-generated-visual="editorial-gpt-image-2"` and a 3840×2160 `/assets/blog/{slug}/hero.jpg`.
 - Every visible `/blog/` card must have a short cropped `post-card-image` using that same hero asset.
 - The primary nav must show **Home · Duty Calculator · Blog · Contact** on every article, including older templates and moved/redirect pages.
 - No stale `hero.webp` references after editorial image replacement.
