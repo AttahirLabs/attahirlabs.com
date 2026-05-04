@@ -231,4 +231,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://attahirlabs.com/blog/section-301-vs-section-232-vs-section-122/</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
