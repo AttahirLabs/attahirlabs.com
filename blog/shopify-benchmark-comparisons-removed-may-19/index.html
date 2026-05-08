@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shopify Benchmark Comparisons Are Going Away. Save This Data Now. | Attahir Labs</title>
+    <meta name="description" content="Shopify is removing Benchmark Comparisons in Analytics on May 19. Save useful views now, then replace peer benchmarks with targets and store-owned baselines.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/shopify-benchmark-comparisons-removed-may-19/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopify-benchmark-comparisons-removed-may-19/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial graphic showing Shopify Benchmark Comparisons being removed and replaced with merchant-owned analytics targets before May 19.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopify-benchmark-comparisons-removed-may-19/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Shopify Benchmark Comparisons Are Going Away. Save This Data Now.",
+      "description": "Shopify is removing Benchmark Comparisons in Analytics on May 19. Save useful views now, then replace peer benchmarks with targets and store-owned baselines.",
+      "datePublished": "2026-05-07",
+      "dateModified": "2026-05-07",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/shopify-benchmark-comparisons-removed-may-19/",
+      "image": "https://attahirlabs.com/assets/blog/shopify-benchmark-comparisons-removed-may-19/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Shopify removing all Analytics?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "When is Benchmark Comparisons removed?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What should I use instead?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Should I save every benchmark screen?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Can an app recreate Shopify's peer benchmark data?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Should I change my targets after the feature is removed?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+    
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/shipping/">Shipping Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">May 07, 2026</p>
+<h1>Shopify Benchmark Comparisons Are Going Away. Save This Data Now.</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/shopify-benchmark-comparisons-removed-may-19/hero.jpg" width="3840" height="2160" alt="Editorial graphic showing Shopify Benchmark Comparisons being removed and replaced with merchant-owned analytics targets before May 19." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Shopify Benchmark Comparisons are going away; save useful views now and replace peer comparisons with store-owned targets.</figcaption>
+        </figure>
+
+<p>Shopify is removing Benchmark Comparisons from Analytics. According to the Shopify changelog<sup class="citation"><a href="#ref-1">[1]</a></sup>, Benchmark Comparison data will no longer show new data, and the feature will be fully removed on May 19, 2026.</p>
+<p>That gives merchants a short window to save anything useful before it disappears.</p>
+<h2>Quick answer</h2>
+<p>Shopify is removing Benchmark Comparisons in Analytics on May 19, 2026, according to its official changelog notice<sup class="citation"><a href="#ref-1">[1]</a></sup>. Before then, save the benchmark views you actually used, replace peer comparisons with Metric Targets, and build a monthly baseline from your own conversion rate, average order value, margin, retention, and inventory sell-through.</p>
+<p>This is not a reason to panic. It is a reason to stop treating peer benchmarks as the scoreboard for your business. Benchmarks can be useful, but they are borrowed context. Your own targets, your own historical trend lines, and your own product-level economics matter more.</p>
+<p>Still, if you used Shopify's Benchmark Comparisons to sanity-check conversion rate, order value, sessions, customer behavior, or store performance, you should not wait until May 19 to deal with it.</p>
+<h2>What changed</h2>
+<p>Shopify says Benchmark Comparison data in Analytics will stop showing new data and the feature will be fully removed on May 19, 2026. Shopify's suggested alternatives are Metric Targets and Sidekick guidance, both mentioned in the same official changelog notice<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
+<p>The practical meaning is simple:</p>
+<ul>
+<li>You should assume peer comparison views are temporary.</li>
+<li>You should save the benchmark screenshots or exports you still care about.</li>
+<li>You should move your decision-making toward merchant-owned targets.</li>
+<li>You should stop building weekly reporting habits around a feature that is going away.</li>
+</ul>
+<p>If you never used Benchmark Comparisons, you can mostly ignore the removal. But if you did use them, especially for investor updates, agency reporting, growth reviews, or internal scorecards, you need a quick replacement plan.</p>
+<h2>What to save before May 19</h2>
+<p>Start with screenshots. Boring, but reliable.</p>
+<p>If Benchmark Comparisons helped you explain whether your store was above or below similar merchants, capture the exact views you used most often. Save the date, the metric, the selected period, and the store context. A screenshot with no date is half evidence. A screenshot with no explanation becomes useless six months later.</p>
+<p>Save these if they matter to your store:</p>
+<ul>
+<li>Conversion rate benchmark views.</li>
+<li>Average order value comparisons.</li>
+<li>Sessions or traffic comparisons.</li>
+<li>Returning customer or customer-retention comparisons.</li>
+<li>Sales trend comparisons, if you used them in monthly reviews.</li>
+<li>Any benchmark card that changed a real decision.</li>
+</ul>
+<p>That last one matters. Don't archive every screen just because it exists. Archive what you actually used.</p>
+<p>A benchmark that never changed your pricing, ads, merchandising, inventory, email, or product strategy is trivia. You don't need a museum of dead dashboard cards.</p>
+<h2>Replace peer benchmarks with targets</h2>
+<p>Shopify's suggested replacement is Metric Targets. That is the right general direction.</p>
+<p>Peer benchmarks answer the question, "How do stores like mine perform?" Targets answer a sharper question: "What does this store need to hit for the business to work?"</p>
+<p>Those are not the same thing.</p>
+<p>A store can beat a peer benchmark and still have bad economics. Maybe the conversion rate looks fine, but shipping costs are eating contribution margin. Maybe average order value is above the peer set, but returns are wrecking profit. Maybe traffic looks strong, but the best-selling product has a tariff, supplier, or stockout problem that the analytics benchmark never sees.</p>
+<p>Targets force you to define what healthy looks like for your store.</p>
+<p>Start with five numbers:</p>
+<ol>
+<li><strong>Conversion rate target.</strong> Pick a realistic number for your current traffic quality, not a fantasy number from a growth thread.</li>
+<li><strong>Average order value target.</strong> Tie it to contribution margin, shipping thresholds, bundles, and product mix.</li>
+<li><strong>Gross margin or contribution margin target.</strong> This is where many Shopify reports get too soft. Revenue is not cash.</li>
+<li><strong>Returning customer rate target.</strong> Especially if you sell consumables, accessories, warranty-backed goods, or products with replenishment cycles.</li>
+<li><strong>Inventory sell-through target.</strong> If stock sits too long, every other metric starts lying to you.</li>
+</ol>
+<p>You can add more later. Don't start with 27 targets. That is dashboard cosplay.</p>
+<h2>Build your own baseline</h2>
+<p>Peer benchmarks feel comforting because they give you an external yardstick. The problem is that external yardsticks are often vague. You usually do not know the exact peer set, product mix, margin structure, ad spend, seasonality, fulfillment model, or discount behavior behind the comparison.</p>
+<p>Your own baseline is less glamorous, but more useful.</p>
+<p>For each key metric, create a simple baseline from your own data:</p>
+<ul>
+<li>Last 30 days.</li>
+<li>Previous 30 days.</li>
+<li>Same period last year, if you have it.</li>
+<li>Best recent period that was not caused by a one-off sale.</li>
+<li>Worst recent period that was not caused by a tracking break or stockout.</li>
+</ul>
+<p>Now you have context you can actually explain.</p>
+<p>If conversion rate drops, you can ask whether traffic quality changed, a product went out of stock, a theme change hurt the product page, or a discount ended. If average order value falls, you can look at bundle uptake, free-shipping thresholds, price changes, and product mix. If inventory sell-through slows, you can act before the stock turns into a storage problem.</p>
+<p>This is more work than glancing at a peer benchmark. It is also more useful.</p>
+<h2>The metrics Shopify merchants should watch now</h2>
+<p>The best replacement for Benchmark Comparisons depends on what you were using the feature for.</p>
+<p>If you used it for marketing performance, watch conversion rate, sessions by channel, customer acquisition cost if you track it outside Shopify, and revenue by landing page or campaign. A benchmark does not tell you if your Meta traffic got worse. Your own channel trend does.</p>
+<p>If you used it for merchandising, watch product-level sell-through, aged inventory, margin by product group, and discount dependency. A storewide average can hide a product category that is quietly rotting on the shelf.</p>
+<p>If you used it for finance, watch gross margin, contribution margin after shipping and discounts, average order value, refund rate, and cash tied up in inventory. This is where peer benchmarks are most dangerous. Looking "normal" compared with other stores does not mean the business is profitable.</p>
+<p>If you used it for operations, watch fulfillment delays, return reasons, support volume, warranty claims, stockouts, and product data quality. These are the messy operational metrics that rarely fit nicely into a peer comparison card.</p>
+<h2>What not to do</h2>
+<p>Do not replace Benchmark Comparisons with a random spreadsheet full of industry averages from old blog posts. Shopify specifically points merchants toward its own Metric Targets and Sidekick alternatives in the official removal notice<sup class="citation"><a href="#ref-1">[1]</a></sup>, not toward generic public averages.</p>
+<p>That is worse than losing the benchmark entirely. At least Shopify's benchmark lived inside the same platform. A stale public average from 2022, copied from a roundup post, is not a decision system. It is a decorative number.</p>
+<p>Do not set targets so high that everyone ignores them.</p>
+<p>A target should create useful pressure. If your conversion rate is 1.7%, a 5% target might be a long-term ambition, but it is probably a bad weekly operating target unless something massive is changing. A better next target might be 1.9%, then 2.1%, with specific work attached.</p>
+<p>Do not track metrics that nobody owns.</p>
+<p>If conversion rate misses, who investigates? If aged inventory grows, who marks down, bundles, transfers, or stops reordering? If average order value falls, who tests bundles or thresholds? A metric without an owner is dashboard wallpaper.</p>
+<h2>A quick May 19 checklist</h2>
+<p>Before the feature disappears, do this:</p>
+<ol>
+<li>Open the Benchmark Comparisons views you used in real decisions.</li>
+<li>Screenshot or export the views that matter.</li>
+<li>Save each screenshot with the date, metric, and reporting period in the filename.</li>
+<li>Write one note beside each saved benchmark: "What decision did this support?"</li>
+<li>Create replacement targets for conversion rate, average order value, margin, retention, and sell-through.</li>
+<li>Add a recurring monthly review that compares your store against your own baseline.</li>
+<li>Remove any internal reporting dependency on Benchmark Comparisons before May 19.</li>
+</ol>
+<p>If you work with an agency, accountant, growth contractor, or ops lead, send them the note now. The annoying version of this problem is not the feature removal. It is discovering in June that someone's monthly report depended on it.</p>
+<h2>Where Attahir Labs fits</h2>
+<p>This change reinforces a bigger point: Shopify merchants need more store-owned operating context. Shopify is explicitly pointing merchants away from Benchmark Comparisons and toward targets or guidance in the removal notice<sup class="citation"><a href="#ref-1">[1]</a></sup>, which fits the same direction.</p>
+<p>That is the direction our apps already push.</p>
+<p>StockClearance is about aging inventory, sell-through, margin recovery, and turning dead stock into decisions. If inventory targets are part of your replacement scorecard, our <a href="/blog/dead-stock-clearance-q2-2026/">dead stock clearance guide</a> is a useful companion. StoreChangelog is about knowing what changed in your store instead of guessing after the numbers move. TariffShield connects the same idea to margin pressure from duties and landed cost; our <a href="/blog/shopify-import-duties/">Shopify import duties guide</a> explains that workflow. ShelfLife, WarrantyTracker, and AccessShield all sit in the same lane too: less vague dashboard watching, more specific operational signal.</p>
+<p>Benchmark Comparisons going away does not create that need. It just makes the need easier to see.</p>
+<p>A merchant does not need another pretty chart saying they are "above average." They need to know which products are tying up cash, which changes affected the store, which costs are about to hit margin, and what to do next.</p>
+<h2>FAQ</h2>
+<h3>Is Shopify removing all Analytics?</h3>
+<p>No. Shopify's notice is about Benchmark Comparisons in Analytics, not Analytics as a whole.</p>
+<h3>When is Benchmark Comparisons removed?</h3>
+<p>Shopify says in its official changelog notice<sup class="citation"><a href="#ref-1">[1]</a></sup> that the feature will be fully removed on May 19, 2026, and that Benchmark Comparison data will no longer show new data before then.</p>
+<h3>What should I use instead?</h3>
+<p>Use Metric Targets for store-owned goals, then compare each metric against your own recent history. Sidekick may help explain performance, but you should still keep your own baseline and targets.</p>
+<h3>Should I save every benchmark screen?</h3>
+<p>No. Save the ones you used or might need to explain a decision. Everything else is clutter.</p>
+<h3>Can an app recreate Shopify's peer benchmark data?</h3>
+<p>Not honestly, unless it has enough permissioned aggregate merchant data to build a comparable peer set. Shopify’s own notice<sup class="citation"><a href="#ref-1">[1]</a></sup> points merchants toward targets and guidance, which is a better replacement for most stores than pretending a small app can recreate Shopify-scale peer data.</p>
+<h3>Should I change my targets after the feature is removed?</h3>
+<p>Yes, but don't twitch every week. Review targets monthly unless something major changed, like a new acquisition channel, a pricing change, a theme update, a stockout, or a shipping-cost jump.</p>
+<h2>Disclaimer</h2>
+<p>This article is informational only. Shopify features and timelines can change. Check Shopify's official changelog and your Shopify admin before making reporting or operational decisions.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://changelog.shopify.com/posts/benchmark-comparisons-in-analytics-will-be-removed-on-may-19th" rel="noopener" target="_blank">Shopify changelog</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
