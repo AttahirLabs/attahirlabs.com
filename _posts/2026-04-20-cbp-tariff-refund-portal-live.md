@@ -279,4 +279,4 @@ And if you don’t, the smartest move isn’t panic. It’s getting organized be
 
 ## Want more tariff updates like this?
 
-If you follow tariff changes, landed cost risk, and import margin pressure, you can also use our free [import duty calculator](/duty/) to estimate landed cost and keep an eye on the [Attahir Labs blog](/blog/) for future trade and tariff explainers. If you're trying to understand the margin side of import costs before and after duties, start there.
+If you follow tariff changes, landed cost risk, and import margin pressure, you can use our free [import duty calculator](/duty/) to estimate landed cost, keep an eye on the [Attahir Labs blog](/blog/) for future trade explainers, and add [TariffShield](https://apps.shopify.com/tariffshield) if you want Shopify product-level tariff exposure monitoring inside your store.
