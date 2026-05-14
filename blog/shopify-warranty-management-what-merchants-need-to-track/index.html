@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shopify Warranty Management: What Merchants Need to Track | Attahir Labs</title>
+    <meta name="description" content="A practical guide to Shopify warranty tracking for coverage, proof of purchase, claims, replacements, and cross-border duty risk.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/shopify-warranty-management-what-merchants-need-to-track/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopify-warranty-management-what-merchants-need-to-track/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of support and returns counter for ecommerce warranty claim review and support workflow.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopify-warranty-management-what-merchants-need-to-track/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Shopify Warranty Management: What Merchants Need to Track",
+      "description": "A practical guide to Shopify warranty tracking for coverage, proof of purchase, claims, replacements, and cross-border duty risk.",
+      "datePublished": "2026-05-14",
+      "dateModified": "2026-05-14",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/shopify-warranty-management-what-merchants-need-to-track/",
+      "image": "https://attahirlabs.com/assets/blog/shopify-warranty-management-what-merchants-need-to-track/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "1. Does Shopify have built-in warranty management?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "2. What is the most important thing to track in a warranty process?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "3. Should merchants track serial numbers for warranty claims?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "4. Are warranty replacements always duty-free?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "5. What should a Shopify support team see on one screen?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "6. How many claim statuses does a small merchant need?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "7. Why does warranty data matter beyond support?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "8. When should a merchant use a dedicated warranty app?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+    
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/shipping/">Shipping Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">May 14, 2026</p>
+<h1>Shopify Warranty Management: What Merchants Need to Track</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/shopify-warranty-management-what-merchants-need-to-track/hero.jpg" width="3840" height="2160" alt="Editorial photo of support and returns counter for ecommerce warranty claim review and support workflow." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Operational warranty/returns workflow: proof, customer support, inspection, and policy clarity.</figcaption>
+        </figure>
+
+<p>Warranty work looks simple from the outside. A customer reports a problem, your team checks coverage, and you decide whether to repair, replace, refund, or deny the claim.</p>
+<p>In practice, it gets messy fast.</p>
+<p>Once a Shopify store starts handling real warranty volume, the hard part is not writing the policy. The hard part is tracking the facts that decide each case: what was sold, when it was sold, what coverage applied, whether the item was registered, whether the product is still within term, what proof the customer provided, what your team already promised, and whether a replacement shipment creates new tax or customs risk.</p>
+<h2>Quick answer</h2>
+<p>Shopify warranty management means building a repeatable process to track six things well: the warranty promise itself, the original order and proof of purchase, the product identity or serial number, the active coverage window, the claim workflow, and the financial/tax consequences of the resolution. If you sell cross-border, you should also track whether repair or replacement shipments may trigger customs duties, GST/HST, or remote-sales tax obligations.</p>
+<p>That is the real operational checklist. If any of those records live only in inboxes, DMs, or employee memory, warranty handling will get slow, inconsistent, and expensive.</p>
+<h2>Why warranty tracking breaks in Shopify stores</h2>
+<p>Most merchants do not fail because they forget to offer a warranty. They fail because the warranty process sits across too many systems.</p>
+<p>The FTC's business guide to federal warranty law<sup class="citation"><a href="#ref-1">[1]</a></sup> explains that written warranties, implied warranties, disclosure standards, and limits on disclaiming implied warranties all matter in consumer product sales. In other words, the warranty is not just marketing copy. It is an operational promise with legal consequences.</p>
+<p>At the same time, Shopify's return-management app documentation<sup class="citation"><a href="#ref-2">[2]</a></sup> help merchants process returns and exchanges, but they are not the same thing as a complete warranty workflow. A return can be a simple sizing issue. A warranty claim usually needs more history, more evidence, and more decision tracking.</p>
+<p>That gap is where teams start improvising:</p>
+<ul>
+<li>a support inbox holds the initial complaint</li>
+<li>a spreadsheet tracks serial numbers</li>
+<li>a return in Shopify tracks the shipped item</li>
+<li>a separate note holds the approval decision</li>
+<li>accounting tries to figure out what to do with tax, duty, or replacement value later</li>
+</ul>
+<p>That setup works for ten claims. It usually breaks at one hundred.</p>
+<h2>What merchants actually need to track</h2>
+<h3>1. The warranty terms tied to the exact product</h3>
+<p>Start with the promise.</p>
+<p>Track the warranty terms at the product level, not just in a generic policy page. Different products may have different coverage periods, exclusions, or claim instructions. If the policy changes over time, keep the version that applied when the order was placed.</p>
+<p>At minimum, store:</p>
+<ul>
+<li>product or variant identity</li>
+<li>warranty duration</li>
+<li>start date rule, such as purchase date or delivery date</li>
+<li>exclusions or misuse conditions</li>
+<li>resolution options, such as repair, replacement, store credit, or refund</li>
+<li>policy version or terms text used at the time of sale</li>
+</ul>
+<p>This matters because the FTC's Magnuson-Moss framework<sup class="citation"><a href="#ref-3">[3]</a></sup> is about what the written warranty says and how it is disclosed. If your team cannot reconstruct the actual promise that applied to the order, you are already in a bad position.</p>
+<h2>2. Proof of purchase and order identity</h2>
+<p>A warranty claim without a clean order trail turns into guesswork.</p>
+<p>Track:</p>
+<ul>
+<li>Shopify order number</li>
+<li>purchase date</li>
+<li>customer name and email</li>
+<li>sales channel</li>
+<li>receipt or invoice number if the item may be registered after purchase</li>
+<li>whether the item was bought direct, through retail, or through another marketplace</li>
+</ul>
+<p>This sounds obvious, but it is where fraud, duplicates, and internal confusion usually start. If a team cannot quickly answer "did we actually sell this item, through which channel, and on what date?" every downstream step gets slower.</p>
+<p>If you sell through multiple channels, it is also worth tracking whether a claim came from your DTC site, a wholesale account, Amazon, retail, or a marketplace. Those channels can have different documentation quality and different customer expectations.</p>
+<h3>3. Product identity, serial number, or registration record</h3>
+<p>A warranty process is much stronger when it tracks the specific unit, not just the product title.</p>
+<p>That can include:</p>
+<ul>
+<li>serial number</li>
+<li>model number</li>
+<li>lot or batch number where relevant</li>
+<li>product registration date</li>
+<li>customer-submitted registration form data</li>
+<li>uploaded documents or photos</li>
+</ul>
+<p>This is one reason warranty apps keep converging on self-service registration, proof capture, and searchable claim records. Merchant workflow research consistently points in the same direction: easier registration, proof-of-purchase upload, serial validation, and one dashboard instead of spreadsheet chaos. If your bigger issue is policy design before tooling, see the related guide on <a href="/blog/warranty-policy-reduce-refunds/">writing a warranty policy that reduces refunds</a>.</p>
+<p>For WarrantyTracker specifically, the current documented safe claims are practical and grounded: product-specific warranty configuration, public registration forms, QR-code registration links, searchable registration records, claim status workflow, certificate download where plan allows, CSV export where plan allows, and analytics for claim rates and reasons. That is the right shape of workflow to support — operational visibility, not magical automation.</p>
+<h3>4. Coverage status and expiry</h3>
+<p>Your team should be able to answer coverage status instantly.</p>
+<p>Track:</p>
+<ul>
+<li>warranty start date</li>
+<li>warranty end date</li>
+<li>whether the registration is active, expired, or voided</li>
+<li>whether a prior claim affected eligibility</li>
+<li>whether the claim was filed within term</li>
+</ul>
+<p>A surprising amount of warranty friction comes from basic date math done manually. When coverage dates are unclear, support teams over-escalate, customers get inconsistent answers, and approved claims can drift outside policy.</p>
+<p>This is also where a dashboard helps. If the team can see active warranties, upcoming expiries, open claims, and recent registrations in one place, they stop wasting time reconstructing status from notes.</p>
+<h3>5. Claim intake and status progression</h3>
+<p>A warranty claim is not one event. It is a workflow.</p>
+<p>You need to track:</p>
+<ul>
+<li>date filed</li>
+<li>issue type</li>
+<li>problem description</li>
+<li>supporting photos or documents</li>
+<li>assigned reviewer or owner</li>
+<li>current status</li>
+<li>internal notes</li>
+<li>final resolution</li>
+<li>resolution date</li>
+</ul>
+<p>A simple status model is enough for many merchants:</p>
+<ul>
+<li>open</li>
+<li>reviewing</li>
+<li>approved</li>
+<li>denied</li>
+<li>closed</li>
+</ul>
+<p>That sounds basic, but it is the difference between "someone is looking at it" and "we can see exactly where this claim is stuck."</p>
+<p>WarrantyTracker's current app documentation supports that kind of workflow directly: searchable registrations, claim rows, status filters, and action states such as reviewing, approved, denied, and closed. That is the operational middle ground most Shopify merchants actually need.</p>
+<h3>6. Resolution type and inventory consequence</h3>
+<p>Do not stop tracking when the claim is approved.</p>
+<p>The resolution itself changes operations and accounting, so record whether the outcome was:</p>
+<ul>
+<li>repair</li>
+<li>replacement</li>
+<li>refund</li>
+<li>partial credit</li>
+<li>denial</li>
+<li>goodwill exception outside formal coverage</li>
+</ul>
+<p>Also track:</p>
+<ul>
+<li>replacement SKU or variant shipped</li>
+<li>whether the replacement came from saleable stock</li>
+<li>whether the original item was returned</li>
+<li>whether the original item was scrapped, repaired, or restocked</li>
+<li>whether shipping charges were absorbed</li>
+</ul>
+<p>Without this, warranty claims quietly distort inventory and margin. A store can think it has a product-quality problem when it actually has a logging problem, or vice versa.</p>
+<h3>7. Cross-border duty and tax exposure</h3>
+<p>This is the part many merchants miss.</p>
+<p>If you replace or repair products across borders, warranty operations can create customs and tax consequences even when the customer sees the shipment as "free."</p>
+<p>The official sources are clear that customs treatment depends on the scenario:</p>
+<ul>
+<li>CBP states that goods exported for repair or alteration in another NAFTA country pursuant to a warranty<sup class="citation"><a href="#ref-4">[4]</a></sup> may re-enter without customs duties in that context.</li>
+<li>CBSA states that goods returning to Canada after warranty repair<sup class="citation"><a href="#ref-5">[5]</a></sup> may qualify for GST/HST relief under the right conditions, but it also warns that a replacement good can be treated differently and may owe full customs duties.</li>
+<li>The USITC's HTS site<sup class="citation"><a href="#ref-6">[6]</a></sup> provides tariff classifications and rates for merchandise imported into the United States, and CBP administers that schedule at U.S. ports of entry.</li>
+<li>The WTO customs valuation overview<sup class="citation"><a href="#ref-7">[7]</a></sup> and USTR customs valuation summary<sup class="citation"><a href="#ref-8">[8]</a></sup> both emphasize that customs valuation is the basis for ad valorem duty calculations and must follow a neutral, uniform methodology rather than arbitrary values.</li>
+</ul>
+<p>The practical lesson for merchants is simple: a warranty replacement is not automatically customs-neutral just because you are not charging the customer for the item.</p>
+<p>If you ship replacements internationally, track:</p>
+<ul>
+<li>destination country</li>
+<li>original country of import</li>
+<li>whether the outcome is a repair return or a replacement good</li>
+<li>declared customs value</li>
+<li>HS/HTS classification used</li>
+<li>country of origin</li>
+<li>whether the shipment is being made pursuant to warranty</li>
+<li>broker or carrier instructions used</li>
+</ul>
+<p>This is also where TariffShield or a duty calculator becomes useful. Even if warranty management is your main workflow problem, replacement shipments can still create landed-cost surprises, support escalations, or double-charge complaints if your customs treatment is sloppy.</p>
+<h3>8. Sales-tax and remote-sales consequences</h3>
+<p>Most warranty claims are not about sales tax first, but the surrounding transactions can still affect compliance.</p>
+<p>The Tax Foundation notes that after *South Dakota v. Wayfair*<sup class="citation"><a href="#ref-9">[9]</a></sup>, states can impose collection obligations on remote sellers even without physical presence, and most sales-tax states now apply remote-seller or marketplace rules. That matters because warranty-related refunds, replacement charges, shipping charges, and channel mix can complicate recordkeeping.</p>
+<p>You do not need to turn every warranty event into a tax seminar. You do need a clean ledger that shows what happened:</p>
+<ul>
+<li>original taxable sale</li>
+<li>refunded amount, if any</li>
+<li>replacement shipment value</li>
+<li>shipping charges billed or absorbed</li>
+<li>channel responsible for tax collection</li>
+<li>marketplace vs direct sale distinction</li>
+</ul>
+<p>Your finance team will thank you later.</p>
+<h2>A practical Shopify warranty workflow</h2>
+<p>If you want a process that survives real volume, build it in this order:</p>
+<h3>Step 1: Define coverage by product</h3>
+<p>Do not rely only on a generic footer policy. Map warranty duration and terms to the products that actually carry coverage.</p>
+<h3>Step 2: Capture customer registration cleanly</h3>
+<p>A branded registration form, QR code, packaging insert, or support link reduces the back-and-forth later. It is easier to validate a claim when you already have purchase date, serial number, and contact information on file.</p>
+<h3>Step 3: Keep registrations searchable</h3>
+<p>Your team should be able to find a warranty by customer name, email, order number, serial number, or product.</p>
+<h3>Step 4: Standardize claim statuses</h3>
+<p>Stop using improvised note language. Pick a small set of statuses and use them consistently.</p>
+<h3>Step 5: Record the resolution in a structured way</h3>
+<p>Approved is not enough. Track whether you repaired, replaced, refunded, denied, or made a one-off exception.</p>
+<h3>Step 6: Review analytics monthly</h3>
+<p>You do not need fancy AI. You do need visibility into claim rate by product, top issue reasons, and trend direction over time.</p>
+<p>That final step matters more than it gets credit for. Warranty data is not just support data. It is product-quality data, supplier-quality data, and margin-risk data. Shopify's own return and exchange workflow documentation separates the operational event from the underlying business reason, which is exactly why merchants need structured warranty records around the transaction: Shopify return management<sup class="citation"><a href="#ref-2">[2]</a></sup>.</p>
+<h2>Signs your current process is too manual</h2>
+<p>Your Shopify warranty process probably needs tightening if any of these are true:</p>
+<ul>
+<li>claims live in email threads with no shared dashboard</li>
+<li>support asks customers for the same proof more than once</li>
+<li>your team cannot search by serial number or order quickly</li>
+<li>approvals are inconsistent between agents</li>
+<li>replacements get shipped without anyone checking customs impact</li>
+<li>finance cannot reconcile refunds, replacements, and warranty costs cleanly</li>
+<li>you only discover product-quality spikes after reviews get ugly</li>
+</ul>
+<p>That is usually the moment merchants realize they do not have a warranty policy problem. They have a tracking problem.</p>
+<h2>CTA: if your warranty replacements cross borders, model the duty risk too</h2>
+<p>If your store ships warranty replacements into the U.S. or Canada, do not treat customs as an afterthought. CBP repair/alteration guidance<sup class="citation"><a href="#ref-4">[4]</a></sup>, CBSA warranty repair guidance<sup class="citation"><a href="#ref-5">[5]</a></sup>, declared values, and classification choices can change whether duty or GST/HST applies.</p>
+<p>Use TariffShield or the <a href="/duty/">Attahir duty calculator</a> to pressure-test replacement scenarios before they turn into support tickets, surprise landed costs, or double-charge complaints at delivery.</p>
+<h2>FAQ</h2>
+<h3>1. Does Shopify have built-in warranty management?</h3>
+<p>Not as a complete native workflow. Shopify supports order, return, and exchange operations, but warranty handling usually needs additional tracking for coverage terms, registration, serial numbers, claims, and resolutions.</p>
+<h3>2. What is the most important thing to track in a warranty process?</h3>
+<p>Coverage status tied to proof of purchase is the core. That is the operational counterpart to the FTC's guidance on written warranties and disclosure<sup class="citation"><a href="#ref-1">[1]</a></sup>: if you cannot confirm what was bought, when it was bought, and what warranty applied, every other step becomes slower and riskier.</p>
+<h3>3. Should merchants track serial numbers for warranty claims?</h3>
+<p>Usually yes for products where unit identity matters. Serial numbers reduce fraud, make claim lookup easier, and help connect claims to specific production issues or supplier batches.</p>
+<h3>4. Are warranty replacements always duty-free?</h3>
+<p>No. Official CBP<sup class="citation"><a href="#ref-4">[4]</a></sup> and CBSA<sup class="citation"><a href="#ref-5">[5]</a></sup> guidance shows that treatment depends on the scenario. Warranty repairs and replacement goods can be treated differently, and cross-border shipments may still require proper classification, valuation, and documentation.</p>
+<h3>5. What should a Shopify support team see on one screen?</h3>
+<p>At minimum: the customer, order number, product, serial number, coverage dates, claim status, issue type, uploaded proof, and the resolution history.</p>
+<h3>6. How many claim statuses does a small merchant need?</h3>
+<p>Usually four or five is enough: open, reviewing, approved, denied, and closed. More statuses often create noise instead of clarity.</p>
+<h3>7. Why does warranty data matter beyond support?</h3>
+<p>Because it reveals claim-rate trends, weak products, supplier problems, inventory leakage, and hidden margin costs. Shopify's return-management documentation<sup class="citation"><a href="#ref-2">[2]</a></sup> shows the transaction mechanics; warranty records add the product-quality and finance context that support teams need beyond the return event.</p>
+<h3>8. When should a merchant use a dedicated warranty app?</h3>
+<p>As soon as the workflow involves recurring registrations, serial tracking, claims queues, proof capture, or multiple staff handling cases. Past that point, spreadsheets usually become the bottleneck.</p>
+<h2>Disclaimer</h2>
+<p>This article is for general operational and educational purposes only and is not legal, customs, tax, or accounting advice. Warranty law, sales-tax treatment, and cross-border customs treatment depend on product type, jurisdiction, shipment structure, and the exact facts of the transaction. Review your warranty language, tax handling, and import/export documentation with qualified legal, customs, or tax advisors before changing policy or process.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.ftc.gov/business-guidance/resources/businesspersons-guide-federal-warranty-law" rel="noopener" target="_blank">FTC's business guide to federal warranty law</a></li><li id="ref-2"><a href="https://shopify.dev/docs/apps/build/orders-fulfillment/returns-apps" rel="noopener" target="_blank">Shopify's return-management app documentation</a></li><li id="ref-3"><a href="https://www.ftc.gov/legal-library/browse/statutes/magnuson-moss-warranty-federal-trade-commission-improvements-act" rel="noopener" target="_blank">FTC's Magnuson-Moss framework</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/nafta/guide-customs-procedures/effect-nafta/en-repairs-alterations" rel="noopener" target="_blank">CBP states that goods exported for repair or alteration in another NAFTA country pursuant to a warranty</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/publications/dm-md/d8/d8-2-10-eng.html" rel="noopener" target="_blank">CBSA states that goods returning to Canada after warranty repair</a></li><li id="ref-6"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC's HTS site</a></li><li id="ref-7"><a href="https://www.wto.org/english/tratop_e/cusval_e/cusval_info_e.htm" rel="noopener" target="_blank">WTO customs valuation overview</a></li><li id="ref-8"><a href="https://ustr.gov/trade-agreements/wto-multilateral-affairs/wto-issues/customs-issues/customs-valuation" rel="noopener" target="_blank">USTR customs valuation summary</a></li><li id="ref-9"><a href="https://taxfoundation.org/taxedu/glossary/internet-sales-tax/" rel="noopener" target="_blank">Tax Foundation notes that after *South Dakota v. Wayfair*</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
