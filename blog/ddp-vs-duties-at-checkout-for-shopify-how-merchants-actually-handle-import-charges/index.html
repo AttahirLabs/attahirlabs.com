@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>DDP vs Duties at Checkout for Shopify: How Merchants Actually Handle Import Charges | Attahir Labs</title>
+    <meta name="description" content="A practical guide to DDP vs duties at checkout on Shopify, including trade-source context, margin risk, customer experience tradeoffs, and when each model fits.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of customs broker document flat lay for the article topic and merchant operations context.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "DDP vs Duties at Checkout for Shopify: How Merchants Actually Handle Import Charges",
+      "description": "A practical guide to DDP vs duties at checkout on Shopify, including trade-source context, margin risk, customer experience tradeoffs, and when each model fits.",
+      "datePublished": "2026-05-23",
+      "dateModified": "2026-05-23",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/",
+      "image": "https://attahirlabs.com/assets/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is DDP always better for conversion than duties at checkout?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Is duties at checkout the same thing as DDP?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Can a merchant choose DDP for some countries and duties at checkout for others?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Why can two similar products produce different duty outcomes?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Does showing duties at checkout remove the need for customs review?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What is the biggest risk with DDP?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What is the biggest risk with duties at checkout?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Which model is better for a large mixed catalog?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+    
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/shipping/">Shipping Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">May 23, 2026</p>
+<h1>DDP vs Duties at Checkout for Shopify: How Merchants Actually Handle Import Charges</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/hero.jpg" width="3840" height="2160" alt="Editorial photo of customs broker document flat lay for the article topic and merchant operations context." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>A useful import-duty visual should show the actual operating work: classification, origin, product-specific tariff checks, landed cost, and margin impact.</figcaption>
+        </figure>
+
+<blockquote>Key references: Trade.gov on Incoterms<sup class="citation"><a href="#ref-1">[1]</a></sup>, CBP on determining duty rates<sup class="citation"><a href="#ref-2">[2]</a></sup>, USITC Harmonized Tariff Schedule<sup class="citation"><a href="#ref-3">[3]</a></sup>, CBSA Customs Tariff<sup class="citation"><a href="#ref-4">[4]</a></sup>, and WTO tariffs overview<sup class="citation"><a href="#ref-5">[5]</a></sup>.</blockquote>
+<p>If you search for <strong>DDP vs Duties at Checkout for Shopify: How Merchants Actually Handle Import Charges</strong>, the short answer is this: merchants use DDP when they want the seller to own the import-charge experience end to end, and they use duties at checkout when they want the buyer to see a landed-cost estimate before paying but still keep the charge visible as part of the purchase decision.</p>
+<p>Those are not the same operating model.</p>
+<p>They can look similar to a shopper because both aim to reduce surprise charges, but internally they move risk to different places. DDP usually pushes more responsibility and reconciliation work onto the merchant or its shipping stack. Duties at checkout pushes more emphasis onto catalog data quality, estimation logic, and clear checkout disclosure. In both cases, the customs math still depends on product classification, origin, destination-country rules, and current tariff measures.</p>
+<p>That last point matters more in 2026 than it did a few years ago. The WTO defines tariffs as customs duties on merchandise imports.[1] CBP says the U.S. Harmonized Tariff System provides duty rates for virtually every item and warns that the answer is only as good as the information provided.[2] Tax Foundation's running tariff tracker shows how quickly the practical tariff environment can move even when a merchant's catalog stays the same.[6]</p>
+<p>This guide is about the real decision merchants make on Shopify: do you absorb and manage import charges under a DDP-style flow, do you present duties at checkout, or do you segment the choice by market and product risk?</p>
+<h2>Quick answer</h2>
+<p>For most Shopify merchants, the practical choice comes down to control versus exposure:</p>
+<ul>
+<li>Choose <strong>DDP</strong> when you want to remove payment friction at delivery, own the landed-cost promise more directly, and have enough margin and operational control to absorb estimate variance, brokerage issues, and post-entry exceptions.</li>
+<li>Choose <strong>duties at checkout</strong> when you want customers to see import charges before payment, keep the economics transparent, and avoid pretending the merchant can safely absorb every cross-border variable.</li>
+<li>Avoid treating either model as a cosmetic checkout setting. Both depend on correct tariff classification, country of origin, destination rules, and current policy changes.</li>
+<li>If your data is messy, your best next step is not choosing a prettier charge model. It is fixing HS/HTS classification, origin, and SKU-level exceptions first.</li>
+</ul>
+<p>If you need the groundwork first, read <a href="/blog/hts-code-lookup/">HTS code lookup</a>, <a href="/blog/shopify-import-duties/">Shopify import duties</a>, and <a href="/blog/how-to-calculate-landed-cost/">how to calculate landed cost</a>.</p>
+<h2>What DDP actually means in practice</h2>
+
+<p>For ecommerce operators, DDP is best understood as a seller-owned import-charge experience. Trade.gov lists DDP, or Delivered Duty Paid, among the standard Incoterms.[7] CBSA's memorandum on authorized agents states that under a delivered duty paid shipping agreement, the vendor or shipper is responsible for transportation costs, brokerage fees, import duties, and other requirements.[8] That is the operational logic merchants care about, even if the exact carrier program, broker arrangement, or contract structure differs.</p>
+<p>In practice, a DDP-style setup usually means the merchant or its logistics partners are trying to do five things:</p>
+<ul>
+<li>estimate duties and taxes before shipment,</li>
+<li>collect or absorb those amounts on the merchant side,</li>
+<li>present the customer with a cleaner delivery experience,</li>
+<li>reduce refused parcels and post-delivery payment shock,</li>
+<li>reconcile any mismatch between estimate and actual customs treatment later.</li>
+</ul>
+<p>That sounds attractive because customers hate surprise bills. It is also where merchants underestimate the backend work. DDP is not just a friendlier label. It is a promise that someone on the seller side will handle the import-charge burden well enough that the customer does not get ambushed later.</p>
+<h2>What duties at checkout means in practice</h2>
+<p>Duties at checkout is usually a transparency-first model.</p>
+<p>Instead of leaving the customer to discover charges after the parcel lands, the merchant surfaces a duty-and-tax estimate during purchase. That tends to improve conversion trust compared with pure post-delivery collection, but it does not magically remove customs complexity. It simply moves more of that complexity into pre-purchase calculation and disclosure.</p>
+<p>The reason data quality matters so much is straightforward. CBP says classification experts need detailed product facts to determine the correct duty rate, and CBP makes the final determination of the correct rate of duty.[2] The U.S. schedule itself is maintained through the USITC's Harmonized Tariff Schedule, which is the reference structure importers and brokers work from.[3] CBSA makes the same broader point for Canada: the Customs Tariff is based on the Harmonized Commodity Description and Coding System and shows preferential tariff treatment where applicable.[5]</p>
+<p>So if a merchant offers duties at checkout but uses weak product classification, stale origin data, or blanket country assumptions, the nice checkout line item may still be wrong.</p>
+<p>That is the main reality merchants have to accept: checkout collection is only as credible as the catalog and policy inputs behind it.</p>
+<h2>The difference that matters: who owns the variance?</h2>
+<p>The cleanest way to compare DDP with duties at checkout is to ask where the variance lands when reality differs from the estimate.</p>
+<p>| Question | DDP-style flow | Duties at checkout flow | |---|---|---| | Who tries to shield the customer from import-charge surprise? | Merchant/seller side | Checkout disclosure before payment | | Who is more exposed if estimates are low? | Usually the merchant or its logistics arrangement | Often still the merchant reputationally, but the pricing signal is shown earlier | | What has to be excellent? | Landed-cost estimation, carrier/broker execution, reconciliation | Catalog data, classification/origin logic, checkout disclosure | | What usually improves? | Delivery experience and lower refusal risk | Price transparency before purchase | | What usually gets harder? | Margin control and exception handling | Maintaining accurate duty logic across SKUs and markets |</p>
+<p>This is why the debate is not really “which one is better?” It is “which risk are you equipped to own?”</p>
+<h2>Why merchants choose DDP</h2>
+
+<p>Merchants usually lean toward DDP for customer-experience reasons first.</p>
+<p>The strongest cases look like this:</p>
+<ul>
+<li>high average order value where a surprise import invoice would kill trust,</li>
+<li>premium brand positioning where delivery friction hurts repeat purchase,</li>
+<li>markets with frequent parcel refusal when duties are collected after arrival,</li>
+<li>categories where margins are strong enough to tolerate some estimation drift,</li>
+<li>operations teams that already work closely with brokers, 3PLs, or cross-border carriers.</li>
+</ul>
+<p>USPS's DDP explanation is instructive because it frames the shopper-side benefit plainly: upfront total cost, fewer surprise payments, and fewer rejected shipments.[7] That is exactly why DDP is attractive for Shopify brands selling gifts, premium apparel, niche electronics accessories, or other categories where customer experience is part of the value proposition.</p>
+<p>But the hidden cost is that DDP turns customs volatility into a merchant problem. If tariff conditions shift, if a classification is challenged, or if a carrier applies a different treatment than expected, the merchant has to unwind the issue somewhere. Tax Foundation's 2026 tariff tracker is useful context here because it shows just how unstable the applied tariff environment has been lately.[6] If policy can move dozens of times in a year, DDP becomes harder to price casually.</p>
+<h2>Why merchants choose duties at checkout</h2>
+<p>Merchants usually choose duties at checkout when they want cleaner pre-purchase economics without fully absorbing every customs unknown.</p>
+<p>This model works well when:</p>
+<ul>
+<li>customers are willing to compare total landed cost before buying,</li>
+<li>the merchant wants fewer post-delivery complaints,</li>
+<li>margins are too tight to casually eat duty variance,</li>
+<li>the catalog is structured enough to support SKU-level classification and origin,</li>
+<li>the business sells into several markets with different tariff treatment.</li>
+</ul>
+<p>For Shopify operators, this is often the more honest default. It tells the customer that cross-border charges exist and tries to show them early, but it does not pretend the merchant can always flatten customs into one neat fixed promise across every lane, every product, and every policy cycle.</p>
+<p>That honesty matters because customs is jurisdiction-specific. The WTO's tariff overview explains tariffs as customs duties set by governments.[1] The USITC governs the U.S. schedule structure.[3] CBSA publishes the Canadian tariff treatment framework.[5] The result is not one universal global duty number. It is a matrix of classification, origin, and destination-specific rules.</p>
+<h2>The trap: merchants compare checkout UX before they compare data quality</h2>
+
+<p>A lot of teams start this decision at the theme or checkout layer. That is backwards.</p>
+<p>Before you choose DDP or duties at checkout, ask these questions:</p>
+<ol>
+<li>Do we have defensible tariff classification for top-selling imported SKUs?</li>
+<li>Do we know country of origin at the SKU or variant level, not just by supplier?</li>
+<li>Do we know which markets create the most duty exposure?</li>
+<li>Do we know which products have thin enough margins that a bad estimate matters?</li>
+<li>Do we know which carriers or brokers can actually execute the promise we show the customer?</li>
+</ol>
+<p>CBP's guidance is blunt enough that it should stop merchants from overconfidence: the approximate duty rate is only as good as the information provided, and CBP makes the final determination.[2] That means neither DDP nor duties at checkout can rescue bad catalog truth.</p>
+<p>If your data is weak, fix the data first. The charging model comes second.</p>
+<h2>How merchants actually segment the decision</h2>
+<p>Most sophisticated merchants do not use one cross-border charge model for everything.</p>
+<p>They segment by some combination of:</p>
+<ul>
+<li>destination country,</li>
+<li>product category,</li>
+<li>basket value,</li>
+<li>tariff volatility,</li>
+<li>margin tolerance,</li>
+<li>customer expectation.</li>
+</ul>
+<p>That leads to real-world patterns such as:</p>
+<ul>
+<li>DDP for high-value orders into markets where surprise import collection causes refusal,</li>
+<li>duties at checkout for broad international catalog sales where transparency matters more than fully seller-owned absorption,</li>
+<li>manual or limited-market cross-border selling for categories with messy classification or unstable tariff exposure,</li>
+<li>domestic-only promotion for SKUs where the customs economics are not stable enough to promise elegantly.</li>
+</ul>
+<p>This is also why a merchant may change its mind over time. A brand might start with duties at checkout to learn where the pain actually is, then move some lanes to DDP after it proves data quality and operational control. The opposite can happen too: a merchant that marketed a frictionless DDP experience may retreat toward clearer checkout disclosure when margin leakage becomes obvious.</p>
+<h2>A practical decision framework for Shopify teams</h2>
+<p>Use this framework instead of arguing abstractly.</p>
+<h3>Choose DDP first if:</h3>
+<ul>
+<li>your support team is drowning in “why do I owe customs fees?” complaints,</li>
+<li>your AOV and margin can tolerate some landed-cost variance,</li>
+<li>your shipping partners can execute prepaid-duty or seller-paid flows consistently,</li>
+<li>your catalog is relatively narrow and classifiable,</li>
+<li>repeat-purchase trust matters more than shaving every basis point of variance.</li>
+</ul>
+<h3>Choose duties at checkout first if:</h3>
+<ul>
+<li>you want the customer to see the cross-border math before placing the order,</li>
+<li>your margin is too tight to absorb routine estimate misses,</li>
+<li>your catalog is broad but your data is improving,</li>
+<li>you sell into multiple destinations with meaningfully different treatment,</li>
+<li>you want fewer delivery-time surprises without overpromising what the merchant will absorb.</li>
+</ul>
+<h3>Delay both and clean up operations first if:</h3>
+<ul>
+<li>origin data is inconsistent,</li>
+<li>HS/HTS assignments are missing or copied lazily across variants,</li>
+<li>bundles and kits are not classified separately,</li>
+<li>you cannot explain which SKUs are most exposed to policy changes,</li>
+<li>no one owns cross-border exception handling after the order ships.</li>
+</ul>
+<h2>Common failure modes</h2>
+<p>The worst outcomes are not technical. They are operational promises the merchant was never ready to make.</p>
+<p>The common failures look like this:</p>
+<ul>
+<li><strong>DDP without margin discipline.</strong> The merchant advertises a smooth landed-cost experience, then discovers too late that tariff variance or brokerage costs are eating contribution margin.</li>
+<li><strong>Checkout duties without trustworthy data.</strong> The customer sees a number that feels official, but the number was built on weak classification or stale origin data.</li>
+<li><strong>One-size-fits-all policy across all markets.</strong> The team assumes what works for Canada will work for the U.K., EU, or U.S. lane with no meaningful changes.</li>
+<li><strong>Ignoring tariff-policy movement.</strong> Tax Foundation's tracker is a reminder that tariff exposure is not static.[6] A model that worked last quarter may drift fast.</li>
+<li><strong>No exception playbook.</strong> When customs, carrier, or broker treatment differs from the estimate, no one knows whether finance, support, or ops owns the fix.</li>
+</ul>
+<h2>What TariffShield can help with</h2>
+
+<p>TariffShield is useful when the merchant's real problem is not “how do I display a prettier number?” but “how do I stop cross-border duty logic from rotting in the catalog?”</p>
+<p>Use it to tighten the inputs that both DDP and duties-at-checkout models depend on:</p>
+<ul>
+<li>SKU-level duty lookup and verification,</li>
+<li>origin and tariff classification review workflows,</li>
+<li>market-by-market duty comparison before you promise a checkout experience,</li>
+<li>faster identification of products where tariff changes materially change margin.</li>
+</ul>
+<p>If you are trying to decide which model your store can actually support, start with the duty calculator and test your highest-risk products first: <a href="/duty/">TariffShield duty calculator</a>.</p>
+<h2>FAQ</h2>
+<h3>Is DDP always better for conversion than duties at checkout?</h3>
+<p>No. DDP often improves the delivery experience because the customer is less likely to face a bill on arrival, but it can also force the merchant to hide or absorb costs that should have changed pricing strategy earlier. Duties at checkout can convert well when customers trust the transparency and the estimates are credible.</p>
+<h3>Is duties at checkout the same thing as DDP?</h3>
+<p>No. Duties at checkout is a purchase-stage disclosure and collection model. DDP is a seller-owned import-charge experience where the sender side handles those charges ahead of delivery. They can both reduce surprise charges, but they shift operational risk differently.[7]</p>
+<h3>Can a merchant choose DDP for some countries and duties at checkout for others?</h3>
+<p>Yes, and many should. Tariff treatment is country-specific, and both the WTO and national tariff systems make that obvious.[1][3][5] A segmented approach is usually more realistic than one global rule.</p>
+<h3>Why can two similar products produce different duty outcomes?</h3>
+<p>Because customs treatment depends on product classification, composition, origin, and destination-country rules. CBP explicitly says classification can require detailed product facts and that the result is only as good as the information provided.[2] The U.S. tariff schedule itself is maintained in the USITC Harmonized Tariff Schedule<sup class="citation"><a href="#ref-3">[3]</a></sup>, which is why seemingly similar goods can still land on different lines when the facts differ.</p>
+<h3>Does showing duties at checkout remove the need for customs review?</h3>
+<p>No. It only moves the customer communication earlier. The customs answer still depends on correct classification, origin, and current tariff treatment.</p>
+<h3>What is the biggest risk with DDP?</h3>
+<p>Underpricing the true landed-cost burden. If the estimate is low or policy changes quickly, the merchant can end up absorbing a cost it never meant to own.</p>
+<h3>What is the biggest risk with duties at checkout?</h3>
+<p>False precision. If the catalog data is weak, the customer sees a clean number that looks authoritative but is built on bad assumptions.</p>
+<h3>Which model is better for a large mixed catalog?</h3>
+<p>Usually duties at checkout is the safer first operating model unless the merchant has unusually strong cross-border ops and margin room. Large catalogs create more classification, origin, and exception-handling complexity, which makes blanket DDP promises harder to defend.</p>
+<h2>Disclaimer</h2>
+<p>This article is operational guidance for ecommerce merchants, not legal, customs, brokerage, or tax advice. Duty treatment depends on the product, origin, valuation, destination-country rules, and current policy measures. CBP states that it makes the final determination of the correct U.S. duty rate, and merchants handling meaningful import volume should use a qualified customs broker, trade advisor, or binding-ruling process where appropriate.[2]</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.trade.gov/know-your-incoterms" rel="noopener" target="_blank">Trade.gov on Incoterms</a></li><li id="ref-2"><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP on determining duty rates</a></li><li id="ref-3"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC Harmonized Tariff Schedule</a></li><li id="ref-4"><a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html" rel="noopener" target="_blank">CBSA Customs Tariff</a></li><li id="ref-5"><a href="https://www.wto.org/english/tratop_e/tariffs_e/tariffs_e.htm" rel="noopener" target="_blank">WTO tariffs overview</a></li><li id="ref-6"><a href="https://www.cbsa-asfc.gc.ca/publications/dm-md/d11/d11-6-11-eng.html" rel="noopener" target="_blank">CBSA memorandum on DDP responsibility</a></li><li id="ref-7"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-8"><a href="https://www.cbp.gov/trade/nafta/guide-customs-procedures/country-origin-marking" rel="noopener" target="_blank">U.S. Customs and Border Protection: Country of Origin Marking</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
