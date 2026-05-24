@@ -29,6 +29,10 @@ includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
 includes('No installability theater', 'homepage should explicitly describe the status discipline');
+includes('ops-stream', 'homepage should include the animated operational status stream');
+includes('@keyframes driftGrid', 'homepage should animate the hero grid subtly');
+includes('@keyframes panelSweep', 'homepage should animate the status panel scan');
+includes('prefers-reduced-motion', 'homepage motion should respect reduced-motion preferences');
 includes('/blog/import-duty-from-vietnam-to-us/', 'homepage should feature current tariff content');
 includes('/blog/shopify-import-duties/', 'homepage should feature Shopify duties content');
 includes('/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/', 'homepage should feature DDP content');
@@ -47,4 +51,3 @@ excludes(/85\+ origin countries|39 import markets/i, 'homepage should avoid brit
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-05-24<\/lastmod>/, 'sitemap homepage lastmod should reflect the refresh');
 
 console.log('homepage refresh tests passed');
-
