@@ -38,6 +38,14 @@ includes('/blog/shopify-import-duties/', 'homepage should feature Shopify duties
 includes('/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/', 'homepage should feature DDP content');
 includes('/blog/product-expiry-date-management-shopify/', 'homepage should feature ShelfLife-aligned content');
 
+const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
+assert.ok(!nav.includes('href="#live"'), 'homepage top nav should not link to internal live section');
+assert.ok(!nav.includes('href="#pipeline"'), 'homepage top nav should not link to internal pipeline section');
+assert.ok(!nav.includes('href="#resources"'), 'homepage top nav should not link to internal resources section');
+assert.match(nav, /href="\/shipping\/"[^>]*>Shipping Calculator</i, 'homepage top nav should keep Shipping Calculator');
+assert.match(nav, /href="\/blog\/"[^>]*>Blog</i, 'homepage top nav should keep Blog');
+assert.match(nav, /href="\/contact\.html"[^>]*>Contact</i, 'homepage top nav should keep Contact');
+
 excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle name');
 excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield name');
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
