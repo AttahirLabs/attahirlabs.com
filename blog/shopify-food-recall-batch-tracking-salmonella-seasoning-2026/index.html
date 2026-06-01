@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shopify Recall Batch Tracking After a Class I Salmonella Recall | Attahir Labs</title>
+    <meta name="description" content="A Shopify food recall playbook after the Solina Class I Salmonella seasoning recall: isolate lots, stop sales, map orders, and preserve batch records.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of a food receiving table with bulk ingredient bags, barcode scanner, quarantine tag, and batch paperwork for recall readiness.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Shopify Recall Batch Tracking After a Class I Salmonella Recall",
+      "description": "A Shopify food recall playbook after the Solina Class I Salmonella seasoning recall: isolate lots, stop sales, map orders, and preserve batch records.",
+      "datePublished": "2026-06-01",
+      "dateModified": "2026-06-01",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/",
+      "image": "https://attahirlabs.com/assets/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What happened in the Solina recall?","acceptedAnswer":{"@type":"Answer","text":"FDA openFDA enforcement data lists an ongoing Class I recall for Solina 6036195 Ranch Seasoning, 50lb bag, because the product has the potential to be contaminated with Salmonella."}},{"@type":"Question","name":"Why does a bulk seasoning recall matter to Shopify merchants?","acceptedAnswer":{"@type":"Answer","text":"A recalled ingredient can move through finished products, kits, bundles, local pickup, wholesale orders, and subscription boxes. Merchants need batch records that connect supplier lots to inventory and customers."}},{"@type":"Question","name":"What should a merchant do first after a Salmonella recall notice?","acceptedAnswer":{"@type":"Answer","text":"Pause sales and fulfillment for affected products, save the official notice, identify lots and use-by dates, quarantine physical inventory, and open a dated incident log."}},{"@type":"Question","name":"What batch data should Shopify food merchants track?","acceptedAnswer":{"@type":"Answer","text":"Track supplier, purchase order, SKU, UPC or barcode, lot code, use-by or expiry date, received quantity, current quantity by location, and any finished products or orders that used the batch."}},{"@type":"Question","name":"Is deleting the product page enough?","acceptedAnswer":{"@type":"Answer","text":"No. Deleting a page can destroy useful evidence. Merchants usually need to preserve records, stop sales, quarantine stock, and map affected inventory and orders."}},{"@type":"Question","name":"How does ShelfLife help with recall readiness?","acceptedAnswer":{"@type":"Answer","text":"ShelfLife helps keep expiry, batch, supplier, and status records near Shopify inventory workflows, so a recall search starts from structured data instead of scattered spreadsheets and inbox threads."}},{"@type":"Question","name":"Is this legal or food-safety advice?","acceptedAnswer":{"@type":"Answer","text":"No. This is operational information for ecommerce teams. Actual recall decisions should follow regulator, supplier, legal, food-safety, and platform guidance."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; overflow-x: hidden; }
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: anywhere; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, #6366f1); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, #e2e8f0); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+        @media (max-width: 520px) {
+            main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            h1 { font-size: 1.7rem; letter-spacing: 0; }
+            .post-figure img { border-radius: 14px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/shipping/">Shipping Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">June 01, 2026</p>
+<h1>Shopify Recall Batch Tracking After a Class I Salmonella Recall</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/shopify-food-recall-batch-tracking-salmonella-seasoning-2026/hero.jpg" width="3840" height="2160" alt="Editorial photo of a food receiving table with bulk ingredient bags, barcode scanner, quarantine tag, and batch paperwork for recall readiness." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Recall readiness starts at receiving: product, supplier, lot, use-by date, location, and batch status have to stay connected.</figcaption>
+        </figure>
+
+<blockquote>Key references: FDA openFDA food enforcement report<sup class="citation"><a href="#ref-1">[1]</a></sup>, FDA Enforcement Reports<sup class="citation"><a href="#ref-2">[2]</a></sup>, FDA recall classification guidance<sup class="citation"><a href="#ref-3">[3]</a></sup>, FDA Salmonella guidance<sup class="citation"><a href="#ref-4">[4]</a></sup>, and FDA FSMA food traceability rule<sup class="citation"><a href="#ref-5">[5]</a></sup>.</blockquote>
+<p class="lead">A Class I food recall is the wrong time to discover that your batch records live in four spreadsheets, a supplier PDF, two inboxes, and someone's memory.</p>
+<p>FDA openFDA enforcement data now lists an ongoing Class I recall for Solina 6036195 Ranch Seasoning, 50lb bag. The recalling firm is Solina U.S. Holding, and the listed reason is the product's potential to be contaminated with Salmonella. The FDA record shows 459 bags, distribution in Michigan, Wisconsin, Pennsylvania, Illinois, Georgia, California, and Kansas, lots 334386 and 334882-334883, use-by dates 2026-06-20 and 2026-07-14, recall initiation on 2026-04-24, FDA center classification on 2026-05-21, and report date 2026-05-27.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<p>That isn't a Shopify story by itself. Most merchants don't sell 50lb bags of industrial seasoning directly to shoppers. But the operational lesson is dead-on for Shopify food, supplement, pet, meal-kit, pantry, and specialty-grocery merchants: ingredient recalls move through batches, recipes, kits, bundles, local inventory, and shipped orders.</p>
+<p>If you can't connect supplier lots to finished products and customer orders, a recall gets wider, slower, and messier than it needs to be.</p>
+
+<h2>Quick Answer</h2>
+<p>After a Salmonella recall notice, a Shopify food merchant should immediately preserve the source notice, identify affected lots and use-by dates, stop sales and fulfillment for any exposed products, quarantine physical inventory, map customer orders that may include the affected batch, and keep a dated incident log showing every decision.</p>
+<p>The Solina record is specific. It is not "some ranch seasoning." It is Solina 6036195 Ranch Seasoning in 50lb bags, 459 bags, three listed lots, two use-by dates, seven distribution states, and a Class I classification.<sup class="citation"><a href="#ref-1">[1]</a></sup> That is exactly the level of detail your internal records need to handle.</p>
+<p>For Shopify merchants, ShelfLife fits the practical layer: expiry dates, supplier records, batch status, location quantity, and recall-readiness data should sit close to the inventory workflow instead of being reconstructed during an emergency.</p>
+
+<h2>What The FDA Record Shows</h2>
+<p>FDA Enforcement Reports are public recall summaries. They don't replace regulator instructions, supplier notices, counsel, or food-safety professionals. But they show the shape of a real recall: product description, quantity, distribution pattern, code information, classification, dates, and reason.<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
+<p>The Solina entry gives merchants a clean template for what their own recall file should be able to answer:</p>
+<table>
+    <thead>
+        <tr><th>Field</th><th>FDA record detail</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Status</td><td>Ongoing</td></tr>
+        <tr><td>Classification</td><td>Class I</td></tr>
+        <tr><td>Recalling firm</td><td>Solina U.S. Holding</td></tr>
+        <tr><td>Product</td><td>Solina 6036195 Ranch Seasoning, 50lb bag</td></tr>
+        <tr><td>Quantity</td><td>459 bags</td></tr>
+        <tr><td>Lots</td><td>334386 and 334882-334883</td></tr>
+        <tr><td>Use-by dates</td><td>2026-06-20 and 2026-07-14</td></tr>
+        <tr><td>Distribution</td><td>MI, WI, PA, IL, GA, CA, KS</td></tr>
+        <tr><td>Reason</td><td>Potential Salmonella contamination</td></tr>
+        <tr><td>Recall initiation date</td><td>2026-04-24</td></tr>
+        <tr><td>FDA report date</td><td>2026-05-27</td></tr>
+    </tbody>
+</table>
+<p>That table is the whole point. A recall boundary is usually defined by specific identifiers. Not category. Not vibe. Not "all seasoning probably." Specific product, lots, dates, locations, and movement.</p>
+<p>If your records stop at product title and available quantity, you're stuck. You may have to treat too much inventory as affected because you can't prove what isn't affected. That wastes product, burns support time, and makes customer communication harder.</p>
+
+<h2>Why Class I Changes The Tempo</h2>
+<p>FDA says a Class I recall is a situation where there is a reasonable probability that use of, or exposure to, a violative product will cause serious adverse health consequences or death.<sup class="citation"><a href="#ref-3">[3]</a></sup> That wording should slow down any instinct to treat this as a back-office cleanup task.</p>
+<p>FDA also explains that Salmonella is a group of bacteria that can cause gastrointestinal illness and, in some people, more serious infection.<sup class="citation"><a href="#ref-4">[4]</a></sup> For merchants, the practical implication is simple: customer protection comes before neat inventory accounting. But good inventory accounting is how you protect the right customers quickly.</p>
+<p>The first mistake is deleting or casually editing product data in the rush to "make the page go away." Don't do that. Preserve evidence. Pause sales. Quarantine inventory. Then trace.</p>
+<p>There is nothing glamorous about this work. That's good. Recall readiness should be boring enough that the team can follow the steps while everyone else is stressed.</p>
+
+<h2>The Shopify Problem</h2>
+<p>Shopify order history can tell you what customers bought. It doesn't automatically tell you which physical lot went into the box, which supplier shipment fed that lot, which use-by date was on hand at the time, or whether the same ingredient was repacked into bundles.</p>
+<p>That gap matters most for merchants selling:</p>
+<ul>
+    <li>food and beverage products;</li>
+    <li>seasonings, sauces, pantry goods, and meal kits;</li>
+    <li>supplements and wellness products;</li>
+    <li>pet treats or consumables;</li>
+    <li>cosmetics and topical products with batch or expiry sensitivity;</li>
+    <li>private-label or co-packed goods;</li>
+    <li>gift boxes, bundles, subscriptions, and wholesale packs.</li>
+</ul>
+<p>A 50lb seasoning bag can become many customer-facing units. It may be used in a finished product, mixed into a kit, repacked for retail, moved between locations, returned, or held by a 3PL. If your store only knows "ranch seasoning is in stock," you don't have a recall system. You have a number.</p>
+<p>And a number won't tell you who may have received lot 334386.</p>
+
+<h2>First Hour</h2>
+<p>The first hour is containment plus evidence preservation. Move fast, but don't wipe the trail.</p>
+<ol>
+    <li>Save the FDA record, supplier email, distributor notice, or manufacturer alert.</li>
+    <li>Open an incident log with date, time, owner, source, and initial scope.</li>
+    <li>Identify affected product names, SKUs, barcodes, lots, use-by dates, and supplier records.</li>
+    <li>Pause sales and fulfillment for affected products, variants, bundles, subscriptions, and wholesale paths.</li>
+    <li>Quarantine physical inventory by location before staff move or count it.</li>
+    <li>Export or snapshot Shopify inventory, order, fulfillment, and product data.</li>
+    <li>Assign one person to control record updates so the incident doesn't become a group edit mess.</li>
+</ol>
+<p>For the Solina example, the first search is concrete: product identifier 6036195, Ranch Seasoning, 50lb bag, lots 334386 and 334882-334883, use-by dates 2026-06-20 and 2026-07-14, and any receiving, production, or order records connected to those lots.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<p>If those fields don't exist in your system, the team has to manually reconstruct them from purchase orders, packing slips, receiving photos, supplier emails, warehouse notes, and staff memory. That's a bad place to be when the recall is Class I.</p>
+
+<h2>Batch Data To Keep</h2>
+<p>FDA's FSMA traceability rule applies to certain foods and covered supply-chain roles, not every Shopify merchant or every product.<sup class="citation"><a href="#ref-5">[5]</a></sup> Still, it points in the right operational direction: records should connect product movement to identifiers and events.</p>
+<p>For a Shopify merchant, a practical batch record should include:</p>
+<ul>
+    <li>supplier or manufacturer;</li>
+    <li>purchase order and receiving date;</li>
+    <li>Shopify product, variant, SKU, and barcode;</li>
+    <li>supplier item number or product identifier;</li>
+    <li>lot or batch code;</li>
+    <li>use-by, best-by, or expiration date;</li>
+    <li>received quantity and unit of measure;</li>
+    <li>current quantity by Shopify location, warehouse, or 3PL;</li>
+    <li>batch status: active, quarantined, recalled, returned, destroyed, or cleared;</li>
+    <li>finished products, bundles, recipes, or kits that used the batch;</li>
+    <li>order IDs that may have shipped from the batch where available.</li>
+</ul>
+<p>Don't overbuild this into a museum of fields nobody uses. Start with the fields that help you answer one hard question: "Which units, in which places, may have reached which customers?"</p>
+<p>Everything else is secondary.</p>
+
+<h2>Order Mapping Is The Hard Part</h2>
+<p>Stopping new sales is usually the easy part. Mapping old orders is where weak systems show themselves.</p>
+<p>The questions are blunt:</p>
+<ul>
+    <li>Which Shopify products or variants used the recalled ingredient or lot?</li>
+    <li>Which bundles, kits, subscriptions, wholesale orders, or local pickup items included those products?</li>
+    <li>Which orders shipped during the affected inventory window?</li>
+    <li>Which fulfillment location handled those orders?</li>
+    <li>Which customers may need notice, refund, replacement, or disposal instructions?</li>
+    <li>Which units remain on hand, and where?</li>
+</ul>
+<p>Many stores can answer the first question. Fewer can answer all six. That is why the batch-to-order link matters.</p>
+<p>If you can't narrow the affected lot, every customer who bought the product may be in scope. Sometimes that broad approach is necessary. But if it happens only because your records are vague, that's avoidable damage.</p>
+
+<h2>The Incident Log</h2>
+<p>A recall incident log doesn't need to be fancy. It needs to be complete enough that a tired person, a manager, a supplier, or an advisor can understand what happened.</p>
+<table>
+    <thead>
+        <tr><th>Log field</th><th>What to record</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Trigger</td><td>FDA report, supplier notice, distributor email, customer complaint, or internal QA check</td></tr>
+        <tr><td>Time opened</td><td>Date and time the issue was first seen</td></tr>
+        <tr><td>Source evidence</td><td>Official URL, saved PDF, email export, or screenshot</td></tr>
+        <tr><td>Affected identifiers</td><td>Product, SKU, barcode, supplier item number, lot, use-by date, quantity</td></tr>
+        <tr><td>Locations checked</td><td>Shopify locations, stores, 3PLs, production areas, returns, pickup stock</td></tr>
+        <tr><td>Actions taken</td><td>Sales paused, inventory quarantined, orders exported, staff assigned</td></tr>
+        <tr><td>Customer scope</td><td>Potentially affected orders, customers, fulfillment status, and notification status</td></tr>
+        <tr><td>Supplier follow-up</td><td>Root-cause notes, credits, replacement product, corrected documentation</td></tr>
+        <tr><td>Closure criteria</td><td>What must be true before the incident is closed</td></tr>
+    </tbody>
+</table>
+<p>FDA Enforcement Reports model part of this discipline at the public level: status, classification, product description, recall number, dates, distribution, quantity, reason, and code information.<sup class="citation"><a href="#ref-2">[2]</a></sup> Your internal file has to connect those external facts to Shopify inventory and orders.</p>
+
+<h2>Where ShelfLife Fits</h2>
+<p>ShelfLife is built for the operational layer Shopify doesn't make easy by default: expiry dates, batch status, supplier context, waste cost, and recall-readiness records.</p>
+<p>The pitch isn't "turn your store into a regulatory department." Nobody wants that. The pitch is: when a Class I recall lands, you should be able to search structured batch data instead of begging three people to check old emails.</p>
+<p>A practical ShelfLife-style workflow looks like this:</p>
+<ul>
+    <li>receive inventory with lot, use-by, supplier, and quantity data;</li>
+    <li>attach batch records to Shopify products and locations;</li>
+    <li>mark affected batches as quarantined or recalled;</li>
+    <li>review which inventory remains on hand;</li>
+    <li>export batch records for an incident file;</li>
+    <li>tighten supplier and receiving procedures after the incident closes.</li>
+</ul>
+<p>That's the difference between "we think we sold some" and "these products, these lots, these locations, these orders."</p>
+
+<h2>Prevention Checklist</h2>
+<p>Do this before a recall, while everyone is calm:</p>
+<ul>
+    <li>Require lot and use-by data during receiving for food and date-sensitive goods.</li>
+    <li>Keep supplier item numbers and Shopify SKUs consistent.</li>
+    <li>Track batch quantity by location, not just total available quantity.</li>
+    <li>Record which finished products, kits, or bundles use each ingredient batch.</li>
+    <li>Define who can pause sales and quarantine stock.</li>
+    <li>Keep a recall incident template ready.</li>
+    <li>Test one trace exercise every quarter: pick a lot and find all locations and orders.</li>
+    <li>Save supplier specs, allergen statements, product photos, and receiving documents.</li>
+    <li>Make customer notification drafts before you need them.</li>
+    <li>After any incident, update the receiving workflow instead of just closing the ticket.</li>
+</ul>
+<p>The test is simple: if a notice says "lots 334386 and 334882-334883, use-by dates 2026-06-20 and 2026-07-14," can your team find every affected unit without a panic spreadsheet?<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<p>If not, fix the records now. During a recall, the cheap work gets expensive fast.</p>
+
+<h2>FAQ</h2>
+<h3>What happened in the Solina recall?</h3>
+<p>FDA openFDA enforcement data lists an ongoing Class I recall for Solina 6036195 Ranch Seasoning, 50lb bag, because the product has the potential to be contaminated with Salmonella. The record lists 459 bags, lots 334386 and 334882-334883, and use-by dates 2026-06-20 and 2026-07-14.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<h3>Why does a bulk seasoning recall matter to Shopify merchants?</h3>
+<p>Because bulk ingredients can become finished products, meal kits, bundles, wholesale packs, subscription boxes, or locally fulfilled orders. The recall may start upstream, but the customer impact can land in a Shopify store's order history.</p>
+<h3>What should a merchant do first after a Salmonella recall notice?</h3>
+<p>Save the official notice, pause sales and fulfillment for affected products, identify lots and use-by dates, quarantine inventory, and open a dated incident log. Don't start by deleting product pages.</p>
+<h3>What batch data should Shopify food merchants track?</h3>
+<p>Supplier, purchase order, received date, product and variant, SKU, barcode, lot code, use-by or expiry date, quantity by location, batch status, and any finished products or orders connected to the batch.</p>
+<h3>Is deleting the product page enough?</h3>
+<p>No. It may even make the response worse by removing evidence. Preserve records, stop sales, quarantine physical stock, and map affected orders before making permanent data changes.</p>
+<h3>How does ShelfLife help with recall readiness?</h3>
+<p>ShelfLife helps merchants manage batch, expiry, supplier, and status records close to Shopify inventory workflows, so recall searches start with structured data instead of scattered files.</p>
+<h3>Is this legal or food-safety advice?</h3>
+<p>No. This is operational information for ecommerce teams. Actual recall decisions should follow regulator instructions, supplier notices, qualified legal or food-safety guidance, and applicable platform requirements.</p>
+
+<h2>Disclaimer</h2>
+<p>This article is for general operational information for Shopify merchants. It is not legal, regulatory, medical, food-safety, or recall-management advice. For an actual recall, follow official regulator instructions, supplier notices, counsel guidance, and applicable food-safety and platform requirements.</p>
+
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://api.fda.gov/food/enforcement.json?search=product_description:%22Solina%206036195%20Ranch%20Seasoning%22" rel="noopener" target="_blank">FDA openFDA food enforcement report: Solina 6036195 Ranch Seasoning</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/enforcement-reports" rel="noopener" target="_blank">FDA Enforcement Reports</a></li><li id="ref-3"><a href="https://www.fda.gov/safety/industry-guidance-recalls/recalls-background-and-definitions" rel="noopener" target="_blank">FDA recall background and classifications</a></li><li id="ref-4"><a href="https://www.fda.gov/food/foodborne-pathogens/salmonella-salmonellosis" rel="noopener" target="_blank">FDA Salmonella and salmonellosis</a></li><li id="ref-5"><a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods" rel="noopener" target="_blank">FDA FSMA food traceability rule</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
