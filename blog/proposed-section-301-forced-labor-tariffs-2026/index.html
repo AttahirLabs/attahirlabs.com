@@ -78,9 +78,13 @@
         th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
         th { background:#f8fafc; }
         .callout { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid #facc15; border-radius: 14px; background: #fefce8; }
-        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
-        .install-button { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.85rem; padding: 0.78rem 1rem; border-radius: 10px; background: var(--brand); color: #ffffff; font-weight: 700; text-decoration: none; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-eyebrow { display: inline-flex; align-items: center; margin-bottom: 0.15rem; padding: 0.22rem 0.55rem; border: 1px solid #99f6e4; border-radius: 999px; background: #ccfbf1; color: #0f766e; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+        .install-button { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
         .install-button:hover { background: #115e59; text-decoration: none; }
+        .cta-note { margin-top: 0.75rem; color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
         .citation a { color: var(--brand, #6366f1); text-decoration: none; font-weight: 700; }
@@ -125,9 +129,11 @@
 <p>The proposal would add duties on imports from a huge set of U.S. trading partners, including places Shopify merchants source from every day: China, Vietnam, India, Mexico, Canada, the EU, the UK, Taiwan, Japan, South Korea, Brazil, Switzerland, Australia, and more. This is the kind of policy move that turns a clean 58% gross margin into a customer-support problem if you don't catch it before the purchase order goes out.</p>
 
 <div class="cta-box">
+<span class="cta-eyebrow">Shopify App Store</span>
 <strong>Install TariffShield before the proposal becomes a customs bill.</strong>
 <p><a href="https://apps.shopify.com/tariffshield" target="_blank" rel="noopener">TariffShield</a> keeps HTS codes, country of origin, tariff-rate assumptions, tariff cost, and margin impact tied to Shopify products. Use it to model which SKUs break if a proposed 10% or 12.5% duty becomes real. For one-off checks, start with the <a href="/duty/">free duty calculator</a>.</p>
 <a class="install-button" href="https://apps.shopify.com/tariffshield" target="_blank" rel="noopener">Install TariffShield on the Shopify App Store</a>
+<div class="cta-note">Public Shopify listing verified. Opens the TariffShield App Store page in a new tab.</div>
 </div>
 
 <h2>What USTR Proposed</h2>
