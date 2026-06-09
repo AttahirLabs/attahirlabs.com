@@ -12,7 +12,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
     <title>Shopify Import Duties: Cross-Border Selling Guide for 2026 | Attahir Labs</title>
-    <meta name="description" content="Complete guide to import duties for Shopify merchants selling cross-border in 2026. Covers DDP vs DDU, tariff rates by country, HTS codes, landed cost calculation, and how to protect your margins.">
+    <meta name="description" content="Complete guide to import duties for Shopify merchants selling cross-border in 2026. Covers DDP vs DAP, Shopify checkout duty requirements, HS codes, landed cost calculation, and pre-checkout margin planning.">
     <meta name="keywords" content="Shopify import duties, cross border selling Shopify, import duty ecommerce, DDP DDU Shopify, landed cost Shopify, tariff rates Shopify 2026">
     <link rel="canonical" href="https://attahirlabs.com/blog/shopify-import-duties/">
     <meta property="og:title" content="Shopify Import Duties: Cross-Border Selling Guide for 2026">
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopify-import-duties/hero.jpg">
     <meta property="article:published_time" content="2026-04-03">
-    <meta property="article:modified_time" content="2026-04-28">
+    <meta property="article:modified_time" content="2026-06-09">
     <script type="application/ld+json">
 
 
@@ -35,7 +35,7 @@
       "@type": "Article",
       "headline": "Shopify Import Duties: Cross-Border Selling Guide for 2026",
       "datePublished": "2026-04-03",
-      "dateModified": "2026-04-28",
+      "dateModified": "2026-06-09",
       "author": {
         "@type": "Organization",
         "name": "Attahir Labs",
@@ -61,7 +61,7 @@
                 "name": "Who pays import duties on Shopify orders — the merchant or the customer?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "It depends on your Incoterms setting. With DDP (Delivered Duty Paid), the merchant collects duties at checkout and remits them. With DDU/DAP (Delivered At Place), the customer pays when the package arrives — leading to surprise fees and frequent refusals. Most merchants selling cross-border should choose DDP to avoid abandoned packages and chargebacks."
+                    "text": "It depends on your Incoterms setting and checkout/shipping workflow. With DDP (Delivered Duty Paid), the seller takes responsibility for import charges and can collect estimated duties and import taxes at checkout when Shopify and carrier requirements are met. With DAP (Delivered At Place), the customer usually pays the carrier or customs broker on delivery, which can create surprise fees and refusals."
                 }
             },
             {
@@ -109,7 +109,7 @@
                 "name": "Can I automate tariff and duty calculations in my Shopify store?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Shopify's built-in international settings let you collect duties at checkout (available on Shopify Advanced and Plus). For the cost-side — calculating how tariffs affect your product margins before you price or sell — apps like TariffShield let you run what-if scenarios, automatically reprice products based on tariff impacts, and set alerts when rates change. Customer-facing duty collection and merchant-side cost tracking serve different purposes and often need separate tools."
+                    "text": "Yes, but there are two different jobs. Shopify can estimate and collect duties and import taxes at checkout when the store meets Shopify's requirements, including HS codes, country of origin, and DDP-capable shipping. TariffShield is the pre-checkout planning layer: it helps model SKU margin exposure, run origin what-if scenarios, identify products below target margin, and take merchant-approved pricing actions. It does not collect or remit checkout duties."
                 }
             }
         ]
@@ -228,7 +228,7 @@
 <span class="tag">Cross-Border</span>
 <span class="tag">Tariffs</span>
 <span class="tag">Guide</span>
-            Published April 3, 2026 · Updated April 28, 2026 · 14 min read
+            Published April 3, 2026 · Updated June 9, 2026 · 14 min read
         </div>
 <h1>Shopify Import Duties: The Cross-Border Selling Guide for 2026</h1>
 <p class="lead">Import duties are the tax nobody warns you about until your customer is standing at the door refusing a package. In 2026, with tariff rates moving faster than ever, Shopify merchants need a clear mental model — what duties are, who pays them, how to calculate them, and how to stop them from silently destroying your margins.</p>
@@ -238,7 +238,7 @@
 </figure>
 <div class="cta-box">
 <h3>Calculate tariff impact before it hits the order margin</h3>
-<p>TariffShield automatically calculates tariff costs across your Shopify catalog and shows which SKUs are margin-safe to sell cross-border before purchase orders, repricing, or checkout surprises create a problem.</p>
+<p>TariffShield estimates tariff impact across your Shopify catalog and shows which SKUs are margin-safe before purchase orders, merchant-approved pricing changes, or checkout-duty workflows create a problem.</p>
 <a href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">Install TariffShield →</a>
 </div>
 <div class="toc">
@@ -283,9 +283,9 @@
 <p>Under DDU (Delivered Duty Unpaid) or DAP (Delivered At Place — the more modern term), the seller ships the product and the buyer is responsible for paying any duties, taxes, and brokerage fees when it arrives. Your carrier will hold the package and demand payment before releasing it to your customer.</p>
 <p>This sounds like it protects you, but in practice it creates an awful customer experience. Your customers don't expect to pay customs fees on top of what they already paid at checkout. The most common outcome: refused deliveries, chargebacks, and lost customers.</p>
 <h3>DDP — Delivered Duty Paid (what serious cross-border sellers use)</h3>
-<p>Under DDP, you collect duties and taxes at checkout and remit them. The customer pays a single, transparent price at purchase. The package clears customs with no surprises. This dramatically reduces abandoned deliveries and dramatically improves international customer satisfaction.</p>
-<p>The tradeoff: you're responsible for accurately calculating what duties will be owed — by product, by destination country — at the moment the customer checks out. Get it wrong and you either overcharge customers (losing sales) or undercharge (eating the difference).</p>
-<p>Shopify's built-in duties collection (available on Advanced and Plus plans) handles this automatically using HS codes and carrier data. For merchants on lower-tier plans or those who want more visibility into the math, third-party apps can help.</p>
+<p>Under DDP, the seller takes responsibility for import charges. In Shopify, that can mean collecting estimated duties and import taxes at checkout when the store, product data, and carrier workflow meet Shopify's requirements. The customer sees a more transparent total price at purchase, and the order should ship with a DDP-capable label so the customer is not charged again on delivery.</p>
+<p>The tradeoff: duties collected at checkout are still estimates. Missing country-of-origin data, incomplete HS codes, unsupported carriers, brokerage/disbursement fees, or final customs assessment differences can still create gaps. If you under-collect, the difference can come back to the merchant or customer experience.</p>
+<p>Shopify's built-in duty collection is a customer-facing checkout workflow. It depends on product customs data, supported markets, and DDP shipping support. TariffShield serves a different job: pre-checkout catalog readiness and margin planning before you decide what to sell, where to source, or how to price.</p>
 <div class="callout">
 <p><strong>Practical rule of thumb:</strong> If you're shipping fewer than 20 international orders per month, DDU is manageable — handle issues case by case. Above that threshold, DDP pays for itself in reduced chargebacks and support tickets within weeks.</p>
 </div>
@@ -447,13 +447,13 @@
 </div>
 <h2 id="shopify-settings">Shopify Settings for Duties and Import Taxes</h2>
 <p>Shopify has built-in tools for managing international duties. Here's where to find them and what they actually do:</p>
-<h3>Duties and Import Taxes (Advanced / Plus plans)</h3>
-<p>Go to <strong>Settings → Markets → [Your market] → Duties and import taxes</strong>. When enabled, Shopify uses HS codes on your products plus the destination country to estimate duties at checkout. Customers see a line item for "Estimated duties and taxes" and pay it upfront. You use a DDP shipping label to clear customs without the customer being charged again.</p>
-<p>Shopify's duty collection is powered by Global-e when using Managed Markets, or by third-party rate data when configured manually. The accuracy depends heavily on your HS codes being correct.</p>
+<h3>Duties and Import Taxes at Checkout</h3>
+<p>Go to <strong>Settings → Taxes and duties</strong> or your relevant market settings. When enabled, Shopify uses available product customs data and destination details to estimate duties and import taxes at checkout. Shopify's own documentation warns that missing country-of-origin data or incorrect HS codes can lead to additional duties being charged on delivery.<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
+<p>Shopify's checkout duty collection is not a substitute for catalog cleanup. Before enabling it, review products missing HS codes, country or region of origin, and product categories so the checkout estimate has the best possible inputs.</p>
 <h3>International Markets</h3>
 <p>Under <strong>Settings → Markets</strong>, you can enable specific countries, set local currencies, and configure whether duties are included in prices or shown separately. For markets where you don't want to deal with duty complexity, you can restrict shipping to domestic only or to markets where you have clarity on the duty situation.</p>
 <h3>Shipping Labels (DDP)</h3>
-<p>When using Shopify Shipping for international orders with duty collection enabled, DDP label options appear through DHL Express and DHL eCommerce. This is only available to US and Canadian merchants currently. If you use a different carrier or 3PL, you'll need to confirm DDP support with that carrier directly.</p>
+<p>DDP label support is carrier- and destination-specific. Shopify's duties documentation says merchants collecting duties and import taxes at checkout need a shipping workflow that supports delivered-duty-paid labels, and that unsupported carriers can require purchasing labels externally or refunding affected orders.<sup class="citation"><a href="#ref-3">[3]</a></sup> If you use a 3PL or carrier account outside Shopify Shipping, confirm the DDP path before turning checkout duty collection on.</p>
 <h3>Product-Level HS Codes</h3>
 <p>In each product editor under <strong>Shipping → Customs information</strong>: enter the HS code, country of origin, and whether the item is a restricted/regulated product. The country of origin affects which preferential trade agreements apply (CUSMA, KORUS, AUSFTA, etc.).</p>
 <h2 id="compliance-documentation">Compliance Documentation: What Customs Expects</h2>
@@ -485,11 +485,11 @@
 <p>If you're sourcing from a single origin country with political tariff risk (China, Vietnam, Russia, Iran), build a 10–15% tariff buffer into your pricing above the current rate. When rates move, you have room to absorb before passing costs to customers. When rates don't move, it's margin.</p>
 <h3>3. Diversify origin countries for key products</h3>
 <p>Section 301 and Section 122 have accelerated near-shoring and friend-shoring. Alternatives for Chinese-sourced goods: Vietnam (currently 20%, but political risk is lower), India (10%, improving), Mexico (10%, CUSMA eligible on some goods), Bangladesh (10%, major apparel hub). The transition takes time but the margin difference can be substantial.</p>
-<h3>4. Automate tariff impact monitoring</h3>
-<p>When a rate changes, you want to know immediately which products are affected and by how much. Manual processes mean you find out when your accountant runs the quarterly numbers. Automated tariff monitoring — integrated with your product catalog — means you find out the same day rates change and can adjust prices before orders go out at wrong margins.</p>
+<h3>4. Automate margin exposure monitoring</h3>
+<p>When supplier costs, origin assumptions, HS codes, or duty assumptions change, you need to know which products are affected and by how much. Manual processes mean you find out when your accountant runs the quarterly numbers. Catalog-level margin monitoring lets you review tariff-sensitive SKUs before orders go out at wrong margins.</p>
 <div class="cta-box">
 <h3>Stop Losing Margin to Tariff Changes</h3>
-<p>TariffShield automatically tracks tariff rates across 85+ countries, calculates the impact on each of your products, and alerts you when rates change. Set a target margin — TariffShield shows you which products need repricing.</p>
+<p>TariffShield models tariff impact from your catalog assumptions, flags products below your target margin, supports origin what-if scenarios, and helps you take merchant-approved pricing actions before weak-margin SKUs quietly stay on sale.</p>
 <a href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">Install TariffShield →</a>
 </div>
 <h3>5. Audit your HTS classifications regularly</h3>
@@ -500,7 +500,7 @@
 <div class="faq">
 <div class="faq-item">
 <div class="faq-q">Who pays import duties on Shopify orders — the merchant or the customer?</div>
-<div class="faq-a">It depends on your Incoterms setting. With DDP (Delivered Duty Paid), the merchant collects duties at checkout and remits them. With DDU/DAP (Delivered At Place), the customer pays when the package arrives — leading to surprise fees and frequent refusals. Most merchants selling cross-border in volume should choose DDP to avoid abandoned packages and chargebacks.</div>
+<div class="faq-a">It depends on your Incoterms setting and checkout/shipping workflow. With DDP (Delivered Duty Paid), the seller takes responsibility for import charges and can collect estimated duties and import taxes at checkout when Shopify and carrier requirements are met. With DAP (Delivered At Place), the customer usually pays the carrier or customs broker on delivery, which can create surprise fees and refusals.</div>
 </div>
 <div class="faq-item">
 <div class="faq-q">How do I calculate import duties for my Shopify products?</div>
@@ -524,13 +524,13 @@
 </div>
 <div class="faq-item">
 <div class="faq-q">Can I automate tariff and duty calculations in my Shopify store?</div>
-<div class="faq-a">Yes. Shopify's international settings let you collect duties at checkout on Advanced and Plus plans. For the cost-side — calculating how tariffs affect your product margins — apps like TariffShield let you run what-if scenarios, automatically reprice products based on tariff impacts, and get alerts when rates change. Customer-facing duty collection and merchant-side cost tracking serve different purposes and often need separate tools.</div>
+<div class="faq-a">Yes, but there are two different jobs. Shopify can estimate and collect duties and import taxes at checkout when the store meets Shopify's requirements, including HS codes, country of origin, and DDP-capable shipping. TariffShield is the pre-checkout planning layer: it helps model SKU margin exposure, run origin what-if scenarios, identify products below target margin, and take merchant-approved pricing actions. It does not collect or remit checkout duties.</div>
 </div>
 </div>
 <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-200);"/>
 <h2 id="disclaimer">Disclaimer</h2>
 <p><strong>Disclaimer:</strong> This guide is general educational information, not legal, customs, tax, or brokerage advice. Import rules, tariff rates, and Shopify settings can change. Confirm current requirements with official customs sources, Shopify documentation, and a qualified customs broker before making pricing or compliance decisions.</p>
-<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://hts.usitc.gov" rel="noopener" target="_blank">hts.usitc.gov</a></li><li>US Section 122 tariff schedule, USTR, CBP. Rates reflect the general baseline — specific product HTS categories may carry additional duties. Verify current rates with a licensed customs broker before making sourcing decisions.</li><li>US International Trade Commission (HTS database), USTR (tariff announcements), CBP (import procedures), Shopify Help Center (duties and import taxes documentation), Tax Foundation (tariff analysis), WTO (trade statistics). Tariff rates current as of April 2026 and subject to change. This article is for informational purposes only and does not constitute legal, tax, or customs advice. Consult a licensed customs broker for decisions specific to your business.</li></ol></section></article>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://hts.usitc.gov" rel="noopener" target="_blank">hts.usitc.gov</a></li><li id="ref-2"><a href="https://changelog.shopify.com/posts/shopify-duty-calculator-now-available-for-all-shopify-plans" rel="noopener" target="_blank">Shopify Changelog: duties and import taxes checkout feature availability</a></li><li id="ref-3">Shopify Help Center duties and import taxes documentation, checked June 9, 2026: collecting duties and import taxes at checkout; considerations for charging duties and import taxes at checkout; duties and import taxes overview.</li><li>US Section 122 tariff schedule, USTR, CBP. Rates reflect the general baseline — specific product HTS categories may carry additional duties. Verify current rates with a licensed customs broker before making sourcing decisions.</li><li>US International Trade Commission (HTS database), USTR (tariff announcements), CBP (import procedures), Shopify Help Center (duties and import taxes documentation), Tax Foundation (tariff analysis), WTO (trade statistics). Tariff rates current as of April 2026 and subject to change. This article is for informational purposes only and does not constitute legal, tax, or customs advice. Consult a licensed customs broker for decisions specific to your business.</li></ol></section></article>
 
     <footer>
         <p>© 2026 Attahir Labs · <a href="/privacy.html" style="color: inherit;">Privacy</a> · <a href="/terms.html" style="color: inherit;">Terms</a></p>
