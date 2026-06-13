@@ -84,7 +84,7 @@ Create a dedicated email filter or folder for security-related Shopify emails. A
 
 If you run a team, regularly audit who has access to what. Remove staff accounts for anyone who no longer needs access. Every dormant account with admin permissions is an attack surface.
 
-For merchants who want a more systematic approach, tools like [StoreChangelog](https://apps.shopify.com/store-changelog) maintain a running audit log of changes to your store — staff account modifications, app installs, setting changes. Having that paper trail makes it much faster to detect unauthorized changes and to piece together what happened if an incident does occur.
+For merchants who want a more systematic approach, tools like StoreChangelog maintain a running audit log of changes to your store: staff account modifications, app installs, setting changes. Having that paper trail makes it much faster to detect unauthorized changes and to piece together what happened if an incident does occur.
 
 ### Lock Down Shopify Credit and Financial Settings
 

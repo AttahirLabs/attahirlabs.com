@@ -69,7 +69,7 @@ Set up a weekly or biweekly review of your inventory velocity. Look at:
 - **Sales trend direction.** A product selling 10 units/week that drops to 2 units/week is about to become dead stock. Catch it early and you can discount at 20% instead of 50%.
 - **Seasonal patterns.** If you sell winter gear and it's February, everything that hasn't sold needs to be moved *now*, not in March when it's truly dead.
 
-If you're running a large catalog, doing this manually is painful. Tools like [StockClearance](https://apps.shopify.com/stock-clearance-manager) can automate the detection side — it flags products based on sales velocity and days on shelf, so you're not manually pulling reports every week. But even a simple spreadsheet with last-sold dates is better than nothing.
+If you're running a large catalog, doing this manually is painful. Tools like StockClearance can automate the detection side: flagging products based on sales velocity and days on shelf, so you're not manually pulling reports every week. But even a simple spreadsheet with last-sold dates is better than nothing.
 
 The point is to build a process, not just react when you realize you have a warehouse full of stuff nobody wants.
 
