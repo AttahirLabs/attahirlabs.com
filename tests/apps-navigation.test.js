@@ -25,8 +25,8 @@ for (const page of pages) {
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
   assert.match(html, /href="\/contact\.html"[^>]*>Contact</, `${page} should keep Contact in the top nav`);
-  assert.match(html, /href="\/apps\/"[^>]*>View apps</, `${page} should keep the scalable app chooser as the global nav CTA`);
   const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
+  assert.ok(!nav.includes('View apps'), `${page} should not duplicate the Apps destination in global nav`);
   assert.ok(!nav.includes('Install StockClearance'), `${page} should keep app-specific install CTAs out of global nav`);
 }
 

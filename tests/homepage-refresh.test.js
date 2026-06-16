@@ -52,7 +52,7 @@ assert.match(nav, /href="\/apps\/"[^>]*>Apps</i, 'homepage top nav should link t
 assert.match(nav, /href="\/tools\/"[^>]*>Free tools</i, 'homepage top nav should link to free-tools hub');
 assert.match(nav, /href="\/blog\/"[^>]*>Blog</i, 'homepage top nav should keep Blog');
 assert.match(nav, /href="\/contact\.html"[^>]*>Contact</i, 'homepage top nav should keep Contact');
-assert.match(nav, /href="\/apps\/"[^>]*>View apps</i, 'homepage top nav primary CTA should route to the scalable app chooser');
+assert.ok(!nav.includes('View apps'), 'homepage top nav should not duplicate the Apps destination');
 assert.ok(!nav.includes('Install StockClearance'), 'homepage top nav should not compete with page-level install CTAs');
 assert.ok(!nav.includes('TariffShield'), 'homepage top nav should not add every public app by name');
 assert.ok(!nav.includes('Shipping Calculator'), 'homepage top nav should move individual tools behind the free-tools hub');
