@@ -38,7 +38,8 @@ includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
 includes('No installability theater', 'homepage should explicitly describe the status discipline');
-includes('/assets/mockups/shipping-calculator-mockups.jpg', 'homepage should use a real visual asset');
+includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
+includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
 includes('StockClearance app icon', 'homepage should show the public inventory app visually');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 includes('2 public apps', 'homepage should summarize current public app status');
@@ -70,6 +71,7 @@ excludes(/GDPR compliant/i, 'homepage should not make blanket GDPR compliance cl
 excludes(/Daily<\/span>|Daily rate updates|daily rate updates/i, 'homepage should not claim daily updates without a current verification hook');
 excludes(/986/, 'homepage should not include brittle tariff-rate counts');
 excludes(/85\+ origin countries|39 import markets/i, 'homepage should avoid brittle coverage counts on the homepage');
+excludes(/assets\/mockups\/shipping-calculator-(mockups|mobile-mockup|desktop-mockup)\.jpg/, 'homepage should not use shipping-calculator phone mockups as page imagery');
 
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-16<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance public update');
 
