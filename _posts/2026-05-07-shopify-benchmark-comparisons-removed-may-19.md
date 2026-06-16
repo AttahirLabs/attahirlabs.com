@@ -100,6 +100,12 @@ If you used it for marketing performance, watch conversion rate, sessions by cha
 
 If you used it for merchandising, watch product-level sell-through, aged inventory, margin by product group, and discount dependency. A storewide average can hide a product category that is quietly rotting on the shelf.
 
+<div class="cta-box stockclearance-cta">
+<h3>Replacing benchmarks with inventory action?</h3>
+<p>StockClearance helps Shopify merchants turn sell-through, aged-inventory, and margin signals into dead-stock, markdown, bundle, and clearance decisions.</p>
+<a class="cta-button" href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">Add StockClearance from the Shopify App Store →</a>
+</div>
+
 If you used it for finance, watch gross margin, contribution margin after shipping and discounts, average order value, refund rate, and cash tied up in inventory. This is where peer benchmarks are most dangerous. Looking "normal" compared with other stores does not mean the business is profitable.
 
 If you used it for operations, watch fulfillment delays, return reasons, support volume, warranty claims, stockouts, and product data quality. These are the messy operational metrics that rarely fit nicely into a peer comparison card.

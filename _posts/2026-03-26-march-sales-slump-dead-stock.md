@@ -27,6 +27,12 @@ Here's what actually moves dead stock:
 
 **Use email, not just on-site banners.** Your existing customer list is the highest-converting audience you have. Send a dedicated email (not buried in a newsletter) with a clear subject line like "48 hours: 40% off these 12 items, then they're gone." Segment by past purchase behavior if you can — customers who bought similar products are the most likely buyers.
 
+<div class="cta-box stockclearance-cta">
+<h3>Identify your dead stock automatically</h3>
+<p>StockClearance scans your Shopify inventory, flags slow-moving products, calculates capital at risk, and helps turn weak SKUs into flash-sale, bundle, or clearance actions.</p>
+<a class="cta-button" href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">Add StockClearance from the Shopify App Store →</a>
+</div>
+
 ## 2. Bundle Dead Stock With Your Winners
 
 This is the most underrated inventory strategy for Shopify stores. Take a slow-moving product and pair it with one of your best sellers at a slight discount on the bundle.
@@ -69,7 +75,7 @@ Set up a weekly or biweekly review of your inventory velocity. Look at:
 - **Sales trend direction.** A product selling 10 units/week that drops to 2 units/week is about to become dead stock. Catch it early and you can discount at 20% instead of 50%.
 - **Seasonal patterns.** If you sell winter gear and it's February, everything that hasn't sold needs to be moved *now*, not in March when it's truly dead.
 
-If you're running a large catalog, doing this manually is painful. Tools like StockClearance can automate the detection side: flagging products based on sales velocity and days on shelf, so you're not manually pulling reports every week. But even a simple spreadsheet with last-sold dates is better than nothing.
+If you're running a large catalog, doing this manually is painful. StockClearance can automate the detection side: flagging products based on sales velocity and days on shelf, so you're not manually pulling reports every week. But even a simple spreadsheet with last-sold dates is better than nothing.
 
 The point is to build a process, not just react when you realize you have a warehouse full of stuff nobody wants.
 
