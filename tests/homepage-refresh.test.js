@@ -39,6 +39,7 @@ includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
 includes('No installability theater', 'homepage should explicitly describe the status discipline');
 includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
+includes('/assets/home/merchant-operations-hero-mobile.jpg', 'homepage should use an optimized mobile hero image');
 includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
 includes('StockClearance app icon', 'homepage should show the public inventory app visually');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
