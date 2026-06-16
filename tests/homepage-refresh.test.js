@@ -16,13 +16,16 @@ function excludes(pattern, message) {
 
 assert.match(html, /<title>Attahir Labs \| Shopify Tools for Import Costs and Inventory Risk<\/title>/, 'homepage should use the refreshed SEO title');
 assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/, 'homepage canonical should include trailing slash');
-includes('Install TariffShield', 'homepage should prioritize the public App Store app');
+includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
+includes('Install TariffShield', 'homepage should keep TariffShield as a public App Store app');
+includes('https://apps.shopify.com/stockclearance', 'homepage should link to StockClearance App Store listing');
 includes('https://apps.shopify.com/tariffshield', 'homepage should link to TariffShield App Store listing');
 includes('Try duty calculator', 'homepage should route to the duty calculator');
 includes('Run accessibility check', 'homepage should route to the free accessibility checker');
 includes('Shipping Calculator', 'homepage should keep the shipping calculator visible');
 includes('Product Pipeline', 'homepage should separate pipeline apps from live tools');
 includes('App Store materials pending', 'pipeline apps should disclose their public availability status');
+includes('TariffShield and StockClearance are presented as installable', 'homepage status discipline should reflect both public apps');
 includes('StoreChangelog', 'homepage should use current StoreChangelog product name');
 includes('WarrantyTracker', 'homepage should use current WarrantyTracker product name');
 includes('StockClearance', 'homepage should include StockClearance');
@@ -45,6 +48,7 @@ assert.ok(!nav.includes('href="#resources"'), 'homepage top nav should not link 
 assert.match(nav, /href="\/shipping\/"[^>]*>Shipping Calculator</i, 'homepage top nav should keep Shipping Calculator');
 assert.match(nav, /href="\/blog\/"[^>]*>Blog</i, 'homepage top nav should keep Blog');
 assert.match(nav, /href="\/contact\.html"[^>]*>Contact</i, 'homepage top nav should keep Contact');
+assert.match(nav, /href="https:\/\/apps\.shopify\.com\/stockclearance"[^>]*>StockClearance</i, 'homepage top nav should link StockClearance');
 
 excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle name');
 excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield name');
@@ -56,6 +60,6 @@ excludes(/Daily<\/span>|Daily rate updates|daily rate updates/i, 'homepage shoul
 excludes(/986/, 'homepage should not include brittle tariff-rate counts');
 excludes(/85\+ origin countries|39 import markets/i, 'homepage should avoid brittle coverage counts on the homepage');
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-05-24<\/lastmod>/, 'sitemap homepage lastmod should reflect the refresh');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-16<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance public update');
 
 console.log('homepage refresh tests passed');
