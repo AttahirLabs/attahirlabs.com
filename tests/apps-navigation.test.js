@@ -49,6 +49,7 @@ assert.ok(appsHub.includes('Listing in preparation'), 'apps hub should label non
 const stockClearance = read('apps/stockclearance/index.html');
 assert.ok(stockClearance.includes('https://apps.shopify.com/stockclearance'), 'StockClearance page should link to the App Store');
 assert.ok(stockClearance.includes('First five minutes'), 'StockClearance page should expose the early aha path');
+assert.ok(stockClearance.includes('https://attahirlabs.com/assets/icons/stockclearance-512.png'), 'StockClearance page should use the StockClearance icon for social previews');
 
 const tariffShield = read('apps/tariffshield/index.html');
 assert.ok(tariffShield.includes('https://apps.shopify.com/tariffshield'), 'TariffShield page should link to the App Store');

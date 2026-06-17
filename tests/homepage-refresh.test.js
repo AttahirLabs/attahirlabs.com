@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const zlib = require('node:zlib');
 
 const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -12,6 +13,78 @@ function includes(text, message) {
 
 function excludes(pattern, message) {
   assert.ok(!pattern.test(html), message || 'homepage should not match ' + pattern);
+}
+
+function readRgbaPngPixel(filePath, x, y) {
+  const png = fs.readFileSync(filePath);
+  assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${filePath} should be a PNG`);
+
+  let offset = 8;
+  let width = 0;
+  let height = 0;
+  let bitDepth = 0;
+  let colorType = 0;
+  const idat = [];
+
+  while (offset < png.length) {
+    const length = png.readUInt32BE(offset);
+    const type = png.toString('ascii', offset + 4, offset + 8);
+    const dataStart = offset + 8;
+    const dataEnd = dataStart + length;
+
+    if (type === 'IHDR') {
+      width = png.readUInt32BE(dataStart);
+      height = png.readUInt32BE(dataStart + 4);
+      bitDepth = png[dataStart + 8];
+      colorType = png[dataStart + 9];
+    } else if (type === 'IDAT') {
+      idat.push(png.subarray(dataStart, dataEnd));
+    } else if (type === 'IEND') {
+      break;
+    }
+
+    offset = dataEnd + 4;
+  }
+
+  assert.equal(bitDepth, 8, `${filePath} should be an 8-bit PNG`);
+  assert.equal(colorType, 6, `${filePath} should be RGBA so icon color can be regression-tested`);
+  assert.ok(x >= 0 && x < width && y >= 0 && y < height, 'pixel coordinates should be inside the PNG');
+
+  const bytesPerPixel = 4;
+  const rowLength = width * bytesPerPixel;
+  const raw = zlib.inflateSync(Buffer.concat(idat));
+  const rows = [];
+  let rawOffset = 0;
+
+  for (let row = 0; row < height; row += 1) {
+    const filter = raw[rawOffset];
+    rawOffset += 1;
+    const current = Buffer.from(raw.subarray(rawOffset, rawOffset + rowLength));
+    rawOffset += rowLength;
+    const previous = rows[row - 1] || Buffer.alloc(rowLength);
+
+    for (let i = 0; i < rowLength; i += 1) {
+      const left = i >= bytesPerPixel ? current[i - bytesPerPixel] : 0;
+      const up = previous[i];
+      const upLeft = i >= bytesPerPixel ? previous[i - bytesPerPixel] : 0;
+      if (filter === 1) current[i] = (current[i] + left) & 0xff;
+      if (filter === 2) current[i] = (current[i] + up) & 0xff;
+      if (filter === 3) current[i] = (current[i] + Math.floor((left + up) / 2)) & 0xff;
+      if (filter === 4) {
+        const p = left + up - upLeft;
+        const pa = Math.abs(p - left);
+        const pb = Math.abs(p - up);
+        const pc = Math.abs(p - upLeft);
+        const predictor = pa <= pb && pa <= pc ? left : pb <= pc ? up : upLeft;
+        current[i] = (current[i] + predictor) & 0xff;
+      }
+    }
+
+    rows.push(current);
+  }
+
+  const pixelOffset = x * bytesPerPixel;
+  return Array.from(rows[y].subarray(pixelOffset, pixelOffset + bytesPerPixel));
 }
 
 assert.match(html, /<title>Attahir Labs \| Shopify Apps for Inventory, Tariffs, and Store Operations<\/title>/, 'homepage should use the problem-first SEO title');
@@ -73,6 +146,16 @@ excludes(/Daily<\/span>|Daily rate updates|daily rate updates/i, 'homepage shoul
 excludes(/986/, 'homepage should not include brittle tariff-rate counts');
 excludes(/85\+ origin countries|39 import markets/i, 'homepage should avoid brittle coverage counts on the homepage');
 excludes(/assets\/mockups\/shipping-calculator-(mockups|mobile-mockup|desktop-mockup)\.jpg/, 'homepage should not use shipping-calculator phone mockups as page imagery');
+
+const stockClearanceIconPixel = readRgbaPngPixel(path.join(root, 'assets/icons/stockclearance-96.png'), 16, 16);
+assert.ok(
+  stockClearanceIconPixel[0] > 220 &&
+  stockClearanceIconPixel[1] > 40 &&
+  stockClearanceIconPixel[1] < 130 &&
+  stockClearanceIconPixel[2] < 40 &&
+  stockClearanceIconPixel[3] === 255,
+  'StockClearance optimized icon should use the orange app icon, not generic Attahir Labs branding'
+);
 
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-16<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance public update');
 
