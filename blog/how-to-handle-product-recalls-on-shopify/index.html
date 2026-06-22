@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>How to Handle Product Recalls on Shopify | Attahir Labs</title>
+    <meta name="description" content="A practical Shopify product recall checklist for pausing sales, finding affected orders, notifying customers, quarantining inventory, and closing the loop.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/how-to-handle-product-recalls-on-shopify/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/how-to-handle-product-recalls-on-shopify/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of expiry and batch shelf for the article topic and merchant operations context.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/how-to-handle-product-recalls-on-shopify/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Handle Product Recalls on Shopify",
+      "description": "A practical Shopify product recall checklist for pausing sales, finding affected orders, notifying customers, quarantining inventory, and closing the loop.",
+      "datePublished": "2026-06-22",
+      "dateModified": "2026-06-22",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/how-to-handle-product-recalls-on-shopify/",
+      "image": "https://attahirlabs.com/assets/blog/how-to-handle-product-recalls-on-shopify/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do Shopify merchants have to report product recalls?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Should I delete the recalled product from Shopify?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What if only one batch is affected?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Can I offer store credit instead of a refund?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Do I need to notify customers who bought through marketplaces?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How long should I keep recall records?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What if the supplier says the product is fine but customers are reporting injuries?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How do recalls affect international replacement shipments?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+    
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/duty/">Duty Calculator</a></li><li><a href="/shipping/">Shipping Calculator</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">June 22, 2026</p>
+<h1>How to Handle Product Recalls on Shopify</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/how-to-handle-product-recalls-on-shopify/hero.jpg" width="3840" height="2160" alt="Editorial photo of expiry and batch shelf for the article topic and merchant operations context." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Ecommerce accessibility risk translated into real shopper blockers and practical audit work.</figcaption>
+        </figure>
+
+<p>Product recalls are one of the highest-stakes operational events a Shopify merchant can face. A recall is not just a customer service issue. It can involve legal reporting duties, safety notices, refunds, returns, inventory controls, supplier documentation, marketplace communications, and sometimes border or customs questions if affected products crossed into the United States or Canada.</p>
+<p>The right response is fast, documented, and customer-first. The wrong response is improvised across support tickets, spreadsheets, warehouse notes, and product pages that keep selling the item after the risk is known.</p>
+<p>This guide explains how Shopify merchants should prepare for and manage a product recall, from identifying affected SKUs to notifying customers and preventing the product from re-entering circulation. It is written for ecommerce operators, not lawyers, so treat it as an operational framework and confirm the legal steps with qualified counsel or the appropriate regulator.</p>
+<h2>Quick Answer</h2>
+<p>To handle a product recall on Shopify, pause the affected products or variants, create a recall case file, identify affected customers and orders, quarantine remaining inventory, contact suppliers and any relevant regulator, send clear customer notices, track refunds or replacements, and document final inventory disposition. U.S. consumer-product recalls may involve the CPSC recall guidance<sup class="citation"><a href="#ref-1">[1]</a></sup>, food and health-product recalls may involve FDA recall resources<sup class="citation"><a href="#ref-2">[2]</a></sup>, and Canadian consumer or food recalls may involve the Government of Canada recalls and safety alerts portal<sup class="citation"><a href="#ref-3">[3]</a></sup>. For batch-heavy workflows, also read the Attahir Labs guide to <a href="/blog/shopify-food-recall-batch-tracking-white-cheddar-seasoning-2026/">Shopify recall batch tracking after a salmonella alert</a>.</p>
+<h2>What Counts as a Product Recall?</h2>
+<p>A product recall is an action taken to remove, repair, replace, refund, or otherwise correct products that may create a safety, compliance, labeling, quality, or legal risk. Recalls can be voluntary, requested by a regulator, or required under applicable law.</p>
+<p>For consumer products in the United States, the Consumer Product Safety Commission (CPSC) oversees many product categories. Food, cosmetics, drugs, medical devices, and some health-related goods may involve the Food and Drug Administration (FDA). Vehicles and vehicle equipment may involve the National Highway Traffic Safety Administration (NHTSA). In Canada, Health Canada and the Canadian Food Inspection Agency (CFIA) may be relevant depending on the product.</p>
+<p>For Shopify merchants, the practical point is simple: if a product might be unsafe, mislabeled, contaminated, defective, counterfeit, non-compliant, or legally restricted, pause sales and investigate before more customers receive it.</p>
+<h2>Step 1: Stop Selling the Affected Product</h2>
+<p>The first operational move is to stop the risk from growing.</p>
+<p>In Shopify, that usually means:</p>
+<ul>
+<li>Setting the affected product or variants to draft status</li>
+<li>Removing the product from sales channels</li>
+<li>Setting inventory to zero for affected variants</li>
+<li>Disabling automatic restock rules</li>
+<li>Removing the item from bundles, subscriptions, upsells, and automated merchandising</li>
+<li>Pausing ads and email flows that promote the product</li>
+<li>Checking marketplace, TikTok Shop, Amazon, Faire, wholesale, or retail integrations</li>
+</ul>
+<p>If only certain lots, batch numbers, colors, sizes, suppliers, or manufacturing dates are affected, do not assume the storefront product record is enough. Shopify variants may not map neatly to lot-level risk. Use your inventory, fulfillment, purchase order, and supplier records to isolate the smallest accurate affected group.</p>
+<p>If you cannot isolate the affected group quickly, it is usually safer to pause the broader product line while the facts are confirmed.</p>
+<h2>Step 2: Build a Recall Record</h2>
+<p>Before sending notices, create a central record of the incident. This should be a single working document or recall case file that captures every decision and source of truth.</p>
+<p>Include:</p>
+<ul>
+<li>Product title, SKU, barcode, variant IDs, and supplier item codes</li>
+<li>Lot, batch, serial, expiration, production, or import dates if available</li>
+<li>Shopify order IDs that may include the product</li>
+<li>Customer names, emails, phone numbers, and shipping destinations</li>
+<li>Fulfillment locations and third-party logistics partners involved</li>
+<li>Supplier, manufacturer, importer, and distributor details</li>
+<li>The defect, hazard, labeling issue, or compliance concern</li>
+<li>The date you discovered the issue and how it was discovered</li>
+<li>The date sales were paused</li>
+<li>Regulator contacts, if any</li>
+<li>Customer notice copy and send dates</li>
+<li>Refund, replacement, disposal, or return instructions</li>
+<li>Evidence that affected inventory was quarantined</li>
+</ul>
+<p>This record matters because recalls move fast. If support, operations, legal, suppliers, and warehouse teams each keep their own partial notes, errors multiply. A recall record lets you answer the core questions: what happened, who received the product, what did we tell them, and what did we do to prevent more harm?</p>
+<h2>Step 3: Identify Affected Customers in Shopify</h2>
+<p>The most important Shopify-specific task is creating an accurate customer list. Search orders by SKU, product, variant, tag, date range, fulfillment location, vendor, and shipping geography. Export the results and preserve the original export.</p>
+<p>If you use lot or batch tracking through an app, warehouse system, ERP, or 3PL, reconcile that data against Shopify orders. If the recall affects a manufacturing batch but Shopify only knows the SKU, your warehouse or supplier records may be the only way to narrow the customer group.</p>
+<p>For each affected order, capture:</p>
+<ul>
+<li>Order number and date</li>
+<li>Customer contact information</li>
+<li>Shipping address and country</li>
+<li>Quantity purchased</li>
+<li>Fulfillment status</li>
+<li>Tracking number</li>
+<li>Refund status</li>
+<li>Whether the notice was sent</li>
+<li>Whether the customer responded</li>
+<li>Whether the item was returned, destroyed, repaired, or replaced</li>
+</ul>
+<p>Do not rely only on email open rates. A recall notice is not a marketing campaign. Depending on the seriousness of the issue, you may need multiple channels: email, SMS, phone, postal mail, account notices, website banners, social updates, marketplace messages, and notices through retail partners.</p>
+<h2>Step 4: Quarantine Inventory</h2>
+<p>Once a recall is suspected, affected inventory should be physically and digitally quarantined. That means warehouse staff, 3PLs, retail partners, and returns processors need clear instructions.</p>
+<p>Quarantine steps may include:</p>
+<ul>
+<li>Moving affected units to a hold location</li>
+<li>Applying a clear hold tag in the warehouse system</li>
+<li>Blocking pick, pack, and ship actions for affected SKUs or lots</li>
+<li>Separating returned units from sellable inventory</li>
+<li>Disabling automated return-to-stock rules</li>
+<li>Photographing held inventory for documentation</li>
+<li>Recording final disposition, such as destruction, supplier return, or rework</li>
+</ul>
+<p>Returns deserve special attention. If a customer returns a recalled item, that unit must not be automatically restocked and sold again. In Shopify and connected return apps, create a recall-specific return reason and train support to mark affected items as non-resellable.</p>
+<h2>Step 5: Contact the Supplier, Manufacturer, or Importer</h2>
+<p>Many Shopify merchants are sellers, not manufacturers. But customers bought from you, and regulators may still expect you to participate in the corrective action.</p>
+<p>Ask suppliers for:</p>
+<ul>
+<li>Written description of the issue</li>
+<li>Affected lot, batch, model, or production date ranges</li>
+<li>Test reports, certificates, or compliance documentation</li>
+<li>Their proposed customer remedy</li>
+<li>Whether regulators have already been notified</li>
+<li>Whether other sellers are affected</li>
+<li>Instructions for returns, destruction, or repair</li>
+<li>Financial responsibility for refunds, shipping, replacement, and disposal</li>
+</ul>
+<p>If you imported the product, keep customs and entry records. U.S. importers should understand that CBP enforces import rules at the border<sup class="citation"><a href="#ref-4">[4]</a></sup>, while agencies such as CPSC, FDA, and others may regulate product safety or admissibility. The U.S. International Trade Commission publishes the Harmonized Tariff Schedule<sup class="citation"><a href="#ref-5">[5]</a></sup>, which can help identify tariff classifications, but classification does not replace product safety compliance.</p>
+<p>For cross-border merchants, a recall can also create duty, tax, re-export, destruction, drawback, and replacement shipment questions. Document whether replacement products are being imported, whether returned goods cross a border, and whether the recalled goods will be destroyed domestically or returned to the supplier.</p>
+<h2>Step 6: Decide the Customer Remedy</h2>
+<p>A recall notice should tell customers exactly what to do. Vague language creates risk and support volume.</p>
+<p>Common remedies include:</p>
+<ul>
+<li>Full refund</li>
+<li>Free replacement</li>
+<li>Repair kit or corrected component</li>
+<li>Stop-use instruction</li>
+<li>Safe disposal instruction</li>
+<li>Return label and prepaid shipping</li>
+<li>Store credit, where legally appropriate and clearly disclosed</li>
+</ul>
+<p>For safety-related recalls, do not make customers work hard to receive the remedy. If the product creates a serious hazard, requiring complicated proof, tight deadlines, or paid return shipping can look careless and may conflict with regulator expectations.</p>
+<p>The remedy should match the risk. A mislabeled color name is different from a battery fire hazard. A missing allergen statement is different from a cosmetic packaging typo. When the issue may involve injury, illness, fire, choking, chemical exposure, electrical risk, or child safety, get legal and regulatory advice immediately.</p>
+<h2>Step 7: Write the Recall Notice</h2>
+<p>A good recall notice is clear, specific, and action-oriented. It should avoid minimizing the issue or hiding the practical instruction behind brand language.</p>
+<p>Include:</p>
+<ul>
+<li>Product name and image</li>
+<li>SKU, model, lot, batch, or date range</li>
+<li>Purchase date range</li>
+<li>The hazard or reason for recall</li>
+<li>What customers should stop doing</li>
+<li>The remedy available</li>
+<li>How to get the refund, replacement, repair, or disposal instructions</li>
+<li>Customer support contact details</li>
+<li>Whether proof of purchase is required</li>
+<li>Regulator recall number or link, if applicable</li>
+</ul>
+<p>Example structure:</p>
+<blockquote>We are recalling [Product Name] sold between [dates] because [plain-language hazard]. If you have this product, stop using it immediately. Contact us at [email/phone/form] for [refund/replacement/return/disposal instructions]. Do not dispose of the product until you have reviewed the instructions below, because we may need the lot number or a photo to confirm whether your item is affected.</blockquote>
+<p>Avoid promotional language in recall messages. A recall is not the time to cross-sell, soften the issue, or bury the instruction below a discount code.</p>
+<h2>Step 8: Update Shopify Support and Operations</h2>
+<p>Once customers receive the notice, support volume can spike quickly. Prepare macros, tags, internal notes, and escalation rules before the notice goes out.</p>
+<p>Useful Shopify admin actions include:</p>
+<ul>
+<li>Tagging affected orders with a recall tag</li>
+<li>Tagging affected customers when appropriate</li>
+<li>Creating saved views for recall orders</li>
+<li>Adding internal notes to high-risk orders</li>
+<li>Creating a support macro for refund and replacement steps</li>
+<li>Creating a return reason that blocks restock</li>
+<li>Creating a discount-free replacement workflow if replacements are shipped through Shopify</li>
+<li>Tracking notice status in a spreadsheet, helpdesk, or recall management tool</li>
+</ul>
+<p>If you use subscriptions, memberships, or reorder flows, check whether affected products are scheduled for future shipments. Pause those shipments before customers receive additional units.</p>
+<h2>Step 9: Handle Refunds, Replacements, and Cross-Border Costs</h2>
+<p>Refunds and replacements sound simple until shipping, taxes, duties, and inventory systems enter the picture.</p>
+<p>For domestic orders, document whether the refund includes shipping and taxes. For cross-border orders, customers may also ask about import duties, brokerage, VAT/GST/HST, or replacement shipment charges. If your replacement product crosses a border, classify it correctly, use accurate customs descriptions, and avoid declaring misleading values.</p>
+<p>This is where a tariff and duty workflow can save time. Before shipping replacement products internationally, check the likely duty impact with a tool like TariffShield or a duty calculator so support can set accurate expectations and operations can avoid surprise landed costs.</p>
+<p>CTA: If your recall involves cross-border replacement shipments, use the TariffShield duty calculator to estimate duties before you ship replacements: <a href="/duty/">Try the TariffShield duty calculator</a>. For broader import-pricing context, see the Attahir Labs guide to <a href="/blog/shopify-import-duties/">Shopify import duties</a>.</p>
+<h2>Step 10: Close the Loop and Prevent Recurrence</h2>
+<p>A recall is not over when the first email goes out. It is over when the affected products are accounted for, the remedy is delivered, the regulator or supplier requirements are satisfied, and the root cause is addressed.</p>
+<p>After the active recall period, review:</p>
+<ul>
+<li>Notice delivery rates and bounce rates</li>
+<li>Customer response rates</li>
+<li>Refund and replacement completion</li>
+<li>Returned or destroyed inventory counts</li>
+<li>Units that remain unaccounted for</li>
+<li>Supplier performance</li>
+<li>Product testing and compliance gaps</li>
+<li>Import, labeling, and classification records</li>
+<li>Whether Shopify data was sufficient to identify affected customers quickly</li>
+</ul>
+<p>If the recall exposed weak lot tracking, fix that before the next incident. If support could not identify affected orders without manual exports, improve tagging or app workflows. If supplier documentation was missing or vague, update purchase requirements before reordering.</p>
+<p>For merchants selling regulated goods, recall readiness should be part of product launch. A product page, supplier invoice, and Shopify SKU are not enough. You need traceability from purchase order to customer order.</p>
+<h2>Shopify Recall Checklist</h2>
+<p>Use this checklist when a recall is suspected:</p>
+<ol>
+<li>Pause sales for affected products and variants.</li>
+<li>Remove the product from all sales channels and automated campaigns.</li>
+<li>Create a central recall record.</li>
+<li>Identify affected SKUs, variants, lots, batches, and order IDs.</li>
+<li>Export affected customer and order data.</li>
+<li>Quarantine warehouse, 3PL, and returned inventory.</li>
+<li>Contact suppliers, manufacturers, importers, and distributors.</li>
+<li>Confirm regulator reporting obligations.</li>
+<li>Draft and approve customer notice copy.</li>
+<li>Send notices through appropriate channels.</li>
+<li>Tag affected orders and customers in Shopify.</li>
+<li>Prepare support macros and escalation paths.</li>
+<li>Issue refunds, replacements, repairs, or disposal instructions.</li>
+<li>Track completion and unresolved cases.</li>
+<li>Document final inventory disposition.</li>
+<li>Review root cause and improve traceability.</li>
+</ol>
+<h2>FAQ</h2>
+<h3>Do Shopify merchants have to report product recalls?</h3>
+<p>It depends on the product, jurisdiction, and issue. In the United States, consumer product hazards may need to be reported to the CPSC, while food, drug, cosmetic, medical device, vehicle, and other categories may involve different agencies. In Canada, Health Canada or CFIA may be relevant. Do not assume that a small store is exempt. If the issue involves safety, injury, illness, or regulatory non-compliance, get qualified advice quickly.</p>
+<h3>Should I delete the recalled product from Shopify?</h3>
+<p>Usually no. It is often better to unpublish the product, remove it from sales channels, and preserve the record. Deleting product records can make it harder to trace orders, variants, inventory, customer notices, and analytics later. Preserve the evidence unless counsel or a regulator gives different instructions.</p>
+<h3>What if only one batch is affected?</h3>
+<p>If you can reliably identify the batch and match it to customer orders, narrow the recall to that batch. If you cannot connect batch data to orders, you may need to treat a larger set of orders as potentially affected. This is why lot and batch tracking matter for ecommerce operations.</p>
+<h3>Can I offer store credit instead of a refund?</h3>
+<p>Sometimes store credit may be acceptable for minor quality issues, but safety recalls usually call for a clear remedy such as refund, replacement, repair, or disposal instructions. Do not use store credit to reduce your obligation when customers may have received an unsafe or non-compliant product.</p>
+<h3>Do I need to notify customers who bought through marketplaces?</h3>
+<p>Yes, affected customers should be notified regardless of where they purchased. The method may differ because marketplaces control some customer communication channels. Use the marketplace recall process, merchant messaging tools, and any required platform forms.</p>
+<h3>How long should I keep recall records?</h3>
+<p>Keep recall records long enough to satisfy legal, tax, insurance, supplier, and regulator needs. The exact period depends on jurisdiction and product category. As an operational rule, preserve the recall case file, customer notices, order exports, supplier communications, refund records, and inventory disposition evidence.</p>
+<h3>What if the supplier says the product is fine but customers are reporting injuries?</h3>
+<p>Do not rely only on the supplier's assurance. Preserve customer reports, stop sales while investigating, consult counsel, and contact the appropriate regulator if reporting may be required. Customer safety reports deserve direct escalation.</p>
+<h3>How do recalls affect international replacement shipments?</h3>
+<p>Replacement shipments may still require accurate customs documentation, tariff classification, declared value, and tax handling. Depending on the facts, returned or destroyed goods may also raise duty recovery or re-import questions. Check CBP, CBSA, and local customs rules before promising customers that replacements will be duty-free.</p>
+<h2>Disclaimer</h2>
+<p>This article is general information for ecommerce operators and is not legal, regulatory, customs, tax, or product safety advice. Product recall obligations depend on the product, facts, jurisdiction, sales channel, and regulator. If you suspect a product safety or compliance issue, consult qualified counsel and the relevant regulator before relying on any operational checklist.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cpsc.gov/Business--Manufacturing/Recall-Guidance" rel="noopener" target="_blank">CPSC recall guidance</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" rel="noopener" target="_blank">FDA recall resources</a></li><li id="ref-3"><a href="https://recalls-rappels.canada.ca/en" rel="noopener" target="_blank">Government of Canada recalls and safety alerts portal</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/basic-import-export" rel="noopener" target="_blank">CBP enforces import rules at the border</a></li><li id="ref-5"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">U.S. International Trade Commission publishes the Harmonized Tariff Schedule</a></li><li id="ref-6"><a href="https://www.wto.org/english/tratop_e/tbt_e/tbt_e.htm" rel="noopener" target="_blank">World Trade Organization, technical barriers to trade information</a></li><li id="ref-7"><a href="https://www.cbsa-asfc.gc.ca/import/guide-eng.html" rel="noopener" target="_blank">Canada Border Services Agency, importing commercial goods into Canada</a></li><li id="ref-8"><a href="https://taxfoundation.org/topics/tariffs-and-trade/" rel="noopener" target="_blank">Tax Foundation, tariffs and trade policy analysis</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
