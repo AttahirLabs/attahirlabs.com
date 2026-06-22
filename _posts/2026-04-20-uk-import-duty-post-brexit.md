@@ -1,20 +1,22 @@
 ---
-title: "UK Import Duty Post-Brexit: What's Changed"
+title: "Preferential Duties UK & EU: Reduce Import Costs in 2026"
 slug: "uk-import-duty-post-brexit"
 date: "2026-04-20"
-targetKeyword: "UK import duty, post-brexit tariff"
+targetKeyword: "preferential duties UK EU, TCA preferential duty"
 appTieIn: "TariffShield"
-metaTitle: "UK Import Duty Post-Brexit: What's Changed in 2026"
-metaDescription: "A practical guide to UK import duty after Brexit, including UK Global Tariff rules, EU zero-tariff origin requirements, VAT, Northern Ireland complications, and how importers should verify landed cost."
+metaTitle: "Preferential Duties UK & EU: Reduce Import Costs in 2026"
+metaDescription: "Use UK-EU TCA preferential duty rules in 2026: commodity codes, origin proof, import VAT, Northern Ireland routing, and landed-cost checks."
 ---
 
 [Background sources: European Commission TCA overview](https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en), [WTO goods schedules, United Kingdom](https://goods-schedules.wto.org/member/united-kingdom).
 
-# UK Import Duty Post-Brexit: What's Changed
+# Preferential Duties UK & EU: Reduce Import Costs in 2026
 
 > Sources: [European Commission TCA overview](https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en), [CBP Determining Duty Rates](https://www.cbp.gov/trade/programs-administration/determining-duty-rates).
 
-If you are still using pre-2021 assumptions to price goods into the United Kingdom, you are probably misquoting landed cost.
+Preferential duties between the UK and EU can reduce import costs in 2026, but only when the product qualifies under the Trade and Cooperation Agreement. The practical work is still SKU-level: classify the product, prove origin, claim preference correctly, separate customs duty from import VAT, and check Northern Ireland routing before quoting customers.
+
+> June 22, 2026 refresh: Re-targeted this guide around UK-EU preferential duty searches and re-checked GOV.UK UK Global Tariff, UK-EU rules-of-origin, proof-of-origin, import VAT, low-value consignment, and Northern Ireland at-risk guidance. The key ecommerce reminder is unchanged: a zero-duty TCA result is not automatic, and it does not remove import VAT or landed-cost planning.
 
 That is the real post-Brexit change. The headline political event happened years ago, but the operational reality is still catching businesses out in 2026. Import duty into the UK is no longer something many traders can treat as a simple extension of EU customs treatment. The UK now runs its own tariff schedule, its own trade agreement framework, and its own customs decision points, even where UK and EU rules still overlap.
 
@@ -27,7 +29,23 @@ This guide explains what actually changed, what did not, and what importers shou
 > Sources: [GOV.UK Tariffs on goods imported into the UK](https://www.gov.uk/guidance/tariffs-on-goods-imported-into-the-uk), [GOV.UK preference agreements and rules of origin guidance](https://www.gov.uk/guidance/import-and-export-goods-using-preference-agreements).
 
 
-Post-Brexit, UK import duty is determined primarily by the **UK Global Tariff (UKGT)** unless a shipment qualifies for a reduced or zero rate under a UK trade agreement, a tariff-rate quota, a relief, or a special regime. For UK-EU trade, zero tariffs are available under the Trade and Cooperation Agreement, but only if the goods meet the agreement's **rules of origin** and the importer can support the claim. If they do not, standard tariffs can apply. Import VAT, customs declarations, commodity classification, and Northern Ireland rules also matter more than many businesses expected.
+Post-Brexit, UK import duty is determined primarily by the **UK Global Tariff (UKGT)** unless a shipment qualifies for a reduced or zero rate under a UK trade agreement, a tariff-rate quota, a relief, or a special regime. For UK-EU trade, preferential duties can be zero under the Trade and Cooperation Agreement, but only if the goods meet the agreement's **rules of origin**, the importer has proof of origin before claiming preference, and the customs declaration actually claims the preference. If those facts are missing, standard tariffs can apply. Import VAT, commodity classification, and Northern Ireland rules still matter.
+
+## Preferential duties UK & EU: quick TCA check
+
+> Sources: [GOV.UK UK-EU rules of origin guidance](https://www.gov.uk/guidance/introduction-to-rules-of-origin-and-claiming-duties-when-trading-between-the-uk-and-eu), [GOV.UK proof of origin for UK-EU preference claims](https://www.gov.uk/guidance/proving-originating-status-and-claiming-a-reduced-rate-of-customs-duty-for-trade-between-the-uk-and-eu).
+
+The TCA is useful because it can reduce UK-EU customs duty to zero for qualifying goods. It is risky because teams often treat "shipped from the EU" as if it means "EU-origin." GOV.UK's rules-of-origin guidance is stricter: the product must meet the applicable origin rule, and the importer must be able to support the preference claim before using it on the declaration.
+
+| Check | Why it matters | What to keep |
+| --- | --- | --- |
+| Commodity code | The HS or commodity code points you to the product-specific origin rule and standard UKGT fallback rate. | Classification reasoning, product specs, broker notes, and the UK Trade Tariff lookup. |
+| Actual origin | Goods stored or redistributed in the EU may still be third-country origin if there was not enough qualifying processing. | Supplier declarations, production location evidence, bill-of-materials support, and origin statements. |
+| Proof of origin | The importer needs proof before claiming preference, usually a statement on origin or importer's knowledge. | Invoice origin statement, exporter support, importer-knowledge file, and customs declaration records. |
+| VAT and fees | Zero customs duty does not mean zero landed cost. Import VAT, brokerage, freight, and clearance costs still apply. | VAT treatment, freight and brokerage invoices, valuation adjustments, and margin model. |
+| Northern Ireland route | NI flows can involve different at-risk and tariff treatment, so a Great Britain answer may not transfer cleanly. | Route details, consignee status, at-risk assessment, and tariff regime used. |
+
+That is the best way to reduce import costs without creating a compliance problem: claim the preference only where the product, origin proof, declaration, and route all support it.
 
 ## The biggest structural change: the UK now has its own tariff system
 
@@ -358,6 +376,7 @@ Use the **[TariffShield duty calculator](https://attahirlabs.com/duty/)** to san
 6. [HMRC, *Paying VAT on imports from outside the UK to Great Britain and from outside the EU to Northern Ireland*](https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad)
 7. [GOV.UK, *Moving goods you bring into Northern Ireland as not at risk of moving to the EU*](https://www.gov.uk/guidance/check-if-you-can-declare-goods-you-bring-into-northern-ireland-not-at-risk-of-moving-to-the-eu)
 8. [GOV.UK, *Trade Tariff: look up commodity codes, duty and VAT rates*](https://www.gov.uk/trade-tariff)
+9. [GOV.UK, *Proving originating status and claiming a reduced rate of Customs Duty for trade between the UK and EU*](https://www.gov.uk/guidance/proving-originating-status-and-claiming-a-reduced-rate-of-customs-duty-for-trade-between-the-uk-and-eu)
 
 ## Disclaimer
 
