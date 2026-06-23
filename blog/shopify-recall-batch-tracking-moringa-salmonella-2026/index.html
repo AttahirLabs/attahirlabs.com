@@ -40,7 +40,7 @@
     <style>
         :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; overflow-x: hidden; }
         /* Shared article nav: keep all primary links visible and readable. */
         .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
@@ -60,11 +60,11 @@
             .site-nav .nav-links a { display: block; font-size: 0.85rem; }
         }
         main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-        article { width: min(760px, 100%); margin: 0 auto; }
-        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        article { width: min(760px, 100%); margin: 0 auto; min-width: 0; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
         h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
         h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
-        p, li { font-size: 1.05rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: anywhere; }
         a { color: var(--brand); }
         .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
         .lead { font-size: 1.2rem; color: #334155; }
@@ -91,6 +91,13 @@
         .references h2 { margin-top: 0; }
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+        @media (max-width: 640px) {
+            main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            h1 { font-size: 1.7rem; letter-spacing: 0; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+        }
     </style>
 </head>
 <body>
@@ -123,7 +130,17 @@
 <h2>A Shopify Recall Response Playbook</h2>
 <p>When a food, supplement, cosmetic, or adjacent regulated product has a possible contamination issue, the first merchant action should be to isolate the affected inventory. The FDA record provides the identifiers that make that possible in this case: recall number, product names, UPCs, SKUs, lots, expiration dates, and distribution scope in the openFDA recall result<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
 <p>A Shopify team can turn that into a response workflow:</p>
-<p>| Step | What the team needs to know | Record to keep | |---|---|---| | Identify | Which SKU, UPC, lot, and expiration date are affected? | Supplier notice, FDA record, internal batch record | | Quarantine | Where is affected inventory physically or digitally available? | Location, quantity, staff owner, hold timestamp | | Stop sale | Are affected variants, bundles, subscriptions, or marketplace listings still sellable? | Sales-channel checklist and action log | | Trace orders | Which orders may include affected lots? | Order IDs, fulfillment dates, customer-contact status | | Resolve | Was each unit removed, returned, refunded, replaced, or otherwise handled? | Final disposition and support notes | | Close out | Can the merchant prove the recall response was completed? | Exportable recall packet and review notes |</p>
+<table>
+<thead><tr><th>Step</th><th>What the team needs to know</th><th>Record to keep</th></tr></thead>
+<tbody>
+<tr><td>Identify</td><td>Which SKU, UPC, lot, and expiration date are affected?</td><td>Supplier notice, FDA record, internal batch record</td></tr>
+<tr><td>Quarantine</td><td>Where is affected inventory physically or digitally available?</td><td>Location, quantity, staff owner, hold timestamp</td></tr>
+<tr><td>Stop sale</td><td>Are affected variants, bundles, subscriptions, or marketplace listings still sellable?</td><td>Sales-channel checklist and action log</td></tr>
+<tr><td>Trace orders</td><td>Which orders may include affected lots?</td><td>Order IDs, fulfillment dates, customer-contact status</td></tr>
+<tr><td>Resolve</td><td>Was each unit removed, returned, refunded, replaced, or otherwise handled?</td><td>Final disposition and support notes</td></tr>
+<tr><td>Close out</td><td>Can the merchant prove the recall response was completed?</td><td>Exportable recall packet and review notes</td></tr>
+</tbody>
+</table>
 <p>The most important detail is that this workflow starts before the recall happens. If the first batch record is created after the FDA notice, the team is already behind. Receiving should attach lot and expiration details when inventory arrives. Fulfillment should preserve which lot was allocated to an order. Customer support should be able to search by order, lot, or SKU without asking operations to dig through spreadsheets.</p>
 <h2>What to Capture in Shopify Before a Recall Happens</h2>
 <p>At minimum, a merchant in a recall-sensitive category should keep a batch record for every lot it receives. That record should include supplier, purchase order, received date, product/variant, lot code, expiration date when applicable, quantity received, current quantity, storage location, and any internal notes about quality checks or holds.</p>
