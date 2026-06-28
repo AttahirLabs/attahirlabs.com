@@ -21,6 +21,7 @@ const pages = [
 
 for (const page of pages) {
   const html = read(page);
+  assert.match(html, /href="\/apps\/apps\.css\?v=20260627-nav-fix"/, `${page} should load the cache-busted shared app stylesheet`);
   assert.match(html, /href="\/apps\/"[^>]*>Apps</, `${page} should link to the app hub`);
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
@@ -75,6 +76,8 @@ assert.ok(deadStockGuide.includes('utm_content=dead_stock_guide_cta'), 'dead-sto
 
 assert.ok(appsCss.includes('overflow-x: hidden'), 'shared app-page CSS should guard against mobile horizontal overflow');
 assert.ok(appsCss.includes('.hero-grid > *'), 'shared app-page CSS should let hero grid children shrink on mobile');
+assert.match(appsCss, /\.apps-dropdown strong\s*{\s*display: block;/, 'Apps dropdown names should stack above descriptions');
+assert.match(appsCss, /\.apps-dropdown span\s*{\s*display: block;/, 'Apps dropdown descriptions should stack below names');
 
 const tariffShield = read('apps/tariffshield/index.html');
 assert.ok(tariffShield.includes('https://apps.shopify.com/tariffshield'), 'TariffShield page should link to the App Store');
