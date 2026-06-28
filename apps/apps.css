@@ -26,9 +26,19 @@ body {
     color: var(--ink);
     background: var(--paper);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a { color: inherit; }
+
+h1,
+h2,
+.lede,
+.section-copy,
+.card,
+.workflow-row span {
+    overflow-wrap: anywhere;
+}
 
 nav {
     border-bottom: 1px solid var(--line);
@@ -117,6 +127,12 @@ nav {
     align-items: center;
     min-height: 540px;
     padding: 4.5rem 1.25rem;
+}
+
+.hero-grid > *,
+.product-shot,
+.card {
+    min-width: 0;
 }
 
 .eyebrow {
@@ -255,6 +271,10 @@ h1 {
     padding: 0.7rem;
     background: var(--paper);
     font-size: 0.9rem;
+}
+
+.workflow-row span {
+    min-width: 0;
 }
 
 .status {
@@ -448,7 +468,9 @@ footer {
     }
 
     .nav-links::-webkit-scrollbar { display: none; }
-    .hero-grid { min-height: auto; padding-top: 3rem; padding-bottom: 3rem; }
+    h1 { font-size: 2.08rem; }
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .hero-grid { min-height: auto; padding: 3rem 1rem; }
     .button-row { align-items: stretch; }
     .btn { width: 100%; }
 

@@ -31,6 +31,7 @@ for (const page of pages) {
 }
 
 const appsHub = read('apps/index.html');
+const appsCss = read('apps/apps.css');
 for (const route of [
   '/apps/stockclearance/',
   '/apps/tariffshield/',
@@ -45,11 +46,23 @@ for (const route of [
 assert.ok(appsHub.includes('Problem-first app chooser'), 'apps hub should frame navigation by problem');
 assert.ok(appsHub.includes('Public apps link directly to Shopify'), 'apps hub should separate public apps from pipeline apps');
 assert.ok(appsHub.includes('Listing in preparation'), 'apps hub should label non-public apps honestly');
+assert.ok(appsHub.includes('utm_content=apps_hub_hero'), 'apps hub StockClearance install link should be campaign-trackable');
 
 const stockClearance = read('apps/stockclearance/index.html');
 assert.ok(stockClearance.includes('https://apps.shopify.com/stockclearance'), 'StockClearance page should link to the App Store');
+assert.ok(stockClearance.includes('utm_content=app_page_hero'), 'StockClearance install CTA should be campaign-trackable');
 assert.ok(stockClearance.includes('First five minutes'), 'StockClearance page should expose the early aha path');
+assert.ok(stockClearance.includes('From inventory signal to clearance decision.'), 'StockClearance page should explain the signal-to-action workflow');
+assert.ok(stockClearance.includes('Built for product-level inventory decisions.'), 'StockClearance page should disclose product-level data boundaries');
+assert.ok(stockClearance.includes('"@type": "SoftwareApplication"'), 'StockClearance page should include software application schema');
+assert.ok(stockClearance.includes('"@type": "FAQPage"'), 'StockClearance page should include FAQ schema');
 assert.ok(stockClearance.includes('https://attahirlabs.com/assets/icons/stockclearance-512.png'), 'StockClearance page should use the StockClearance icon for social previews');
+
+const deadStockGuide = read('blog/dead-stock-clearance-q2-2026/index.html');
+assert.ok(deadStockGuide.includes('utm_content=dead_stock_guide_cta'), 'dead-stock guide CTA should be campaign-trackable');
+
+assert.ok(appsCss.includes('overflow-x: hidden'), 'shared app-page CSS should guard against mobile horizontal overflow');
+assert.ok(appsCss.includes('.hero-grid > *'), 'shared app-page CSS should let hero grid children shrink on mobile');
 
 const tariffShield = read('apps/tariffshield/index.html');
 assert.ok(tariffShield.includes('https://apps.shopify.com/tariffshield'), 'TariffShield page should link to the App Store');

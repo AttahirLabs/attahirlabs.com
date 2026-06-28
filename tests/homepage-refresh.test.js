@@ -98,6 +98,7 @@ includes('/apps/tariffshield/', 'homepage should route TariffShield through its 
 includes('/apps/', 'homepage should include the scalable app hub');
 includes('/tools/', 'homepage should include the scalable free-tools hub');
 includes('https://apps.shopify.com/stockclearance', 'homepage should link to StockClearance App Store listing');
+includes('utm_content=homepage_public_apps', 'homepage StockClearance install link should be campaign-trackable');
 includes('https://apps.shopify.com/tariffshield', 'homepage should link to TariffShield App Store listing');
 includes('What problem are you trying to solve?', 'homepage should route by merchant problem');
 includes('Use free tools', 'homepage hero should route to the tool chooser');
@@ -157,6 +158,6 @@ assert.ok(
   'StockClearance optimized icon should use the orange app icon, not generic Attahir Labs branding'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-16<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance public update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-27<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance website update');
 
 console.log('homepage refresh tests passed');
