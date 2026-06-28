@@ -152,6 +152,7 @@ excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle na
 excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield name');
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
 excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
+excludes(/The homepage is now a router/i, 'homepage router section should stay visually tight without the descriptive helper line');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
 excludes(/No tracking pixels/i, 'homepage should not contradict Google Analytics usage');
 excludes(/GDPR compliant/i, 'homepage should not make blanket GDPR compliance claims');
