@@ -114,6 +114,11 @@ includes('No installability theater', 'homepage should explicitly describe the s
 includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
 includes('/assets/home/merchant-operations-hero-mobile.jpg', 'homepage should use an optimized mobile hero image');
 includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
+includes('<section class="tool-section" id="tools">', 'homepage free-tools section should have a stable anchor for direct visual checks');
+includes('class="tool-intro-row"', 'homepage free-tools section should separate the intro/image row from the tool cards');
+includes('class="tool-grid tool-card-grid"', 'homepage free-tools section should give cards a full-width grid row');
+includes('Quick checks before you change a workflow.', 'homepage free-tools section should use tighter section copy');
+includes('class="tool-cta"', 'homepage free-tools cards should use button-like CTAs');
 includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 includes('2 public apps', 'homepage should summarize current public app status');
@@ -163,6 +168,7 @@ excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a p
 excludes(/The homepage is now a router/i, 'homepage router section should stay visually tight without the descriptive helper line');
 excludes(/Only apps with verified public Shopify App Store listings get install calls to action here\./i, 'homepage public apps section should stay tight without helper copy');
 excludes(/Built next/i, 'homepage public apps section should not include a preparation card beside public install CTAs');
+excludes(/The free tools are diagnostic paths/i, 'homepage free-tools section should not use the old cramped explanatory copy');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
 excludes(/No tracking pixels/i, 'homepage should not contradict Google Analytics usage');
 excludes(/GDPR compliant/i, 'homepage should not make blanket GDPR compliance claims');

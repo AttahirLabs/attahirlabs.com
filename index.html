@@ -435,9 +435,19 @@
         }
         .tool-layout {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-            gap: 1.4rem;
+            gap: 1.35rem;
+        }
+        .tool-intro-row {
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+            gap: 1.5rem;
             align-items: center;
+        }
+        .tool-section .section-head {
+            margin-bottom: 0;
+        }
+        .tool-card-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         .tool-image {
             border-radius: var(--radius);
@@ -451,6 +461,34 @@
             aspect-ratio: 16 / 11;
             object-fit: cover;
             object-position: top center;
+        }
+        .tool-card {
+            display: grid;
+            gap: 0.78rem;
+            align-content: start;
+            padding: 1.25rem;
+        }
+        .tool-card h3 {
+            margin: 0;
+        }
+        .tool-card p {
+            max-width: 31rem;
+        }
+        .tool-cta {
+            width: fit-content;
+            min-height: 40px;
+            margin-top: 0.1rem;
+            padding: 0.62rem 0.82rem;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            font-weight: 850;
+            line-height: 1.2;
+        }
+        .tool-cta:hover {
+            background: #1f2937;
         }
         .status-card strong {
             display: block;
@@ -518,9 +556,12 @@
             .resource-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            .tool-layout,
+            .tool-intro-row,
             .cta-inner {
                 grid-template-columns: 1fr;
+            }
+            .tool-card-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
         @media (max-width: 720px) {
@@ -553,6 +594,7 @@
             .problem-grid,
             .app-grid,
             .tool-grid,
+            .tool-card-grid,
             .status-grid,
             .resource-grid {
                 grid-template-columns: 1fr;
@@ -699,37 +741,37 @@
             </div>
         </section>
 
-        <section class="tool-section">
+        <section class="tool-section" id="tools">
             <div class="container tool-layout">
-                <div>
+                <div class="tool-intro-row">
                     <div class="section-head">
                         <div class="section-kicker">Free Tools</div>
-                        <h2>Use the lightweight tools when you need a fast read.</h2>
-                        <p class="section-copy">The free tools are diagnostic paths, not replacements for the apps. They help merchants check a number or risk area before committing to a workflow.</p>
+                        <h2>Quick checks before you change a workflow.</h2>
+                        <p class="section-copy">Run one focused calculation or scan before you reprice, quote shipping, or adjust a storefront.</p>
                     </div>
-                    <div class="tool-grid">
-                        <article class="card">
-                            <span class="tag tag-tool">Import cost</span>
-                            <h3>Duty calculator</h3>
-                            <p>Estimate import-duty scenarios before repricing or placing purchase orders.</p>
-                            <a class="text-link" href="/duty/">Calculate duties</a>
-                        </article>
-                        <article class="card">
-                            <span class="tag tag-tool">Fulfillment</span>
-                            <h3>Shipping calculator</h3>
-                            <p>Estimate retail shipping ranges by package size, destination, and speed.</p>
-                            <a class="text-link" href="/shipping/">Estimate shipping</a>
-                        </article>
-                        <article class="card">
-                            <span class="tag tag-tool">Accessibility</span>
-                            <h3>Accessibility checker</h3>
-                            <p>Run a WCAG-oriented scan against a public storefront URL.</p>
-                            <a class="text-link" href="/tools/access-checker/">Check a storefront</a>
-                        </article>
+                    <div class="tool-image">
+                        <img src="/assets/home/package-cost-desk.jpg" alt="Package weighing desk with shipping paperwork for merchant cost planning" width="1600" height="900" loading="lazy">
                     </div>
                 </div>
-                <div class="tool-image">
-                    <img src="/assets/home/package-cost-desk.jpg" alt="Package weighing desk with shipping paperwork for merchant cost planning" width="1600" height="900" loading="lazy">
+                <div class="tool-grid tool-card-grid">
+                    <article class="card tool-card">
+                        <span class="tag tag-tool">Import cost</span>
+                        <h3>Duty calculator</h3>
+                        <p>Estimate duties and landed-cost pressure before repricing or placing purchase orders.</p>
+                        <a class="tool-cta" href="/duty/">Calculate duties</a>
+                    </article>
+                    <article class="card tool-card">
+                        <span class="tag tag-tool">Fulfillment</span>
+                        <h3>Shipping calculator</h3>
+                        <p>Check retail shipping ranges by package size, destination, and delivery speed.</p>
+                        <a class="tool-cta" href="/shipping/">Estimate shipping</a>
+                    </article>
+                    <article class="card tool-card">
+                        <span class="tag tag-tool">Accessibility</span>
+                        <h3>Accessibility checker</h3>
+                        <p>Run a WCAG-oriented storefront scan before fixing page or theme issues.</p>
+                        <a class="tool-cta" href="/tools/access-checker/">Check a storefront</a>
+                    </article>
                 </div>
             </div>
         </section>
