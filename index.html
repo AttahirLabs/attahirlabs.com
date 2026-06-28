@@ -131,15 +131,18 @@
             text-decoration: none;
         }
         .nav-links a:hover { color: var(--ink); }
-        .nav-item-apps {
+        .nav-item-apps,
+        .nav-item-tools {
             position: relative;
         }
-        .nav-apps-link {
+        .nav-apps-link,
+        .nav-tools-link {
             display: inline-flex;
             align-items: center;
             min-height: 44px;
         }
-        .apps-dropdown {
+        .apps-dropdown,
+        .tools-dropdown {
             position: absolute;
             top: calc(100% + 0.45rem);
             left: 50%;
@@ -155,7 +158,8 @@
             transform: translate(-50%, 0.35rem);
             transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s ease;
         }
-        .apps-dropdown::before {
+        .apps-dropdown::before,
+        .tools-dropdown::before {
             content: "";
             position: absolute;
             right: 0;
@@ -164,13 +168,16 @@
             height: 0.55rem;
         }
         .nav-item-apps:hover .apps-dropdown,
-        .nav-item-apps:focus-within .apps-dropdown {
+        .nav-item-apps:focus-within .apps-dropdown,
+        .nav-item-tools:hover .tools-dropdown,
+        .nav-item-tools:focus-within .tools-dropdown {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             transform: translate(-50%, 0);
         }
-        .apps-dropdown a {
+        .apps-dropdown a,
+        .tools-dropdown a {
             display: grid;
             gap: 0.1rem;
             padding: 0.7rem 0.75rem;
@@ -180,16 +187,20 @@
             white-space: normal;
         }
         .apps-dropdown a:hover,
-        .apps-dropdown a:focus-visible {
+        .apps-dropdown a:focus-visible,
+        .tools-dropdown a:hover,
+        .tools-dropdown a:focus-visible {
             background: var(--wash);
             outline: none;
         }
-        .apps-dropdown strong {
+        .apps-dropdown strong,
+        .tools-dropdown strong {
             display: block;
             font-size: 0.92rem;
             line-height: 1.2;
         }
-        .apps-dropdown span {
+        .apps-dropdown span,
+        .tools-dropdown span {
             display: block;
             color: var(--muted);
             font-size: 0.78rem;
@@ -527,7 +538,8 @@
                 scrollbar-width: none;
             }
             .nav-links::-webkit-scrollbar { display: none; }
-            .apps-dropdown { display: none; }
+            .apps-dropdown,
+            .tools-dropdown { display: none; }
             .hero {
                 background:
                     linear-gradient(90deg, rgba(9, 14, 26, 0.96), rgba(9, 14, 26, 0.82)),
@@ -579,7 +591,14 @@
                         <a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a>
                     </div>
                 </li>
-                <li><a href="/tools/">Free tools</a></li>
+                <li class="nav-item-tools">
+                    <a href="/tools/" class="nav-tools-link">Free tools</a>
+                    <div class="tools-dropdown" aria-label="Free tool pages">
+                        <a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a>
+                        <a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a>
+                        <a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a>
+                    </div>
+                </li>
                 <li><a href="/blog/">Blog</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>

@@ -73,7 +73,9 @@ assert.match(home, /href="\/shipping\/"/i, 'homepage should link to the shipping
 assert.match(home, /href="\/tools\/"/i, 'homepage should link to the free-tools hub');
 const homeNav = home.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
 assert.match(homeNav, /href="\/tools\/"[^>]*>Free tools</i, 'homepage top nav should route calculators through the free-tools hub');
-assert.ok(!homeNav.includes('Shipping Calculator'), 'homepage top nav should not list individual calculators');
+assert.ok(homeNav.includes('class="tools-dropdown"'), 'homepage top nav should expose individual calculators inside the Free tools dropdown');
+assert.ok(homeNav.includes('href="/shipping/"'), 'homepage Free tools dropdown should link to the shipping calculator');
+assert.ok(!homeNav.includes('<li><a href="/shipping/">Shipping calculator</a></li>'), 'homepage top nav should not make individual calculators top-level items');
 for (const sectionLink of ['#apps', '#problems', '#about']) {
   assert.ok(!homeNav.includes(`href="${sectionLink}"`), `homepage top nav should not link to ${sectionLink}`);
 }

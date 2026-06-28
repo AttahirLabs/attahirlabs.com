@@ -21,7 +21,7 @@ const pages = [
 
 for (const page of pages) {
   const html = read(page);
-  assert.match(html, /href="\/apps\/apps\.css\?v=20260627-nav-fix"/, `${page} should load the cache-busted shared app stylesheet`);
+  assert.match(html, /href="\/apps\/apps\.css\?v=20260627-tools-dropdown"/, `${page} should load the cache-busted shared app stylesheet`);
   assert.match(html, /href="\/apps\/"[^>]*>Apps</, `${page} should link to the app hub`);
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
@@ -29,6 +29,8 @@ for (const page of pages) {
   const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
   assert.ok(nav.includes('class="nav-item-apps"'), `${page} should expose the Apps hover dropdown wrapper`);
   assert.ok(nav.includes('class="apps-dropdown"'), `${page} should expose the Apps hover dropdown`);
+  assert.ok(nav.includes('class="nav-item-tools"'), `${page} should expose the Free tools hover dropdown wrapper`);
+  assert.ok(nav.includes('class="tools-dropdown"'), `${page} should expose the Free tools hover dropdown`);
   assert.ok(!nav.includes('View apps'), `${page} should not duplicate the Apps destination in global nav`);
   assert.ok(!nav.includes('Install StockClearance'), `${page} should keep app-specific install CTAs out of global nav`);
   for (const route of [
@@ -40,6 +42,13 @@ for (const page of pages) {
     '/apps/warrantytracker/',
   ]) {
     assert.ok(nav.includes(`href="${route}"`), `${page} Apps dropdown should link to ${route}`);
+  }
+  for (const route of [
+    '/duty/',
+    '/shipping/',
+    '/tools/access-checker/',
+  ]) {
+    assert.ok(nav.includes(`href="${route}"`), `${page} Free tools dropdown should link to ${route}`);
   }
 }
 
@@ -76,8 +85,8 @@ assert.ok(deadStockGuide.includes('utm_content=dead_stock_guide_cta'), 'dead-sto
 
 assert.ok(appsCss.includes('overflow-x: hidden'), 'shared app-page CSS should guard against mobile horizontal overflow');
 assert.ok(appsCss.includes('.hero-grid > *'), 'shared app-page CSS should let hero grid children shrink on mobile');
-assert.match(appsCss, /\.apps-dropdown strong\s*{\s*display: block;/, 'Apps dropdown names should stack above descriptions');
-assert.match(appsCss, /\.apps-dropdown span\s*{\s*display: block;/, 'Apps dropdown descriptions should stack below names');
+assert.match(appsCss, /\.apps-dropdown strong,\s*\.tools-dropdown strong\s*{\s*display: block;/, 'Nav dropdown names should stack above descriptions');
+assert.match(appsCss, /\.apps-dropdown span,\s*\.tools-dropdown span\s*{\s*display: block;/, 'Nav dropdown descriptions should stack below names');
 
 const tariffShield = read('apps/tariffshield/index.html');
 assert.ok(tariffShield.includes('https://apps.shopify.com/tariffshield'), 'TariffShield page should link to the App Store');
