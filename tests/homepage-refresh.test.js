@@ -15,7 +15,7 @@ function excludes(pattern, message) {
   assert.ok(!pattern.test(html), message || 'homepage should not match ' + pattern);
 }
 
-function readRgbaPngPixel(filePath, x, y) {
+function readPngPixel(filePath, x, y) {
   const png = fs.readFileSync(filePath);
   assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${filePath} should be a PNG`);
 
@@ -47,10 +47,10 @@ function readRgbaPngPixel(filePath, x, y) {
   }
 
   assert.equal(bitDepth, 8, `${filePath} should be an 8-bit PNG`);
-  assert.equal(colorType, 6, `${filePath} should be RGBA so icon color can be regression-tested`);
+  assert.ok(colorType === 2 || colorType === 6, `${filePath} should be an RGB or RGBA PNG so icon color can be regression-tested`);
   assert.ok(x >= 0 && x < width && y >= 0 && y < height, 'pixel coordinates should be inside the PNG');
 
-  const bytesPerPixel = 4;
+  const bytesPerPixel = colorType === 6 ? 4 : 3;
   const rowLength = width * bytesPerPixel;
   const raw = zlib.inflateSync(Buffer.concat(idat));
   const rows = [];
@@ -84,7 +84,8 @@ function readRgbaPngPixel(filePath, x, y) {
   }
 
   const pixelOffset = x * bytesPerPixel;
-  return Array.from(rows[y].subarray(pixelOffset, pixelOffset + bytesPerPixel));
+  const pixel = Array.from(rows[y].subarray(pixelOffset, pixelOffset + bytesPerPixel));
+  return colorType === 6 ? pixel : [...pixel, 255];
 }
 
 assert.match(html, /<title>Attahir Labs \| Shopify Apps for Inventory, Tariffs, and Store Operations<\/title>/, 'homepage should use the problem-first SEO title');
@@ -115,7 +116,7 @@ includes('No installability theater', 'homepage should explicitly describe the s
 includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
 includes('/assets/home/merchant-operations-hero-mobile.jpg', 'homepage should use an optimized mobile hero image');
 includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
-includes('StockClearance app icon', 'homepage should show the public inventory app visually');
+includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 includes('2 public apps', 'homepage should summarize current public app status');
 includes('3 free tools', 'homepage should summarize live tool status');
@@ -153,6 +154,7 @@ excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield na
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
 excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
 excludes(/The homepage is now a router/i, 'homepage router section should stay visually tight without the descriptive helper line');
+excludes(/Built next/i, 'homepage public apps section should not include a preparation card beside public install CTAs');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
 excludes(/No tracking pixels/i, 'homepage should not contradict Google Analytics usage');
 excludes(/GDPR compliant/i, 'homepage should not make blanket GDPR compliance claims');
@@ -161,14 +163,13 @@ excludes(/986/, 'homepage should not include brittle tariff-rate counts');
 excludes(/85\+ origin countries|39 import markets/i, 'homepage should avoid brittle coverage counts on the homepage');
 excludes(/assets\/mockups\/shipping-calculator-(mockups|mobile-mockup|desktop-mockup)\.jpg/, 'homepage should not use shipping-calculator phone mockups as page imagery');
 
-const stockClearanceIconPixel = readRgbaPngPixel(path.join(root, 'assets/icons/stockclearance-96.png'), 16, 16);
+const stockClearanceLogoPixel = readPngPixel(path.join(root, 'assets/icons/stockclearance-logo-96.png'), 48, 38);
 assert.ok(
-  stockClearanceIconPixel[0] > 220 &&
-  stockClearanceIconPixel[1] > 40 &&
-  stockClearanceIconPixel[1] < 130 &&
-  stockClearanceIconPixel[2] < 40 &&
-  stockClearanceIconPixel[3] === 255,
-  'StockClearance optimized icon should use the orange app icon, not generic Attahir Labs branding'
+  stockClearanceLogoPixel[0] < 40 &&
+  stockClearanceLogoPixel[1] > 120 &&
+  stockClearanceLogoPixel[2] > 120 &&
+  stockClearanceLogoPixel[3] === 255,
+  'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-27<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance website update');

@@ -343,6 +343,9 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1rem;
         }
+        .public-app-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .card {
             border: 1px solid var(--line);
             border-radius: var(--radius);
@@ -635,10 +638,10 @@
                     <h2>Install the app that matches the current job.</h2>
                     <p class="section-copy">Only apps with verified public Shopify App Store listings get install calls to action here.</p>
                 </div>
-                <div class="app-grid">
+                <div class="app-grid public-app-grid">
                     <article class="card app-card">
                         <div class="app-heading">
-                            <img class="app-icon" src="/assets/icons/stockclearance-96.png" alt="StockClearance app icon" width="48" height="48">
+                            <img class="app-icon" src="/assets/icons/stockclearance-logo-96.png" alt="StockClearance logo" width="48" height="48">
                             <div>
                                 <span class="tag tag-live">Shopify App Store</span>
                                 <h3>StockClearance</h3>
@@ -673,12 +676,6 @@
                             <a class="btn btn-dark" href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">Install TariffShield</a>
                             <a class="btn btn-light" href="/apps/tariffshield/">View page</a>
                         </div>
-                    </article>
-                    <article class="card app-card">
-                        <div class="tag-row"><span class="tag tag-prep">App Store listing in preparation</span></div>
-                        <h3>Built next</h3>
-                        <p>ShelfLife, AccessShield, StoreChangelog, and WarrantyTracker are built/deployed internally, but not presented as installable until their public App Store surfaces are ready.</p>
-                        <a class="text-link" href="/apps/">See all app statuses</a>
                     </article>
                 </div>
             </div>
