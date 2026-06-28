@@ -131,9 +131,21 @@ assert.match(nav, /href="\/apps\/"[^>]*>Apps</i, 'homepage top nav should link t
 assert.match(nav, /href="\/tools\/"[^>]*>Free tools</i, 'homepage top nav should link to free-tools hub');
 assert.match(nav, /href="\/blog\/"[^>]*>Blog</i, 'homepage top nav should keep Blog');
 assert.match(nav, /href="\/contact\.html"[^>]*>Contact</i, 'homepage top nav should keep Contact');
+assert.ok(nav.includes('class="nav-item-apps"'), 'homepage top nav should expose an Apps hover dropdown wrapper');
+assert.ok(nav.includes('class="apps-dropdown"'), 'homepage top nav should expose the Apps hover dropdown');
+for (const route of [
+  '/apps/stockclearance/',
+  '/apps/tariffshield/',
+  '/apps/shelflife/',
+  '/apps/accessshield/',
+  '/apps/storechangelog/',
+  '/apps/warrantytracker/',
+]) {
+  assert.ok(nav.includes(`href="${route}"`), `homepage Apps dropdown should link to ${route}`);
+}
 assert.ok(!nav.includes('View apps'), 'homepage top nav should not duplicate the Apps destination');
 assert.ok(!nav.includes('Install StockClearance'), 'homepage top nav should not compete with page-level install CTAs');
-assert.ok(!nav.includes('TariffShield'), 'homepage top nav should not add every public app by name');
+assert.ok(!nav.includes('<li><a href="/apps/tariffshield/">TariffShield</a></li>'), 'homepage top nav should not add every public app as a top-level item');
 assert.ok(!nav.includes('Shipping Calculator'), 'homepage top nav should move individual tools behind the free-tools hub');
 
 excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle name');

@@ -26,8 +26,20 @@ for (const page of pages) {
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
   assert.match(html, /href="\/contact\.html"[^>]*>Contact</, `${page} should keep Contact in the top nav`);
   const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
+  assert.ok(nav.includes('class="nav-item-apps"'), `${page} should expose the Apps hover dropdown wrapper`);
+  assert.ok(nav.includes('class="apps-dropdown"'), `${page} should expose the Apps hover dropdown`);
   assert.ok(!nav.includes('View apps'), `${page} should not duplicate the Apps destination in global nav`);
   assert.ok(!nav.includes('Install StockClearance'), `${page} should keep app-specific install CTAs out of global nav`);
+  for (const route of [
+    '/apps/stockclearance/',
+    '/apps/tariffshield/',
+    '/apps/shelflife/',
+    '/apps/accessshield/',
+    '/apps/storechangelog/',
+    '/apps/warrantytracker/',
+  ]) {
+    assert.ok(nav.includes(`href="${route}"`), `${page} Apps dropdown should link to ${route}`);
+  }
 }
 
 const appsHub = read('apps/index.html');

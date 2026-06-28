@@ -131,6 +131,69 @@
             text-decoration: none;
         }
         .nav-links a:hover { color: var(--ink); }
+        .nav-item-apps {
+            position: relative;
+        }
+        .nav-apps-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+        }
+        .apps-dropdown {
+            position: absolute;
+            top: calc(100% + 0.45rem);
+            left: 50%;
+            width: min(92vw, 360px);
+            padding: 0.45rem;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, 0.35rem);
+            transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s ease;
+        }
+        .apps-dropdown::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            left: 0;
+            height: 0.55rem;
+        }
+        .nav-item-apps:hover .apps-dropdown,
+        .nav-item-apps:focus-within .apps-dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+        .apps-dropdown a {
+            display: grid;
+            gap: 0.1rem;
+            padding: 0.7rem 0.75rem;
+            border-radius: 6px;
+            color: var(--ink);
+            text-decoration: none;
+            white-space: normal;
+        }
+        .apps-dropdown a:hover,
+        .apps-dropdown a:focus-visible {
+            background: var(--wash);
+            outline: none;
+        }
+        .apps-dropdown strong {
+            font-size: 0.92rem;
+            line-height: 1.2;
+        }
+        .apps-dropdown span {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 650;
+            line-height: 1.25;
+        }
         .hero {
             position: relative;
             overflow: hidden;
@@ -459,6 +522,7 @@
                 scrollbar-width: none;
             }
             .nav-links::-webkit-scrollbar { display: none; }
+            .apps-dropdown { display: none; }
             .hero {
                 background:
                     linear-gradient(90deg, rgba(9, 14, 26, 0.96), rgba(9, 14, 26, 0.82)),
@@ -499,7 +563,17 @@
         <div class="nav-inner">
             <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
             <ul class="nav-links">
-                <li><a href="/apps/">Apps</a></li>
+                <li class="nav-item-apps">
+                    <a href="/apps/" class="nav-apps-link">Apps</a>
+                    <div class="apps-dropdown" aria-label="App pages">
+                        <a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a>
+                        <a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a>
+                        <a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a>
+                        <a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a>
+                        <a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a>
+                        <a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a>
+                    </div>
+                </li>
                 <li><a href="/tools/">Free tools</a></li>
                 <li><a href="/blog/">Blog</a></li>
                 <li><a href="/contact.html">Contact</a></li>
