@@ -105,8 +105,6 @@ includes('What problem are you trying to solve?', 'homepage should route by merc
 includes('Use free tools', 'homepage hero should route to the tool chooser');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
 includes('Public Apps', 'homepage should separate public apps from supporting tools');
-includes('App Store listing in preparation', 'pipeline apps should disclose their public availability status');
-includes('Only apps with verified public Shopify App Store listings get install calls to action here.', 'homepage status discipline should reflect public app availability');
 includes('StoreChangelog', 'homepage should use current StoreChangelog product name');
 includes('WarrantyTracker', 'homepage should use current WarrantyTracker product name');
 includes('StockClearance', 'homepage should include StockClearance');
@@ -154,6 +152,7 @@ excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield na
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
 excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
 excludes(/The homepage is now a router/i, 'homepage router section should stay visually tight without the descriptive helper line');
+excludes(/Only apps with verified public Shopify App Store listings get install calls to action here\./i, 'homepage public apps section should stay tight without helper copy');
 excludes(/Built next/i, 'homepage public apps section should not include a preparation card beside public install CTAs');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
 excludes(/No tracking pixels/i, 'homepage should not contradict Google Analytics usage');
