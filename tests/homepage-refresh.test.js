@@ -119,7 +119,6 @@ includes('StockClearance app icon', 'homepage should show the public inventory a
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 includes('2 public apps', 'homepage should summarize current public app status');
 includes('3 free tools', 'homepage should summarize live tool status');
-includes('4 preparing', 'homepage should summarize staged app status');
 includes('/blog/dead-stock-clearance-q2-2026/', 'homepage should feature current inventory content');
 includes('/blog/import-duty-from-vietnam-to-us/', 'homepage should feature current tariff content');
 includes('/blog/product-expiry-date-management-shopify/', 'homepage should feature ShelfLife-aligned content');
@@ -140,6 +139,7 @@ assert.ok(!nav.includes('Shipping Calculator'), 'homepage top nav should move in
 excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle name');
 excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield name');
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
+excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
 excludes(/No tracking pixels/i, 'homepage should not contradict Google Analytics usage');
 excludes(/GDPR compliant/i, 'homepage should not make blanket GDPR compliance claims');
