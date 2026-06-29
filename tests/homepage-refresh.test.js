@@ -110,7 +110,6 @@ includes('WarrantyTracker', 'homepage should use current WarrantyTracker product
 includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
-includes('No installability theater', 'homepage should explicitly describe the status discipline');
 includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
 includes('/assets/home/merchant-operations-hero-mobile.jpg', 'homepage should use an optimized mobile hero image');
 includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
@@ -167,6 +166,7 @@ excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
 excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
 excludes(/The homepage is now a router/i, 'homepage router section should stay visually tight without the descriptive helper line');
 excludes(/Only apps with verified public Shopify App Store listings get install calls to action here\./i, 'homepage public apps section should stay tight without helper copy');
+excludes(/No installability theater|Status Discipline/i, 'homepage should not include the removed status-discipline section');
 excludes(/Built next/i, 'homepage public apps section should not include a preparation card beside public install CTAs');
 excludes(/The free tools are diagnostic paths/i, 'homepage free-tools section should not use the old cramped explanatory copy');
 excludes(/bulletproof/i, 'homepage should not make overbroad bulletproof claims');
@@ -186,6 +186,6 @@ assert.ok(
   'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-27<\/lastmod>/, 'sitemap homepage lastmod should reflect the StockClearance website update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-28<\/lastmod>/, 'sitemap homepage lastmod should reflect the latest homepage update');
 
 console.log('homepage refresh tests passed');
