@@ -356,7 +356,20 @@ h1 {
     border-radius: var(--radius);
     padding: 0.7rem;
     background: var(--paper);
+    box-shadow: 0 0 0 rgba(17, 24, 39, 0);
+    color: var(--ink);
     font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.workflow-row:hover,
+.workflow-row:focus-visible {
+    border-color: rgba(29, 78, 216, 0.28);
+    background: #fbfdff;
+    box-shadow: 0 14px 28px rgba(17, 24, 39, 0.13);
+    outline: none;
+    transform: translateY(-3px) scale(1.015);
 }
 
 .workflow-row span {
@@ -569,5 +582,16 @@ footer {
     .proof-grid,
     .metric-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workflow-row {
+        transition: border-color 0.01s linear, background-color 0.01s linear, box-shadow 0.01s linear;
+    }
+
+    .workflow-row:hover,
+    .workflow-row:focus-visible {
+        transform: none;
     }
 }
