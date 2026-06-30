@@ -524,6 +524,14 @@ footer {
     flex-wrap: wrap;
 }
 
+footer .nav-logo {
+    color: var(--paper);
+}
+
+footer .nav-logo span {
+    color: #5eead4;
+}
+
 .footer-links {
     list-style: none;
     display: flex;

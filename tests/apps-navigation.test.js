@@ -21,7 +21,7 @@ const pages = [
 
 for (const page of pages) {
   const html = read(page);
-  assert.match(html, /href="\/apps\/apps\.css\?v=20260628-tool-router-buttons"/, `${page} should load the cache-busted shared app stylesheet`);
+  assert.match(html, /href="\/apps\/apps\.css\?v=20260630-footer-logo"/, `${page} should load the cache-busted shared app stylesheet`);
   assert.match(html, /href="\/apps\/"[^>]*>Apps</, `${page} should link to the app hub`);
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
@@ -88,6 +88,8 @@ assert.ok(appsCss.includes('overflow-x: hidden'), 'shared app-page CSS should gu
 assert.ok(appsCss.includes('.hero-grid > *'), 'shared app-page CSS should let hero grid children shrink on mobile');
 assert.match(appsCss, /\.apps-dropdown strong,\s*\.tools-dropdown strong\s*{\s*display: block;/, 'Nav dropdown names should stack above descriptions');
 assert.match(appsCss, /\.apps-dropdown span,\s*\.tools-dropdown span\s*{\s*display: block;/, 'Nav dropdown descriptions should stack below names');
+assert.match(appsCss, /footer \.nav-logo\s*{\s*color: var\(--paper\);/, 'Footer brand should be readable on the dark footer background');
+assert.match(appsCss, /footer \.nav-logo span\s*{\s*color: #5eead4;/, 'Footer Labs accent should stay readable on the dark footer background');
 assert.match(toolsHub, /<a class="workflow-row" href="\/duty\/" aria-label="Open import duty calculator"><span>Import duty estimate<\/span><span class="status status-tool">Duty<\/span><\/a>/, 'tools hub hero duty row should be a full clickable link with a clean accessible name');
 assert.match(toolsHub, /<a class="workflow-row" href="\/shipping\/" aria-label="Open shipping calculator"><span>Package shipping range<\/span><span class="status status-tool">Shipping<\/span><\/a>/, 'tools hub hero shipping row should be a full clickable link with a clean accessible name');
 assert.match(toolsHub, /<a class="workflow-row" href="\/tools\/access-checker\/" aria-label="Open accessibility checker"><span>Storefront accessibility scan<\/span><span class="status status-tool">WCAG<\/span><\/a>/, 'tools hub hero accessibility row should be a full clickable link with a clean accessible name');
