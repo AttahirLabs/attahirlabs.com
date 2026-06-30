@@ -95,4 +95,7 @@ assert.match(siteNavCss, /\.site-nav \.apps-dropdown,\s*\.site-nav \.tools-dropd
 assert.match(siteNavCss, /\.site-nav \.apps-dropdown strong,\s*\.site-nav \.tools-dropdown strong\s*{\s*display: block;/, 'site-nav CSS should stack dropdown names above descriptions');
 assert.match(siteNavCss, /@media \(max-width: 768px\)[\s\S]*\.site-nav \.apps-dropdown,\s*\.site-nav \.tools-dropdown\s*{\s*display: none;/, 'site-nav CSS should simplify dropdowns on mobile');
 
+const dutyPage = read('duty/index.html');
+assert.ok(dutyPage.includes('href="/duty/rates/"'), 'Duty calculator content should keep the tariff rate table discoverable');
+
 console.log('site navigation tests passed');
