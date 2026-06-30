@@ -358,6 +358,13 @@ h1 {
     scrollbar-width: thin;
 }
 
+.workflow-list.is-wheel {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    mask-image: linear-gradient(to bottom, transparent, #000 1.15rem, #000 calc(100% - 1.15rem), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 1.15rem, #000 calc(100% - 1.15rem), transparent);
+}
+
 .workflow-list.is-scrollable .workflow-row {
     scroll-snap-align: start;
 }
@@ -624,6 +631,12 @@ footer .nav-logo span {
 @media (prefers-reduced-motion: reduce) {
     .workflow-list.is-scrollable {
         scroll-behavior: auto;
+    }
+
+    .workflow-list.is-wheel {
+        mask-image: none;
+        -webkit-mask-image: none;
+        scroll-snap-type: y proximity;
     }
 
     .workflow-row {

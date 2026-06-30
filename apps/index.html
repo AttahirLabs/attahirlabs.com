@@ -18,7 +18,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://attahirlabs.com/apps/">
     <meta property="og:image" content="https://attahirlabs.com/icon-512.png">
-    <link rel="stylesheet" href="/apps/apps.css?v=20260630-app-router-scroll">
+    <link rel="stylesheet" href="/apps/apps.css?v=20260630-app-router-wheel">
     <link rel="stylesheet" href="/apps/footer-logo.css?v=20260630">
 </head>
 <body>
@@ -67,7 +67,7 @@
                         <div class="shot-title">Merchant problem router</div>
                         <div class="shot-pill">6 app paths</div>
                     </div>
-                    <div class="workflow-list is-scrollable" data-auto-scroll>
+                    <div class="workflow-list is-scrollable is-wheel" data-auto-scroll>
                         <a class="workflow-row" href="/apps/stockclearance/" aria-label="Open StockClearance app page"><span>Clear aging inventory</span><span class="status status-live">StockClearance</span></a>
                         <a class="workflow-row" href="/apps/tariffshield/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin</span><span class="status status-live">TariffShield</span></a>
                         <a class="workflow-row" href="/apps/shelflife/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls</span><span class="status status-prep">ShelfLife</span></a>
@@ -186,24 +186,76 @@
             const rows = Array.from(list.querySelectorAll('.workflow-row'));
             if (rows.length < 2) return;
 
-            let index = 0;
-            let paused = false;
+            const clonedRows = rows.map((row) => {
+                const clone = row.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                clone.setAttribute('tabindex', '-1');
+                clone.dataset.wheelClone = 'true';
+                list.appendChild(clone);
+                return clone;
+            });
 
-            const scrollToRow = (row) => {
-                list.scrollTo({ top: row.offsetTop - list.offsetTop, behavior: 'smooth' });
+            let loopHeight = 0;
+            let paused = false;
+            let lastFrameTime = null;
+            let animationFrameId = 0;
+            let scrollOffset = 0;
+            const scrollSpeed = 0.026;
+
+            const refreshLoopHeight = () => {
+                loopHeight = clonedRows[0].offsetTop - rows[0].offsetTop;
+                if (loopHeight > 0) {
+                    scrollOffset %= loopHeight;
+                }
             };
 
-            const timer = window.setInterval(() => {
-                if (paused) return;
-                index = (index + 1) % rows.length;
-                scrollToRow(rows[index]);
-            }, 2400);
+            const pause = () => {
+                paused = true;
+            };
 
-            list.addEventListener('mouseenter', () => { paused = true; });
-            list.addEventListener('mouseleave', () => { paused = false; });
-            list.addEventListener('focusin', () => { paused = true; });
-            list.addEventListener('focusout', () => { paused = false; });
-            window.addEventListener('pagehide', () => window.clearInterval(timer), { once: true });
+            const resume = () => {
+                if (list.matches(':hover') || list.contains(document.activeElement)) return;
+                scrollOffset = loopHeight > 0 ? list.scrollTop % loopHeight : list.scrollTop;
+                paused = false;
+            };
+
+            const tick = (timestamp) => {
+                if (lastFrameTime === null) lastFrameTime = timestamp;
+                const elapsed = timestamp - lastFrameTime;
+                lastFrameTime = timestamp;
+
+                if (!paused && loopHeight > 0) {
+                    scrollOffset += elapsed * scrollSpeed;
+                    if (scrollOffset >= loopHeight) {
+                        scrollOffset %= loopHeight;
+                    }
+                    list.scrollTop = scrollOffset;
+                }
+
+                animationFrameId = window.requestAnimationFrame(tick);
+            };
+
+            const start = () => {
+                refreshLoopHeight();
+                if (loopHeight <= 0) {
+                    animationFrameId = window.requestAnimationFrame(start);
+                    return;
+                }
+                scrollOffset = list.scrollTop;
+                animationFrameId = window.requestAnimationFrame(tick);
+            };
+
+            list.addEventListener('mouseenter', pause);
+            list.addEventListener('mouseleave', resume);
+            list.addEventListener('focusin', pause);
+            list.addEventListener('focusout', () => window.setTimeout(resume, 0));
+            window.addEventListener('resize', refreshLoopHeight);
+            window.addEventListener('pagehide', () => {
+                window.cancelAnimationFrame(animationFrameId);
+                window.removeEventListener('resize', refreshLoopHeight);
+            }, { once: true });
+
+            animationFrameId = window.requestAnimationFrame(start);
         })();
     </script>
 </body>

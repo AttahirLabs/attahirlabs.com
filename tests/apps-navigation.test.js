@@ -21,7 +21,7 @@ const pages = [
 
 for (const page of pages) {
   const html = read(page);
-  assert.match(html, /href="\/apps\/apps\.css\?v=20260630-app-router-scroll"/, `${page} should load the cache-busted shared app stylesheet`);
+  assert.match(html, /href="\/apps\/apps\.css\?v=20260630-app-router-wheel"/, `${page} should load the cache-busted shared app stylesheet`);
   assert.match(html, /href="\/apps\/footer-logo\.css\?v=20260630"/, `${page} should load the footer-logo cache-busting override`);
   assert.match(html, /href="\/apps\/"[^>]*>Apps</, `${page} should link to the app hub`);
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
@@ -73,7 +73,7 @@ assert.ok(appsHub.includes('Public apps link directly to Shopify'), 'apps hub sh
 assert.ok(appsHub.includes('Listing in preparation'), 'apps hub should label non-public apps honestly');
 assert.ok(appsHub.includes('utm_content=apps_hub_hero'), 'apps hub StockClearance install link should be campaign-trackable');
 assert.ok(appsHub.includes('6 app paths'), 'apps hub router should signal that all app paths are represented');
-assert.ok(appsHub.includes('class="workflow-list is-scrollable" data-auto-scroll'), 'apps hub router should be a scrollable auto-advancing list');
+assert.ok(appsHub.includes('class="workflow-list is-scrollable is-wheel" data-auto-scroll'), 'apps hub router should be a wheel-style auto-advancing list');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/stockclearance\/" aria-label="Open StockClearance app page"><span>Clear aging inventory<\/span><span class="status status-live">StockClearance<\/span><\/a>/, 'apps hub router StockClearance row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/tariffshield\/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin<\/span><span class="status status-live">TariffShield<\/span><\/a>/, 'apps hub router TariffShield row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/shelflife\/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls<\/span><span class="status status-prep">ShelfLife<\/span><\/a>/, 'apps hub router ShelfLife row should be a full clickable link');
@@ -81,6 +81,10 @@ assert.match(appsHub, /<a class="workflow-row" href="\/apps\/accessshield\/" ari
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/storechangelog\/" aria-label="Open StoreChangelog app page"><span>Catch risky store changes<\/span><span class="status status-prep">StoreChangelog<\/span><\/a>/, 'apps hub router StoreChangelog row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/warrantytracker\/" aria-label="Open WarrantyTracker app page"><span>Manage warranty claims<\/span><span class="status status-prep">WarrantyTracker<\/span><\/a>/, 'apps hub router WarrantyTracker row should be a full clickable link');
 assert.ok(appsHub.includes("window.matchMedia('(prefers-reduced-motion: reduce)'"), 'apps hub auto-scroll should respect reduced-motion settings');
+assert.ok(appsHub.includes('cloneNode(true)'), 'apps hub wheel should duplicate the options for a seamless loop');
+assert.ok(appsHub.includes("list.addEventListener('mouseenter', pause)"), 'apps hub wheel should pause when the pointer hovers');
+assert.ok(appsHub.includes("list.addEventListener('mouseleave', resume)"), 'apps hub wheel should resume after hover leaves');
+assert.ok(appsHub.includes("list.addEventListener('focusin', pause)"), 'apps hub wheel should pause when a link receives keyboard focus');
 
 const stockClearance = read('apps/stockclearance/index.html');
 assert.ok(stockClearance.includes('https://apps.shopify.com/stockclearance'), 'StockClearance page should link to the App Store');
@@ -101,6 +105,8 @@ assert.match(appsCss, /\.apps-dropdown strong,\s*\.tools-dropdown strong\s*{\s*d
 assert.match(appsCss, /\.apps-dropdown span,\s*\.tools-dropdown span\s*{\s*display: block;/, 'Nav dropdown descriptions should stack below names');
 assert.match(appsCss, /\.workflow-list\.is-scrollable\s*{[\s\S]*overflow-y: auto;/, 'Scrollable workflow lists should allow manual vertical scrolling');
 assert.match(appsCss, /\.workflow-list\.is-scrollable\s*{[\s\S]*scroll-snap-type: y proximity;/, 'Scrollable workflow lists should snap between app options');
+assert.match(appsCss, /\.workflow-list\.is-wheel\s*{[\s\S]*mask-image: linear-gradient/, 'Wheel workflow lists should fade the viewport edges like a rotating selector');
+assert.match(appsCss, /\.workflow-list\.is-wheel\s*{[\s\S]*scroll-snap-type: none;/, 'Wheel workflow lists should disable snap while auto-rotating continuously');
 assert.match(appsCss, /footer \.nav-logo\s*{\s*color: var\(--paper\);/, 'Footer brand should be readable on the dark footer background');
 assert.match(appsCss, /footer \.nav-logo span\s*{\s*color: #5eead4;/, 'Footer Labs accent should stay readable on the dark footer background');
 assert.match(footerLogoCss, /footer \.nav-logo\s*{\s*color: #ffffff;/, 'Footer override should bypass stale shared CSS caches');
