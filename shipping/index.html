@@ -83,19 +83,10 @@
         @media (max-width: 820px) { .calculator-grid { grid-template-columns:1fr; } .summary { grid-template-columns:1fr 1fr 1fr; } }
         @media (max-width: 768px) { nav { overflow-x:auto; -webkit-overflow-scrolling:touch; } .nav-inner { height:auto; min-height:64px; padding:.75rem 0; align-items:flex-start; gap:.75rem; flex-wrap:wrap; } .nav-logo { flex:0 0 auto; } .nav-links { display:flex !important; width:100%; justify-content:flex-start; gap:.85rem; flex-wrap:nowrap; overflow-x:auto; white-space:nowrap; padding:.2rem 0 .4rem; margin:0; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } .nav-links li { flex:0 0 auto; } .nav-links a { display:block; font-size:.85rem; } .hero { padding:3.2rem 1rem 2.25rem; } h1 { font-size:clamp(1.9rem,9vw,2.5rem); max-width:18.5rem; } .hero p { max-width:19rem; } .container { padding:1.25rem 1rem; } .card { padding:1.15rem; } .row, .triple { grid-template-columns:1fr; } .estimate { grid-template-columns:1fr; } .estimate .price { text-align:left; } }
     </style>
+    <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
-<nav>
-    <div class="nav-inner">
-        <a href="/" class="nav-logo">Attahir<span>Labs</span></a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/duty/">Duty Calculator</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
 
 <section class="hero">
     <div class="hero-badge">Free Phase 1 Tool</div>

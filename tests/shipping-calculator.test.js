@@ -58,9 +58,14 @@ assert.match(html, /property="og:title"/i, 'page should include Open Graph metad
 assert.match(html, /name="twitter:card"/i, 'page should include Twitter metadata');
 assert.match(html, /application\/ld\+json/i, 'page should include JSON-LD');
 assert.match(html, /retail benchmark estimates may differ from Shopify checkout\/carrier account rates/i, 'page should include the required retail benchmark disclaimer');
-for (const label of ['Home', 'Duty Calculator', 'Blog', 'Contact']) {
+for (const label of ['Apps', 'Free tools', 'Blog', 'Contact']) {
   assert.match(html, new RegExp(`>${label}<`, 'i'), `nav should include ${label}`);
 }
+assert.match(html, /class="nav-item-apps"/, 'shipping page should expose the Apps dropdown wrapper');
+assert.match(html, /class="nav-item-tools"/, 'shipping page should expose the Free tools dropdown wrapper');
+assert.match(html, /href="\/apps\/stockclearance\/"/, 'shipping page Apps dropdown should link to StockClearance');
+assert.match(html, /href="\/tools\/access-checker\/"/, 'shipping page Free tools dropdown should link to the accessibility checker');
+assert.doesNotMatch(html.match(/<nav[\s\S]*?<\/nav>/i)?.[0] || '', />Home<\/a>|>Duty Calculator<\/a>|>Shipping Calculator<\/a>/, 'shipping page should not use the old calculator-specific top nav');
 for (const id of ['originCountry', 'originPostal', 'destinationCountry', 'destinationPostal', 'weight', 'length', 'width', 'height', 'orderValue', 'speedPreference']) {
   assert.match(html, new RegExp(`id="${id}"`), `page should include input ${id}`);
 }
