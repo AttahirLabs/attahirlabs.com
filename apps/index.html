@@ -18,7 +18,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://attahirlabs.com/apps/">
     <meta property="og:image" content="https://attahirlabs.com/icon-512.png">
-    <link rel="stylesheet" href="/apps/apps.css?v=20260630-footer-logo">
+    <link rel="stylesheet" href="/apps/apps.css?v=20260630-app-router-scroll">
     <link rel="stylesheet" href="/apps/footer-logo.css?v=20260630">
 </head>
 <body>
@@ -65,13 +65,15 @@
                 <aside class="product-shot" aria-label="Attahir Labs app routing preview">
                     <div class="shot-top">
                         <div class="shot-title">Merchant problem router</div>
-                        <div class="shot-pill">2 public apps</div>
+                        <div class="shot-pill">6 app paths</div>
                     </div>
-                    <div class="workflow-list">
+                    <div class="workflow-list is-scrollable" data-auto-scroll>
                         <a class="workflow-row" href="/apps/stockclearance/" aria-label="Open StockClearance app page"><span>Clear aging inventory</span><span class="status status-live">StockClearance</span></a>
                         <a class="workflow-row" href="/apps/tariffshield/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin</span><span class="status status-live">TariffShield</span></a>
                         <a class="workflow-row" href="/apps/shelflife/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls</span><span class="status status-prep">ShelfLife</span></a>
+                        <a class="workflow-row" href="/apps/accessshield/" aria-label="Open AccessShield app page"><span>Find accessibility risks</span><span class="status status-prep">AccessShield</span></a>
                         <a class="workflow-row" href="/apps/storechangelog/" aria-label="Open StoreChangelog app page"><span>Catch risky store changes</span><span class="status status-prep">StoreChangelog</span></a>
+                        <a class="workflow-row" href="/apps/warrantytracker/" aria-label="Open WarrantyTracker app page"><span>Manage warranty claims</span><span class="status status-prep">WarrantyTracker</span></a>
                     </div>
                 </aside>
             </div>
@@ -175,5 +177,34 @@
             </ul>
         </div>
     </footer>
+    <script>
+        (() => {
+            const list = document.querySelector('[data-auto-scroll]');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (!list || reduceMotion.matches) return;
+
+            const rows = Array.from(list.querySelectorAll('.workflow-row'));
+            if (rows.length < 2) return;
+
+            let index = 0;
+            let paused = false;
+
+            const scrollToRow = (row) => {
+                list.scrollTo({ top: row.offsetTop - list.offsetTop, behavior: 'smooth' });
+            };
+
+            const timer = window.setInterval(() => {
+                if (paused) return;
+                index = (index + 1) % rows.length;
+                scrollToRow(rows[index]);
+            }, 2400);
+
+            list.addEventListener('mouseenter', () => { paused = true; });
+            list.addEventListener('mouseleave', () => { paused = false; });
+            list.addEventListener('focusin', () => { paused = true; });
+            list.addEventListener('focusout', () => { paused = false; });
+            window.addEventListener('pagehide', () => window.clearInterval(timer), { once: true });
+        })();
+    </script>
 </body>
 </html>
