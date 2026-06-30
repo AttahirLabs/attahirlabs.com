@@ -72,6 +72,10 @@ assert.ok(appsHub.includes('Problem-first app chooser'), 'apps hub should frame 
 assert.ok(appsHub.includes('Public apps link directly to Shopify'), 'apps hub should separate public apps from pipeline apps');
 assert.ok(appsHub.includes('Listing in preparation'), 'apps hub should label non-public apps honestly');
 assert.ok(appsHub.includes('utm_content=apps_hub_hero'), 'apps hub StockClearance install link should be campaign-trackable');
+assert.match(appsHub, /<a class="workflow-row" href="\/apps\/stockclearance\/" aria-label="Open StockClearance app page"><span>Clear aging inventory<\/span><span class="status status-live">StockClearance<\/span><\/a>/, 'apps hub router StockClearance row should be a full clickable link');
+assert.match(appsHub, /<a class="workflow-row" href="\/apps\/tariffshield\/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin<\/span><span class="status status-live">TariffShield<\/span><\/a>/, 'apps hub router TariffShield row should be a full clickable link');
+assert.match(appsHub, /<a class="workflow-row" href="\/apps\/shelflife\/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls<\/span><span class="status status-prep">ShelfLife<\/span><\/a>/, 'apps hub router ShelfLife row should be a full clickable link');
+assert.match(appsHub, /<a class="workflow-row" href="\/apps\/storechangelog\/" aria-label="Open StoreChangelog app page"><span>Catch risky store changes<\/span><span class="status status-prep">StoreChangelog<\/span><\/a>/, 'apps hub router StoreChangelog row should be a full clickable link');
 
 const stockClearance = read('apps/stockclearance/index.html');
 assert.ok(stockClearance.includes('https://apps.shopify.com/stockclearance'), 'StockClearance page should link to the App Store');
