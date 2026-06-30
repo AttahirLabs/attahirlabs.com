@@ -21,6 +21,7 @@ const siteNavPages = [
   'duty/index.html',
   'duty/rates/index.html',
   'shipping/index.html',
+  'tools/access-checker/index.html',
   ...fs.readdirSync(path.join(root, 'blog'), { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => `blog/${entry.name}/index.html`)
