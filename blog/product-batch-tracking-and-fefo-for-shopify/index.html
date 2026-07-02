@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Product batch tracking and FEFO for Shopify | Attahir Labs</title>
+    <meta name="description" content="Learn how Shopify merchants can use batch tracking, expiry dates, FEFO picking, and official recall context to manage dated inventory.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/product-batch-tracking-and-fefo-for-shopify/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/product-batch-tracking-and-fefo-for-shopify/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of expiry and batch shelf for product recall readiness, batch tracking, quarantine workflow, and customer-notification review.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/product-batch-tracking-and-fefo-for-shopify/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Product batch tracking and FEFO for Shopify",
+      "description": "Learn how Shopify merchants can use batch tracking, expiry dates, FEFO picking, and official recall context to manage dated inventory.",
+      "datePublished": "2026-07-01",
+      "dateModified": "2026-07-01",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/product-batch-tracking-and-fefo-for-shopify/",
+      "image": "https://attahirlabs.com/assets/blog/product-batch-tracking-and-fefo-for-shopify/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between batch tracking and lot tracking?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Is FEFO better than FIFO?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Does Shopify support batch tracking natively?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Do I need batch tracking if my products only have best-before dates?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How often should a Shopify store review expiring inventory?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What should happen when a batch expires?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Can batch tracking help with recalls?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How should bundles be handled?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; overflow-x: hidden; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; min-width: 0; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: anywhere; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+        @media (max-width: 640px) {
+            main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            h1 { font-size: 1.7rem; letter-spacing: 0; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+        }
+    
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+    <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">July 01, 2026</p>
+<h1>Product batch tracking and FEFO for Shopify</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/product-batch-tracking-and-fefo-for-shopify/hero.jpg" width="3840" height="2160" alt="Editorial photo of expiry and batch shelf for product recall readiness, batch tracking, quarantine workflow, and customer-notification review." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Recall readiness depends on connecting products, batches, shelf locations, scanners, and order records before affected inventory moves again.</figcaption>
+        </figure>
+
+<p>Shopify is excellent at selling individual SKUs. It is less opinionated about what happens after a merchant buys, receives, stores, picks, and ships physical inventory that ages. For many stores, that gap is harmless. A mug, poster, phone case, or wrench does not usually need lot-level rotation. But for food, supplements, cosmetics, pet products, medical-adjacent goods, seeds, chemicals, and other date-sensitive products, a plain SKU count is not enough.</p>
+<p>Those merchants need product batch tracking and FEFO.</p>
+<p>Batch tracking records which lot, batch, or production run a unit belongs to. FEFO, short for first-expired, first-out, is the inventory rotation method that prioritizes stock with the earliest expiry or best-before date. Together, they help Shopify merchants reduce waste, catch aging inventory before it becomes unsellable, and respond faster when a supplier, manufacturer, or regulator identifies a safety issue.</p>
+<p>This guide explains how batch tracking and FEFO work in a Shopify operation, what data to capture, how to design a practical workflow, and where apps such as ShelfLife fit.</p>
+<h2>Quick answer</h2>
+<p>Product batch tracking gives each lot or production run its own record, while FEFO tells the team to pick the earliest-expiring eligible batch first. Shopify merchants selling dated goods should capture lot code, expiry date, received quantity, location, and shipped batch history so aging stock, supplier notices, and recall workflows are not rebuilt from spreadsheets after the fact.</p>
+<h2>What product batch tracking means</h2>
+<p>Product batch tracking is the practice of attaching inventory movement to a batch identifier, lot number, production code, expiry date, best-before date, or receiving date.</p>
+<p>In a simple Shopify setup, a merchant may know that a location has 120 units of a SKU. Batch tracking answers the more useful operational questions:</p>
+<ul>
+<li>Which 120 units are they?</li>
+<li>Were they received in one shipment or several?</li>
+<li>Which supplier shipment did they come from?</li>
+<li>Which units expire first?</li>
+<li>Which customers received units from batch A rather than batch B?</li>
+<li>How many units remain from a batch that may need to be pulled?</li>
+</ul>
+<p>The exact term varies by industry. Food and supplement teams often say "lot" or "batch." Beauty brands may use batch codes. Warehouses may talk about production runs, received lots, or expiry groups. The important point is that inventory is no longer treated as one undifferentiated pool.</p>
+<h2>What FEFO means</h2>
+<p>FEFO means first-expired, first-out. When an order is picked, the earliest-expiring eligible batch should be selected before later-expiring stock.</p>
+<p>FEFO is different from FIFO, which means first-in, first-out. FIFO rotates stock based on receiving date. FEFO rotates stock based on expiry or best-before date. In many operations those are close enough, but not always. A later supplier delivery might contain older production stock than an earlier delivery. A return might re-enter inventory with less shelf life than the units around it. A purchase order might include mixed lots with different dates.</p>
+<p>For date-sensitive Shopify stores, FEFO is usually the stronger rule because it is anchored to sellable life rather than warehouse chronology.</p>
+<h2>Why Shopify merchants need more than SKU inventory</h2>
+<p>Shopify's native inventory model is built around products, variants, locations, and available quantities. That is enough for many stores, but it does not by itself create a batch ledger or a FEFO picking rule.</p>
+<p>A merchant selling shelf-stable snacks, skincare, vitamins, tea, coffee, perishables, or pet treats may need to know that the same Shopify variant exists in several different batches. Each batch may have a different expiry date, received quantity, available quantity, quarantine status, supplier, certificate, or recall risk.</p>
+<p>Without batch tracking, teams often fall back to spreadsheets, warehouse notes, or tribal knowledge. That can work when order volume is tiny. It becomes fragile as soon as there are multiple staff, multiple locations, subscriptions, wholesale orders, bundles, returns, or third-party logistics handoffs.</p>
+<p>The risk is not only compliance. The everyday business impact is usually more immediate:</p>
+<ul>
+<li>Products expire in the back of the shelf while newer units ship first.</li>
+<li>Support cannot confidently answer which customers received a specific lot.</li>
+<li>Discounting happens too late because aging stock is invisible.</li>
+<li>Purchase planning overstates sellable stock.</li>
+<li>Staff pick the easiest box rather than the right batch.</li>
+<li>Recalls take longer because customer order history is not tied to lots.</li>
+</ul>
+<p>Good batch tracking turns those problems into operating rules.</p>
+<h2>A practical Shopify batch data model</h2>
+<p>You do not need an enterprise warehouse system to start. You need a clean record for each batch and a disciplined way to connect that record to inventory movement. Shopify's own product model centers on products, variants, inventory items, and locations, so batch-specific records usually need to be layered into the merchant's app, warehouse, or operating process rather than assumed from a variant quantity alone. See Shopify's developer references for Product<sup class="citation"><a href="#ref-1">[1]</a></sup>, ProductVariant<sup class="citation"><a href="#ref-2">[2]</a></sup>, and InventoryLevel<sup class="citation"><a href="#ref-3">[3]</a></sup>.</p>
+<p>For each batch, capture at least:</p>
+<ul>
+<li>Shopify product and variant</li>
+<li>Batch or lot code</li>
+<li>Expiry date, best-before date, or use-by date</li>
+<li>Received date</li>
+<li>Original received quantity</li>
+<li>Current available quantity</li>
+<li>Location</li>
+<li>Supplier or manufacturer</li>
+<li>Status, such as active, hold, quarantine, depleted, expired, or recalled</li>
+</ul>
+<p>For more regulated or higher-risk categories, add:</p>
+<ul>
+<li>Purchase order or invoice reference</li>
+<li>Certificate of analysis link</li>
+<li>Country of origin</li>
+<li>Manufacturing date</li>
+<li>Storage condition</li>
+<li>Internal notes</li>
+<li>Recall or withdrawal reference</li>
+<li>Disposition notes for discarded stock</li>
+</ul>
+<p>The goal is not to collect data for its own sake. The goal is to make every operational decision answerable: what can we sell, what should we ship first, what needs review, and what happened to each batch?</p>
+<h2>How FEFO should work in the order flow</h2>
+<p>A good FEFO workflow starts before the order is picked.</p>
+<p>When inventory is received, each batch should be created or updated with its expiry date and quantity. If a delivery contains mixed dates, split it into separate batch records. Do not hide mixed lots under one receiving line; that is where rotation errors begin.</p>
+<p>When stock is put away, the physical warehouse should reflect the FEFO rule. Earlier-expiring stock should be easier to pick, clearly labeled, or stored in the correct forward-pick position. Software cannot fix a shelf that is physically arranged in the wrong order.</p>
+<p>When an order is ready to fulfill, the picker should see the preferred batch. Ideally, the system should allocate the earliest-expiring eligible batch automatically. If automatic allocation is not possible, it should at least show staff the batch priority clearly enough that the correct choice is obvious.</p>
+<p>When the order ships, the chosen batch should be deducted and associated with the order. This is the step that creates traceability. Without it, the merchant may know what batches existed, but not which customers received them.</p>
+<p>When stock expires, the batch should be removed from sellable availability, marked expired, and either discarded, returned, donated where legally appropriate, or otherwise handled according to the merchant's policy.</p>
+<h2>Example: a Shopify store selling coffee concentrates</h2>
+<p>Imagine a Shopify store sells a bottled coffee concentrate with a twelve-month best-before date. The store receives three batches of the same variant. The example below is operational, not legal guidance; for food categories, official food traceability and recall context should come from sources such as the FDA's FSMA Food Traceability Rule<sup class="citation"><a href="#ref-4">[4]</a></sup> and FDA recall and safety alert<sup class="citation"><a href="#ref-5">[5]</a></sup> resources.</p>
+<ul>
+<li>Batch C0426, expires April 2026, 180 units</li>
+<li>Batch C0626, expires June 2026, 240 units</li>
+<li>Batch C0926, expires September 2026, 300 units</li>
+</ul>
+<p>The Shopify product page may show one variant. But operationally, these are three different inventory pools.</p>
+<p>Under FEFO, orders should draw from C0426 first. If a wholesale order needs 200 units, the team may ship 180 units from C0426 and 20 from C0626, recording both lots against the fulfillment. If batch C0626 is later affected by a supplier notice, the store can search for orders that received that batch and contact only the relevant customers.</p>
+<p>Without batch-level history, the same situation becomes guesswork. The team may have to notify more customers than necessary, inspect more inventory than necessary, and spend more time reconstructing what happened.</p>
+<h2>Recall and food-safety context</h2>
+<p>For food and similar products, official guidance consistently emphasizes traceability, records, and fast identification of affected products. The FDA's Food Traceability Rule under FSMA establishes additional recordkeeping requirements for foods on the Food Traceability List. Even when a Shopify merchant is not directly covered by that rule, the operational lesson is useful: better records make it easier to identify where food came from and where it went.</p>
+<p>The FDA also maintains recall and safety alert pages, and openFDA provides enforcement report data that can be searched programmatically. USDA FSIS publishes recalls for meat, poultry, and egg products. CDC outbreak pages explain why fast product identification matters when public-health investigations are underway.</p>
+<p>Shopify merchants should not treat a batch tracking app as a substitute for legal advice or a formal food-safety plan. But they should treat batch records as an important part of operational readiness. If a supplier calls about a lot code, the merchant should not be opening spreadsheets, old packing slips, and Slack threads hoping to piece together the answer.</p>
+<h2>How to implement batch tracking in Shopify</h2>
+<p>Start with the narrowest workflow that removes the biggest risk. Most teams do not need to redesign the whole operation in one week.</p>
+<h3>1. Decide which products need batch control</h3>
+<p>Not every SKU needs batch tracking. Prioritize products with expiry dates, best-before dates, supplier lot numbers, safety risk, regulatory sensitivity, seasonal freshness, or high return cost.</p>
+<p>Create a simple policy:</p>
+<ul>
+<li>Batch required for all food, supplements, cosmetics, pet consumables, and dated goods</li>
+<li>Batch optional for durable goods</li>
+<li>Batch not required for merchandise with no shelf-life concern</li>
+</ul>
+<p>This prevents the process from feeling heavier than it needs to be.</p>
+<h3>2. Standardize the batch code</h3>
+<p>Use the supplier or manufacturer lot code when it exists. If you create internal codes, keep them readable and consistent. For example:</p>
+<p><code>SKU-YYYYMMDD-SUPPLIER-SEQ</code></p>
+<p>Do not rely only on a handwritten note or a date in a staff member's memory. The batch code should appear on receiving records, shelf labels, pick instructions, and any internal recall workflow.</p>
+<h3>3. Capture expiry at receiving</h3>
+<p>The receiving step is the best moment to capture batch data because the box, label, packing slip, and staff action are all in one place.</p>
+<p>Receiving staff should:</p>
+<ul>
+<li>Check whether the product requires batch tracking</li>
+<li>Record the lot or batch code</li>
+<li>Record expiry or best-before date</li>
+<li>Split mixed lots into separate records</li>
+<li>Put any questionable stock on hold</li>
+<li>Label or store the batch so FEFO can work physically</li>
+</ul>
+<p>Skipping this step creates expensive cleanup later.</p>
+<h3>4. Make FEFO visible during picking</h3>
+<p>The picker should not have to infer the right batch. FEFO should be visible in the pick list, app screen, packing station, or warehouse instruction. If the merchant uses a 3PL, the batch rule needs to be part of the handoff.</p>
+<p>The most common failure mode is a system that records batches but does not influence fulfillment. That creates a nice database but little operational benefit. The batch system must affect what gets shipped.</p>
+<h3>5. Record batch shipped per order</h3>
+<p>When an order is fulfilled, record which batch or batches were shipped. This is essential for traceability and customer support.</p>
+<p>For split shipments, bundles, and subscriptions, make sure the batch record follows the actual item shipped. A subscription order is not special from a safety perspective; it still needs the same batch history as a one-time order.</p>
+<h3>6. Review aging inventory weekly</h3>
+<p>FEFO reduces waste, but it does not eliminate it. Someone should review aging inventory on a regular cadence.</p>
+<p>Useful views include:</p>
+<ul>
+<li>Batches expiring in 30, 60, and 90 days</li>
+<li>Batches on hold</li>
+<li>Batches with high quantity and low sales velocity</li>
+<li>Expired batches still showing available quantity</li>
+<li>Products with no expiry data even though batch tracking is required</li>
+</ul>
+<p>This is where batch tracking becomes a margin tool, not only a safety tool. Earlier visibility gives the merchant more options: merchandising, discounts, wholesale liquidation, supplier conversations, or production changes.</p>
+<h2>Common mistakes to avoid</h2>
+<p>The first mistake is treating FEFO as a spreadsheet exercise. A spreadsheet can hold batch data, but it usually does not live inside the picking workflow. If staff have to check a separate file while packing orders, the process will drift.</p>
+<p>The second mistake is tracking expiry dates without tracking shipped batches. Knowing what expired in the warehouse is useful. Knowing which customers received which batch is much more useful when a problem appears after fulfillment.</p>
+<p>The third mistake is ignoring returns. Returned consumables often should not re-enter sellable stock, depending on the product and policy. If returns are restocked, they must keep their original batch identity and condition status.</p>
+<p>The fourth mistake is using FIFO when FEFO is needed. Receiving date is not the same as expiry date. If the business promise depends on shelf life, use expiry as the primary rotation rule.</p>
+<p>The fifth mistake is letting "available inventory" include stock that is expired, quarantined, damaged, recalled, or otherwise not sellable. Batch status should control whether stock can be allocated.</p>
+<h2>Where ShelfLife fits</h2>
+<p>ShelfLife is designed for Shopify merchants that need clearer control over dated inventory, batches, and sellable life. Instead of treating every unit of a variant as identical, a merchant can manage stock through batch records, expiry dates, and operational views that support FEFO decisions.</p>
+<p>The value is strongest when a team is already feeling one of these pains:</p>
+<ul>
+<li>Staff are choosing lots manually during fulfillment</li>
+<li>Expiry tracking lives in spreadsheets</li>
+<li>Aging inventory surprises the team late</li>
+<li>Customer support cannot identify shipped lots</li>
+<li>The business needs a cleaner workflow before scaling wholesale, subscriptions, or multi-location fulfillment</li>
+</ul>
+<p>For merchants importing goods, landed cost also matters. Shelf-life decisions and duty decisions are separate workflows, but both affect margin. If import duties are part of the buying decision, use the Attahir Labs <a href="/duty/">free duty calculator</a> alongside batch planning so product teams understand both expiry risk and landed-cost risk before purchase orders are placed. For U.S. and Canadian import planning, official sources such as CBP import guidance<sup class="citation"><a href="#ref-6">[6]</a></sup>, the USITC Harmonized Tariff Schedule<sup class="citation"><a href="#ref-7">[7]</a></sup>, WTO tariff resources<sup class="citation"><a href="#ref-8">[8]</a></sup>, and CBSA customs tariff pages<sup class="citation"><a href="#ref-9">[9]</a></sup> should be the source of truth for tariff classification and duty context, while tools help turn those inputs into merchant margin decisions.</p>
+<h2>Batch tracking checklist for Shopify teams</h2>
+<p>Use this checklist to audit your current setup:</p>
+<ul>
+<li>Every batch-controlled SKU is identified.</li>
+<li>Receiving staff capture lot code and expiry date before stock becomes sellable.</li>
+<li>Mixed-lot deliveries are split into separate batch records.</li>
+<li>Earlier-expiring stock is physically easier to pick.</li>
+<li>Pickers can see the FEFO batch priority.</li>
+<li>Fulfilled orders record the shipped batch.</li>
+<li>Expired and quarantined batches are excluded from sellable stock.</li>
+<li>Aging inventory is reviewed at least weekly.</li>
+<li>Supplier lot notices can be matched to inventory and orders.</li>
+<li>Recall, withdrawal, and customer-notification procedures are documented.</li>
+</ul>
+<p>If several of those items are missing, the store is probably relying on luck more than process.</p>
+<h2>FAQ</h2>
+<h3>What is the difference between batch tracking and lot tracking?</h3>
+<p>In everyday ecommerce operations, the terms are often used interchangeably. Both mean grouping inventory by a shared production, receiving, or supplier identifier. "Lot" is common in food, supplements, and regulated supply chains. "Batch" is common in manufacturing and merchant operations.</p>
+<h3>Is FEFO better than FIFO?</h3>
+<p>For products with expiry dates or best-before dates, FEFO is usually better because it prioritizes the earliest-expiring stock. FIFO is useful when receiving order is the best proxy for age, but it can fail when a later shipment contains older-dated goods.</p>
+<h3>Does Shopify support batch tracking natively?</h3>
+<p>Shopify supports products, variants, inventory quantities, and locations. Batch-level expiry workflows usually require an app, custom workflow, warehouse system, or external inventory process. Merchants should verify their exact Shopify plan, fulfillment stack, and app requirements before committing to a workflow.</p>
+<h3>Do I need batch tracking if my products only have best-before dates?</h3>
+<p>Often, yes. A best-before date may not mean the same thing as a safety expiration date, but it still affects customer experience, sellable life, discounts, and inventory planning. Batch tracking helps prevent newer stock from shipping while older stock sits unsold.</p>
+<h3>How often should a Shopify store review expiring inventory?</h3>
+<p>Weekly is a good starting cadence for most date-sensitive stores. Fast-moving or high-risk categories may need daily review. The key is to review early enough that the business still has choices.</p>
+<h3>What should happen when a batch expires?</h3>
+<p>The batch should be removed from sellable inventory, marked with an expired or unavailable status, and handled according to the merchant's product category, supplier rules, local law, and internal policy. Do not let expired stock remain available for order allocation.</p>
+<h3>Can batch tracking help with recalls?</h3>
+<p>Yes. Batch tracking can help identify affected inventory and customers more quickly. It does not replace official recall procedures, legal advice, or food-safety obligations, but it gives the team better records when a supplier or regulator identifies a lot-level issue.</p>
+<h3>How should bundles be handled?</h3>
+<p>Each component in a bundle should keep its own batch identity. If a bundle contains three consumable items, the fulfillment record should capture the batch shipped for each component, not only the parent bundle SKU.</p>
+<h2>Disclaimer</h2>
+<p>This article is for general operational education and is not legal, regulatory, food-safety, or professional compliance advice. Requirements vary by product, jurisdiction, role in the supply chain, and business model. Consult qualified counsel, food-safety professionals, suppliers, and applicable regulators before making compliance decisions.</p>
+<h2>CTA</h2>
+<p>If your Shopify store sells products with expiry dates, best-before dates, or supplier lot codes, <a href="/apps/shelflife/">ShelfLife</a> can help you bring batch tracking and FEFO discipline into day-to-day operations. Use ShelfLife to make dated inventory visible before it becomes a margin problem, a support problem, or a recall-readiness problem. If imported inventory is also part of your margin model, pair that workflow with the <a href="/duty/">TariffShield duty calculator</a> so purchase planning accounts for both shelf-life risk and landed-cost risk.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/Product" rel="noopener" target="_blank">Product</a></li><li id="ref-2"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/ProductVariant" rel="noopener" target="_blank">ProductVariant</a></li><li id="ref-3"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/InventoryLevel" rel="noopener" target="_blank">InventoryLevel</a></li><li id="ref-4"><a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods" rel="noopener" target="_blank">FSMA Food Traceability Rule</a></li><li id="ref-5"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" rel="noopener" target="_blank">recall and safety alert</a></li><li id="ref-6"><a href="https://www.cbp.gov/trade/basic-import-export/internet-purchases" rel="noopener" target="_blank">CBP import guidance</a></li><li id="ref-7"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC Harmonized Tariff Schedule</a></li><li id="ref-8"><a href="https://www.wto.org/english/tratop_e/tariffs_e/tariffs_e.htm" rel="noopener" target="_blank">WTO tariff resources</a></li><li id="ref-9"><a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html" rel="noopener" target="_blank">CBSA customs tariff pages</a></li><li id="ref-10"><a href="https://open.fda.gov/apis/food/enforcement/" rel="noopener" target="_blank">openFDA, "Food Enforcement Reports API"</a></li><li id="ref-11"><a href="https://www.cdc.gov/foodborne-outbreaks/" rel="noopener" target="_blank">CDC, "Foodborne Outbreaks"</a></li><li id="ref-12"><a href="https://www.fda.gov/food/fda-food-code/food-code-2022" rel="noopener" target="_blank">FDA, "Food Code"</a></li><li id="ref-13"><a href="https://taxfoundation.org/taxedu/glossary/tariffs/" rel="noopener" target="_blank">Tax Foundation, "Tariffs"</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
