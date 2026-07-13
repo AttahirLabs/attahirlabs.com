@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Dead Stock Prevention Guide for Shopify Merchants | Attahir Labs</title>
+    <meta name="description" content="Find slow-moving Shopify inventory early, prevent dead stock, and use StockClearance to plan markdowns, bundles, and clearance before margin disappears.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/dead-stock-prevention-guide-stockclearance-tie-in/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/dead-stock-prevention-guide-stockclearance-tie-in/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of customs broker document flat lay for inventory decision-making and markdown planning.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/dead-stock-prevention-guide-stockclearance-tie-in/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Dead Stock Prevention Guide for Shopify Merchants",
+      "description": "Find slow-moving Shopify inventory early, prevent dead stock, and use StockClearance to plan markdowns, bundles, and clearance before margin disappears.",
+      "datePublished": "2026-07-10",
+      "dateModified": "2026-07-10",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/dead-stock-prevention-guide-stockclearance-tie-in/",
+      "image": "https://attahirlabs.com/assets/blog/dead-stock-prevention-guide-stockclearance-tie-in/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is dead stock in ecommerce?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How long before inventory becomes dead stock?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Should I discount dead stock immediately?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "What is the best KPI for dead stock prevention?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How can Shopify merchants find dead stock faster?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How do tariffs affect dead stock risk?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "Are bundles better than markdowns for slow-moving stock?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}, {"@type": "Question", "name": "How often should a store review dead stock?", "acceptedAnswer": {"@type": "Answer", "text": "See the detailed answer in the article section above."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; overflow-x: hidden; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; min-width: 0; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: anywhere; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+        @media (max-width: 640px) {
+            main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            h1 { font-size: 1.7rem; letter-spacing: 0; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+        }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+    <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">July 10, 2026</p>
+<h1>Dead Stock Prevention Guide: How Shopify Merchants Can Find Slow Movers Before They Become Write-Offs</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/dead-stock-prevention-guide-stockclearance-tie-in/hero.jpg" width="3840" height="2160" alt="Editorial photo of customs broker document flat lay for inventory decision-making and markdown planning." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Inventory visuals should show the decision environment: what is aging, what can still sell, and what action protects cash and margin.</figcaption>
+        </figure>
+
+<p>Dead stock is inventory that no longer earns its space. It may still be sellable, neatly packed, and technically "in stock," but it is no longer moving at a pace that justifies the cash, storage, markdown risk, and attention tied up inside it. For a Shopify merchant, that makes dead stock more than a warehouse problem. It is a margin problem, a buying problem, a merchandising problem, and sometimes an import-cost problem.</p>
+<p>The hard part is that dead stock rarely announces itself on day one. It starts as a product that missed forecast by a little, a size curve that was too optimistic, a seasonal item that arrived late, a tariff-sensitive SKU whose landed cost changed, or a replenishment order placed because last month's sales looked better than the real trend. By the time everyone agrees the product is dead, the best recovery options are usually gone.</p>
+<p>This guide gives Shopify teams a practical dead stock prevention system: how to define risk, measure it early, prevent it during buying and merchandising, and clear inventory while it still has value. It also explains where tools like <a href="/apps/stockclearance/">StockClearance</a> and a <a href="/duty/">duty calculator</a> fit into a healthy inventory routine.</p>
+<h2>Quick Answer</h2>
+<p>A dead stock prevention guide should help a Shopify merchant catch slow-moving variants before the final markdown. The core workflow is simple: define risk by days since last sale, sell-through, weeks of supply, and markdown margin; review those signals weekly; fix merchandising before discounting; then use a planned markdown, bundle, or clearance path while the inventory still has value. StockClearance fits into that routine by turning a manual catalog scan into a focused slow-mover list.</p>
+<h2>What Counts as Dead Stock?</h2>
+<p>Dead stock is inventory with little or no realistic sell-through at the current price, channel, or merchandising position. It is different from ordinary slow stock. Slow stock may still deserve patience if the product has a long buying cycle, high margin, seasonal demand, or a known upcoming campaign. Dead stock has crossed the line where holding it is likely to cost more than acting on it.</p>
+<p>For Shopify stores, useful dead stock definitions usually combine three signals:</p>
+<ol>
+<li><strong>Days without sales:</strong> How long the variant has gone with no units sold.</li>
+<li><strong>Sell-through rate:</strong> How much of the original or available stock has sold over a defined window.</li>
+<li><strong>Gross margin after expected markdowns:</strong> Whether the product can still produce useful margin after discounts, fulfillment, ad spend, duties, and storage.</li>
+</ol>
+<p>A simple rule might be: flag variants with on-hand quantity above a minimum threshold, no sales in 60 or 90 days, and less than 20 percent sell-through over the last season. That rule will not be perfect, but it turns a vague concern into a weekly list the team can act on.</p>
+<p>The important shift is to define dead stock at the variant level, not just the product level. A product can look healthy while one color, size, bundle component, or regional variant is quietly stuck. Shopify merchants often lose money in those pockets.</p>
+<h2>Why Dead Stock Is So Expensive</h2>
+<p>The obvious cost of dead stock is the cash paid to buy it. The less obvious costs compound over time.</p>
+<p>First, dead stock consumes working capital. Every dollar trapped in unsold inventory is a dollar that cannot fund faster-moving stock, product photography, ad testing, creator partnerships, or better supplier terms. In a growing store, this opportunity cost can matter more than the eventual markdown.</p>
+<p>Second, it distorts merchandising decisions. Teams give homepage space, collection placement, and email slots to products that "need help" instead of products customers actually want. That can drag down conversion rate and teach the team the wrong lesson about demand.</p>
+<p>Third, dead stock can hide true margin. A SKU that looks profitable in Shopify may not be profitable after import duties, freight, returns, discounting, and storage are included. U.S. Customs and Border Protection tells importers to understand commodity-specific requirements before importing, and the U.S. International Trade Commission publishes the Harmonized Tariff Schedule used to classify many U.S. imports. If landed cost changes after a buy is placed, the dead stock threshold can arrive faster than expected.</p>
+<p>Fourth, stale inventory creates operational drag. Warehouse teams pick around it. Finance teams reserve against it. Marketers plan campaigns around it. Founders keep checking it. That attention has a cost.</p>
+<h2>The Prevention Mindset: Act Before the Final Markdown</h2>
+<p>Most merchants think about dead stock when they need a clearance sale. Prevention starts earlier. The goal is not to avoid every bad buy. No retailer does that. The goal is to spot inventory risk while there are still multiple profitable actions available.</p>
+<p>Think of inventory risk in stages:</p>
+<p><strong>Watch:</strong> The product is selling slower than forecast, but the trend is still recoverable. Improve placement, add content, test bundles, or adjust ads.</p>
+<p><strong>Intervene:</strong> The product has missed expected velocity for several weeks. Use targeted discounts, merchandising changes, segmented email, or channel expansion.</p>
+<p><strong>Clear:</strong> The product is unlikely to recover at normal price. Move it through markdowns, bundles, wholesale, outlet, donation, or liquidation before it consumes more value.</p>
+<p><strong>Write down or write off:</strong> The product is no longer worth normal recovery effort. This is the stage prevention is trying to avoid.</p>
+<p>StockClearance is most useful in the watch, intervene, and clear stages. A merchant should not need to manually scan every product and variant to find slow movers. A clearance tool should surface candidates, show why they are risky, and help the team take focused action.</p>
+<h2>Build a Dead Stock Dashboard</h2>
+<p>A dead stock dashboard does not need to be complicated. It needs to be consistent. The best version answers five questions every week:</p>
+<ol>
+<li>Which SKUs have not sold recently?</li>
+<li>Which SKUs have too much stock relative to demand?</li>
+<li>Which SKUs are aging past their seasonal window?</li>
+<li>Which SKUs still have enough margin to discount intelligently?</li>
+<li>Which SKUs need a decision this week?</li>
+</ol>
+<p>At minimum, track these fields:</p>
+<ul>
+<li>Product and variant title</li>
+<li>SKU</li>
+<li>Current inventory quantity</li>
+<li>Inventory value at cost</li>
+<li>Last sale date</li>
+<li>Units sold in the last 7, 30, 60, and 90 days</li>
+<li>Days of supply</li>
+<li>Sell-through percentage</li>
+<li>Gross margin before and after planned markdown</li>
+<li>Collection, vendor, product type, and season</li>
+</ul>
+<p>For Shopify teams, the variant-level view is crucial. A parent product can hide the fact that XS and XL are gone while Medium is overstocked, or that one colorway is carrying most of the remaining inventory value.</p>
+<p>Use three risk bands:</p>
+<ul>
+<li><strong>Low risk:</strong> Selling within forecast or recently replenished with expected demand.</li>
+<li><strong>Medium risk:</strong> Sales are slowing, inventory is high, or seasonality is approaching.</li>
+<li><strong>High risk:</strong> No recent sales, low sell-through, aging stock, or markdown needed to recover cash.</li>
+</ul>
+<p>Review this dashboard on a fixed cadence. Weekly is ideal for most direct-to-consumer stores. Daily can be useful during peak season or after large purchase orders land.</p>
+<h2>Set Buying Guardrails Before the Purchase Order</h2>
+<p>The cheapest dead stock is the stock you never overbuy. Prevention starts before inventory arrives.</p>
+<p>Use conservative first buys for new products. If a product has no sales history, treat the first order as a demand test rather than a margin-maximizing buy. Supplier minimums can make this difficult, but overcommitting to unproven inventory is one of the fastest ways to create dead stock.</p>
+<p>Separate reorder logic from launch optimism. A strong launch week can be driven by email, novelty, influencer traffic, or a one-time customer segment. Before reordering, check whether demand continued after the campaign window.</p>
+<p>Track size, color, and variant curves. If the store sells apparel, accessories, parts, or any product with meaningful variant mix, forecast at the variant level. A top-selling product with a bad variant curve can still create dead stock.</p>
+<p>Build a landed-cost buffer into imported goods. Tariffs, freight, brokerage, and customs fees can change the true profitability of a SKU. CBP import guidance and USITC tariff resources are worth checking before major buys, and Canadian merchants should also check CBSA import guidance when bringing goods into Canada. When duties move, the margin available for future markdowns moves too.</p>
+<p>Create a maximum weeks-of-supply rule. For example, a merchant may decide not to buy more than 12 weeks of supply for fashion items, 16 weeks for core replenishment SKUs, and 6 weeks for experimental products. The exact numbers depend on supplier lead time and demand volatility. The point is to make overbuying a decision, not an accident.</p>
+<h2>Use Early Warning Triggers</h2>
+<p>Dead stock prevention works best when the team responds to triggers instead of feelings. Good triggers are simple and visible.</p>
+<p>Useful triggers include:</p>
+<ul>
+<li>No sales in 14 days for a recently launched product</li>
+<li>No sales in 30 days for a replenishment product</li>
+<li>Less than 25 percent sell-through halfway through the planned season</li>
+<li>More than 12 weeks of supply on hand</li>
+<li>Variant inventory imbalance above a set threshold</li>
+<li>Gross margin below target after required markdown</li>
+<li>Product excluded from top collections for more than 30 days</li>
+</ul>
+<p>Each trigger should map to an action. A "no sales in 14 days" trigger might call for product page review and collection placement. A "season halfway complete" trigger might call for a 15 percent discount or bundle test. A "margin below target" trigger might call for a clearance decision instead of more paid traffic.</p>
+<p>This is where StockClearance can become part of the operating rhythm: scan the catalog, surface aging or slow-moving products, and turn the weekly review into a short action list.</p>
+<h2>Fix Merchandising Before Discounting</h2>
+<p>Not every slow mover is a bad product. Sometimes the product is hidden, under-explained, poorly photographed, or mismatched with the audience seeing it.</p>
+<p>Before discounting, check the basics:</p>
+<ul>
+<li>Is the product in the right collection?</li>
+<li>Does the product title match how customers search?</li>
+<li>Are the first images clear and specific?</li>
+<li>Is the variant customers want actually visible?</li>
+<li>Does the product page explain sizing, fit, compatibility, materials, or use cases?</li>
+<li>Are reviews, UGC, or comparison details missing?</li>
+<li>Is the price wrong relative to similar products?</li>
+</ul>
+<p>If traffic is low, the problem may be exposure. If traffic is healthy but conversion is weak, the problem may be price, presentation, trust, or product-market fit. If conversion is acceptable but stock is too high, the buy was too large.</p>
+<p>Merchandising fixes are especially valuable in the watch stage. Once a product needs a deep markdown, better images may help, but they cannot fully undo months of aging.</p>
+<h2>Discount With a Ladder, Not a Panic Button</h2>
+<p>Clearance does not have to mean one huge discount. A markdown ladder protects margin while giving the product a real chance to move.</p>
+<p>A basic ladder might look like this:</p>
+<ul>
+<li>Week 1: 10 percent off, collection placement, email segment</li>
+<li>Week 2: 20 percent off, bundle offer, homepage or sale collection placement</li>
+<li>Week 3: 30 percent off, broader email, retargeting audience</li>
+<li>Week 4: Final clearance, outlet channel, wholesale, or donation decision</li>
+</ul>
+<p>The right ladder depends on seasonality and margin. Perishable seasonal goods may need a faster ladder. Evergreen accessories can move more slowly. Imported products with high duties may need a more careful margin check before discounting.</p>
+<p>The key is to decide the ladder in advance. Panic discounts train customers to wait and can damage brand perception. Planned markdowns are quieter, cleaner, and easier to analyze.</p>
+<h2>Bundle Slow Movers With Products Customers Already Want</h2>
+<p>Bundles can recover value without making a slow SKU look unwanted. The best bundle pairs a slow-moving item with a product that has proven demand and a natural use case.</p>
+<p>Examples:</p>
+<ul>
+<li>A slow phone case bundled with a best-selling screen protector</li>
+<li>An overstocked candle scent bundled with a popular gift set</li>
+<li>A seasonal accessory bundled with a full-price core product</li>
+<li>A single-size apparel item positioned as part of an outfit</li>
+</ul>
+<p>Do not use bundles to hide bad economics. Calculate the bundle margin after discounts, fulfillment, payment fees, duties, and expected returns. If the bundle destroys margin or increases return risk, it may only delay the problem.</p>
+<p>StockClearance can support this process by helping merchants identify the slow-moving candidates that deserve bundle tests. The merchant still needs judgment: bundle products that make sense to customers, not just products that happen to be stuck.</p>
+<h2>Watch Landed Cost and Tariff Exposure</h2>
+<p>For import-heavy Shopify stores, dead stock prevention should include landed-cost awareness. A SKU can become risky even if unit demand looks normal when tariffs, freight, or brokerage fees reduce the margin available for promotions.</p>
+<p>CBP notes that importers should understand CBP policies and commodity-specific requirements before importing (CBP importer tips<sup class="citation"><a href="#ref-1">[1]</a></sup>). USITC maintains tariff information through the Harmonized Tariff Schedule (USITC HTS search<sup class="citation"><a href="#ref-2">[2]</a></sup>). The WTO tracks tariff and trade policy data at a global level (WTO tariff and trade data<sup class="citation"><a href="#ref-3">[3]</a></sup>). CBSA provides Canadian import guidance for merchants bringing goods into Canada (CBSA commercial importing guide<sup class="citation"><a href="#ref-4">[4]</a></sup>). Tax Foundation analysis can also help merchants understand how tariffs function as a tax cost in the broader economy (Tax Foundation tariff tracker<sup class="citation"><a href="#ref-5">[5]</a></sup>), though merchants should verify product-specific rates through official tariff and customs sources.</p>
+<p>In practice, this means:</p>
+<ul>
+<li>Keep HS codes and country of origin data attached to imported SKUs.</li>
+<li>Estimate duty before placing large purchase orders.</li>
+<li>Recalculate margin if tariff rates, sourcing, or freight costs change.</li>
+<li>Avoid buying deep into products where a small cost increase would erase markdown flexibility.</li>
+<li>Use a duty calculator or tariff tool before committing to a large seasonal import buy.</li>
+</ul>
+<p>If you are importing products and need to sanity-check margin before a clearance plan, use a <a href="/duty/">duty calculator</a> such as <a href="/apps/tariffshield/">TariffShield</a> alongside StockClearance. StockClearance helps you identify what is stuck; a duty calculator helps you understand how much markdown room you really have. For related operating guidance, see the Attahir Labs guides to <a href="/blog/how-to-calculate-landed-cost/">landed cost</a> and <a href="/blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/">duties at checkout</a>.</p>
+<h2>Create a Weekly Dead Stock Meeting</h2>
+<p>A weekly dead stock meeting should be short. Thirty minutes is enough for most small and mid-sized Shopify stores if the data is ready before the meeting.</p>
+<p>Use this agenda:</p>
+<ol>
+<li>Review new high-risk SKUs.</li>
+<li>Check prior-week actions and sell-through.</li>
+<li>Approve merchandising fixes.</li>
+<li>Approve markdowns or bundle tests.</li>
+<li>Escalate items that need final clearance.</li>
+<li>Record buying lessons for the next purchase order.</li>
+</ol>
+<p>Do not let the meeting become a debate about every SKU. The purpose is to decide. If a product has hit the trigger and the margin math is clear, assign the action and move on.</p>
+<p>The most important output is a decision log. Capture why the product became risky: overbuy, late delivery, wrong variant mix, weak product page, tariff cost, bad forecast, or campaign miss. Those notes are what prevent the next dead stock cycle.</p>
+<h2>Build a Post-Clearance Learning Loop</h2>
+<p>Clearing stock without learning from it is just a recurring sale. After each clearance cycle, review what happened.</p>
+<p>Ask:</p>
+<ul>
+<li>Was the initial buy too large?</li>
+<li>Did the product miss demand, or did the merchandising miss the product?</li>
+<li>Were variants ordered in the wrong mix?</li>
+<li>Did the product arrive too late for the season?</li>
+<li>Did landed cost or tariffs reduce discount flexibility?</li>
+<li>Which markdown step moved the most units?</li>
+<li>Which channel recovered the most cash?</li>
+<li>What should change in the next purchase order?</li>
+</ul>
+<p>Turn those answers into buying rules. For example:</p>
+<ul>
+<li>Reduce first buys by 30 percent for unproven seasonal products.</li>
+<li>Require variant-level sales history before reordering.</li>
+<li>Cap weeks of supply for trend-driven products.</li>
+<li>Check duty exposure before import-heavy launches.</li>
+<li>Move products to markdown sooner when sell-through misses the midpoint target.</li>
+</ul>
+<p>Dead stock prevention is not a single report. It is a feedback system between buying, merchandising, finance, and marketing.</p>
+<h2>How StockClearance Fits Into the Workflow</h2>
+<p>StockClearance is designed for Shopify merchants who need to find and act on slow-moving inventory without building a manual spreadsheet process from scratch.</p>
+<p>Use it as the operational layer for:</p>
+<ul>
+<li>Identifying dead and slow-moving products</li>
+<li>Reviewing stock that has not sold recently</li>
+<li>Prioritizing clearance candidates</li>
+<li>Planning flash sale or markdown action</li>
+<li>Supporting bundle decisions</li>
+<li>Keeping inventory risk visible between buying cycles</li>
+</ul>
+<p>The tool does not replace merchant judgment. It makes the judgment easier to apply consistently. A founder, operator, or ecommerce manager should be able to open a focused view, see which products need attention, and decide whether the next move is merchandising, markdown, bundle, or final clearance.</p>
+<p>That is the difference between a clearance event and a prevention system. A clearance event happens after the damage is obvious. A prevention system makes risk visible early enough to protect cash.</p>
+<h2>Practical Dead Stock Prevention Checklist</h2>
+<p>Use this checklist once a week:</p>
+<ul>
+<li>Review products and variants with no sales in the last 30, 60, and 90 days.</li>
+<li>Sort slow movers by inventory value, not just unit count.</li>
+<li>Compare weeks of supply against product category rules.</li>
+<li>Check sell-through against the planned season timeline.</li>
+<li>Review variant imbalance for size, color, and pack configuration.</li>
+<li>Confirm whether product page or collection placement problems are suppressing sales.</li>
+<li>Calculate markdown margin before approving discounts.</li>
+<li>Check landed cost and duty exposure for imported goods.</li>
+<li>Assign every high-risk SKU one action: improve, discount, bundle, clear, or hold with reason.</li>
+<li>Record the buying lesson for future purchase orders.</li>
+</ul>
+<p>If this list feels too manual, that is the point at which a Shopify clearance tool becomes useful. The goal is to stop discovering dead stock by accident.</p>
+<h2>FAQ</h2>
+<h3>What is dead stock in ecommerce?</h3>
+<p>Dead stock is inventory that has little or no realistic chance of selling at the current price or through the current channel within a useful timeframe. It is usually identified by no recent sales, low sell-through, high weeks of supply, or poor margin after expected markdowns.</p>
+<h3>How long before inventory becomes dead stock?</h3>
+<p>There is no universal cutoff. A fashion item may become risky after 30 to 60 days with weak sell-through, while a replacement part or specialty item may deserve a longer window. The best rule depends on product category, seasonality, margin, and supplier lead time.</p>
+<h3>Should I discount dead stock immediately?</h3>
+<p>Not always. First check whether the issue is exposure, product page quality, collection placement, or variant visibility. If traffic and presentation are adequate but demand is still weak, use a planned markdown ladder rather than a panic discount.</p>
+<h3>What is the best KPI for dead stock prevention?</h3>
+<p>Use a combination of days since last sale, sell-through rate, weeks of supply, inventory value, and gross margin after markdown. A single KPI can miss important context. For example, a low-unit SKU may not matter financially, while a high-value variant with no recent sales can tie up serious cash.</p>
+<h3>How can Shopify merchants find dead stock faster?</h3>
+<p>Review inventory at the variant level and sort by risk triggers: no sales, aging stock, low sell-through, high on-hand quantity, and high inventory value. A tool like StockClearance can help surface those products without requiring a manual spreadsheet every week.</p>
+<h3>How do tariffs affect dead stock risk?</h3>
+<p>Tariffs and duties raise landed cost. Higher landed cost reduces the margin available for discounts, bundles, and promotions. Import-heavy merchants should estimate duties before large buys and recalculate markdown room when tariff rates, sourcing, or freight costs change, using official customs and tariff sources such as CBP importer guidance<sup class="citation"><a href="#ref-1">[1]</a></sup> and the USITC HTS search<sup class="citation"><a href="#ref-2">[2]</a></sup> for U.S. imports.</p>
+<h3>Are bundles better than markdowns for slow-moving stock?</h3>
+<p>Bundles can be better when the slow-moving product naturally complements a stronger seller and the combined offer still protects margin. They are not a cure for every bad buy. Always calculate bundle economics after discounts, fulfillment costs, payment fees, duties, and likely returns.</p>
+<h3>How often should a store review dead stock?</h3>
+<p>Weekly is a good cadence for most Shopify merchants. During peak season, after major purchase orders, or around seasonal cutoffs, a daily or twice-weekly review can prevent small misses from becoming large markdowns.</p>
+<h2>CTA</h2>
+<p>Dead stock prevention gets easier when the risk list is visible. Use <a href="/apps/stockclearance/">StockClearance</a> to find slow-moving Shopify inventory, prioritize clearance candidates, and plan smarter markdown or bundle actions before stale stock becomes a write-off. If imported goods are part of the margin story, pair that workflow with a <a href="/duty/">duty calculator</a> such as <a href="/apps/tariffshield/">TariffShield</a> so your clearance decisions reflect true landed cost.</p>
+<ul>
+<li>U.S. Customs and Border Protection, "Tips for New Importers and Exporters": https://www.cbp.gov/trade/basic-import-export/importer-exporter-tips</li>
+<li>U.S. International Trade Commission, Harmonized Tariff Schedule search: https://hts.usitc.gov/</li>
+<li>World Trade Organization, tariff and trade data resources: https://www.wto.org/english/res_e/statis_e/statis_e.htm</li>
+<li>Canada Border Services Agency, importing commercial goods into Canada: https://www.cbsa-asfc.gc.ca/import/guide-eng.html</li>
+<li>Tax Foundation, tariff research and tariff tracker: https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>This article is general educational information for ecommerce operators and is not legal, tax, customs, accounting, or financial advice. Tariff classifications, duty rates, import rules, inventory accounting, and tax treatment depend on product details, country of origin, jurisdiction, and current law. Verify product-specific import questions with official customs resources or a qualified customs broker, and consult your accountant or legal advisor before making accounting, tax, or write-off decisions.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cbp.gov/trade/basic-import-export/importer-exporter-tips" rel="noopener" target="_blank">CBP importer tips</a></li><li id="ref-2"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC HTS search</a></li><li id="ref-3"><a href="https://www.wto.org/english/res_e/statis_e/statis_e.htm" rel="noopener" target="_blank">WTO tariff and trade data</a></li><li id="ref-4"><a href="https://www.cbsa-asfc.gc.ca/import/guide-eng.html" rel="noopener" target="_blank">CBSA commercial importing guide</a></li><li id="ref-5"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+</body>
+</html>
