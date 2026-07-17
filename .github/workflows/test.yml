@@ -22,7 +22,9 @@ jobs:
 
       - name: Run site tests
         run: |
+          node tests/analytics-contract.test.js
           node tests/homepage-refresh.test.js
           node tests/apps-navigation.test.js
           node tests/site-navigation.test.js
           node tests/shipping-calculator.test.js
+          node tests/website-guardrails.test.js
