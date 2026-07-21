@@ -172,7 +172,9 @@
     function value(id) { return document.getElementById(id).value; }
     function numberValue(id) { return Number(value(id)); }
 
-    function render() {
+    let shippingSubmission = 0;
+    function render(trackSubmission) {
+        const actionKey = trackSubmission ? 'shipping:' + (++shippingSubmission) : null;
         error.style.display = 'none';
         const input = {
             originCountry: value('originCountry'), originPostal: value('originPostal'),
@@ -183,8 +185,10 @@
         if (!input.originCountry || !input.destinationCountry || input.weight <= 0 || input.length <= 0 || input.width <= 0 || input.height <= 0 || input.orderValue < 0) {
             error.textContent = 'Please enter positive package measurements and a valid order value.';
             error.style.display = 'block';
+            if (actionKey) window.AttahirAnalytics?.once(actionKey, 'tool_failed', {surface:'shipping_calculator', tool_name:'shipping_calculator', error_code:'validation'});
             return;
         }
+        if (actionKey) window.AttahirAnalytics?.once(actionKey + ':start', 'tool_started', {surface:'shipping_calculator', tool_name:'shipping_calculator'});
         const result = window.ShippingCalculator.estimateShipping(input);
         document.getElementById('emptyState').style.display = 'none';
         document.getElementById('results').style.display = 'block';
@@ -194,11 +198,17 @@
         document.getElementById('estimateList').innerHTML = result.estimates.map(function (estimate) {
             return '<article class="estimate"><div><h3>' + estimate.service + '</h3><p>' + estimate.window + '</p></div><div class="price">' + currency.format(estimate.low) + '–' + currency.format(estimate.high) + '</div></article>';
         }).join('');
+        if (actionKey) {
+            const lowest = Math.min.apply(null, result.estimates.map(function (estimate) { return estimate.low; }));
+            const resultBand = lowest <= 20 ? 'low' : lowest <= 50 ? 'medium' : 'high';
+            window.AttahirAnalytics?.once(actionKey, 'tool_completed', {surface:'shipping_calculator', tool_name:'shipping_calculator', result_band:resultBand});
+        }
     }
 
-    form.addEventListener('submit', function (event) { event.preventDefault(); render(); });
-    render();
+    form.addEventListener('submit', function (event) { event.preventDefault(); render(true); });
+    render(false);
 })();
 </script>
+<script src="/assets/analytics.js" defer></script>
 </body>
 </html>
