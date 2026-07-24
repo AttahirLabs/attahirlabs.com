@@ -11,10 +11,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://www.google-analytics.com;">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>Free Import Duty Calculator: Estimate Tariffs and Landed Cost | Attahir Labs</title>
-    <meta name="description" content="Free import duty calculator for US, Canada, EU, UK, and Australia. Estimate tariffs, landed cost, and margin impact by origin country and destination market.">
+    <title>Free Import Duty Calculator: Country-Level Planning Estimate | Attahir Labs</title>
+    <meta name="description" content="Country-level legacy planning estimate for import duty across the US, Canada, EU, UK, and Australia, with explicit freshness and scope limits.">
     <link rel="canonical" href="https://attahirlabs.com/duty/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Import Duty Calculator","url":"https://attahirlabs.com/duty/","description":"Free calculator for import duty, tariffs, and landed cost by origin country and destination market.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Attahir Labs","url":"https://attahirlabs.com"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Import Duty Calculator","url":"https://attahirlabs.com/duty/","description":"Country-level legacy planning estimate for import duty by origin country and destination market. Not product-specific or suitable for customs filing or final pricing.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Attahir Labs","url":"https://attahirlabs.com"}}</script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -43,6 +43,10 @@
 
         /* CALCULATOR */
         .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .accuracy-panel { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.45); border-radius: var(--radius); padding: 1.15rem 1.25rem; margin-bottom: 1.5rem; }
+        .accuracy-panel h2 { color: #fbbf24; font-size: 1rem; margin-bottom: 0.45rem; }
+        .accuracy-panel p { color: rgba(255,255,255,0.82); font-size: 0.88rem; margin-top: 0.35rem; }
+        .accuracy-panel strong { color: var(--white); }
         .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.5rem; }
         .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
@@ -50,6 +54,7 @@
         select, input[type="number"] { width: 100%; background: var(--navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.65rem 0.75rem; color: var(--white); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none; }
         select:focus, input:focus { border-color: var(--indigo); }
         .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .input-note { color: rgba(255,255,255,0.62); font-size: 0.78rem; margin: -0.2rem 0 0.9rem; }
         .error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: 0.85rem; border-radius: 8px; padding: 0.5rem 0.75rem; margin-bottom: 0.75rem; display: none; }
         .btn { width: 100%; background: var(--indigo); color: var(--white); font-weight: 600; font-size: 1rem; padding: 0.75rem; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
         .btn:hover { background: #4f46e5; }
@@ -59,6 +64,11 @@
         .placeholder { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 300px; color: var(--gray-500); text-align: center; }
         .placeholder .icon { font-size: 3rem; margin-bottom: 0.5rem; }
         .results { display: none; }
+        .result-status { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.35); border-radius: 8px; color: #c7d2fe; font-size: 0.85rem; font-weight: 700; padding: 0.65rem 0.75rem; margin-bottom: 0.75rem; }
+        .result-status.unavailable { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.4); color: #fbbf24; }
+        .response-metadata { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 0.75rem; background: rgba(255,255,255,0.035); border-radius: 8px; padding: 0.7rem 0.75rem; margin-bottom: 1rem; }
+        .response-metadata span { color: rgba(255,255,255,0.68); font-size: 0.72rem; overflow-wrap: anywhere; }
+        .response-metadata strong { color: rgba(255,255,255,0.88); }
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
         .stat { background: var(--navy); border-radius: 8px; padding: 0.75rem; text-align: center; }
         .stat .num { font-size: 1.5rem; font-weight: 800; }
@@ -94,6 +104,7 @@
         @media (max-width: 768px) {
             .calc-grid { grid-template-columns: 1fr; }
             .stat-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .response-metadata { grid-template-columns: 1fr; }
             .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; }
             .hero h1 { font-size: 1.8rem; }
         }
@@ -118,10 +129,15 @@
 <div class="hero">
     <div class="hero-badge">🆓 Free Tool — No Account Needed</div>
     <h1>Import Duty <em>Calculator</em></h1>
-    <p>Estimate tariffs, landed cost, and margin impact before you import. Free, fast, and built for real importer math.</p>
+    <p>Run a simplified country-level planning estimate before you import, then verify the product, entry, and valuation details with an authoritative source.</p>
 </div>
 
 <div class="container">
+    <aside class="accuracy-panel" id="dutyAccuracyNotice" aria-labelledby="dutyAccuracyTitle">
+        <h2 id="dutyAccuracyTitle">Accuracy &amp; freshness notice</h2>
+        <p><strong>Country-level legacy planning snapshot.</strong> Dataset updated March 18, 2026; supporting evidence verified through March 13, 2026. The update date is not a verification date, and no row-level derivation is preserved.</p>
+        <p>This tool does not model HTS or product classification, exemptions, entry dates, tariff layers, free-trade agreement (FTA) eligibility, or special remedies. It is not for customs filing or final pricing.</p>
+    </aside>
     <div class="calc-grid">
         <!-- FORM -->
         <div class="card">
@@ -136,6 +152,7 @@
                 <div><label>Shipping Cost</label><input type="number" id="shippingCost" placeholder="$0" min="0"></div>
                 <div><label>Insurance Cost</label><input type="number" id="insuranceCost" placeholder="$0" min="0"></div>
             </div>
+            <p class="input-note">Freight and insurance are optional planning inputs. Whether either amount belongs in the legally dutiable customs value depends on the destination's law and the transaction facts; this tool does not decide that valuation basis.</p>
             <div class="error" id="error"></div>
             <button class="btn" id="calcBtn" onclick="calculate()">Calculate Duty</button>
         </div>
@@ -143,21 +160,30 @@
         <!-- RESULTS -->
         <div class="card">
             <div class="placeholder" id="placeholder">
-                <div><div class="icon">📦</div><p>Enter your import details and click Calculate to see your total landed cost.</p></div>
+                <div><div class="icon">📦</div><p>Enter your import details and click Calculate to see a country-level planning estimate.</p></div>
             </div>
             <div class="results" id="results">
                 <h2 id="route"></h2>
-                <div class="stat-grid">
-                    <div class="stat"><div class="num indigo" id="rateDisplay">—</div><div class="label">Tariff Rate</div></div>
-                    <div class="stat"><div class="num red" id="dutyDisplay">—</div><div class="label">Duty Amount</div></div>
-                    <div class="stat"><div class="num green" id="totalDisplay">—</div><div class="label">Total Landed</div></div>
+                <div class="result-status" id="resultState" role="status" aria-live="polite">Awaiting a response</div>
+                <div class="response-metadata" id="responseMetadata" aria-label="Rate data response metadata">
+                    <span><strong>Dataset updated:</strong> Awaiting response</span>
+                    <span><strong>Evidence verified through:</strong> Awaiting response</span>
+                    <span><strong>Provenance:</strong> Awaiting response</span>
+                    <span><strong>State:</strong> Awaiting response</span>
                 </div>
-                <div class="breakdown" id="breakdown"></div>
-                <div class="margin-box">
-                    <div class="title">⚠ Margin Impact</div>
-                    <div class="desc" id="marginDesc"></div>
+                <div id="resultNumbers">
+                    <div class="stat-grid">
+                        <div class="stat"><div class="num indigo" id="rateDisplay">—</div><div class="label">Country-level rate assumption</div></div>
+                        <div class="stat"><div class="num red" id="dutyDisplay">—</div><div class="label">Modeled duty</div></div>
+                        <div class="stat"><div class="num green" id="totalDisplay">—</div><div class="label">Estimated subtotal</div></div>
+                    </div>
+                    <div class="breakdown" id="breakdown"></div>
+                    <div class="margin-box">
+                        <div class="title">⚠ Planning impact</div>
+                        <div class="desc" id="marginDesc"></div>
+                    </div>
+                    <a href="/blog/how-to-calculate-landed-cost/" class="cta-link" data-analytics-event="cta_clicked" data-analytics-surface="duty_calculator" data-analytics-placement="result_cta" data-analytics-destination-type="blog">Read the landed cost guide →</a>
                 </div>
-                <a href="/blog/how-to-calculate-landed-cost/" class="cta-link" data-analytics-event="cta_clicked" data-analytics-surface="duty_calculator" data-analytics-placement="result_cta" data-analytics-destination-type="blog">Read the landed cost guide →</a>
                 <div class="disclaimer" id="disclaimerText"></div>
             </div>
         </div>
@@ -166,36 +192,312 @@
 
 <div class="seo">
     <h2>What this import duty calculator helps you estimate</h2>
-    <p>This free calculator is for one question: <strong>what will this shipment really cost once duty is added?</strong> It estimates tariff rate, duty amount, and total landed cost based on origin country, destination market, product value, shipping, and insurance.</p>
-    <p>Your <strong>total landed cost</strong> is the number that matters for pricing and margin. That's product cost + shipping + insurance + import duties, plus any other fees not already baked into the quote.</p>
+    <p>This free calculator applies one historical country-level rate assumption to a simplified planning base. It can produce a rate assumption, modeled duty, and <strong>estimated subtotal</strong> from origin, destination, product value, and any optional freight or insurance inputs.</p>
+    <p>The estimated subtotal is product value plus optional freight and insurance plus modeled duty. It excludes taxes, brokerage, carrier and processing fees, special remedies, and other costs. Validate all of those items before customs filing or final pricing.</p>
     <h3>Quick answer</h3>
-    <p>If you're comparing suppliers or deciding whether a product still works after tariffs, start with the calculator, then sanity-check the result against your broker or freight forwarder if the shipment is large or classification-sensitive.</p>
-    <h3>What is CIF Value?</h3>
-    <p>CIF stands for Cost, Insurance, and Freight. Most countries calculate import duty on the CIF value — not just the product cost. That means your shipping and insurance costs increase the duty you pay. Our calculator accounts for this automatically.</p>
-    <h3>Current tariff coverage</h3>
-    <p>Our database covers 85+ origin countries across 5 major import markets: US, Canada, EU, UK, and Australia. Rates are updated from government and official tariff sources when underlying schedules change.</p>
-    <p><a href="/duty/rates/">Browse the tariff rate table →</a><br><a href="/blog/us-china-tariff-rates-2026/">Read the current US-China tariff guide →</a><br><a href="/blog/import-duty-from-vietnam-to-us/">Compare Vietnam import duty to the US →</a><br><a href="/blog/de-minimis-threshold-2026/">See what changed with the US de minimis threshold →</a></p>
+    <p>Use this snapshot to compare rough scenarios only. Product classification, entry date, tariff layers, preferences, exclusions, valuation rules, taxes, and fees can change the final amount.</p>
+    <h3>Freight and insurance are optional inputs</h3>
+    <p>Adding freight or insurance here is a planning convention, not a statement that either amount is always dutiable. The customs-value rules depend on the destination and transaction; confirm the legally dutiable base for the actual entry.</p>
+    <h3>Legacy planning coverage</h3>
+    <p>The snapshot contains country-level assumptions for five destination markets: US, Canada, EU, UK, and Australia. It was updated March 18, 2026 with evidence verified only through March 13, 2026, and it has no preserved row-level derivation.</p>
+    <p><a href="/duty/rates/">Browse the historical planning table →</a><br><a href="/blog/us-china-tariff-rates-2026/">Read the US-China tariff guide →</a><br><a href="/blog/import-duty-from-vietnam-to-us/">Read the Vietnam import-duty guide →</a><br><a href="/blog/de-minimis-threshold-2026/">Read the US de minimis guide →</a></p>
 </div>
 
 <footer>
-    <p>&copy; 2026 Attahir Labs. Tariff rates are estimates — consult a customs broker for exact rates.</p>
+    <p>&copy; 2026 Attahir Labs. Historical planning assumptions only — verify the current entry with authoritative sources and a qualified customs professional.</p>
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 </footer>
 
 <script src="/assets/analytics.js"></script>
 <script>
 const API = "https://duty-calc-api-production.up.railway.app";
+const RATE_DATA_REVIEW_REQUIRED = "RATE_DATA_REVIEW_REQUIRED";
 let dutySubmission = 0;
 
 async function init() {
     try {
         const [cr, mr] = await Promise.all([fetch(API+"/api/v1/countries"), fetch(API+"/api/v1/markets")]);
+        if (!cr.ok || !mr.ok) throw new Error("Reference data unavailable");
         const cd = await cr.json(), md = await mr.json();
-        const os = document.getElementById("origin");
-        os.innerHTML = '<option value="">Select origin country...</option>' + (cd.countries||[]).map(c=>`<option value="${c.code}">${c.name} (${c.code})</option>`).join("");
-        const ds = document.getElementById("destination");
-        ds.innerHTML = '<option value="">Select destination...</option>' + (md.markets||[]).map(m=>`<option value="${m.code}">${m.name} (${m.rateCount} countries)</option>`).join("");
-    } catch(e) { console.error("Failed to load data", e); }
+        replaceSelectOptions(
+            document.getElementById("origin"),
+            "Select origin country...",
+            Array.isArray(cd.countries) ? cd.countries : [],
+            country => {
+                if (!isCode(country?.code) || !isText(country?.name)) return null;
+                return { value: country.code, label: `${country.name} (${country.code})` };
+            }
+        );
+        replaceSelectOptions(
+            document.getElementById("destination"),
+            "Select destination...",
+            Array.isArray(md.markets) ? md.markets : [],
+            market => {
+                if (
+                    !isCode(market?.code) ||
+                    !isText(market?.name) ||
+                    !Number.isSafeInteger(market?.rateCount) ||
+                    market.rateCount < 0
+                ) return null;
+                return {
+                    value: market.code,
+                    label: `${market.name} (${market.rateCount} countries)`
+                };
+            }
+        );
+    } catch(e) {
+        console.error("Failed to load data", e);
+        replaceSelectOptions(document.getElementById("origin"), "Countries unavailable", [], () => null);
+        replaceSelectOptions(document.getElementById("destination"), "Markets unavailable", [], () => null);
+    }
+}
+
+function isRecord(value) {
+    return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isText(value) {
+    return typeof value === "string" && value.trim().length > 0;
+}
+
+function isCode(value) {
+    return typeof value === "string" && /^[A-Z]{2}$/.test(value);
+}
+
+function replaceSelectOptions(select, placeholder, items, normalize) {
+    select.replaceChildren();
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
+    items.forEach(item => {
+        const normalized = normalize(item);
+        if (!normalized) return;
+        const option = document.createElement("option");
+        option.value = normalized.value;
+        option.textContent = normalized.label;
+        select.appendChild(option);
+    });
+}
+
+function humanize(value) {
+    if (!value) return "";
+    const text = String(value).replace(/_/g, " ");
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function responseMetadata(data) {
+    const rateData = isRecord(data?.rateData) ? data.rateData : {};
+    return {
+        datasetUpdatedAt: data?.datasetUpdatedAt || data?.lastUpdated || rateData.datasetUpdatedAt || rateData.lastUpdated || "",
+        verifiedThrough: data?.verifiedThrough || rateData.verifiedThrough || "",
+        provenanceStatus: data?.provenanceStatus || rateData.provenanceStatus || "",
+        state: data?.state || data?.rateDataState || rateData.state || "",
+        reviewAfter: rateData.reviewAfter,
+        usable: rateData.usable
+    };
+}
+
+function renderResponseMetadata(data, fallbackState) {
+    const metadata = responseMetadata(data);
+    const rows = [
+        ["Dataset updated", metadata.datasetUpdatedAt || "Not provided by this response"],
+        ["Evidence verified through", metadata.verifiedThrough || "Not provided by this response"],
+        ["Provenance", humanize(metadata.provenanceStatus) || "Not provided by this response"],
+        ["State", humanize(metadata.state || fallbackState) || "Not provided by this response"]
+    ];
+    const container = document.getElementById("responseMetadata");
+    container.replaceChildren();
+    rows.forEach(([label, value]) => {
+        const row = document.createElement("span");
+        const heading = document.createElement("strong");
+        const detail = document.createElement("span");
+        heading.textContent = `${label}:`;
+        detail.textContent = ` ${value}`;
+        row.appendChild(heading);
+        row.appendChild(detail);
+        container.appendChild(row);
+    });
+}
+
+function validDateOnly(value) {
+    if (typeof value !== "string") return false;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    if (!match) return false;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year &&
+        date.getUTCMonth() === month - 1 &&
+        date.getUTCDate() === day;
+}
+
+function parseReviewInstant(value) {
+    if (typeof value !== "string") return null;
+    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.exec(value);
+    if (!match) return null;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const hour = Number(match[4]), minute = Number(match[5]), second = Number(match[6]);
+    const calendar = new Date(Date.UTC(year, month - 1, day));
+    if (
+        calendar.getUTCFullYear() !== year ||
+        calendar.getUTCMonth() !== month - 1 ||
+        calendar.getUTCDate() !== day ||
+        hour > 23 ||
+        minute > 59 ||
+        second > 59
+    ) return null;
+    const timestamp = Date.parse(value);
+    return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function hasConsistentField(data, rateData, field, aliases = []) {
+    const expected = rateData[field];
+    return [field, ...aliases].every(key =>
+        data[key] === undefined || data[key] === expected
+    );
+}
+
+function hasUsableRateMetadata(data) {
+    if (!isRecord(data) || !isRecord(data.rateData)) return false;
+    const rateData = data.rateData;
+    if (
+        rateData.state !== "usable" ||
+        rateData.usable !== true ||
+        !validDateOnly(rateData.datasetUpdatedAt) ||
+        !validDateOnly(rateData.verifiedThrough) ||
+        !isText(rateData.provenanceStatus) ||
+        !Object.prototype.hasOwnProperty.call(rateData, "reviewAfter")
+    ) return false;
+    if (
+        !hasConsistentField(data, rateData, "datasetUpdatedAt", ["lastUpdated"]) ||
+        !hasConsistentField(data, rateData, "verifiedThrough") ||
+        (data.state !== undefined && data.state !== "usable") ||
+        (data.rateDataState !== undefined && data.rateDataState !== "usable")
+    ) return false;
+    if (rateData.reviewAfter === null) return true;
+    const reviewAt = parseReviewInstant(rateData.reviewAfter);
+    return reviewAt !== null && Date.now() < reviewAt;
+}
+
+function normalizeDutyRate(breakdown) {
+    const hasNumber = Object.prototype.hasOwnProperty.call(breakdown, "dutyRate");
+    const hasPercent = Object.prototype.hasOwnProperty.call(breakdown, "dutyRatePercent");
+    if (!hasNumber && !hasPercent) return null;
+
+    let numericRate = null;
+    if (hasNumber) {
+        if (
+            typeof breakdown.dutyRate !== "number" ||
+            !Number.isFinite(breakdown.dutyRate) ||
+            breakdown.dutyRate < 0 ||
+            breakdown.dutyRate > 100
+        ) return null;
+        numericRate = Object.is(breakdown.dutyRate, -0) ? 0 : breakdown.dutyRate;
+    }
+
+    let percentRate = null;
+    if (hasPercent) {
+        if (
+            typeof breakdown.dutyRatePercent !== "string" ||
+            !/^(?:\d+(?:\.\d+)?)%$/.test(breakdown.dutyRatePercent)
+        ) return null;
+        percentRate = Number(breakdown.dutyRatePercent.slice(0, -1));
+        if (!Number.isFinite(percentRate) || percentRate < 0 || percentRate > 100) return null;
+    }
+
+    if (numericRate !== null && percentRate !== null && numericRate !== percentRate) return null;
+    const value = numericRate ?? percentRate;
+    return { value, display: `${value}%` };
+}
+
+function normalizeBreakdown(breakdown) {
+    if (!isRecord(breakdown)) return null;
+    const rate = normalizeDutyRate(breakdown);
+    if (!rate) return null;
+    const fields = [
+        "productValue",
+        "shippingCost",
+        "insuranceCost",
+        "cifValue",
+        "dutyAmount",
+        "totalLandedCost"
+    ];
+    if (fields.some(field =>
+        typeof breakdown[field] !== "number" ||
+        !Number.isFinite(breakdown[field]) ||
+        breakdown[field] < 0
+    )) return null;
+    if (breakdown.productValue <= 0) return null;
+    const expectedBase = breakdown.productValue + breakdown.shippingCost + breakdown.insuranceCost;
+    const expectedDuty = Math.round(expectedBase * (rate.value / 100) * 100) / 100;
+    const expectedTotal = Math.round((expectedBase + expectedDuty) * 100) / 100;
+    if (
+        Math.abs(breakdown.cifValue - expectedBase) > 0.01 ||
+        Math.abs(breakdown.dutyAmount - expectedDuty) > 0.01 ||
+        Math.abs(breakdown.totalLandedCost - expectedTotal) > 0.01
+    ) return null;
+    return { ...breakdown, rate };
+}
+
+function appendBreakdownRow(container, label, value, className = "") {
+    const row = document.createElement("div");
+    row.className = `row-item${className ? ` ${className}` : ""}`;
+    const labelNode = document.createElement("span");
+    const valueNode = document.createElement("span");
+    labelNode.textContent = label;
+    valueNode.textContent = value;
+    if (className === "total") valueNode.className = "green";
+    row.appendChild(labelNode);
+    row.appendChild(valueNode);
+    container.appendChild(row);
+}
+
+function renderBreakdown(breakdown) {
+    const container = document.getElementById("breakdown");
+    container.replaceChildren();
+    appendBreakdownRow(container, "Product Value", `$${breakdown.productValue.toFixed(2)}`);
+    if (breakdown.shippingCost > 0) {
+        appendBreakdownRow(container, "Shipping", `$${breakdown.shippingCost.toFixed(2)}`);
+    }
+    if (breakdown.insuranceCost > 0) {
+        appendBreakdownRow(container, "Insurance", `$${breakdown.insuranceCost.toFixed(2)}`);
+    }
+    appendBreakdownRow(container, "Modeled planning base", `$${breakdown.cifValue.toFixed(2)}`);
+    appendBreakdownRow(
+        container,
+        `Modeled duty (${breakdown.rate.display})`,
+        `+$${breakdown.dutyAmount.toFixed(2)}`,
+        "duty"
+    );
+    appendBreakdownRow(
+        container,
+        "Estimated subtotal",
+        `$${breakdown.totalLandedCost.toFixed(2)}`,
+        "total"
+    );
+}
+
+function clearNumericResult() {
+    document.getElementById("resultNumbers").style.display = "none";
+    document.getElementById("rateDisplay").textContent = "—";
+    document.getElementById("dutyDisplay").textContent = "—";
+    document.getElementById("totalDisplay").textContent = "—";
+    document.getElementById("breakdown").replaceChildren();
+    document.getElementById("marginDesc").textContent = "";
+    document.getElementById("disclaimerText").textContent = "";
+}
+
+function showUnavailable(data, message) {
+    clearNumericResult();
+    document.getElementById("placeholder").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    document.getElementById("route").textContent = "Estimate unavailable";
+    const resultState = document.getElementById("resultState");
+    resultState.className = "result-status unavailable";
+    resultState.textContent = message;
+    renderResponseMetadata(data, "indeterminate");
+    document.getElementById("disclaimerText").textContent =
+        "No rate, duty, or subtotal is available. The page-level legacy snapshot warning still applies.";
 }
 
 async function calculate() {
@@ -207,52 +509,96 @@ async function calculate() {
     const ic = document.getElementById("insuranceCost").value || "0";
     const err = document.getElementById("error");
     err.style.display = "none";
+    clearNumericResult();
 
     if (!origin || !dest || !pv) {
         err.textContent = "Please fill in origin, destination, and product value.";
         err.style.display = "block";
+        showUnavailable(null, "Estimate unavailable — complete the required fields");
         window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"validation"});
         return;
     }
 
     document.getElementById("calcBtn").disabled = true;
     document.getElementById("calcBtn").textContent = "Calculating...";
+    document.getElementById("placeholder").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    document.getElementById("route").textContent = "Checking snapshot availability";
+    document.getElementById("resultState").className = "result-status";
+    document.getElementById("resultState").textContent = "Checking availability…";
+    renderResponseMetadata(null, "checking");
     window.AttahirAnalytics?.once(`${actionKey}:start`, "tool_started", {surface:"duty_calculator", tool_name:"duty_calculator"});
 
     try {
         const params = new URLSearchParams({origin, destination: dest, productValue: pv, shippingCost: sc, insuranceCost: ic});
         const res = await fetch(API+"/api/v1/landed-cost?"+params);
-        const data = await res.json();
+        let data = {};
+        try {
+            data = await res.json();
+        } catch (_) {
+            data = {};
+        }
         if (!res.ok) {
-            err.textContent = data.error || "Calculation failed";
+            const reviewRequired = data.code === RATE_DATA_REVIEW_REQUIRED;
+            err.textContent = reviewRequired
+                ? "Rate data is under review. No estimate is available."
+                : data.error || "Calculation failed";
             err.style.display = "block";
+            showUnavailable(
+                data,
+                reviewRequired
+                    ? "Indeterminate — rate data review required"
+                    : "Estimate unavailable"
+            );
             const errorCode = res.status === 429 ? "rate_limited" : res.status === 400 ? "validation" : "upstream";
             window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:errorCode});
             return;
         }
 
-        const b = data.breakdown;
+        if (!hasUsableRateMetadata(data)) {
+            err.textContent = "Rate data metadata is missing, unusable, or past its review boundary.";
+            err.style.display = "block";
+            showUnavailable(data, "Indeterminate — usable rate data was not confirmed");
+            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
+            return;
+        }
+        const b = normalizeBreakdown(data.breakdown);
+        if (
+            !b ||
+            !isRecord(data.origin) ||
+            !isText(data.origin.name) ||
+            !isRecord(data.destination) ||
+            !isText(data.destination.name)
+        ) {
+            err.textContent = "The calculation response could not be validated.";
+            err.style.display = "block";
+            showUnavailable(data, "Estimate unavailable — response could not be validated");
+            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
+            return;
+        }
         document.getElementById("placeholder").style.display = "none";
         document.getElementById("results").style.display = "block";
+        document.getElementById("resultNumbers").style.display = "block";
         document.getElementById("route").textContent = data.origin.name + " → " + data.destination.name;
-        document.getElementById("rateDisplay").textContent = b.dutyRatePercent;
+        const state = responseMetadata(data).state;
+        document.getElementById("resultState").className = "result-status";
+        document.getElementById("resultState").textContent = "Planning estimate — " + humanize(state);
+        renderResponseMetadata(data, state);
+        document.getElementById("rateDisplay").textContent = b.rate.display;
         document.getElementById("dutyDisplay").textContent = "$" + b.dutyAmount.toFixed(2);
         document.getElementById("totalDisplay").textContent = "$" + b.totalLandedCost.toFixed(2);
-
-        let html = `<div class="row-item"><span>Product Value</span><span>$${b.productValue.toFixed(2)}</span></div>`;
-        if (b.shippingCost > 0) html += `<div class="row-item"><span>Shipping</span><span>$${b.shippingCost.toFixed(2)}</span></div>`;
-        if (b.insuranceCost > 0) html += `<div class="row-item"><span>Insurance</span><span>$${b.insuranceCost.toFixed(2)}</span></div>`;
-        html += `<div class="row-item"><span>CIF Value</span><span>$${b.cifValue.toFixed(2)}</span></div>`;
-        html += `<div class="row-item duty"><span>Import Duty (${b.dutyRatePercent})</span><span>+$${b.dutyAmount.toFixed(2)}</span></div>`;
-        html += `<div class="row-item total"><span>Total Landed Cost</span><span class="green">$${b.totalLandedCost.toFixed(2)}</span></div>`;
-        document.getElementById("breakdown").innerHTML = html;
-        document.getElementById("marginDesc").textContent = `This duty adds ${data.marginImpact.effectiveCostIncrease} to your product cost. Factor this into your selling price to protect your margins.`;
-        document.getElementById("disclaimerText").textContent = data.disclaimer;
-        const resultBand = window.AttahirAnalytics?.dutyResultBand(b.dutyRatePercent) || "not_available";
+        renderBreakdown(b);
+        const impact = Math.round((b.dutyAmount / b.productValue) * 10000) / 100;
+        document.getElementById("marginDesc").textContent =
+            `This simplified model adds ${impact}% to the product value. Validate classification and excluded costs before pricing.`;
+        document.getElementById("disclaimerText").textContent =
+            "Planning estimate only. Taxes, brokerage, carrier and processing fees, special remedies, and other costs are excluded.";
+        const resultBand = window.AttahirAnalytics?.dutyResultBand(b.rate.display) || "not_available";
         window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_completed", {surface:"duty_calculator", tool_name:"duty_calculator", result_band:resultBand});
     } catch(e) {
         err.textContent = "Failed to connect to the tariff API.";
         err.style.display = "block";
+        showUnavailable(null, "Estimate unavailable — response could not be validated");
         window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"network"});
     }
     finally { document.getElementById("calcBtn").disabled = false; document.getElementById("calcBtn").textContent = "Calculate Duty"; }
