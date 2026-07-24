@@ -69,7 +69,7 @@
                 "name": "How do I calculate import duties for my Shopify products?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Import duty = Customs Value × Tariff Rate. Customs value is typically the declared product value plus international shipping cost. The tariff rate depends on the HTS (Harmonized Tariff Schedule) code of your product and the destination country. Additional charges include VAT/GST (charged on top of customs value in most countries) and broker/handling fees."
+                    "text": "Import duty generally applies the entry's supported customs value to the applicable tariff rate, but both inputs are product-, destination-, and transaction-specific. International freight is not automatically part of U.S. customs value. Confirm classification, valuation, tariff layers, taxes, and broker or carrier fees for the actual entry."
                 }
             },
             {
@@ -366,14 +366,14 @@
 <div class="step-num">3</div>
 <div class="step-body">
 <strong>Calculate the customs value</strong>
-<p>In most countries (including the US under CIF — Cost, Insurance, Freight), the customs value = invoice price + international freight + insurance. This is the number the tariff rate is applied to.</p>
+<p>Determine the customs value under the destination's valuation rules and the transaction facts. Do not assume the United States or every other market uses a categorical CIF basis: freight and insurance belong in landed-cost planning but are not automatically dutiable in every entry.</p>
 </div>
 </div>
 <div class="step">
 <div class="step-num">4</div>
 <div class="step-body">
 <strong>Apply the tariff rate</strong>
-<p>Duty = Customs Value × Tariff Rate. For a $10 product from China with $2 in freight, the customs value is $12 and the 20% tariff adds $2.40 in duties.</p>
+<p>Apply the verified tariff rate to the supported customs value. If a hypothetical planning model uses $12 as its base and 20% as its assumed rate, the arithmetic produces $2.40; that does not establish either input for a real entry.</p>
 </div>
 </div>
 <div class="step">
@@ -399,7 +399,7 @@
 <tr><td>Supplier price (FOB)</td><td>$12.00</td></tr>
 <tr><td>Ocean freight (per unit)</td><td>$1.50</td></tr>
 <tr><td>Insurance</td><td>$0.15</td></tr>
-<tr><td>Customs value (CIF)</td><td>$13.65</td></tr>
+<tr><td>Illustrative planning base (verify customs value separately)</td><td>$13.65</td></tr>
 <tr><td>Import duty (20%)</td><td>$2.73</td></tr>
 <tr><td>Brokerage (per unit, 500-unit shipment)</td><td>$0.30</td></tr>
 <tr><td>Domestic delivery</td><td>$0.25</td></tr>
@@ -407,7 +407,7 @@
 </tbody>
 </table>
 <p>You're paying 42% more than the supplier price before you've done anything with the product. If you priced based on $12 × 3 = $36 retail, your actual margin at $36 is quite different from what your spreadsheet shows.</p>
-<p>The free <a href="/duty/">duty calculator at attahirlabs.com/duty</a> lets you run this calculation for any product and destination market in seconds.</p>
+<p>The free <a href="/duty/">duty calculator at attahirlabs.com/duty</a> can apply a legacy country-level assumption to a rough planning base. It does not classify a product, determine customs value, stack special measures, or calculate the full landed cost.</p>
 <h2 id="hts-codes">HTS Codes: The Hidden Key to Correct Duty Rates</h2>
 <p>The Harmonized Tariff Schedule (HTS) — also called HS codes internationally — is the global classification system for traded goods. Every product has a code, and that code determines the duty rate that applies in the destination country.</p>
 <p>HTS codes are 10 digits in the US (the first 6 are harmonized globally; the last 4 are country-specific). A t-shirt is 6109.10.00 (knit cotton T-shirts). A smartphone is 8517.13.00. A ceramic coffee mug is 6912.00.48.</p>
@@ -495,7 +495,7 @@
 </div>
 <div class="faq-item">
 <div class="faq-q">How do I calculate import duties for my Shopify products?</div>
-<div class="faq-a">Import duty = Customs Value × Tariff Rate. Customs value is typically the declared product value plus international shipping cost (CIF basis). The tariff rate depends on the HTS code of your product and the destination country. Additional charges include VAT/GST (in most countries) and broker/handling fees. Use the <a href="/duty/">duty calculator</a> to run the numbers quickly.</div>
+<div class="faq-a">Import duty generally applies the entry's supported customs value to the applicable tariff rate, but both inputs are product-, destination-, and transaction-specific. International freight is not automatically part of U.S. customs value. Confirm classification, valuation, tariff layers, taxes, and broker or carrier fees for the actual entry. The <a href="/duty/">duty calculator</a> is only a rough country-level planning aid.</div>
 </div>
 <div class="faq-item">
 <div class="faq-q">Do I need an HTS code for my Shopify products?</div>
