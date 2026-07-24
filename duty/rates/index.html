@@ -11,8 +11,8 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://www.google-analytics.com;">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>Tariff Rate Table — Import Duty Rates for 85+ Countries | Attahir Labs</title>
-    <meta name="description" content="Browse all tariff rates across US, Canada, EU, UK, and Australia. Search by country, filter by market. Updated weekly from government sources.">
+    <title>Historical Country-Level Tariff Planning Assumptions | Attahir Labs</title>
+    <meta name="description" content="Browse a legacy snapshot of historical country-level tariff planning assumptions for the US, Canada, EU, UK, and Australia, with explicit freshness and scope limits.">
     <link rel="canonical" href="https://attahirlabs.com/duty/rates/">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,6 +34,13 @@
         .header { margin-bottom: 1.5rem; }
         .header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
         .header p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+        .accuracy-panel { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.45); border-radius: var(--radius); padding: 1.15rem 1.25rem; margin-bottom: 1rem; }
+        .accuracy-panel h2 { color: #fbbf24; font-size: 1rem; margin-bottom: 0.45rem; }
+        .accuracy-panel p { color: rgba(255,255,255,0.82); font-size: 0.88rem; margin-top: 0.35rem; }
+        .accuracy-panel strong { color: var(--white); }
+        .response-metadata { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.7rem 0.75rem; margin-bottom: 1.5rem; }
+        .response-metadata span { color: rgba(255,255,255,0.68); font-size: 0.72rem; overflow-wrap: anywhere; }
+        .response-metadata strong { color: rgba(255,255,255,0.88); display: block; }
         .filters { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
         .filters input, .filters select { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.6rem 0.75rem; color: var(--white); font-size: 0.9rem; outline: none; }
         .filters input { flex: 1; min-width: 200px; }
@@ -53,6 +60,9 @@
         .rate-zero { color: var(--green); font-weight: 700; }
         .region { color: var(--gray-500); font-size: 0.8rem; }
         .market-name { color: rgba(255,255,255,0.8); }
+        .status-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .status-tag { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.35); border-radius: 999px; color: #fbbf24; display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.12rem 0.45rem; white-space: nowrap; }
+        .status-tag.review-required { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.35); color: #fca5a5; }
         .empty { text-align: center; padding: 3rem; color: var(--gray-500); }
         .cta-bar { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.25rem; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
         .cta-bar p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
@@ -66,6 +76,7 @@
             .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; }
             th, td { padding: 0.5rem 0.6rem; font-size: 0.8rem; }
             .cta-bar { flex-direction: column; text-align: center; }
+            .response-metadata { grid-template-columns: 1fr 1fr; }
         }
 
         /* Mobile nav: keep primary site links visible instead of hiding them. */
@@ -87,10 +98,21 @@
 
 <div class="container">
     <div class="header">
-        <h1>Tariff Rate Table</h1>
-        <p>Browse all import duty rates across 5 major markets. Updated weekly from government sources.</p>
+        <h1>Historical Tariff Planning Assumptions</h1>
+        <p>Search country-level planning rows from a legacy snapshot across five destination markets.</p>
     </div>
 
+    <aside class="accuracy-panel" id="ratesAccuracyNotice" aria-labelledby="ratesAccuracyTitle">
+        <h2 id="ratesAccuracyTitle">Accuracy &amp; freshness notice</h2>
+        <p><strong>Country-level legacy planning snapshot.</strong> Dataset updated March 18, 2026; supporting evidence verified through March 13, 2026. The update date is not a verification date, and no row-level derivation is preserved.</p>
+        <p>Rows do not model HTS or product classification, exemptions, entry dates, tariff layers, free-trade agreement (FTA) eligibility, or special remedies. This table is not for customs filing or final pricing.</p>
+    </aside>
+    <div class="response-metadata" id="ratesResponseMetadata" aria-label="Rate data response metadata">
+        <span><strong>Dataset updated</strong>Legacy response not loaded</span>
+        <span><strong>Evidence verified through</strong>Legacy response not loaded</span>
+        <span><strong>Provenance</strong>Legacy response not loaded</span>
+        <span><strong>State</strong>Legacy response not loaded</span>
+    </div>
     <div class="filters">
         <input type="text" id="search" placeholder="Search by country name..." oninput="filterRates()">
         <select id="marketFilter" onchange="filterRates()">
@@ -107,28 +129,28 @@
                     <th>Origin Country</th>
                     <th>Destination</th>
                     <th>Region</th>
-                    <th style="text-align:right">Tariff Rate</th>
+                    <th style="text-align:right">Rate assumption</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody id="tbody">
-                <tr><td colspan="4" class="empty">Loading tariff rates...</td></tr>
+                <tr><td colspan="5" class="empty">Loading historical planning assumptions...</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="cta-bar">
-        <p>Need to calculate your total landed cost including shipping and insurance?</p>
-        <a href="/duty/">Use the Duty Calculator →</a>
+        <p>Need a rough subtotal using one of these country-level assumptions?</p>
+        <a href="/duty/">Use the planning calculator →</a>
     </div>
 
     <div class="source-note">
-        Rates updated weekly from USTR, CBSA, EU TARIC, UK Trade Tariff API, and Australian Border Force.
-        Rates are general estimates for non-product-specific tariffs. Product-specific rates (Section 232 for steel, aluminum, autos) may apply additionally.
+        These numeric rows are historical country-level planning assumptions from a March 18 legacy dataset, with evidence checked only through March 13. Reference pages do not establish row-level provenance. Product classification, preferences, exemptions, entry timing, special remedies, taxes, and fees are outside this table.
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2026 Attahir Labs. Tariff rates are estimates — consult a customs broker for exact rates.</p>
+    <p>&copy; 2026 Attahir Labs. Historical planning assumptions only — verify the current entry with authoritative sources and a qualified customs professional.</p>
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 </footer>
 
@@ -143,8 +165,10 @@ async function init() {
             fetch(API + "/api/v1/rates?limit=1000"),
             fetch(API + "/api/v1/markets")
         ]);
+        if (!rr.ok || !mr.ok) throw new Error("Historical planning data unavailable");
         const rd = await rr.json(), md = await mr.json();
         allRates = rd.rates || [];
+        renderRateMetadata(rd.rateData || md.rateData || null);
 
         const sel = document.getElementById("marketFilter");
         (md.markets || []).forEach(m => {
@@ -156,7 +180,10 @@ async function init() {
 
         filterRates();
     } catch (e) {
-        document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">Failed to load rates. Please try again.</td></tr>';
+        allRates = [];
+        document.getElementById("count").textContent = "Historical planning assumptions unavailable";
+        document.getElementById("tbody").innerHTML = '<tr><td colspan="5" class="empty">Failed to load historical planning assumptions. Please try again.</td></tr>';
+        renderRateMetadata(null, "unavailable");
     }
 }
 
@@ -168,29 +195,57 @@ function filterRates() {
     if (market) filtered = filtered.filter(r => r.destination === market);
     if (search) filtered = filtered.filter(r => r.origin.name.toLowerCase().includes(search) || r.origin.code.toLowerCase().includes(search));
 
-    document.getElementById("count").textContent = filtered.length + " of " + allRates.length + " rates";
+    document.getElementById("count").textContent = filtered.length + " of " + allRates.length + " historical planning rows";
 
     if (filtered.length === 0) {
-        document.getElementById("tbody").innerHTML = '<tr><td colspan="4" class="empty">No rates found matching your search.</td></tr>';
+        document.getElementById("tbody").innerHTML = '<tr><td colspan="5" class="empty">No planning assumptions found matching your search.</td></tr>';
         return;
     }
 
     let html = "";
     filtered.forEach(r => {
         const rateClass = r.rate === 0 ? "rate-zero" : r.rate >= 20 ? "rate-high" : r.rate >= 10 ? "rate-mid" : "rate-low";
+        const stateLabels = [
+            r.rateState === "historical" ? "Historical" : "Historical planning assumption"
+        ];
+        if (r.rateDataState === "review_required") stateLabels.push("Review required");
+        const stateHtml = stateLabels.map(label => {
+            const className = label === "Review required" ? "status-tag review-required" : "status-tag";
+            return '<span class="' + className + '">' + esc(label) + '</span>';
+        }).join("");
         html += '<tr>' +
             '<td><span class="country-name">' + esc(r.origin.name) + '</span><span class="country-code">' + esc(r.origin.code) + '</span></td>' +
             '<td class="market-name">' + esc(MARKET_NAMES[r.destination] || r.destination) + '</td>' +
             '<td class="region">' + esc(r.region) + '</td>' +
             '<td style="text-align:right"><span class="' + rateClass + '">' + r.rate + '%</span></td>' +
+            '<td><div class="status-tags">' + stateHtml + '</div></td>' +
             '</tr>';
     });
     document.getElementById("tbody").innerHTML = html;
 }
 
 function esc(s) {
-    if (!s) return "";
-    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    if (s === undefined || s === null) return "";
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function humanize(value) {
+    if (!value) return "";
+    const text = String(value).replace(/_/g, " ");
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function renderRateMetadata(rateData, fallbackState) {
+    const metadata = rateData && typeof rateData === "object" ? rateData : {};
+    const rows = [
+        ["Dataset updated", metadata.datasetUpdatedAt || metadata.lastUpdated || "Not provided by this response"],
+        ["Evidence verified through", metadata.verifiedThrough || "Not provided by this response"],
+        ["Provenance", humanize(metadata.provenanceStatus) || "Not provided by this response"],
+        ["State", humanize(metadata.state || fallbackState) || "Legacy response; state not provided"]
+    ];
+    document.getElementById("ratesResponseMetadata").innerHTML = rows
+        .map(([label, value]) => '<span><strong>' + esc(label) + '</strong>' + esc(value) + '</span>')
+        .join("");
 }
 
 init();
