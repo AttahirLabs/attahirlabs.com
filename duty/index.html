@@ -219,23 +219,65 @@ async function init() {
         const [cr, mr] = await Promise.all([fetch(API+"/api/v1/countries"), fetch(API+"/api/v1/markets")]);
         if (!cr.ok || !mr.ok) throw new Error("Reference data unavailable");
         const cd = await cr.json(), md = await mr.json();
-        const os = document.getElementById("origin");
-        os.innerHTML = '<option value="">Select origin country...</option>' + (cd.countries||[]).map(c=>`<option value="${c.code}">${c.name} (${c.code})</option>`).join("");
-        const ds = document.getElementById("destination");
-        ds.innerHTML = '<option value="">Select destination...</option>' + (md.markets||[]).map(m=>`<option value="${m.code}">${m.name} (${m.rateCount} countries)</option>`).join("");
+        replaceSelectOptions(
+            document.getElementById("origin"),
+            "Select origin country...",
+            Array.isArray(cd.countries) ? cd.countries : [],
+            country => {
+                if (!isCode(country?.code) || !isText(country?.name)) return null;
+                return { value: country.code, label: `${country.name} (${country.code})` };
+            }
+        );
+        replaceSelectOptions(
+            document.getElementById("destination"),
+            "Select destination...",
+            Array.isArray(md.markets) ? md.markets : [],
+            market => {
+                if (
+                    !isCode(market?.code) ||
+                    !isText(market?.name) ||
+                    !Number.isSafeInteger(market?.rateCount) ||
+                    market.rateCount < 0
+                ) return null;
+                return {
+                    value: market.code,
+                    label: `${market.name} (${market.rateCount} countries)`
+                };
+            }
+        );
     } catch(e) {
         console.error("Failed to load data", e);
-        document.getElementById("origin").innerHTML = '<option value="">Countries unavailable</option>';
-        document.getElementById("destination").innerHTML = '<option value="">Markets unavailable</option>';
+        replaceSelectOptions(document.getElementById("origin"), "Countries unavailable", [], () => null);
+        replaceSelectOptions(document.getElementById("destination"), "Markets unavailable", [], () => null);
     }
 }
 
-function esc(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+function isRecord(value) {
+    return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isText(value) {
+    return typeof value === "string" && value.trim().length > 0;
+}
+
+function isCode(value) {
+    return typeof value === "string" && /^[A-Z]{2}$/.test(value);
+}
+
+function replaceSelectOptions(select, placeholder, items, normalize) {
+    select.replaceChildren();
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
+    items.forEach(item => {
+        const normalized = normalize(item);
+        if (!normalized) return;
+        const option = document.createElement("option");
+        option.value = normalized.value;
+        option.textContent = normalized.label;
+        select.appendChild(option);
+    });
 }
 
 function humanize(value) {
@@ -245,12 +287,14 @@ function humanize(value) {
 }
 
 function responseMetadata(data) {
-    const rateData = data && typeof data.rateData === "object" ? data.rateData : {};
+    const rateData = isRecord(data?.rateData) ? data.rateData : {};
     return {
         datasetUpdatedAt: data?.datasetUpdatedAt || data?.lastUpdated || rateData.datasetUpdatedAt || rateData.lastUpdated || "",
         verifiedThrough: data?.verifiedThrough || rateData.verifiedThrough || "",
         provenanceStatus: data?.provenanceStatus || rateData.provenanceStatus || "",
-        state: data?.state || data?.rateDataState || rateData.state || ""
+        state: data?.state || data?.rateDataState || rateData.state || "",
+        reviewAfter: rateData.reviewAfter,
+        usable: rateData.usable
     };
 }
 
@@ -262,9 +306,175 @@ function renderResponseMetadata(data, fallbackState) {
         ["Provenance", humanize(metadata.provenanceStatus) || "Not provided by this response"],
         ["State", humanize(metadata.state || fallbackState) || "Not provided by this response"]
     ];
-    document.getElementById("responseMetadata").innerHTML = rows
-        .map(([label, value]) => `<span><strong>${esc(label)}:</strong> ${esc(value)}</span>`)
-        .join("");
+    const container = document.getElementById("responseMetadata");
+    container.replaceChildren();
+    rows.forEach(([label, value]) => {
+        const row = document.createElement("span");
+        const heading = document.createElement("strong");
+        const detail = document.createElement("span");
+        heading.textContent = `${label}:`;
+        detail.textContent = ` ${value}`;
+        row.appendChild(heading);
+        row.appendChild(detail);
+        container.appendChild(row);
+    });
+}
+
+function validDateOnly(value) {
+    if (typeof value !== "string") return false;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    if (!match) return false;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year &&
+        date.getUTCMonth() === month - 1 &&
+        date.getUTCDate() === day;
+}
+
+function parseReviewInstant(value) {
+    if (typeof value !== "string") return null;
+    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.exec(value);
+    if (!match) return null;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const hour = Number(match[4]), minute = Number(match[5]), second = Number(match[6]);
+    const calendar = new Date(Date.UTC(year, month - 1, day));
+    if (
+        calendar.getUTCFullYear() !== year ||
+        calendar.getUTCMonth() !== month - 1 ||
+        calendar.getUTCDate() !== day ||
+        hour > 23 ||
+        minute > 59 ||
+        second > 59
+    ) return null;
+    const timestamp = Date.parse(value);
+    return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function hasConsistentField(data, rateData, field, aliases = []) {
+    const expected = rateData[field];
+    return [field, ...aliases].every(key =>
+        data[key] === undefined || data[key] === expected
+    );
+}
+
+function hasUsableRateMetadata(data) {
+    if (!isRecord(data) || !isRecord(data.rateData)) return false;
+    const rateData = data.rateData;
+    if (
+        rateData.state !== "usable" ||
+        rateData.usable !== true ||
+        !validDateOnly(rateData.datasetUpdatedAt) ||
+        !validDateOnly(rateData.verifiedThrough) ||
+        !isText(rateData.provenanceStatus) ||
+        !Object.prototype.hasOwnProperty.call(rateData, "reviewAfter")
+    ) return false;
+    if (
+        !hasConsistentField(data, rateData, "datasetUpdatedAt", ["lastUpdated"]) ||
+        !hasConsistentField(data, rateData, "verifiedThrough") ||
+        (data.state !== undefined && data.state !== "usable") ||
+        (data.rateDataState !== undefined && data.rateDataState !== "usable")
+    ) return false;
+    if (rateData.reviewAfter === null) return true;
+    const reviewAt = parseReviewInstant(rateData.reviewAfter);
+    return reviewAt !== null && Date.now() < reviewAt;
+}
+
+function normalizeDutyRate(breakdown) {
+    const hasNumber = Object.prototype.hasOwnProperty.call(breakdown, "dutyRate");
+    const hasPercent = Object.prototype.hasOwnProperty.call(breakdown, "dutyRatePercent");
+    if (!hasNumber && !hasPercent) return null;
+
+    let numericRate = null;
+    if (hasNumber) {
+        if (
+            typeof breakdown.dutyRate !== "number" ||
+            !Number.isFinite(breakdown.dutyRate) ||
+            breakdown.dutyRate < 0 ||
+            breakdown.dutyRate > 100
+        ) return null;
+        numericRate = Object.is(breakdown.dutyRate, -0) ? 0 : breakdown.dutyRate;
+    }
+
+    let percentRate = null;
+    if (hasPercent) {
+        if (
+            typeof breakdown.dutyRatePercent !== "string" ||
+            !/^(?:\d+(?:\.\d+)?)%$/.test(breakdown.dutyRatePercent)
+        ) return null;
+        percentRate = Number(breakdown.dutyRatePercent.slice(0, -1));
+        if (!Number.isFinite(percentRate) || percentRate < 0 || percentRate > 100) return null;
+    }
+
+    if (numericRate !== null && percentRate !== null && numericRate !== percentRate) return null;
+    const value = numericRate ?? percentRate;
+    return { value, display: `${value}%` };
+}
+
+function normalizeBreakdown(breakdown) {
+    if (!isRecord(breakdown)) return null;
+    const rate = normalizeDutyRate(breakdown);
+    if (!rate) return null;
+    const fields = [
+        "productValue",
+        "shippingCost",
+        "insuranceCost",
+        "cifValue",
+        "dutyAmount",
+        "totalLandedCost"
+    ];
+    if (fields.some(field =>
+        typeof breakdown[field] !== "number" ||
+        !Number.isFinite(breakdown[field]) ||
+        breakdown[field] < 0
+    )) return null;
+    if (breakdown.productValue <= 0) return null;
+    const expectedBase = breakdown.productValue + breakdown.shippingCost + breakdown.insuranceCost;
+    const expectedDuty = Math.round(expectedBase * (rate.value / 100) * 100) / 100;
+    const expectedTotal = Math.round((expectedBase + expectedDuty) * 100) / 100;
+    if (
+        Math.abs(breakdown.cifValue - expectedBase) > 0.01 ||
+        Math.abs(breakdown.dutyAmount - expectedDuty) > 0.01 ||
+        Math.abs(breakdown.totalLandedCost - expectedTotal) > 0.01
+    ) return null;
+    return { ...breakdown, rate };
+}
+
+function appendBreakdownRow(container, label, value, className = "") {
+    const row = document.createElement("div");
+    row.className = `row-item${className ? ` ${className}` : ""}`;
+    const labelNode = document.createElement("span");
+    const valueNode = document.createElement("span");
+    labelNode.textContent = label;
+    valueNode.textContent = value;
+    if (className === "total") valueNode.className = "green";
+    row.appendChild(labelNode);
+    row.appendChild(valueNode);
+    container.appendChild(row);
+}
+
+function renderBreakdown(breakdown) {
+    const container = document.getElementById("breakdown");
+    container.replaceChildren();
+    appendBreakdownRow(container, "Product Value", `$${breakdown.productValue.toFixed(2)}`);
+    if (breakdown.shippingCost > 0) {
+        appendBreakdownRow(container, "Shipping", `$${breakdown.shippingCost.toFixed(2)}`);
+    }
+    if (breakdown.insuranceCost > 0) {
+        appendBreakdownRow(container, "Insurance", `$${breakdown.insuranceCost.toFixed(2)}`);
+    }
+    appendBreakdownRow(container, "Modeled planning base", `$${breakdown.cifValue.toFixed(2)}`);
+    appendBreakdownRow(
+        container,
+        `Modeled duty (${breakdown.rate.display})`,
+        `+$${breakdown.dutyAmount.toFixed(2)}`,
+        "duty"
+    );
+    appendBreakdownRow(
+        container,
+        "Estimated subtotal",
+        `$${breakdown.totalLandedCost.toFixed(2)}`,
+        "total"
+    );
 }
 
 function clearNumericResult() {
@@ -272,7 +482,7 @@ function clearNumericResult() {
     document.getElementById("rateDisplay").textContent = "—";
     document.getElementById("dutyDisplay").textContent = "—";
     document.getElementById("totalDisplay").textContent = "—";
-    document.getElementById("breakdown").innerHTML = "";
+    document.getElementById("breakdown").replaceChildren();
     document.getElementById("marginDesc").textContent = "";
     document.getElementById("disclaimerText").textContent = "";
 }
@@ -345,48 +555,45 @@ async function calculate() {
             return;
         }
 
-        const b = data.breakdown;
+        if (!hasUsableRateMetadata(data)) {
+            err.textContent = "Rate data metadata is missing, unusable, or past its review boundary.";
+            err.style.display = "block";
+            showUnavailable(data, "Indeterminate — usable rate data was not confirmed");
+            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
+            return;
+        }
+        const b = normalizeBreakdown(data.breakdown);
         if (
             !b ||
-            !Number.isFinite(Number.parseFloat(b.dutyRatePercent)) ||
-            !Number.isFinite(b.productValue) ||
-            !Number.isFinite(b.shippingCost) ||
-            !Number.isFinite(b.insuranceCost) ||
-            !Number.isFinite(b.cifValue) ||
-            !Number.isFinite(b.dutyAmount) ||
-            !Number.isFinite(b.totalLandedCost)
+            !isRecord(data.origin) ||
+            !isText(data.origin.name) ||
+            !isRecord(data.destination) ||
+            !isText(data.destination.name)
         ) {
-            throw new Error("Calculation response was incomplete");
+            err.textContent = "The calculation response could not be validated.";
+            err.style.display = "block";
+            showUnavailable(data, "Estimate unavailable — response could not be validated");
+            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
+            return;
         }
         document.getElementById("placeholder").style.display = "none";
         document.getElementById("results").style.display = "block";
         document.getElementById("resultNumbers").style.display = "block";
         document.getElementById("route").textContent = data.origin.name + " → " + data.destination.name;
-        const state = responseMetadata(data).state || "legacy_response";
+        const state = responseMetadata(data).state;
         document.getElementById("resultState").className = "result-status";
-        document.getElementById("resultState").textContent = state === "legacy_response"
-            ? "Planning estimate — legacy response (state not provided)"
-            : "Planning estimate — " + humanize(state);
+        document.getElementById("resultState").textContent = "Planning estimate — " + humanize(state);
         renderResponseMetadata(data, state);
-        document.getElementById("rateDisplay").textContent = b.dutyRatePercent;
+        document.getElementById("rateDisplay").textContent = b.rate.display;
         document.getElementById("dutyDisplay").textContent = "$" + b.dutyAmount.toFixed(2);
         document.getElementById("totalDisplay").textContent = "$" + b.totalLandedCost.toFixed(2);
-
-        let html = `<div class="row-item"><span>Product Value</span><span>$${b.productValue.toFixed(2)}</span></div>`;
-        if (b.shippingCost > 0) html += `<div class="row-item"><span>Shipping</span><span>$${b.shippingCost.toFixed(2)}</span></div>`;
-        if (b.insuranceCost > 0) html += `<div class="row-item"><span>Insurance</span><span>$${b.insuranceCost.toFixed(2)}</span></div>`;
-        html += `<div class="row-item"><span>Modeled planning base</span><span>$${b.cifValue.toFixed(2)}</span></div>`;
-        html += `<div class="row-item duty"><span>Modeled duty (${b.dutyRatePercent})</span><span>+$${b.dutyAmount.toFixed(2)}</span></div>`;
-        html += `<div class="row-item total"><span>Estimated subtotal</span><span class="green">$${b.totalLandedCost.toFixed(2)}</span></div>`;
-        document.getElementById("breakdown").innerHTML = html;
-        const impact = data.marginImpact?.effectiveCostIncrease;
-        document.getElementById("marginDesc").textContent = impact
-            ? `This simplified model adds ${impact} to the product value. Validate classification and excluded costs before pricing.`
-            : "Validate classification and excluded costs before pricing.";
+        renderBreakdown(b);
+        const impact = Math.round((b.dutyAmount / b.productValue) * 10000) / 100;
+        document.getElementById("marginDesc").textContent =
+            `This simplified model adds ${impact}% to the product value. Validate classification and excluded costs before pricing.`;
         document.getElementById("disclaimerText").textContent =
-            (data.disclaimer ? data.disclaimer + " " : "") +
-            "Taxes, brokerage, carrier and processing fees, special remedies, and other costs are excluded.";
-        const resultBand = window.AttahirAnalytics?.dutyResultBand(b.dutyRatePercent) || "not_available";
+            "Planning estimate only. Taxes, brokerage, carrier and processing fees, special remedies, and other costs are excluded.";
+        const resultBand = window.AttahirAnalytics?.dutyResultBand(b.rate.display) || "not_available";
         window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_completed", {surface:"duty_calculator", tool_name:"duty_calculator", result_band:resultBand});
     } catch(e) {
         err.textContent = "Failed to connect to the tariff API.";
