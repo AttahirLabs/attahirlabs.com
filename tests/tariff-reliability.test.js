@@ -57,7 +57,7 @@ for (const label of ['Dataset updated', 'Evidence verified through', 'Provenance
   assert.match(rates, new RegExp(label, 'i'), `rates table must render the ${label} response label`);
 }
 assert.match(duty, /datasetUpdatedAt/);
-assert.match(duty, /lastUpdated/, 'the deployed legacy response must remain supported');
+assert.match(duty, /lastUpdated/, 'legacy update metadata must remain visible on a fail-closed response');
 assert.match(duty, /verifiedThrough/);
 assert.match(duty, /provenanceStatus/);
 assert.match(duty, /RATE_DATA_REVIEW_REQUIRED/);
@@ -149,8 +149,27 @@ function makeElement(initial = {}) {
     textContent: '',
     innerHTML: '',
     disabled: false,
+    children: [],
+    appendChild(child) {
+      this.children.push(child);
+      this.innerHTML = '';
+      return child;
+    },
+    replaceChildren(...children) {
+      this.children = children;
+      this.innerHTML = '';
+      this.textContent = '';
+    },
     ...initial
   };
+}
+
+function visibleElementText(element) {
+  return [
+    element.textContent,
+    element.innerHTML,
+    ...(element.children || []).map(visibleElementText)
+  ].join(' ');
 }
 
 async function assertReviewRequiredBehavior() {
@@ -182,6 +201,9 @@ async function assertReviewRequiredBehavior() {
     URLSearchParams,
     console,
     document: {
+      createElement() {
+        return makeElement();
+      },
       getElementById(id) {
         assert.ok(elements[id], `unexpected calculator element lookup: ${id}`);
         return elements[id];
@@ -245,9 +267,10 @@ async function assertReviewRequiredBehavior() {
   }
   assert.doesNotMatch(elements.breakdown.innerHTML, /\d/, 'partial stale 503 JSON must not enter the breakdown');
   assert.match(elements.resultState.textContent, /indeterminate|review required|unavailable/i);
-  assert.match(elements.responseMetadata.innerHTML, /2026-03-18/);
-  assert.match(elements.responseMetadata.innerHTML, /2026-03-13/);
-  assert.match(elements.responseMetadata.innerHTML, /legacy snapshot untraced/i);
+  const renderedMetadata = visibleElementText(elements.responseMetadata);
+  assert.match(renderedMetadata, /2026-03-18/);
+  assert.match(renderedMetadata, /2026-03-13/);
+  assert.match(renderedMetadata, /legacy snapshot untraced/i);
   assert.ok(analyticsCalls.some((call) => call.name === 'tool_started'));
   assert.ok(analyticsCalls.some((call) => call.name === 'tool_failed'));
   for (const call of analyticsCalls) {

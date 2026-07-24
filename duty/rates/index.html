@@ -159,6 +159,113 @@ const API = "https://duty-calc-api-production.up.railway.app";
 const MARKET_NAMES = { US: "United States", CA: "Canada", EU: "European Union", UK: "United Kingdom", AU: "Australia" };
 let allRates = [];
 
+function isRecord(value) {
+    return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isText(value) {
+    return typeof value === "string" && value.trim().length > 0;
+}
+
+function isCode(value) {
+    return typeof value === "string" && /^[A-Z]{2}$/.test(value);
+}
+
+function validDateOnly(value) {
+    if (typeof value !== "string") return false;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    if (!match) return false;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year &&
+        date.getUTCMonth() === month - 1 &&
+        date.getUTCDate() === day;
+}
+
+function parseReviewInstant(value) {
+    if (typeof value !== "string") return null;
+    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.exec(value);
+    if (!match) return null;
+    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+    const hour = Number(match[4]), minute = Number(match[5]), second = Number(match[6]);
+    const calendar = new Date(Date.UTC(year, month - 1, day));
+    if (
+        calendar.getUTCFullYear() !== year ||
+        calendar.getUTCMonth() !== month - 1 ||
+        calendar.getUTCDate() !== day ||
+        hour > 23 ||
+        minute > 59 ||
+        second > 59
+    ) return null;
+    const timestamp = Date.parse(value);
+    return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function hasHistoricalMetadata(rateData) {
+    if (
+        !isRecord(rateData) ||
+        rateData.state !== "degraded" ||
+        rateData.usable !== false ||
+        !validDateOnly(rateData.datasetUpdatedAt) ||
+        !validDateOnly(rateData.verifiedThrough) ||
+        !isText(rateData.provenanceStatus) ||
+        !Object.prototype.hasOwnProperty.call(rateData, "reviewAfter") ||
+        !isRecord(rateData.markets) ||
+        Object.keys(rateData.markets).length === 0
+    ) return false;
+    const reviewAt = parseReviewInstant(rateData.reviewAfter);
+    if (reviewAt === null || Date.now() < reviewAt) return false;
+    return Object.entries(rateData.markets).every(([market, metadata]) =>
+        isCode(market) &&
+        isRecord(metadata) &&
+        metadata.state === "review_required" &&
+        metadata.usable === false &&
+        validDateOnly(metadata.datasetUpdatedAt) &&
+        validDateOnly(metadata.verifiedThrough) &&
+        isText(metadata.provenanceStatus) &&
+        parseReviewInstant(metadata.reviewAfter) !== null &&
+        Date.now() >= parseReviewInstant(metadata.reviewAfter)
+    );
+}
+
+function normalizeHistoricalRate(row, rateData) {
+    if (
+        !isRecord(row) ||
+        !isRecord(row.origin) ||
+        !isCode(row.origin.code) ||
+        !isText(row.origin.name) ||
+        !isCode(row.destination) ||
+        !isText(row.region) ||
+        typeof row.rate !== "number" ||
+        !Number.isFinite(row.rate) ||
+        row.rate < 0 ||
+        row.rate > 100 ||
+        row.rateState !== "historical" ||
+        row.rateDataState !== "review_required" ||
+        !isRecord(rateData.markets[row.destination]) ||
+        rateData.markets[row.destination].state !== "review_required"
+    ) return null;
+    return {
+        origin: { code: row.origin.code, name: row.origin.name },
+        destination: row.destination,
+        region: row.region,
+        rate: Object.is(row.rate, -0) ? 0 : row.rate,
+        rateState: "historical",
+        rateDataState: "review_required"
+    };
+}
+
+function renderEmpty(message) {
+    const body = document.getElementById("tbody");
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.className = "empty";
+    cell.setAttribute("colspan", "5");
+    cell.textContent = message;
+    row.appendChild(cell);
+    body.replaceChildren(row);
+}
+
 async function init() {
     try {
         const [rr, mr] = await Promise.all([
@@ -167,11 +274,24 @@ async function init() {
         ]);
         if (!rr.ok || !mr.ok) throw new Error("Historical planning data unavailable");
         const rd = await rr.json(), md = await mr.json();
-        allRates = rd.rates || [];
-        renderRateMetadata(rd.rateData || md.rateData || null);
+        if (!isRecord(rd) || !hasHistoricalMetadata(rd.rateData) || !Array.isArray(rd.rates)) {
+            throw new Error("Historical rate metadata unavailable");
+        }
+        const normalizedRates = rd.rates.map(row => normalizeHistoricalRate(row, rd.rateData));
+        if (normalizedRates.some(row => row === null)) {
+            throw new Error("Historical planning row could not be validated");
+        }
+        allRates = normalizedRates;
+        renderRateMetadata(rd.rateData);
 
         const sel = document.getElementById("marketFilter");
-        (md.markets || []).forEach(m => {
+        (Array.isArray(md?.markets) ? md.markets : []).forEach(m => {
+            if (
+                !isCode(m?.code) ||
+                !isText(m?.name) ||
+                !Number.isSafeInteger(m?.rateCount) ||
+                m.rateCount < 0
+            ) return;
             const opt = document.createElement("option");
             opt.value = m.code;
             opt.textContent = m.name + " (" + m.rateCount + ")";
@@ -182,7 +302,7 @@ async function init() {
     } catch (e) {
         allRates = [];
         document.getElementById("count").textContent = "Historical planning assumptions unavailable";
-        document.getElementById("tbody").innerHTML = '<tr><td colspan="5" class="empty">Failed to load historical planning assumptions. Please try again.</td></tr>';
+        renderEmpty("Failed to load historical planning assumptions. Please try again.");
         renderRateMetadata(null, "unavailable");
     }
 }
@@ -193,40 +313,63 @@ function filterRates() {
 
     let filtered = allRates;
     if (market) filtered = filtered.filter(r => r.destination === market);
-    if (search) filtered = filtered.filter(r => r.origin.name.toLowerCase().includes(search) || r.origin.code.toLowerCase().includes(search));
+    if (search) filtered = filtered.filter(r =>
+        r.origin.name.toLowerCase().includes(search) ||
+        r.origin.code.toLowerCase().includes(search)
+    );
 
     document.getElementById("count").textContent = filtered.length + " of " + allRates.length + " historical planning rows";
 
     if (filtered.length === 0) {
-        document.getElementById("tbody").innerHTML = '<tr><td colspan="5" class="empty">No planning assumptions found matching your search.</td></tr>';
+        renderEmpty("No planning assumptions found matching your search.");
         return;
     }
 
-    let html = "";
+    const body = document.getElementById("tbody");
+    body.replaceChildren();
     filtered.forEach(r => {
         const rateClass = r.rate === 0 ? "rate-zero" : r.rate >= 20 ? "rate-high" : r.rate >= 10 ? "rate-mid" : "rate-low";
-        const stateLabels = [
-            r.rateState === "historical" ? "Historical" : "Historical planning assumption"
-        ];
-        if (r.rateDataState === "review_required") stateLabels.push("Review required");
-        const stateHtml = stateLabels.map(label => {
-            const className = label === "Review required" ? "status-tag review-required" : "status-tag";
-            return '<span class="' + className + '">' + esc(label) + '</span>';
-        }).join("");
-        html += '<tr>' +
-            '<td><span class="country-name">' + esc(r.origin.name) + '</span><span class="country-code">' + esc(r.origin.code) + '</span></td>' +
-            '<td class="market-name">' + esc(MARKET_NAMES[r.destination] || r.destination) + '</td>' +
-            '<td class="region">' + esc(r.region) + '</td>' +
-            '<td style="text-align:right"><span class="' + rateClass + '">' + r.rate + '%</span></td>' +
-            '<td><div class="status-tags">' + stateHtml + '</div></td>' +
-            '</tr>';
-    });
-    document.getElementById("tbody").innerHTML = html;
-}
+        const row = document.createElement("tr");
+        const countryCell = document.createElement("td");
+        const countryName = document.createElement("span");
+        const countryCode = document.createElement("span");
+        countryName.className = "country-name";
+        countryCode.className = "country-code";
+        countryName.textContent = r.origin.name;
+        countryCode.textContent = r.origin.code;
+        countryCell.appendChild(countryName);
+        countryCell.appendChild(countryCode);
 
-function esc(s) {
-    if (s === undefined || s === null) return "";
-    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+        const marketCell = document.createElement("td");
+        marketCell.className = "market-name";
+        marketCell.textContent = MARKET_NAMES[r.destination] || r.destination;
+
+        const regionCell = document.createElement("td");
+        regionCell.className = "region";
+        regionCell.textContent = r.region;
+
+        const rateCell = document.createElement("td");
+        rateCell.style.textAlign = "right";
+        const rateValue = document.createElement("span");
+        rateValue.className = rateClass;
+        rateValue.textContent = `${r.rate}%`;
+        rateCell.appendChild(rateValue);
+
+        const statusCell = document.createElement("td");
+        const tags = document.createElement("div");
+        tags.className = "status-tags";
+        ["Historical", "Review required"].forEach(label => {
+            const tag = document.createElement("span");
+            const className = label === "Review required" ? "status-tag review-required" : "status-tag";
+            tag.className = className;
+            tag.textContent = label;
+            tags.appendChild(tag);
+        });
+        statusCell.appendChild(tags);
+
+        [countryCell, marketCell, regionCell, rateCell, statusCell].forEach(cell => row.appendChild(cell));
+        body.appendChild(row);
+    });
 }
 
 function humanize(value) {
@@ -236,16 +379,25 @@ function humanize(value) {
 }
 
 function renderRateMetadata(rateData, fallbackState) {
-    const metadata = rateData && typeof rateData === "object" ? rateData : {};
+    const metadata = isRecord(rateData) ? rateData : {};
     const rows = [
         ["Dataset updated", metadata.datasetUpdatedAt || metadata.lastUpdated || "Not provided by this response"],
         ["Evidence verified through", metadata.verifiedThrough || "Not provided by this response"],
         ["Provenance", humanize(metadata.provenanceStatus) || "Not provided by this response"],
         ["State", humanize(metadata.state || fallbackState) || "Legacy response; state not provided"]
     ];
-    document.getElementById("ratesResponseMetadata").innerHTML = rows
-        .map(([label, value]) => '<span><strong>' + esc(label) + '</strong>' + esc(value) + '</span>')
-        .join("");
+    const container = document.getElementById("ratesResponseMetadata");
+    container.replaceChildren();
+    rows.forEach(([label, value]) => {
+        const row = document.createElement("span");
+        const heading = document.createElement("strong");
+        const detail = document.createElement("span");
+        heading.textContent = label;
+        detail.textContent = value;
+        row.appendChild(heading);
+        row.appendChild(detail);
+        container.appendChild(row);
+    });
 }
 
 init();
