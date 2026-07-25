@@ -96,7 +96,7 @@
 
 <nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
 
-<div class="container">
+<div class="container" data-tariff-authority-state="review-required">
     <div class="header">
         <h1>Historical Tariff Planning Assumptions</h1>
         <p>Search country-level planning rows from a legacy snapshot across five destination markets.</p>
@@ -104,7 +104,8 @@
 
     <aside class="accuracy-panel" id="ratesAccuracyNotice" aria-labelledby="ratesAccuracyTitle">
         <h2 id="ratesAccuracyTitle">Accuracy &amp; freshness notice</h2>
-        <p><strong>Country-level legacy planning snapshot.</strong> Dataset updated March 18, 2026; supporting evidence verified through March 13, 2026. The update date is not a verification date, and no row-level derivation is preserved.</p>
+        <p class="tariff-authority-warning"><strong>Historical country-level planning snapshot only.</strong> No current numeric result is available. No universal current U.S. tariff rate is available from country of origin alone.</p>
+<p><strong>Country-level legacy planning snapshot.</strong> Dataset updated March 18, 2026; supporting evidence verified through March 13, 2026. The update date is not a verification date, and no row-level derivation is preserved.</p>
         <p>Rows do not model HTS or product classification, exemptions, entry dates, tariff layers, free-trade agreement (FTA) eligibility, or special remedies. This table is not for customs filing or final pricing.</p>
     </aside>
     <div class="response-metadata" id="ratesResponseMetadata" aria-label="Rate data response metadata">
