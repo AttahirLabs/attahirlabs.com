@@ -137,7 +137,7 @@
                     <article class="estimate"><div><h3>Express</h3><p>Estimated delivery window</p></div><div class="price">—</div></article>
                 </div>
                 <div class="note"><strong>Important:</strong> retail benchmark estimates may differ from Shopify checkout/carrier account rates. Actual quotes can change with negotiated discounts, address validation, fuel/residential surcharges, dimensional rules, fulfillment location, duties, taxes, and carrier availability.</div>
-                <div class="cta-panel"><strong>Want this inside Shopify?</strong><br>We are using this public calculator to validate the eventual Shopify estimator app. <a href="/contact.html">Contact Attahir Labs</a> if you want merchant-specific checkout-rate logic or beta access.</div>
+                <div class="cta-panel"><strong>Want this inside Shopify?</strong><br>We are using this public calculator to validate the eventual Shopify estimator app. <a href="/contact.html" data-analytics-event="contact_intent" data-analytics-surface="shipping_calculator" data-analytics-placement="result_cta">Contact Attahir Labs</a> if you want merchant-specific checkout-rate logic or beta access.</div>
             </div>
         </section>
     </div>
@@ -163,6 +163,7 @@
 </footer>
 
 <script src="/shipping/calculator.js"></script>
+<script src="/assets/analytics.js"></script>
 <script>
 (function () {
     const form = document.getElementById('shippingForm');
@@ -172,7 +173,10 @@
     function value(id) { return document.getElementById(id).value; }
     function numberValue(id) { return Number(value(id)); }
 
-    function render() {
+    let shippingSubmission = 0;
+
+    function render(trackSubmission) {
+        const actionKey = trackSubmission ? 'shipping:' + (++shippingSubmission) : null;
         error.style.display = 'none';
         const input = {
             originCountry: value('originCountry'), originPostal: value('originPostal'),
@@ -183,21 +187,34 @@
         if (!input.originCountry || !input.destinationCountry || input.weight <= 0 || input.length <= 0 || input.width <= 0 || input.height <= 0 || input.orderValue < 0) {
             error.textContent = 'Please enter positive package measurements and a valid order value.';
             error.style.display = 'block';
+            if (actionKey) window.AttahirAnalytics?.once(actionKey + ':outcome', 'tool_failed', {surface:'shipping_calculator', tool_name:'shipping_calculator', error_code:'validation'});
             return;
         }
-        const result = window.ShippingCalculator.estimateShipping(input);
-        document.getElementById('emptyState').style.display = 'none';
-        document.getElementById('results').style.display = 'block';
-        document.getElementById('zoneLabel').textContent = result.zoneLabel;
-        document.getElementById('billableWeight').textContent = result.billableWeight;
-        document.getElementById('dimWeight').textContent = result.dimensionalWeight;
-        document.getElementById('estimateList').innerHTML = result.estimates.map(function (estimate) {
-            return '<article class="estimate"><div><h3>' + estimate.service + '</h3><p>' + estimate.window + '</p></div><div class="price">' + currency.format(estimate.low) + '–' + currency.format(estimate.high) + '</div></article>';
-        }).join('');
+        if (actionKey) window.AttahirAnalytics?.once(actionKey + ':start', 'tool_started', {surface:'shipping_calculator', tool_name:'shipping_calculator'});
+        try {
+            const result = window.ShippingCalculator.estimateShipping(input);
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('zoneLabel').textContent = result.zoneLabel;
+            document.getElementById('billableWeight').textContent = result.billableWeight;
+            document.getElementById('dimWeight').textContent = result.dimensionalWeight;
+            document.getElementById('estimateList').innerHTML = result.estimates.map(function (estimate) {
+                return '<article class="estimate"><div><h3>' + estimate.service + '</h3><p>' + estimate.window + '</p></div><div class="price">' + currency.format(estimate.low) + '–' + currency.format(estimate.high) + '</div></article>';
+            }).join('');
+            if (actionKey) {
+                const lowestEstimate = Math.min.apply(null, result.estimates.map(function (estimate) { return estimate.low; }));
+                const resultBand = window.AttahirAnalytics?.shippingResultBand(lowestEstimate) || 'not_available';
+                window.AttahirAnalytics?.once(actionKey + ':outcome', 'tool_completed', {surface:'shipping_calculator', tool_name:'shipping_calculator', result_band:resultBand});
+            }
+        } catch (_) {
+            error.textContent = 'Unable to calculate an estimate. Please check the values and try again.';
+            error.style.display = 'block';
+            if (actionKey) window.AttahirAnalytics?.once(actionKey + ':outcome', 'tool_failed', {surface:'shipping_calculator', tool_name:'shipping_calculator', error_code:'unknown'});
+        }
     }
 
-    form.addEventListener('submit', function (event) { event.preventDefault(); render(); });
-    render();
+    form.addEventListener('submit', function (event) { event.preventDefault(); render(true); });
+    render(false);
 })();
 </script>
 </body>

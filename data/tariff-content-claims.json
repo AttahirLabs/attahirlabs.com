@@ -1,0 +1,601 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-07-25T22:30:00Z",
+  "reviewAfter": "2026-07-28T04:01:00Z",
+  "authorityRegistry": {
+    "fr_2026_03824": {
+      "url": "https://federalregister.gov/documents/2026/02/25/2026-03824/imposing-a-temporary-import-surcharge-to-address-fundamental-international-payments-problems",
+      "label": "Federal Register 2026-03824 — Proclamation 11012"
+    },
+    "ustr_brazil_final_2026_07": {
+      "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-section-301-action-brazils-unreasonable-acts-policies-and-practices",
+      "label": "USTR — final Brazil Section 301 action"
+    },
+    "ustr_forced_labor_final_2026_07": {
+      "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations",
+      "label": "USTR — final forced-labor Section 301 action"
+    },
+    "ustr_forced_labor_prepublication_2026_07_23": {
+      "url": "https://ustr.gov/sites/default/files/files/Press/Releases/2026/FLIP%20301%20Investigation%20Final%20Action%20FRN%207-23-26%20FINAL.pdf",
+      "label": "USTR — final-action prepublication notice"
+    },
+    "ustr_section338_canada_2026": {
+      "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ambassador-greer-issues-statement-president-trump-imposing-section-338-tariffs-canada",
+      "label": "USTR — Section 338 actions on Canadian products"
+    },
+    "fr_2026_14991": {
+      "url": "https://federalregister.gov/documents/2026/07/23/2026-14991/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united",
+      "label": "Federal Register 2026-14991 — listed Canadian alcohol products"
+    },
+    "fr_2026_14992": {
+      "url": "https://federalregister.gov/documents/2026/07/23/2026-14992/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united",
+      "label": "Federal Register 2026-14992 — listed Canadian dairy products"
+    },
+    "fr_2026_14997": {
+      "url": "https://federalregister.gov/documents/2026/07/23/2026-14997/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united",
+      "label": "Federal Register 2026-14997 — listed Canadian motor products"
+    },
+    "usitc_current_hts": {
+      "url": "https://hts.usitc.gov/",
+      "label": "USITC — current Harmonized Tariff Schedule"
+    },
+    "cbp_determining_duty_rates": {
+      "url": "https://www.cbp.gov/trade/programs-administration/determining-duty-rates",
+      "label": "CBP — determining duty rates"
+    },
+    "ustr_usmca": {
+      "url": "https://ustr.gov/trade-agreements/free-trade-agreements/united-states-mexico-canada-agreement",
+      "label": "USTR — United States-Mexico-Canada Agreement"
+    },
+    "cbsa_2026_customs_tariff": {
+      "url": "https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/2026/menu-eng.html",
+      "label": "CBSA — 2026 Customs Tariff"
+    },
+    "cbsa_cusma_origin": {
+      "url": "https://www.cbsa-asfc.gc.ca/services/cusma-aceum/cog-com-eng.html",
+      "label": "CBSA — certifying the origin of goods under CUSMA"
+    },
+    "canada_trade_agreements": {
+      "url": "https://international.canada.ca/en/services/business/trade/agreements-negotiations",
+      "label": "Global Affairs Canada — trade agreements and negotiations"
+    },
+    "cbp_usmca": {
+      "url": "https://www.cbp.gov/trade/priority-issues/trade-agreements/USMCA",
+      "label": "CBP — USMCA implementation"
+    },
+    "fr_2026_12670": {
+      "url": "https://federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other",
+      "label": "Federal Register 2026-12670 — non-postal de minimis suspension"
+    },
+    "fr_2026_12669": {
+      "url": "https://federalregister.gov/documents/2026/06/24/2026-12669/indefinite-suspension-of-the-de-minimis-exemption-for-mail-shipments-and-new-postal-informal-entry",
+      "label": "Federal Register 2026-12669 — postal de minimis suspension"
+    }
+  },
+  "pages": [
+    {
+      "schemaVersion": 1,
+      "path": "/duty/",
+      "title": "Historical Import-Duty Planning Snapshot",
+      "contentRole": "tool",
+      "eventIds": [
+        "legacy_dutycalc_snapshot_2026_03_18"
+      ],
+      "authorityIds": [],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/duty/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/duty/rates/",
+      "title": "Historical Tariff Planning Table",
+      "contentRole": "tool",
+      "eventIds": [
+        "legacy_dutycalc_snapshot_2026_03_18"
+      ],
+      "authorityIds": [],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/duty/rates/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/cusma-usmca-guide/",
+      "title": "CUSMA/USMCA in 2026: Qualification Is Not the Whole Duty Answer",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section301_forced_labor_2026",
+        "us_section338_canada_2026"
+      ],
+      "authorityIds": [
+        "ustr_usmca",
+        "cbsa_2026_customs_tariff",
+        "cbsa_cusma_origin",
+        "canada_trade_agreements",
+        "cbp_usmca",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_section338_canada_2026",
+        "fr_2026_14991",
+        "fr_2026_14992",
+        "fr_2026_14997",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/cusma-usmca-guide/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/de-minimis-threshold-2026/",
+      "title": "De Minimis Threshold 2026: Entry Rules Do Not Determine the Tariff Rate",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_12670",
+        "fr_2026_12669",
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/de-minimis-threshold-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/how-to-calculate-landed-cost/",
+      "title": "How to Calculate Landed Cost in 2026 Without Guessing the Duty",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/how-to-calculate-landed-cost/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/hts-code-lookup/",
+      "title": "HTS Code Lookup in 2026: Base Classification Plus Chapter 99 Checks",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_brazil_2026",
+        "us_section301_forced_labor_2026",
+        "us_section338_canada_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_brazil_final_2026_07",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_section338_canada_2026",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/hts-code-lookup/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/hts-code-reclassification-tariff-margin/",
+      "title": "HTS Reclassification and Margin Risk: Rebuild the Duty Stack",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/hts-code-reclassification-tariff-margin/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/import-duty-from-india-to-us/",
+      "title": "Import Duty from India to the U.S. in 2026: Product-Specific Verification",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-india-to-us/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/import-duty-from-japan-to-us-2026/",
+      "title": "Import Duty from Japan to the U.S. in 2026: MFN Formula Required",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-japan-to-us-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/import-duty-from-mexico-to-us-2026/",
+      "title": "Import Duty from Mexico to the U.S. in 2026: USMCA Plus Product Checks",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "ustr_usmca",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-mexico-to-us-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/import-duty-from-vietnam-to-us/",
+      "title": "U.S. Import Duty on Vietnam Apparel in 2026: HTS and Scope Required",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-vietnam-to-us/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/section-232-tariffs-explained/",
+      "title": "Section 232 Tariffs Explained: Verify Scope and Non-Stacking Rules",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_brazil_2026",
+        "us_section301_forced_labor_2026",
+        "us_section338_canada_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_brazil_final_2026_07",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_section338_canada_2026",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/section-232-tariffs-explained/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/section-232-pharma-tariffs-2026/",
+      "title": "Section 232 Pharma in 2026: Keep July Section 301 Changes Separate",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section301_brazil_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "ustr_brazil_final_2026_07",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/section-232-pharma-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/section-301-vs-section-232-vs-section-122/",
+      "title": "Section 301 vs. Section 232 vs. Section 122: July 2026 Status",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_brazil_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_brazil_final_2026_07",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/section-301-vs-section-232-vs-section-122/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/shopify-import-duties/",
+      "title": "Shopify Import Duties in 2026: Use a Source-and-Status Workflow",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026",
+        "us_section338_canada_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_section338_canada_2026",
+        "ustr_usmca",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/shopify-import-duties/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/us-china-tariff-rates-2026/",
+      "title": "U.S.-China Tariffs in 2026: No Single Current All-Product Rate",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section122_temporary_surcharge_2026",
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_03824",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/us-china-tariff-rates-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/usmca-not-renewed-2026-shopify-tariff-risk/",
+      "title": "USMCA Was Not Renewed in 2026. It Did Not End.",
+      "contentRole": "dependent_guide",
+      "eventIds": [
+        "us_section301_forced_labor_2026",
+        "us_section338_canada_2026"
+      ],
+      "authorityIds": [
+        "ustr_usmca",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_section338_canada_2026",
+        "fr_2026_14991",
+        "fr_2026_14992",
+        "fr_2026_14997",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/usmca-not-renewed-2026-shopify-tariff-risk/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/proposed-section-301-forced-labor-tariffs-2026/",
+      "title": "Final Forced-Labor Section 301 Action: Product Scope Comes First",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_section301_forced_labor_2026"
+      ],
+      "authorityIds": [
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "forced-labor-named-economies-tier",
+          "value": 10,
+          "unit": "percent",
+          "status": "supported_scope_limited"
+        },
+        {
+          "claimId": "forced-labor-general-tier",
+          "value": 12.5,
+          "unit": "percent",
+          "status": "supported_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/proposed-section-301-forced-labor-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/us-brazil-section-301-tariff-2026/",
+      "title": "U.S. Brazil Section 301 Action: 25% Applies Only to Covered Products",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_section301_brazil_2026"
+      ],
+      "authorityIds": [
+        "ustr_brazil_final_2026_07",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "brazil-covered-products-additional-rate",
+          "value": 25,
+          "unit": "percent",
+          "status": "supported_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/us-brazil-section-301-tariff-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/us-section-338-canada-tariffs-2026/",
+      "title": "U.S. Section 338 Actions on Canadian Alcohol, Dairy, and Motor Products",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_section338_canada_alcohol_2026",
+        "us_section338_canada_dairy_2026",
+        "us_section338_canada_motor_2026"
+      ],
+      "authorityIds": [
+        "ustr_section338_canada_2026",
+        "fr_2026_14991",
+        "fr_2026_14992",
+        "fr_2026_14997",
+        "ustr_usmca",
+        "usitc_current_hts",
+        "cbp_determining_duty_rates"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "canada-section338-listed-products-rate",
+          "value": 50,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/us-section-338-canada-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/",
+      "title": "Blog",
+      "contentRole": "index",
+      "eventIds": [],
+      "authorityIds": [],
+      "numericClaims": [],
+      "canonicalUrl": "https://attahirlabs.com/blog/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-07-25",
+      "verifiedThrough": "2026-07-25T22:30:00Z",
+      "reviewAfter": "2026-07-28T04:01:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    }
+  ]
+}

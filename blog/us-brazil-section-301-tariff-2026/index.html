@@ -6,19 +6,14 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>Section 301 vs. Section 232 vs. Section 122: July 2026 Status | Attahir Labs</title>
-    <meta name="description" content="Section 122 is historical after its stated endpoint; Section 301 and Section 232 remain event- and product-specific.">
-    <meta property="og:image" content="https://attahirlabs.com/assets/blog/section-301-vs-section-232-vs-section-122/hero.jpg">
-    <meta property="og:image:width" content="3840">
-    <meta property="og:image:height" content="2160">
-    <meta property="og:image:alt" content="Section 122 is historical after its stated endpoint; Section 301 and Section 232 remain event- and product-specific.">
+    <title>U.S. Brazil Section 301 Action: 25% Applies Only to Covered Products | Attahir Labs</title>
+    <meta name="description" content="The Brazil Section 301 additional duty applies only to covered products and remains indeterminate without HTS, timing, and exception facts.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/section-301-vs-section-232-vs-section-122/hero.jpg">
     <style>
         :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
         * { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
         body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
-        /* Shared article nav: keep all primary links visible and readable. */
         .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
         .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
@@ -38,10 +33,10 @@
         }
         main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
         article { width: min(760px, 100%); margin: 0 auto; }
-        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
         h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
         h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
-        p, li { font-size: 1.05rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: break-word; }
         a { color: var(--brand); }
         .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
         .lead { font-size: 1.2rem; color: #334155; }
@@ -51,23 +46,35 @@
         .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
         ul, ol { padding-left: 1.4rem; }
         blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
-        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        table { width:100%; max-width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; display:block; overflow-x:auto; }
         th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
         th { background:#f8fafc; }
-        .cta-box { margin: 2rem 0; padding: 1.25rem; border: 1px solid #99f6e4; border-radius: 14px; background: #f0fdfa; }
+        .callout { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid #facc15; border-radius: 14px; background: #fefce8; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-eyebrow { display: inline-flex; align-items: center; margin-bottom: 0.15rem; padding: 0.22rem 0.55rem; border: 1px solid #99f6e4; border-radius: 999px; background: #ccfbf1; color: #0f766e; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+        .install-button { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .install-button:hover { background: #115e59; text-decoration: none; }
+        .cta-note { margin-top: 0.75rem; color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
-    
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
-        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a { color: var(--brand, #6366f1); text-decoration: none; font-weight: 700; }
         .citation a:hover { text-decoration: underline; }
-        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
         .references h2 { margin-top: 0; }
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+        @media (max-width: 520px) {
+            main { width: calc(100vw - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            article { width: 100%; }
+            h1 { font-size: 1.85rem; line-height: 1.12; letter-spacing: -0.015em; }
+            p, li { font-size: 1rem; }
+        }
     </style>
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
-<link rel="canonical" href="https://attahirlabs.com/blog/section-301-vs-section-232-vs-section-122/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Section 301 vs. Section 232 vs. Section 122: July 2026 Status","description":"Section 122 is historical after its stated endpoint; Section 301 and Section 232 remain event- and product-specific.","mainEntityOfPage":"https://attahirlabs.com/blog/section-301-vs-section-232-vs-section-122/","dateModified":"2026-07-25","author":{"@type":"Organization","name":"Attahir Labs"},"publisher":{"@type":"Organization","name":"Attahir Labs"}}</script>
+<link rel="canonical" href="https://attahirlabs.com/blog/us-brazil-section-301-tariff-2026/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"U.S. Brazil Section 301 Action: 25% Applies Only to Covered Products","description":"The Brazil Section 301 additional duty applies only to covered products and remains indeterminate without HTS, timing, and exception facts.","mainEntityOfPage":"https://attahirlabs.com/blog/us-brazil-section-301-tariff-2026/","dateModified":"2026-07-25","author":{"@type":"Organization","name":"Attahir Labs"},"publisher":{"@type":"Organization","name":"Attahir Labs"}}</script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
@@ -75,17 +82,17 @@
 <article class="post-content" data-tariff-authority-state="review-required">
 <a class="back-link" href="/blog/">← Back to Blog</a>
 <p class="post-meta">Authority status update · July 25, 2026</p>
-<h1>Section 301 vs. Section 232 vs. Section 122: July 2026 Status</h1>
-<p class="lead">Section 122 is historical after its stated endpoint; Section 301 and Section 232 remain event- and product-specific.</p>
+<h1>U.S. Brazil Section 301 Action: 25% Applies Only to Covered Products</h1>
+<p class="lead">The Brazil Section 301 additional duty applies only to covered products and remains indeterminate without HTS, timing, and exception facts.</p>
 <div class="callout">
 <p><strong>No universal current U.S. tariff rate is available from country of origin alone.</strong></p>
 <p>Classification, product scope, origin, entry time, MFN treatment, Section 232 status, and exemptions can change the result. When any required selector is missing, the safe output is <strong>indeterminate / review required</strong>.</p>
 </div>
 <h2>What the reviewed sources support</h2>
 <ul>
-<li>Section 122: Proclamation 11012 reached its stated endpoint at 12:01 a.m. EDT on July 24.</li>
-<li>Section 301 now includes distinct Brazil and forced-labor actions in addition to legacy programs; each has its own scope.</li>
-<li>Section 232 remains product-specific. Never add these authorities mechanically without checking their interaction rules.</li>
+<li>The final action includes a <span data-tariff-claim-id="brazil-covered-products-additional-rate">25% additional duty</span> only for products in the controlling schedules.</li>
+<li>Product exclusions, transition eligibility, entry time, and Section 232 status can change the result.</li>
+<li>Brazil origin alone is insufficient; return indeterminate when the HTS/product or exception facts are missing.</li>
 </ul>
 <h2>What to do before pricing or filing</h2>
 <ol>
@@ -99,10 +106,7 @@
 <section class="references" id="sources">
 <h2>Reviewed official sources</h2>
 <ol>
-<li><a href="https://federalregister.gov/documents/2026/02/25/2026-03824/imposing-a-temporary-import-surcharge-to-address-fundamental-international-payments-problems" rel="noopener" target="_blank">Federal Register 2026-03824 — Proclamation 11012</a></li>
 <li><a href="https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-section-301-action-brazils-unreasonable-acts-policies-and-practices" rel="noopener" target="_blank">USTR — final Brazil Section 301 action</a></li>
-<li><a href="https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations" rel="noopener" target="_blank">USTR — final forced-labor Section 301 action</a></li>
-<li><a href="https://ustr.gov/sites/default/files/files/Press/Releases/2026/FLIP%20301%20Investigation%20Final%20Action%20FRN%207-23-26%20FINAL.pdf" rel="noopener" target="_blank">USTR — final-action prepublication notice</a></li>
 <li><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC — current Harmonized Tariff Schedule</a></li>
 <li><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP — determining duty rates</a></li>
 </ol>
@@ -111,6 +115,6 @@
 <p><strong>Disclaimer:</strong> Informational content only. Verify the current HTSUS and CBP instructions or use a licensed customs broker for an entry-specific decision.</p>
 </article>
 </main>
-<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+<footer>© 2026 Attahir Labs. All rights reserved.</footer>
 </body>
 </html>
