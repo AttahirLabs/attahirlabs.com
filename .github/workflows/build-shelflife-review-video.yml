@@ -1,0 +1,25 @@
+name: Build temporary ShelfLife review video
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Encode and validate review video
+        run: bash review/shelflife-build/build-video.sh
+
+      - name: Upload review video
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: shelflife-app-store-review-2026-07-26
+          path: review/shelflife-build/shelflife-app-store-review-2026-07-26.mp4
+          if-no-files-found: error
+          retention-days: 1
