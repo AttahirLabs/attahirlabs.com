@@ -75,7 +75,7 @@
     <div class="container">
         <a href="/" class="back-link">&larr; Back to Home</a>
         <h1>Privacy Policy</h1>
-        <p><strong>Effective Date: June 26, 2026</strong></p>
+        <p><strong>Effective Date: July 26, 2026</strong></p>
 
         <p>At Attahir Labs, we are committed to protecting the privacy of the merchants who use our Shopify applications. This Privacy Policy describes how we collect, use, and share information when you install or use our apps in connection with your Shopify-supported store.</p>
 
@@ -84,10 +84,14 @@
         <ul>
             <li><strong>Shop Domain:</strong> Your .myshopify.com URL to identify your store and manage your subscription.</li>
             <li><strong>Product and Inventory Data:</strong> Information about your products and inventory, including titles, prices, variants, stock levels, unit costs where available, and related product attributes needed to provide analysis (e.g., TariffShield, StockClearance).</li>
+            <li><strong>ShelfLife Batch and Expiry Data:</strong> Product and variant identifiers, title, SKU, batch/lot number, supplier, unit cost and currency, location, expiry and manufacture dates, quantity, status, and merchant-entered notes needed to track expiring inventory.</li>
+            <li><strong>ShelfLife Settings and Operational Records:</strong> Plan, currency, time zone, alert thresholds, alert email, FEFO and notification preferences, automation and metafield configuration, import receipts, scan and expiry-alert history, notification delivery records, lifecycle records, and automation or metafield effect records needed to apply, verify, retry, or reverse app-owned actions safely. The notification-delivery ledger does not retain email addresses or message bodies.</li>
+            <li><strong>Optional Shopify Metafield Copies:</strong> If a merchant enables ShelfLife storefront sync, ShelfLife may copy the earliest active expiry date and a location and quantity summary to app-owned Shopify variant metafields, and may use an app-owned product marker for a ShelfLife hide action. This display bridge is off by default, and ShelfLife remains the batch database of record.</li>
+            <li><strong>ShelfLife Feedback:</strong> The feedback category, message, and any optional contact email that a merchant chooses to submit through the app.</li>
             <li><strong>Order Records for Inventory Analytics:</strong> For StockClearance, we may access Shopify order records when the merchant grants the app order access. We use order dates, order IDs, line items, product IDs, quantities, cancellation status, and line-item revenue only to calculate product-level inventory signals such as last sale timing, units sold, sales velocity, seasonal history, and clearance-action results.</li>
             <li><strong>Accessibility and Theme Data:</strong> For AccessShield, we may access store pages, product titles, product vendors, product image URLs, existing image alt text, page HTML content, and theme file content needed to detect WCAG-oriented accessibility issues, missing alt text, and cookie/consent script patterns. We may store accessibility issue records, WCAG rule identifiers, severity levels, page URLs, HTML snippets, fix suggestions, generated alt-text suggestions, applied/ignored/fixed statuses, compliance score snapshots, badge status, and certificate/progress-report data.</li>
             <li><strong>Image-Aware Alt-Text Generation Data:</strong> For AccessShield, when AI-assisted alt-text suggestions are enabled, we may send product image URLs and limited product metadata such as product title, vendor, product type, tags, image position, and existing alt text to an AI service provider solely to generate reviewable alt-text suggestions.</li>
-            <li><strong>Usage Analytics:</strong> Information about how you interact with our app interface to improve our service performance and user experience.</li>
+            <li><strong>Usage Analytics:</strong> Information about how you interact with our app interface to improve our service performance and user experience. When optional ShelfLife server-side analytics are configured, this is limited to app route and lifecycle events, page path/title, stable categorical event parameters, and a pseudonymous SHA-256-derived shop identifier; batch contents, feedback text, customer information, and the raw shop domain are not sent in those events.</li>
             <li><strong>Billing Status:</strong> Information provided by Shopify regarding your subscription plan and payment status.</li>
         </ul>
 
@@ -97,8 +101,8 @@
         <h2>2. How We Use Your Information</h2>
         <p>We use the information we collect from you and your store to provide the service and to operate our apps. This includes:</p>
         <ul>
-            <li>Providing the core functionality of the app, such as inventory analysis, clearance workflow tracking, tariff-impact calculations, accessibility audits, alt-text review, cookie/consent checks, and other app-specific operational tools.</li>
-            <li>Processing billing and payments through the Shopify platform.</li>
+            <li>Providing the core functionality of the app, such as batch and expiry tracking, inventory analysis, clearance workflow tracking, tariff-impact calculations, accessibility audits, alt-text review, cookie/consent checks, and other app-specific operational tools.</li>
+            <li>Managing app subscriptions through Shopify Billing and Managed Pricing.</li>
             <li>Communicating with you regarding technical support, app updates, and account-related notices.</li>
             <li>Monitoring and analyzing usage trends to improve our application performance.</li>
         </ul>
@@ -106,9 +110,10 @@
         <h2>3. Data Sharing and Disclosure</h2>
         <p>We do not sell, rent, or trade your personal information to third parties. We only share information in the following circumstances:</p>
         <ul>
-            <li><strong>Shopify:</strong> We share data with Shopify as required to provide the service, process billing, and comply with Shopify's Partner Program requirements.</li>
-            <li><strong>Payment Processors:</strong> All billing is handled directly through Shopify Payments; we do not store your credit card information.</li>
-            <li><strong>Resend (Email):</strong> We use Resend to send transactional emails, such as margin alerts, weekly digests, and accessibility score alerts. Only your alert email address is shared with Resend for delivery purposes.</li>
+            <li><strong>Shopify:</strong> We share data with Shopify as required to provide the service, manage app subscriptions, write merchant-enabled app-owned data or actions, and comply with Shopify's Partner Program requirements.</li>
+            <li><strong>Shopify Billing and Managed Pricing:</strong> Shopify handles app subscription checkout, plan changes, and billing. We receive subscription plan and status information but do not receive or store your payment-card details.</li>
+            <li><strong>Resend (ShelfLife Email and Feedback):</strong> For an enabled expiry alert or weekly digest, ShelfLife sends Resend the recipient email, shop domain, product title, batch/lot number, expiry date, status, days remaining, alert counts, and a Shopify Admin app link needed to render and deliver the message. For merchant-submitted feedback, ShelfLife sends Resend the shop domain, feedback category, optional contact email, and message. Other Attahir Labs apps may also use Resend for transactional alerts.</li>
+            <li><strong>Google Analytics 4 (Optional ShelfLife Server-Side Analytics):</strong> When configured, ShelfLife sends Google Analytics 4 route and lifecycle events with route metadata, stable categorical parameters, and a pseudonymous SHA-256-derived shop identifier. These events do not include batch contents, feedback text, customer information, or the raw shop domain.</li>
             <li><strong>AI Service Providers:</strong> For AccessShield image-aware alt-text suggestions, we may send product image URLs and limited product metadata to an AI provider such as OpenAI solely to generate alt-text suggestions for merchant review.</li>
             <li><strong>Legal Compliance:</strong> We may disclose information if required by law or to respond to valid legal requests by public authorities.</li>
         </ul>
@@ -117,14 +122,16 @@
         <p>Regardless of your location, we believe you should have control over your data. You have the right to:</p>
         <ul>
             <li><strong>Access:</strong> Request a copy of the data we hold about your store.</li>
-            <li><strong>Deletion:</strong> Request that we delete your data (this typically occurs automatically when you uninstall the app).</li>
+            <li><strong>Deletion:</strong> Request that we delete your data. App-specific deletion behavior is described below.</li>
             <li><strong>Correction:</strong> Request that we correct any inaccurate information.</li>
             <li><strong>Export:</strong> Request your data in a machine-readable format.</li>
         </ul>
+        <p><strong>ShelfLife Deletion Boundary:</strong> An app uninstall or Shopify <code>SHOP_REDACT</code> privacy webhook deletes ShelfLife's local sessions, settings, batch/import data, alerts, scans, lifecycle and learning records, notification records, and automation/metafield effect records, and removes the raw shop domain from the retained tenant record. ShelfLife retains an opaque HMAC tenant tombstone to reject stale writes. Short-lived webhook receipts used for replay and deduplication are assigned a seven-day expiry and are deleted by scheduled maintenance; a processing retry, database outage, or maintenance backlog may delay physical deletion. Their delivery, event, resource, and tenant identifiers are keyed opaque hashes rather than raw identifiers, and the receipts otherwise contain only limited delivery metadata such as topic, API version, processing status, and timestamps.</p>
+        <p>While ShelfLife is still installed and authorized, merchants can use its settings cleanup controls to remove app-owned Shopify metafield copies and reverse supported app-owned automations. After uninstall, ShelfLife no longer has Shopify Admin access and cannot promise removal of data or state hosted by Shopify; Shopify's own retention practices apply to Shopify-hosted records.</p>
         <p>To exercise these rights, please contact us at <strong>support@attahirlabs.com</strong>.</p>
 
         <h2>5. Cookie Policy</h2>
-        <p>Our apps use only strictly necessary session and authentication cookies required to maintain your login state and provide app functionality. We do not use third-party tracking or advertising cookies within our application interface.</p>
+        <p>Our apps use strictly necessary session and authentication cookies required to maintain login state and provide app functionality. ShelfLife's optional GA4 app analytics are sent server-side and do not require a GA4 browser cookie inside the app. The public Attahir Labs website may use Google Analytics to understand aggregate website use; we do not use advertising cookies within our Shopify application interfaces.</p>
 
         <h2>6. Security</h2>
         <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
