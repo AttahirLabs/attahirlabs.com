@@ -50,8 +50,18 @@ assert.doesNotMatch(
 );
 assert.match(
   text,
-  /ShelfLife Deletion Boundary:[\s\S]*uninstall[\s\S]*SHOP_REDACT[\s\S]*raw shop domain[\s\S]*opaque HMAC[\s\S]*replay[\s\S]*seven days/i,
+  /ShelfLife Deletion Boundary:[\s\S]*uninstall[\s\S]*SHOP_REDACT[\s\S]*raw shop domain[\s\S]*opaque HMAC[\s\S]*replay[\s\S]*seven-day expiry[\s\S]*scheduled maintenance[\s\S]*backlog may delay physical deletion/i,
   'the policy must disclose ShelfLife’s raw-data deletion and opaque anti-replay retention boundary'
+);
+assert.doesNotMatch(
+  text,
+  /webhook receipts[\s\S]{0,240}up to seven days/i,
+  'the policy must not promise an impossible wall-clock deletion maximum'
+);
+assert.doesNotMatch(
+  text,
+  /\bFIFO\b/,
+  'the policy must use FEFO for ShelfLife expiry-first fulfillment preferences'
 );
 
 console.log('ShelfLife privacy policy disclosure tests passed');
