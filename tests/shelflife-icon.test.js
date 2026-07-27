@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -11,6 +12,11 @@ const iconPath = path.join(root, iconUrl.slice(1));
 assert.ok(fs.existsSync(iconPath), 'ShelfLife should ship the selected Countdown Shelves web icon');
 
 const icon = fs.readFileSync(iconPath);
+assert.equal(
+  crypto.createHash('sha256').update(icon).digest('hex'),
+  '356026fd2ffcf39074b687212e573cbce8b9be7e29da788f763b3c654d87c7ff',
+  'ShelfLife web icon should remain byte-for-byte pinned to the selected derivative'
+);
 assert.equal(icon.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', 'ShelfLife icon should be a PNG');
 assert.equal(icon.readUInt32BE(16), 512, 'ShelfLife web icon should be 512 pixels wide');
 assert.equal(icon.readUInt32BE(20), 512, 'ShelfLife web icon should be 512 pixels tall');
