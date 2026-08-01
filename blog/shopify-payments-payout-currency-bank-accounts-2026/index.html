@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <title>Shopify Payments: Payout Bank Accounts by Currency | Attahir Labs</title>
+    <meta name="description" content="Shopify Payments now supports one bank account for each supported payout currency. Use this merchant checklist to assess the change without overlooking eligibility, fees, and reconciliation.">
+    <link rel="canonical" href="https://attahirlabs.com/blog/shopify-payments-payout-currency-bank-accounts-2026/">
+    <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopify-payments-payout-currency-bank-accounts-2026/hero.jpg">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="2160">
+    <meta property="og:image:alt" content="Editorial photo of a merchant reviewing payout records and currency folders at a desk.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://attahirlabs.com/assets/blog/shopify-payments-payout-currency-bank-accounts-2026/hero.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Shopify Payments: Payout Bank Accounts by Currency",
+      "description": "A source-backed merchant checklist for Shopify Payments multi-currency payout bank accounts.",
+      "datePublished": "2026-08-01",
+      "dateModified": "2026-08-01",
+      "author": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Attahir Labs"
+      },
+      "mainEntityOfPage": "https://attahirlabs.com/blog/shopify-payments-payout-currency-bank-accounts-2026/",
+      "image": "https://attahirlabs.com/assets/blog/shopify-payments-payout-currency-bank-accounts-2026/hero.jpg"
+    }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What changed in Shopify Payments?","acceptedAnswer":{"@type":"Answer","text":"Shopify says it removed the previous eight-currency limit and now permits one bank account for each supported payout currency, subject to plan and regional eligibility."}},{"@type":"Question","name":"Does this remove conversion or payout fees?","acceptedAnswer":{"@type":"Answer","text":"No. Shopify says eligibility, supported currencies, and non-domestic payout fees still apply; merchants should confirm their own configuration."}},{"@type":"Question","name":"Should every merchant add accounts?","acceptedAnswer":{"@type":"Answer","text":"No. Add an account only after finance and operations confirm that the currency, entity, reconciliation process, and fee treatment are appropriate."}},{"@type":"Question","name":"What should merchants document?","acceptedAnswer":{"@type":"Answer","text":"Record the account owner, currency, effective date, approver, payout setting change, reconciliation owner, and rollback or escalation contact."}},{"@type":"Question","name":"Is StoreChangelog publicly available in the Shopify App Store?","acceptedAnswer":{"@type":"Answer","text":"No public App Store availability is claimed here. The article discusses a change-management practice and links to Attahir Labs product context only."}},{"@type":"Question","name":"Where is the source of truth?","acceptedAnswer":{"@type":"Answer","text":"Use the linked Shopify Changelog and Shopify Help Center documentation for the current rules, availability, and fees."}}]}</script>
+
+    <style>
+        :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0f766e; --bg:#ffffff; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; overflow-x: hidden; }
+        /* Shared article nav: keep all primary links visible and readable. */
+        .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(10px); padding: 0 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .site-nav .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+        .site-nav .nav-logo { color: #ffffff; font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+        .site-nav .nav-logo span { color: #818cf8; }
+        .site-nav .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; }
+        .site-nav .nav-links li { margin: 0; }
+        .site-nav .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; }
+        .site-nav .nav-links a:hover { color: #ffffff; text-decoration: none; }
+        @media (max-width: 768px) {
+            .site-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .site-nav .nav-inner { height: auto; min-height: 64px; padding: 0.75rem 0; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+            .site-nav .nav-logo { flex: 0 0 auto; }
+            .site-nav .nav-links { display: flex !important; width: 100%; justify-content: flex-start; gap: 0.85rem; overflow-x: auto; white-space: nowrap; padding: 0.2rem 0 0.4rem; scrollbar-width: none; }
+            .site-nav .nav-links::-webkit-scrollbar { display: none; }
+            .site-nav .nav-links li { flex: 0 0 auto; }
+            .site-nav .nav-links a { display: block; font-size: 0.85rem; }
+        }
+        main { width: min(900px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+        article { width: min(760px, 100%); margin: 0 auto; min-width: 0; }
+        h1 { font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; margin: 1.5rem 0 1rem; letter-spacing:-0.035em; overflow-wrap: anywhere; }
+        h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height:1.2; margin: 2.5rem 0 0.9rem; }
+        h3 { font-size: 1.2rem; margin: 1.7rem 0 0.6rem; }
+        p, li { font-size: 1.05rem; overflow-wrap: anywhere; }
+        a { color: var(--brand); }
+        .post-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .lead { font-size: 1.2rem; color: #334155; }
+        article img { display: block; max-width: 100%; height: auto; }
+        .post-figure { width: 100%; margin: 2rem 0; }
+        .post-figure img { width: 100%; border-radius: 18px; object-fit: cover; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12); }
+        .post-figure figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+        ul, ol { padding-left: 1.4rem; }
+        blockquote { border-left: 4px solid var(--brand); padding-left: 1rem; color:#334155; margin-left:0; }
+        table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+        th, td { border:1px solid var(--line); padding:0.65rem; text-align:left; vertical-align:top; }
+        th { background:#f8fafc; }
+        .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
+        .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
+        .cta-box p { margin-bottom: 0; }
+        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
+        @media (max-width: 640px) {
+            main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
+            h1 { font-size: 1.7rem; letter-spacing: 0; }
+            h2 { font-size: 1.35rem; }
+            p, li { font-size: 1rem; }
+            table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 0.85rem; white-space: nowrap; }
+        }
+
+        .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
+        .citation a { color: var(--brand, var(--indigo, #6366f1)); text-decoration: none; font-weight: 700; }
+        .citation a:hover { text-decoration: underline; }
+        .references { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line, var(--gray-200, #e2e8f0)); }
+        .references h2 { margin-top: 0; }
+        .references ol { padding-left: 1.4rem; }
+        .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+    <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+<main>
+<article class="post-content">
+<p class="post-meta">August 1, 2026</p>
+<h1>Shopify Payments: Payout Bank Accounts by Currency</h1>
+
+        <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
+            <picture>
+                <img src="/assets/blog/shopify-payments-payout-currency-bank-accounts-2026/hero.jpg" width="3840" height="2160" alt="Editorial photo of a merchant reviewing payout records and currency folders at a desk." fetchpriority="high" decoding="async">
+            </picture>
+            <figcaption>Multi-currency payout settings should be treated as a finance-and-operations change, not just an admin toggle.</figcaption>
+        </figure>
+
+<p>Shopify has removed the previous eight-currency limit on bank accounts for multi-currency payouts. The new rule is one bank account for each supported payout currency, according to Shopify’s Changelog.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<p>That is useful only if a merchant treats it as a controlled finance change. It does not mean every currency is available to every merchant, remove payout fees, or make every foreign-currency balance the right operating choice. Shopify says eligibility depends on plan and region, and non-domestic payout fees still apply.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<h2>Quick answer</h2>
+<p>Before adding a payout account, confirm the supported currency, the legal account holder, the destination bank’s requirements, fee treatment, and who will reconcile the balance. Then record the setting change and verify the first payout against Shopify’s current documentation.</p>
+<h2>What actually changed</h2>
+<p>Previously, Shopify capped multi-currency payout bank accounts at eight currencies. Its July 2026 announcement says that cap has been removed: eligible merchants can now add one bank account for every payout currency Shopify supports for their region and plan.<sup class="citation"><a href="#ref-1">[1]</a></sup> Shopify frames the benefit as receiving funds in the currency the customer used, rather than converting them back to a domestic currency first.</p>
+<p>This is a configuration change, not a promise of savings. Currency conversion, banking fees, tax reporting, accounting policy, supplier payment needs, and country-specific availability are separate questions. Use Shopify’s Help Center as the live source of truth before acting.<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
+<h2>Separate customer currency from operating currency</h2>
+<p>A store can sell to customers in several currencies without needing a separate operating bank account for each one. The useful question is not whether a currency appears in checkout; it is whether keeping a balance in that currency supports a documented business process. Examples include paying a supplier in the same currency, funding a local expense, or reducing routine conversions that finance has already measured.</p>
+<p>That distinction keeps a merchant from turning a simple platform improvement into a cluttered treasury setup. If the business still converts every foreign-currency balance immediately, a separate account may add a bank feed, accounting mapping, approval path, and close checklist without materially improving the outcome. If it retains and spends a currency regularly, the account may give finance a clearer view of exposure and settlement timing.</p>
+<p>Neither conclusion should be made from a generic rule of thumb. Merchant volume, settlement timing, banking terms, entity structure, tax obligations, and supplier contracts differ. The durable decision is the one the store can explain and reconcile later.</p>
+<h2>A practical merchant decision checklist</h2>
+<ol>
+<li><strong>Confirm eligibility first.</strong> Check your Shopify plan, store region, supported currencies, and the payout documentation. Do not infer eligibility from a changelog headline.</li>
+<li><strong>Map a real operating use.</strong> A separate account can make sense when the business has material expenses, suppliers, tax obligations, or a formal treasury process in that currency. A small, irregular balance may create more reconciliation work than value.</li>
+<li><strong>Validate the bank account.</strong> Confirm account ownership, currency acceptance, local routing requirements, and access controls with the bank. Use an account controlled by the correct legal entity.</li>
+<li><strong>Model the fee and conversion path.</strong> Compare the expected payout, bank, supplier, and eventual conversion costs. “Paid in the customer’s currency” is not the same thing as “no cost.”</li>
+<li><strong>Assign a reconciliation owner.</strong> Decide how the new balance maps to the ledger, who investigates exceptions, and how month-end evidence is retained.</li>
+<li><strong>Change deliberately and observe the first payout.</strong> Record the before/after setting, approver, timestamp, test amount if applicable, and first settlement result.</li>
+</ol>
+<h2>Reconcile the first payout before normalizing the process</h2>
+<p>Most payout-setting errors are easier to fix while the first settlement is still visible. After the configuration is approved, finance or the designated operator should compare the first payout against the expected currency, amount, fee treatment, destination account, settlement date, and ledger entry. Preserve the Shopify payout reference and the bank confirmation in the appropriate controlled record.</p>
+<table><thead><tr><th>Check</th><th>Question to answer</th><th>Owner</th></tr></thead><tbody><tr><td>Currency</td><td>Did the balance settle in the intended supported payout currency?</td><td>Payments operator</td></tr><tr><td>Destination</td><td>Did it land in the approved account for the right legal entity?</td><td>Finance</td></tr><tr><td>Fees and conversion</td><td>Do the observed amounts match the documented expectation?</td><td>Finance</td></tr><tr><td>Ledger</td><td>Is the payout mapped to the correct clearing and bank accounts?</td><td>Accounting</td></tr><tr><td>Exception path</td><td>Does the team know who can investigate or safely reverse a wrong setup?</td><td>Payments owner</td></tr></tbody></table>
+<p>Do not use this first-payout review to expose bank numbers, credentials, or sensitive customer data in a broad project channel. The change record should contain enough context to trace the decision while pointing sensitive evidence to the correct access-controlled system.</p>
+<h2>Why a change record matters</h2>
+<p>Payout settings can affect cash forecasting, accounting, vendor payments, and support questions. When a finance outcome changes, the team should be able to answer: which payout setting changed, when, by whom, for which currency, and what was expected?</p>
+<p>A lightweight record should include the Shopify store, currency, destination account’s approved internal reference, effective date, approver, reason, fee assumption, reconciliation owner, and a link to the current Shopify documentation. Do not place full bank account numbers in a general changelog.</p>
+<p>This is the operational problem StoreChangelog is designed to make easier: retaining context around important store changes. StoreChangelog is not represented here as publicly available in the Shopify App Store; see the <a href="/apps/storechangelog/">product page</a> for current product context.</p>
+<h2>A lightweight approval and rollback pattern</h2>
+<p>For a small team, this can be a short ticket with an owner and a finance approver. For a larger business, it may be part of an established payment-controls process. The shape is the same: state the requested currency and bank, link the applicable Shopify documentation, identify the reason, obtain approval, make the setting change, and record the first-payout result.</p>
+<p>Write down what “rollback” means before changing anything. It may mean removing a bank account from payout settings, pausing a vendor-payment workflow, correcting an accounting mapping, or escalating to Shopify and the bank. It does not mean guessing at payout instructions or making a second unreviewed change during an incident. A clear owner and evidence trail prevent a bad setting from becoming a long reconciliation problem.</p>
+<p>Teams that review platform changes every week can add this item to the same operating log they use for price, inventory, app-permission, tax, theme, and market changes. The goal is not paperwork for its own sake; it is to make consequential changes recoverable and understandable.</p>
+<h2>Common mistakes to avoid</h2>
+<ul>
+<li>Adding accounts before confirming regional and plan eligibility.</li>
+<li>Assuming the new rule removes non-domestic payout fees or all conversions.</li>
+<li>Using an account that does not match the business entity or currency requirements.</li>
+<li>Changing payout settings without finance approval or an audit record.</li>
+<li>Publishing sensitive banking details in tickets, chat, or exported change logs.</li>
+<li>Forgetting to reconcile the first payout and investigate a variance promptly.</li>
+</ul>
+<h2>When doing nothing is the better choice</h2>
+<p>A merchant does not have to use every new Shopify Payments option. Keeping the existing payout setup can be sensible when foreign-currency volume is low, the business lacks a bank account that meets the relevant requirements, finance has no tested reconciliation path, or conversion timing is already handled through a different approved process.</p>
+<p>In that case, record a conscious decision rather than leaving the change unexplored forever: note the date, the currency or currencies considered, the reason for deferring, the owner, and the review threshold. A useful reopening trigger might be sustained sales volume in the currency, a new supplier payment obligation, a documented reduction in conversion costs, or a change to Shopify eligibility. This makes “not now” an operating decision instead of an accidental gap.</p>
+<h2>Make the weekly platform-change review useful</h2>
+<p>Platform changes often arrive as short announcements, while their downstream impact crosses payments, tax, support, and finance. A weekly review should therefore classify each item before anyone changes a setting: informational, evaluate, configure, or escalate. For an item in the configure bucket, designate a named owner, list the source of truth, capture the expected business effect, and create a post-change verification step.</p>
+<p>For this payout-account change, the practical evidence is modest but important: the eligibility check, approval record, destination-account validation, before/after setting evidence, and first-payout reconciliation. That is enough to prevent confusion without inventing compliance claims or treating an ordinary configuration change as a product launch.</p>
+<h2>Questions finance and operations should answer together</h2>
+<p>Payments are not owned by one screen in Shopify. A merchant should bring the people who understand settlement, bookkeeping, supplier payments, and customer operations into the decision before the configuration changes. The result need not be a committee meeting; a short, written answer to the important questions is often enough.</p>
+<ul><li>Which business entity owns the destination account and the underlying store activity?</li><li>Which currency exposures are natural because the business pays suppliers or expenses in that currency?</li><li>What exchange-rate source and accounting policy apply when balances are later converted or revalued?</li><li>Who checks deposits, fee deductions, failed payouts, and unexpected balance movements?</li><li>What is the response if the wrong account, currency, or accounting mapping is selected?</li></ul>
+<p>These questions also help distinguish a sound operational use from a purely cosmetic one. A merchant that cannot name the reconciliation owner should not rush to add accounts just because the option exists. Conversely, a business already tracking multiple currency balances may find that a separate destination account reduces manual work and makes the audit trail cleaner.</p>
+<h2>Keep customer support informed without overstating the change</h2>
+<p>Customer-facing teams generally do not need to announce a payout-bank-account configuration. It does not alter a customer’s order, refund entitlement, or checkout promise by itself. Support should, however, know where to route a merchant-side payment question and avoid telling customers that a particular payout currency is available unless the merchant has confirmed eligibility in Shopify’s current documentation.</p>
+<p>That same restraint matters in internal documentation. Say what was verified: that Shopify removed the eight-currency limit and permits one account per supported payout currency for eligible plans and regions. Do not turn that into a blanket claim that every store can receive every currency, that fees disappeared, or that a new configuration guarantees a financial result.</p>
+<h2>FAQ</h2>
+<h3>Can a merchant add unlimited payout accounts?</h3><p>No. Shopify’s stated rule is one bank account per supported payout currency, and availability still depends on the merchant’s plan and region.<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+<h3>Does this eliminate conversion risk?</h3><p>No. It can change where and when conversion happens, but it does not eliminate exchange-rate exposure, fees, or accounting obligations.</p>
+<h3>Should this be treated as a security-sensitive change?</h3><p>Yes. Payout destinations affect cash movement. Use least-privilege access, a documented approver, and a post-change reconciliation check.</p>
+<h3>What should I use as the definitive instruction?</h3><p>Use Shopify’s current Help Center guidance, not this article, for your exact eligibility, supported currencies, fees, and setup steps.<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
+<h2>Disclaimer</h2>
+<p>This article is general operational information, not banking, tax, accounting, legal, or financial advice. Verify your own Shopify eligibility, bank requirements, fees, accounting treatment, and jurisdictional obligations before changing payout settings.</p>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://changelog.shopify.com/posts/add-a-bank-account-for-every-payout-currency" rel="noopener" target="_blank">Shopify Changelog: Add a bank account for every payout currency</a></li><li id="ref-2"><a href="https://help.shopify.com/manual/payments/shopify-payments/store-currency/payouts-in-multiple-currencies" rel="noopener" target="_blank">Shopify Help Center: Managing multi-currency payouts</a></li></ol></section></article>
+</main>
+<footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
+<script src="/assets/analytics.js" defer></script>
+</body>
+</html>
