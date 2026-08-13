@@ -109,6 +109,8 @@ assert.equal(analyticsModule.shippingResultBand(Number.NaN), 'not_available');
 
 const read = (relative) => fs.readFileSync(path.join(__dirname, '..', relative), 'utf8');
 const duty = read('duty/index.html');
+const dutyClient = read('duty/calculator.js');
+const dutyRuntime = `${duty}\n${dutyClient}`;
 const shipping = read('shipping/index.html');
 const handoff = read('tools/access-checker/index.html');
 const analyticsSource = read('assets/analytics.js');
@@ -119,7 +121,7 @@ assert.doesNotMatch(
   'raw location, query-string, and referrer values must never be read for analytics'
 );
 
-for (const [name, html] of [['DutyCalc', duty], ['ShippingCalc', shipping]]) {
+for (const [name, html] of [['DutyCalc', dutyRuntime], ['ShippingCalc', shipping]]) {
   assert.match(html, /<script src="\/assets\/analytics\.js"><\/script>/, `${name} must load the shared contract`);
   assert.match(html, /tool_started/);
   assert.match(html, /tool_completed/);
@@ -132,7 +134,7 @@ assert.match(duty, /href="\/apps\/tariffshield\/" data-analytics-event="tool_to_
 assert.match(shipping, /data-analytics-event="contact_intent"[\s\S]*?data-analytics-placement="result_cta"/);
 assert.match(handoff, /data-analytics-transport="disabled"/);
 
-for (const html of [duty, shipping]) {
+for (const html of [dutyClient, shipping]) {
   const calls = html.split('\n').filter((line) => line.includes('AttahirAnalytics'));
   for (const call of calls) {
     assert.doesNotMatch(

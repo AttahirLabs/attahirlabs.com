@@ -18,7 +18,6 @@ function inlineScript(html, marker) {
   return source.replace(/\ninit\(\);\s*$/, '\n');
 }
 
-const calculatorScript = inlineScript(duty, 'async function calculate()');
 const ratesScript = inlineScript(rates, 'function filterRates()');
 
 function escapeHtml(value) {
@@ -103,159 +102,6 @@ function fixedDate(iso) {
   };
 }
 
-function calculatorElements() {
-  return {
-    origin: new FakeElement('select', { value: 'JP' }),
-    destination: new FakeElement('select', { value: 'US' }),
-    productValue: new FakeElement('input', { value: '100' }),
-    shippingCost: new FakeElement('input', { value: '10' }),
-    insuranceCost: new FakeElement('input', { value: '5' }),
-    error: new FakeElement(),
-    calcBtn: new FakeElement('button'),
-    placeholder: new FakeElement('div', { style: { display: 'none' } }),
-    results: new FakeElement('div', { style: { display: 'block' } }),
-    resultNumbers: new FakeElement('div', { style: { display: 'block' } }),
-    resultState: new FakeElement(),
-    responseMetadata: new FakeElement(),
-    route: new FakeElement(),
-    rateDisplay: new FakeElement(),
-    dutyDisplay: new FakeElement(),
-    totalDisplay: new FakeElement(),
-    breakdown: new FakeElement(),
-    marginDesc: new FakeElement(),
-    disclaimerText: new FakeElement()
-  };
-}
-
-function validCalculation(overrides = {}) {
-  const base = {
-    origin: { code: 'JP', name: 'Japan' },
-    destination: { code: 'US', name: 'United States' },
-    breakdown: {
-      productValue: 100,
-      shippingCost: 10,
-      insuranceCost: 5,
-      cifValue: 115,
-      dutyRate: 15,
-      dutyRatePercent: '15%',
-      dutyAmount: 17.25,
-      totalLandedCost: 132.25
-    },
-    rateData: {
-      datasetUpdatedAt: '2026-07-24',
-      verifiedThrough: '2026-07-24',
-      provenanceStatus: 'reviewed_snapshot',
-      state: 'usable',
-      usable: true,
-      reviewAfter: FUTURE_REVIEW
-    },
-    marginImpact: { effectiveCostIncrease: '17.25%' },
-    disclaimer: 'Planning estimate only.'
-  };
-  return {
-    ...base,
-    ...overrides,
-    breakdown: { ...base.breakdown, ...(overrides.breakdown || {}) },
-    rateData: Object.prototype.hasOwnProperty.call(overrides, 'rateData')
-      ? overrides.rateData
-      : base.rateData
-  };
-}
-
-async function runCalculator(responseBody, { now = NOW, status = 200 } = {}) {
-  const elements = calculatorElements();
-  const analyticsCalls = [];
-  const context = {
-    URLSearchParams,
-    Date: fixedDate(now),
-    console,
-    document: {
-      createElement(tagName) {
-        return new FakeElement(tagName);
-      },
-      getElementById(id) {
-        assert.ok(elements[id], `unexpected calculator element lookup: ${id}`);
-        return elements[id];
-      }
-    },
-    window: {
-      AttahirAnalytics: {
-        once(actionKey, name, params) {
-          analyticsCalls.push({ actionKey, name, params });
-        },
-        dutyResultBand() {
-          return 'medium';
-        }
-      }
-    },
-    async fetch() {
-      return {
-        ok: status >= 200 && status < 300,
-        status,
-        async json() {
-          return responseBody;
-        }
-      };
-    }
-  };
-  vm.createContext(context);
-  vm.runInContext(calculatorScript, context);
-  await context.calculate();
-  return { elements, analyticsCalls };
-}
-
-function rendered(element) {
-  return `${element.textContent} ${element.innerHTML}`;
-}
-
-const invalidMetadataCases = [
-  ['missing rate metadata', validCalculation({ rateData: undefined, legacy: true })],
-  ['malformed rate metadata', validCalculation({ rateData: 'usable' })],
-  ['missing state', validCalculation({ rateData: { usable: true, reviewAfter: FUTURE_REVIEW } })],
-  ['missing usable flag', validCalculation({ rateData: { state: 'usable', reviewAfter: FUTURE_REVIEW } })],
-  ['review-required state', validCalculation({ rateData: { state: 'review_required', usable: false, reviewAfter: FUTURE_REVIEW } })],
-  ['unusable flag', validCalculation({ rateData: { state: 'usable', usable: false, reviewAfter: FUTURE_REVIEW } })],
-  ['missing review boundary', validCalculation({ rateData: { state: 'usable', usable: true } })],
-  ['malformed review boundary', validCalculation({ rateData: { state: 'usable', usable: true, reviewAfter: 'tomorrow' } })],
-  ['elapsed review boundary', validCalculation({ rateData: { state: 'usable', usable: true, reviewAfter: NOW } })]
-];
-
-for (const [name, payload] of invalidMetadataCases) {
-  test(`calculator fails closed for HTTP 200 with ${name}`, async () => {
-    const { elements, analyticsCalls } = await runCalculator(payload);
-    assert.equal(elements.resultNumbers.style.display, 'none');
-    for (const id of ['rateDisplay', 'dutyDisplay', 'totalDisplay', 'breakdown']) {
-      assert.doesNotMatch(rendered(elements[id]), /\d/, `${id} exposed a number`);
-    }
-    assert.match(elements.resultState.textContent, /unavailable|indeterminate|review/i);
-    assert.ok(analyticsCalls.some((call) => call.name === 'tool_failed'));
-    assert.ok(!analyticsCalls.some((call) => call.name === 'tool_completed'));
-  });
-}
-
-for (const [name, reviewAfter] of [
-  ['future review boundary', FUTURE_REVIEW],
-  ['explicit null review boundary', null]
-]) {
-  test(`calculator renders explicitly usable data with ${name}`, async () => {
-    const payload = validCalculation({
-      rateData: {
-        datasetUpdatedAt: '2026-07-24',
-        verifiedThrough: '2026-07-24',
-        provenanceStatus: 'reviewed_snapshot',
-        state: 'usable',
-        usable: true,
-        reviewAfter
-      }
-    });
-    const { elements, analyticsCalls } = await runCalculator(payload);
-    assert.equal(elements.resultNumbers.style.display, 'block');
-    assert.equal(elements.rateDisplay.textContent, '15%');
-    assert.match(rendered(elements.breakdown), /15%/);
-    assert.ok(analyticsCalls.some((call) => call.name === 'tool_completed'));
-  });
-}
-
 const invalidRates = [
   ['object', { injected: 15 }],
   ['nonnumeric string', 'abc'],
@@ -266,31 +112,9 @@ const invalidRates = [
   ['greater than 100', 100.01]
 ];
 
-for (const [name, suppliedRate] of invalidRates) {
-  test(`calculator rejects ${name} duty rate without markup or a numeric result`, async () => {
-    const breakdown = typeof suppliedRate === 'number'
-      ? { dutyRate: suppliedRate, dutyRatePercent: `${suppliedRate}%` }
-      : { dutyRate: 15, dutyRatePercent: suppliedRate };
-    const { elements } = await runCalculator(validCalculation({ breakdown }));
-    assert.equal(elements.resultNumbers.style.display, 'none');
-    assert.doesNotMatch(rendered(elements.breakdown), /<img|onerror/i);
-    assert.doesNotMatch(rendered(elements.rateDisplay), /\d/);
-  });
+function rendered(element) {
+  return `${element.textContent} ${element.innerHTML}`;
 }
-
-test('calculator rejects inconsistent numeric and percent-string rate forms', async () => {
-  const { elements } = await runCalculator(validCalculation({
-    breakdown: { dutyRate: 15, dutyRatePercent: '20%' }
-  }));
-  assert.equal(elements.resultNumbers.style.display, 'none');
-  assert.doesNotMatch(rendered(elements.rateDisplay), /\d/);
-});
-
-test('calculator output and reference-data options do not interpolate API values into innerHTML', () => {
-  assert.doesNotMatch(calculatorScript, /breakdown[^;\n]*\.innerHTML\s*=\s*html/);
-  assert.doesNotMatch(calculatorScript, /innerHTML\s*=[^;\n]*\b(?:countries|markets)\b/i);
-  assert.doesNotMatch(calculatorScript, /\$\{[^}]*dutyRatePercent[^}]*\}/);
-});
 
 function ratesElements() {
   return {

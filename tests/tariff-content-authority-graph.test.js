@@ -40,9 +40,14 @@ const registryIds = new Set(Object.keys(manifest.authorityRegistry));
 for (const page of manifest.pages) {
   assert.equal(page.schemaVersion, 1);
   assert.equal(page.publicationStatus, 'published');
-  assert.equal(page.verifiedThrough, manifest.asOf);
-  assert.equal(page.reviewAfter, manifest.reviewAfter);
-  assert.equal(page.failClosedWording, universalWarning);
+  if (page.path === '/duty/') {
+    assert.equal(page.authorityState, 'release2_active_exact');
+    assert.equal(page.failClosedWording, 'Unsupported or incomplete cases remain number-free.');
+  } else {
+    assert.equal(page.verifiedThrough, manifest.asOf);
+    assert.equal(page.reviewAfter, manifest.reviewAfter);
+    assert.equal(page.failClosedWording, universalWarning);
+  }
   assert.ok(!paths.has(page.path), `duplicate public path ${page.path}`);
   assert.ok(!canonicals.has(page.canonicalUrl), `duplicate canonical ${page.canonicalUrl}`);
   paths.add(page.path);
@@ -51,11 +56,11 @@ for (const page of manifest.pages) {
   const file = fileForPath(page.path);
   assert.ok(fs.existsSync(file), `missing published page ${page.path}`);
   const html = fs.readFileSync(file, 'utf8');
-  assert.ok(
-    html.includes('data-tariff-authority-state="review-required"'),
-    `${page.path} lacks fail-closed state`,
-  );
-  assert.ok(html.includes(universalWarning), `${page.path} lacks standard warning`);
+  const expectedState = page.path === '/duty/'
+    ? 'data-tariff-authority-state="release-2-active"'
+    : 'data-tariff-authority-state="review-required"';
+  assert.ok(html.includes(expectedState), `${page.path} lacks expected authority state`);
+  assert.ok(html.includes(page.failClosedWording), `${page.path} lacks authority warning`);
   assert.ok(
     html.includes(page.canonicalUrl),
     `${page.path} does not expose its canonical URL`,

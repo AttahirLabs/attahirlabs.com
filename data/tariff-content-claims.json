@@ -76,19 +76,25 @@
     {
       "schemaVersion": 1,
       "path": "/duty/",
-      "title": "Historical Import-Duty Planning Snapshot",
+      "title": "Signed US Import-Duty Planning Calculator",
       "contentRole": "tool",
       "eventIds": [
-        "legacy_dutycalc_snapshot_2026_03_18"
+        "tariff_authority_release2_2026_08_13"
       ],
-      "authorityIds": [],
+      "authorityIds": [
+        "ustr_brazil_final_2026_07",
+        "ustr_forced_labor_final_2026_07",
+        "ustr_forced_labor_prepublication_2026_07_23",
+        "usitc_current_hts"
+      ],
       "numericClaims": [],
       "canonicalUrl": "https://attahirlabs.com/duty/",
       "publicationStatus": "published",
-      "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "modifiedDate": "2026-08-13",
+      "verifiedThrough": "2026-08-13T21:30:00Z",
+      "reviewAfter": "2026-08-20T21:30:00Z",
+      "authorityState": "release2_active_exact",
+      "failClosedWording": "Unsupported or incomplete cases remain number-free."
     },
     {
       "schemaVersion": 1,

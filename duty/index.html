@@ -11,10 +11,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://www.google-analytics.com;">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-    <title>Free Import Duty Calculator: Country-Level Planning Estimate | Attahir Labs</title>
-    <meta name="description" content="Country-level legacy planning estimate for import duty across the US, Canada, EU, UK, and Australia, with explicit freshness and scope limits.">
+    <title>Free US Import Duty Calculator: Signed HTSUS &amp; Chapter 99 Estimate | Attahir Labs</title>
+    <meta name="description" content="Calculate a supported US import-duty estimate from exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs using signed reviewed tariff authority.">
     <link rel="canonical" href="https://attahirlabs.com/duty/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Import Duty Calculator","url":"https://attahirlabs.com/duty/","description":"Country-level legacy planning estimate for import duty by origin country and destination market. Not product-specific or suitable for customs filing or final pricing.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Attahir Labs","url":"https://attahirlabs.com"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"US Import Duty Calculator","url":"https://attahirlabs.com/duty/","description":"Supported US import-duty planning estimates from exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs under signed reviewed authority.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Attahir Labs","url":"https://attahirlabs.com"}}</script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -51,7 +51,7 @@
         .card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.5rem; }
         .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
         label { display: block; font-size: 0.85rem; color: var(--gray-500); margin-bottom: 0.3rem; }
-        select, input[type="number"] { width: 100%; background: var(--navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.65rem 0.75rem; color: var(--white); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none; }
+        select, input[type="number"], input[type="text"] { width: 100%; background: var(--navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.65rem 0.75rem; color: var(--white); font-size: 0.95rem; margin-bottom: 0.75rem; outline: none; }
         select:focus, input:focus { border-color: var(--indigo); }
         .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
         .input-note { color: rgba(255,255,255,0.62); font-size: 0.78rem; margin: -0.2rem 0 0.9rem; }
@@ -128,32 +128,44 @@
 
 <div class="hero">
     <div class="hero-badge">🆓 Free Tool — No Account Needed</div>
-    <h1>Import Duty <em>Calculator</em></h1>
-    <p>Run a simplified country-level planning estimate before you import, then verify the product, entry, and valuation details with an authoritative source.</p>
+    <h1>US Import Duty <em>Calculator</em></h1>
+    <p>Calculate a supported planning estimate using exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs.</p>
 </div>
 
-<div class="container" data-tariff-authority-state="review-required">
+<div class="container" data-tariff-authority-state="release-2-active">
     <aside class="accuracy-panel" id="dutyAccuracyNotice" aria-labelledby="dutyAccuracyTitle">
-        <h2 id="dutyAccuracyTitle">Accuracy &amp; freshness notice</h2>
-        <p class="tariff-authority-warning"><strong>Historical country-level planning snapshot only.</strong> No current numeric result is available. No universal current U.S. tariff rate is available from country of origin alone.</p>
-<p><strong>Country-level legacy planning snapshot.</strong> Dataset updated March 18, 2026; supporting evidence verified through March 13, 2026. The update date is not a verification date, and no row-level derivation is preserved.</p>
-        <p>This tool does not model HTS or product classification, exemptions, entry dates, tariff layers, free-trade agreement (FTA) eligibility, or special remedies. It is not for customs filing or final pricing.</p>
+        <h2 id="dutyAccuracyTitle">Signed authority, narrow scope</h2>
+        <p class="tariff-authority-warning"><strong>Release 2 exact-input calculation.</strong> A number is returned only when the signed reviewed authority matches every required input. Unsupported or incomplete cases remain number-free.</p>
+        <p>You supply the HTSUS classification, base MFN rate, U.S. customs value, and applicable Chapter 99 headings. The tool does not choose or validate those filing facts for you.</p>
+        <p>This is a planning estimate, not a customs classification, liquidation, or legal determination. The <a href="/duty/rates/">legacy country-level table</a> remains historical and contained.</p>
     </aside>
     <div class="calc-grid">
         <!-- FORM -->
         <div class="card">
-            <h2>Calculate Your Duty</h2>
-            <label>Origin Country *</label>
+            <h2>Enter exact US entry inputs</h2>
+            <label for="origin">Origin country *</label>
             <select id="origin"><option value="">Loading countries...</option></select>
-            <label>Destination Market *</label>
-            <select id="destination"><option value="">Loading markets...</option></select>
-            <label>Product Value (USD) *</label>
-            <input type="number" id="productValue" placeholder="e.g. 1000" min="1" max="10000000">
+            <label for="destination">Destination</label>
+            <input type="text" id="destination" value="United States (US)" disabled>
             <div class="row">
-                <div><label>Shipping Cost</label><input type="number" id="shippingCost" placeholder="$0" min="0"></div>
-                <div><label>Insurance Cost</label><input type="number" id="insuranceCost" placeholder="$0" min="0"></div>
+                <div><label for="hts">8-digit HTSUS code *</label><input type="text" id="hts" placeholder="61091000" inputmode="numeric" maxlength="10"></div>
+                <div><label for="mfnRate">Base MFN rate (%) *</label><input type="number" id="mfnRate" placeholder="5" min="0" max="100" step="0.000001"></div>
             </div>
-            <p class="input-note">Freight and insurance are optional planning inputs. Whether either amount belongs in the legally dutiable customs value depends on the destination's law and the transaction facts; this tool does not decide that valuation basis.</p>
+            <label for="customsValue">U.S. customs value (USD) *</label>
+            <input type="number" id="customsValue" placeholder="1000.00" min="0.01" max="100000000" step="0.01">
+            <label for="forcedLaborCountryHeading">Forced-labor country Chapter 99 heading *</label>
+            <input type="text" id="forcedLaborCountryHeading" placeholder="9903.05.27" maxlength="10">
+            <label for="forcedLaborExceptionHeading">Forced-labor exception heading *</label>
+            <input type="text" id="forcedLaborExceptionHeading" value="NONE" placeholder="NONE or 9903.xx.xx" maxlength="10">
+            <div id="brazilFields" style="display:none">
+                <label for="brazilHeading">Brazil Section 301 Chapter 99 heading *</label>
+                <input type="text" id="brazilHeading" placeholder="9903.05.01" maxlength="10">
+            </div>
+            <div class="row">
+                <div><label for="shippingCost">Shipping cost</label><input type="number" id="shippingCost" placeholder="0.00" min="0" step="0.01"></div>
+                <div><label for="insuranceCost">Insurance cost</label><input type="number" id="insuranceCost" placeholder="0.00" min="0" step="0.01"></div>
+            </div>
+            <p class="input-note">Shipping and insurance stay outside the customs value and are added only to the displayed planning subtotal. Enter the legally determined customs value separately.</p>
             <div class="error" id="error"></div>
             <button class="btn" id="calcBtn" onclick="calculate()">Calculate Duty</button>
         </div>
@@ -161,26 +173,26 @@
         <!-- RESULTS -->
         <div class="card">
             <div class="placeholder" id="placeholder">
-                <div><div class="icon">📦</div><p>Enter your import details and click Calculate to see a country-level planning estimate.</p></div>
+                <div><div class="icon">📦</div><p>Enter the exact filing inputs to check whether Release 2 has active matching coverage.</p></div>
             </div>
             <div class="results" id="results">
                 <h2 id="route"></h2>
                 <div class="result-status" id="resultState" role="status" aria-live="polite">Awaiting a response</div>
-                <div class="response-metadata" id="responseMetadata" aria-label="Rate data response metadata">
-                    <span><strong>Dataset updated:</strong> Awaiting response</span>
-                    <span><strong>Evidence verified through:</strong> Awaiting response</span>
-                    <span><strong>Provenance:</strong> Awaiting response</span>
-                    <span><strong>State:</strong> Awaiting response</span>
+                <div class="response-metadata" id="responseMetadata" aria-label="Tariff authority response metadata">
+                    <span><strong>Ruleset:</strong> Awaiting response</span>
+                    <span><strong>Evidence valid through:</strong> Awaiting response</span>
+                    <span><strong>Authority state:</strong> Awaiting response</span>
+                    <span><strong>Coverage:</strong> Awaiting response</span>
                 </div>
                 <div id="resultNumbers">
                     <div class="stat-grid">
-                        <div class="stat"><div class="num indigo" id="rateDisplay">—</div><div class="label">Country-level rate assumption</div></div>
-                        <div class="stat"><div class="num red" id="dutyDisplay">—</div><div class="label">Modeled duty</div></div>
+                        <div class="stat"><div class="num indigo" id="rateDisplay">—</div><div class="label">Supported total rate</div></div>
+                        <div class="stat"><div class="num red" id="dutyDisplay">—</div><div class="label">Estimated duty</div></div>
                         <div class="stat"><div class="num green" id="totalDisplay">—</div><div class="label">Estimated subtotal</div></div>
                     </div>
                     <div class="breakdown" id="breakdown"></div>
                     <div class="margin-box">
-                        <div class="title">⚠ Planning impact</div>
+                        <div class="title">Authority-backed planning result</div>
                         <div class="desc" id="marginDesc"></div>
                     </div>
                     <a href="/blog/how-to-calculate-landed-cost/" class="cta-link" data-analytics-event="cta_clicked" data-analytics-surface="duty_calculator" data-analytics-placement="result_cta" data-analytics-destination-type="blog">Read the landed cost guide →</a>
@@ -192,420 +204,24 @@
 </div>
 
 <div class="seo">
-    <h2>What this import duty calculator helps you estimate</h2>
-    <p>This free calculator applies one historical country-level rate assumption to a simplified planning base. It can produce a rate assumption, modeled duty, and <strong>estimated subtotal</strong> from origin, destination, product value, and any optional freight or insurance inputs.</p>
-    <p>The estimated subtotal is product value plus optional freight and insurance plus modeled duty. It excludes taxes, brokerage, carrier and processing fees, special remedies, and other costs. Validate all of those items before customs filing or final pricing.</p>
+    <h2>What this US import duty calculator does</h2>
+    <p>This calculator evaluates exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs against signed, reviewed Release 2 authority. It returns a supported total rate, estimated duty, line-item authority evidence, and an estimated subtotal only when every required fact matches active coverage.</p>
+    <p>The estimated subtotal is customs value plus optional shipping and insurance plus estimated duty. Shipping and insurance remain outside the customs value in this model. Taxes, brokerage, carrier and processing fees, and unsupported tariff programs are excluded.</p>
     <h3>Quick answer</h3>
-    <p>Use this snapshot to compare rough scenarios only. Product classification, entry date, tariff layers, preferences, exclusions, valuation rules, taxes, and fees can change the final amount.</p>
-    <h3>Freight and insurance are optional inputs</h3>
-    <p>Adding freight or insurance here is a planning convention, not a statement that either amount is always dutiable. The customs-value rules depend on the destination and transaction; confirm the legally dutiable base for the actual entry.</p>
-    <h3>Legacy planning coverage</h3>
-    <p>The snapshot contains country-level assumptions for five destination markets: US, Canada, EU, UK, and Australia. It was updated March 18, 2026 with evidence verified only through March 13, 2026, and it has no preserved row-level derivation.</p>
+    <p>Use it only when you already have the entry’s exact U.S. filing inputs. It does not classify goods, select Chapter 99 headings, establish customs value, apply unsupported programs, or make a legal filing determination.</p>
+    <h3>Fail-closed coverage</h3>
+    <p>Incomplete, unsupported, expired, or non-matching inputs return an indeterminate response with no rate, duty, or subtotal. Canada is intentionally outside this Release 2 coverage.</p>
+    <h3>Signed reviewed authority</h3>
+    <p>Every calculated response identifies its ruleset, signed release record, evidence window, active coverage slices, and source-backed line items so the result can be traced to the exact authority used.</p>
     <p><a href="/duty/rates/">Browse the historical planning table →</a><br><a href="/blog/us-china-tariff-rates-2026/">Read the US-China tariff guide →</a><br><a href="/blog/import-duty-from-vietnam-to-us/">Read the Vietnam import-duty guide →</a><br><a href="/blog/de-minimis-threshold-2026/">Read the US de minimis guide →</a></p>
 </div>
 
 <footer>
-    <p>&copy; 2026 Attahir Labs. Historical planning assumptions only — verify the current entry with authoritative sources and a qualified customs professional.</p>
+    <p>&copy; 2026 Attahir Labs. Planning estimates only — verify classification, valuation, headings, and the final entry with authoritative sources and a qualified customs professional.</p>
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 </footer>
 
 <script src="/assets/analytics.js"></script>
-<script>
-const API = "https://duty-calc-api-production.up.railway.app";
-const RATE_DATA_REVIEW_REQUIRED = "RATE_DATA_REVIEW_REQUIRED";
-let dutySubmission = 0;
-
-async function init() {
-    try {
-        const [cr, mr] = await Promise.all([fetch(API+"/api/v1/countries"), fetch(API+"/api/v1/markets")]);
-        if (!cr.ok || !mr.ok) throw new Error("Reference data unavailable");
-        const cd = await cr.json(), md = await mr.json();
-        replaceSelectOptions(
-            document.getElementById("origin"),
-            "Select origin country...",
-            Array.isArray(cd.countries) ? cd.countries : [],
-            country => {
-                if (!isCode(country?.code) || !isText(country?.name)) return null;
-                return { value: country.code, label: `${country.name} (${country.code})` };
-            }
-        );
-        replaceSelectOptions(
-            document.getElementById("destination"),
-            "Select destination...",
-            Array.isArray(md.markets) ? md.markets : [],
-            market => {
-                if (
-                    !isCode(market?.code) ||
-                    !isText(market?.name) ||
-                    !Number.isSafeInteger(market?.rateCount) ||
-                    market.rateCount < 0
-                ) return null;
-                return {
-                    value: market.code,
-                    label: `${market.name} (${market.rateCount} countries)`
-                };
-            }
-        );
-    } catch(e) {
-        console.error("Failed to load data", e);
-        replaceSelectOptions(document.getElementById("origin"), "Countries unavailable", [], () => null);
-        replaceSelectOptions(document.getElementById("destination"), "Markets unavailable", [], () => null);
-    }
-}
-
-function isRecord(value) {
-    return Boolean(value) && typeof value === "object" && !Array.isArray(value);
-}
-
-function isText(value) {
-    return typeof value === "string" && value.trim().length > 0;
-}
-
-function isCode(value) {
-    return typeof value === "string" && /^[A-Z]{2}$/.test(value);
-}
-
-function replaceSelectOptions(select, placeholder, items, normalize) {
-    select.replaceChildren();
-    const first = document.createElement("option");
-    first.value = "";
-    first.textContent = placeholder;
-    select.appendChild(first);
-    items.forEach(item => {
-        const normalized = normalize(item);
-        if (!normalized) return;
-        const option = document.createElement("option");
-        option.value = normalized.value;
-        option.textContent = normalized.label;
-        select.appendChild(option);
-    });
-}
-
-function humanize(value) {
-    if (!value) return "";
-    const text = String(value).replace(/_/g, " ");
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-function responseMetadata(data) {
-    const rateData = isRecord(data?.rateData) ? data.rateData : {};
-    return {
-        datasetUpdatedAt: data?.datasetUpdatedAt || data?.lastUpdated || rateData.datasetUpdatedAt || rateData.lastUpdated || "",
-        verifiedThrough: data?.verifiedThrough || rateData.verifiedThrough || "",
-        provenanceStatus: data?.provenanceStatus || rateData.provenanceStatus || "",
-        state: data?.state || data?.rateDataState || rateData.state || "",
-        reviewAfter: rateData.reviewAfter,
-        usable: rateData.usable
-    };
-}
-
-function renderResponseMetadata(data, fallbackState) {
-    const metadata = responseMetadata(data);
-    const rows = [
-        ["Dataset updated", metadata.datasetUpdatedAt || "Not provided by this response"],
-        ["Evidence verified through", metadata.verifiedThrough || "Not provided by this response"],
-        ["Provenance", humanize(metadata.provenanceStatus) || "Not provided by this response"],
-        ["State", humanize(metadata.state || fallbackState) || "Not provided by this response"]
-    ];
-    const container = document.getElementById("responseMetadata");
-    container.replaceChildren();
-    rows.forEach(([label, value]) => {
-        const row = document.createElement("span");
-        const heading = document.createElement("strong");
-        const detail = document.createElement("span");
-        heading.textContent = `${label}:`;
-        detail.textContent = ` ${value}`;
-        row.appendChild(heading);
-        row.appendChild(detail);
-        container.appendChild(row);
-    });
-}
-
-function validDateOnly(value) {
-    if (typeof value !== "string") return false;
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-    if (!match) return false;
-    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
-    const date = new Date(Date.UTC(year, month - 1, day));
-    return date.getUTCFullYear() === year &&
-        date.getUTCMonth() === month - 1 &&
-        date.getUTCDate() === day;
-}
-
-function parseReviewInstant(value) {
-    if (typeof value !== "string") return null;
-    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.exec(value);
-    if (!match) return null;
-    const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
-    const hour = Number(match[4]), minute = Number(match[5]), second = Number(match[6]);
-    const calendar = new Date(Date.UTC(year, month - 1, day));
-    if (
-        calendar.getUTCFullYear() !== year ||
-        calendar.getUTCMonth() !== month - 1 ||
-        calendar.getUTCDate() !== day ||
-        hour > 23 ||
-        minute > 59 ||
-        second > 59
-    ) return null;
-    const timestamp = Date.parse(value);
-    return Number.isFinite(timestamp) ? timestamp : null;
-}
-
-function hasConsistentField(data, rateData, field, aliases = []) {
-    const expected = rateData[field];
-    return [field, ...aliases].every(key =>
-        data[key] === undefined || data[key] === expected
-    );
-}
-
-function hasUsableRateMetadata(data) {
-    if (!isRecord(data) || !isRecord(data.rateData)) return false;
-    const rateData = data.rateData;
-    if (
-        rateData.state !== "usable" ||
-        rateData.usable !== true ||
-        !validDateOnly(rateData.datasetUpdatedAt) ||
-        !validDateOnly(rateData.verifiedThrough) ||
-        !isText(rateData.provenanceStatus) ||
-        !Object.prototype.hasOwnProperty.call(rateData, "reviewAfter")
-    ) return false;
-    if (
-        !hasConsistentField(data, rateData, "datasetUpdatedAt", ["lastUpdated"]) ||
-        !hasConsistentField(data, rateData, "verifiedThrough") ||
-        (data.state !== undefined && data.state !== "usable") ||
-        (data.rateDataState !== undefined && data.rateDataState !== "usable")
-    ) return false;
-    if (rateData.reviewAfter === null) return true;
-    const reviewAt = parseReviewInstant(rateData.reviewAfter);
-    return reviewAt !== null && Date.now() < reviewAt;
-}
-
-function normalizeDutyRate(breakdown) {
-    const hasNumber = Object.prototype.hasOwnProperty.call(breakdown, "dutyRate");
-    const hasPercent = Object.prototype.hasOwnProperty.call(breakdown, "dutyRatePercent");
-    if (!hasNumber && !hasPercent) return null;
-
-    let numericRate = null;
-    if (hasNumber) {
-        if (
-            typeof breakdown.dutyRate !== "number" ||
-            !Number.isFinite(breakdown.dutyRate) ||
-            breakdown.dutyRate < 0 ||
-            breakdown.dutyRate > 100
-        ) return null;
-        numericRate = Object.is(breakdown.dutyRate, -0) ? 0 : breakdown.dutyRate;
-    }
-
-    let percentRate = null;
-    if (hasPercent) {
-        if (
-            typeof breakdown.dutyRatePercent !== "string" ||
-            !/^(?:\d+(?:\.\d+)?)%$/.test(breakdown.dutyRatePercent)
-        ) return null;
-        percentRate = Number(breakdown.dutyRatePercent.slice(0, -1));
-        if (!Number.isFinite(percentRate) || percentRate < 0 || percentRate > 100) return null;
-    }
-
-    if (numericRate !== null && percentRate !== null && numericRate !== percentRate) return null;
-    const value = numericRate ?? percentRate;
-    return { value, display: `${value}%` };
-}
-
-function normalizeBreakdown(breakdown) {
-    if (!isRecord(breakdown)) return null;
-    const rate = normalizeDutyRate(breakdown);
-    if (!rate) return null;
-    const fields = [
-        "productValue",
-        "shippingCost",
-        "insuranceCost",
-        "cifValue",
-        "dutyAmount",
-        "totalLandedCost"
-    ];
-    if (fields.some(field =>
-        typeof breakdown[field] !== "number" ||
-        !Number.isFinite(breakdown[field]) ||
-        breakdown[field] < 0
-    )) return null;
-    if (breakdown.productValue <= 0) return null;
-    const expectedBase = breakdown.productValue + breakdown.shippingCost + breakdown.insuranceCost;
-    const expectedDuty = Math.round(expectedBase * (rate.value / 100) * 100) / 100;
-    const expectedTotal = Math.round((expectedBase + expectedDuty) * 100) / 100;
-    if (
-        Math.abs(breakdown.cifValue - expectedBase) > 0.01 ||
-        Math.abs(breakdown.dutyAmount - expectedDuty) > 0.01 ||
-        Math.abs(breakdown.totalLandedCost - expectedTotal) > 0.01
-    ) return null;
-    return { ...breakdown, rate };
-}
-
-function appendBreakdownRow(container, label, value, className = "") {
-    const row = document.createElement("div");
-    row.className = `row-item${className ? ` ${className}` : ""}`;
-    const labelNode = document.createElement("span");
-    const valueNode = document.createElement("span");
-    labelNode.textContent = label;
-    valueNode.textContent = value;
-    if (className === "total") valueNode.className = "green";
-    row.appendChild(labelNode);
-    row.appendChild(valueNode);
-    container.appendChild(row);
-}
-
-function renderBreakdown(breakdown) {
-    const container = document.getElementById("breakdown");
-    container.replaceChildren();
-    appendBreakdownRow(container, "Product Value", `$${breakdown.productValue.toFixed(2)}`);
-    if (breakdown.shippingCost > 0) {
-        appendBreakdownRow(container, "Shipping", `$${breakdown.shippingCost.toFixed(2)}`);
-    }
-    if (breakdown.insuranceCost > 0) {
-        appendBreakdownRow(container, "Insurance", `$${breakdown.insuranceCost.toFixed(2)}`);
-    }
-    appendBreakdownRow(container, "Modeled planning base", `$${breakdown.cifValue.toFixed(2)}`);
-    appendBreakdownRow(
-        container,
-        `Modeled duty (${breakdown.rate.display})`,
-        `+$${breakdown.dutyAmount.toFixed(2)}`,
-        "duty"
-    );
-    appendBreakdownRow(
-        container,
-        "Estimated subtotal",
-        `$${breakdown.totalLandedCost.toFixed(2)}`,
-        "total"
-    );
-}
-
-function clearNumericResult() {
-    document.getElementById("resultNumbers").style.display = "none";
-    document.getElementById("rateDisplay").textContent = "—";
-    document.getElementById("dutyDisplay").textContent = "—";
-    document.getElementById("totalDisplay").textContent = "—";
-    document.getElementById("breakdown").replaceChildren();
-    document.getElementById("marginDesc").textContent = "";
-    document.getElementById("disclaimerText").textContent = "";
-}
-
-function showUnavailable(data, message) {
-    clearNumericResult();
-    document.getElementById("placeholder").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("route").textContent = "Estimate unavailable";
-    const resultState = document.getElementById("resultState");
-    resultState.className = "result-status unavailable";
-    resultState.textContent = message;
-    renderResponseMetadata(data, "indeterminate");
-    document.getElementById("disclaimerText").textContent =
-        "No rate, duty, or subtotal is available. The page-level legacy snapshot warning still applies.";
-}
-
-async function calculate() {
-    const actionKey = `duty:${++dutySubmission}`;
-    const origin = document.getElementById("origin").value;
-    const dest = document.getElementById("destination").value;
-    const pv = document.getElementById("productValue").value;
-    const sc = document.getElementById("shippingCost").value || "0";
-    const ic = document.getElementById("insuranceCost").value || "0";
-    const err = document.getElementById("error");
-    err.style.display = "none";
-    clearNumericResult();
-
-    if (!origin || !dest || !pv) {
-        err.textContent = "Please fill in origin, destination, and product value.";
-        err.style.display = "block";
-        showUnavailable(null, "Estimate unavailable — complete the required fields");
-        window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"validation"});
-        return;
-    }
-
-    document.getElementById("calcBtn").disabled = true;
-    document.getElementById("calcBtn").textContent = "Calculating...";
-    document.getElementById("placeholder").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("route").textContent = "Checking snapshot availability";
-    document.getElementById("resultState").className = "result-status";
-    document.getElementById("resultState").textContent = "Checking availability…";
-    renderResponseMetadata(null, "checking");
-    window.AttahirAnalytics?.once(`${actionKey}:start`, "tool_started", {surface:"duty_calculator", tool_name:"duty_calculator"});
-
-    try {
-        const params = new URLSearchParams({origin, destination: dest, productValue: pv, shippingCost: sc, insuranceCost: ic});
-        const res = await fetch(API+"/api/v1/landed-cost?"+params);
-        let data = {};
-        try {
-            data = await res.json();
-        } catch (_) {
-            data = {};
-        }
-        if (!res.ok) {
-            const reviewRequired = data.code === RATE_DATA_REVIEW_REQUIRED;
-            err.textContent = reviewRequired
-                ? "Rate data is under review. No estimate is available."
-                : data.error || "Calculation failed";
-            err.style.display = "block";
-            showUnavailable(
-                data,
-                reviewRequired
-                    ? "Indeterminate — rate data review required"
-                    : "Estimate unavailable"
-            );
-            const errorCode = res.status === 429 ? "rate_limited" : res.status === 400 ? "validation" : "upstream";
-            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:errorCode});
-            return;
-        }
-
-        if (!hasUsableRateMetadata(data)) {
-            err.textContent = "Rate data metadata is missing, unusable, or past its review boundary.";
-            err.style.display = "block";
-            showUnavailable(data, "Indeterminate — usable rate data was not confirmed");
-            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
-            return;
-        }
-        const b = normalizeBreakdown(data.breakdown);
-        if (
-            !b ||
-            !isRecord(data.origin) ||
-            !isText(data.origin.name) ||
-            !isRecord(data.destination) ||
-            !isText(data.destination.name)
-        ) {
-            err.textContent = "The calculation response could not be validated.";
-            err.style.display = "block";
-            showUnavailable(data, "Estimate unavailable — response could not be validated");
-            window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"upstream"});
-            return;
-        }
-        document.getElementById("placeholder").style.display = "none";
-        document.getElementById("results").style.display = "block";
-        document.getElementById("resultNumbers").style.display = "block";
-        document.getElementById("route").textContent = data.origin.name + " → " + data.destination.name;
-        const state = responseMetadata(data).state;
-        document.getElementById("resultState").className = "result-status";
-        document.getElementById("resultState").textContent = "Planning estimate — " + humanize(state);
-        renderResponseMetadata(data, state);
-        document.getElementById("rateDisplay").textContent = b.rate.display;
-        document.getElementById("dutyDisplay").textContent = "$" + b.dutyAmount.toFixed(2);
-        document.getElementById("totalDisplay").textContent = "$" + b.totalLandedCost.toFixed(2);
-        renderBreakdown(b);
-        const impact = Math.round((b.dutyAmount / b.productValue) * 10000) / 100;
-        document.getElementById("marginDesc").textContent =
-            `This simplified model adds ${impact}% to the product value. Validate classification and excluded costs before pricing.`;
-        document.getElementById("disclaimerText").textContent =
-            "Planning estimate only. Taxes, brokerage, carrier and processing fees, special remedies, and other costs are excluded.";
-        const resultBand = window.AttahirAnalytics?.dutyResultBand(b.rate.display) || "not_available";
-        window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_completed", {surface:"duty_calculator", tool_name:"duty_calculator", result_band:resultBand});
-    } catch(e) {
-        err.textContent = "Failed to connect to the tariff API.";
-        err.style.display = "block";
-        showUnavailable(null, "Estimate unavailable — response could not be validated");
-        window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {surface:"duty_calculator", tool_name:"duty_calculator", error_code:"network"});
-    }
-    finally { document.getElementById("calcBtn").disabled = false; document.getElementById("calcBtn").textContent = "Calculate Duty"; }
-}
-
-init();
-</script>
+<script src="/duty/calculator.js?v=20260813-release2"></script>
 </body>
 </html>
