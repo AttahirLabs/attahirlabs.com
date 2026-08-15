@@ -2,8 +2,9 @@
 layout: post
 title: "Retail Bankruptcies Are a Warning Sign: How Shopify Merchants Should Handle Dead Stock in 2026"
 date: 2026-04-21
+last_modified_at: 2026-08-14
 categories: [inventory, liquidation, breaking]
-description: "David’s Bridal’s comeback push and the Saks Global bankruptcy fight point to the same merchant lesson: move weak inventory earlier, protect margin, and do not wait for dead stock to become a crisis."
+description: "A 2026 Mud Jeans bankruptcy update reinforces the same merchant lesson: set slow-mover rules, protect customer obligations, and choose inventory actions before cash pressure removes options."
 author: Attahir Labs
 ---
 
@@ -24,6 +25,14 @@ If you just want the practical read:
 - Waiting for a perfect full-price sale often costs more than taking a controlled markdown, bundle, or exit earlier.
 - Marketing can sometimes improve sell-through, but it is not magic. Weak inventory plus weak merchandising is still weak inventory.
 - Merchants should treat dead stock as a system problem, not just a discounting problem.
+
+## 2026 update: Mud Jeans
+
+On August 5, Mud Jeans was declared bankrupt after a filing it submitted itself. Dion Vijgeboom said historic debt was too much to overcome. The brand temporarily paused new orders, while questions about existing orders, repairs, and take-back services remained subject to updates. ([Retail Dive](https://www.retaildive.com/news/mud-jeans-bankruptcy-k-shaped-economy-over-brooks-running-tapestry-earnings/827875/), [Dion Vijgeboom on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7490657205340483584/), [Mud Jeans](https://mudjeans.com/))
+
+That is not evidence that dead stock caused Mud Jeans’ bankruptcy. The verified cause Vijgeboom gave was historic debt. But it is a useful reminder that a circular model still needs plain operating rules when cash gets tight. Mud Jeans describes repair, take-back, recycling, resale, and seasonless-product work as part of its model, so those customer promises need their own plan rather than getting buried inside primary inventory decisions. ([Mud Jeans About](https://mudjeans.com/pages/about-us-mud-jeans))
+
+For your store, keep weekly slow-mover thresholds and track circular or resale inventory separate from primary stock. Decide in advance when new orders pause, who owns customer updates, and how repair and take-back obligations will be handled. Then choose a markdown, bundle, or liquidation path while you still have options. Waiting for a perfect answer is how options disappear.
 
 ## What these two retail stories actually signal
 
@@ -228,9 +237,13 @@ Start with recent sales velocity, time since last sale, stock coverage, post-dis
 - [Modern Retail: David’s Bridal ramps up its creator strategy as part of its post-bankruptcy comeback](https://www.modernretail.co/marketing/davids-bridal-ramps-up-its-creator-strategy-as-part-of-its-post-bankruptcy-comeback/?utm_campaign=modernretaildis&utm_medium=rss&utm_source=general-rss)
 - [Saks Global: Saks Global Secures $1.75 Billion of Committed Capital and Announces Return of Industry Veterans to Advance Transformation of Iconic Luxury Portfolio](https://www.saksglobal.com/2026-01-14-Saks-Global-Secures-1-75-Billion-of-Committed-Capital-and-Announces-Return-of-Industry-Veterans-to-Advance-Transformation-of-Iconic-Luxury-Portfolio)
 - [Retail Dive: Richard Baker claps back, moves to quash subpoena in Saks Global bankruptcy case](https://www.retaildive.com/news/richard-baker-quash-subpoena-saks-global-bankruptcy/817914/)
+- [Retail Dive: The Weekly Closeout: Mud Jeans files for bankruptcy and is the K-shaped economy over?](https://www.retaildive.com/news/mud-jeans-bankruptcy-k-shaped-economy-over-brooks-running-tapestry-earnings/827875/)
+- [Dion Vijgeboom on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7490657205340483584/)
+- [Mud Jeans](https://mudjeans.com/)
+- [Mud Jeans: About us](https://mudjeans.com/pages/about-us-mud-jeans)
 - [Attahir Labs: QVC Bankruptcy Filing, A Dead Stock and Liquidation Playbook for Shopify Merchants](/blog/qvc-bankruptcy-stock-clearance-2026/)
 - [Attahir Labs: Home Retailers Are Under Pressure in 2026. Here’s the Dead Stock Playbook](/blog/home-retail-dead-stock-2026/)
 
 ## Disclaimer
 
-This article is for informational purposes only and does not constitute legal, financial, or investment advice. Retail news can inform merchant judgment, but your inventory decisions should be based on your own category, cash position, margins, and sell-through data. Information is current as of April 21, 2026.
+This article is for informational purposes only and does not constitute legal, financial, or investment advice. Retail news can inform merchant judgment, but your inventory decisions should be based on your own category, cash position, margins, and sell-through data. Information is current as of August 14, 2026.
