@@ -28,7 +28,7 @@ If you just want the practical read:
 
 ## 2026 update: Mud Jeans
 
-On August 14, Mud Jeans was declared bankrupt after a filing it submitted itself. Dion Vijgeboom said historic debt was too much to overcome. The brand temporarily paused new orders, while questions about existing orders, repairs, and take-back services remained subject to updates. ([Retail Dive](https://www.retaildive.com/news/mud-jeans-bankruptcy-k-shaped-economy-over-brooks-running-tapestry-earnings/827875/), [Dion Vijgeboom on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7490657205340483584/), [Mud Jeans](https://mudjeans.com/))
+On August 5, Mud Jeans was declared bankrupt after a filing it submitted itself. Dion Vijgeboom said historic debt was too much to overcome. The brand temporarily paused new orders, while questions about existing orders, repairs, and take-back services remained subject to updates. ([Retail Dive](https://www.retaildive.com/news/mud-jeans-bankruptcy-k-shaped-economy-over-brooks-running-tapestry-earnings/827875/), [Dion Vijgeboom on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7490657205340483584/), [Mud Jeans](https://mudjeans.com/))
 
 That is not evidence that dead stock caused Mud Jeans’ bankruptcy. The verified cause Vijgeboom gave was historic debt. But it is a useful reminder that a circular model still needs plain operating rules when cash gets tight. Mud Jeans describes repair, take-back, recycling, resale, and seasonless-product work as part of its model, so those customer promises need their own plan rather than getting buried inside primary inventory decisions. ([Mud Jeans About](https://mudjeans.com/pages/about-us-mud-jeans))
 

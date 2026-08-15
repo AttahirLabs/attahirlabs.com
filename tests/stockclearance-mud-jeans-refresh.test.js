@@ -17,6 +17,7 @@ const mudJeansSources = [
 
 assert.match(source, /^last_modified_at: 2026-08-14$/m, 'source records the refresh date');
 assert.match(source, /## 2026 update: Mud Jeans/, 'source has the dated Mud Jeans update');
+assert.match(source, /On August 5, Mud Jeans was declared bankrupt after a filing it submitted itself\./, 'source uses the first-party-supported declaration date');
 assert.match(source, /declared bankrupt after a filing it submitted itself/i);
 assert.match(source, /historic debt/i);
 assert.match(source, /temporarily paused new orders/i);
@@ -27,8 +28,10 @@ assert.match(source, /markdown, bundle, or liquidation/i);
 assert.match(source, /not evidence that dead stock caused Mud Jeans’ bankruptcy/i);
 
 assert.match(article, /<h2 id="2026-update-mud-jeans">2026 update: Mud Jeans<\/h2>/);
+assert.match(article, /On August 5, Mud Jeans was declared bankrupt after a filing it\s+submitted itself\./, 'rendered article uses the first-party-supported declaration date');
 assert.match(article, /article:modified_time" content="2026-08-14"/);
 assert.match(article, /"dateModified": "2026-08-14"/);
+assert.match(article, /April 21, 2026 · Updated August 14, 2026 · 10 min read/, 'article preserves publication date and shows the refresh metadata');
 assert.match(article, /not evidence that dead stock caused Mud Jeans’ bankruptcy/i);
 for (const url of mudJeansSources) {
   assert.ok(article.includes(url), `article cites ${url}`);
@@ -36,4 +39,5 @@ for (const url of mudJeansSources) {
 }
 
 assert.match(blogIndex, /Mud Jeans bankruptcy update/);
+assert.match(blogIndex, /Updated August 14, 2026 · 10 min read/, 'blog card freshness and read time match the article');
 assert.match(sitemap, /retail-bankruptcies-dead-stock-warning-2026\/<\/loc>\s*<lastmod>2026-08-14<\/lastmod>/);
