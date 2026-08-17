@@ -5,6 +5,11 @@ const RELEASE3_RECORD_HASH = "d198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12
 const RELEASE3_SLICE_ID = "slice:release3:exact-chapter99-rev16-qsp-uas";
 const RELEASE3_SCHEDULE = "2026HTSRev16";
 const RELEASE3_INPUT_CONTRACT = "exact_caller_supplied_htsus_mfn_chapter99_release3";
+const RELEASE3_RESULT_CONTRACT = "tariff.result-contract/v3";
+const RELEASE3_EVIDENCE_AS_OF = "2026-08-17T13:00:00Z";
+const RELEASE3_EVIDENCE_VALID_THROUGH = "2026-08-24T13:00:00Z";
+const RELEASE3_LINE_OPERATIONS = new Set(["add", "replace", "fill_to", "cap", "exempt"]);
+const RELEASE3_LINE_DISPOSITIONS = new Set(["applied", "zero", "exempt"]);
 let dutySubmission = 0;
 
 function isRecord(value) {
@@ -67,68 +72,169 @@ async function init() {
   }
 }
 
-function isMoneyAmount(value) {
-  return typeof value === "string" && /^(?:0|[1-9]\d*)(?:\.\d{2})$/.test(value);
+function parseCanonicalUtcInstant(value) {
+  if (typeof value !== "string") return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/.exec(value);
+  if (!match) return null;
+  const [, year, month, day, hour, minute, second, fraction = ""] = match;
+  const millis = Date.parse(value);
+  if (!Number.isFinite(millis)) return null;
+  const expected = `${year}-${month}-${day}T${hour}:${minute}:${second}.${fraction.padEnd(3, "0")}Z`;
+  return new Date(millis).toISOString() === expected ? millis : null;
 }
 
-function isRateAmount(value) {
-  return typeof value === "string" &&
-    /^(?:0|[1-9]\d*)(?:\.\d{1,6})?$/.test(value) &&
-    Number(value) <= 500;
+function normalizeEntryAt(value) {
+  const millis = parseCanonicalUtcInstant(value);
+  return millis === null ? null : new Date(millis).toISOString();
+}
+
+function inputMoneyToCents(value) {
+  if (typeof value !== "string") return null;
+  const match = /^(0|[1-9]\d*)(?:\.(\d{1,2}))?$/.exec(value);
+  if (!match) return null;
+  return BigInt(match[1]) * 100n + BigInt((match[2] || "").padEnd(2, "0"));
+}
+
+function moneyToCents(value, allowNegative = false) {
+  if (typeof value !== "string") return null;
+  const pattern = allowNegative
+    ? /^(-?)(0|[1-9]\d*)\.(\d{2})$/
+    : /^(0|[1-9]\d*)\.(\d{2})$/;
+  const match = pattern.exec(value);
+  if (!match || value === "-0.00") return null;
+  if (allowNegative) {
+    const cents = BigInt(match[2]) * 100n + BigInt(match[3]);
+    return match[1] === "-" ? -cents : cents;
+  }
+  return BigInt(match[1]) * 100n + BigInt(match[2]);
+}
+
+function rateToMicros(value, allowNegative = false) {
+  if (typeof value !== "string") return null;
+  const pattern = allowNegative
+    ? /^(-?)(0|[1-9]\d*)\.(\d{6})$/
+    : /^(0|[1-9]\d*)\.(\d{6})$/;
+  const match = pattern.exec(value);
+  if (!match) return null;
+  const wholeIndex = allowNegative ? 2 : 1;
+  const fractionIndex = allowNegative ? 3 : 2;
+  const micros = BigInt(match[wholeIndex]) * 1_000_000n + BigInt(match[fractionIndex]);
+  const signed = allowNegative && match[1] === "-" ? -micros : micros;
+  return signed >= -500_000_000n && signed <= 500_000_000n ? signed : null;
+}
+
+function roundHalfEven(numerator, denominator) {
+  const sign = numerator < 0n ? -1n : 1n;
+  const absolute = numerator < 0n ? -numerator : numerator;
+  let quotient = absolute / denominator;
+  const remainder = absolute % denominator;
+  const doubled = remainder * 2n;
+  if (doubled > denominator || (doubled === denominator && quotient % 2n === 1n)) {
+    quotient += 1n;
+  }
+  return sign * quotient;
+}
+
+function dutyCents(customsValueCents, rateMicros) {
+  return roundHalfEven(customsValueCents * rateMicros, 100_000_000n);
+}
+
+function isTextArray(value) {
+  return Array.isArray(value) &&
+    value.every(isText) &&
+    new Set(value).size === value.length;
+}
+
+function isUsdMoney(value, allowNegative = false) {
+  return isRecord(value) && value.currency === "USD" && moneyToCents(value.amount, allowNegative) !== null;
 }
 
 function release3AuthorityUsable(data) {
   const authority = data?.authority;
-  return isRecord(authority) &&
-    authority.state === "active" &&
+  if (!isRecord(authority)) return false;
+  const evidenceAsOf = parseCanonicalUtcInstant(authority.evidenceAsOf);
+  const evidenceValidThrough = parseCanonicalUtcInstant(authority.evidenceValidThrough);
+  const now = Date.now();
+  return authority.state === "active" &&
     authority.rulesetVersion === RELEASE3_VERSION &&
     authority.rulesetPayloadHash === RELEASE3_PAYLOAD_HASH &&
     authority.releaseRecordHash === RELEASE3_RECORD_HASH &&
+    authority.resultContractVersion === RELEASE3_RESULT_CONTRACT &&
+    authority.evidenceAsOf === RELEASE3_EVIDENCE_AS_OF &&
+    authority.evidenceValidThrough === RELEASE3_EVIDENCE_VALID_THROUGH &&
+    evidenceAsOf !== null &&
+    evidenceValidThrough !== null &&
+    evidenceAsOf < evidenceValidThrough &&
+    Number.isFinite(now) &&
+    evidenceAsOf <= now &&
+    now < evidenceValidThrough &&
     authority.scheduleRevision === RELEASE3_SCHEDULE &&
     authority.inputContract === RELEASE3_INPUT_CONTRACT &&
-    isText(authority.evidenceValidThrough) &&
     Array.isArray(authority.activeCoverageSliceIds) &&
     authority.activeCoverageSliceIds.length === 1 &&
     authority.activeCoverageSliceIds[0] === RELEASE3_SLICE_ID;
 }
 
-function normalizeRelease3Calculation(data) {
+function normalizeRelease3Calculation(data, requestAmounts) {
   if (data?.status !== "calculated" || !release3AuthorityUsable(data) || !isRecord(data.calculation)) return null;
   const calculation = data.calculation;
   if (
     calculation.currency !== "USD" ||
-    !isRateAmount(calculation.totalRatePercent) ||
-    !isMoneyAmount(calculation.customsValue?.amount) ||
-    !isMoneyAmount(calculation.shippingCost?.amount) ||
-    !isMoneyAmount(calculation.insuranceCost?.amount) ||
-    !isMoneyAmount(calculation.dutyAmount?.amount) ||
-    !isMoneyAmount(calculation.estimatedSubtotal?.amount) ||
+    !isUsdMoney(calculation.customsValue) ||
+    !isUsdMoney(calculation.shippingCost) ||
+    !isUsdMoney(calculation.insuranceCost) ||
+    !isUsdMoney(calculation.dutyAmount) ||
+    !isUsdMoney(calculation.estimatedSubtotal) ||
     !Array.isArray(calculation.lineItems) ||
     calculation.lineItems.length === 0
   ) return null;
 
-  const values = [
-    calculation.customsValue.amount,
-    calculation.shippingCost.amount,
-    calculation.insuranceCost.amount,
-    calculation.dutyAmount.amount,
-    calculation.estimatedSubtotal.amount
-  ].map(Number);
-  if (values.some(value => !Number.isFinite(value) || value < 0)) return null;
-  const expectedSubtotal = Math.round((values[0] + values[1] + values[2] + values[3]) * 100) / 100;
-  if (Math.abs(values[4] - expectedSubtotal) > 0.01) return null;
+  const customsValueCents = moneyToCents(calculation.customsValue.amount);
+  const shippingCostCents = moneyToCents(calculation.shippingCost.amount);
+  const insuranceCostCents = moneyToCents(calculation.insuranceCost.amount);
+  const aggregateDutyCents = moneyToCents(calculation.dutyAmount.amount);
+  const subtotalCents = moneyToCents(calculation.estimatedSubtotal.amount);
+  const totalRateMicros = rateToMicros(calculation.totalRatePercent);
+  if (
+    customsValueCents === null ||
+    shippingCostCents === null ||
+    insuranceCostCents === null ||
+    aggregateDutyCents === null ||
+    subtotalCents === null ||
+    totalRateMicros === null ||
+    !isRecord(requestAmounts) ||
+    customsValueCents !== requestAmounts.customsValueCents ||
+    shippingCostCents !== requestAmounts.shippingCostCents ||
+    insuranceCostCents !== requestAmounts.insuranceCostCents ||
+    subtotalCents !== customsValueCents + shippingCostCents + insuranceCostCents + aggregateDutyCents
+  ) return null;
 
+  let lineRateMicros = 0n;
+  let lineDutyCents = 0n;
   for (const item of calculation.lineItems) {
+    const rateMicros = rateToMicros(item?.ratePercent, true);
+    const itemDutyCents = isUsdMoney(item?.dutyAmount, true)
+      ? moneyToCents(item.dutyAmount.amount, true)
+      : null;
     if (
       !isRecord(item) ||
       !isText(item.layer) ||
       !isText(item.authority) ||
-      !isRateAmount(item.ratePercent) ||
-      !isMoneyAmount(item.dutyAmount?.amount) ||
-      !Array.isArray(item.ruleIds) ||
-      !Array.isArray(item.sourceDocumentIds)
+      !RELEASE3_LINE_OPERATIONS.has(item.operation) ||
+      !RELEASE3_LINE_DISPOSITIONS.has(item.disposition) ||
+      rateMicros === null ||
+      itemDutyCents === null ||
+      !isTextArray(item.ruleIds) ||
+      !isTextArray(item.sourceDocumentIds) ||
+      (item.operation === "exempt") !== (item.disposition === "exempt") ||
+      (item.disposition === "zero") !== (rateMicros === 0n && item.operation !== "exempt") ||
+      (item.disposition === "applied") !== (rateMicros !== 0n) ||
+      itemDutyCents !== dutyCents(customsValueCents, rateMicros)
     ) return null;
+    lineRateMicros += rateMicros;
+    lineDutyCents += itemDutyCents;
   }
+  if (lineRateMicros !== totalRateMicros || lineDutyCents !== aggregateDutyCents) return null;
   return calculation;
 }
 
@@ -181,10 +287,12 @@ function renderRelease3Breakdown(calculation) {
     appendBreakdownRow(container, "Insurance outside customs value", `$${calculation.insuranceCost.amount}`);
   }
   calculation.lineItems.forEach(item => {
+    const amount = item.dutyAmount.amount;
+    const signedAmount = amount.startsWith("-") ? `-$${amount.slice(1)}` : `+$${amount}`;
     appendBreakdownRow(
       container,
       `${humanize(item.layer)} (${item.ratePercent}%)`,
-      `+$${item.dutyAmount.amount}`,
+      signedAmount,
       "duty"
     );
   });
@@ -230,6 +338,7 @@ async function calculate() {
   const qspHeading = formValue("qspHeading");
   const uasHeading = formValue("uasHeading");
   const entryAt = formValue("entryAt");
+  const normalizedEntryAt = normalizeEntryAt(entryAt);
   const shippingCost = formValue("shippingCost") || "0";
   const insuranceCost = formValue("insuranceCost") || "0";
   const error = document.getElementById("error");
@@ -237,18 +346,23 @@ async function calculate() {
   clearNumericResult();
 
   const compactHts = hts.replaceAll(".", "");
-  const entryAtValid = !entryAt || /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})$/.test(entryAt);
+  const customsValueCents = inputMoneyToCents(customsValue);
+  const shippingCostCents = inputMoneyToCents(shippingCost);
+  const insuranceCostCents = inputMoneyToCents(insuranceCost);
   if (
     !origin ||
     !/^(?:0[1-9]|[1-8]\d|9[0-7])\d{6}(?:\d{2})?$/.test(compactHts) ||
-    !customsValue ||
+    customsValueCents === null ||
+    customsValueCents <= 0n ||
+    shippingCostCents === null ||
+    insuranceCostCents === null ||
     !mfnRate ||
     !forcedLaborCountryHeading ||
     !forcedLaborExceptionHeading ||
     (origin === "BR" && !brazilHeading) ||
     (qspHeading && !/^9903\.45\.(?:30|31)$/.test(qspHeading)) ||
     (uasHeading && !/^9903\.08\.2[0-6]$/.test(uasHeading)) ||
-    !entryAtValid
+    normalizedEntryAt === null
   ) {
     error.textContent = "Complete every required exact-input field.";
     error.style.display = "block";
@@ -289,7 +403,7 @@ async function calculate() {
     if (origin === "BR") params.set("brazilHeading", brazilHeading);
     if (qspHeading) params.set("qspHeading", qspHeading);
     if (uasHeading) params.set("uasHeading", uasHeading);
-    if (entryAt) params.set("entryAt", entryAt);
+    params.set("entryAt", normalizedEntryAt);
     const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params);
     let data = {};
     try {
@@ -316,7 +430,11 @@ async function calculate() {
       return;
     }
 
-    const calculation = normalizeRelease3Calculation(data);
+    const calculation = normalizeRelease3Calculation(data, {
+      customsValueCents,
+      shippingCostCents,
+      insuranceCostCents
+    });
     if (!calculation) {
       error.textContent = "The signed calculation response could not be validated.";
       error.style.display = "block";
