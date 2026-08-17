@@ -185,7 +185,8 @@
       "modifiedDate": "2026-08-17",
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "supported_exact_inputs_only"
     },
     {
       "schemaVersion": 1,
@@ -652,7 +653,8 @@
       "modifiedDate": "2026-08-17",
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "release3_pending_live"
     },
     {
       "schemaVersion": 1,
@@ -697,7 +699,8 @@
       "modifiedDate": "2026-08-17",
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "release3_pending_live"
     },
     {
       "schemaVersion": 1,
@@ -730,7 +733,8 @@
       "modifiedDate": "2026-08-17",
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "unsupported_non_ad_valorem"
     }
   ]
 }

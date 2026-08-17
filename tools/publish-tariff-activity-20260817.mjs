@@ -16,6 +16,7 @@ const pages = [
     description: "The August 13 trade-court ruling leaves the U.S. de minimis suspension in place. Here’s what changed, what didn’t, and how low-value imports are entered now.",
     publishedDate: "2026-03-24",
     meta: "Updated August 17, 2026 · 8 min read",
+    calculatorSupport: "supported_exact_inputs_only",
     alt: "Editorial photo of small ecommerce parcels, customs forms, blurred barcode labels, a calculator, and a landed-cost table for low-value imports.",
     faq: [
       ["Did the court restore the $800 de minimis exemption?", "No. The court upheld the President’s authority under IEEPA to suspend the administrative exemption."],
@@ -52,7 +53,7 @@ const pages = [
 <li>Decide who pays duties and make that promise obvious before checkout.</li>
 <li>Keep the result in review when a required filing fact is missing.</li>
 </ol>
-<div class="cta-box"><h3>Make tariff uncertainty visible before it eats the order</h3><p>TariffShield helps Shopify merchants flag exposed products and model landed-cost margin. For a supported exact-input estimate, use the signed duty calculator.</p><a href="/apps/tariffshield/">See TariffShield</a> <a href="/duty/">Open the duty calculator</a></div>
+<div class="cta-box"><h3>Use an exact-input workflow, not a package-wide guess</h3><p>TariffShield provides a read-only Exact Duty workflow for supported, caller-supplied filing facts. It does not infer classification or turn low value into a universal rate.</p><a href="/apps/tariffshield/">See TariffShield</a> <a href="/duty/">Open the supported duty calculator</a></div>
 <h2 id="faq">Questions merchants are asking</h2>`,
     sources: [
       ["U.S. Court of International Trade — Slip Opinion 26-94", "https://www.cit.uscourts.gov/sites/cit/files/26-94.pdf"],
@@ -68,7 +69,8 @@ const pages = [
     description: "U.S. safeguard tariffs on covered quartz surface products took effect August 15, 2026. The exact rate depends on product scope, origin exemption, and quota heading.",
     publishedDate: modifiedDate,
     meta: "August 17, 2026 · 7 min read",
-    alt: "Editorial photo of quartz countertop samples, a measuring tape, receiving paperwork, and a warehouse inspection table with no readable labels.",
+    calculatorSupport: "release3_pending_live",
+    alt: "Editorial photo of quartz countertop samples, a measuring tape, and a warehouse inspection table with no readable labels.",
     faq: [
       ["Is every quartz countertop charged 25%?", "No. Product scope, country exemptions, and quota status all matter."],
       ["What happens after the quota fills?", "Covered non-exempt entries move from heading 9903.45.30 to the over-quota heading 9903.45.31, which carries a 50% additional rate in the first year."],
@@ -77,7 +79,7 @@ const pages = [
     ],
     body: `
 <p class="lead">A new U.S. safeguard tariff on quartz surface products is already live. For covered goods from non-exempt countries, the first-year additional rate is <span data-tariff-claim-id="qsp-within-quota-rate">25%</span> inside the quota and <span data-tariff-claim-id="qsp-over-quota-rate">50%</span> after the quota is exhausted.</p>
-<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/quartz-countertop-tariffs-2026/hero.jpg" alt="Editorial photo of quartz countertop samples, a measuring tape, receiving paperwork, and a warehouse inspection table with no readable labels." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>The tariff follows the legal product definition and quota heading, not the marketing name on a sample rack.</figcaption></figure>
+<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/quartz-countertop-tariffs-2026/hero.jpg" alt="Editorial photo of quartz countertop samples, a measuring tape, and a warehouse inspection table with no readable labels." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>The tariff follows the legal product definition and quota heading, not the marketing name on a sample rack.</figcaption></figure>
 <div class="callout callout-danger"><p><strong>Effective date: August 15, 2026 at 12:01 a.m. Eastern.</strong> This one is active, not proposed.</p></div>
 <h2>The rate table</h2>
 <table><thead><tr><th>Entry period</th><th>Within quota · 9903.45.30</th><th>Over quota · 9903.45.31</th></tr></thead><tbody>
@@ -99,7 +101,7 @@ const pages = [
 <h2>Margin damage</h2>
 <p>On $40,000 of covered customs value, a 25% additional duty is $10,000. The 50% over-quota rate is $20,000. That’s before the ordinary duty, trade-remedy charges, brokerage, or delivery costs.</p>
 <p>If you sell countertops, vanities, tile, or furniture made with imported quartz surfaces, recheck open purchase orders now. Don’t wait for the carrier invoice to explain your margin.</p>
-<div class="cta-box"><h3>Flag exposed products before the next purchase order</h3><p>TariffShield gives Shopify merchants a review queue for tariff and landed-cost exposure. The exact calculator accepts the Chapter 99 quota heading when the filing fact is known.</p><a href="/apps/tariffshield/">See TariffShield</a> <a href="/duty/">Calculate a supported entry</a></div>
+<div class="cta-box"><h3>Keep the filing facts exact</h3><p>TariffShield does not decide quota status or infer a Chapter 99 heading. Until the reviewed QSP input is live on the public calculator, this program remains review-required and number-free there.</p><a href="/apps/tariffshield/">See TariffShield</a></div>
 <h2 id="faq">Quick answers</h2>`,
     sources: [
       ["Federal Register — Proclamation 11051", "https://www.federalregister.gov/documents/2026/08/05/2026-15975/to-facilitate-positive-adjustment-to-competition-from-imports-of-quartz-surface-products"],
@@ -112,7 +114,8 @@ const pages = [
     description: "New Section 232 tariffs on drones and UAS components begin September 3, 2026, with exact Chapter 99 rates, partner conditions, and a February 2027 component phase.",
     publishedDate: modifiedDate,
     meta: "August 17, 2026 · 8 min read",
-    alt: "Editorial photo of commercial drone components, propellers, batteries, thermal camera hardware, and customs inspection paperwork on an industrial workbench.",
+    calculatorSupport: "release3_pending_live",
+    alt: "Editorial photo of commercial drone components, propellers, batteries, and thermal camera hardware on an industrial workbench.",
     faq: [
       ["Are the drone tariffs active today?", "No. The first phase starts September 3, 2026 at 12:01 a.m. Eastern."],
       ["Which drones get the 100% rate?", "Covered drones over 25 kg, covered drones with thermal imaging, docking stations, and specified components use heading 9903.08.21 unless a lower or zero heading applies."],
@@ -121,7 +124,7 @@ const pages = [
     ],
     body: `
 <p class="lead">The U.S. is adding a <span data-tariff-claim-id="uas-annex-one-rate">100%</span> Section 232 duty to the highest-risk drone categories and <span data-tariff-claim-id="uas-annex-two-rate">25%</span> to covered small drones without thermal imaging. The first phase starts September 3, 2026.</p>
-<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/us-drone-tariffs-2026/hero.jpg" alt="Editorial photo of commercial drone components, propellers, batteries, thermal camera hardware, and customs inspection paperwork on an industrial workbench." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>Weight, thermal capability, component use, origin certification, and the exact Chapter 99 heading decide the UAS layer.</figcaption></figure>
+<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/us-drone-tariffs-2026/hero.jpg" alt="Editorial photo of commercial drone components, propellers, batteries, and thermal camera hardware on an industrial workbench." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>Weight, thermal capability, component use, origin certification, and the exact Chapter 99 heading decide the UAS layer.</figcaption></figure>
 <div class="callout callout-warn"><p><strong>Not active yet:</strong> September 3 is the first entry date. The delayed component phase starts February 9, 2027.</p></div>
 <h2>The headings</h2>
 <table><thead><tr><th>Chapter 99</th><th>Treatment</th><th>Who it covers</th></tr></thead><tbody>
@@ -150,7 +153,7 @@ const pages = [
 <li>Reprice September arrivals before they ship, then recheck CBP implementation instructions.</li>
 <li>Leave delayed-list and onshoring cases in review until the agency confirms them.</li>
 </ol>
-<div class="cta-box"><h3>September inventory needs a tariff review now</h3><p>TariffShield helps Shopify merchants find exposed SKUs and test margin before the effective date. The signed calculator will return numbers only when the exact UAS heading and other required filing facts are supplied.</p><a href="/apps/tariffshield/">See TariffShield</a> <a href="/duty/">Open the duty calculator</a></div>
+<div class="cta-box"><h3>September entries need exact filing facts</h3><p>TariffShield does not infer UAS scope, certification, company-list status, or the Chapter 99 heading. Until the reviewed UAS input is live on the public calculator, this program remains review-required and number-free there.</p><a href="/apps/tariffshield/">See TariffShield</a></div>
 <h2 id="faq">Quick answers</h2>`,
     sources: [
       ["White House — UAS Section 232 proclamation", "https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-unmanned-aircraft-systems-and-unmanned-aircraft-systems-components-into-the-united-states/"],
@@ -167,7 +170,8 @@ const pages = [
     description: "The U.S. polysilicon proclamation starts a minimum-import-price program and additional solar-chain tariffs on December 4, 2026. Here are the exact thresholds and open implementation facts.",
     publishedDate: modifiedDate,
     meta: "August 17, 2026 · 8 min read",
-    alt: "Editorial photo of solar wafers, cell samples, a polysilicon chunk, a precision scale, and import paperwork on a clean manufacturing inspection bench.",
+    calculatorSupport: "unsupported_non_ad_valorem",
+    alt: "Editorial photo of solar wafers, cell samples, a polysilicon chunk, and a precision scale on a clean manufacturing inspection bench.",
     faq: [
       ["Are the polysilicon measures active now?", "No. The stated entry date is December 4, 2026 at 12:01 a.m. Eastern."],
       ["Is the MIP just another percentage tariff?", "No. It uses product units—kilograms or watts—and the entered value and certification facts. Treating it like a flat percentage would be wrong."],
@@ -176,7 +180,7 @@ const pages = [
     ],
     body: `
 <p class="lead">On December 4, 2026, the U.S. plans to start minimum import prices for polysilicon and solar-chain products, plus an additional <span data-tariff-claim-id="polysilicon-derivative-rate">15%</span> duty on covered ingots and derivatives.</p>
-<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/solar-polysilicon-tariffs-2026/hero.jpg" alt="Editorial photo of solar wafers, cell samples, a polysilicon chunk, a precision scale, and import paperwork on a clean manufacturing inspection bench." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>The minimum-price calculation needs units, value, contract timing, and entry documentation—not just an origin and a percentage.</figcaption></figure>
+<figure class="post-figure" data-generated-visual="editorial-gpt-image-2"><picture><img src="/assets/blog/solar-polysilicon-tariffs-2026/hero.jpg" alt="Editorial photo of solar wafers, cell samples, a polysilicon chunk, and a precision scale on a clean manufacturing inspection bench." width="3840" height="2160" decoding="async" fetchpriority="high"></picture><figcaption>The minimum-price calculation needs units, value, contract timing, and entry documentation—not just an origin and a percentage.</figcaption></figure>
 <div class="callout callout-warn"><p><strong>Future action:</strong> the measures start with entries on or after December 4, 2026 at 12:01 a.m. Eastern.</p></div>
 <h2>The minimum prices</h2>
 <table><thead><tr><th>Product</th><th>Minimum import price</th></tr></thead><tbody>
@@ -203,7 +207,7 @@ const pages = [
 <li>Contract date and fixed terms for any pre-August 6 agreement.</li>
 <li>Origin and any later partner or onshoring approval evidence.</li>
 </ol>
-<div class="cta-box"><h3>Put December exposure into the buying decision</h3><p>TariffShield can keep affected inventory in review while the unit-based calculation and CBP implementation details are completed.</p><a href="/apps/tariffshield/">See TariffShield</a></div>
+<div class="cta-box"><h3>Keep the minimum-price calculation out of percentage tools</h3><p>TariffShield’s signed engine does not yet calculate per-kilogram or per-watt minimum prices. This program remains a monitored, review-required obligation with no numeric product result.</p><a href="/apps/tariffshield/">See TariffShield</a></div>
 <h2 id="faq">Quick answers</h2>`,
     sources: [
       ["White House — polysilicon Section 232 proclamation", "https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-polysilicon-and-its-derivatives-into-the-united-states/"],
@@ -321,6 +325,7 @@ Object.assign(deMinimis, {
   eventIds: ["us_de_minimis_cit_26_94"],
   authorityIds: ["cit_26_94", "cbp_ecommerce_faq_2026", "fr_2026_12670", "fr_2026_12669", "usitc_current_hts"],
   modifiedDate,
+  calculatorSupport: pages[0].calculatorSupport,
 });
 const additions = [
   [pages[1], "us_qsp_safeguard_2026", ["fr_2026_15975", "usitc_current_hts"], [["qsp-within-quota-rate", 25], ["qsp-over-quota-rate", 50]]],
@@ -342,6 +347,7 @@ for (const [page, eventId, authorityIds, numeric] of additions) {
     verifiedThrough: checkedAt,
     reviewAfter,
     failClosedWording: warning,
+    calculatorSupport: page.calculatorSupport,
   };
   const existing = claims.pages.findIndex((item) => item.path === entry.path);
   if (existing >= 0) claims.pages[existing] = entry;

@@ -117,6 +117,35 @@ for (const page of manifest.pages) {
       `${claim.claimId} visible value differs from the manifest`,
     );
   }
+
+  if (page.calculatorSupport) {
+    assert.ok(
+      [
+        'supported_exact_inputs_only',
+        'release3_pending_live',
+        'unsupported_non_ad_valorem',
+      ].includes(page.calculatorSupport),
+      `${page.path} has an unknown calculator support state`,
+    );
+    if (page.calculatorSupport !== 'supported_exact_inputs_only') {
+      const ctaBlock = html.match(/<div class="cta-box">[\s\S]*?<\/div>/)?.[0] || '';
+      assert.ok(
+        !ctaBlock.includes('href="/duty/"'),
+        `${page.path} CTA must not link unsupported tariff coverage to /duty/`,
+      );
+    }
+    for (const overclaim of [
+      /flag exposed products/i,
+      /review queue for tariff/i,
+      /find exposed SKUs/i,
+      /keep affected inventory in review/i,
+    ]) {
+      assert.ok(
+        !overclaim.test(html),
+        `${page.path} overstates contained catalog or inventory automation`,
+      );
+    }
+  }
 }
 
 const stalePatterns = [
