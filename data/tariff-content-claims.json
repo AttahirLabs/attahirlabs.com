@@ -99,21 +99,23 @@
       "title": "Signed US Import-Duty Planning Calculator",
       "contentRole": "tool",
       "eventIds": [
-        "tariff_authority_release2_2026_08_13"
+        "tariff_authority_release3_2026_08_17"
       ],
       "authorityIds": [
         "ustr_brazil_final_2026_07",
         "ustr_forced_labor_final_2026_07",
         "ustr_forced_labor_prepublication_2026_07_23",
+        "fr_2026_15975",
+        "whitehouse_uas_2026_08_13",
         "usitc_current_hts"
       ],
       "numericClaims": [],
       "canonicalUrl": "https://attahirlabs.com/duty/",
       "publicationStatus": "published",
-      "modifiedDate": "2026-08-13",
-      "verifiedThrough": "2026-08-13T21:30:00Z",
-      "reviewAfter": "2026-08-20T21:30:00Z",
-      "authorityState": "release2_active_exact",
+      "modifiedDate": "2026-08-17",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
+      "authorityState": "release3_active_exact",
       "failClosedWording": "Unsupported or incomplete cases remain number-free."
     },
     {
@@ -654,7 +656,7 @@
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
-      "calculatorSupport": "release3_pending_live"
+      "calculatorSupport": "supported_exact_inputs_only"
     },
     {
       "schemaVersion": 1,
@@ -700,7 +702,7 @@
       "verifiedThrough": "2026-08-17T13:00:00Z",
       "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
-      "calculatorSupport": "release3_pending_live"
+      "calculatorSupport": "supported_exact_inputs_only"
     },
     {
       "schemaVersion": 1,

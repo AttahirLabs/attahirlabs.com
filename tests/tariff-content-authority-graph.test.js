@@ -41,7 +41,7 @@ for (const page of manifest.pages) {
   assert.equal(page.schemaVersion, 1);
   assert.equal(page.publicationStatus, 'published');
   if (page.path === '/duty/') {
-    assert.equal(page.authorityState, 'release2_active_exact');
+    assert.equal(page.authorityState, 'release3_active_exact');
     assert.equal(page.failClosedWording, 'Unsupported or incomplete cases remain number-free.');
   } else {
     assert.equal(page.verifiedThrough, manifest.asOf);
@@ -57,9 +57,15 @@ for (const page of manifest.pages) {
   assert.ok(fs.existsSync(file), `missing published page ${page.path}`);
   const html = fs.readFileSync(file, 'utf8');
   const expectedState = page.path === '/duty/'
-    ? 'data-tariff-authority-state="release-2-active"'
+    ? 'data-tariff-authority-state="release-3-active"'
     : 'data-tariff-authority-state="review-required"';
   assert.ok(html.includes(expectedState), `${page.path} lacks expected authority state`);
+  if (page.path === '/duty/') {
+    assert.ok(
+      sitemap.includes(`<loc>${page.canonicalUrl}</loc>\n    <lastmod>${page.modifiedDate}</lastmod>`),
+      `${page.path} sitemap lastmod differs from the authority manifest`,
+    );
+  }
   assert.ok(html.includes(page.failClosedWording), `${page.path} lacks authority warning`);
   assert.ok(
     html.includes(page.canonicalUrl),
@@ -122,7 +128,6 @@ for (const page of manifest.pages) {
     assert.ok(
       [
         'supported_exact_inputs_only',
-        'release3_pending_live',
         'unsupported_non_ad_valorem',
       ].includes(page.calculatorSupport),
       `${page.path} has an unknown calculator support state`,
