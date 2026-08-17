@@ -28,7 +28,7 @@ function sectionBefore(html, id, laterMarker) {
 const dutyNotice = sectionBefore(duty, 'dutyAccuracyNotice', '<div class="calc-grid">');
 const ratesNotice = sectionBefore(rates, 'ratesAccuracyNotice', '<div class="filters">');
 
-assert.match(dutyNotice, /Release 2 exact-input calculation/i);
+assert.match(dutyNotice, /Release 3 exact-input calculation/i);
 assert.match(dutyNotice, /signed reviewed authority/i);
 assert.match(dutyNotice, /unsupported or incomplete cases remain number-free/i);
 assert.match(dutyNotice, /HTSUS classification/i);

@@ -1,4 +1,10 @@
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
+const RELEASE3_VERSION = "2026.08.17+release3.1";
+const RELEASE3_PAYLOAD_HASH = "5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205";
+const RELEASE3_RECORD_HASH = "d198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217";
+const RELEASE3_SLICE_ID = "slice:release3:exact-chapter99-rev16-qsp-uas";
+const RELEASE3_SCHEDULE = "2026HTSRev16";
+const RELEASE3_INPUT_CONTRACT = "exact_caller_supplied_htsus_mfn_chapter99_release3";
 let dutySubmission = 0;
 
 function isRecord(value) {
@@ -71,20 +77,23 @@ function isRateAmount(value) {
     Number(value) <= 500;
 }
 
-function release2AuthorityUsable(data) {
+function release3AuthorityUsable(data) {
   const authority = data?.authority;
   return isRecord(authority) &&
     authority.state === "active" &&
-    isText(authority.rulesetVersion) &&
-    /^[a-f0-9]{64}$/.test(authority.rulesetPayloadHash || "") &&
-    /^[a-f0-9]{64}$/.test(authority.releaseRecordHash || "") &&
+    authority.rulesetVersion === RELEASE3_VERSION &&
+    authority.rulesetPayloadHash === RELEASE3_PAYLOAD_HASH &&
+    authority.releaseRecordHash === RELEASE3_RECORD_HASH &&
+    authority.scheduleRevision === RELEASE3_SCHEDULE &&
+    authority.inputContract === RELEASE3_INPUT_CONTRACT &&
     isText(authority.evidenceValidThrough) &&
     Array.isArray(authority.activeCoverageSliceIds) &&
-    authority.activeCoverageSliceIds.length > 0;
+    authority.activeCoverageSliceIds.length === 1 &&
+    authority.activeCoverageSliceIds[0] === RELEASE3_SLICE_ID;
 }
 
-function normalizeRelease2Calculation(data) {
-  if (data?.status !== "calculated" || !release2AuthorityUsable(data) || !isRecord(data.calculation)) return null;
+function normalizeRelease3Calculation(data) {
+  if (data?.status !== "calculated" || !release3AuthorityUsable(data) || !isRecord(data.calculation)) return null;
   const calculation = data.calculation;
   if (
     calculation.currency !== "USD" ||
@@ -123,7 +132,7 @@ function normalizeRelease2Calculation(data) {
   return calculation;
 }
 
-function renderRelease2Metadata(data, fallbackState) {
+function renderRelease3Metadata(data, fallbackState) {
   const authority = isRecord(data?.authority) ? data.authority : {};
   const sliceCount = Array.isArray(authority.activeCoverageSliceIds)
     ? authority.activeCoverageSliceIds.length
@@ -161,7 +170,7 @@ function appendBreakdownRow(container, label, value, className = "") {
   container.appendChild(row);
 }
 
-function renderRelease2Breakdown(calculation) {
+function renderRelease3Breakdown(calculation) {
   const container = document.getElementById("breakdown");
   container.replaceChildren();
   appendBreakdownRow(container, "U.S. customs value", `$${calculation.customsValue.amount}`);
@@ -200,7 +209,7 @@ function showUnavailable(data, message) {
   const resultState = document.getElementById("resultState");
   resultState.className = "result-status unavailable";
   resultState.textContent = message;
-  renderRelease2Metadata(data, "indeterminate");
+  renderRelease3Metadata(data, "indeterminate");
   document.getElementById("disclaimerText").textContent =
     "No rate, duty, or subtotal is available for this request. Verify every filing input or consult a qualified customs professional.";
 }
@@ -218,13 +227,29 @@ async function calculate() {
   const forcedLaborCountryHeading = formValue("forcedLaborCountryHeading");
   const forcedLaborExceptionHeading = formValue("forcedLaborExceptionHeading").toUpperCase();
   const brazilHeading = formValue("brazilHeading");
+  const qspHeading = formValue("qspHeading");
+  const uasHeading = formValue("uasHeading");
+  const entryAt = formValue("entryAt");
   const shippingCost = formValue("shippingCost") || "0";
   const insuranceCost = formValue("insuranceCost") || "0";
   const error = document.getElementById("error");
   error.style.display = "none";
   clearNumericResult();
 
-  if (!origin || !hts || !customsValue || !mfnRate || !forcedLaborCountryHeading || !forcedLaborExceptionHeading || (origin === "BR" && !brazilHeading)) {
+  const compactHts = hts.replaceAll(".", "");
+  const entryAtValid = !entryAt || /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})$/.test(entryAt);
+  if (
+    !origin ||
+    !/^(?:0[1-9]|[1-8]\d|9[0-7])\d{6}(?:\d{2})?$/.test(compactHts) ||
+    !customsValue ||
+    !mfnRate ||
+    !forcedLaborCountryHeading ||
+    !forcedLaborExceptionHeading ||
+    (origin === "BR" && !brazilHeading) ||
+    (qspHeading && !/^9903\.45\.(?:30|31)$/.test(qspHeading)) ||
+    (uasHeading && !/^9903\.08\.2[0-6]$/.test(uasHeading)) ||
+    !entryAtValid
+  ) {
     error.textContent = "Complete every required exact-input field.";
     error.style.display = "block";
     showUnavailable(null, "Indeterminate — required exact inputs are missing");
@@ -243,8 +268,8 @@ async function calculate() {
   document.getElementById("results").style.display = "block";
   document.getElementById("route").textContent = `${origin} → United States`;
   document.getElementById("resultState").className = "result-status";
-  document.getElementById("resultState").textContent = "Checking active Release 2 coverage…";
-  renderRelease2Metadata(null, "checking");
+  document.getElementById("resultState").textContent = "Checking active Release 3 coverage…";
+  renderRelease3Metadata(null, "checking");
   window.AttahirAnalytics?.once(`${actionKey}:start`, "tool_started", {
     surface: "duty_calculator",
     tool_name: "duty_calculator"
@@ -262,6 +287,9 @@ async function calculate() {
       insuranceCost
     });
     if (origin === "BR") params.set("brazilHeading", brazilHeading);
+    if (qspHeading) params.set("qspHeading", qspHeading);
+    if (uasHeading) params.set("uasHeading", uasHeading);
+    if (entryAt) params.set("entryAt", entryAt);
     const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params);
     let data = {};
     try {
@@ -288,7 +316,7 @@ async function calculate() {
       return;
     }
 
-    const calculation = normalizeRelease2Calculation(data);
+    const calculation = normalizeRelease3Calculation(data);
     if (!calculation) {
       error.textContent = "The signed calculation response could not be validated.";
       error.style.display = "block";
@@ -305,11 +333,11 @@ async function calculate() {
     document.getElementById("resultState").className = "result-status";
     document.getElementById("resultState").textContent =
       "Calculated — exact inputs matched active signed coverage";
-    renderRelease2Metadata(data, "active");
+    renderRelease3Metadata(data, "active");
     document.getElementById("rateDisplay").textContent = `${calculation.totalRatePercent}%`;
     document.getElementById("dutyDisplay").textContent = `$${calculation.dutyAmount.amount}`;
     document.getElementById("totalDisplay").textContent = `$${calculation.estimatedSubtotal.amount}`;
-    renderRelease2Breakdown(calculation);
+    renderRelease3Breakdown(calculation);
     document.getElementById("marginDesc").textContent =
       `${calculation.lineItems.length} signed authority layer${calculation.lineItems.length === 1 ? "" : "s"} matched this exact request.`;
     document.getElementById("disclaimerText").textContent = data.disclaimer ||

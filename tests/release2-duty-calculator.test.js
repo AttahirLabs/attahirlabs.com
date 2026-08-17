@@ -15,6 +15,9 @@ for (const id of [
   'forcedLaborCountryHeading',
   'forcedLaborExceptionHeading',
   'brazilHeading',
+  'qspHeading',
+  'uasHeading',
+  'entryAt',
   'shippingCost',
   'insuranceCost'
 ]) {
@@ -22,7 +25,7 @@ for (const id of [
 }
 
 assert.match(html, /destination[^<]{0,80}United States/i, 'the supported destination must be fixed to the United States');
-assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 2 endpoint');
+assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 3 endpoint');
 assert.doesNotMatch(client, /\/api\/v1\/landed-cost/, 'the legacy origin-only calculator must stay contained');
 assert.match(html, /exact caller-supplied HTSUS, MFN,[^<]{0,40}and Chapter 99 inputs/i);
 assert.match(html, /not a customs classification, liquidation, or legal determination/i);
@@ -30,7 +33,11 @@ assert.match(html, /shipping and insurance[^<]{0,160}outside[^<]{0,80}customs va
 assert.match(client, /status\s*!==\s*["']calculated["']|data\.status\s*===\s*["']indeterminate["']/, 'indeterminate responses must fail closed');
 assert.match(client, /clearNumericResult\(\)/, 'the client must clear old numeric output before every request');
 
-console.log('Release 2 exact-duty calculator contract passed');
+assert.match(client, /2026\.08\.17\+release3\.1/, 'the client must pin Release 3.1');
+assert.match(client, /5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205/);
+assert.match(client, /d198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217/);
+
+console.log('Release 3 exact-duty calculator contract passed');
 
 class FakeElement {
   constructor(value = '') {
@@ -64,6 +71,9 @@ function makeElements() {
     forcedLaborExceptionHeading: new FakeElement('NONE'),
     brazilHeading: new FakeElement('9903.05.01'),
     brazilFields: new FakeElement(),
+    qspHeading: new FakeElement(''),
+    uasHeading: new FakeElement(''),
+    entryAt: new FakeElement(''),
     shippingCost: new FakeElement('50.00'),
     insuranceCost: new FakeElement('10.00'),
     error: new FakeElement(),
@@ -87,8 +97,12 @@ function visibleText(element) {
   return [element.textContent, ...element.children.map(visibleText)].join(' ');
 }
 
-async function runCalculation(response) {
+async function runCalculation(response, overrides = {}) {
   const elements = makeElements();
+  for (const [id, value] of Object.entries(overrides)) {
+    assert.ok(elements[id], `unexpected override #${id}`);
+    elements[id].value = value;
+  }
   const analytics = [];
   let requestedUrl = '';
   const context = {
@@ -129,11 +143,13 @@ function calculatedBody() {
     status: 'calculated',
     authority: {
       state: 'active',
-      rulesetVersion: '2026.08.13+release2.1',
-      rulesetPayloadHash: 'a'.repeat(64),
-      releaseRecordHash: 'b'.repeat(64),
-      evidenceValidThrough: '2027-08-13',
-      activeCoverageSliceIds: ['br', 'forced-labor']
+      rulesetVersion: '2026.08.17+release3.1',
+      rulesetPayloadHash: '5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205',
+      releaseRecordHash: 'd198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217',
+      evidenceValidThrough: '2027-08-17',
+      activeCoverageSliceIds: ['slice:release3:exact-chapter99-rev16-qsp-uas'],
+      scheduleRevision: '2026HTSRev16',
+      inputContract: 'exact_caller_supplied_htsus_mfn_chapter99_release3'
     },
     calculation: {
       currency: 'USD',
@@ -166,7 +182,7 @@ function calculatedBody() {
   };
 }
 
-test('calculated Release 2 response renders only after authority and arithmetic validation', async () => {
+test('calculated Release 3 response renders only after exact authority and arithmetic validation', async () => {
   const { elements, analytics, requestedUrl } = await runCalculation({
     ok: true,
     status: 200,
@@ -182,9 +198,46 @@ test('calculated Release 2 response renders only after authority and arithmetic 
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
   assert.equal(elements.totalDisplay.textContent, '$1485.00');
-  assert.match(visibleText(elements.responseMetadata), /2026\.08\.13\+release2\.1/);
+  assert.match(visibleText(elements.responseMetadata), /2026\.08\.17\+release3\.1/);
   assert.ok(analytics.some(event => event.name === 'tool_completed'));
   assert.ok(!analytics.some(event => event.name === 'tool_failed'));
+});
+
+test('QSP and future UAS exact scope facts are sent only when supplied', async () => {
+  const qsp = await runCalculation(
+    { ok: true, status: 200, async json() { return calculatedBody(); } },
+    { origin: 'CN', hts: '6810990020', brazilHeading: '', qspHeading: '9903.45.30' },
+  );
+  assert.match(qsp.requestedUrl, /hts=6810990020/);
+  assert.match(qsp.requestedUrl, /qspHeading=9903\.45\.30/);
+  assert.doesNotMatch(qsp.requestedUrl, /uasHeading=/);
+
+  const uas = await runCalculation(
+    { ok: true, status: 200, async json() { return calculatedBody(); } },
+    {
+      origin: 'CN',
+      hts: '8504409580',
+      brazilHeading: '',
+      uasHeading: '9903.08.21',
+      entryAt: '2026-09-03T04:01:00Z',
+    },
+  );
+  assert.match(uas.requestedUrl, /uasHeading=9903\.08\.21/);
+  assert.match(uas.requestedUrl, /entryAt=2026-09-03T04%3A01%3A00Z/);
+  assert.doesNotMatch(uas.requestedUrl, /qspHeading=/);
+});
+
+test('a stale Release 2 response is rejected without rendering numbers', async () => {
+  const body = calculatedBody();
+  body.authority.rulesetVersion = '2026.08.13+release2.1';
+  const { elements } = await runCalculation({
+    ok: true,
+    status: 200,
+    async json() { return body; },
+  });
+  assert.equal(elements.resultNumbers.style.display, 'none');
+  assert.doesNotMatch(elements.rateDisplay.textContent, /\d/);
+  assert.match(elements.resultState.textContent, /validation failed/i);
 });
 
 test('indeterminate response clears stale numeric content and never renders injected numbers', async () => {
