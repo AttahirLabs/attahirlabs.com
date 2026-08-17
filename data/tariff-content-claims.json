@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-07-25T22:30:00Z",
-  "reviewAfter": "2026-07-28T04:01:00Z",
+  "asOf": "2026-08-17T13:00:00Z",
+  "reviewAfter": "2026-08-24T13:00:00Z",
   "authorityRegistry": {
     "fr_2026_03824": {
       "url": "https://federalregister.gov/documents/2026/02/25/2026-03824/imposing-a-temporary-import-surcharge-to-address-fundamental-international-payments-problems",
@@ -70,6 +70,26 @@
     "fr_2026_12669": {
       "url": "https://federalregister.gov/documents/2026/06/24/2026-12669/indefinite-suspension-of-the-de-minimis-exemption-for-mail-shipments-and-new-postal-informal-entry",
       "label": "Federal Register 2026-12669 — postal de minimis suspension"
+    },
+    "cit_26_94": {
+      "url": "https://www.cit.uscourts.gov/sites/cit/files/26-94.pdf",
+      "label": "U.S. Court of International Trade — Slip Opinion 26-94"
+    },
+    "cbp_ecommerce_faq_2026": {
+      "url": "https://www.cbp.gov/trade/basic-import-export/e-commerce/faqs",
+      "label": "CBP — Ecommerce Frequently Asked Questions"
+    },
+    "fr_2026_15975": {
+      "url": "https://www.federalregister.gov/documents/2026/08/05/2026-15975/to-facilitate-positive-adjustment-to-competition-from-imports-of-quartz-surface-products",
+      "label": "Federal Register — Proclamation 11051"
+    },
+    "whitehouse_uas_2026_08_13": {
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-unmanned-aircraft-systems-and-unmanned-aircraft-systems-components-into-the-united-states/",
+      "label": "White House — UAS Section 232 proclamation"
+    },
+    "whitehouse_polysilicon_2026_08_06": {
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-polysilicon-and-its-derivatives-into-the-united-states/",
+      "label": "White House — polysilicon Section 232 proclamation"
     }
   },
   "pages": [
@@ -109,8 +129,8 @@
       "canonicalUrl": "https://attahirlabs.com/duty/rates/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -140,34 +160,33 @@
       "canonicalUrl": "https://attahirlabs.com/blog/cusma-usmca-guide/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
       "schemaVersion": 1,
       "path": "/blog/de-minimis-threshold-2026/",
-      "title": "De Minimis Threshold 2026: Entry Rules Do Not Determine the Tariff Rate",
+      "title": "De Minimis Court Ruling 2026: The $800 Exemption Stays Suspended",
       "contentRole": "dependent_guide",
       "eventIds": [
-        "us_section122_temporary_surcharge_2026",
-        "us_section301_forced_labor_2026"
+        "us_de_minimis_cit_26_94"
       ],
       "authorityIds": [
+        "cit_26_94",
+        "cbp_ecommerce_faq_2026",
         "fr_2026_12670",
         "fr_2026_12669",
-        "fr_2026_03824",
-        "ustr_forced_labor_final_2026_07",
-        "usitc_current_hts",
-        "cbp_determining_duty_rates"
+        "usitc_current_hts"
       ],
       "numericClaims": [],
       "canonicalUrl": "https://attahirlabs.com/blog/de-minimis-threshold-2026/",
       "publicationStatus": "published",
-      "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
-      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+      "modifiedDate": "2026-08-17",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "supported_exact_inputs_only"
     },
     {
       "schemaVersion": 1,
@@ -188,8 +207,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/how-to-calculate-landed-cost/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -215,8 +234,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/hts-code-lookup/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -238,8 +257,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/hts-code-reclassification-tariff-margin/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -262,8 +281,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-india-to-us/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -286,8 +305,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-japan-to-us-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -309,8 +328,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-mexico-to-us-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -333,8 +352,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/import-duty-from-vietnam-to-us/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -360,8 +379,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/section-232-tariffs-explained/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -384,8 +403,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/section-232-pharma-tariffs-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -410,8 +429,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/section-301-vs-section-232-vs-section-122/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -436,8 +455,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/shopify-import-duties/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -460,8 +479,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/us-china-tariff-rates-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -487,8 +506,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/usmca-not-renewed-2026-shopify-tariff-risk/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -522,8 +541,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/proposed-section-301-forced-labor-tariffs-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -550,8 +569,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/us-brazil-section-301-tariff-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -584,8 +603,8 @@
       "canonicalUrl": "https://attahirlabs.com/blog/us-section-338-canada-tariffs-2026/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
     },
     {
@@ -599,9 +618,123 @@
       "canonicalUrl": "https://attahirlabs.com/blog/",
       "publicationStatus": "published",
       "modifiedDate": "2026-07-25",
-      "verifiedThrough": "2026-07-25T22:30:00Z",
-      "reviewAfter": "2026-07-28T04:01:00Z",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
       "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone."
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/quartz-countertop-tariffs-2026/",
+      "title": "Quartz Countertop Tariffs 2026: 25% or 50% Started August 15",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_qsp_safeguard_2026"
+      ],
+      "authorityIds": [
+        "fr_2026_15975",
+        "usitc_current_hts"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "qsp-within-quota-rate",
+          "value": 25,
+          "unit": "percent",
+          "status": "supported_scope_limited"
+        },
+        {
+          "claimId": "qsp-over-quota-rate",
+          "value": 50,
+          "unit": "percent",
+          "status": "supported_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/quartz-countertop-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-08-17",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "release3_pending_live"
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/us-drone-tariffs-2026/",
+      "title": "U.S. Drone Tariffs 2026: 25% and 100% Start September 3",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_section232_uas_2026"
+      ],
+      "authorityIds": [
+        "whitehouse_uas_2026_08_13",
+        "usitc_current_hts"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "uas-annex-one-rate",
+          "value": 100,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        },
+        {
+          "claimId": "uas-annex-two-rate",
+          "value": 25,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        },
+        {
+          "claimId": "uas-uk-rate",
+          "value": 10,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        },
+        {
+          "claimId": "uas-partner-total-rate",
+          "value": 15,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/us-drone-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-08-17",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "release3_pending_live"
+    },
+    {
+      "schemaVersion": 1,
+      "path": "/blog/solar-polysilicon-tariffs-2026/",
+      "title": "Solar and Polysilicon Tariffs 2026: New Prices Start December 4",
+      "contentRole": "event_canonical",
+      "eventIds": [
+        "us_section232_polysilicon_2026"
+      ],
+      "authorityIds": [
+        "whitehouse_polysilicon_2026_08_06",
+        "usitc_current_hts"
+      ],
+      "numericClaims": [
+        {
+          "claimId": "polysilicon-derivative-rate",
+          "value": 15,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        },
+        {
+          "claimId": "polysilicon-uk-rate",
+          "value": 10,
+          "unit": "percent",
+          "status": "supported_future_scope_limited"
+        }
+      ],
+      "canonicalUrl": "https://attahirlabs.com/blog/solar-polysilicon-tariffs-2026/",
+      "publicationStatus": "published",
+      "modifiedDate": "2026-08-17",
+      "verifiedThrough": "2026-08-17T13:00:00Z",
+      "reviewAfter": "2026-08-24T13:00:00Z",
+      "failClosedWording": "No universal current U.S. tariff rate is available from country of origin alone.",
+      "calculatorSupport": "unsupported_non_ad_valorem"
     }
   ]
 }
