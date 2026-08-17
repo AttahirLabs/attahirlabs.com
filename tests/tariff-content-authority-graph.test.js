@@ -30,7 +30,7 @@ assert.ok(
   asOf < new Date(manifest.reviewAfter),
   'authority graph is past reviewAfter and must fail closed',
 );
-assert.equal(manifest.pages.length, 21);
+assert.equal(manifest.pages.length, 24);
 
 const paths = new Set();
 const canonicals = new Set();
