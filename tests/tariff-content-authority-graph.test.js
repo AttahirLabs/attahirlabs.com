@@ -60,6 +60,12 @@ for (const page of manifest.pages) {
     ? 'data-tariff-authority-state="release-3-active"'
     : 'data-tariff-authority-state="review-required"';
   assert.ok(html.includes(expectedState), `${page.path} lacks expected authority state`);
+  if (page.path === '/duty/') {
+    assert.ok(
+      sitemap.includes(`<loc>${page.canonicalUrl}</loc>\n    <lastmod>${page.modifiedDate}</lastmod>`),
+      `${page.path} sitemap lastmod differs from the authority manifest`,
+    );
+  }
   assert.ok(html.includes(page.failClosedWording), `${page.path} lacks authority warning`);
   assert.ok(
     html.includes(page.canonicalUrl),
