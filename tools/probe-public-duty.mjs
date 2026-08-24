@@ -3,7 +3,7 @@
 import { pathToFileURL } from 'node:url';
 
 const DEFAULT_ASSET_URL = 'https://attahirlabs.com/duty/calculator.js';
-const EXPECTED_RELEASE = '2026.08.17+release3.1';
+const EXPECTED_RELEASE = '2026.08.24+release4.1';
 const EXPECTED_CALCULATION_PATH = '/api/v2/us-duty';
 const LEGACY_CALCULATION_PATH = '/api/v1/landed-cost';
 
@@ -22,11 +22,14 @@ const QSP_INPUT = Object.freeze({
 
 const CANADA_INPUT = Object.freeze({
   origin: 'CA',
-  hts: '61091000',
+  hts: '6810990020',
   customsValue: '1000.00',
+  shippingCost: '50.00',
+  insuranceCost: '10.00',
   mfnRate: '5',
   entryAt: '2026-08-20T12:20:00.000Z',
-  forcedLaborCountryHeading: '9903.05.29',
+  qspHeading: '9903.45.30',
+  forcedLaborCountryHeading: '9903.05.57',
   forcedLaborExceptionHeading: 'NONE'
 });
 
@@ -58,15 +61,15 @@ export function inspectCalculatorAsset(source) {
   );
   const releaseVersion = exactSingleMatch(
     source,
-    /const\s+RELEASE3_VERSION\s*=\s*["']([^"']+)["']/g,
-    'Release 3 version'
+    /const\s+RELEASE4_VERSION\s*=\s*["']([^"']+)["']/g,
+    'Release 4 version'
   );
 
   if (calculationPath !== EXPECTED_CALCULATION_PATH) {
     throw new Error(`Unexpected public calculation path: ${calculationPath}`);
   }
   if (releaseVersion !== EXPECTED_RELEASE) {
-    throw new Error(`Unexpected public Release 3 version: ${releaseVersion}`);
+    throw new Error(`Unexpected public Release 4 version: ${releaseVersion}`);
   }
 
   return { apiBase, calculationPath, releaseVersion };

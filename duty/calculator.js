@@ -1,15 +1,15 @@
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
-const RELEASE3_VERSION = "2026.08.17+release3.1";
-const RELEASE3_PAYLOAD_HASH = "5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205";
-const RELEASE3_RECORD_HASH = "d198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217";
-const RELEASE3_SLICE_ID = "slice:release3:exact-chapter99-rev16-qsp-uas";
-const RELEASE3_SCHEDULE = "2026HTSRev16";
-const RELEASE3_INPUT_CONTRACT = "exact_caller_supplied_htsus_mfn_chapter99_release3";
-const RELEASE3_RESULT_CONTRACT = "tariff.result-contract/v3";
-const RELEASE3_EVIDENCE_AS_OF = "2026-08-17T13:00:00Z";
-const RELEASE3_EVIDENCE_VALID_THROUGH = "2026-08-24T13:00:00Z";
-const RELEASE3_LINE_OPERATIONS = new Set(["add", "replace", "fill_to", "cap", "exempt"]);
-const RELEASE3_LINE_DISPOSITIONS = new Set(["applied", "zero", "exempt"]);
+const RELEASE4_VERSION = "2026.08.24+release4.1";
+const RELEASE4_PAYLOAD_HASH = "e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8";
+const RELEASE4_RECORD_HASH = "0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289";
+const RELEASE4_SLICE_ID = "slice:release4:exact-qsp-rev17";
+const RELEASE4_SCHEDULE = "2026HTSRev17";
+const RELEASE4_INPUT_CONTRACT = "exact_caller_supplied_htsus_mfn_chapter99_release4_qsp_only";
+const RELEASE4_RESULT_CONTRACT = "tariff.result-contract/v3";
+const RELEASE4_EVIDENCE_AS_OF = "2026-08-24T16:20:00Z";
+const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-08-31T16:20:00Z";
+const RELEASE4_LINE_OPERATIONS = new Set(["add", "replace", "fill_to", "cap", "exempt"]);
+const RELEASE4_LINE_DISPOSITIONS = new Set(["applied", "zero", "exempt"]);
 let dutySubmission = 0;
 
 function isRecord(value) {
@@ -149,34 +149,34 @@ function isUsdMoney(value, allowNegative = false) {
   return isRecord(value) && value.currency === "USD" && moneyToCents(value.amount, allowNegative) !== null;
 }
 
-function release3AuthorityUsable(data) {
+function release4AuthorityUsable(data) {
   const authority = data?.authority;
   if (!isRecord(authority)) return false;
   const evidenceAsOf = parseCanonicalUtcInstant(authority.evidenceAsOf);
   const evidenceValidThrough = parseCanonicalUtcInstant(authority.evidenceValidThrough);
   const now = Date.now();
   return authority.state === "active" &&
-    authority.rulesetVersion === RELEASE3_VERSION &&
-    authority.rulesetPayloadHash === RELEASE3_PAYLOAD_HASH &&
-    authority.releaseRecordHash === RELEASE3_RECORD_HASH &&
-    authority.resultContractVersion === RELEASE3_RESULT_CONTRACT &&
-    authority.evidenceAsOf === RELEASE3_EVIDENCE_AS_OF &&
-    authority.evidenceValidThrough === RELEASE3_EVIDENCE_VALID_THROUGH &&
+    authority.rulesetVersion === RELEASE4_VERSION &&
+    authority.rulesetPayloadHash === RELEASE4_PAYLOAD_HASH &&
+    authority.releaseRecordHash === RELEASE4_RECORD_HASH &&
+    authority.resultContractVersion === RELEASE4_RESULT_CONTRACT &&
+    authority.evidenceAsOf === RELEASE4_EVIDENCE_AS_OF &&
+    authority.evidenceValidThrough === RELEASE4_EVIDENCE_VALID_THROUGH &&
     evidenceAsOf !== null &&
     evidenceValidThrough !== null &&
     evidenceAsOf < evidenceValidThrough &&
     Number.isFinite(now) &&
     evidenceAsOf <= now &&
     now < evidenceValidThrough &&
-    authority.scheduleRevision === RELEASE3_SCHEDULE &&
-    authority.inputContract === RELEASE3_INPUT_CONTRACT &&
+    authority.scheduleRevision === RELEASE4_SCHEDULE &&
+    authority.inputContract === RELEASE4_INPUT_CONTRACT &&
     Array.isArray(authority.activeCoverageSliceIds) &&
     authority.activeCoverageSliceIds.length === 1 &&
-    authority.activeCoverageSliceIds[0] === RELEASE3_SLICE_ID;
+    authority.activeCoverageSliceIds[0] === RELEASE4_SLICE_ID;
 }
 
-function normalizeRelease3Calculation(data, requestAmounts) {
-  if (data?.status !== "calculated" || !release3AuthorityUsable(data) || !isRecord(data.calculation)) return null;
+function normalizeRelease4Calculation(data, requestAmounts) {
+  if (data?.status !== "calculated" || !release4AuthorityUsable(data) || !isRecord(data.calculation)) return null;
   const calculation = data.calculation;
   if (
     calculation.currency !== "USD" ||
@@ -220,8 +220,8 @@ function normalizeRelease3Calculation(data, requestAmounts) {
       !isRecord(item) ||
       !isText(item.layer) ||
       !isText(item.authority) ||
-      !RELEASE3_LINE_OPERATIONS.has(item.operation) ||
-      !RELEASE3_LINE_DISPOSITIONS.has(item.disposition) ||
+      !RELEASE4_LINE_OPERATIONS.has(item.operation) ||
+      !RELEASE4_LINE_DISPOSITIONS.has(item.disposition) ||
       rateMicros === null ||
       itemDutyCents === null ||
       !isTextArray(item.ruleIds) ||
@@ -238,7 +238,7 @@ function normalizeRelease3Calculation(data, requestAmounts) {
   return calculation;
 }
 
-function renderRelease3Metadata(data, fallbackState) {
+function renderRelease4Metadata(data, fallbackState) {
   const authority = isRecord(data?.authority) ? data.authority : {};
   const sliceCount = Array.isArray(authority.activeCoverageSliceIds)
     ? authority.activeCoverageSliceIds.length
@@ -276,7 +276,7 @@ function appendBreakdownRow(container, label, value, className = "") {
   container.appendChild(row);
 }
 
-function renderRelease3Breakdown(calculation) {
+function renderRelease4Breakdown(calculation) {
   const container = document.getElementById("breakdown");
   container.replaceChildren();
   appendBreakdownRow(container, "U.S. customs value", `$${calculation.customsValue.amount}`);
@@ -317,7 +317,7 @@ function showUnavailable(data, message) {
   const resultState = document.getElementById("resultState");
   resultState.className = "result-status unavailable";
   resultState.textContent = message;
-  renderRelease3Metadata(data, "indeterminate");
+  renderRelease4Metadata(data, "indeterminate");
   document.getElementById("disclaimerText").textContent =
     "No rate, duty, or subtotal is available for this request. Verify every filing input or consult a qualified customs professional.";
 }
@@ -336,7 +336,6 @@ async function calculate() {
   const forcedLaborExceptionHeading = formValue("forcedLaborExceptionHeading").toUpperCase();
   const brazilHeading = formValue("brazilHeading");
   const qspHeading = formValue("qspHeading");
-  const uasHeading = formValue("uasHeading");
   const entryAt = formValue("entryAt");
   const normalizedEntryAt = normalizeEntryAt(entryAt);
   const shippingCost = formValue("shippingCost") || "0";
@@ -361,7 +360,6 @@ async function calculate() {
     !forcedLaborExceptionHeading ||
     (origin === "BR" && !brazilHeading) ||
     (qspHeading && !/^9903\.45\.(?:30|31)$/.test(qspHeading)) ||
-    (uasHeading && !/^9903\.08\.2[0-6]$/.test(uasHeading)) ||
     normalizedEntryAt === null
   ) {
     error.textContent = "Complete every required exact-input field.";
@@ -382,8 +380,8 @@ async function calculate() {
   document.getElementById("results").style.display = "block";
   document.getElementById("route").textContent = `${origin} → United States`;
   document.getElementById("resultState").className = "result-status";
-  document.getElementById("resultState").textContent = "Checking active Release 3 coverage…";
-  renderRelease3Metadata(null, "checking");
+  document.getElementById("resultState").textContent = "Checking active Release 4 coverage…";
+  renderRelease4Metadata(null, "checking");
   window.AttahirAnalytics?.once(`${actionKey}:start`, "tool_started", {
     surface: "duty_calculator",
     tool_name: "duty_calculator"
@@ -402,7 +400,6 @@ async function calculate() {
     });
     if (origin === "BR") params.set("brazilHeading", brazilHeading);
     if (qspHeading) params.set("qspHeading", qspHeading);
-    if (uasHeading) params.set("uasHeading", uasHeading);
     params.set("entryAt", normalizedEntryAt);
     const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params);
     let data = {};
@@ -430,7 +427,7 @@ async function calculate() {
       return;
     }
 
-    const calculation = normalizeRelease3Calculation(data, {
+    const calculation = normalizeRelease4Calculation(data, {
       customsValueCents,
       shippingCostCents,
       insuranceCostCents
@@ -451,11 +448,11 @@ async function calculate() {
     document.getElementById("resultState").className = "result-status";
     document.getElementById("resultState").textContent =
       "Calculated — exact inputs matched active signed coverage";
-    renderRelease3Metadata(data, "active");
+    renderRelease4Metadata(data, "active");
     document.getElementById("rateDisplay").textContent = `${calculation.totalRatePercent}%`;
     document.getElementById("dutyDisplay").textContent = `$${calculation.dutyAmount.amount}`;
     document.getElementById("totalDisplay").textContent = `$${calculation.estimatedSubtotal.amount}`;
-    renderRelease3Breakdown(calculation);
+    renderRelease4Breakdown(calculation);
     document.getElementById("marginDesc").textContent =
       `${calculation.lineItems.length} signed authority layer${calculation.lineItems.length === 1 ? "" : "s"} matched this exact request.`;
     document.getElementById("disclaimerText").textContent = data.disclaimer ||
