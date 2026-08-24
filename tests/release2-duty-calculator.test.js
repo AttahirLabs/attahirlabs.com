@@ -16,7 +16,6 @@ for (const id of [
   'forcedLaborExceptionHeading',
   'brazilHeading',
   'qspHeading',
-  'uasHeading',
   'entryAt',
   'shippingCost',
   'insuranceCost'
@@ -25,7 +24,7 @@ for (const id of [
 }
 
 assert.match(html, /destination[^<]{0,80}United States/i, 'the supported destination must be fixed to the United States');
-assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 3 endpoint');
+assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 4 endpoint');
 assert.doesNotMatch(client, /\/api\/v1\/landed-cost/, 'the legacy origin-only calculator must stay contained');
 assert.match(html, /exact caller-supplied HTSUS, MFN,[^<]{0,40}and Chapter 99 inputs/i);
 assert.match(html, /not a customs classification, liquidation, or legal determination/i);
@@ -33,11 +32,13 @@ assert.match(html, /shipping and insurance[^<]{0,160}outside[^<]{0,80}customs va
 assert.match(client, /status\s*!==\s*["']calculated["']|data\.status\s*===\s*["']indeterminate["']/, 'indeterminate responses must fail closed');
 assert.match(client, /clearNumericResult\(\)/, 'the client must clear old numeric output before every request');
 
-assert.match(client, /2026\.08\.17\+release3\.1/, 'the client must pin Release 3.1');
-assert.match(client, /5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205/);
-assert.match(client, /d198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217/);
+assert.match(client, /2026\.08\.24\+release4\.1/, 'the client must pin Release 4.1');
+assert.match(client, /e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8/);
+assert.match(client, /0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289/);
+assert.doesNotMatch(html, /id=["']uasHeading["']/i, 'unsupported UAS scope must not be offered');
+assert.doesNotMatch(client, /uasHeading/, 'unsupported UAS scope must not be submitted');
 
-console.log('Release 3 exact-duty calculator contract passed');
+console.log('Release 4 exact-duty calculator contract passed');
 
 class FakeElement {
   constructor(value = '') {
@@ -72,7 +73,6 @@ function makeElements() {
     brazilHeading: new FakeElement('9903.05.01'),
     brazilFields: new FakeElement(),
     qspHeading: new FakeElement(''),
-    uasHeading: new FakeElement(''),
     entryAt: new FakeElement('2026-08-17T13:30:00Z'),
     shippingCost: new FakeElement('50.00'),
     insuranceCost: new FakeElement('10.00'),
@@ -97,7 +97,7 @@ function visibleText(element) {
   return [element.textContent, ...element.children.map(visibleText)].join(' ');
 }
 
-async function runCalculation(response, overrides = {}, now = '2026-08-17T13:30:00Z') {
+async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:00Z') {
   const elements = makeElements();
   for (const [id, value] of Object.entries(overrides)) {
     assert.ok(elements[id], `unexpected override #${id}`);
@@ -153,15 +153,15 @@ function calculatedBody() {
     status: 'calculated',
     authority: {
       state: 'active',
-      rulesetVersion: '2026.08.17+release3.1',
-      rulesetPayloadHash: '5b7d90a7892b717c8b479d0abe3b36bc592caa10bccf75c37f7b385206e0f205',
-      releaseRecordHash: 'd198c2bf20af75269d5e408b01a4268512f41083f9b2ddfd12c40a2ea9301217',
+      rulesetVersion: '2026.08.24+release4.1',
+      rulesetPayloadHash: 'e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8',
+      releaseRecordHash: '0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289',
       resultContractVersion: 'tariff.result-contract/v3',
-      evidenceAsOf: '2026-08-17T13:00:00Z',
-      evidenceValidThrough: '2026-08-24T13:00:00Z',
-      activeCoverageSliceIds: ['slice:release3:exact-chapter99-rev16-qsp-uas'],
-      scheduleRevision: '2026HTSRev16',
-      inputContract: 'exact_caller_supplied_htsus_mfn_chapter99_release3'
+      evidenceAsOf: '2026-08-24T16:20:00Z',
+      evidenceValidThrough: '2026-08-31T16:20:00Z',
+      activeCoverageSliceIds: ['slice:release4:exact-qsp-rev17'],
+      scheduleRevision: '2026HTSRev17',
+      inputContract: 'exact_caller_supplied_htsus_mfn_chapter99_release4_qsp_only'
     },
     calculation: {
       currency: 'USD',
@@ -204,7 +204,7 @@ test('entryAt is visibly required in the exact-input UI', () => {
   assert.doesNotMatch(html, /Leave blank to evaluate at the API[^<]+current time/i);
 });
 
-test('calculated Release 3 response renders only after exact authority and arithmetic validation', async () => {
+test('calculated Release 4 response renders only after exact authority and arithmetic validation', async () => {
   const { elements, analytics, requestedUrl } = await runCalculation({
     ok: true,
     status: 200,
@@ -221,7 +221,7 @@ test('calculated Release 3 response renders only after exact authority and arith
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
   assert.equal(elements.totalDisplay.textContent, '$1485.00');
-  assert.match(visibleText(elements.responseMetadata), /2026\.08\.17\+release3\.1/);
+  assert.match(visibleText(elements.responseMetadata), /2026\.08\.24\+release4\.1/);
   assert.ok(analytics.some(event => event.name === 'tool_completed'));
   assert.ok(!analytics.some(event => event.name === 'tool_failed'));
 });
@@ -304,7 +304,7 @@ test('valid zero, exempt, and negative cap lines reconcile and render under per-
   assert.equal(tie.elements.dutyDisplay.textContent, '$0.00');
 });
 
-test('QSP and future UAS exact scope facts are sent only when supplied', async () => {
+test('the exact QSP scope fact is sent only when supplied', async () => {
   const qsp = await runCalculation(
     { ok: true, status: 200, async json() { return calculatedBody(); } },
     { origin: 'CN', hts: '6810990020', brazilHeading: '', qspHeading: '9903.45.30' },
@@ -312,20 +312,6 @@ test('QSP and future UAS exact scope facts are sent only when supplied', async (
   assert.match(qsp.requestedUrl, /hts=6810990020/);
   assert.match(qsp.requestedUrl, /qspHeading=9903\.45\.30/);
   assert.doesNotMatch(qsp.requestedUrl, /uasHeading=/);
-
-  const uas = await runCalculation(
-    { ok: true, status: 200, async json() { return calculatedBody(); } },
-    {
-      origin: 'CN',
-      hts: '8504409580',
-      brazilHeading: '',
-      uasHeading: '9903.08.21',
-      entryAt: '2026-09-03T04:01:00Z',
-    },
-  );
-  assert.match(uas.requestedUrl, /uasHeading=9903\.08\.21/);
-  assert.match(uas.requestedUrl, /entryAt=2026-09-03T04%3A01%3A00\.000Z/);
-  assert.doesNotMatch(uas.requestedUrl, /qspHeading=/);
 });
 
 test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most millisecond precision, and is normalized', async t => {
@@ -369,27 +355,27 @@ test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most mi
   }
 });
 
-test('Release 3 authority requires the exact result contract and live canonical evidence window', async t => {
+test('Release 4 authority requires the exact result contract and live canonical evidence window', async t => {
   const cases = [
     ['missing contract', body => { delete body.authority.resultContractVersion; }],
     ['foreign contract', body => { body.authority.resultContractVersion = 'tariff.result-contract/v2'; }],
     ['inactive state', body => { body.authority.state = 'inactive'; }],
-    ['foreign ruleset version', body => { body.authority.rulesetVersion = '2026.08.17+release3.2'; }],
+    ['foreign ruleset version', body => { body.authority.rulesetVersion = '2026.08.24+release4.2'; }],
     ['foreign payload hash', body => { body.authority.rulesetPayloadHash = 'a'.repeat(64); }],
     ['foreign release record', body => { body.authority.releaseRecordHash = 'b'.repeat(64); }],
-    ['foreign schedule revision', body => { body.authority.scheduleRevision = '2026HTSRev17'; }],
+    ['foreign schedule revision', body => { body.authority.scheduleRevision = '2026HTSRev16'; }],
     ['foreign input contract', body => { body.authority.inputContract = 'exact_caller_supplied_htsus_mfn_chapter99'; }],
     ['missing evidence start', body => { delete body.authority.evidenceAsOf; }],
-    ['foreign evidence start', body => { body.authority.evidenceAsOf = '2026-08-17T13:00:01Z'; }],
-    ['non-canonical evidence start', body => { body.authority.evidenceAsOf = '2026-08-17T13:00:00.000Z'; }],
+    ['foreign evidence start', body => { body.authority.evidenceAsOf = '2026-08-24T16:20:01Z'; }],
+    ['non-canonical evidence start', body => { body.authority.evidenceAsOf = '2026-08-24T16:20:00.000Z'; }],
     ['missing evidence end', body => { delete body.authority.evidenceValidThrough; }],
-    ['foreign evidence end', body => { body.authority.evidenceValidThrough = '2026-08-24T13:00:01Z'; }],
+    ['foreign evidence end', body => { body.authority.evidenceValidThrough = '2026-08-31T16:20:01Z'; }],
     ['invalid evidence end', body => { body.authority.evidenceValidThrough = 'not-an-instant'; }],
     ['reversed evidence window', body => {
-      body.authority.evidenceAsOf = '2026-08-24T13:00:00Z';
-      body.authority.evidenceValidThrough = '2026-08-17T13:00:00Z';
+      body.authority.evidenceAsOf = '2026-08-31T16:20:00Z';
+      body.authority.evidenceValidThrough = '2026-08-24T16:20:00Z';
     }],
-    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release3:exact-chapter99-rev16-qsp-uas'; }],
+    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release4:exact-qsp-rev17'; }],
     ['empty slices', body => { body.authority.activeCoverageSliceIds = []; }],
     ['extra slice', body => { body.authority.activeCoverageSliceIds.push('slice:foreign'); }],
     ['foreign slice', body => { body.authority.activeCoverageSliceIds[0] = 'slice:foreign'; }],
@@ -421,7 +407,7 @@ test('Release 3 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-24T13:00:00.000Z',
+      '2026-08-31T16:20:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'none');
   });
@@ -431,7 +417,7 @@ test('Release 3 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-17T13:00:00.000Z',
+      '2026-08-24T16:20:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'block');
   });

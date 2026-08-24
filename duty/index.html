@@ -132,10 +132,10 @@
     <p>Calculate a supported planning estimate using exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs.</p>
 </div>
 
-<div class="container" data-tariff-authority-state="release-3-active">
+<div class="container" data-tariff-authority-state="release-4-active">
     <aside class="accuracy-panel" id="dutyAccuracyNotice" aria-labelledby="dutyAccuracyTitle">
         <h2 id="dutyAccuracyTitle">Signed authority, narrow scope</h2>
-        <p class="tariff-authority-warning"><strong>Release 3 exact-input calculation.</strong> A number is returned only when the signed reviewed authority matches every required input. Unsupported or incomplete cases remain number-free.</p>
+        <p class="tariff-authority-warning"><strong>Release 4 exact-QSP calculation.</strong> A number is returned only when the signed reviewed authority matches every required input. Unsupported or incomplete cases remain number-free.</p>
         <p>You supply the HTSUS classification, base MFN rate, U.S. customs value, and applicable Chapter 99 headings. The tool does not choose or validate those filing facts for you.</p>
         <p>This is a planning estimate, not a customs classification, liquidation, or legal determination. The <a href="/duty/rates/">legacy country-level table</a> remains historical and contained.</p>
     </aside>
@@ -168,19 +168,8 @@
                 <option value="9903.45.31">9903.45.31 — covered over-quota entry</option>
             </select>
             <p class="input-note">Supply the heading from the filing facts. This tool does not determine quota status.</p>
-            <label for="uasHeading">UAS Section 232 heading, if applicable</label>
-            <select id="uasHeading">
-                <option value="">Not supplied / not applicable</option>
-                <option value="9903.08.20">9903.08.20</option>
-                <option value="9903.08.21">9903.08.21</option>
-                <option value="9903.08.22">9903.08.22</option>
-                <option value="9903.08.23">9903.08.23</option>
-                <option value="9903.08.24">9903.08.24</option>
-                <option value="9903.08.25">9903.08.25</option>
-                <option value="9903.08.26">9903.08.26</option>
-            </select>
             <label for="entryAt">Entry instant (UTC) *</label>
-            <input type="text" id="entryAt" placeholder="2026-09-03T04:01:00Z" maxlength="24" required>
+            <input type="text" id="entryAt" placeholder="2026-08-24T17:00:00Z" maxlength="24" required>
             <p class="input-note">Use a UTC RFC 3339 instant ending in Z, with no more than three fractional digits.</p>
             <div class="row">
                 <div><label for="shippingCost">Shipping cost</label><input type="number" id="shippingCost" placeholder="0.00" min="0" step="0.01"></div>
@@ -194,7 +183,7 @@
         <!-- RESULTS -->
         <div class="card">
             <div class="placeholder" id="placeholder">
-                <div><div class="icon">📦</div><p>Enter the exact filing inputs to check whether Release 3 has active matching coverage.</p></div>
+                <div><div class="icon">📦</div><p>Enter the exact filing inputs to check whether Release 4 has active matching coverage.</p></div>
             </div>
             <div class="results" id="results">
                 <h2 id="route"></h2>
@@ -226,12 +215,12 @@
 
 <div class="seo">
     <h2>What this US import duty calculator does</h2>
-    <p>This calculator evaluates exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs against signed, reviewed Release 3 authority. It returns a supported total rate, estimated duty, line-item authority evidence, and an estimated subtotal only when every required fact matches active coverage.</p>
+    <p>This calculator evaluates exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs against signed, reviewed Release 4 authority. It returns a supported total rate, estimated duty, line-item authority evidence, and an estimated subtotal only when every required fact matches active QSP coverage.</p>
     <p>The estimated subtotal is customs value plus optional shipping and insurance plus estimated duty. Shipping and insurance remain outside the customs value in this model. Taxes, brokerage, carrier and processing fees, and unsupported tariff programs are excluded.</p>
     <h3>Quick answer</h3>
     <p>Use it only when you already have the entry’s exact U.S. filing inputs. It does not classify goods, select Chapter 99 headings, establish customs value, apply unsupported programs, or make a legal filing determination.</p>
     <h3>Fail-closed coverage</h3>
-    <p>Incomplete, unsupported, expired, or non-matching inputs return an indeterminate response with no rate, duty, or subtotal. Canada and non-ad-valorem programs such as polysilicon minimum prices are intentionally outside this Release 3 coverage.</p>
+    <p>Incomplete, unsupported, expired, or non-matching inputs return an indeterminate response with no rate, duty, or subtotal. Canada, UAS, and unsupported product or tariff programs are intentionally outside this Release 4 coverage.</p>
     <h3>Signed reviewed authority</h3>
     <p>Every calculated response identifies its ruleset, signed release record, evidence window, active coverage slices, and source-backed line items so the result can be traced to the exact authority used.</p>
     <p><a href="/duty/rates/">Browse the historical planning table →</a><br><a href="/blog/quartz-countertop-tariffs-2026/">Read the quartz safeguard guide →</a><br><a href="/blog/us-drone-tariffs-2026/">Read the UAS Section 232 guide →</a><br><a href="/blog/de-minimis-threshold-2026/">Read the US de minimis guide →</a></p>
@@ -243,6 +232,6 @@
 </footer>
 
 <script src="/assets/analytics.js"></script>
-<script src="/duty/calculator.js?v=20260817-release3"></script>
+<script src="/duty/calculator.js?v=20260824-release4"></script>
 </body>
 </html>

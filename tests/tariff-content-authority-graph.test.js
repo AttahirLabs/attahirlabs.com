@@ -41,7 +41,7 @@ for (const page of manifest.pages) {
   assert.equal(page.schemaVersion, 1);
   assert.equal(page.publicationStatus, 'published');
   if (page.path === '/duty/') {
-    assert.equal(page.authorityState, 'release3_active_exact');
+    assert.equal(page.authorityState, 'release4_active_exact_qsp');
     assert.equal(page.failClosedWording, 'Unsupported or incomplete cases remain number-free.');
   } else {
     assert.equal(page.verifiedThrough, manifest.asOf);
@@ -57,7 +57,7 @@ for (const page of manifest.pages) {
   assert.ok(fs.existsSync(file), `missing published page ${page.path}`);
   const html = fs.readFileSync(file, 'utf8');
   const expectedState = page.path === '/duty/'
-    ? 'data-tariff-authority-state="release-3-active"'
+    ? 'data-tariff-authority-state="release-4-active"'
     : 'data-tariff-authority-state="review-required"';
   assert.ok(html.includes(expectedState), `${page.path} lacks expected authority state`);
   if (page.path === '/duty/') {
