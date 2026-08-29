@@ -37,7 +37,8 @@
       "logo": "https://attahirlabs.com/icon-512.png",
       "sameAs": [
         "https://apps.shopify.com/stockclearance",
-        "https://apps.shopify.com/tariffshield"
+        "https://apps.shopify.com/tariffshield",
+        "https://apps.shopify.com/shelflife"
       ],
       "makesOffer": [
         {
@@ -48,7 +49,9 @@
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Shopify"
           },
-          "url": "https://apps.shopify.com/stockclearance"
+          "url": "https://apps.shopify.com/stockclearance",
+          "price": "0",
+          "priceCurrency": "USD"
         },
         {
           "@type": "Offer",
@@ -58,7 +61,21 @@
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Shopify"
           },
-          "url": "https://apps.shopify.com/tariffshield"
+          "url": "https://apps.shopify.com/tariffshield",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "SoftwareApplication",
+            "name": "ShelfLife",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Shopify"
+          },
+          "url": "https://apps.shopify.com/shelflife",
+          "price": "0",
+          "priceCurrency": "USD"
         }
       ]
     }
@@ -354,7 +371,7 @@
             gap: 1rem;
         }
         .public-app-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         .card {
             border: 1px solid var(--line);
@@ -648,7 +665,7 @@
                     <a class="btn btn-secondary" href="/tools/">Use free tools</a>
                 </div>
                 <div class="hero-proof" aria-label="Current Attahir Labs product status">
-                    <div class="proof-chip"><strong>2 public apps</strong><span>StockClearance and TariffShield are live on Shopify.</span></div>
+                    <div class="proof-chip"><strong>3 public apps</strong><span>StockClearance, TariffShield, and ShelfLife are live on Shopify.</span></div>
                     <div class="proof-chip"><strong>3 free tools</strong><span>Duty, shipping, and accessibility checks are usable now.</span></div>
                 </div>
             </div>
@@ -728,6 +745,25 @@
                             <a class="btn btn-light" href="/apps/tariffshield/">View page</a>
                         </div>
                     </article>
+                    <article class="card app-card">
+                        <div class="app-heading">
+                            <img class="app-icon" src="/assets/icons/shelflife-countdown-shelves-512.png" alt="ShelfLife app icon" width="48" height="48">
+                            <div>
+                                <span class="tag tag-live">Shopify App Store</span>
+                                <h3>ShelfLife</h3>
+                            </div>
+                        </div>
+                        <p>Expiry and batch workflows for merchants who need dated inventory, supplier context, FEFO, and recall-ready records.</p>
+                        <ul>
+                            <li>Expiry-date and batch tracking</li>
+                            <li>FEFO inventory workflows</li>
+                            <li>Supplier and recall-ready records</li>
+                        </ul>
+                        <div class="button-row">
+                            <a class="btn btn-dark" href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
+                            <a class="btn btn-light" href="/apps/shelflife/">View page</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -772,7 +808,7 @@
                 <div class="section-head">
                     <div class="section-kicker">Guides</div>
                     <h2>Read the guide that matches the workflow.</h2>
-                    <p class="section-copy">Blog calls to action stay contextual: inventory posts point to StockClearance, tariff posts point to TariffShield, and future expiry/recall posts can point to ShelfLife once it is public.</p>
+                    <p class="section-copy">Blog calls to action stay contextual: inventory posts point to StockClearance, tariff posts point to TariffShield, and expiry or recall posts point to ShelfLife.</p>
                 </div>
                 <div class="resource-grid">
                     <article class="card">
