@@ -43,7 +43,7 @@ const expected = {
   const moduleUrl = pathToFileURL(
     path.resolve(__dirname, '../.github/scripts/verify-cloudflare-pages-deployment.mjs'),
   ).href;
-  const { buildDeploymentProof } = await import(moduleUrl);
+  const { buildDeploymentProof, validateLatestProductionDeployment } = await import(moduleUrl);
 
   const proof = buildDeploymentProof({
     before: response([oldDeployment]),
@@ -68,6 +68,37 @@ const expected = {
     deployedAt: newDeployment.created_on,
   });
 
+  const fullUuidUrlFixture = structuredClone(newDeployment);
+  fullUuidUrlFixture.url = `https://${deploymentId}.attahirlabs.pages.dev`;
+  assert.doesNotThrow(() => buildDeploymentProof({
+    before: response([oldDeployment]),
+    after: response([fullUuidUrlFixture, oldDeployment]),
+    expected,
+  }));
+
+  const microsecondFixture = structuredClone(newDeployment);
+  microsecondFixture.created_on = '2026-08-29T17:00:00.123456Z';
+  assert.doesNotThrow(() => buildDeploymentProof({
+    before: response([oldDeployment]),
+    after: response([microsecondFixture, oldDeployment]),
+    expected,
+  }));
+
+  assert.equal(
+    validateLatestProductionDeployment(response([newDeployment, oldDeployment]), commitSha).id,
+    deploymentId,
+  );
+  assert.throws(
+    () => validateLatestProductionDeployment(response([oldDeployment]), commitSha),
+    /commit sha/,
+    'search notification must reject a stale production deployment',
+  );
+  assert.throws(
+    () => validateLatestProductionDeployment(response([{ ...newDeployment, environment: 'preview' }]), commitSha),
+    /environment/,
+    'search notification must reject a preview deployment',
+  );
+
   const rejects = (label, mutate) => {
     const fixture = structuredClone({
       before: response([oldDeployment]),
@@ -86,6 +117,7 @@ const expected = {
     fixture.after.success = false;
     fixture.after.errors = [{ code: 10000, message: 'authentication error' }];
   });
+  rejects('missing API errors array', (fixture) => { delete fixture.after.errors; });
   rejects('missing result array', (fixture) => { delete fixture.after.result; });
   rejects('stale deployment', (fixture) => { fixture.after.result = [oldDeployment]; });
   rejects('ambiguous new deployments', (fixture) => {
@@ -111,6 +143,36 @@ const expected = {
   rejects('missing deployment URL', (fixture) => { delete fixture.after.result[0].url; });
   rejects('non-Pages deployment URL', (fixture) => {
     fixture.after.result[0].url = 'https://example.com/not-cloudflare';
+  });
+  rejects('wrong Pages project URL', (fixture) => {
+    fixture.after.result[0].url = 'https://22222222.other.pages.dev';
+  });
+  rejects('wrong deployment URL prefix', (fixture) => {
+    fixture.after.result[0].url = 'https://99999999.attahirlabs.pages.dev';
+  });
+  rejects('deployment URL credentials', (fixture) => {
+    fixture.after.result[0].url = 'https://user:pass@22222222.attahirlabs.pages.dev';
+  });
+  rejects('deployment URL port', (fixture) => {
+    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev:444';
+  });
+  rejects('deployment URL path', (fixture) => {
+    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/proof';
+  });
+  rejects('deployment URL query', (fixture) => {
+    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/?proof=true';
+  });
+  rejects('deployment URL fragment', (fixture) => {
+    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/#proof';
+  });
+  rejects('impossible deployment timestamp', (fixture) => {
+    fixture.after.result[0].created_on = '2026-02-30T12:03:00.000Z';
+  });
+  rejects('overprecise deployment timestamp', (fixture) => {
+    fixture.after.result[0].created_on = '2026-08-29T17:00:00.1234567Z';
+  });
+  rejects('wrong account id', (fixture) => {
+    fixture.expected.accountId = '0'.repeat(32);
   });
   rejects('malformed deployment ID', (fixture) => { fixture.after.result[0].id = 'not-a-uuid'; });
   rejects('malformed source tree', (fixture) => { fixture.expected.sourceTreeSha = 'short'; });

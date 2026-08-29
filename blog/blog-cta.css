@@ -24,7 +24,8 @@
 }
 
 article table,
-.post-content table {
+.post-content table,
+.container table {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -33,7 +34,8 @@ article table,
 }
 
 article li,
-.post-content li {
+.post-content li,
+.container li {
   overflow-wrap: anywhere;
   word-break: break-word;
 }

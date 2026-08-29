@@ -18,6 +18,17 @@ assert.doesNotMatch(workflow, /google\.com\/ping/);
 assert.doesNotMatch(workflow, /bing\.com\/ping\?sitemap/);
 assert.doesNotMatch(workflow, /curl -s(?:\s|$)/);
 assert.match(workflow, /fetch-depth:\s*0/);
+assert.match(workflow, /environment:\s*\n\s+name:\s*cloudflare-pages-production/);
+assert.match(workflow, /CLOUDFLARE_PAGES_API_TOKEN:\s*\$\{\{\s*secrets\.CLOUDFLARE_PAGES_API_TOKEN\s*\}\}/);
+assert.match(workflow, /CLOUDFLARE_ACCOUNT_ID:\s*\$\{\{\s*vars\.CLOUDFLARE_ACCOUNT_ID\s*\}\}/);
+assert.match(workflow, /pages\/projects\/attahirlabs\/deployments\?env=production&per_page=100/);
+assert.match(workflow, /verify-cloudflare-pages-deployment\.mjs[\s\S]*--latest[\s\S]*--commit-sha "\$GITHUB_SHA"/);
+assert.match(workflow, /test "\$GITHUB_REF" = "refs\/heads\/main"/);
+assert.match(workflow, /test "\$\(git rev-parse HEAD\)" = "\$GITHUB_SHA"/);
+assert.ok(
+  workflow.indexOf('Wait for the exact production deployment') < workflow.indexOf('Verify public sitemap'),
+  'IndexNow must wait for the exact Cloudflare production commit before reading or notifying URLs',
+);
 assert.match(workflow, /github\.event\.before/);
 assert.match(workflow, /github\.sha/);
 assert.match(workflow, /bash tools\/search-changed-files\.sh/);

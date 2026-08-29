@@ -9,6 +9,8 @@ const SHA_PATTERN = /^[0-9a-f]{40}$/;
 const ACCOUNT_ID_PATTERN = /^[0-9a-f]{32}$/;
 const SAFE_PROJECT_PATTERN = /^[a-z0-9](?:[a-z0-9-]{0,56}[a-z0-9])?$/;
 const POSITIVE_INTEGER_PATTERN = /^[1-9][0-9]*$/;
+const EXPECTED_ACCOUNT_ID = '6f945ca08a01d636e0b02f37e859d4d5';
+const EXPECTED_PROJECT_NAME = 'attahirlabs';
 
 function requireObject(value, label) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
@@ -43,7 +45,7 @@ function requirePositiveSafeInteger(value, label) {
   return parsed;
 }
 
-function validatePagesUrl(value) {
+function validatePagesUrl(value, deploymentId, projectName) {
   if (typeof value !== 'string') {
     throw new Error('deployment url is missing');
   }
@@ -53,11 +55,17 @@ function validatePagesUrl(value) {
   } catch {
     throw new Error('deployment url is malformed');
   }
+  const allowedHosts = new Set([
+    `${deploymentId}.${projectName}.pages.dev`,
+    `${deploymentId.slice(0, 8)}.${projectName}.pages.dev`,
+  ]);
   if (
     parsed.protocol !== 'https:'
-    || !parsed.hostname.endsWith('.pages.dev')
+    || !allowedHosts.has(parsed.hostname)
     || parsed.username
     || parsed.password
+    || parsed.port
+    || parsed.pathname !== '/'
     || parsed.search
     || parsed.hash
   ) {
@@ -67,10 +75,32 @@ function validatePagesUrl(value) {
 }
 
 function validateTimestamp(value) {
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(value)) {
+  const match = typeof value === 'string'
+    ? /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,6}))?Z$/.exec(value)
+    : null;
+  if (!match) {
     throw new Error('deployment created_on is malformed');
   }
-  if (!Number.isFinite(Date.parse(value))) {
+
+  const [, yearText, monthText, dayText, hourText, minuteText, secondText, fraction = ''] = match;
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const hour = Number(hourText);
+  const minute = Number(minuteText);
+  const second = Number(secondText);
+  const milliseconds = Number(fraction.slice(0, 3).padEnd(3, '0'));
+  const instant = new Date(Date.UTC(year, month - 1, day, hour, minute, second, milliseconds));
+  if (
+    year < 2000
+    || instant.getUTCFullYear() !== year
+    || instant.getUTCMonth() !== month - 1
+    || instant.getUTCDate() !== day
+    || instant.getUTCHours() !== hour
+    || instant.getUTCMinutes() !== minute
+    || instant.getUTCSeconds() !== second
+    || instant.getUTCMilliseconds() !== milliseconds
+  ) {
     throw new Error('deployment created_on is not a real timestamp');
   }
   return value;
@@ -84,7 +114,7 @@ export function validateDeploymentList(payload, label = 'Cloudflare response') {
   if (!Array.isArray(response.result)) {
     throw new Error(`${label}.result must be an array`);
   }
-  if (Array.isArray(response.errors) && response.errors.length > 0) {
+  if (!Array.isArray(response.errors) || response.errors.length > 0) {
     throw new Error(`${label} contains API errors`);
   }
 
@@ -105,11 +135,30 @@ export function validateDeploymentList(payload, label = 'Cloudflare response') {
   return response.result;
 }
 
+export function validateLatestProductionDeployment(payload, expectedCommitSha) {
+  const commitSha = requirePattern(expectedCommitSha, SHA_PATTERN, 'commit sha');
+  const deployments = validateDeploymentList(payload, 'production response');
+  if (deployments.length === 0) {
+    throw new Error('production response contains no deployments');
+  }
+
+  const deployment = deployments[0];
+  const latestStage = requireObject(deployment.latest_stage, 'deployment latest_stage');
+  requireExactString(latestStage.name, 'deploy', 'deployment latest_stage.name');
+  requireExactString(latestStage.status, 'success', 'deployment latest_stage.status');
+  const trigger = requireObject(deployment.deployment_trigger, 'deployment trigger');
+  const metadata = requireObject(trigger.metadata, 'deployment trigger metadata');
+  requireExactString(metadata.branch, 'main', 'deployment branch');
+  requireExactString(metadata.commit_hash, commitSha, 'deployment commit sha');
+  return deployment;
+}
+
 export function buildDeploymentProof({ before, after, expected }) {
   const inputs = requireObject(expected, 'expected');
   const accountId = requirePattern(inputs.accountId, ACCOUNT_ID_PATTERN, 'account id');
+  requireExactString(accountId, EXPECTED_ACCOUNT_ID, 'account id');
   const projectName = requirePattern(inputs.projectName, SAFE_PROJECT_PATTERN, 'project name');
-  requireExactString(projectName, 'attahirlabs', 'project name');
+  requireExactString(projectName, EXPECTED_PROJECT_NAME, 'project name');
   const commitSha = requirePattern(inputs.commitSha, SHA_PATTERN, 'commit sha');
   const sourceTreeSha = requirePattern(inputs.sourceTreeSha, SHA_PATTERN, 'source tree sha');
   const githubRunId = requirePositiveSafeInteger(inputs.githubRunId, 'GitHub run id');
@@ -151,7 +200,7 @@ export function buildDeploymentProof({ before, after, expected }) {
     githubRunId,
     githubRunAttempt,
     deploymentId: deployment.id,
-    deploymentUrl: validatePagesUrl(deployment.url),
+    deploymentUrl: validatePagesUrl(deployment.url, deployment.id, projectName),
     deployedAt: validateTimestamp(deployment.created_on),
   };
 }
@@ -195,6 +244,15 @@ async function writeJsonAtomically(path, value) {
 
 async function main(argv) {
   const args = parseArguments(argv);
+  if (args.has('--latest')) {
+    if (args.size !== 2 || !args.has('--commit-sha')) {
+      throw new Error('--latest requires exactly --commit-sha');
+    }
+    const latest = await readJson(args.get('--latest'), 'latest production response');
+    const deployment = validateLatestProductionDeployment(latest, args.get('--commit-sha'));
+    process.stdout.write(`Verified latest production deployment ${deployment.id}.\n`);
+    return;
+  }
   if (args.has('--snapshot')) {
     if (args.size !== 1) {
       throw new Error('--snapshot cannot be combined with proof arguments');

@@ -15,12 +15,49 @@ permissions:
 
 jobs:
   ping-search-engines:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: cloudflare-pages-production
     steps:
-      - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Checkout the event commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ github.sha }}
+
+      - name: Wait for the exact production deployment
+        env:
+          CLOUDFLARE_PAGES_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "AttahirLabs/attahirlabs.com"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -n "${CLOUDFLARE_PAGES_API_TOKEN:-}"
+          test "$CLOUDFLARE_ACCOUNT_ID" = "6f945ca08a01d636e0b02f37e859d4d5"
+
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          verified=false
+          for attempt in $(seq 1 24); do
+            response="$RUNNER_TEMP/cloudflare-pages-search-$attempt.json"
+            if curl --fail-with-body --silent --show-error \
+              --retry 2 --retry-all-errors --connect-timeout 10 --max-time 30 \
+              --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
+              --header "Content-Type: application/json" \
+              "$endpoint" > "$response" \
+              && node .github/scripts/verify-cloudflare-pages-deployment.mjs \
+                --latest "$response" \
+                --commit-sha "$GITHUB_SHA"; then
+              verified=true
+              break
+            fi
+            if [ "$attempt" -lt 24 ]; then sleep 5; fi
+          done
+          test "$verified" = true
 
       - name: Verify public sitemap
         run: |

@@ -26,12 +26,12 @@ for (const articlePath of canonicalArticles) {
 
 assert.match(
   sharedBlogCss,
-  /article\s+table\s*,\s*\.post-content\s+table\s*\{[^}]*display:\s*block;[^}]*width:\s*100%;[^}]*max-width:\s*100%;[^}]*overflow-x:\s*auto;[^}]*-webkit-overflow-scrolling:\s*touch;/,
+  /article\s+table\s*,\s*\.post-content\s+table\s*,\s*\.container\s+table\s*\{[^}]*display:\s*block;[^}]*width:\s*100%;[^}]*max-width:\s*100%;[^}]*overflow-x:\s*auto;[^}]*-webkit-overflow-scrolling:\s*touch;/,
   'wide article tables must scroll inside the article column instead of widening the page',
 );
 assert.match(
   sharedBlogCss,
-  /article\s+li\s*,\s*\.post-content\s+li\s*\{[^}]*overflow-wrap:\s*anywhere;[^}]*word-break:\s*break-word;/,
+  /article\s+li\s*,\s*\.post-content\s+li\s*,\s*\.container\s+li\s*\{[^}]*overflow-wrap:\s*anywhere;[^}]*word-break:\s*break-word;/,
   'long source URLs in article lists must wrap inside a narrow viewport',
 );
 
