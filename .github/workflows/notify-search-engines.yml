@@ -20,24 +20,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - name: Ping Google Sitemap
+      - name: Verify public sitemap
         run: |
-          echo "Pinging Google..."
-          curl -s "https://www.google.com/ping?sitemap=https://attahirlabs.com/sitemap.xml"
-          echo ""
-
-      - name: Ping Bing Sitemap
-        run: |
-          echo "Pinging Bing..."
-          curl -s "https://www.bing.com/ping?sitemap=https://attahirlabs.com/sitemap.xml"
-          echo ""
+          curl --fail-with-body --silent --show-error --retry 3 \
+            --output /tmp/attahirlabs-sitemap.xml \
+            "https://attahirlabs.com/sitemap.xml"
+          test -s /tmp/attahirlabs-sitemap.xml
 
       - name: IndexNow - Notify Bing of changed URLs
         run: |
-          # Find files changed in this push
-          CHANGED=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+          # Find every file changed across the full push range. A branch-creation
+          # push has an all-zero before SHA and is treated as a full-tree change.
+          if ! CHANGED=$(bash tools/search-changed-files.sh \
+            "${{ github.event.before }}" \
+            "${{ github.sha }}"); then
+            echo "::error::Unable to determine changed files for this push"
+            exit 1
+          fi
           
           # Build list of URLs from changed blog posts and pages
           URLS=""
@@ -73,7 +74,8 @@ jobs:
           
           echo "Submitting to IndexNow: $URLS"
           
-          curl -s -X POST "https://api.indexnow.org/indexnow" \
+          curl --fail-with-body --silent --show-error --retry 3 -X POST \
+            "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json" \
             -d "{
               \"host\": \"attahirlabs.com\",
@@ -81,4 +83,4 @@ jobs:
               \"urlList\": [$URLS]
             }"
           echo ""
-          echo "IndexNow submission complete"
+          echo "IndexNow accepted the submission"

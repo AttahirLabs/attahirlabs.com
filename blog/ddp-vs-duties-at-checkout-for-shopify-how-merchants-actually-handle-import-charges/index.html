@@ -88,6 +88,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -139,7 +141,16 @@
 <p>That is the main reality merchants have to accept: checkout collection is only as credible as the catalog and policy inputs behind it.</p>
 <h2>The difference that matters: who owns the variance?</h2>
 <p>The cleanest way to compare DDP with duties at checkout is to ask where the variance lands when reality differs from the estimate.</p>
-<p>| Question | DDP-style flow | Duties at checkout flow | |---|---|---| | Who tries to shield the customer from import-charge surprise? | Merchant/seller side | Checkout disclosure before payment | | Who is more exposed if estimates are low? | Usually the merchant or its logistics arrangement | Often still the merchant reputationally, but the pricing signal is shown earlier | | What has to be excellent? | Landed-cost estimation, carrier/broker execution, reconciliation | Catalog data, classification/origin logic, checkout disclosure | | What usually improves? | Delivery experience and lower refusal risk | Price transparency before purchase | | What usually gets harder? | Margin control and exception handling | Maintaining accurate duty logic across SKUs and markets |</p>
+<table>
+<thead><tr><th>Question</th><th>DDP-style flow</th><th>Duties at checkout flow</th></tr></thead>
+<tbody>
+<tr><td>Who tries to shield the customer from import-charge surprise?</td><td>Merchant or seller side</td><td>Checkout disclosure before payment</td></tr>
+<tr><td>Who is more exposed if estimates are low?</td><td>Usually the merchant or its logistics arrangement</td><td>Often still the merchant reputationally, but the pricing signal is shown earlier</td></tr>
+<tr><td>What has to be excellent?</td><td>Landed-cost estimation, carrier or broker execution, and reconciliation</td><td>Catalog data, classification and origin logic, and checkout disclosure</td></tr>
+<tr><td>What usually improves?</td><td>Delivery experience and lower refusal risk</td><td>Price transparency before purchase</td></tr>
+<tr><td>What usually gets harder?</td><td>Margin control and exception handling</td><td>Maintaining accurate duty logic across SKUs and markets</td></tr>
+</tbody>
+</table>
 <p>This is why the debate is not really “which one is better?” It is “which risk are you equipped to own?”</p>
 <h2>Why merchants choose DDP</h2>
 
@@ -234,17 +245,17 @@
 <li><strong>Ignoring tariff-policy movement.</strong> Tax Foundation's tracker is a reminder that tariff exposure is not static.[6] A model that worked last quarter may drift fast.</li>
 <li><strong>No exception playbook.</strong> When customs, carrier, or broker treatment differs from the estimate, no one knows whether finance, support, or ops owns the fix.</li>
 </ul>
-<h2>What TariffShield can help with</h2>
+<h2>Use exact inputs, not catalog guesses</h2>
 
-<p>TariffShield is useful when the merchant's real problem is not “how do I display a prettier number?” but “how do I stop cross-border duty logic from rotting in the catalog?”</p>
-<p>Use it to tighten the inputs that both DDP and duties-at-checkout models depend on:</p>
+<p>Neither DDP nor duties at checkout can rescue weak customs data. Before presenting a number to a customer, confirm the filing facts and keep unsupported cases number-free.</p>
+<p>Review the inputs that both models depend on:</p>
 <ul>
-<li>SKU-level duty lookup and verification,</li>
-<li>origin and tariff classification review workflows,</li>
-<li>market-by-market duty comparison before you promise a checkout experience,</li>
-<li>faster identification of products where tariff changes materially change margin.</li>
+<li>the exact destination-country tariff classification,</li>
+<li>documented country of origin and any preference claim,</li>
+<li>customs value and the applicable special-duty headings,</li>
+<li>the entry date and official authority in force at that time.</li>
 </ul>
-<p>If you are trying to decide which model your store can actually support, start with the duty calculator and test your highest-risk products first: <a href="/duty/">TariffShield duty calculator</a>.</p>
+<p>For a supported U.S. scenario, the <a href="/duty/">Attahir Labs duty calculator</a> will return a result only when exact caller-supplied inputs match signed active coverage. It does not select or validate those filing facts.</p>
 <h2>FAQ</h2>
 <h3>Is DDP always better for conversion than duties at checkout?</h3>
 <p>No. DDP often improves the delivery experience because the customer is less likely to face a bill on arrival, but it can also force the merchant to hide or absorb costs that should have changed pricing strategy earlier. Duties at checkout can convert well when customers trust the transparency and the estimates are credible.</p>
@@ -264,6 +275,12 @@
 <p>Usually duties at checkout is the safer first operating model unless the merchant has unusually strong cross-border ops and margin room. Large catalogs create more classification, origin, and exception-handling complexity, which makes blanket DDP promises harder to defend.</p>
 <h2>Disclaimer</h2>
 <p>This article is operational guidance for ecommerce merchants, not legal, customs, brokerage, or tax advice. Duty treatment depends on the product, origin, valuation, destination-country rules, and current policy measures. CBP states that it makes the final determination of the correct U.S. duty rate, and merchants handling meaningful import volume should use a qualified customs broker, trade advisor, or binding-ruling process where appropriate.[2]</p>
+<aside class="blog-app-cta" data-app-cta="tariffshield">
+<p class="blog-cta-eyebrow">For supported U.S. duty scenarios</p>
+<h2>Check exact U.S. duty inputs inside Shopify</h2>
+<p>TariffShield gives authenticated Shopify merchants a read-only Exact Duty workflow for the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time they supply. It does not classify goods, infer origin or program eligibility, or return a number for unsupported coverage. Verify filing facts with official sources or a qualified customs professional.</p>
+<a data-app-store-cta href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">View TariffShield on the Shopify App Store →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.trade.gov/know-your-incoterms" rel="noopener" target="_blank">Trade.gov on Incoterms</a></li><li id="ref-2"><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP on determining duty rates</a></li><li id="ref-3"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC Harmonized Tariff Schedule</a></li><li id="ref-4"><a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html" rel="noopener" target="_blank">CBSA Customs Tariff</a></li><li id="ref-5"><a href="https://www.wto.org/english/tratop_e/tariffs_e/tariffs_e.htm" rel="noopener" target="_blank">WTO tariffs overview</a></li><li id="ref-6"><a href="https://www.cbsa-asfc.gc.ca/publications/dm-md/d11/d11-6-11-eng.html" rel="noopener" target="_blank">CBSA memorandum on DDP responsibility</a></li><li id="ref-7"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-8"><a href="https://www.cbp.gov/trade/nafta/guide-customs-procedures/country-origin-marking" rel="noopener" target="_blank">U.S. Customs and Border Protection: Country of Origin Marking</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

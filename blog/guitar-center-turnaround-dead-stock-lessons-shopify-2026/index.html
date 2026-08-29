@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
         @media (max-width: 640px) {
             main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
@@ -99,6 +99,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -200,6 +202,12 @@
 <p>Include SKU and variant, receipt date, units on hand, recent sales pace, weeks of cover, margin, return rate, decision, owner, next review date, and final outcome. This turns a one-time cleanup into a repeatable operating system.</p>
 <h2>Disclaimer</h2>
 <p>This article is general business and inventory-management information, not financial, accounting, legal, or insolvency advice. The Guitar Center discussion is based on the cited Modern Retail report. Verify current facts and adapt thresholds to your category, cash position, contracts, tax treatment, and local requirements before acting.</p>
+<aside class="blog-app-cta" data-app-cta="stockclearance">
+<p class="blog-cta-eyebrow">For slow and aging Shopify inventory</p>
+<h2>Turn inventory signals into a reviewed clearance plan</h2>
+<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. The merchant still reviews and executes pricing, discount, bundle, collection, and disposal decisions.</p>
+<a data-app-store-cta href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">View StockClearance on the Shopify App Store →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.modernretail.co/operations/guitar-center-plots-its-turnaround-with-a-focus-on-serving-serious-musicians/" rel="noopener" target="_blank">modernretail.co</a></li><li id="ref-2"><a href="https://help.shopify.com/en/manual/products/inventory" rel="noopener" target="_blank">inventory documentation</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

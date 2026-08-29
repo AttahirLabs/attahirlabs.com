@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
     
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
@@ -92,6 +92,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -108,7 +110,6 @@
             <figcaption>A useful import-duty visual should show the actual operating work: classification, origin, product-specific tariff checks, landed cost, and margin impact.</figcaption>
         </figure>
 
-<p><strong>SEO title:</strong> Customs Broker Due-Diligence Checklist for Shopify Merchants <strong>Meta description:</strong> A practical customs broker due-diligence checklist for Shopify merchants importing into the US or Canada, with questions to ask before signing a power of attorney. <strong>Target keyword:</strong> Customs broker due-diligence checklist for Shopify merchants <strong>Target publish date:</strong> 2026-06-08 <strong>App tie-in:</strong> TariffShield</p>
 <p>---</p>
 <p>Hiring a customs broker is one of those Shopify growth steps that feels simple until it is not. A supplier is ready to ship. Your freight forwarder says they can "handle customs." A broker sends over a power of attorney. The warehouse wants an ETA. Meanwhile, the duty rate, product classification, country of origin, and importer recordkeeping obligations all sit behind a set of forms most merchants only see after the shipment is already moving.</p>
 <p>The mistake is treating the broker as a checkout add-on instead of a compliance partner.</p>
@@ -299,11 +300,17 @@
 <p>A broker can help identify correct classifications, duty preference opportunities, documentation gaps, and special-duty exposure. They should not promise artificial duty reduction. Legal duty planning depends on accurate classification, valuation, origin, sourcing, and trade-program eligibility.</p>
 <h3>Do I still need a landed-cost tool if I have a broker?</h3>
 <p>Yes, if you make buying or pricing decisions before goods ship. A broker helps with compliance and entry filing. A landed-cost tool helps you estimate duties and margin impact earlier, while you still have time to change price, supplier, shipping terms, or purchase quantity.</p>
-<h2>CTA: check landed cost before the broker files</h2>
+<h2>Check landed cost before the broker files</h2>
 <p>A customs broker is essential once a shipment is moving. But margin protection starts earlier, when you are deciding whether to buy the inventory at all.</p>
-<p>Use the free <a href="/duty/">Attahir Labs duty calculator</a> to estimate duties and landed cost before you commit to a purchase order. If you run a Shopify store and want tariff visibility closer to your product workflow, TariffShield helps merchants think about duty exposure before customs costs surprise the business.</p>
+<p>For a supported U.S. scenario, use the free <a href="/duty/">Attahir Labs duty calculator</a> only after you have the exact caller-supplied HTSUS, MFN, Chapter 99, customs-value, and entry-time inputs. It does not choose or validate those facts, and unsupported coverage returns no number. Use your broker or another qualified customs professional for the filing decision.</p>
 <h2>Disclaimer</h2>
 <p>This article is general educational information for Shopify merchants and ecommerce operators. It is not legal, tax, customs, accounting, or brokerage advice. Customs rules change, tariff measures can be product-specific, and the correct treatment of a shipment depends on facts such as classification, value, origin, destination, importer identity, and documentation. Confirm requirements with a licensed customs broker, qualified trade counsel, CBP, CBSA, or the relevant customs authority before filing entries or making compliance decisions.</p>
+<aside class="blog-app-cta" data-app-cta="tariffshield">
+<p class="blog-cta-eyebrow">For supported U.S. duty scenarios</p>
+<h2>Check exact U.S. duty inputs inside Shopify</h2>
+<p>TariffShield gives authenticated Shopify merchants a read-only Exact Duty workflow for the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time they supply. It does not classify goods, infer origin or program eligibility, or return a number for unsupported coverage. Verify filing facts with official sources or a qualified customs professional.</p>
+<a data-app-store-cta href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">View TariffShield on the Shopify App Store →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cbp.gov/document/publications/reasonable-care" rel="noopener" target="_blank">reasonable care guidance</a></li><li id="ref-2"><a href="https://www.ecfr.gov/current/title-19/chapter-I/part-111" rel="noopener" target="_blank">eCFR customs broker rules</a></li><li id="ref-3"><a href="https://www.cbsa-asfc.gc.ca/services/cb-cd/menu-eng.html" rel="noopener" target="_blank">licensed customs broker</a></li><li id="ref-4"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/inventoryitem" rel="noopener" target="_blank">country of origin and country-specific HS-code fields</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/import/guide-eng.html" rel="noopener" target="_blank">licensed customs broker</a></li><li id="ref-6"><a href="https://www.ecfr.gov/current/title-19/chapter-I/part-111/subpart-C/section-111.36" rel="noopener" target="_blank">19 CFR 111.36, Relations with unlicensed persons</a></li><li id="ref-7"><a href="https://www.cbp.gov/trade/programs-administration/customs-brokers/modernization" rel="noopener" target="_blank">Customs Broker Modernization Regulations</a></li><li id="ref-8"><a href="https://www.federalregister.gov/documents/2022/10/18/2022-22445/modernization-of-the-customs-broker-regulations" rel="noopener" target="_blank">"Modernization of the Customs Broker Regulations," October 18, 2022</a></li><li id="ref-9"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">Harmonized Tariff Schedule</a></li><li id="ref-10"><a href="https://www.wto.org/english/tratop_e/cusval_e/cusval_e.htm" rel="noopener" target="_blank">Customs valuation gateway</a></li><li id="ref-11"><a href="https://www.wto.org/english/docs_e/legal_e/20-val_01_e.htm" rel="noopener" target="_blank">Agreement on Implementation of Article VII of GATT 1994</a></li><li id="ref-12"><a href="https://www.ecfr.gov/current/title-19/chapter-I/part-163" rel="noopener" target="_blank">19 CFR Part 163, Recordkeeping</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

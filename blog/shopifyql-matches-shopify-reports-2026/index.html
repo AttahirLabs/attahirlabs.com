@@ -13,12 +13,12 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
-  <title>ShopifyQL MATCHES Reporting QA: Keep Shopify Segments and Reports Aligned in 2026 | Attahir Labs</title>
-  <meta name="description" content="ShopifyQL MATCHES lets Analytics use customer-behavior filters. Use this QA playbook to keep report logic, customer segments, and store-change audit trails aligned.">
-  <meta name="keywords" content="ShopifyQL MATCHES reporting QA, Shopify reports customer behavior, Shopify segments and reports">
+  <title>ShopifyQL MATCHES: Keep Shopify Segments and Reports Aligned in 2026 | Attahir Labs</title>
+  <meta name="description" content="Use ShopifyQL MATCHES to align customer-behavior filters across Analytics reports and customer segments, document query logic, and validate results.">
+  <meta name="keywords" content="ShopifyQL MATCHES, Shopify reports customer behavior, Shopify segments and reports">
   <link rel="canonical" href="https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/">
-  <meta property="og:title" content="ShopifyQL MATCHES Reporting QA: Keep Shopify Segments and Reports Aligned in 2026">
-  <meta property="og:description" content="ShopifyQL MATCHES lets Analytics use customer-behavior filters. Use this QA playbook to keep report logic, customer segments, and store-change audit trails aligned.">
+  <meta property="og:title" content="ShopifyQL MATCHES: Keep Shopify Segments and Reports Aligned in 2026">
+  <meta property="og:description" content="Use ShopifyQL MATCHES to align customer-behavior filters across Analytics reports and customer segments, document query logic, and validate results.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/">
     <meta property="og:image" content="https://attahirlabs.com/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg">
@@ -33,7 +33,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "ShopifyQL MATCHES Reporting QA: Keep Shopify Segments and Reports Aligned in 2026",
+      "headline": "ShopifyQL MATCHES: Keep Shopify Segments and Reports Aligned in 2026",
       "datePublished": "2026-04-24",
       "dateModified": "2026-06-06",
       "author": {
@@ -46,10 +46,10 @@
         "name": "Attahir Labs",
         "url": "https://attahirlabs.com"
       },
-      "description": "ShopifyQL MATCHES lets Analytics use customer-behavior filters. Use this QA playbook to keep report logic, customer segments, and store-change audit trails aligned.",
+      "description": "Use ShopifyQL MATCHES to align customer-behavior filters across Analytics reports and customer segments, document query logic, and validate results.",
       "mainEntityOfPage": "https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/",
       "keywords": [
-        "ShopifyQL MATCHES reporting QA, Shopify reports customer behavior, Shopify segments and reports",
+        "ShopifyQL MATCHES, Shopify reports customer behavior, Shopify segments and reports",
         "StoreChangelog",
         "Analytics",
         "Shopify"
@@ -130,6 +130,8 @@
             .nav-links a { display: block; font-size: 0.85rem; }
         }
 </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -138,7 +140,7 @@
 <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ShopifyQL MATCHES</div>
 <div class="meta"><span class="tag">StoreChangelog</span><span class="tag">Analytics</span><span class="tag">Shopify</span><span>April 24, 2026 · Updated June 06, 2026 · 14 min read</span></div>
 <div class="source-note-hidden"><p><em>Primary sources: Shopify changelog announcement<sup class="citation"><a href="#ref-1">[1]</a></sup>, ShopifyQL syntax reference<sup class="citation"><a href="#ref-2">[2]</a></sup>, Segment query language reference<sup class="citation"><a href="#ref-3">[3]</a></sup>.</em></p></div>
-<h1 id="shopifyql-matches-reporting-qa-keep-shopify-segments-and-reports-aligned-in-2026">ShopifyQL MATCHES Reporting QA: Keep Shopify Segments and Reports Aligned in 2026</h1>
+<h1 id="shopifyql-matches-keep-shopify-segments-and-reports-aligned-in-2026">ShopifyQL MATCHES: Keep Shopify Segments and Reports Aligned in 2026</h1>
 <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
 <img alt="Editorial photo of an ecommerce analytics desk with blurred dashboards and order notes, representing ShopifyQL MATCHES customer behavior reporting." decoding="async" fetchpriority="high" height="2160" src="/assets/blog/shopifyql-matches-shopify-reports-2026/hero.jpg" width="3840"/>
 <figcaption>Behavior-aware reporting is most useful when analytics, segments, and operational audit trails stay aligned.</figcaption>
@@ -146,7 +148,7 @@
 <p>A lot of Shopify changelog items look small until you think about what they do to a merchant workflow.</p>
 <p>This is one of those.</p>
 <p>Shopify has officially added <strong>MATCHES</strong> to the ShopifyQL editor in Analytics, which means merchants can now filter reports by <strong>what customers did</strong>, not only by static customer attributes. Shopify’s own example is simple and useful: you can look for customers who purchased at least two products in the last 30 days. More importantly, Shopify says the same MATCHES logic already used in <strong>Customer Segmentation</strong> now works in <strong>Analytics</strong>, so segments and reports can stay aligned instead of drifting apart.</p>
-<p><strong>June 2026 refresh note:</strong> this guide was retargeted around reporting QA instead of raw syntax. The syntax matters, but the higher-value merchant problem is keeping Shopify segments, Analytics reports, and store-change evidence aligned when teams make decisions from customer behavior data.</p>
+<p><strong>June 2026 source check:</strong> Shopify's documentation confirms that MATCHES can bring customer-behavior conditions into Analytics. The higher-value merchant task is keeping segment logic, reports, and store-change evidence aligned when teams make decisions from that data.</p>
 <p>That is a bigger operational improvement than it sounds.</p>
 <p>For most stores, the real pain is not “we lack data.” The pain is that the logic used by marketing, merchandising, retention, and reporting often drifts into four slightly different versions of the truth. One team is looking at a saved segment, another is looking at a custom report, and a third is exporting data to a spreadsheet just to recreate the condition they actually care about.</p>
 <p>MATCHES does not solve analytics by itself. But it does make Shopify’s native reporting layer more behavior-aware, more consistent, and more useful for merchants who want to answer practical questions faster.</p>
@@ -312,7 +314,7 @@ GROUP BY customer_id</code></pre>
 </div>
 <h2 id="why-this-is-a-storechangelog-problem-not-just-an-analytics-problem">Why this is a StoreChangelog problem, not just an analytics problem</h2>
 
-<p>This is where the StoreChangelog tie-in becomes practical.</p>
+<p>This is where a structured store change log becomes practical.</p>
 <p>The actual app behind the product tracks store changes across resources like products, collections, inventory, themes, and order updates, surfaces recent change logs, supports filters by actor and action, flags suspicious activity patterns, and can revert supported product-field changes from the changelog view. That matters because analytics improvements are only half the truth.</p>
 <p>If a report changes, you still need to know what in the store changed around the same time.</p>
 <p>Did a staff member change product titles? Did someone edit pricing? Did a theme change affect a collection page? Did a bulk update happen off-hours? Did a store workflow change and quietly alter the customer behavior you are now measuring?</p>
@@ -366,6 +368,12 @@ GROUP BY customer_id</code></pre>
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>This article is for operational and educational purposes only. It is not legal, tax, or platform-compliance advice. Shopify platform behavior, syntax support, and analytics capabilities can change over time, so merchants should verify important workflows in their own admin before relying on them for financial, lifecycle, or compliance decisions.</p>
+<aside class="blog-resource-cta" data-resource-cta="storechangelog-preview" data-app-availability="in-preparation">
+<p class="blog-cta-eyebrow">Product status: in preparation</p>
+<h2>Use the change-log workflow now</h2>
+<p>StoreChangelog is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
+<a data-resource-link href="/apps/storechangelog/">View StoreChangelog release status →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did" rel="noopener" target="_blank">Shopify changelog announcement</a></li><li id="ref-2"><a href="https://shopify.dev/docs/api/shopifyql" rel="noopener" target="_blank">ShopifyQL syntax reference</a></li><li id="ref-3"><a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference" rel="noopener" target="_blank">Segment query language reference</a></li></ol></section></article>
   <footer>© 2026 Attahir Labs. Practical tools and guides for cross-border commerce and Shopify operations.</footer>
 </body>

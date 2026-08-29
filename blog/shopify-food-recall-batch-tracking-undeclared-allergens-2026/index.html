@@ -88,6 +88,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -124,7 +126,22 @@
 <h2>What the latest FDA recall shows</h2>
 
 <p>The openFDA enforcement record for the Bridge Mix recall contains the fields a merchant should want in its own internal incident file:</p>
-<p>| Field | FDA record detail | |---|---| | Status | Ongoing | | Classification | Class II | | Recalling firm | WE R NUTS LLC | | Product | Uncle Giuseppe's Marketplace Milk Chocolate Bridge Mix, 11 oz | | UPC | 812235023309 | | Distribution | New York and New Jersey | | Quantity | 254 units | | Reason | Undeclared allergens: cashews, milk, and soy | | Code information | Sell-by dates from 9/4/26 to 11/6/26 | | Recall initiation date | 2026-04-20 | | FDA report date | 2026-05-20 |</p>
+<table>
+<thead><tr><th>Field</th><th>FDA record detail</th></tr></thead>
+<tbody>
+<tr><td>Status</td><td>Ongoing</td></tr>
+<tr><td>Classification</td><td>Class II</td></tr>
+<tr><td>Recalling firm</td><td>WE R NUTS LLC</td></tr>
+<tr><td>Product</td><td>Uncle Giuseppe's Marketplace Milk Chocolate Bridge Mix, 11 oz</td></tr>
+<tr><td>UPC</td><td>812235023309</td></tr>
+<tr><td>Distribution</td><td>New York and New Jersey</td></tr>
+<tr><td>Quantity</td><td>254 units</td></tr>
+<tr><td>Reason</td><td>Undeclared allergens: cashews, milk, and soy</td></tr>
+<tr><td>Code information</td><td>Sell-by dates from 9/4/26 to 11/6/26</td></tr>
+<tr><td>Recall initiation date</td><td>2026-04-20</td></tr>
+<tr><td>FDA report date</td><td>2026-05-20</td></tr>
+</tbody>
+</table>
 <p>FDA Enforcement Reports are public summaries of recall information. They are not a substitute for legal advice or direct supplier/regulator instructions, but they are useful because they show the operational shape of recalls: product description, code information, distribution, quantity, classification, and reason.[2]</p>
 <p>For Shopify operators, the biggest lesson is that the recall boundary is usually defined by specific product identifiers, not by a whole catalog category. A merchant may sell many candies, many chocolate products, or many private-label items from one supplier. The recall response has to narrow from broad category to affected containers, dates, batches, locations, and orders.</p>
 <p>That narrowing is impossible if batch data lives only in supplier PDFs, inbox threads, warehouse notes, or staff memory.</p>
@@ -196,7 +213,21 @@
 
 <p>Every recall response should create a simple incident log. It does not need to be fancy. It needs to be complete enough that another person can understand what happened.</p>
 <p>Use this structure:</p>
-<p>| Log field | What to record | |---|---| | Trigger | FDA report, supplier email, customer complaint, regulator contact, or internal check | | Time opened | Date and time the merchant first saw the issue | | Source URL or file | Official report, supplier notice, or saved evidence | | Affected products | Product, variant, SKU, UPC, batch, lot, sell-by dates | | Locations checked | Shopify locations, stores, 3PLs, pickup stock, returns area | | Actions taken | Sales paused, inventory quarantined, listings updated, orders exported | | Customer scope | Number of potentially affected orders and customers | | Notifications | Who was notified, by what channel, and when | | Supplier follow-up | Credits, replacement stock, root-cause notes | | Closure criteria | What has to be true before the incident is closed |</p>
+<table>
+<thead><tr><th>Log field</th><th>What to record</th></tr></thead>
+<tbody>
+<tr><td>Trigger</td><td>FDA report, supplier email, customer complaint, regulator contact, or internal check</td></tr>
+<tr><td>Time opened</td><td>Date and time the merchant first saw the issue</td></tr>
+<tr><td>Source URL or file</td><td>Official report, supplier notice, or saved evidence</td></tr>
+<tr><td>Affected products</td><td>Product, variant, SKU, UPC, batch, lot, and sell-by dates</td></tr>
+<tr><td>Locations checked</td><td>Shopify locations, stores, 3PLs, pickup stock, and returns area</td></tr>
+<tr><td>Actions taken</td><td>Sales paused, inventory quarantined, listings updated, and orders exported</td></tr>
+<tr><td>Customer scope</td><td>Number of potentially affected orders and customers</td></tr>
+<tr><td>Notifications</td><td>Who was notified, by what channel, and when</td></tr>
+<tr><td>Supplier follow-up</td><td>Credits, replacement stock, and root-cause notes</td></tr>
+<tr><td>Closure criteria</td><td>What has to be true before the incident is closed</td></tr>
+</tbody>
+</table>
 <p>FDA Enforcement Reports model some of this structure at the public-reporting level: status, classification, product description, distribution pattern, recall number, reason, dates, and code information.[2] A merchant's internal log should connect those external facts to Shopify-specific inventory, orders, and customer actions.</p>
 <p>The FSMA traceability rule is more specific for covered foods, but even merchants outside its direct scope benefit from the principle: keep records that make product movement traceable.[4]</p>
 <h2>Supplier and label data should be reviewed before the next purchase order</h2>
@@ -265,6 +296,12 @@
 <p>No. Recalls are serious. Merchants should follow regulator, supplier, counsel, and platform instructions. This article is an operational checklist for Shopify inventory preparedness, using public FDA enforcement and food-allergen references as operational context.2<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
 <h2>Disclaimer</h2>
 <p>This article is for general operational information for Shopify merchants. It is not legal, regulatory, medical, or food-safety advice. For an actual recall, follow official regulator instructions, supplier notices, counsel guidance, and applicable platform requirements.</p>
+<aside class="blog-app-cta" data-app-cta="shelflife">
+<p class="blog-cta-eyebrow">For dated and batch-sensitive inventory</p>
+<h2>Keep batches, expiry dates, and recall records connected</h2>
+<p>ShelfLife helps Shopify merchants track expiry dates, batches, supplier lots, and FEFO workflows while keeping recall-ready operational records. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
+<a data-app-store-cta href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://api.fda.gov/food/enforcement.json?search=product_description:%22Bridge%20Mix%22" rel="noopener" target="_blank">FDA openFDA food enforcement report</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/enforcement-reports" rel="noopener" target="_blank">FDA Enforcement Reports</a></li><li id="ref-3"><a href="https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/food-allergies" rel="noopener" target="_blank">FDA food allergen guidance</a></li><li id="ref-4"><a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods" rel="noopener" target="_blank">FDA FSMA food traceability rule</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

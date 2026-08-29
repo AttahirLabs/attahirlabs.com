@@ -2,7 +2,6 @@
 metaTitle: "Shopify Benchmark Comparisons Are Going Away"
 title: "Shopify Benchmark Comparisons Are Going Away. Save This Data Now."
 metaDescription: "A practical checklist for Shopify merchants replacing Benchmark Comparisons with targets, baselines, and store-owned reporting habits."
-appTieIn: "StockClearance, StoreChangelog, TariffShield"
 ---
 # Shopify Benchmark Comparisons Are Going Away. Save This Data Now.
 
@@ -100,11 +99,12 @@ If you used it for marketing performance, watch conversion rate, sessions by cha
 
 If you used it for merchandising, watch product-level sell-through, aged inventory, margin by product group, and discount dependency. A storewide average can hide a product category that is quietly rotting on the shelf.
 
-<div class="cta-box stockclearance-cta">
-<h3>Replacing benchmarks with inventory action?</h3>
-<p>StockClearance helps Shopify merchants turn sell-through, aged-inventory, and margin signals into dead-stock, markdown, bundle, and clearance decisions.</p>
-<a class="cta-button" href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">Add StockClearance from the Shopify App Store →</a>
-</div>
+<aside class="blog-app-cta" data-app-cta="stockclearance">
+<p class="blog-cta-eyebrow">For slow and aging Shopify inventory</p>
+<h2>Turn inventory signals into a reviewed clearance plan</h2>
+<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. The merchant still reviews and executes pricing, discount, bundle, collection, and disposal decisions.</p>
+<a data-app-store-cta href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">View StockClearance on the Shopify App Store →</a>
+</aside>
 
 If you used it for finance, watch gross margin, contribution margin after shipping and discounts, average order value, refund rate, and cash tied up in inventory. This is where peer benchmarks are most dangerous. Looking "normal" compared with other stores does not mean the business is profitable.
 
@@ -138,17 +138,17 @@ Before the feature disappears, do this:
 
 If you work with an agency, accountant, growth contractor, or ops lead, send them the note now. The annoying version of this problem is not the feature removal. It is discovering in June that someone's monthly report depended on it.
 
-## Where Attahir Labs fits
+## Turn targets into operating decisions
 
-This change reinforces a bigger point: Shopify merchants need more store-owned operating context. Shopify is explicitly pointing merchants away from Benchmark Comparisons and toward targets or guidance in the [removal notice](https://changelog.shopify.com/posts/benchmark-comparisons-in-analytics-will-be-removed-on-may-19th), which fits the same direction.
+This change reinforces a bigger point: Shopify merchants need more store-owned operating context. Shopify is explicitly pointing merchants away from Benchmark Comparisons and toward targets or guidance in the [removal notice](https://changelog.shopify.com/posts/benchmark-comparisons-in-analytics-will-be-removed-on-may-19th).
 
-That is the direction our apps already push.
+Replacing a peer comparison with a target only helps when someone owns the next action. For inventory, that means reviewing aged stock, sell-through, margin, and capital at risk on a fixed cadence, then deciding whether to improve merchandising, bundle, mark down, stop reordering, or exit.
 
-StockClearance is about aging inventory, sell-through, margin recovery, and turning dead stock into decisions. If inventory targets are part of your replacement scorecard, our [dead stock clearance guide](/blog/dead-stock-clearance-q2-2026/) is a useful companion. StoreChangelog is about knowing what changed in your store instead of guessing after the numbers move. TariffShield connects the same idea to margin pressure from duties and landed cost; our [Shopify import duties guide](/blog/shopify-import-duties/) explains that workflow. ShelfLife, WarrantyTracker, and AccessShield all sit in the same lane too: less vague dashboard watching, more specific operational signal.
+If inventory targets are part of your replacement scorecard, the [dead stock clearance guide](/blog/dead-stock-clearance-q2-2026/) provides a practical review workflow.
 
 Benchmark Comparisons going away does not create that need. It just makes the need easier to see.
 
-A merchant does not need another pretty chart saying they are "above average." They need to know which products are tying up cash, which changes affected the store, which costs are about to hit margin, and what to do next.
+A merchant does not need another pretty chart saying they are "above average." They need to know which products are tying up cash and what reviewed action comes next.
 
 ## FAQ
 

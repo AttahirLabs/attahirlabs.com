@@ -88,6 +88,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -140,7 +142,14 @@
 
 <p>One reason these projects go sideways is terminology.</p>
 <p>People say “HS code” when they really mean one of three different things:</p>
-<p>| Term | Practical meaning | Why it matters | |---|---|---| | HS code | The global Harmonized System classification structure | Good common-language shorthand, especially at the 6-digit level | | HTS code | The U.S. tariff schedule expression of that structure | Needed when you are evaluating imports into the U.S. | | Country-specific tariff code | The destination market's version of the tariff schedule | Canada, the U.S., the EU, and others extend or apply HS differently |</p>
+<table>
+<thead><tr><th>Term</th><th>Practical meaning</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>HS code</td><td>The global Harmonized System classification structure</td><td>Good common-language shorthand, especially at the 6-digit level</td></tr>
+<tr><td>HTS code</td><td>The U.S. tariff schedule expression of that structure</td><td>Needed when evaluating imports into the U.S.</td></tr>
+<tr><td>Country-specific tariff code</td><td>The destination market's version of the tariff schedule</td><td>Canada, the U.S., the EU, and others extend or apply HS differently</td></tr>
+</tbody>
+</table>
 <p>USITC explains that the U.S. HTS is based on the international Harmonized System and that HS 4- and 6-digit categories are subdivided into U.S. 8-digit and 10-digit levels. CBSA makes the parallel point for Canada: the Canadian Customs Tariff is based on the Harmonized Commodity Description and Coding System and shows preferential tariff treatment where applicable.</p>
 <p>So the clean operating rule is this:</p>
 <ul>
@@ -293,15 +302,22 @@
 <p>A static spreadsheet dies quietly. A maintenance loop at least gives you a chance.</p>
 <h2>Common mistakes that make the catalog look ready when it is not</h2>
 <p>These are the patterns worth hunting for immediately:</p>
-<p>| Mistake | Why it breaks duty planning | |---|---| | Reusing one code across a broad category | Similar products can fall into different headings or subheadings | | Treating ship-from as origin | Logistics country and legal origin are not the same thing | | Ignoring bundles and kits | Set treatment may not match the standalone item | | Using undocumented defaults forever | Temporary assumptions become permanent silent errors | | Trusting only keyword search | Legal notes and exclusions still control classification | | Never rechecking after supplier changes | Same SKU can carry different duty exposure after a sourcing shift |</p>
+<table>
+<thead><tr><th>Mistake</th><th>Why it breaks duty planning</th></tr></thead>
+<tbody>
+<tr><td>Reusing one code across a broad category</td><td>Similar products can fall into different headings or subheadings</td></tr>
+<tr><td>Treating ship-from as origin</td><td>Logistics country and legal origin are not the same thing</td></tr>
+<tr><td>Ignoring bundles and kits</td><td>Set treatment may not match the standalone item</td></tr>
+<tr><td>Using undocumented defaults forever</td><td>Temporary assumptions become permanent silent errors</td></tr>
+<tr><td>Trusting only keyword search</td><td>Legal notes and exclusions still control classification</td></tr>
+<tr><td>Never rechecking after supplier changes</td><td>The same SKU can carry different duty exposure after a sourcing shift</td></tr>
+</tbody>
+</table>
 <p>If you clean up just those six failure modes, your checkout-duty setup will already be in better shape than most merchants' first pass.</p>
 <h2>Where TariffShield fits</h2>
 
-<p>TariffShield is useful at the planning layer, not the legal-final-answer layer.</p>
-<p>That distinction matters.</p>
-<p>TariffShield helps merchants identify which products are missing origin data, which catalog assumptions are still provisional, which SKUs may be margin-sensitive under current tariff assumptions, and which items deserve broker review before those assumptions create pricing problems.</p>
-<p>It does <strong>not</strong> replace CBP, USITC, CBSA, or a customs broker. It does <strong>not</strong> determine importer-of-record status or remit duties at checkout. It helps merchants clean the product data and pricing workflow before customs ambiguity turns into under-collected duties, margin erosion, or support tickets.</p>
-<p>If you want the fastest operational next step after this checklist, use the <strong><a href="/duty/">Attahir Labs duty calculator</a></strong> for a quick scenario check, then use TariffShield when you need catalog-scale visibility across many SKUs.</p>
+<p>TariffShield's verified public scope is a read-only Exact Duty workflow for supported U.S. scenarios after the merchant supplies the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time. It does not inspect the catalog for missing fields, choose classifications, infer origin, validate preference claims, or determine whether an unsupported program applies.</p>
+<p>Use this checklist to clean and verify the source data first. Then use TariffShield only when the exact U.S. filing facts fall inside its active signed coverage, and keep unsupported cases number-free.</p>
 <h2>FAQ</h2>
 <p><strong>Do I need an HS code for every Shopify product?</strong></p>
 <p>If you are selling imported physical goods cross-border, you should aim for complete classification coverage on the SKUs that actually create customs exposure. The minimum professional standard is not “some products have codes.” It is “our imported catalog has enough classification coverage that we know where the unknowns still are.”</p>
@@ -318,10 +334,16 @@
 <p><strong>Does country of origin matter even if the base duty rate is low?</strong></p>
 <p>Yes. Origin can affect trade-measure exposure, preference eligibility, and the practical tariff outcome. It also affects whether your margin model is credible when policy changes hit specific countries or product groups.</p>
 <p><strong>Can TariffShield replace a customs broker?</strong></p>
-<p>No. TariffShield is for tariff planning, catalog readiness, and margin visibility. Final classification, origin treatment, and entry decisions should still be validated against official tariff schedules, CBP or CBSA guidance, and qualified trade professionals where needed.</p>
+<p>No. TariffShield does not classify goods, infer origin or preference eligibility, validate filing facts, or cover every product and tariff program. Confirm final treatment against official tariff schedules and a qualified customs professional.</p>
 <h2>Disclaimer</h2>
 <p>This article is provided for general informational and operational-planning purposes only and does not constitute legal, customs, brokerage, tax, or trade-compliance advice. Final duty treatment depends on the exact tariff classification, country of origin, valuation, destination-market rules, applicable trade measures, and the facts in force at the time of entry. Always confirm final customs treatment with the official tariff schedule, CBP or CBSA guidance as applicable, your customs broker, and qualified trade counsel before making pricing, sourcing, or checkout-compliance decisions.</p>
-<p>If your catalog is still a mix of confirmed data and educated guesses, clean that up before you trust the customer-facing math. Start with the <strong><a href="/duty/">Attahir Labs duty calculator</a></strong> for quick checks, and use <strong>TariffShield</strong> when you need a SKU-by-SKU view of which products are missing origin, missing tariff logic, or carrying margin risk under current duty assumptions.</p>
+<p>If your catalog is still a mix of confirmed data and educated guesses, clean that up before you trust customer-facing math. The Attahir Labs tools deliberately return no number when exact caller-supplied U.S. inputs do not match active supported coverage.</p>
+<aside class="blog-app-cta" data-app-cta="tariffshield">
+<p class="blog-cta-eyebrow">For supported U.S. duty scenarios</p>
+<h2>Check exact U.S. duty inputs inside Shopify</h2>
+<p>TariffShield gives authenticated Shopify merchants a read-only Exact Duty workflow for the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time they supply. It does not classify goods, infer origin or program eligibility, or return a number for unsupported coverage. Verify filing facts with official sources or a qualified customs professional.</p>
+<a data-app-store-cta href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">View TariffShield on the Shopify App Store →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cbp.gov/trade/programs-administration/determining-duty-rates" rel="noopener" target="_blank">CBP on determining duty rates</a></li><li id="ref-2"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC Harmonized Tariff Schedule</a></li><li id="ref-3"><a href="https://www.cbp.gov/trade/nafta/guide-customs-procedures/country-origin-marking" rel="noopener" target="_blank">CBP country of origin marking guidance</a></li><li id="ref-4"><a href="https://www.wto.org/english/tratop_e/tariffs_e/tariffs_e.htm" rel="noopener" target="_blank">WTO tariffs overview</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html" rel="noopener" target="_blank">CBSA customs tariff</a></li><li id="ref-6"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-7"><a href="https://www.cbp.gov/document/publications/rules-origin" rel="noopener" target="_blank">U.S. Customs and Border Protection: Rules of Origin</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

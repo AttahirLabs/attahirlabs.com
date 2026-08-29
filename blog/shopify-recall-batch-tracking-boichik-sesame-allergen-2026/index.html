@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
         @media (max-width: 640px) {
             main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
@@ -99,6 +99,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -204,6 +206,12 @@
 <p>No. This is operational guidance for ecommerce recordkeeping. Recall obligations depend on product category, jurisdiction, supply-chain role, and regulator instructions. Merchants should rely on official sources such as FDA recall resources and qualified professionals for legal and food safety decisions. FDA recalls, market withdrawals, and safety alerts<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
 <h2>Disclaimer</h2>
 <p>This article is operational guidance for Shopify merchants and is not legal, medical, or food safety advice. Always verify recall details against official sources, follow regulator and supplier instructions, and work with qualified counsel or food safety professionals when a recall affects your store.</p>
+<aside class="blog-app-cta" data-app-cta="shelflife">
+<p class="blog-cta-eyebrow">For dated and batch-sensitive inventory</p>
+<h2>Keep batches, expiry dates, and recall records connected</h2>
+<p>ShelfLife helps Shopify merchants track expiry dates, batches, supplier lots, and FEFO workflows while keeping recall-ready operational records. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
+<a data-app-store-cta href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://api.fda.gov/food/enforcement.json?search=recall_number:%22H-1133-2026%22" rel="noopener" target="_blank">FDA openFDA enforcement record</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" rel="noopener" target="_blank">FDA recalls, market withdrawals, and safety alerts</a></li><li id="ref-3"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/Product" rel="noopener" target="_blank">Shopify Admin API product object</a></li><li id="ref-4"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/ProductVariant" rel="noopener" target="_blank">Shopify Admin API product variant object</a></li><li id="ref-5"><a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/Order" rel="noopener" target="_blank">Shopify Admin API order object</a></li><li id="ref-6"><a href="https://www.cdc.gov/food-safety/" rel="noopener" target="_blank">CDC food safety information</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

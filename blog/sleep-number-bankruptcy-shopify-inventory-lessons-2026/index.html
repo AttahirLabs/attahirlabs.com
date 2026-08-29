@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
         @media (max-width: 640px) {
             main { width: calc(100% - 2rem); max-width: 358px; margin-left: 1rem; margin-right: 1rem; }
@@ -105,6 +105,8 @@
         .stockclearance-cta .cta-button { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 430px); margin-top: 1rem; padding: 0.85rem 1.05rem; border-radius: 10px; background: #0f766e; color: #ffffff; font-weight: 800; text-decoration: none; line-height: 1.25; }
         .stockclearance-cta .cta-button:hover { background: #115e59; text-decoration: none; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -124,17 +126,12 @@
 <p>Sleep Number's Chapter 11 filing is not just a distressed-retail headline. For Shopify merchants, it is a blunt reminder that inventory problems become cash problems long before the final restructuring news arrives.</p>
 <p>Retail Dive reported on June 12, 2026 that Sleep Number filed for bankruptcy and entered a deal to combine with Sleep Country Canada through a court-supervised sale process. The report notes that Sleep Country Canada is the stalking horse bidder, Sleep Number expects day-to-day operations to continue, and its most recent quarter showed net sales down 19% to $319 million while the company was off-loading unsold inventory: Retail Dive coverage<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
 <p>The direct SEC filing says Sleep Number and subsidiaries filed voluntary Chapter 11 petitions on June 12, 2026, entered a stalking-horse asset purchase agreement with a Sleep Country Canada subsidiary, and set a $415 million cash purchase price plus assumed liabilities for substantially all assets, subject to court-supervised bidding and approval: Sleep Number Form 8-K<sup class="citation"><a href="#ref-2">[2]</a></sup>.</p>
-<p><strong>Update, August 1:</strong> Sleep Number’s investor-relations release says the bankruptcy court approved the sale of substantially all assets and ongoing business operations to Sleep Country Canada after a competitive auction. The release described closing as expected by July 31, subject to remaining conditions.<sup class="citation"><a href="#ref-3">[3]</a></sup> This development does not change the merchant lesson: set inventory decision points while the business still has choices, rather than waiting for an exit process to force them.</p>
+<p><strong>Update, August 3:</strong> Sleep Number’s Form 8-K says the bankruptcy court entered a Sale Order authorizing the asset sale and that the parties completed the sale on July 31.<sup class="citation"><a href="#ref-3">[3]</a></sup> This development does not change the merchant lesson: set inventory decision points while the business still has choices, rather than waiting for an exit process to force them.</p>
 <p>The Shopify lesson is simple: slow stock is not a merchandising inconvenience. Left alone, it becomes a financing problem, a markdown problem, and eventually a strategy problem.</p>
 <h2>Quick answer</h2>
 <p>Sleep Number's bankruptcy does not mean every merchant with slow inventory is in danger. It does mean merchants should stop treating clearance as a last-minute sale event. The SEC filing says the Chapter 11 cases accelerated about $672.5 million in aggregate principal debt as of the petition date, while the proposed debtor-in-possession financing could provide up to about $260 million: Sleep Number Form 8-K<sup class="citation"><a href="#ref-2">[2]</a></sup>. Retail Dive adds that the company's sales decline came with gross-margin pressure partly because it was off-loading unsold inventory: Retail Dive coverage<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
 <p>For Shopify merchants, the operating response is a weekly inventory-risk review: identify aging SKUs, separate temporary slow movers from true dead stock, choose an action before cash gets trapped, and measure whether the action recovered margin or just created noise.</p>
 <p>StockClearance exists for that workflow.</p>
-<div class="cta-box stockclearance-cta">
-<h3>Turn aging inventory into a clearance plan</h3>
-<p>StockClearance helps Shopify merchants spot dead, slow-moving, and seasonal SKUs, see capital at risk, and launch markdown, flash-sale, bundle, or clearance actions before stock gets stuck.</p>
-<a class="cta-button" href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">Add StockClearance from the Shopify App Store →</a>
-</div>
 <h2>What happened at Sleep Number</h2>
 <p>The source-of-record filing says Sleep Number initiated a Chapter 11 process in the Southern District of New York and entered a stalking-horse asset sale agreement with SNBR, Inc., a wholly owned subsidiary of Sleep Country Canada Inc. The proposed transaction is for substantially all assets, with a $415 million purchase price in cash plus assumed liabilities, and remains subject to higher or better bids, court approval, antitrust waiting periods, and other conditions: Sleep Number Form 8-K<sup class="citation"><a href="#ref-2">[2]</a></sup>.</p>
 <p>Retail Dive's operating summary adds the merchant-relevant detail: Sleep Number had been working through a difficult mattress market, running hundreds of stores, and facing a quarter where net sales fell 19% while gross margin contracted partly because the company was off-loading unsold inventory: Retail Dive coverage<sup class="citation"><a href="#ref-1">[1]</a></sup>.</p>
@@ -153,7 +150,16 @@
 <p>A dashboard that nobody acts on is not an inventory system. It is a rearview mirror.</p>
 <h2>Slow inventory becomes expensive in stages</h2>
 <p>Inventory usually does not become dead stock overnight. It moves through stages.</p>
-<p>| Stage | What it looks like | Best action | | --- | --- | --- | | Early slowdown | Sell-through drops, but margin is still intact | Test merchandising, bundles, email segmentation, and reorder cuts | | Watchlist | Days of inventory rises and variants age unevenly | Set a decision date and stop automatic reorders | | Clearance candidate | The product needs demand creation or price action | Use targeted markdowns, bundles, or collection placement | | Dead stock | Demand is weak and carrying cost is no longer justified | Liquidate, donate, archive, or write down | | Cash drag | Slow inventory limits buying power for winners | Tighten purchase orders and reorder rules |</p>
+<table>
+<thead><tr><th>Stage</th><th>What it looks like</th><th>Best action</th></tr></thead>
+<tbody>
+<tr><td>Early slowdown</td><td>Sell-through drops, but margin is still intact</td><td>Test merchandising, bundles, email segmentation, and reorder cuts</td></tr>
+<tr><td>Watchlist</td><td>Days of inventory rises and variants age unevenly</td><td>Set a decision date and stop automatic reorders</td></tr>
+<tr><td>Clearance candidate</td><td>The product needs demand creation or price action</td><td>Use targeted markdowns, bundles, or collection placement</td></tr>
+<tr><td>Dead stock</td><td>Demand is weak and carrying cost is no longer justified</td><td>Liquidate, donate, archive, or write down</td></tr>
+<tr><td>Cash drag</td><td>Slow inventory limits buying power for winners</td><td>Tighten purchase orders and reorder rules</td></tr>
+</tbody>
+</table>
 <p>Sleep Number's public filing is a large-company event, but the operating sequence is familiar. Sales pressure, margin pressure, inventory off-loading, debt pressure, and strategic alternatives can become connected: Sleep Number Form 8-K<sup class="citation"><a href="#ref-2">[2]</a></sup>. Shopify merchants should intervene before those problems connect.</p>
 <h2>What merchants should review this week</h2>
 <p>Start with the products that tie up the most cash. Then review their movement, margin, seasonality, and next action.</p>
@@ -240,7 +246,13 @@
 <p>A product that keeps getting reordered because it used to sell, while current sell-through, margin, and days on hand say the demand has changed.</p>
 <h2>Disclaimer</h2>
 <p>This article is general business and inventory-management information, not financial, legal, bankruptcy, investment, or accounting advice. Merchants should verify their own inventory, margin, financing, and supplier data before making purchasing, liquidation, or pricing decisions.</p>
-<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.retaildive.com/news/sleep-number-files-bankruptcy-inks-merger-deal/822775/" rel="noopener" target="_blank">Retail Dive coverage</a></li><li id="ref-2"><a href="https://www.sec.gov/Archives/edgar/data/827187/000095010326008891/dp248362_8k.htm" rel="noopener" target="_blank">Sleep Number Form 8-K</a></li><li id="ref-3"><a href="https://ir.sleepnumber.com/news/news-details/2026/Sleep-Number-Receives-Court-Approval-for-Sale-to-Sleep-Country-Canada/default.aspx" rel="noopener" target="_blank">Sleep Number: court approval release</a></li></ol></section></article>
+<aside class="blog-app-cta" data-app-cta="stockclearance">
+<p class="blog-cta-eyebrow">For slow and aging Shopify inventory</p>
+<h2>Turn inventory signals into a reviewed clearance plan</h2>
+<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. The merchant still reviews and executes pricing, discount, bundle, collection, and disposal decisions.</p>
+<a data-app-store-cta href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">View StockClearance on the Shopify App Store →</a>
+</aside>
+<section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.retaildive.com/news/sleep-number-files-bankruptcy-inks-merger-deal/822775/" rel="noopener" target="_blank">Retail Dive coverage</a></li><li id="ref-2"><a href="https://www.sec.gov/Archives/edgar/data/827187/000095010326008891/dp248362_8k.htm" rel="noopener" target="_blank">Sleep Number June 12 Form 8-K</a></li><li id="ref-3"><a href="https://www.sec.gov/Archives/edgar/data/827187/000095010326011603/dp251018_8k.htm" rel="noopener" target="_blank">Sleep Number August 3 Form 8-K</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
 </body>

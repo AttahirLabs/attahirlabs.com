@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
 
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
@@ -92,6 +92,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -126,14 +128,29 @@
 <li>The DOJ did <strong>not</strong> say accessibility no longer matters. It explicitly said the substantive rule remains in place and litigation risk remains. (Federal Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</li>
 <li>If you sell online, the smart move is still to fix your site.</li>
 </ul>
-<p>&lt;div class="callout callout-warn"&gt; &lt;p&gt;&lt;strong&gt;The part most merchants will miss:&lt;/strong&gt; this was a delay for public entities, not a pardon for private ecommerce stores. If your store is inaccessible today, you still have business risk, conversion loss, and legal exposure.&lt;/p&gt; &lt;/div&gt;</p>
-<p>&lt;div class="cta-box"&gt; &lt;h3&gt;Turn the deadline news into a storefront fix list&lt;/h3&gt; &lt;p&gt;AccessShield is the Shopify workflow we are building for real accessibility issue tracking: page-level findings, theme remediation notes, and repeat checks after app or theme changes. Start with the free checker, then use the results to prioritize the shopping paths that block customers.&lt;/p&gt; &lt;p&gt;&lt;a href="/tools/access-checker/"&gt;Run the free accessibility checker&lt;/a&gt; · &lt;a href="/blog/wcag-accessibility-guide/"&gt;Review the WCAG merchant guide&lt;/a&gt;&lt;/p&gt; &lt;/div&gt;</p>
+<div class="callout callout-warn">
+<p><strong>The part most merchants will miss:</strong> this was a delay for public entities, not a change to private ecommerce obligations. An inaccessible store can still create customer, business, and legal risk.</p>
+</div>
 <h2>What exactly changed</h2>
 <p>The official rule is an <strong>Interim Final Rule</strong> from the DOJ's Civil Rights Division. It revises the compliance dates for the 2024 Title II web and mobile accessibility rule. The original rule adopted <strong>WCAG 2.1 Level AA</strong> as the technical standard for covered state and local government websites and apps. The April 2026 update did not throw that standard out. It just moved the deadlines. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>, Federal Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>Here are the new deadline buckets:</p>
-<p>| Covered entity | Old deadline | New deadline | |---|---:|---:| | State and local governments with population 50,000+ | April 24, 2026 | April 26, 2027 | | Public entities with population under 50,000 and special district governments | April 26, 2027 | April 26, 2028 |</p>
+<table>
+<thead><tr><th>Covered entity</th><th>Old deadline</th><th>New deadline</th></tr></thead>
+<tbody>
+<tr><td>State and local governments with population 50,000+</td><td>April 24, 2026</td><td>April 26, 2027</td></tr>
+<tr><td>Public entities with population under 50,000 and special district governments</td><td>April 26, 2027</td><td>April 26, 2028</td></tr>
+</tbody>
+</table>
 
-<p>| Question | Public entities under Title II | Private Shopify merchants | |---|---|---| | Did the DOJ extend the deadline? | Yes | No direct deadline extension announced here | | Is WCAG-style remediation still relevant? | Yes | Yes | | Did litigation risk disappear? | No | No | | Should teams keep fixing accessibility issues now? | Yes | Yes |</p>
+<table>
+<thead><tr><th>Question</th><th>Public entities under Title II</th><th>Private Shopify merchants</th></tr></thead>
+<tbody>
+<tr><td>Did the DOJ extend the deadline?</td><td>Yes</td><td>No direct deadline extension announced here</td></tr>
+<tr><td>Is WCAG-style remediation still relevant?</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Did litigation risk disappear?</td><td>No</td><td>No</td></tr>
+<tr><td>Should teams keep fixing accessibility issues now?</td><td>Yes</td><td>Yes</td></tr>
+</tbody>
+</table>
 <p>The DOJ's reasoning matters. It said it had overestimated technological readiness and institutional capacity. It flagged staffing shortages, budget limits, technical complexity, and uncertainty around evolving WCAG-linked materials. That's a pretty blunt admission that accessibility work is real engineering and content work, not a checkbox you slap on four days before a deadline. (Federal Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
 <p>And honestly, that part tracks. Anyone who has actually cleaned up a real theme knows the ugly truth. Accessibility is not one ticket. It's navigation, semantics, forms, contrast, modals, filters, product media, app embeds, PDFs, and all the weird edge cases merchants forget until a customer hits them first.</p>
 <p>The ADA.gov planning materials say public entities should inventory their web content, understand their deadline bucket, learn the rule, and start with concrete remediation steps instead of waiting until the last minute. That's written for governments, but the operational lesson applies just as cleanly to ecommerce teams: you need ownership, a plan, and a running fix list. If you leave accessibility as a vague someday project, it turns into expensive chaos. (ADA.gov first steps<sup class="citation"><a href="#ref-3">[3]</a></sup>, ADA.gov fact sheet<sup class="citation"><a href="#ref-2">[2]</a></sup>)</p>
@@ -216,7 +233,6 @@
 <li>keep checking after theme edits and app changes</li>
 </ul>
 <p>That's a lot more honest than the overlay sales pitch. And it maps much better to what the DOJ's own materials imply: accessibility requires ongoing operational work, not a fake finish line. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>, Federal Register<sup class="citation"><a href="#ref-1">[1]</a></sup>)</p>
-<p>&lt;div class="cta-box"&gt; &lt;h3&gt;Need a starting point?&lt;/h3&gt; &lt;p&gt;If your Shopify store has accessibility debt, start with the free checker and the WCAG guide, then use AccessShield-style tracking to turn findings into a fix list for your highest-traffic templates before the next theme update.&lt;/p&gt; &lt;p&gt;&lt;a href="/tools/access-checker/"&gt;Run the checker&lt;/a&gt; · &lt;a href="/blog/wcag-accessibility-guide/"&gt;Read the WCAG guide&lt;/a&gt; · &lt;a href="/contact.html"&gt;Contact Attahir Labs&lt;/a&gt;&lt;/p&gt; &lt;/div&gt;</p>
 <h2>My practical advice if you run a Shopify store</h2>
 <p>If you read this headline and felt relief, fine. But use that relief productively.</p>
 <p>Do this over the next two weeks:</p>
@@ -259,6 +275,12 @@
 <p>Audit the real shopping flows, fix the obvious failures first, and keep a remediation log. Fancy promises are cheap. Verified fixes are what matter.</p>
 <h2>Disclaimer</h2>
 <p>This article is for informational purposes only and does not constitute legal advice or accessibility compliance advice. Accessibility obligations depend on your jurisdiction, business model, and the specific functionality of your site. For legal interpretation, talk to qualified counsel. For technical remediation, validate issues against official sources and real testing workflows such as the DOJ materials and rule text. (ADA.gov<sup class="citation"><a href="#ref-2">[2]</a></sup>, Federal Register<sup class="citation"><a href="#ref-1">[1]</a></sup>) Information is current as of June 20, 2026.</p>
+<aside class="blog-resource-cta" data-resource-cta="access-checker">
+<p class="blog-cta-eyebrow">Free storefront check</p>
+<h2>Scan the storefront customers actually use</h2>
+<p>Use the free Attahir Labs accessibility checker to find common automated WCAG signals on a public storefront. An automated scan is a starting point, not legal certification or a substitute for manual keyboard, screen-reader, and user testing.</p>
+<a data-resource-link href="/tools/access-checker/">Run the free accessibility checker →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web" rel="noopener" target="_blank">Federal Register</a></li><li id="ref-2"><a href="https://www.ada.gov/resources/2024-03-08-web-rule/" rel="noopener" target="_blank">ADA.gov</a></li><li id="ref-3"><a href="https://www.ada.gov/resources/web-rule-first-steps/" rel="noopener" target="_blank">ADA.gov first steps</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

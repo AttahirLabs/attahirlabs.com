@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DOJ Delays ADA Website Accessibility Deadlines, But Shopify Merchants Still Have Risk"
+title: "ADA Website Accessibility Deadline 2026: What Shopify Merchants Need to Know"
 date: 2026-04-21
 categories: [accessibility, compliance, breaking]
 description: "The DOJ delayed ADA website accessibility deadlines for government sites, but Shopify merchants did not get a free pass. Here is what changed, what did not, and the checklist to use now."
@@ -179,11 +179,12 @@ A useful workflow looks like this:
 
 That's a lot more honest than the overlay sales pitch. And it maps much better to what the DOJ's own materials imply: accessibility requires ongoing operational work, not a fake finish line. ([ADA.gov](https://www.ada.gov/resources/2024-03-08-web-rule/), [Federal Register](https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web))
 
-<div class="cta-box">
-  <h3>Need a starting point?</h3>
-  <p>If your Shopify store has accessibility debt, start with the WCAG guide and use it as a remediation checklist for your highest-traffic templates before the next theme update.</p>
-  <p><a href="/blog/wcag-accessibility-guide/">Read the WCAG guide</a> · <a href="/contact.html">Contact Attahir Labs</a></p>
-</div>
+<aside class="blog-resource-cta" data-resource-cta="access-checker">
+<p class="blog-cta-eyebrow">Free storefront check</p>
+<h2>Scan the storefront customers actually use</h2>
+<p>Use the free Attahir Labs accessibility checker to find common automated WCAG signals on a public storefront. An automated scan is a starting point, not legal certification or a substitute for manual keyboard, screen-reader, and user testing.</p>
+<a data-resource-link href="/tools/access-checker/">Run the free accessibility checker →</a>
+</aside>
 
 ## My practical advice if you run a Shopify store
 

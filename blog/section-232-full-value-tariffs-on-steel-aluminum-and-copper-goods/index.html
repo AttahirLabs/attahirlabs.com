@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
     
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
@@ -92,6 +92,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -245,9 +247,9 @@
 <h3>Should ecommerce sellers care about Section 232?</h3>
 
 <p>Yes. Sellers importing cookware, fixtures, tools, hardware, equipment parts, electronics components, or other metal-bearing goods may face higher landed costs. A small change in duty treatment can erase margin on marketplace products.</p>
-<h2>CTA: Check Your Duty Exposure Before You Import</h2>
+<h2>Check Your Duty Exposure Before You Import</h2>
 
-<p>If your product contains steel, aluminum, or copper, do not wait until entry filing to estimate the tariff. Use <a href="/duty/">TariffShield's duty calculator</a> to model landed cost, compare supplier scenarios, and flag products that need broker or customs counsel review before the shipment moves.</p>
+<p>If your product contains steel, aluminum, or copper, do not wait until entry filing to verify the tariff treatment. Start with the exact HTSUS and Chapter 99 facts from the official authorities and your customs professional. The <a href="/duty/">Attahir Labs duty calculator</a> returns a supported U.S. planning result only when caller-supplied inputs match active signed coverage; it does not determine metal content, classification, origin, derivative scope, or supplier eligibility.</p>
 <p>The following official and specialist sources support the article body citations.</p>
 <ul>
 <li>Federal Register, "Strengthening Actions Taken To Adjust Imports of Aluminum, Steel, and Copper Into the United States," Proclamation 11021, published April 9, 2026<sup class="citation"><a href="#ref-1">[1]</a></sup>.</li>
@@ -262,6 +264,12 @@
 <h2>Disclaimer</h2>
 
 <p>This article is for general informational purposes only and is not legal, tax, customs, or trade compliance advice. Tariff treatment depends on the exact product, HTS classification, country of origin, entry date, Chapter 99 reporting, product composition, and current agency guidance. Importers should consult a licensed customs broker or qualified trade counsel before relying on any tariff position.</p>
+<aside class="blog-app-cta" data-app-cta="tariffshield">
+<p class="blog-cta-eyebrow">For supported U.S. duty scenarios</p>
+<h2>Check exact U.S. duty inputs inside Shopify</h2>
+<p>TariffShield gives authenticated Shopify merchants a read-only Exact Duty workflow for the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time they supply. It does not classify goods, infer origin or program eligibility, or return a number for unsupported coverage. Verify filing facts with official sources or a qualified customs professional.</p>
+<a data-app-store-cta href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">View TariffShield on the Shopify App Store →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.federalregister.gov/documents/2026/04/09/2026-06960/strengthening-actions-taken-to-adjust-imports-of-aluminum-steel-and-copper-into-the-united-states" rel="noopener" target="_blank">Federal Register Proclamation 11021, April 2026 Section 232 full-value proclamation</a></li><li id="ref-2"><a href="https://www.federalregister.gov/documents/2026/06/04/2026-11314/further-adjusting-the-tariff-regimes-for-imports-of-aluminum-steel-and-copper-into-the-united-states" rel="noopener" target="_blank">Federal Register Proclamation 11032, June 2026 Section 232 update</a></li><li id="ref-3"><a href="https://www.bis.gov/about-bis/bis-leadership-and-offices/SIES/section-232-investigations/section-232-steel-aluminum" rel="noopener" target="_blank">BIS Section 232 steel and aluminum overview</a></li><li id="ref-4"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC HTS lookup</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/publications/cn-ad/cn25-33-eng.html" rel="noopener" target="_blank">CBSA Customs Notice 25-33</a></li><li id="ref-6"><a href="https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds544_e.htm" rel="noopener" target="_blank">WTO DS544 dispute page</a></li><li id="ref-7"><a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" rel="noopener" target="_blank">Tax Foundation tariff tracker</a></li><li id="ref-8"><a href="https://www.federalregister.gov/documents/2025/02/28/2025-03439/addressing-the-threat-to-national-security-from-imports-of-copper" rel="noopener" target="_blank">Federal Register, "Addressing the Threat to National Security From Imports of Copper," Executive Order 14220, published February 28, 2025</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

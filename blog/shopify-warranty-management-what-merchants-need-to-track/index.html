@@ -88,6 +88,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -162,7 +164,7 @@
 <li>uploaded documents or photos</li>
 </ul>
 <p>This is one reason warranty apps keep converging on self-service registration, proof capture, and searchable claim records. Merchant workflow research consistently points in the same direction: easier registration, proof-of-purchase upload, serial validation, and one dashboard instead of spreadsheet chaos. If your bigger issue is policy design before tooling, see the related guide on <a href="/blog/warranty-policy-reduce-refunds/">writing a warranty policy that reduces refunds</a>.</p>
-<p>For WarrantyTracker specifically, the current documented safe claims are practical and grounded: product-specific warranty configuration, public registration forms, QR-code registration links, searchable registration records, claim status workflow, certificate download where plan allows, CSV export where plan allows, and analytics for claim rates and reasons. That is the right shape of workflow to support — operational visibility, not magical automation.</p>
+<p>A useful warranty workflow should cover product-level terms, registration evidence, searchable records, claim status, exports, and trend reporting. The goal is operational visibility: a shared record of coverage and claim decisions, not a promise that software can decide every case automatically.</p>
 <h3>4. Coverage status and expiry</h3>
 <p>Your team should be able to answer coverage status instantly.</p>
 <p>Track:</p>
@@ -241,7 +243,6 @@
 <li>whether the shipment is being made pursuant to warranty</li>
 <li>broker or carrier instructions used</li>
 </ul>
-<p>This is also where TariffShield or a duty calculator becomes useful. Even if warranty management is your main workflow problem, replacement shipments can still create landed-cost surprises, support escalations, or double-charge complaints if your customs treatment is sloppy.</p>
 <h3>8. Sales-tax and remote-sales consequences</h3>
 <p>Most warranty claims are not about sales tax first, but the surrounding transactions can still affect compliance.</p>
 <p>The Tax Foundation notes that after *South Dakota v. Wayfair*<sup class="citation"><a href="#ref-9">[9]</a></sup>, states can impose collection obligations on remote sellers even without physical presence, and most sales-tax states now apply remote-seller or marketplace rules. That matters because warranty-related refunds, replacement charges, shipping charges, and channel mix can complicate recordkeeping.</p>
@@ -282,9 +283,8 @@
 <li>you only discover product-quality spikes after reviews get ugly</li>
 </ul>
 <p>That is usually the moment merchants realize they do not have a warranty policy problem. They have a tracking problem.</p>
-<h2>CTA: if your warranty replacements cross borders, model the duty risk too</h2>
+<h2>If your warranty replacements cross borders, model the duty risk too</h2>
 <p>If your store ships warranty replacements into the U.S. or Canada, do not treat customs as an afterthought. CBP repair/alteration guidance<sup class="citation"><a href="#ref-4">[4]</a></sup>, CBSA warranty repair guidance<sup class="citation"><a href="#ref-5">[5]</a></sup>, declared values, and classification choices can change whether duty or GST/HST applies.</p>
-<p>Use TariffShield or the <a href="/duty/">Attahir duty calculator</a> to pressure-test replacement scenarios before they turn into support tickets, surprise landed costs, or double-charge complaints at delivery.</p>
 <h2>FAQ</h2>
 <h3>1. Does Shopify have built-in warranty management?</h3>
 <p>Not as a complete native workflow. Shopify supports order, return, and exchange operations, but warranty handling usually needs additional tracking for coverage terms, registration, serial numbers, claims, and resolutions.</p>
@@ -304,6 +304,12 @@
 <p>As soon as the workflow involves recurring registrations, serial tracking, claims queues, proof capture, or multiple staff handling cases. Past that point, spreadsheets usually become the bottleneck.</p>
 <h2>Disclaimer</h2>
 <p>This article is for general operational and educational purposes only and is not legal, customs, tax, or accounting advice. Warranty law, sales-tax treatment, and cross-border customs treatment depend on product type, jurisdiction, shipment structure, and the exact facts of the transaction. Review your warranty language, tax handling, and import/export documentation with qualified legal, customs, or tax advisors before changing policy or process.</p>
+<aside class="blog-resource-cta" data-resource-cta="warrantytracker-preview" data-app-availability="in-preparation">
+<p class="blog-cta-eyebrow">Product status: in preparation</p>
+<h2>Build the warranty workflow before choosing software</h2>
+<p>WarrantyTracker is not available to install from the Shopify App Store yet. Use this article's policy, evidence, resolution, and reporting checklist now, and check the product page for current release status.</p>
+<a data-resource-link href="/apps/warrantytracker/">View WarrantyTracker release status →</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.ftc.gov/business-guidance/resources/businesspersons-guide-federal-warranty-law" rel="noopener" target="_blank">FTC's business guide to federal warranty law</a></li><li id="ref-2"><a href="https://shopify.dev/docs/apps/build/orders-fulfillment/returns-apps" rel="noopener" target="_blank">Shopify's return-management app documentation</a></li><li id="ref-3"><a href="https://www.ftc.gov/legal-library/browse/statutes/magnuson-moss-warranty-federal-trade-commission-improvements-act" rel="noopener" target="_blank">FTC's Magnuson-Moss framework</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/nafta/guide-customs-procedures/effect-nafta/en-repairs-alterations" rel="noopener" target="_blank">CBP states that goods exported for repair or alteration in another NAFTA country pursuant to a warranty</a></li><li id="ref-5"><a href="https://www.cbsa-asfc.gc.ca/publications/dm-md/d8/d8-2-10-eng.html" rel="noopener" target="_blank">CBSA states that goods returning to Canada after warranty repair</a></li><li id="ref-6"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">USITC's HTS site</a></li><li id="ref-7"><a href="https://www.wto.org/english/tratop_e/cusval_e/cusval_info_e.htm" rel="noopener" target="_blank">WTO customs valuation overview</a></li><li id="ref-8"><a href="https://ustr.gov/trade-agreements/wto-multilateral-affairs/wto-issues/customs-issues/customs-valuation" rel="noopener" target="_blank">USTR customs valuation summary</a></li><li id="ref-9"><a href="https://taxfoundation.org/taxedu/glossary/internet-sales-tax/" rel="noopener" target="_blank">Tax Foundation notes that after *South Dakota v. Wayfair*</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>
