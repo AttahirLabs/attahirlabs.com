@@ -82,7 +82,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -euo pipefail
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
           curl --fail-with-body --silent --show-error \
             --retry 4 --retry-all-errors --connect-timeout 10 --max-time 30 \
             --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
@@ -110,7 +110,7 @@ jobs:
           SOURCE_TREE_SHA: ${{ steps.release-inputs.outputs.source_tree_sha }}
         run: |
           set -euo pipefail
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
           after="$RUNNER_TEMP/cloudflare-pages-after.json"
           proof="$RUNNER_TEMP/cloudflare-pages-deployment-proof.json"
           test ! -e "$proof"
