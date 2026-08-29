@@ -88,6 +88,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -113,7 +115,17 @@
 <h2>What the FDA recall shows merchants should track</h2>
 <p>The FDA enforcement entry includes several fields merchants should be able to reconstruct for their own products: recalling firm, product description, UPC, product quantity, distribution pattern, reason for recall, recall initiation date, classification date, recall number, and code information. FDA enforcement report<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 <p>Those fields map directly to operational questions inside a Shopify business:</p>
-<p>| Recall fact | Shopify merchant question | |---|---| | Product description and UPC | Which Shopify product, variant, barcode, bundle, or listing used this item? | | Code information or best-by date | Which lots, batches, expiry dates, or receiving dates are affected? | | Product quantity | How many units were received, sold, still on hand, or returned? | | Distribution pattern | Which warehouses, markets, shipping zones, stores, or 3PL nodes touched the batch? | | Recall reason | What exact customer-facing risk language must be communicated? | | Recall dates | When did the store know, when did it act, and what changed after that? |</p>
+<table>
+<thead><tr><th>Recall fact</th><th>Shopify merchant question</th></tr></thead>
+<tbody>
+<tr><td>Product description and UPC</td><td>Which Shopify product, variant, barcode, bundle, or listing used this item?</td></tr>
+<tr><td>Code information or best-by date</td><td>Which lots, batches, expiry dates, or receiving dates are affected?</td></tr>
+<tr><td>Product quantity</td><td>How many units were received, sold, still on hand, or returned?</td></tr>
+<tr><td>Distribution pattern</td><td>Which warehouses, markets, shipping zones, stores, or 3PL nodes touched the batch?</td></tr>
+<tr><td>Recall reason</td><td>What exact customer-facing risk language must be communicated?</td></tr>
+<tr><td>Recall dates</td><td>When did the store know, when did it act, and what changed after that?</td></tr>
+</tbody>
+</table>
 <p>A merchant who cannot answer those questions quickly may still be able to remove a product from the storefront, but they will struggle to run a targeted recall. Without batch data, every unit may have to be treated as risky. That means more customer anxiety, more refunds, more waste, more support volume, and more operational uncertainty.</p>
 <h2>The first 60 minutes after an allergen or labeling alert</h2>
 <p>The first hour is about containment. Do not start with a polished blog-style explanation for customers. Start by preventing additional exposure.</p>
@@ -167,11 +179,37 @@
 <h2>Batch tracking requirements merchants should adopt now</h2>
 <p>Even if a store is not legally required to keep a sophisticated recall system, it should still keep operational batch records for any product where freshness, safety, ingredients, expiration, or supplier traceability matters. The FDA enforcement example identifies a best-by code and product quantity, which are exactly the kinds of details a merchant needs when deciding who is affected. FDA enforcement report<sup class="citation"><a href="#ref-1">[1]</a></sup></p>
 <p>At minimum, track:</p>
-<p>| Field | Why it matters | |---|---| | Supplier and purchase order | Helps identify where the product came from and whether other SKUs are affected. | | Received date | Narrows the likely inventory window. | | Lot or batch code | Connects physical inventory to customer orders. | | Expiry or best-by date | Critical for food, supplements, cosmetics, and perishable goods. | | Warehouse or location | Shows which fulfillment node handled the units. | | Quantity received, sold, on hand, destroyed, returned | Creates a complete recall ledger. | | Shopify product, variant, barcode, and bundle membership | Prevents missing hidden sales paths. | | Action status | Shows whether the batch is active, quarantined, recalled, disposed, or cleared. |</p>
+<table>
+<thead><tr><th>Field</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>Supplier and purchase order</td><td>Helps identify where the product came from and whether other SKUs are affected.</td></tr>
+<tr><td>Received date</td><td>Narrows the likely inventory window.</td></tr>
+<tr><td>Lot or batch code</td><td>Connects physical inventory to customer orders.</td></tr>
+<tr><td>Expiry or best-by date</td><td>Critical for food, supplements, cosmetics, and perishable goods.</td></tr>
+<tr><td>Warehouse or location</td><td>Shows which fulfillment node handled the units.</td></tr>
+<tr><td>Quantity received, sold, on hand, destroyed, and returned</td><td>Creates a complete recall ledger.</td></tr>
+<tr><td>Shopify product, variant, barcode, and bundle membership</td><td>Prevents missing hidden sales paths.</td></tr>
+<tr><td>Action status</td><td>Shows whether the batch is active, quarantined, recalled, disposed, or cleared.</td></tr>
+</tbody>
+</table>
 <p>ShelfLife is built around this kind of workflow: tracking expiry dates, batch status, supplier context, and waste cost before a safety issue turns into a spreadsheet scramble. The point is not to make merchants paranoid. The point is to make the next decision fast, documented, and narrow.</p>
 <h2>A Shopify recall checklist for food, supplement, and cosmetic stores</h2>
 <p>Use this checklist when a supplier, regulator, manufacturer, customer complaint, or internal QA check flags a possible recall.</p>
-<p>| Step | Action | Owner | |---|---|---| | 1 | Save the source notice and open an incident log. | Operations | | 2 | Freeze affected Shopify SKUs, variants, bundles, and subscriptions. | Ecommerce | | 3 | Stop fulfillment and quarantine physical inventory. | Warehouse / 3PL | | 4 | Identify affected lots, best-by dates, suppliers, and locations. | Inventory | | 5 | Export shipped orders by batch or likely batch window. | Operations | | 6 | Draft customer notice with exact product and risk language. | Support / Legal review | | 7 | Update product pages, feeds, automations, and fulfillment instructions. | Ecommerce | | 8 | Process refunds, replacements, disposals, or returns. | Support | | 9 | Reconcile units: sold, contacted, returned, destroyed, cleared. | Inventory | | 10 | Run a post-incident review and fix the data gap. | Founder / Ops lead |</p>
+<table>
+<thead><tr><th>Step</th><th>Action</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Save the source notice and open an incident log.</td><td>Operations</td></tr>
+<tr><td>2</td><td>Freeze affected Shopify SKUs, variants, bundles, and subscriptions.</td><td>Ecommerce</td></tr>
+<tr><td>3</td><td>Stop fulfillment and quarantine physical inventory.</td><td>Warehouse or 3PL</td></tr>
+<tr><td>4</td><td>Identify affected lots, best-by dates, suppliers, and locations.</td><td>Inventory</td></tr>
+<tr><td>5</td><td>Export shipped orders by batch or likely batch window.</td><td>Operations</td></tr>
+<tr><td>6</td><td>Draft customer notice with exact product and risk language.</td><td>Support and legal review</td></tr>
+<tr><td>7</td><td>Update product pages, feeds, automations, and fulfillment instructions.</td><td>Ecommerce</td></tr>
+<tr><td>8</td><td>Process refunds, replacements, disposals, or returns.</td><td>Support</td></tr>
+<tr><td>9</td><td>Reconcile units: sold, contacted, returned, destroyed, and cleared.</td><td>Inventory</td></tr>
+<tr><td>10</td><td>Run a post-incident review and fix the data gap.</td><td>Founder or operations lead</td></tr>
+</tbody>
+</table>
 <p>The last step is where many merchants stop too early. A recall should produce a better system. If the store could not identify lots quickly, add lot tracking. If bundles hid affected units, change bundle records. If support did not know what to say, write a recall macro. If the 3PL could not quarantine by code, change receiving procedures.</p>
 <h2>Prevention: make recall readiness boring</h2>
 <p>Recall readiness should be built into normal receiving and product-maintenance work. When new inventory arrives, record supplier, lot, expiry, quantity, and location before units become available for sale. When a product page is edited, keep enough history to know whether ingredient, allergen, or label information changed. When a bundle is created, record its component SKUs and batches. When inventory is disposed of, returned, or donated, record that too.</p>
@@ -200,6 +238,12 @@
 <p>No. ShelfLife helps with operational tracking and recall readiness, but merchants should consult qualified legal, food-safety, regulatory, or compliance advisors for formal recall obligations; FDA recall resources are the source to monitor for public recall and safety-alert context. FDA recalls and safety alerts<sup class="citation"><a href="#ref-2">[2]</a></sup></p>
 <h2>Disclaimer</h2>
 <p>This article is general ecommerce operations and product-safety workflow information, not legal, medical, regulatory, food-safety, or recall-management advice. Recall duties vary by product category, jurisdiction, facts, and regulator. Merchants should consult qualified legal, regulatory, food-safety, or compliance professionals before making recall decisions or sending formal customer notices.</p>
+<aside class="blog-app-cta" data-app-cta="shelflife">
+<p class="blog-cta-eyebrow">For dated and batch-sensitive inventory</p>
+<h2>Keep batches, expiry dates, and recall records connected</h2>
+<p>ShelfLife helps Shopify merchants track expiry dates, batches, supplier lots, and FEFO workflows while keeping recall-ready operational records. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
+<a data-app-store-cta href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://api.fda.gov/food/enforcement.json?search=product_description%3A%22Einstein%20Bros%20Bagels%20Honey%20Almond%20Double-Whipped%20Shmear%22" rel="noopener" target="_blank">FDA enforcement report</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" rel="noopener" target="_blank">FDA recalls and safety alerts</a></li><li id="ref-3"><a href="https://open.fda.gov/apis/food/enforcement/" rel="noopener" target="_blank">openFDA food enforcement API</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

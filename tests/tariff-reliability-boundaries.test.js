@@ -236,7 +236,7 @@ test('rates table does not interpolate API rows into innerHTML', () => {
 function dutyLinkContexts(html) {
   const content = html.replace(/<nav\b[\s\S]*?<\/nav>/gi, '');
   const contexts = [];
-  for (const match of content.matchAll(/href="\/duty\/"/g)) {
+  for (const match of content.matchAll(/href\s*=\s*(["'])\/duty\/\1/gi)) {
     const anchor = match.index;
     const paragraphStart = content.lastIndexOf('<p', anchor);
     const paragraphEndBefore = content.lastIndexOf('</p>', anchor);
@@ -258,6 +258,25 @@ function dutyLinkContexts(html) {
   return contexts;
 }
 
+// The normalized 70-article CTA contract replaced broad DutyCalc sales links
+// with one reviewed app/resource CTA per article. These are the exact remaining
+// editorial DutyCalc contexts; changing this inventory requires claim review.
+const reviewedDutyLinkedBlogFiles = [
+  'blog/amazon-fba-landed-cost-guide/index.html',
+  'blog/cbp-tariff-refund-portal-live/index.html',
+  'blog/customs-broker-due-diligence-checklist-for-shopify-merchants/index.html',
+  'blog/customs-broker-shopify/index.html',
+  'blog/ddp-vs-duties-at-checkout-for-shopify-how-merchants-actually-handle-import-charges/index.html',
+  'blog/de-minimis-threshold-2026/index.html',
+  'blog/dead-stock-prevention-guide-shopify-slow-movers/index.html',
+  'blog/gamestop-retro-inventory-playbook-2026/index.html',
+  'blog/product-batch-tracking-and-fefo-for-shopify/index.html',
+  'blog/quartz-countertop-tariffs-2026/index.html',
+  'blog/section-232-full-value-tariffs-on-steel-aluminum-and-copper-goods/index.html',
+  'blog/tariff-engineering-legal-ways-to-reduce-import-duties-2026/index.html',
+  'blog/us-drone-tariffs-2026/index.html'
+];
+
 function plainText(html) {
   return html
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
@@ -277,32 +296,113 @@ const positiveCalculatorOverclaims = [
   ['automatic CUSMA/USMCA treatment', /\b(?:calculator|dutycalc|tool)\b[^.!?]{0,180}\b(?:CUSMA|USMCA)\b[^.!?]{0,100}\b(?:automatic|factor(?:ed|s)?\s+in|appl(?:y|ies))\b/i],
   ['automatic CUSMA/USMCA treatment', /\b(?:CUSMA|USMCA)\b[^.!?]{0,150}\b(?:automatic|factor(?:ed|s)?\s+in)\b[^.!?]{0,180}\b(?:calculator|dutycalc|tool)\b/i],
   ['exact, actual, or current duty output', /\b(?:calculator|dutycalc|tool)\b[^.!?]{0,160}\b(?:shows?|returns?|calculates?|gives?|checks?)\b[^.!?]{0,60}\b(?:exact|actual|current)\b[^.!?]{0,80}\b(?:dut(?:y|ies)|tariff|landed cost)\b/i],
-  ['exact, actual, or current duty output', /\b(?:know|see|get|calculate|check)\b[^.!?]{0,50}\b(?:exact|actual|current)\b[^.!?]{0,80}\b(?:dut(?:y|ies)|tariff|landed cost)\b[^.!?]{0,160}\b(?:calculator|dutycalc|tool)\b/i]
+  ['exact, actual, or current duty output', /\b(?:know|see|get|calculate|check)\b[^.!?]{0,50}\b(?:exact|actual|current)\b[^.!?]{0,80}\b(?:dut(?:y|ies)|tariff|landed cost)\b[^.!?]{0,160}\b(?:calculator|dutycalc|tool)\b/i],
+  ['non-duty fee coverage', /\b(?:calculator|dutycalc|tool)\b[^.!?]{0,180}\b(?:calculates?|estimates?|shows?|returns?|includes?|covers?|handles?|accounts? for|factors? in)\b[^.!?]{0,180}\b(?:(?:customs|brokerage|broker|carrier|processing|Amazon|FBA|freight|shipping)\s+(?:fees?|charges?)|tax(?:es)?)\b/i],
+  ['non-duty fee coverage', /\b(?:(?:customs|brokerage|broker|carrier|processing|Amazon|FBA|freight|shipping)\s+(?:fees?|charges?)|tax(?:es)?)\b[^.!?]{0,180}\b(?:calculates?|estimates?|shows?|returns?|includes?|covers?|handles?|accounts? for|factors? in)\b[^.!?]{0,180}\b(?:calculator|dutycalc|tool)\b/i],
+  ['delivered or all-in cost coverage', /\b(?:calculator|dutycalc|tool)\b[^.!?]{0,180}\b(?:calculates?|estimates?|shows?|returns?|includes?|covers?|handles?)\b[^.!?]{0,140}\b(?:delivered(?: import)? cost|all-in(?: landed)? cost|total landed cost|full landed cost)\b/i],
+  ['delivered or all-in cost coverage', /\b(?:delivered(?: import)? cost|all-in(?: landed)? cost|total landed cost|full landed cost)\b[^.!?]{0,180}\b(?:calculates?|estimates?|shows?|returns?|includes?|covers?|handles?)\b[^.!?]{0,180}\b(?:calculator|dutycalc|tool)\b/i]
 ];
 
+const nonUsJurisdiction = '(?:Canada|Canadian|United Kingdom|U\\.?K\\.?|Europe|European Union|E\\.?U\\.?|Mexico|Mexican|Australia|Australian|New Zealand|Japan|Japanese|India|Indian|Vietnam|Vietnamese)';
+const nonUsSupportPatterns = [
+  new RegExp(`\\b${nonUsJurisdiction}\\b[^.!?]{0,180}\\b(?:can|may|should)?\\s*(?:use|try|rely on)\\b[^.!?]{0,100}\\b(?:calculator|dutycalc|tool)\\b`, 'i'),
+  new RegExp(`\\b(?:calculator|dutycalc|tool)\\b[^.!?]{0,180}\\b(?:supports?|works? for|can be used (?:for|in)|estimates? (?:imports? )?(?:for|in))\\b[^.!?]{0,100}\\b${nonUsJurisdiction}\\b`, 'i'),
+  new RegExp(`\\b(?:use|try|rely on)\\b[^.!?]{0,100}\\b(?:calculator|dutycalc|tool)\\b[^.!?]{0,100}\\b(?:for|in|with)\\b[^.!?]{0,60}\\b${nonUsJurisdiction}\\b`, 'i')
+];
+
+function isExplicitlyNegated(value) {
+  const semanticVerbs = [...value.matchAll(/\b(?:enters?|inputs?|accepts?|uses?|appl(?:y|ies)|provides?|checks?|calculates?|estimates?|models?|handles?|includes?|shows?|returns?|gives?|knows?|sees?|gets?|covers?|accounts?|factors?|supports?|supported|works?|worked|tries?|tried|relies?|relied)\b/gi)];
+  const target = semanticVerbs.at(-1);
+  if (!target) return false;
+  const prefix = value.slice(Math.max(0, target.index - 32), target.index);
+  return /(?:\b(?:does|do|can|will|should)\s+not\s+|\b(?:doesn't|don't|cannot|can't|won't|shouldn't)\s*)$/i.test(prefix);
+}
+
+function calculatorClaimFailures(text) {
+  const failures = [];
+  for (const [claim, pattern] of positiveCalculatorOverclaims) {
+    const match = text.match(pattern);
+    if (!match) continue;
+    if (isExplicitlyNegated(match[0])) continue;
+    failures.push(claim);
+  }
+  for (const pattern of nonUsSupportPatterns) {
+    const match = text.match(pattern);
+    if (match && !isExplicitlyNegated(match[0])) failures.push('non-U.S. jurisdiction support');
+  }
+  return [...new Set(failures)];
+}
+
+test('DutyCalc semantic guard rejects fee, all-in-cost, and non-U.S. support implications', () => {
+  assert.ok(
+    calculatorClaimFailures('The duty calculator estimates customs fees, brokerage fees, carrier fees, processing fees, and Amazon fees.').includes('non-duty fee coverage')
+  );
+  assert.ok(
+    calculatorClaimFailures('Use the calculator to calculate delivered cost and all-in landed cost.').includes('delivered or all-in cost coverage')
+  );
+  assert.ok(
+    calculatorClaimFailures('Canadian merchants can use the duty calculator to estimate import duty.').includes('non-U.S. jurisdiction support')
+  );
+  assert.deepEqual(
+    calculatorClaimFailures('The calculator does not calculate customs fees, brokerage fees, carrier fees, processing fees, Amazon fees, or delivered import cost.'),
+    []
+  );
+  assert.deepEqual(
+    calculatorClaimFailures('For Canadian imports, do not use a U.S. calculator result. The free duty calculator supports only U.S. scenarios with exact inputs.'),
+    []
+  );
+});
+
+for (const [name, text, expectedClaim] of [
+  ['tax coverage', 'The duty calculator calculates taxes.', 'non-duty fee coverage'],
+  ['freight coverage', 'The duty calculator estimates freight charges.', 'non-duty fee coverage'],
+  ['explicit Canadian use', 'Use the duty calculator for Canadian imports.', 'non-U.S. jurisdiction support'],
+  ['positive fee claim after unrelated caveat', 'The duty calculator does not classify products, but estimates brokerage fees.', 'non-duty fee coverage']
+]) {
+  test(`DutyCalc semantic guard rejects ${name}`, () => {
+    assert.ok(calculatorClaimFailures(text).includes(expectedClaim));
+  });
+}
+
+test('DutyCalc semantic guard preserves exact-input U.S. wording and genuine disclaimer-only negatives', () => {
+  assert.deepEqual(
+    calculatorClaimFailures('For a supported U.S. exact-input scenario, use the free duty calculator to estimate duty.'),
+    []
+  );
+  assert.deepEqual(
+    calculatorClaimFailures('The calculator does not calculate taxes, freight charges, shipping charges, brokerage fees, or delivered import cost.'),
+    []
+  );
+  assert.deepEqual(
+    calculatorClaimFailures('For Canadian imports, do not use the U.S. duty calculator. It supports only U.S. destinations with exact inputs.'),
+    []
+  );
+});
+
 test('blog DutyCalc links are claim-safe and the repaired CUSMA sources and FAQ schema stay aligned', () => {
-  const blogFiles = fs.readdirSync(path.join(root, 'blog'), { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => path.join('blog', entry.name, 'index.html'))
-    .filter((relative) => fs.existsSync(path.join(root, relative)))
+  const ctaContract = JSON.parse(read('data/blog-cta-contract.json'));
+  const blogFiles = Object.keys(ctaContract.articles)
+    .map((slug) => path.join('blog', slug, 'index.html'))
     .sort();
-  assert.ok(blogFiles.length > 50, 'repository-wide blog scan unexpectedly narrowed');
+  assert.equal(blogFiles.length, 70, 'canonical CTA-contract blog scan unexpectedly narrowed');
 
   let contextCount = 0;
+  const dutyLinkedBlogFiles = [];
   const failures = [];
   for (const relative of blogFiles) {
-    for (const context of dutyLinkContexts(read(relative))) {
+    const contexts = dutyLinkContexts(read(relative));
+    if (contexts.length > 0) dutyLinkedBlogFiles.push(relative);
+    assert.ok(contexts.length <= 1, `${relative} has an unreviewed additional DutyCalc context`);
+    for (const context of contexts) {
       contextCount += 1;
       const text = plainText(context);
-      for (const [claim, pattern] of positiveCalculatorOverclaims) {
-        const match = text.match(pattern);
-        if (!match) continue;
-        if (/\b(?:does not|doesn't|cannot|can't|not)\b/i.test(match[0])) continue;
-        failures.push(`${relative}: ${claim}: ${match[0]}`);
+      for (const claim of calculatorClaimFailures(text)) {
+        failures.push(`${relative}: ${claim}: ${text}`);
       }
     }
   }
-  assert.ok(contextCount > 20, 'too few DutyCalc-linked blog contexts were scanned');
+  assert.deepEqual(dutyLinkedBlogFiles, reviewedDutyLinkedBlogFiles);
+  assert.equal(contextCount, reviewedDutyLinkedBlogFiles.length);
   assert.deepEqual(failures, []);
 
   const cusma = read('blog/cusma-usmca-guide/index.html');

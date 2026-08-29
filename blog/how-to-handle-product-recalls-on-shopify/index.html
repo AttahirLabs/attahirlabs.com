@@ -80,8 +80,8 @@
         .cta-box { position: relative; margin: 2.25rem 0; padding: 1.45rem; border: 1px solid #5eead4; border-top: 5px solid var(--brand); border-radius: 16px; background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12); }
         .cta-box strong { display: block; margin: 0.35rem 0 0.45rem; color: var(--ink); font-size: 1.22rem; line-height: 1.25; }
         .cta-box p { margin-bottom: 0; }
-        .cta-box a[href*="apps.shopify.com/tariffshield"] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
-        .cta-box a[href*="apps.shopify.com/tariffshield"]:hover { background: #115e59; text-decoration: none; }
+        .cta-box a[data-app-store-cta] { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 410px); margin-top: 1.1rem; padding: 0.9rem 1.08rem; border-radius: 11px; background: var(--brand); color: #ffffff; font-weight: 800; text-decoration: none; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22); }
+        .cta-box a[data-app-store-cta]:hover { background: #115e59; text-decoration: none; }
         footer { border-top:1px solid var(--line); color:var(--muted); padding:2rem 1.5rem; text-align:center; }
     
         .citation { font-size: 0.75em; line-height: 0; vertical-align: super; margin-left: 0.12rem; }
@@ -92,6 +92,8 @@
         .references ol { padding-left: 1.4rem; }
         .references li { font-size: 0.95rem; word-break: break-word; overflow-wrap: anywhere; }
     </style>
+    <link rel="stylesheet" href="/blog/blog-cta.css?v=20260829">
+
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
@@ -244,8 +246,6 @@
 <h2>Step 9: Handle Refunds, Replacements, and Cross-Border Costs</h2>
 <p>Refunds and replacements sound simple until shipping, taxes, duties, and inventory systems enter the picture.</p>
 <p>For domestic orders, document whether the refund includes shipping and taxes. For cross-border orders, customers may also ask about import duties, brokerage, VAT/GST/HST, or replacement shipment charges. If your replacement product crosses a border, classify it correctly, use accurate customs descriptions, and avoid declaring misleading values.</p>
-<p>This is where a tariff and duty workflow can save time. Before shipping replacement products internationally, check the likely duty impact with a tool like TariffShield or a duty calculator so support can set accurate expectations and operations can avoid surprise landed costs.</p>
-<p>CTA: If your recall involves cross-border replacement shipments, use the TariffShield duty calculator to estimate duties before you ship replacements: <a href="/duty/">Try the TariffShield duty calculator</a>. For broader import-pricing context, see the Attahir Labs guide to <a href="/blog/shopify-import-duties/">Shopify import duties</a>.</p>
 <h2>Step 10: Close the Loop and Prevent Recurrence</h2>
 <p>A recall is not over when the first email goes out. It is over when the affected products are accounted for, the remedy is delivered, the regulator or supplier requirements are satisfied, and the root cause is addressed.</p>
 <p>After the active recall period, review:</p>
@@ -301,6 +301,12 @@
 <p>Replacement shipments may still require accurate customs documentation, tariff classification, declared value, and tax handling. Depending on the facts, returned or destroyed goods may also raise duty recovery or re-import questions. Check CBP, CBSA, and local customs rules before promising customers that replacements will be duty-free.</p>
 <h2>Disclaimer</h2>
 <p>This article is general information for ecommerce operators and is not legal, regulatory, customs, tax, or product safety advice. Product recall obligations depend on the product, facts, jurisdiction, sales channel, and regulator. If you suspect a product safety or compliance issue, consult qualified counsel and the relevant regulator before relying on any operational checklist.</p>
+<aside class="blog-app-cta" data-app-cta="shelflife">
+<p class="blog-cta-eyebrow">For dated and batch-sensitive inventory</p>
+<h2>Keep batches, expiry dates, and recall records connected</h2>
+<p>ShelfLife helps Shopify merchants track expiry dates, batches, supplier lots, and FEFO workflows while keeping recall-ready operational records. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
+<a data-app-store-cta href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
+</aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://www.cpsc.gov/Business--Manufacturing/Recall-Guidance" rel="noopener" target="_blank">CPSC recall guidance</a></li><li id="ref-2"><a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts" rel="noopener" target="_blank">FDA recall resources</a></li><li id="ref-3"><a href="https://recalls-rappels.canada.ca/en" rel="noopener" target="_blank">Government of Canada recalls and safety alerts portal</a></li><li id="ref-4"><a href="https://www.cbp.gov/trade/basic-import-export" rel="noopener" target="_blank">CBP enforces import rules at the border</a></li><li id="ref-5"><a href="https://hts.usitc.gov/" rel="noopener" target="_blank">U.S. International Trade Commission publishes the Harmonized Tariff Schedule</a></li><li id="ref-6"><a href="https://www.wto.org/english/tratop_e/tbt_e/tbt_e.htm" rel="noopener" target="_blank">World Trade Organization, technical barriers to trade information</a></li><li id="ref-7"><a href="https://www.cbsa-asfc.gc.ca/import/guide-eng.html" rel="noopener" target="_blank">Canada Border Services Agency, importing commercial goods into Canada</a></li><li id="ref-8"><a href="https://taxfoundation.org/topics/tariffs-and-trade/" rel="noopener" target="_blank">Tax Foundation, tariffs and trade policy analysis</a></li></ol></section></article>
 </main>
 <footer>© 2026 Attahir Labs. Informational content only; verify duties with official sources.</footer>

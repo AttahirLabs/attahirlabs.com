@@ -3,7 +3,6 @@ title: "Preferential Duties UK & EU: Reduce Import Costs in 2026"
 slug: "uk-import-duty-post-brexit"
 date: "2026-04-20"
 targetKeyword: "preferential duties UK EU, TCA preferential duty"
-appTieIn: "TariffShield"
 metaTitle: "Preferential Duties UK & EU: Reduce Import Costs in 2026"
 metaDescription: "Use UK-EU TCA preferential duty rules in 2026: commodity codes, origin proof, import VAT, Northern Ireland routing, and landed-cost checks."
 ---
@@ -358,13 +357,13 @@ The UK now has its own tariff schedule, its own trade agreement administration, 
 
 That is why the businesses handling Brexit best in 2026 are not the ones arguing about headlines. They are the ones maintaining clean product classification, origin support, and landed-cost calculations.
 
-## CTA: check your duty exposure before you quote the shipment
+## Verify duty treatment before you quote the shipment
 
 > Sources: [European Commission TCA overview](https://commission.europa.eu/strategy-and-policy/relations-united-kingdom/eu-uk-trade-and-cooperation-agreement_en), [WTO goods schedules, United Kingdom](https://goods-schedules.wto.org/member/united-kingdom).
 
 If you are pricing cross-border goods into the UK, do not rely on memory, supplier assumptions, or old pre-Brexit spreadsheets.
 
-Use the **[TariffShield duty calculator](https://attahirlabs.com/duty/)** to sanity-check commodity-code, origin, and landed-cost assumptions before you publish a price, approve a shipment, or commit margin. It is the fastest way to catch whether a shipment is truly preference-eligible or whether standard duty may still apply.
+Use the official UK and EU sources to verify the exact commodity code, origin, preference eligibility, customs duty, import VAT, and routing before you publish a price, approve a shipment, or commit margin. A qualified customs professional should review filing facts that remain uncertain; do not substitute a U.S. calculator result for UK or EU eligibility or rates.
 
 ## Sources
 
