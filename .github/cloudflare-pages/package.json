@@ -1,0 +1,13 @@
+{
+  "name": "attahirlabs-cloudflare-pages-deployer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned deployment tooling for the Attahir Labs Cloudflare Pages production workflow.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "wrangler": "4.127.1"
+  }
+}

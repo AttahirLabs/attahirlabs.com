@@ -1,65 +1,52 @@
-# Deploying attahirlabs.com — 5 Minutes
+# Deploying attahirlabs.com
 
-This is a static site (pure HTML). Deploy it for free using **Netlify** (recommended) or Vercel.
+Attahir Labs is a static site hosted by the Cloudflare Pages project `attahirlabs`.
+The apex domain and `www` are production aliases for that project. GitHub Pages,
+Netlify, and Vercel are not production deployment targets.
 
----
+## Production release
 
-## Option A: Netlify (Easiest — Drag & Drop)
+Every push to the protected `main` branch runs
+`.github/workflows/deploy-pages.yml`. A manual dispatch is also permitted, but
+the workflow fails closed unless it is running the exact 40-character commit on
+`refs/heads/main` from `AttahirLabs/attahirlabs.com`.
 
-1. Go to [netlify.com](https://netlify.com) and sign up for a free account (use GitHub login)
-2. On your dashboard, drag and drop the **`attahirlabs-website/`** folder onto the page
-3. Netlify will instantly deploy it and give you a URL like `random-name.netlify.app`
-4. **To set up the custom domain `attahirlabs.com`:**
-   - In Netlify: Site settings → Domain management → Add custom domain → `attahirlabs.com`
-   - In your domain registrar (GoDaddy/Namecheap/etc.): Add a CNAME pointing to your Netlify subdomain, or use Netlify's nameservers
-   - SSL is free and auto-configured by Netlify
+The workflow:
 
-**Required URL for Shopify:** `https://attahirlabs.com/privacy.html`
+1. checks out the event SHA and verifies its source tree and clean status;
+2. builds `_site` while excluding Git metadata, workflow tooling, tests, and the
+   output directory itself;
+3. snapshots the current production deployment IDs;
+4. deploys the exact commit with the lockfile-pinned Wrangler CLI;
+5. reads Cloudflare's production deployment API and requires exactly one new,
+   latest, successful `main` deployment bound to that commit; and
+6. uploads a sanitized `cloudflare-pages-deployment-proof` artifact containing
+   the Cloudflare deployment identity, source tree, GitHub run, and timestamp.
 
----
+A successful upload command by itself is not release evidence. The deployment
+proof and production byte-parity checks are the release gates.
 
-## Option B: Vercel (Also Free)
+## Required GitHub configuration
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. From the `attahirlabs-website/` folder:
-   ```bash
-   cd /path/to/attahirlabs-website
-   vercel
-   ```
-3. Follow prompts. Vercel detects static site automatically.
-4. Add custom domain in Vercel dashboard → Domains → `attahirlabs.com`
+- `cloudflare-pages-production` environment secret: `CLOUDFLARE_PAGES_API_TOKEN`
+- Actions variable: `CLOUDFLARE_ACCOUNT_ID`
 
----
+The token must be an account-scoped Cloudflare API token limited to Cloudflare
+Pages write access for the Attahir Labs account. It does not need DNS, Workers,
+KV, D1, SSL, or zone permissions. Never commit or print the token.
 
-## Option C: GitHub Pages (Free, No Account Needed)
+The workflow's `GITHUB_TOKEN` has `contents: read` only. All third-party actions
+and the Wrangler package are pinned; update those pins only through a reviewed
+pull request with the deployment-contract tests passing.
 
-1. Create a new GitHub repo: `attahirlabs-website`
-2. Upload the files from `attahirlabs-website/` to the repo root
-3. Repo settings → Pages → Source: Deploy from branch (main), root (/)
-4. Site is live at `https://yourusername.github.io/attahirlabs-website/`
-5. For custom domain: add `attahirlabs.com` in Pages settings + DNS CNAME record
+## Local verification
 
----
+Run the same deterministic site gate used by pull requests:
 
-## After Deployment — Update Shopify Toml
-
-Once the site is live at `attahirlabs.com`, you need it for the Shopify Partner Dashboard:
-- Privacy Policy URL: `https://attahirlabs.com/privacy.html`
-
----
-
-## Site Structure
-
-```
-attahirlabs-website/
-├── index.html     → Homepage (hero, 5 apps, about, footer)
-├── privacy.html   → Privacy Policy (GDPR/CCPA compliant) ← REQUIRED for Shopify
-├── terms.html     → Terms of Service
-└── contact.html   → Contact page with email addresses
+```bash
+node tests/run-all-tests.js
+git diff --check
 ```
 
-All files are self-contained (no external dependencies, no CDN, no framework).
-
----
-
-_Hiro built this — March 6, 2026_
+The public Shopify policy URL remains:
+`https://attahirlabs.com/privacy.html`.
