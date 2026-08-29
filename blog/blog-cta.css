@@ -23,6 +23,21 @@
   color: #334155;
 }
 
+article table,
+.post-content table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+article li,
+.post-content li {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .blog-cta-eyebrow {
   margin: 0;
   color: #0f766e !important;

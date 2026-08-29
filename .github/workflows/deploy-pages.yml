@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy Cloudflare Pages
 
 on:
   push:
@@ -7,28 +7,63 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: cloudflare-pages-production
   cancel-in-progress: false
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: cloudflare-pages-production
+    defaults:
+      run:
+        shell: bash
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Checkout the event commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ github.sha }}
 
-      - name: Configure Pages
-        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - name: Setup pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: .github/cloudflare-pages/package-lock.json
 
-      - name: Build static artifact
+      - name: Verify immutable release inputs
+        id: release-inputs
+        env:
+          CLOUDFLARE_PAGES_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "AttahirLabs/attahirlabs.com"
+          test "$GITHUB_REF" = "refs/heads/main"
+          case "$GITHUB_EVENT_NAME" in
+            push|workflow_dispatch) ;;
+            *) exit 1 ;;
+          esac
+          test "${#GITHUB_SHA}" -eq 40
+          case "$GITHUB_SHA" in *[!0-9a-f]*) exit 1 ;; esac
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          source_tree_sha=$(git rev-parse 'HEAD^{tree}')
+          test "${#source_tree_sha}" -eq 40
+          case "$source_tree_sha" in *[!0-9a-f]*) exit 1 ;; esac
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test -n "${CLOUDFLARE_PAGES_API_TOKEN:-}"
+          test "$CLOUDFLARE_ACCOUNT_ID" = "6f945ca08a01d636e0b02f37e859d4d5"
+          echo "source_tree_sha=$source_tree_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Build exact static artifact
+        run: |
+          set -euo pipefail
           mkdir _site
           rsync -a \
             --exclude '.git' \
@@ -37,11 +72,82 @@ jobs:
             --exclude '_site' \
             ./ _site/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
-        with:
-          path: _site
+      - name: Install locked deployment tooling
+        working-directory: .github/cloudflare-pages
+        run: npm ci --ignore-scripts
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+      - name: Snapshot current production deployment IDs
+        env:
+          CLOUDFLARE_PAGES_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          curl --fail-with-body --silent --show-error \
+            --retry 4 --retry-all-errors --connect-timeout 10 --max-time 30 \
+            --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
+            --header "Content-Type: application/json" \
+            "$endpoint" > "$RUNNER_TEMP/cloudflare-pages-before.json"
+          node .github/scripts/verify-cloudflare-pages-deployment.mjs \
+            --snapshot "$RUNNER_TEMP/cloudflare-pages-before.json"
+
+      - name: Deploy exact commit to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          .github/cloudflare-pages/node_modules/.bin/wrangler pages deploy _site \
+            --project-name=attahirlabs \
+            --branch=main \
+            --commit-hash="$GITHUB_SHA" \
+            --commit-dirty=false
+
+      - name: Verify the new production deployment
+        env:
+          CLOUDFLARE_PAGES_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          SOURCE_TREE_SHA: ${{ steps.release-inputs.outputs.source_tree_sha }}
+        run: |
+          set -euo pipefail
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          after="$RUNNER_TEMP/cloudflare-pages-after.json"
+          proof="$RUNNER_TEMP/cloudflare-pages-deployment-proof.json"
+          test ! -e "$proof"
+          verified=false
+
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            temporary="$after.$attempt.tmp"
+            if curl --fail-with-body --silent --show-error \
+              --retry 2 --retry-all-errors --connect-timeout 10 --max-time 30 \
+              --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
+              --header "Content-Type: application/json" \
+              "$endpoint" > "$temporary"; then
+              mv "$temporary" "$after"
+              if node .github/scripts/verify-cloudflare-pages-deployment.mjs \
+                --before "$RUNNER_TEMP/cloudflare-pages-before.json" \
+                --after "$RUNNER_TEMP/cloudflare-pages-after.json" \
+                --output "$RUNNER_TEMP/cloudflare-pages-deployment-proof.json" \
+                --account-id "$CLOUDFLARE_ACCOUNT_ID" \
+                --project-name attahirlabs \
+                --commit-sha "$GITHUB_SHA" \
+                --source-tree-sha "$SOURCE_TREE_SHA" \
+                --github-run-id "$GITHUB_RUN_ID" \
+                --github-run-attempt "$GITHUB_RUN_ATTEMPT"; then
+                verified=true
+                break
+              fi
+            fi
+            if [ "$attempt" -lt 12 ]; then sleep 5; fi
+          done
+
+          test "$verified" = true
+
+      - name: Upload sanitized deployment proof
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cloudflare-pages-deployment-proof
+          path: ${{ runner.temp }}/cloudflare-pages-deployment-proof.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
