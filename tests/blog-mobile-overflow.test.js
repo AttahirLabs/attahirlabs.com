@@ -19,7 +19,7 @@ for (const articlePath of canonicalArticles) {
   const article = fs.readFileSync(articlePath, 'utf8');
   assert.match(
     article,
-    /<link\s+rel="stylesheet"\s+href="\/blog\/blog-cta\.css\?v=\d+">/,
+    /<link\s+rel="stylesheet"\s+href="\/blog\/blog-cta\.css\?v=2026082918">/,
     `${path.relative(root, articlePath)} must load the shared mobile guard stylesheet`,
   );
 }
