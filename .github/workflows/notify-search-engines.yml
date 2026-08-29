@@ -40,7 +40,7 @@ jobs:
           test -n "${CLOUDFLARE_PAGES_API_TOKEN:-}"
           test "$CLOUDFLARE_ACCOUNT_ID" = "6f945ca08a01d636e0b02f37e859d4d5"
 
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production&per_page=100"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
           verified=false
           for attempt in $(seq 1 24); do
             response="$RUNNER_TEMP/cloudflare-pages-search-$attempt.json"
