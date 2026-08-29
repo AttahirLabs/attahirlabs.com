@@ -188,6 +188,6 @@ assert.ok(
   'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-06-28<\/lastmod>/, 'sitemap homepage lastmod should reflect the latest homepage update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-08-29<\/lastmod>/, 'sitemap homepage lastmod should reflect the ShelfLife public launch update');
 
 console.log('homepage refresh tests passed');

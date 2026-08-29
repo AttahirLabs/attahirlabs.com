@@ -22,28 +22,65 @@ function assertListingCta(relativePath, label) {
 const homepage = read('index.html');
 const appsHub = read('apps/index.html');
 const appPage = read('apps/shelflife/index.html');
+const sitemap = read('sitemap.xml');
 const homepageJsonLd = [...homepage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
   .map((match) => JSON.parse(match[1]));
 const organization = homepageJsonLd.find((entry) => entry['@type'] === 'Organization');
+const publicApps = [
+  { name: 'StockClearance', url: 'https://apps.shopify.com/stockclearance', price: '0', priceCurrency: 'USD' },
+  { name: 'TariffShield', url: 'https://apps.shopify.com/tariffshield', price: '0', priceCurrency: 'USD' },
+  { name: 'ShelfLife', url: listing, price: '0', priceCurrency: 'USD' }
+];
 
 assert.ok(organization, 'homepage should expose parseable Organization JSON-LD');
-assert.equal(organization.sameAs.length, 3, 'Organization sameAs should enumerate all three public apps');
-assert.equal(organization.sameAs[2], listing, 'Organization sameAs should include the official ShelfLife listing');
-assert.equal(organization.makesOffer.length, 3, 'Organization makesOffer should enumerate all three public apps');
 assert.deepEqual(
-  organization.makesOffer[2],
-  {
-    '@type': 'Offer',
-    itemOffered: {
-      '@type': 'SoftwareApplication',
-      name: 'ShelfLife',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Shopify'
-    },
-    url: listing
-  },
-  'Organization JSON-LD should expose ShelfLife as the third public SoftwareApplication offer'
+  [...organization.sameAs].sort(),
+  publicApps.map((app) => app.url).sort(),
+  'Organization sameAs should expose the exact order-independent set of public app URLs'
 );
+assert.deepEqual(
+  organization.makesOffer.map((offer) => ({
+    offerType: offer['@type'],
+    applicationType: offer.itemOffered?.['@type'],
+    applicationCategory: offer.itemOffered?.applicationCategory,
+    operatingSystem: offer.itemOffered?.operatingSystem,
+    name: offer.itemOffered?.name,
+    url: offer.url,
+    price: offer.price,
+    priceCurrency: offer.priceCurrency
+  })).sort((left, right) => left.url.localeCompare(right.url)),
+  publicApps.map((app) => ({
+    offerType: 'Offer',
+    applicationType: 'SoftwareApplication',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Shopify',
+    ...app
+  })).sort((left, right) => left.url.localeCompare(right.url)),
+  'Organization makesOffer should expose the exact order-independent URL, name, free price, and currency pairs'
+);
+
+function sitemapMetadata(url) {
+  const entry = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)]
+    .map((match) => match[1])
+    .find((block) => block.includes(`<loc>${url}</loc>`));
+  assert.ok(entry, `sitemap should include ${url}`);
+  const value = (tag) => entry.match(new RegExp(`<${tag}>([^<]+)</${tag}>`))?.[1];
+  return {
+    lastmod: value('lastmod'),
+    changefreq: value('changefreq'),
+    priority: value('priority')
+  };
+}
+
+for (const [url, expected] of Object.entries({
+  'https://attahirlabs.com/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '1.0' },
+  'https://attahirlabs.com/apps/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '0.95' },
+  'https://attahirlabs.com/apps/shelflife/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '0.9' },
+  'https://attahirlabs.com/blog/product-expiry-date-management-shopify/': { lastmod: '2026-08-29', changefreq: 'monthly', priority: '0.8' },
+  'https://attahirlabs.com/blog/product-batch-tracking-and-fefo-for-shopify/': { lastmod: '2026-08-29', changefreq: 'monthly', priority: '0.8' }
+})) {
+  assert.deepEqual(sitemapMetadata(url), expected, `${url} sitemap metadata should reflect the ShelfLife launch`);
+}
 
 assert.ok(homepage.includes('<strong>3 public apps</strong>'), 'homepage should count ShelfLife as public');
 assert.ok(
