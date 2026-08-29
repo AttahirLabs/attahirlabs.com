@@ -76,7 +76,7 @@ assert.ok(appsHub.includes('6 app paths'), 'apps hub router should signal that a
 assert.ok(appsHub.includes('class="workflow-list is-scrollable is-wheel" data-auto-scroll'), 'apps hub router should be a wheel-style auto-advancing list');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/stockclearance\/" aria-label="Open StockClearance app page"><span>Clear aging inventory<\/span><span class="status status-live">StockClearance<\/span><\/a>/, 'apps hub router StockClearance row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/tariffshield\/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin<\/span><span class="status status-live">TariffShield<\/span><\/a>/, 'apps hub router TariffShield row should be a full clickable link');
-assert.match(appsHub, /<a class="workflow-row" href="\/apps\/shelflife\/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls<\/span><span class="status status-prep">ShelfLife<\/span><\/a>/, 'apps hub router ShelfLife row should be a full clickable link');
+assert.match(appsHub, /<a class="workflow-row" href="\/apps\/shelflife\/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls<\/span><span class="status status-live">ShelfLife<\/span><\/a>/, 'apps hub router ShelfLife row should be a full clickable public-app link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/accessshield\/" aria-label="Open AccessShield app page"><span>Find accessibility risks<\/span><span class="status status-prep">AccessShield<\/span><\/a>/, 'apps hub router AccessShield row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/storechangelog\/" aria-label="Open StoreChangelog app page"><span>Catch risky store changes<\/span><span class="status status-prep">StoreChangelog<\/span><\/a>/, 'apps hub router StoreChangelog row should be a full clickable link');
 assert.match(appsHub, /<a class="workflow-row" href="\/apps\/warrantytracker\/" aria-label="Open WarrantyTracker app page"><span>Manage warranty claims<\/span><span class="status status-prep">WarrantyTracker<\/span><\/a>/, 'apps hub router WarrantyTracker row should be a full clickable link');
@@ -120,10 +120,13 @@ const tariffShield = read('apps/tariffshield/index.html');
 assert.ok(tariffShield.includes('https://apps.shopify.com/tariffshield'), 'TariffShield page should link to the App Store');
 assert.ok(tariffShield.includes('First five minutes'), 'TariffShield page should expose the early aha path');
 
-for (const page of ['apps/shelflife/index.html', 'apps/accessshield/index.html', 'apps/storechangelog/index.html', 'apps/warrantytracker/index.html']) {
+const shelfLife = read('apps/shelflife/index.html');
+assert.ok(shelfLife.includes('Available on the Shopify App Store'), 'ShelfLife page should label the verified public listing');
+assert.ok(shelfLife.includes('https://apps.shopify.com/shelflife'), 'ShelfLife page should link to the verified App Store listing');
+
+for (const page of ['apps/accessshield/index.html', 'apps/storechangelog/index.html', 'apps/warrantytracker/index.html']) {
   const html = read(page);
   assert.ok(html.includes('App Store listing in preparation'), `${page} should not imply public installability`);
-  assert.ok(!html.includes('apps.shopify.com/shelflife'), `${page} should not invent a Shopify App Store URL`);
   assert.ok(!html.includes('apps.shopify.com/accessshield'), `${page} should not invent a Shopify App Store URL`);
   assert.ok(!html.includes('apps.shopify.com/storechangelog'), `${page} should not invent a Shopify App Store URL`);
   assert.ok(!html.includes('apps.shopify.com/warrantytracker'), `${page} should not invent a Shopify App Store URL`);

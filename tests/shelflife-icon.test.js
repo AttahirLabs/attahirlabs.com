@@ -35,7 +35,7 @@ assert.ok(
   page.includes(`<meta name="twitter:image" content="${absoluteIconUrl}">`),
   'ShelfLife Twitter preview should use the selected icon'
 );
-assert.ok(page.includes('App Store listing in preparation'), 'ShelfLife should preserve its draft listing status');
-assert.ok(!page.includes('apps.shopify.com/shelflife'), 'ShelfLife should not imply public installability');
+assert.ok(page.includes('Available on the Shopify App Store'), 'ShelfLife should expose its verified public listing status');
+assert.ok(page.includes('apps.shopify.com/shelflife'), 'ShelfLife should link to its verified public listing');
 
 console.log('ShelfLife icon tests passed');

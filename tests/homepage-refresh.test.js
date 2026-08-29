@@ -101,6 +101,8 @@ includes('/tools/', 'homepage should include the scalable free-tools hub');
 includes('https://apps.shopify.com/stockclearance', 'homepage should link to StockClearance App Store listing');
 includes('utm_content=homepage_public_apps', 'homepage StockClearance install link should be campaign-trackable');
 includes('https://apps.shopify.com/tariffshield', 'homepage should link to TariffShield App Store listing');
+includes('https://apps.shopify.com/shelflife', 'homepage should link to ShelfLife App Store listing');
+includes('Install ShelfLife', 'homepage should expose the verified ShelfLife install CTA');
 includes('What problem are you trying to solve?', 'homepage should route by merchant problem');
 includes('Use free tools', 'homepage hero should route to the tool chooser');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
@@ -120,7 +122,7 @@ includes('Quick checks before you change a workflow.', 'homepage free-tools sect
 includes('class="tool-cta"', 'homepage free-tools cards should use button-like CTAs');
 includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
-includes('2 public apps', 'homepage should summarize current public app status');
+includes('3 public apps', 'homepage should summarize current public app status');
 includes('3 free tools', 'homepage should summarize live tool status');
 includes('/blog/dead-stock-clearance-q2-2026/', 'homepage should feature current inventory content');
 includes('/blog/import-duty-from-vietnam-to-us/', 'homepage should feature current tariff content');
