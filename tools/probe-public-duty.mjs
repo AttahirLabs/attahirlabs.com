@@ -3,7 +3,7 @@
 import { pathToFileURL } from 'node:url';
 
 const DEFAULT_ASSET_URL = 'https://attahirlabs.com/duty/calculator.js';
-const EXPECTED_RELEASE = '2026.08.24+release4.1';
+const EXPECTED_RELEASE = '2026.09.03+release4.3';
 const EXPECTED_CALCULATION_PATH = '/api/v2/us-duty';
 const LEGACY_CALCULATION_PATH = '/api/v1/landed-cost';
 

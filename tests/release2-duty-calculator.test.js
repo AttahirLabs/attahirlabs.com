@@ -32,9 +32,9 @@ assert.match(html, /shipping and insurance[^<]{0,160}outside[^<]{0,80}customs va
 assert.match(client, /status\s*!==\s*["']calculated["']|data\.status\s*===\s*["']indeterminate["']/, 'indeterminate responses must fail closed');
 assert.match(client, /clearNumericResult\(\)/, 'the client must clear old numeric output before every request');
 
-assert.match(client, /2026\.08\.24\+release4\.1/, 'the client must pin Release 4.1');
-assert.match(client, /e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8/);
-assert.match(client, /0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289/);
+assert.match(client, /2026\.09\.03\+release4\.3/, 'the client must pin Release 4.3');
+assert.match(client, /5718e84ce12f225bbf0102fbb80689f6676951b23cf5f7755c2f52259a36d7d9/);
+assert.match(client, /f11afc122a633d8c6ec30778b904bcba57b4150d045686486a07e24218e7b7ff/);
 assert.doesNotMatch(html, /id=["']uasHeading["']/i, 'unsupported UAS scope must not be offered');
 assert.doesNotMatch(client, /uasHeading/, 'unsupported UAS scope must not be submitted');
 
@@ -97,7 +97,7 @@ function visibleText(element) {
   return [element.textContent, ...element.children.map(visibleText)].join(' ');
 }
 
-async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:00Z') {
+async function runCalculation(response, overrides = {}, now = '2026-09-03T13:00:00Z') {
   const elements = makeElements();
   for (const [id, value] of Object.entries(overrides)) {
     assert.ok(elements[id], `unexpected override #${id}`);
@@ -153,14 +153,14 @@ function calculatedBody() {
     status: 'calculated',
     authority: {
       state: 'active',
-      rulesetVersion: '2026.08.24+release4.1',
-      rulesetPayloadHash: 'e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8',
-      releaseRecordHash: '0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289',
+      rulesetVersion: '2026.09.03+release4.3',
+      rulesetPayloadHash: '5718e84ce12f225bbf0102fbb80689f6676951b23cf5f7755c2f52259a36d7d9',
+      releaseRecordHash: 'f11afc122a633d8c6ec30778b904bcba57b4150d045686486a07e24218e7b7ff',
       resultContractVersion: 'tariff.result-contract/v3',
-      evidenceAsOf: '2026-08-24T16:20:00Z',
-      evidenceValidThrough: '2026-08-31T16:20:00Z',
-      activeCoverageSliceIds: ['slice:release4:exact-qsp-rev17'],
-      scheduleRevision: '2026HTSRev17',
+      evidenceAsOf: '2026-09-03T12:20:00Z',
+      evidenceValidThrough: '2026-09-10T12:20:00Z',
+      activeCoverageSliceIds: ['slice:release4:exact-qsp-rev18'],
+      scheduleRevision: '2026HTSRev18',
       inputContract: 'exact_caller_supplied_htsus_mfn_chapter99_release4_qsp_only'
     },
     calculation: {
@@ -221,7 +221,7 @@ test('calculated Release 4 response renders only after exact authority and arith
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
   assert.equal(elements.totalDisplay.textContent, '$1485.00');
-  assert.match(visibleText(elements.responseMetadata), /2026\.08\.24\+release4\.1/);
+  assert.match(visibleText(elements.responseMetadata), /2026\.09\.03\+release4\.3/);
   assert.ok(analytics.some(event => event.name === 'tool_completed'));
   assert.ok(!analytics.some(event => event.name === 'tool_failed'));
 });
@@ -372,10 +372,10 @@ test('Release 4 authority requires the exact result contract and live canonical 
     ['foreign evidence end', body => { body.authority.evidenceValidThrough = '2026-08-31T16:20:01Z'; }],
     ['invalid evidence end', body => { body.authority.evidenceValidThrough = 'not-an-instant'; }],
     ['reversed evidence window', body => {
-      body.authority.evidenceAsOf = '2026-08-31T16:20:00Z';
-      body.authority.evidenceValidThrough = '2026-08-24T16:20:00Z';
+      body.authority.evidenceAsOf = '2026-09-10T12:20:00Z';
+      body.authority.evidenceValidThrough = '2026-09-03T12:20:00Z';
     }],
-    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release4:exact-qsp-rev17'; }],
+    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release4:exact-qsp-rev18'; }],
     ['empty slices', body => { body.authority.activeCoverageSliceIds = []; }],
     ['extra slice', body => { body.authority.activeCoverageSliceIds.push('slice:foreign'); }],
     ['foreign slice', body => { body.authority.activeCoverageSliceIds[0] = 'slice:foreign'; }],
@@ -407,7 +407,7 @@ test('Release 4 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-31T16:20:00.000Z',
+      '2026-09-10T12:20:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'none');
   });
@@ -417,7 +417,7 @@ test('Release 4 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-24T16:20:00.000Z',
+      '2026-09-03T12:20:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'block');
   });

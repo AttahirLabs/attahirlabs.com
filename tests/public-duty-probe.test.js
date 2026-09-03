@@ -9,7 +9,7 @@ const probeModuleUrl = pathToFileURL(
 
 const liveAsset = `
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
-const RELEASE4_VERSION = "2026.08.24+release4.1";
+const RELEASE4_VERSION = "2026.09.03+release4.3";
 async function calculate() {
   const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params);
 }
@@ -46,7 +46,7 @@ test('the public duty probe derives and validates the live Release 4 endpoint', 
   assert.deepEqual(inspectCalculatorAsset(liveAsset), {
     apiBase: 'https://duty-calc-api-production.up.railway.app',
     calculationPath: '/api/v2/us-duty',
-    releaseVersion: '2026.08.24+release4.1'
+    releaseVersion: '2026.09.03+release4.3'
   });
 
   const requested = [];
