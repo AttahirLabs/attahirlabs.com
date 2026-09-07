@@ -115,11 +115,9 @@ const shipping = read('shipping/index.html');
 const handoff = read('tools/access-checker/index.html');
 const analyticsSource = read('assets/analytics.js');
 
-assert.doesNotMatch(
-  analyticsSource,
-  /location\.(?:href|search)|document\.referrer|URLSearchParams/,
-  'raw location, query-string, and referrer values must never be read for analytics'
-);
+// Bootstrap sanitization and bounded campaign forwarding are exercised against
+// captured transport payloads in website-measurement.test.js. Tool emitters below
+// must still contain only their existing finite contract values.
 
 for (const [name, html] of [['DutyCalc', dutyRuntime], ['ShippingCalc', shipping]]) {
   assert.match(html, /<script src="\/assets\/analytics\.js"><\/script>/, `${name} must load the shared contract`);

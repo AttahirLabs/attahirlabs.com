@@ -8,11 +8,10 @@
     <meta name="theme-color" content="#0f172a">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;">
+    <script src="/assets/analytics.js"></script>
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
     <title>Shipping Cost Calculator: Retail Benchmark Estimates | Attahir Labs</title>
     <meta name="description" content="Estimate retail benchmark shipping costs for domestic, cross-border, and international packages. Compare economy, standard, and express ranges before you price an order.">
     <link rel="canonical" href="https://attahirlabs.com/shipping/">
@@ -163,7 +162,6 @@
 </footer>
 
 <script src="/shipping/calculator.js"></script>
-<script src="/assets/analytics.js"></script>
 <script>
 (function () {
     const form = document.getElementById('shippingForm');
