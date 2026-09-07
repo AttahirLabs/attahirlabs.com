@@ -228,3 +228,6 @@ if (changed.length) {
 } else {
   console.log('blog CTA contract is synchronized');
 }
+
+// Keep every generated page on the shared, bounded measurement bootstrap.
+if (write) await import('./sync-measurement.mjs');

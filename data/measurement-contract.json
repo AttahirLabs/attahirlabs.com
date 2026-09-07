@@ -1,0 +1,22 @@
+{
+  "version": "website-v1",
+  "product": "attahirlabs-website",
+  "owner": "AttahirLabs",
+  "implementedAt": "2026-09-07",
+  "status": "implemented_live_validation_pending",
+  "contract": "docs/measurement/website-v1.md",
+  "destination": { "propertyId": "527581631", "streamId": "13874364112", "measurementId": "G-8QRJWWVMRZ" },
+  "unit": "anonymous_browser_session_or_explicit_tool_attempt",
+  "defaultTrafficClass": "unclassified",
+  "publicApps": ["tariffshield", "stockclearance", "shelflife"],
+  "primaryIntentEvent": "app_store_outbound",
+  "authoritativeCustomerStages": [],
+  "qaPolicy": "suppress_before_sdk_load",
+  "preferencePage": "/analytics-preferences/",
+  "preferenceScope": "browser_and_same_origin; page_always_collection_disabled",
+  "preferenceSynchronization": "off_only_on_local_storage_event_or_bfcache_restore; on_requires_new_document",
+  "sourcePolicy": "finite_canonical_page_catalogue",
+  "pageViewPolicy": "single_explicit_document_pageview",
+  "deduplication": "single_bootstrap_and_delegated_click_listener; existing_tool_action_outcomes",
+  "notApplicable": ["website_install", "website_activation", "website_trial", "website_payment", "website_retention"]
+}

@@ -887,3 +887,7 @@ console.log(
     modifiedDate,
   }),
 );
+
+// Keep every generated page on the shared, bounded measurement bootstrap.
+process.argv.push('--write');
+await import('./sync-measurement.mjs');

@@ -8,9 +8,8 @@
     <meta name="theme-color" content="#0f172a">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://www.google-analytics.com;">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QRJWWVMRZ"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QRJWWVMRZ');</script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://duty-calc-api-production.up.railway.app https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;">
+    <script src="/assets/analytics.js"></script>
     <title>Free US Import Duty Calculator: Signed HTSUS &amp; Chapter 99 Estimate | Attahir Labs</title>
     <meta name="description" content="Calculate a supported US import-duty estimate from exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs using signed reviewed tariff authority.">
     <link rel="canonical" href="https://attahirlabs.com/duty/">
@@ -231,7 +230,6 @@
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 </footer>
 
-<script src="/assets/analytics.js"></script>
 <script src="/duty/calculator.js?v=20260824-release4"></script>
 </body>
 </html>

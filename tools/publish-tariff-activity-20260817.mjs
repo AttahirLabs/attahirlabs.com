@@ -356,3 +356,7 @@ for (const [page, eventId, authorityIds, numeric] of additions) {
 fs.writeFileSync(claimsPath, `${JSON.stringify(claims, null, 2)}\n`);
 
 console.log(JSON.stringify({ pages: pages.map((page) => page.slug), claims: claims.pages.length, checkedAt, reviewAfter }, null, 2));
+
+// Keep every generated page on the shared, bounded measurement bootstrap.
+process.argv.push('--write');
+await import('./sync-measurement.mjs');
