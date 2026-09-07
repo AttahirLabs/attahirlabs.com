@@ -25,7 +25,7 @@ function surface(p) {
   if (p === '/tools/') return 'tools_hub';
   if (p === '/contact.html') return 'contact';
   if (p.startsWith('/review/')) return 'review';
-  if (['/privacy.html', '/terms.html'].includes(p)) return 'legal';
+  if (['/privacy.html', '/terms.html', '/analytics-preferences/'].includes(p)) return 'legal';
   throw new Error('Add a reviewed surface for ' + p);
 }
 const catalogue = {};
@@ -40,7 +40,7 @@ for (const file of files(root)) {
   const relative = path.relative(root, file).split(path.sep).join('/');
   const publicPath = '/' + relative.replace(/(^|\/)index\.html$/, '$1');
   const html = fs.readFileSync(file, 'utf8');
-  const disabled = publicPath.startsWith('/review/') || /http-equiv=["']refresh["']/i.test(html);
+  const disabled = publicPath === '/analytics-preferences/' || publicPath.startsWith('/review/') || /http-equiv=["']refresh["']/i.test(html);
   // Titles come only from reviewed source files, never dynamic document content.
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1].replace(/\s+/g, ' ').trim();
   if (!title || title.length > 200) throw new Error('Missing/bounded title: ' + relative);

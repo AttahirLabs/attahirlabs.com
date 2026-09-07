@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'; form-action 'none';">
+    <script src="/assets/analytics.js" data-analytics-transport="disabled"></script>
+    <script src="/assets/analytics-preferences.js" defer></script>
+    <title>Analytics Preferences | Attahir Labs</title>
+    <meta name="description" content="Choose whether Attahir Labs website analytics are enabled for future visits in this browser.">
+    <meta name="referrer" content="no-referrer">
+    <link rel="canonical" href="https://attahirlabs.com/analytics-preferences/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; color: #0f172a; background: #f8fafc; font: 1rem/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+        main { max-width: 660px; margin: 4rem auto; padding: 2.5rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        h1 { line-height: 1.2; margin: 1.5rem 0; }
+        a { color: #4338ca; text-underline-offset: 3px; }
+        .status { min-height: 5rem; margin: 1.5rem 0; padding: 1rem; border-radius: 8px; background: #f1f5f9; }
+        .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+        button { padding: .75rem 1.25rem; border: 2px solid #4338ca; border-radius: 8px; color: #4338ca; background: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+        button[aria-pressed="true"] { color: #fff; background: #4338ca; }
+        button:focus-visible, a:focus-visible { outline: 3px solid #0f172a; outline-offset: 4px; }
+        .note, footer { color: #475569; font-size: .925rem; }
+        footer { text-align: center; padding: 0 1rem 2rem; }
+        @media (max-width: 700px) { main { margin: 1rem; padding: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <main>
+        <a href="/privacy.html">&larr; Privacy policy</a>
+        <h1>Analytics preferences</h1>
+        <p>Website analytics help us understand which pages and tools people use. You can turn them off for future visits in this browser.</p>
+        <p id="analytics-preference-status" class="status" role="status" aria-live="polite">Checking your saved preference…</p>
+        <div class="actions" aria-label="Website analytics preference">
+            <button id="analytics-turn-off" type="button" aria-pressed="false">Turn off analytics</button>
+            <button id="analytics-turn-on" type="button" aria-pressed="false">Turn on analytics</button>
+        </div>
+        <p class="note">This choice applies only to this browser and this site address. Other browsers and site addresses have separate preferences. It does not remove data already collected or change settings in our Shopify apps.</p>
+        <p class="note">Turning analytics on applies when you load or reload a page. It does not restart analytics in pages already open.</p>
+        <p class="note">This preferences page never collects analytics, whichever option you choose.</p>
+        <noscript><p>JavaScript is needed to save your choice. This page does not collect analytics.</p></noscript>
+        <p><a href="/">Continue to the website &rarr;</a></p>
+    </main>
+    <footer>&copy; 2026 Attahir Labs. All rights reserved.</footer>
+</body>
+</html>

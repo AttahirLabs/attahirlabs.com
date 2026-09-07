@@ -8,9 +8,15 @@
   'use strict';
 
   const MEASUREMENT_ID = 'G-8QRJWWVMRZ';
+  const OPT_OUT_STORAGE_KEY = 'attahir.analytics.disabled';
   const VERSION = 'website-v1';
   // BEGIN GENERATED PAGES (tools/sync-measurement.mjs)
   const pages = Object.freeze({
+  "/analytics-preferences/": {
+    "surface": "legal",
+    "title": "Analytics Preferences | Attahir Labs",
+    "disabled": true
+  },
   "/apps/accessshield/": {
     "surface": "app_page",
     "title": "AccessShield for Shopify Accessibility Workflows | Attahir Labs"
@@ -401,8 +407,8 @@
 
   function optedOut() {
     if (root.ATTAHIR_ANALYTICS_DISABLED === true || root['ga-disable-' + MEASUREMENT_ID] === true || root.ATTAHIR_ANALYTICS_CONSENT === 'denied') return true;
-    try { return root.localStorage?.getItem('attahir.analytics.disabled') === 'true'; }
-    catch (_) { return false; }
+    try { return root.localStorage?.getItem(OPT_OUT_STORAGE_KEY) === 'true'; }
+    catch (_) { return true; }
   }
 
   function safeCampaign(search) {
@@ -719,7 +725,7 @@
     root.ATTAHIR_ANALYTICS_DISABLED = true;
     root['ga-disable-' + MEASUREMENT_ID] = true;
     if (options?.persist) {
-      try { root.localStorage?.setItem('attahir.analytics.disabled', 'true'); } catch (_) { /* Profile may deny storage. */ }
+      try { root.localStorage?.setItem(OPT_OUT_STORAGE_KEY, 'true'); } catch (_) { /* Profile may deny storage. */ }
     }
   };
   analytics.createAnalytics = createAnalytics;
@@ -735,6 +741,18 @@
   analytics.EVENTS = Object.freeze(Object.keys(contract));
 
   if (root.document && root.location) {
+    // An off choice in another same-origin tab must stop this SDK too. Turning
+    // on never reactivates an existing document, including a BFCache restore.
+    root.addEventListener?.('storage', function (event) {
+      if (event.key !== OPT_OUT_STORAGE_KEY || event.newValue !== 'true') return;
+      try {
+        if (event.storageArea !== root.localStorage) return;
+      } catch (_) { /* A relevant off event stays fail-closed if access is denied. */ }
+      analytics.disable();
+    });
+    root.addEventListener?.('pageshow', function (event) {
+      if (event.persisted && optedOut()) analytics.disable();
+    });
     bootstrap(root.document, root.location);
     if (root.document.readyState === 'loading') {
       root.document.addEventListener('DOMContentLoaded', () => bindDom(root.document, root.location));
