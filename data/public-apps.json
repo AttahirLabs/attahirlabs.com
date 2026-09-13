@@ -258,7 +258,7 @@
         ],
         [
           "How does Exact Duty differ from margin analysis?",
-          "Exact Duty is a read-only workflow for supported U.S. scenarios using the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time you supply. It does not classify goods or infer program eligibility; unsupported or incomplete cases return no duty number. Multi-market margin analysis is a separate planning feature."
+          "Exact Duty is a read-only workflow limited to a narrow set of U.S. quartz surface product scenarios. It uses the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time you supply. As checked September 13, 2026, exact calculations are temporarily unavailable while the tariff rules await review; the service returns no duty number. It does not classify goods or infer program eligibility; unsupported or incomplete cases return no duty number. Multi-market margin analysis is a separate planning feature."
         ],
         [
           "What data does TariffShield use?",

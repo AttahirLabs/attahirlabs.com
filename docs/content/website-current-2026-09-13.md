@@ -20,7 +20,7 @@ The screenshot sources are recorded per product in the reference. They are copie
 Read-only source revisions verified against remote `main` on the review date:
 
 - StockClearance: `AttahirLabs/stock-clearance` at `7abce2a407591e43b8ac7ccf622aff923d2f5383`. Relevant files: `prisma/schema.prisma`, `app/models/email.server.ts`, `app/models/shop-data-erasure.server.ts`, `app/models/measurement.server.ts`, and authenticated uninstall handling.
-- TariffShield: `AttahirLabs/tariff-shield` at `dbba709109ac4d78a6165c00b61109ff2cf5a612`. Relevant files: `prisma/schema.prisma`, `app/models/email.server.ts`, `app/models/shop-cleanup.server.ts`, `app/models/analytics.server.ts`, and `app/models/measurement.server.ts`. Existing website Exact Duty coverage boundaries are retained in the FAQ.
+- TariffShield: `AttahirLabs/tariff-shield` at `dbba709109ac4d78a6165c00b61109ff2cf5a612`. Relevant files: `prisma/schema.prisma`, `app/models/email.server.ts`, `app/models/shop-cleanup.server.ts`, `app/models/analytics.server.ts`, and `app/models/measurement.server.ts`. The FAQ describes the narrow U.S. quartz surface product coverage and current suspension of exact calculations.
 - ShelfLife: `AttahirLabs/shelflife` at `c947e920fadb117c94c7f61fd1d32b20bd6d76df`. Relevant files: `prisma/schema.prisma`, `app/models/feedback.server.ts`, `app/models/tenant-lifecycle.server.ts`, `app/models/analytics.server.ts`, and billing observations.
 
 Runtime analytics flags and provider retention settings were not changed or independently audited in this content update. Disclosures describe configured/optional delivery and distinguish first-party measurement from Google Analytics. They do not assert that every optional event is enabled, that keyed identifiers are anonymous, or that uninstall instantaneously erases provider-held records. Exact provider retention periods are not invented.
@@ -39,3 +39,7 @@ StoreChronicle is the user-selected canonical product name. Existing article URL
 4. Update sitemap dates only for the relevant content changes. A refreshed app promotion does not reverify dated tariff research.
 5. Run `node tests/run-all-tests.js`, `git diff --check`, and mobile/desktop checks of changed pages, anchors, images, FAQs, and redirects.
 6. Follow `DEPLOY.md` and the existing required review. After publication, verify the deployment proof and live HTML/assets for the approved commit.
+
+## Independent review follow-up
+
+Hiro reviewed the initial head `1616688aa6451c5974813836f40eeedc493b4e78`. His earlier main-session review raised a P2 about Exact Duty scope and availability; a later Telegram-session review did not retrieve that finding. Codex reconciled both against the portfolio status and a fresh public API response at 2026-09-13T18:42:01Z: the canonical QSP input returned HTTP 422, `RULESET_REVIEW_REQUIRED`, no calculation, `2026.09.03+release4.3`, and evidence valid through 2026-09-10T12:20:00Z. The FAQ and generated FAQ metadata now state the narrow quartz surface product scope and temporary unavailability. This is a content correction; it does not renew the ruleset or change the calculator backend. Reverify this statement when the reviewed rules are restored.
