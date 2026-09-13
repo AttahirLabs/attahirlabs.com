@@ -1,0 +1,456 @@
+{
+  "verifiedAt": "2026-09-13",
+  "currency": "USD",
+  "products": [
+    {
+      "slug": "stockclearance",
+      "name": "StockClearance",
+      "listingName": "StockClearance & Markdown",
+      "icon": "/assets/icons/stockclearance-logo-96.png",
+      "iconAlt": "StockClearance logo",
+      "headline": "Find aging stock. Make room for what sells.",
+      "description": "Review slow-moving, dead, and seasonal inventory, then choose markdowns, bundles, or clearance actions from your Shopify admin.",
+      "summary": "Find aging inventory and turn the next clearance decision into action.",
+      "homeFeatures": [
+        "Dead and slow stock scans",
+        "Flash sales, bundles, and clearance collections",
+        "Scheduled scans and inventory reporting"
+      ],
+      "priceSummary": "Free plan · Paid plans from $9/month",
+      "trialSummary": "14-day free trial on Standard and Pro",
+      "workflowTitle": "From inventory signal to clearance decision.",
+      "features": [
+        [
+          "Find stock that needs attention",
+          "Review inventory age, stock value, and sales signals where order access is available."
+        ],
+        [
+          "Choose a clearance action",
+          "Launch a flash sale, apply bulk discounts, or organize products into a clearance collection."
+        ],
+        [
+          "Review bundle opportunities",
+          "Consider related slow movers together and review the discount before taking action."
+        ],
+        [
+          "Build a regular review habit",
+          "Configure automatic scans and optional weekly digest emails to keep inventory work visible."
+        ],
+        [
+          "Use custom rules on Pro",
+          "Set clearance rules that reflect your own inventory and markdown decisions."
+        ],
+        [
+          "Review the results",
+          "Use inventory health and clearance reports to follow activity and the sales data available to the app."
+        ]
+      ],
+      "steps": [
+        [
+          "Connect your catalog",
+          "Install from Shopify and review the requested product, inventory, order, and discount access."
+        ],
+        [
+          "Run your first scan",
+          "Start with up to 25 products on Free. Review slow, dead, and seasonal stock and the available sales signals."
+        ],
+        [
+          "Choose your next action",
+          "Review prices and margins, then use a paid plan for clearance actions across the catalog."
+        ]
+      ],
+      "plans": [
+        {
+          "name": "Free",
+          "price": 0,
+          "period": "",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "Scan up to 25 products",
+            "Dead and slow stock review",
+            "Basic inventory reporting",
+            "Configurable automatic scans"
+          ]
+        },
+        {
+          "name": "Standard",
+          "price": 9,
+          "period": "month",
+          "alternate": 90,
+          "trialDays": 14,
+          "features": [
+            "Full catalog scans",
+            "Configurable automatic scans",
+            "Clearance actions",
+            "Flash sales and bulk discounts",
+            "Inventory health dashboard"
+          ]
+        },
+        {
+          "name": "Pro",
+          "price": 19,
+          "period": "month",
+          "alternate": 190,
+          "trialDays": 14,
+          "features": [
+            "Everything in Standard",
+            "Custom clearance rules",
+            "Advanced clearance reporting"
+          ]
+        }
+      ],
+      "faqs": [
+        [
+          "Can I start for free?",
+          "Yes. Free includes scans of up to 25 products and basic reporting. Standard and Pro have a 14-day free trial, with monthly or annual billing. Shopify displays the terms before you approve a subscription."
+        ],
+        [
+          "What happens if order access is unavailable?",
+          "StockClearance uses available inventory age and stock-level signals. Sales velocity and sales-based results depend on the order history Shopify makes available to the app."
+        ],
+        [
+          "Will the app change my prices?",
+          "Clearance actions can change prices or create discounts and collections. Review the proposed action and your settings; Pro rules can automate the clearance decisions you configure."
+        ],
+        [
+          "What data does StockClearance use?",
+          "Product and inventory records, prices, available unit costs, discount and action records, and order-line signals support the inventory workflow. See the StockClearance section of our privacy policy for collection, measurement, and deletion details."
+        ],
+        [
+          "How do I cancel?",
+          "Manage the subscription through Shopify. Uninstalling the app triggers account-data cleanup. Charges already incurred and any refunds are governed by the subscription terms shown by Shopify."
+        ]
+      ],
+      "guide": "/blog/dead-stock-clearance-q2-2026/",
+      "guideLabel": "Read the dead-stock guide",
+      "sourceRevision": "7abce2a407591e43b8ac7ccf622aff923d2f5383",
+      "listing": "https://apps.shopify.com/stockclearance",
+      "screenshots": [
+        {
+          "src": "/assets/apps/stockclearance/screen-1.png",
+          "alt": "Dead and slow stock table with product level actions",
+          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CIysoe35pJUDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/stockclearance/screen-2.png",
+          "alt": "Flash sale modal for applying product markdowns",
+          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CLrbk9amo5UDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/stockclearance/screen-3.png",
+          "alt": "Bundle suggestions for related slow movers",
+          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CJmqndamo5UDEAE=.png?height=720&width=1280"
+        }
+      ]
+    },
+    {
+      "slug": "tariffshield",
+      "name": "TariffShield",
+      "listingName": "TariffShield: Margin Analyzer",
+      "icon": "/assets/icons/tariffshield-96.png",
+      "iconAlt": "TariffShield app icon",
+      "headline": "See how import costs affect your product margins.",
+      "description": "Review tariff exposure by product, compare origin-country scenarios, and approve price changes when you are ready.",
+      "summary": "Compare import-cost scenarios and review product margins before repricing.",
+      "homeFeatures": [
+        "Product-level tariff and margin analysis",
+        "Alternate sourcing scenarios",
+        "Merchant-approved price changes"
+      ],
+      "priceSummary": "Free plan · Standard $19/month · Pro $190/year",
+      "trialSummary": "Start with 10 SKUs on Free",
+      "workflowTitle": "From import assumptions to a pricing decision.",
+      "features": [
+        [
+          "Review exposure by product",
+          "See how tariff assumptions affect your product costs and target margin."
+        ],
+        [
+          "Check origin and classification",
+          "Use HS/HTS information, country-of-origin settings, and clearly reviewed fallback assumptions."
+        ],
+        [
+          "Compare sourcing scenarios",
+          "Model an alternate origin before committing to a supplier change."
+        ],
+        [
+          "Set custom rates",
+          "Use custom rate overrides when a product needs a different planning assumption."
+        ],
+        [
+          "Approve price changes",
+          "Review suggested prices and choose individual or bulk Shopify price updates."
+        ],
+        [
+          "Export and compare on Pro",
+          "Use CSV exports and multi-market analysis for your sourcing and margin review."
+        ]
+      ],
+      "steps": [
+        [
+          "Connect products",
+          "Install from Shopify and start with the free 10-SKU analysis."
+        ],
+        [
+          "Review your assumptions",
+          "Check product costs, origin, classification, and target margin before interpreting the result."
+        ],
+        [
+          "Compare, then decide",
+          "Test sourcing scenarios and review suggested prices. Apply price changes only when you choose."
+        ]
+      ],
+      "plans": [
+        {
+          "name": "Free",
+          "price": 0,
+          "period": "",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "Analyze up to 10 SKUs",
+            "Review tariff margin risk"
+          ]
+        },
+        {
+          "name": "Standard",
+          "price": 19,
+          "period": "month",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "Unlimited product analysis",
+            "Negative-margin alerts",
+            "Alternate origin simulation",
+            "Built-in origin-country rates",
+            "Custom rate overrides"
+          ]
+        },
+        {
+          "name": "Pro",
+          "price": 190,
+          "period": "year",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "CSV export",
+            "Multi-market analysis"
+          ]
+        }
+      ],
+      "faqs": [
+        [
+          "What are the current billing options?",
+          "The Shopify listing offers Free, Standard at $19 per month, and Pro at $190 per year. The annual option is listed as Pro. Review the features and subscription terms on Shopify before approving a plan."
+        ],
+        [
+          "Does TariffShield offer a paid-plan trial?",
+          "The current listing offers a free plan for 10 SKUs and does not advertise a paid-plan free trial."
+        ],
+        [
+          "Will my prices change automatically?",
+          "TariffShield applies individual or bulk price updates when you approve them. Review your costs and margin targets before applying an update."
+        ],
+        [
+          "Are these final customs charges?",
+          "Tariff and margin results support planning. Actual treatment depends on classification, origin, destination, eligibility, and the applicable rules. Verify shipment-specific charges before relying on an estimate."
+        ],
+        [
+          "How does Exact Duty differ from margin analysis?",
+          "Exact Duty is a read-only workflow limited to a narrow set of U.S. quartz surface product scenarios. It uses the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time you supply. As checked September 13, 2026, exact calculations are temporarily unavailable while the tariff rules await review; the service returns no duty number. It does not classify goods or infer program eligibility; unsupported or incomplete cases return no duty number. Multi-market margin analysis is a separate planning feature."
+        ],
+        [
+          "What data does TariffShield use?",
+          "The app uses product, variant, inventory, price, available cost, origin, classification, and configuration data, along with saved analysis and price-action records. See the TariffShield section of our privacy policy."
+        ]
+      ],
+      "guide": "/blog/shopify-import-duties/",
+      "guideLabel": "Read the import duties guide",
+      "sourceRevision": "dbba709109ac4d78a6165c00b61109ff2cf5a612",
+      "listing": "https://apps.shopify.com/tariffshield",
+      "screenshots": [
+        {
+          "src": "/assets/apps/tariffshield/screen-1.png",
+          "alt": "Product table with tariff exposure and prices",
+          "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CMnEou_2mZUDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/tariffshield/screen-2.png",
+          "alt": "Settings for margin, origin, alerts, and sync",
+          "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CO3bq-_2mZUDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/tariffshield/screen-3.png",
+          "alt": "Sourcing simulator for tariff cost scenarios",
+          "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CN2Ete_2mZUDEAE=.png?height=720&width=1280"
+        }
+      ]
+    },
+    {
+      "slug": "shelflife",
+      "name": "ShelfLife",
+      "listingName": "ShelfLife: Expiry Date Tracker",
+      "icon": "/assets/icons/shelflife-countdown-shelves-512.png",
+      "iconAlt": "ShelfLife app icon showing product shelves inside a countdown ring",
+      "headline": "Know which batches need attention before they expire.",
+      "description": "Keep expiry dates, batches, suppliers, and locations together. Review stock at risk, plan what to pick first, and keep traceability records close at hand.",
+      "summary": "Track batches and expiry risk, with picking guidance and supplier records.",
+      "homeFeatures": [
+        "Batch, lot, and expiry tracking",
+        "Opt-in alerts and weekly digests on Standard",
+        "FEFO picking guidance and CSV tools on Pro"
+      ],
+      "priceSummary": "Free plan · Paid plans from $14/month",
+      "trialSummary": "14-day free trial on Standard and Pro",
+      "workflowTitle": "From batch records to the next stock decision.",
+      "features": [
+        [
+          "Keep batch details together",
+          "Record the product variant, lot, supplier, location, quantity, manufacture date, and expiry date."
+        ],
+        [
+          "Review expiry risk",
+          "Run expiry checks and review warning, urgent, and expired stock with waste and activity reports."
+        ],
+        [
+          "Choose optional alerts",
+          "Standard adds opt-in expiry emails and a weekly digest, with alert settings you control."
+        ],
+        [
+          "Pick by earliest expiry",
+          "Pro provides location-aware first-expired, first-out (FEFO) picking guidance."
+        ],
+        [
+          "Bring records in and out",
+          "Pro adds CSV import with preview and validation, plus inventory and supplier exports."
+        ],
+        [
+          "Keep supplier and traceability records",
+          "Use Pro reports to review supplier shelf life and the batches relevant to a product or recall investigation."
+        ]
+      ],
+      "steps": [
+        [
+          "Add your first batches",
+          "Install from Shopify and record up to 25 batches or lots on Free. Include quantity, location, and expiry date."
+        ],
+        [
+          "Check stock at risk",
+          "Run an expiry check and review the batches that need attention. Update quantities as stock moves or is sold."
+        ],
+        [
+          "Choose the tools you need",
+          "Use Standard for unlimited batches and optional alerts, or Pro for FEFO guidance, CSV tools, and supplier reporting."
+        ]
+      ],
+      "plans": [
+        {
+          "name": "Free",
+          "price": 0,
+          "period": "",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "Up to 25 batches or lots",
+            "Manual expiry checks and risk status",
+            "Waste and expiry activity",
+            "Search, filter, edit, mark sold, and delete"
+          ]
+        },
+        {
+          "name": "Standard",
+          "price": 14,
+          "period": "month",
+          "alternate": 140,
+          "trialDays": 14,
+          "features": [
+            "Everything in Free",
+            "Unlimited batches and lots",
+            "Read-only expiry recommendations",
+            "Removal-from-sale reviews",
+            "Opt-in expiry emails and weekly digest"
+          ]
+        },
+        {
+          "name": "Pro",
+          "price": 29,
+          "period": "month",
+          "alternate": 290,
+          "trialDays": 14,
+          "features": [
+            "Everything in Standard",
+            "Location-aware FEFO picking guidance",
+            "CSV import preview and validation",
+            "Inventory and supplier CSV exports",
+            "Supplier shelf-life and traceability reports"
+          ]
+        }
+      ],
+      "faqs": [
+        [
+          "Is there a free plan and a trial?",
+          "Free supports up to 25 batches or lots. Standard and Pro each offer a 14-day free trial, with monthly and annual billing options. Shopify shows the terms before you approve a subscription."
+        ],
+        [
+          "Does ShelfLife automatically maintain batch quantities?",
+          "Merchants maintain quantities in ShelfLife. Update batch records as inventory moves or is sold so expiry reports and picking guidance reflect your records."
+        ],
+        [
+          "What does FEFO do?",
+          "First-expired, first-out guidance helps you identify which batches to pick first by expiry date and location. It is available on Pro."
+        ],
+        [
+          "Will it send emails as soon as I install?",
+          "ShelfLife expiry alerts and weekly digests are opt-in features on Standard and Pro. Configure an alert address and enable the notifications you want."
+        ],
+        [
+          "Can I use ShelfLife during a recall?",
+          "Batch, supplier, and traceability records can help you investigate affected stock. Their usefulness depends on the records you maintain; you remain responsible for recall decisions and execution."
+        ],
+        [
+          "What happens to my data when I uninstall?",
+          "Uninstall starts cleanup of your batch, settings, alert, session, and measurement records. Limited protected identifiers can remain to prevent delayed work from recreating erased data. Use available cleanup controls for Shopify-hosted copies while the app is still installed; after uninstall it no longer has Shopify Admin access. Our privacy policy explains these boundaries."
+        ]
+      ],
+      "guide": "/blog/product-expiry-date-management-shopify/",
+      "guideLabel": "Read the expiry management guide",
+      "sourceRevision": "c947e920fadb117c94c7f61fd1d32b20bd6d76df",
+      "listing": "https://apps.shopify.com/shelflife",
+      "screenshots": [
+        {
+          "src": "/assets/apps/shelflife/screen-1.png",
+          "alt": "Overview risk cards highlight batches needing attention",
+          "source": "https://cdn.shopify.com/app-store/listing_images/9f075409fec94fc71617d972198910b1/desktop_screenshot/CID484fQnZYDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/shelflife/screen-2.png",
+          "alt": "Batch and lot tags keep expiry details together",
+          "source": "https://cdn.shopify.com/app-store/listing_images/9f075409fec94fc71617d972198910b1/desktop_screenshot/CK3z_YfQnZYDEAE=.png?height=720&width=1280"
+        },
+        {
+          "src": "/assets/apps/shelflife/screen-3.png",
+          "alt": "FEFO queue ranks earliest expiries for picking guidance",
+          "source": "https://cdn.shopify.com/app-store/listing_images/9f075409fec94fc71617d972198910b1/desktop_screenshot/CO20iIjQnZYDEAE=.png?height=720&width=1280"
+        }
+      ]
+    }
+  ],
+  "unlistedApps": [
+    {
+      "name": "AccessShield",
+      "path": "/apps/accessshield/",
+      "status": "App Store listing in preparation"
+    },
+    {
+      "name": "StoreChronicle",
+      "path": "/apps/storechronicle/",
+      "status": "App Store listing in preparation"
+    },
+    {
+      "name": "WarrantyTracker",
+      "path": "/apps/warrantytracker/",
+      "status": "App Store listing in preparation"
+    }
+  ]
+}

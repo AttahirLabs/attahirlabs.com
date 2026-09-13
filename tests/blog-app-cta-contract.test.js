@@ -79,8 +79,8 @@ for (const slug of articleSlugs) {
 }
 
 const publicEntries = Object.entries(contract.publicApps);
-const unavailableListings = ['accessshield', 'storechangelog', 'warrantytracker'];
-const appNameInTitle = /\b(?:TariffShield|StockClearance|ShelfLife|AccessShield|StoreChangelog|WarrantyTracker)\b/i;
+const unavailableListings = ['accessshield', 'storechronicle', 'warrantytracker'];
+const appNameInTitle = /\b(?:TariffShield|StockClearance|ShelfLife|AccessShield|StoreChronicle|WarrantyTracker)\b/i;
 
 for (const slug of articleSlugs) {
   const relative = `blog/${slug}/index.html`;

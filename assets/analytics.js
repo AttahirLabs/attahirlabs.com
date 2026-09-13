@@ -33,9 +33,9 @@
     "surface": "app_page",
     "title": "Shopify Dead Stock App and Markdown Workflow | StockClearance"
   },
-  "/apps/storechangelog/": {
+  "/apps/storechronicle/": {
     "surface": "app_page",
-    "title": "StoreChangelog for Shopify Change Tracking and Rollback | Attahir Labs"
+    "title": "StoreChronicle for Shopify Store Records and Change History | Attahir Labs"
   },
   "/apps/tariffshield/": {
     "surface": "app_page",
@@ -499,7 +499,7 @@
       'stockclearance',
       'shelflife',
       'accessshield',
-      'storechangelog',
+      'storechronicle',
       'warrantytracker'
     ]),
     tool_name: new Set(['duty_calculator', 'shipping_calculator', 'access_checker']),

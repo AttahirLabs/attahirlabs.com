@@ -11,7 +11,7 @@
   "resourceCtas": {
     "access-checker": "/tools/access-checker/",
     "official-sources": "#sources",
-    "storechangelog-preview": "/apps/storechangelog/",
+    "storechronicle-preview": "/apps/storechronicle/",
     "warrantytracker-preview": "/apps/warrantytracker/"
   },
   "articles": {
@@ -36,7 +36,7 @@
     "home-retail-dead-stock-2026": "stockclearance",
     "how-to-calculate-landed-cost": "tariffshield",
     "how-to-handle-product-recalls-on-shopify": "shelflife",
-    "how-to-track-who-changed-a-shopify-product-and-why-shopify-s-native-logs-fall-short": "storechangelog-preview",
+    "how-to-track-who-changed-a-shopify-product-and-why-shopify-s-native-logs-fall-short": "storechronicle-preview",
     "hts-code-lookup": "tariffshield",
     "hts-code-reclassification-tariff-margin": "tariffshield",
     "import-duty-from-india-to-us": "tariffshield",
@@ -59,7 +59,7 @@
     "section-301-vs-section-232-vs-section-122": "tariffshield",
     "shopify-account-takeover-protection": "none",
     "shopify-benchmark-comparisons-removed-may-19": "stockclearance",
-    "shopify-changelog-best-practices": "storechangelog-preview",
+    "shopify-changelog-best-practices": "storechronicle-preview",
     "shopify-food-recall-batch-tracking-bulk-salmonella-2026": "shelflife",
     "shopify-food-recall-batch-tracking-salmonella-seasoning-2026": "shelflife",
     "shopify-food-recall-batch-tracking-undeclared-allergens-2026": "shelflife",
@@ -73,7 +73,7 @@
     "shopify-recall-batch-tracking-moringa-pepperoni-2026": "shelflife",
     "shopify-recall-batch-tracking-moringa-salmonella-2026": "shelflife",
     "shopify-warranty-management-what-merchants-need-to-track": "warrantytracker-preview",
-    "shopifyql-matches-shopify-reports-2026": "storechangelog-preview",
+    "shopifyql-matches-shopify-reports-2026": "storechronicle-preview",
     "sleep-number-bankruptcy-shopify-inventory-lessons-2026": "stockclearance",
     "solar-polysilicon-tariffs-2026": "tariffshield",
     "tariff-engineering-legal-ways-to-reduce-import-duties-2026": "tariffshield",

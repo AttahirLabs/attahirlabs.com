@@ -102,7 +102,7 @@ If you used it for merchandising, watch product-level sell-through, aged invento
 <aside class="blog-app-cta" data-app-cta="stockclearance">
 <p class="blog-cta-eyebrow">For slow and aging Shopify inventory</p>
 <h2>Turn inventory signals into a reviewed clearance plan</h2>
-<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. The merchant still reviews and executes pricing, discount, bundle, collection, and disposal decisions.</p>
+<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. Start with up to 25 products on Free, or try a paid plan for 14 days. Review pricing, discount, bundle, collection, and disposal decisions, including any Pro rules you configure.</p>
 <a data-app-store-cta href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">View StockClearance on the Shopify App Store →</a>
 </aside>
 

@@ -11,7 +11,7 @@ const appStylePages = [
   'apps/tariffshield/index.html',
   'apps/shelflife/index.html',
   'apps/accessshield/index.html',
-  'apps/storechangelog/index.html',
+  'apps/storechronicle/index.html',
   'apps/warrantytracker/index.html',
   'tools/index.html',
 ];
@@ -33,7 +33,7 @@ const expectedDropdownRoutes = [
   '/apps/tariffshield/',
   '/apps/shelflife/',
   '/apps/accessshield/',
-  '/apps/storechangelog/',
+  '/apps/storechronicle/',
   '/apps/warrantytracker/',
   '/duty/',
   '/shipping/',

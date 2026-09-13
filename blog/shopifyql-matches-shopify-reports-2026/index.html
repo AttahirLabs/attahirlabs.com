@@ -49,7 +49,7 @@
       "mainEntityOfPage": "https://attahirlabs.com/blog/shopifyql-matches-shopify-reports-2026/",
       "keywords": [
         "ShopifyQL MATCHES, Shopify reports customer behavior, Shopify segments and reports",
-        "StoreChangelog",
+        "StoreChronicle",
         "Analytics",
         "Shopify"
       ],
@@ -134,10 +134,10 @@
     <link rel="stylesheet" href="/site-nav.css?v=20260630-global-nav">
 </head>
 <body>
-  <nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
+  <nav class="site-nav" aria-label="Primary"><div class="nav-inner"><a href="/" class="nav-logo">Attahir<span>Labs</span></a><ul class="nav-links"><li class="nav-item-apps"><a href="/apps/" class="nav-apps-link">Apps</a><div class="apps-dropdown" aria-label="App pages"><a href="/apps/stockclearance/"><strong>StockClearance</strong><span>Dead stock and markdowns</span></a><a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a><a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a><a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a><a href="/apps/storechronicle/"><strong>StoreChronicle</strong><span>Store changes and rollback context</span></a><a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a></div></li><li class="nav-item-tools"><a href="/tools/" class="nav-tools-link">Free tools</a><div class="tools-dropdown" aria-label="Free tool pages"><a href="/duty/"><strong>Duty calculator</strong><span>Import duty and landed-cost estimates</span></a><a href="/shipping/"><strong>Shipping calculator</strong><span>Retail shipping range estimates</span></a><a href="/tools/access-checker/"><strong>Accessibility checker</strong><span>WCAG storefront scan</span></a></div></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div></nav>
   <article>
 <div class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ShopifyQL MATCHES</div>
-<div class="meta"><span class="tag">StoreChangelog</span><span class="tag">Analytics</span><span class="tag">Shopify</span><span>April 24, 2026 · Updated June 06, 2026 · 14 min read</span></div>
+<div class="meta"><span class="tag">StoreChronicle</span><span class="tag">Analytics</span><span class="tag">Shopify</span><span>April 24, 2026 · Updated June 06, 2026 · 14 min read</span></div>
 <div class="source-note-hidden"><p><em>Primary sources: Shopify changelog announcement<sup class="citation"><a href="#ref-1">[1]</a></sup>, ShopifyQL syntax reference<sup class="citation"><a href="#ref-2">[2]</a></sup>, Segment query language reference<sup class="citation"><a href="#ref-3">[3]</a></sup>.</em></p></div>
 <h1 id="shopifyql-matches-keep-shopify-segments-and-reports-aligned-in-2026">ShopifyQL MATCHES: Keep Shopify Segments and Reports Aligned in 2026</h1>
 <figure class="post-figure blog-hero-figure" data-generated-visual="editorial-gpt-image-2">
@@ -309,9 +309,9 @@ GROUP BY customer_id</code></pre>
 <div class="cta-box">
 <div class="cta-eyebrow">Store operations</div>
 <h2>Pair behavior reports with change evidence</h2>
-<p>StoreChangelog is built for the other side of reporting QA: what changed in the store before the metric moved. Use it to review product, collection, inventory, theme, and order-update events, filter by actor/source signal, export evidence, and revert supported product-field changes when a bad update explains the number.</p>
+<p>StoreChronicle is built for the other side of reporting QA: what changed in the store before the metric moved. Use it to review product, collection, inventory, theme, and order-update events, filter by actor/source signal, export evidence, and revert supported product-field changes when a bad update explains the number.</p>
 </div>
-<h2 id="why-this-is-a-storechangelog-problem-not-just-an-analytics-problem">Why this is a StoreChangelog problem, not just an analytics problem</h2>
+<h2 id="why-this-is-a-storechangelog-problem-not-just-an-analytics-problem">Why this is a StoreChronicle problem, not just an analytics problem</h2>
 
 <p>This is where a structured store change log becomes practical.</p>
 <p>The actual app behind the product tracks store changes across resources like products, collections, inventory, themes, and order updates, surfaces recent change logs, supports filters by actor and action, flags suspicious activity patterns, and can revert supported product-field changes from the changelog view. That matters because analytics improvements are only half the truth.</p>
@@ -339,7 +339,7 @@ GROUP BY customer_id</code></pre>
 <div class="cta-box">
 <div class="cta-eyebrow">Next step</div>
 <h2>Make the report explainable</h2>
-<p>If a ShopifyQL MATCHES report changes after a campaign, product edit, inventory update, or theme change, StoreChangelog gives operators a place to check what changed before they blame the segment, the campaign, or the customer cohort.</p>
+<p>If a ShopifyQL MATCHES report changes after a campaign, product edit, inventory update, or theme change, StoreChronicle gives operators a place to check what changed before they blame the segment, the campaign, or the customer cohort.</p>
 </div>
 <h2 id="faq">FAQ</h2>
 <h3 id="what-did-shopify-actually-change">What did Shopify actually change?</h3>
@@ -367,11 +367,11 @@ GROUP BY customer_id</code></pre>
 </ul>
 <h2 id="disclaimer">Disclaimer</h2>
 <p>This article is for operational and educational purposes only. It is not legal, tax, or platform-compliance advice. Shopify platform behavior, syntax support, and analytics capabilities can change over time, so merchants should verify important workflows in their own admin before relying on them for financial, lifecycle, or compliance decisions.</p>
-<aside class="blog-resource-cta" data-resource-cta="storechangelog-preview" data-app-availability="in-preparation">
+<aside class="blog-resource-cta" data-resource-cta="storechronicle-preview" data-app-availability="in-preparation">
 <p class="blog-cta-eyebrow">Product status: in preparation</p>
 <h2>Use the change-log workflow now</h2>
-<p>StoreChangelog is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
-<a data-resource-link href="/apps/storechangelog/">View StoreChangelog release status →</a>
+<p>StoreChronicle is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
+<a data-resource-link href="/apps/storechronicle/">View StoreChronicle release status →</a>
 </aside>
 <section class="references" id="sources"><h2>Sources</h2><ol><li id="ref-1"><a href="https://changelog.shopify.com/posts/use-matches-in-shopifyql-to-filter-by-what-customers-did" rel="noopener" target="_blank">Shopify changelog announcement</a></li><li id="ref-2"><a href="https://shopify.dev/docs/api/shopifyql" rel="noopener" target="_blank">ShopifyQL syntax reference</a></li><li id="ref-3"><a href="https://shopify.dev/docs/api/shopifyql/segment-query-language-reference" rel="noopener" target="_blank">Segment query language reference</a></li></ol></section></article>
   <footer>© 2026 Attahir Labs. Practical tools and guides for cross-border commerce and Shopify operations.</footer>
