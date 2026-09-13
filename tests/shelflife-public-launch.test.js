@@ -73,11 +73,11 @@ function sitemapMetadata(url) {
 }
 
 for (const [url, expected] of Object.entries({
-  'https://attahirlabs.com/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '1.0' },
-  'https://attahirlabs.com/apps/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '0.95' },
-  'https://attahirlabs.com/apps/shelflife/': { lastmod: '2026-08-29', changefreq: 'weekly', priority: '0.9' },
-  'https://attahirlabs.com/blog/product-expiry-date-management-shopify/': { lastmod: '2026-08-29', changefreq: 'monthly', priority: '0.8' },
-  'https://attahirlabs.com/blog/product-batch-tracking-and-fefo-for-shopify/': { lastmod: '2026-08-29', changefreq: 'monthly', priority: '0.8' }
+  'https://attahirlabs.com/': { lastmod: '2026-09-13', changefreq: 'weekly', priority: '1.0' },
+  'https://attahirlabs.com/apps/': { lastmod: '2026-09-13', changefreq: 'weekly', priority: '0.95' },
+  'https://attahirlabs.com/apps/shelflife/': { lastmod: '2026-09-13', changefreq: 'weekly', priority: '0.9' },
+  'https://attahirlabs.com/blog/product-expiry-date-management-shopify/': { lastmod: '2026-09-13', changefreq: 'monthly', priority: '0.8' },
+  'https://attahirlabs.com/blog/product-batch-tracking-and-fefo-for-shopify/': { lastmod: '2026-09-13', changefreq: 'monthly', priority: '0.8' }
 })) {
   assert.deepEqual(sitemapMetadata(url), expected, `${url} sitemap metadata should reflect the ShelfLife launch`);
 }

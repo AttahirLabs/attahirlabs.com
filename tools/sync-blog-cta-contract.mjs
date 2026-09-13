@@ -21,7 +21,7 @@ const publicBlocks = {
 <aside class="blog-app-cta" data-app-cta="stockclearance">
 <p class="blog-cta-eyebrow">For slow and aging Shopify inventory</p>
 <h2>Turn inventory signals into a reviewed clearance plan</h2>
-<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. The merchant still reviews and executes pricing, discount, bundle, collection, and disposal decisions.</p>
+<p>StockClearance helps Shopify merchants identify slow, dead, and seasonal inventory, see capital at risk, and organize products for clearance review. Start with up to 25 products on Free, or try a paid plan for 14 days. Review pricing, discount, bundle, collection, and disposal decisions, including any Pro rules you configure.</p>
 <a data-app-store-cta href="https://apps.shopify.com/stockclearance" rel="noopener" target="_blank">View StockClearance on the Shopify App Store →</a>
 </aside>
 `,
@@ -29,7 +29,7 @@ const publicBlocks = {
 <aside class="blog-app-cta" data-app-cta="shelflife">
 <p class="blog-cta-eyebrow">For dated and batch-sensitive inventory</p>
 <h2>Keep batches, expiry dates, and recall records connected</h2>
-<p>ShelfLife helps Shopify merchants track expiry dates, batches, supplier lots, and FEFO workflows while keeping recall-ready operational records. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
+<p>ShelfLife helps Shopify merchants track expiry dates, batches, and supplier lots, with FEFO picking guidance and traceability reports on Pro. Free supports up to 25 batches; Standard and Pro offer 14-day trials. It does not decide whether a product is legally recallable or replace official notices, food-safety procedures, or qualified advice.</p>
 <a data-app-store-cta href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
 </aside>
 `
@@ -52,12 +52,12 @@ const resourceBlocks = {
 <a data-resource-link href="#sources">Review the primary sources →</a>
 </aside>
 `,
-  'storechangelog-preview': `
-<aside class="blog-resource-cta" data-resource-cta="storechangelog-preview" data-app-availability="in-preparation">
+  'storechronicle-preview': `
+<aside class="blog-resource-cta" data-resource-cta="storechronicle-preview" data-app-availability="in-preparation">
 <p class="blog-cta-eyebrow">Product status: in preparation</p>
 <h2>Use the change-log workflow now</h2>
-<p>StoreChangelog is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
-<a data-resource-link href="/apps/storechangelog/">View StoreChangelog release status →</a>
+<p>StoreChronicle is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
+<a data-resource-link href="/apps/storechronicle/">View StoreChronicle release status →</a>
 </aside>
 `,
   'warrantytracker-preview': `
@@ -92,12 +92,12 @@ function cleanEditorialLabels(slug, html) {
     'Dead Stock Prevention Guide: How Shopify Merchants Can Find Slow Movers Before They Become Write-Offs'
   );
   html = html.replaceAll(
-    'Shopify Changelog Best Practices (StoreChangelog tie-in)',
+    'Shopify Changelog Best Practices (StoreChronicle tie-in)',
     'Shopify Changelog Best Practices: Build a Change Log That Helps During Incidents'
   );
   html = html.replaceAll('Why StockClearance is the right tie-in here', 'Why StockClearance fits this workflow');
-  html = html.replaceAll("StoreChangelog's tie-in is strongest here:", 'A structured store change log is especially useful here:');
-  html = html.replaceAll('This is where the StoreChangelog tie-in becomes practical.', 'This is where a structured store change log becomes practical.');
+  html = html.replaceAll("StoreChronicle's tie-in is strongest here:", 'A structured store change log is especially useful here:');
+  html = html.replaceAll('This is where the StoreChronicle tie-in becomes practical.', 'This is where a structured store change log becomes practical.');
   html = html.replace(/<p><strong>SEO title:<\/strong>[\s\S]*?<strong>App tie-in:<\/strong>\s*TariffShield<\/p>\s*/i, '');
   html = html.replace(/<h2\b[^>]*>\s*CTA\s*<\/h2>\s*/gi, '');
   html = html.replace(/<(h[2-6])([^>]*)>\s*CTA:\s*([a-z])/gi, (_, tag, attrs, first) => `<${tag}${attrs}>${first.toUpperCase()}`);

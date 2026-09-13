@@ -50,7 +50,7 @@ const appNames = {
   StockClearance: 'stockclearance',
   ShelfLife: 'shelflife',
   AccessShield: 'accessshield',
-  StoreChangelog: 'storechangelog',
+  StoreChronicle: 'storechronicle',
   WarrantyTracker: 'warrantytracker'
 };
 
@@ -79,7 +79,7 @@ for (const sourceFile of deployedSourceFiles) {
   assert.equal(sourceTitle, pageTitle, `${sourceFile} title must match its static page`);
   for (const field of ['title', 'metaTitle']) {
     const value = frontMatter.match(new RegExp(`^${field}:\\s*["'](.+)["']\\s*$`, 'm'))?.[1];
-    if (value) assert.doesNotMatch(value, /TariffShield|StockClearance|ShelfLife|AccessShield|StoreChangelog|WarrantyTracker/i);
+    if (value) assert.doesNotMatch(value, /TariffShield|StockClearance|ShelfLife|AccessShield|StoreChronicle|WarrantyTracker/i);
   }
 
   const namedApps = Object.entries(appNames).filter(([name]) => new RegExp(`\\b${name}\\b`, 'i').test(source));

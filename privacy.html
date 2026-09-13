@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <script src="/assets/analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag (gtag.js) -->
     <title>Privacy Policy | Attahir Labs</title>
     <style>
         :root {
@@ -62,36 +61,63 @@
             text-decoration: none;
             font-weight: 500;
         }
+
+        * { box-sizing: border-box; }
+        h3[id] { scroll-margin-top: 1rem; }
+        a { color: #155e75; text-underline-offset: .2em; overflow-wrap: anywhere; }
+        a:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 4px; }
+        li { margin-bottom: .75rem; }
+        .policy-index { padding: 1rem; background: #f0fdfa; line-height: 2; }
+        @media(max-width: 600px) { .container { margin: 1rem; padding: 1.25rem; } h1 { font-size: 2rem; } }
     </style>
+<link rel="canonical" href="https://attahirlabs.com/privacy.html">
+<meta name="description" content="How Attahir Labs handles store, product, batch, billing, analytics, and email data for its Shopify apps and website.">
+<meta property="og:title" content="Privacy Policy | Attahir Labs">
+<meta property="og:description" content="How Attahir Labs handles store, product, batch, billing, analytics, and email data for its Shopify apps and website.">
+<meta property="og:url" content="https://attahirlabs.com/privacy.html">
+<meta property="og:type" content="website">
 </head>
 <body>
 
-    <div class="container">
+    <main class="container">
         <a href="/" class="back-link">&larr; Back to Home</a>
         <h1>Privacy Policy</h1>
-        <p><strong>Effective Date: June 26, 2026</strong></p>
+        <p><strong>Effective Date: September 13, 2026</strong></p>
 
-        <p>At Attahir Labs, we are committed to protecting the privacy of the merchants who use our Shopify applications. This Privacy Policy describes how we collect, use, and share information when you install or use our apps in connection with your Shopify-supported store.</p>
+        <p>At Attahir Labs, we are committed to protecting the privacy of the merchants who use our Shopify applications. This Privacy Policy describes how we collect, use, share, and retain information when you visit our website or install or use our Shopify apps. The app-specific sections below describe StockClearance, TariffShield, and ShelfLife; existing AccessShield disclosures also remain below.</p>
 
+        <div class="policy-index" aria-label="App privacy sections"><a href="#stockclearance">StockClearance</a> · <a href="#tariffshield">TariffShield</a> · <a href="#shelflife">ShelfLife</a> · <a href="#retention">Retention and deletion</a> · <a href="#analytics">Analytics</a></div>
         <h2>1. Information We Collect</h2>
         <p>When you install one of our apps, we are automatically able to access certain types of information from your Shopify account via the Shopify API. Specifically, we may collect:</p>
         <ul>
-            <li><strong>Shop Domain:</strong> Your .myshopify.com URL to identify your store and manage your subscription.</li>
+            <li><strong>Shop and Account Information:</strong> Your .myshopify.com domain, Shopify session and authorization records, and account or staff details supplied through the authorized session, such as user ID, name, and email. We use these to identify your store, secure access, and manage your subscription.</li>
             <li><strong>Product and Inventory Data:</strong> Information about your products and inventory, including titles, prices, variants, stock levels, unit costs where available, and related product attributes needed to provide analysis (e.g., TariffShield, StockClearance).</li>
             <li><strong>Order Records for Inventory Analytics:</strong> For StockClearance, we may access Shopify order records when the merchant grants the app order access. We use order dates, order IDs, line items, product IDs, quantities, cancellation status, and line-item revenue only to calculate product-level inventory signals such as last sale timing, units sold, sales velocity, seasonal history, and clearance-action results.</li>
             <li><strong>Accessibility and Theme Data:</strong> For AccessShield, we may access store pages, product titles, product vendors, product image URLs, existing image alt text, page HTML content, and theme file content needed to detect WCAG-oriented accessibility issues, missing alt text, and cookie/consent script patterns. We may store accessibility issue records, WCAG rule identifiers, severity levels, page URLs, HTML snippets, fix suggestions, generated alt-text suggestions, applied/ignored/fixed statuses, compliance score snapshots, badge status, and certificate/progress-report data.</li>
             <li><strong>Image-Aware Alt-Text Generation Data:</strong> For AccessShield, when AI-assisted alt-text suggestions are enabled, we may send product image URLs and limited product metadata such as product title, vendor, product type, tags, image position, and existing alt text to an AI service provider solely to generate reviewable alt-text suggestions.</li>
-            <li><strong>Usage Analytics:</strong> Information about how you interact with our app interface to improve our service performance and user experience.</li>
-            <li><strong>Billing Status:</strong> Information provided by Shopify regarding your subscription plan and payment status.</li>
+            <li><strong>Usage and Operational Measurement:</strong> App activity, operation outcomes, timestamps, plan changes, and traffic classifications help us understand useful workflows and service reliability. Measurement can use hashed or keyed store identifiers; these are pseudonymous identifiers, not a claim that the data is anonymous. Test and development activity is classified separately where supported.</li>
+            <li><strong>Billing Status:</strong> Subscription plan and status supplied by Shopify, including trial duration and end date, subscription observations, and test/development indicators where available. Subscription observations do not themselves establish that a payment was collected.</li>
+            <li><strong>Support and Notifications:</strong> Contact addresses, notification preferences, delivery records, and the feedback or support messages you choose to send us.</li>
         </ul>
 
-        <p>StockClearance does not need customer names, email addresses, phone numbers, shipping addresses, billing addresses, or payment details for these inventory analytics. We do not use order data for customer profiling, advertising, resale, or third-party data sharing.</p>
+        <p>StockClearance does not need customer names, email addresses, phone numbers, shipping addresses, billing addresses, or payment details for these inventory analytics. We do not use order data for customer profiling, advertising, or resale. Service providers process information as described in section 3.</p>
         <p>AccessShield does not request access to Shopify orders, customers, customer addresses, payment details, or customer profiles. AccessShield uses product, page, theme, audit, and configuration data only to provide accessibility audits, AI-assisted alt-text review, guided remediation, cookie/consent checks, optional badge display, and progress documentation. AccessShield does not send order data, customer data, addresses, payment details, or customer profiles to AI service providers.</p>
 
+        <h3 id="stockclearance">StockClearance</h3>
+        <p>StockClearance uses product and variant identifiers, titles, images, vendor and product type, inventory quantities, prices, and available unit costs. With authorized order access, order dates, IDs, line items, quantities, cancellation status, and line-item revenue support inventory analytics. Available order history depends on Shopify access.</p>
+        <p>Stored records include inventory analysis, scan history, dead/slow/seasonal classifications, clearance rules, discount and collection references, price snapshots, action status, and reporting figures. Configured scans, optional weekly digests, and merchant-selected clearance actions use these records. Operational measurement records successful actions and usage using protected store identifiers and operation references.</p>
+        <h3 id="tariffshield">TariffShield</h3>
+        <p>TariffShield uses product and variant identifiers, inventory, prices, available costs, country of origin, HS/HTS classifications, target margins, destination assumptions, and custom rates. Stored records can include product tariff analysis, margin snapshots, proposed and applied price changes, notification settings, feedback, and operational measurement.</p>
+        <p>When you use an Exact Duty workflow, the service processes the classification, origin, rate, value, entry-time, and additional tariff facts you provide to calculate supported scenarios. It may retain an operation receipt and measurement metadata to record the outcome. TariffShield does not require shopper names, addresses, or payment-card details for tariff analysis.</p>
+        <h3 id="shelflife">ShelfLife</h3>
+        <p>ShelfLife stores product and variant references, batch and lot identifiers, titles and SKUs, supplier information, locations, quantities, unit costs and currency, manufacture and expiry dates, status, and notes you enter or import. These support expiry checks, waste and activity reports, FEFO picking guidance, supplier reporting, and traceability workflows. Merchants maintain batch quantities.</p>
+        <p>We also store alert preferences and recipients, expiry and delivery records, import receipts, app settings, feedback, and account/session information. Expiry emails and weekly digests are opt-in. Measurement records can include activity timestamps, operation and import counts, protected store and subscription identifiers, trial and plan observations, and test/development classifications. The first-party measurement ledger is separate from optional Google Analytics delivery.</p>
+        <p>Where you enable supported Shopify sync or app-owned actions, ShelfLife may write expiry, location, and quantity summaries to app-owned Shopify variant metafields or use app-owned product markers. Configuration and effect records support verification, retry, and reversal of those actions. ShelfLife remains the batch database of record.</p>
+        <p>ShelfLife does not require Shopify shopper order or customer-profile data for these batch workflows. This does not exclude merchant account details, alert addresses, or information you choose to put into a batch record or support message.</p>
         <h2>2. How We Use Your Information</h2>
         <p>We use the information we collect from you and your store to provide the service and to operate our apps. This includes:</p>
         <ul>
-            <li>Providing the core functionality of the app, such as inventory analysis, clearance workflow tracking, tariff-impact calculations, accessibility audits, alt-text review, cookie/consent checks, and other app-specific operational tools.</li>
+            <li>Providing the core functionality of the app, such as inventory analysis, clearance workflow tracking, tariff-impact calculations, expiry and batch tracking, picking guidance, supplier and traceability reporting, accessibility audits, alt-text review, cookie/consent checks, and other app-specific operational tools.</li>
             <li>Processing billing and payments through the Shopify platform.</li>
             <li>Communicating with you regarding technical support, app updates, and account-related notices.</li>
             <li>Monitoring and analyzing usage trends to improve our application performance.</li>
@@ -101,8 +127,10 @@
         <p>We do not sell, rent, or trade your personal information to third parties. We only share information in the following circumstances:</p>
         <ul>
             <li><strong>Shopify:</strong> We share data with Shopify as required to provide the service, process billing, and comply with Shopify's Partner Program requirements.</li>
-            <li><strong>Payment Processors:</strong> All billing is handled directly through Shopify Payments; we do not store your credit card information.</li>
-            <li><strong>Resend (Email):</strong> We use Resend to send transactional emails, such as margin alerts, weekly digests, and accessibility score alerts. Only your alert email address is shared with Resend for delivery purposes.</li>
+            <li><strong>Shopify Billing:</strong> App subscription billing is handled through Shopify Billing. We receive subscription information and do not store your credit card details.</li>
+            <li><strong>Resend (Email):</strong> Resend processes recipient and sender addresses, subject lines, and message contents to deliver transactional emails and support notifications. Depending on the app and message, contents can include your shop, product names, inventory or margin summaries, batch identifiers, expiry dates, and the feedback you submit. Delivery identifiers and status may be retained to manage notifications and avoid duplicate sends.</li>
+            <li><strong>Hosting and Delivery:</strong> Infrastructure providers, including Railway for app hosting and Cloudflare for website delivery, process the records or request metadata needed to host, secure, and deliver our services.</li>
+            <li><strong>Google Analytics:</strong> When enabled, Google Analytics processes website activity and configured app events. App events can use hashed store identifiers and limited route, activity, and classification metadata. This is separate from our first-party operational records. See section 5 for website choices.</li>
             <li><strong>AI Service Providers:</strong> For AccessShield image-aware alt-text suggestions, we may send product image URLs and limited product metadata to an AI provider such as OpenAI solely to generate alt-text suggestions for merchant review.</li>
             <li><strong>Legal Compliance:</strong> We may disclose information if required by law or to respond to valid legal requests by public authorities.</li>
         </ul>
@@ -111,15 +139,20 @@
         <p>Regardless of your location, we believe you should have control over your data. You have the right to:</p>
         <ul>
             <li><strong>Access:</strong> Request a copy of the data we hold about your store.</li>
-            <li><strong>Deletion:</strong> Request that we delete your data (this typically occurs automatically when you uninstall the app).</li>
+            <li><strong>Deletion:</strong> Request deletion of your data. Uninstalling also starts the account cleanup described below.</li>
             <li><strong>Correction:</strong> Request that we correct any inaccurate information.</li>
             <li><strong>Export:</strong> Request your data in a machine-readable format.</li>
         </ul>
         <p>To exercise these rights, please contact us at <strong>support@attahirlabs.com</strong>.</p>
 
-        <h2>5. Cookie Policy</h2>
-        <p>Our apps use only strictly necessary session and authentication cookies required to maintain your login state and provide app functionality. We do not use third-party tracking or advertising cookies within our application interface.</p>
-        <p>For this website, you can turn analytics on or off in your <a href="/analytics-preferences/">analytics preferences</a>. The choice applies to this browser and site address.</p>
+        <h3 id="retention">Retention and deletion</h3>
+        <p>We retain app records while needed to provide the installed service. Authenticated Shopify uninstall and erasure notifications trigger cleanup of the live apps’ store-specific business records, settings, sessions, and first-party measurement records. Cleanup can require retries; we do not promise that every record disappears at the instant you click uninstall.</p>
+        <p>For ShelfLife and StockClearance, limited protected identifiers and deletion-state markers can remain after cleanup to prevent delayed requests from recreating erased records. These markers are not retained batch, product, or subscription histories. Information required to resolve a support request or meet an applicable legal obligation may need separate handling.</p>
+        <p>ShelfLife also uses limited webhook delivery receipts for replay protection and deduplication. These have configured expiry and scheduled cleanup; processing retries or maintenance delays can postpone physical removal. While the app is installed and authorized, use its available cleanup controls to remove app-owned Shopify copies or reverse supported effects. After uninstall, the app no longer has Shopify Admin access and cannot promise removal of Shopify-hosted data or state.</p>
+        <p>Deleting app records does not delete Shopify’s own billing records or automatically remove records already held by email or analytics providers. Requests involving those records are handled separately. Contact us for access, export, correction, or deletion assistance, including questions about retained identifiers.</p>
+        <h2 id="analytics">5. Cookies and Analytics</h2>
+        <p>Our apps use session and authentication mechanisms to maintain access and provide functionality. Configured app analytics may be sent from our servers without placing a third-party tracking cookie in the app interface. First-party operational measurement and third-party analytics are distinct forms of processing.</p>
+        <p>For this website, Google Analytics can measure page views, App Store outbound clicks, and tool interactions, along with limited browser/device and referral information. You can turn website analytics on or off in your <a href="/analytics-preferences/">analytics preferences</a>. The choice applies to this browser and site address; it does not change app-server measurement or Shopify’s own processing.</p>
 
         <h2>6. Security</h2>
         <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
@@ -130,7 +163,7 @@
             Attahir Labs<br>
             Email: <strong>support@attahirlabs.com</strong>
         </p>
-    </div>
+    </main>
 
     <footer>
         &copy; 2026 Attahir Labs. All rights reserved.

@@ -107,7 +107,7 @@ includes('What problem are you trying to solve?', 'homepage should route by merc
 includes('Use free tools', 'homepage hero should route to the tool chooser');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
 includes('Public Apps', 'homepage should separate public apps from supporting tools');
-includes('StoreChangelog', 'homepage should use current StoreChangelog product name');
+includes('StoreChronicle', 'homepage should use current StoreChronicle product name');
 includes('WarrantyTracker', 'homepage should use current WarrantyTracker product name');
 includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
@@ -145,7 +145,7 @@ for (const route of [
   '/apps/tariffshield/',
   '/apps/shelflife/',
   '/apps/accessshield/',
-  '/apps/storechangelog/',
+  '/apps/storechronicle/',
   '/apps/warrantytracker/',
 ]) {
   assert.ok(nav.includes(`href="${route}"`), `homepage Apps dropdown should link to ${route}`);
@@ -162,7 +162,7 @@ assert.ok(!nav.includes('Install StockClearance'), 'homepage top nav should not 
 assert.ok(!nav.includes('<li><a href="/apps/tariffshield/">TariffShield</a></li>'), 'homepage top nav should not add every public app as a top-level item');
 assert.ok(!nav.includes('<li><a href="/shipping/">Shipping calculator</a></li>'), 'homepage top nav should not make individual tools top-level items');
 
-excludes(/StoreChronicle/, 'homepage should not use deprecated StoreChronicle name');
+excludes(/StoreChangelog/, 'homepage should not use the previous StoreChangelog name');
 excludes(/WarrantyShield/, 'homepage should not use deprecated WarrantyShield name');
 excludes(/Coming Soon/, 'homepage should not use vague Coming Soon labels');
 excludes(/4 preparing/i, 'homepage hero should not foreground staged apps as a proof chip');
@@ -188,6 +188,6 @@ assert.ok(
   'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-08-29<\/lastmod>/, 'sitemap homepage lastmod should reflect the ShelfLife public launch update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-13<\/lastmod>/, 'sitemap homepage lastmod should reflect the current product update');
 
 console.log('homepage refresh tests passed');

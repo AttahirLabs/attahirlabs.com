@@ -21,6 +21,7 @@
     <meta property="og:image" content="https://attahirlabs.com/icon-512.png">
     <link rel="stylesheet" href="/apps/apps.css?v=20260630-app-router-wheel">
     <link rel="stylesheet" href="/apps/footer-logo.css?v=20260630">
+<link rel="stylesheet" href="/apps/product-pages.css?v=20260913">
 </head>
 <body>
     <nav>
@@ -34,7 +35,7 @@
                         <a href="/apps/tariffshield/"><strong>TariffShield</strong><span>Tariffs and landed-cost margin</span></a>
                         <a href="/apps/shelflife/"><strong>ShelfLife</strong><span>Expiry, batches, and recalls</span></a>
                         <a href="/apps/accessshield/"><strong>AccessShield</strong><span>Accessibility checks and fixes</span></a>
-                        <a href="/apps/storechangelog/"><strong>StoreChangelog</strong><span>Store changes and rollback context</span></a>
+                        <a href="/apps/storechronicle/"><strong>StoreChronicle</strong><span>Store changes and rollback context</span></a>
                         <a href="/apps/warrantytracker/"><strong>WarrantyTracker</strong><span>Warranty claims and coverage</span></a>
                     </div>
                 </li>
@@ -55,17 +56,17 @@
         <section class="page-hero">
             <div class="container hero-grid">
                 <div>
-                    <div class="eyebrow">Problem-first app chooser</div>
+                    <div class="eyebrow">Shopify apps</div>
                     <h1>Pick the Shopify app by the problem you need to solve.</h1>
                     <p class="lede">Attahir Labs apps are organized around expensive merchant workflows: stuck inventory, import margin pressure, expiry risk, accessibility issues, store changes, and warranty operations.</p>
                     <div class="button-row">
                         <a class="btn btn-primary" href="https://apps.shopify.com/stockclearance?utm_source=attahirlabs&utm_medium=website&utm_campaign=stockclearance&utm_content=apps_hub_hero" rel="noopener" target="_blank">Install StockClearance</a>
-                        <a class="btn btn-secondary" href="/apps/tariffshield/">Compare public apps</a>
+                        <a class="btn btn-secondary" href="#public-apps">Compare public apps</a>
                     </div>
                 </div>
                 <aside class="product-shot" aria-label="Attahir Labs app routing preview">
                     <div class="shot-top">
-                        <div class="shot-title">Merchant problem router</div>
+                        <div class="shot-title">Choose your workflow</div>
                         <div class="shot-pill">6 app paths</div>
                     </div>
                     <div class="workflow-list is-scrollable is-wheel" data-auto-scroll>
@@ -73,7 +74,7 @@
                         <a class="workflow-row" href="/apps/tariffshield/" aria-label="Open TariffShield app page"><span>Protect landed-cost margin</span><span class="status status-live">TariffShield</span></a>
                         <a class="workflow-row" href="/apps/shelflife/" aria-label="Open ShelfLife app page"><span>Track expiry and recalls</span><span class="status status-live">ShelfLife</span></a>
                         <a class="workflow-row" href="/apps/accessshield/" aria-label="Open AccessShield app page"><span>Find accessibility risks</span><span class="status status-prep">AccessShield</span></a>
-                        <a class="workflow-row" href="/apps/storechangelog/" aria-label="Open StoreChangelog app page"><span>Catch risky store changes</span><span class="status status-prep">StoreChangelog</span></a>
+                        <a class="workflow-row" href="/apps/storechronicle/" aria-label="Open StoreChronicle app page"><span>Catch risky store changes</span><span class="status status-prep">StoreChronicle</span></a>
                         <a class="workflow-row" href="/apps/warrantytracker/" aria-label="Open WarrantyTracker app page"><span>Manage warranty claims</span><span class="status status-prep">WarrantyTracker</span></a>
                     </div>
                 </aside>
@@ -84,38 +85,15 @@
             <div class="container">
                 <div class="section-head">
                     <div class="section-kicker">Apps</div>
-                    <h2>Start from the merchant pain, then choose the app.</h2>
-                    <p class="section-copy">Public apps link directly to Shopify. Apps still in listing preparation stay clearly marked, with no install CTA until the public App Store surface exists.</p>
+                    <h2>Compare apps for your store.</h2>
+                    <p class="section-copy">Compare the three apps available on Shopify, or explore the products we are preparing for release.</p>
                 </div>
-                <div class="app-grid">
-                    <article class="card">
-                        <div class="tag-row"><span class="tag tag-live">Public</span><span class="tag tag-tool">Inventory</span></div>
-                        <h3>Dead stock and markdowns</h3>
-                        <p>Use StockClearance when cash is trapped in slow-moving, aging, seasonal, or dead inventory.</p>
-                        <ul>
-                            <li>Find weak SKUs before they age out.</li>
-                            <li>Turn signals into markdown, bundle, and clearance actions.</li>
-                            <li>Keep inventory review from becoming a quarterly scramble.</li>
-                        </ul>
-                        <a class="text-link" href="/apps/stockclearance/">View StockClearance</a>
-                    </article>
-                    <article class="card">
-                        <div class="tag-row"><span class="tag tag-live">Public</span><span class="tag tag-tool">Margins</span></div>
-                        <h3>Import costs and tariffs</h3>
-                        <p>Use TariffShield when sourcing, duties, landed cost, and pricing decisions are putting margin at risk.</p>
-                        <ul>
-                            <li>Model tariff impact by product.</li>
-                            <li>Compare sourcing scenarios.</li>
-                            <li>Protect target margin before costs surprise the catalog.</li>
-                        </ul>
-                        <a class="text-link" href="/apps/tariffshield/">View TariffShield</a>
-                    </article>
-                    <article class="card">
-                        <div class="tag-row"><span class="tag tag-live">Public</span><span class="tag tag-tool">Batches</span></div>
-                        <h3>Expiry, batches, and recalls</h3>
-                        <p>Use ShelfLife when products need FEFO, lot tracking, supplier review, or recall-ready batch visibility.</p>
-                        <a class="text-link" href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a>
-                    </article>
+                <div class="app-grid" id="public-apps">
+                    <!-- public-app-cards:start -->
+<article class="card app-card"><div class="app-heading"><img class="app-icon" src="/assets/icons/stockclearance-logo-96.png" alt="StockClearance logo" width="48" height="48"><div><span class="tag tag-live">Shopify App Store</span><h3>StockClearance</h3></div></div><p>Find aging inventory and turn the next clearance decision into action.</p><ul><li>Dead and slow stock scans</li><li>Flash sales, bundles, and clearance collections</li><li>Scheduled scans and inventory reporting</li></ul><p class="home-plan-summary">Free plan · Paid plans from $9/month<br><span>14-day free trial on Standard and Pro</span></p><div class="button-row"><a class="btn btn-primary" href="https://apps.shopify.com/stockclearance?utm_source=attahirlabs&amp;utm_medium=website&amp;utm_campaign=stockclearance&amp;utm_content=apps_hub_hero" rel="noopener" target="_blank">Install StockClearance</a><a class="btn btn-secondary" href="/apps/stockclearance/">Features &amp; pricing</a></div></article>
+<article class="card app-card"><div class="app-heading"><img class="app-icon" src="/assets/icons/tariffshield-96.png" alt="TariffShield app icon" width="48" height="48"><div><span class="tag tag-live">Shopify App Store</span><h3>TariffShield</h3></div></div><p>Compare import-cost scenarios and review product margins before repricing.</p><ul><li>Product-level tariff and margin analysis</li><li>Alternate sourcing scenarios</li><li>Merchant-approved price changes</li></ul><p class="home-plan-summary">Free plan · Standard $19/month · Pro $190/year<br><span>Start with 10 SKUs on Free</span></p><div class="button-row"><a class="btn btn-primary" href="https://apps.shopify.com/tariffshield" rel="noopener" target="_blank">Install TariffShield</a><a class="btn btn-secondary" href="/apps/tariffshield/">Features &amp; pricing</a></div></article>
+<article class="card app-card"><div class="app-heading"><img class="app-icon" src="/assets/icons/shelflife-countdown-shelves-512.png" alt="ShelfLife app icon" width="48" height="48"><div><span class="tag tag-live">Shopify App Store</span><h3>ShelfLife</h3></div></div><p>Track batches and expiry risk, with picking guidance and supplier records.</p><ul><li>Batch, lot, and expiry tracking</li><li>Opt-in alerts and weekly digests on Standard</li><li>FEFO picking guidance and CSV tools on Pro</li></ul><p class="home-plan-summary">Free plan · Paid plans from $14/month<br><span>14-day free trial on Standard and Pro</span></p><div class="button-row"><a class="btn btn-primary" href="https://apps.shopify.com/shelflife" rel="noopener" target="_blank">Install ShelfLife</a><a class="btn btn-secondary" href="/apps/shelflife/">Features &amp; pricing</a></div></article>
+<!-- public-app-cards:end -->
                     <article class="card">
                         <div class="tag-row"><span class="tag tag-prep">Listing in preparation</span><span class="tag tag-tool">Accessibility</span></div>
                         <h3>Accessibility risk</h3>
@@ -125,8 +103,8 @@
                     <article class="card">
                         <div class="tag-row"><span class="tag tag-prep">Listing in preparation</span><span class="tag tag-tool">Operations</span></div>
                         <h3>Store changes and rollback</h3>
-                        <p>Use StoreChangelog when theme, product, app, and setting changes need accountability and rollback context.</p>
-                        <a class="text-link" href="/apps/storechangelog/">View StoreChangelog status</a>
+                        <p>Use StoreChronicle when theme, product, app, and setting changes need accountability and rollback context.</p>
+                        <a class="text-link" href="/apps/storechronicle/">View StoreChronicle status</a>
                     </article>
                     <article class="card">
                         <div class="tag-row"><span class="tag tag-prep">Listing in preparation</span><span class="tag tag-tool">Support</span></div>
@@ -143,7 +121,7 @@
                 <div class="section-head">
                     <div class="section-kicker">Not ready to install?</div>
                     <h2>Use a free tool or read the matching guide.</h2>
-                    <p class="section-copy">Free tools are quick diagnostic paths. Blog CTAs stay contextual: inventory posts point to StockClearance, tariff posts point to TariffShield, and expiry or recall posts point to ShelfLife.</p>
+                    <p class="section-copy">Explore a free calculator or a practical guide to your next inventory, import, or expiry decision.</p>
                 </div>
                 <div class="tool-grid">
                     <article class="card">
