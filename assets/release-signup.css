@@ -1,0 +1,13 @@
+.release-signup { margin-top: 28px; padding: 24px; border: 1px solid #d7ddd7; border-radius: 16px; background: #f5f7f2; }
+.release-signup h2 { font-size: 1.3rem; margin: 0 0 8px; }
+.release-signup p { color: #47534b; line-height: 1.6; }
+.release-signup label { display: block; font-weight: 600; margin-bottom: 8px; }
+.release-signup .signup-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.release-signup input[type=email] { flex: 1 1 200px; min-width: 0; width: 100%; padding: 12px; border: 1px solid #758275; border-radius: 8px; font: inherit; background: white; color: #17221a; }
+.release-signup button { font: inherit; cursor: pointer; }
+.release-signup button:disabled { opacity: .65; cursor: wait; }
+.release-signup :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+.release-signup .signup-consent { font-size: .85rem; margin: 12px 0 0; }
+.release-signup [role=status] { margin: 10px 0 0; }
+.release-signup .signup-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+@media (max-width: 480px) { .release-signup { padding: 18px; } .release-signup button { width: 100%; } }
