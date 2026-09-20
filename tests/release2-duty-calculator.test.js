@@ -97,7 +97,7 @@ function visibleText(element) {
   return [element.textContent, ...element.children.map(visibleText)].join(' ');
 }
 
-async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:00Z') {
+async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:00Z', runtime = {}) {
   const elements = makeElements();
   for (const [id, value] of Object.entries(overrides)) {
     assert.ok(elements[id], `unexpected override #${id}`);
@@ -116,6 +116,7 @@ async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:
   }
   const context = {
     Date: FixedDate,
+    AbortController, setTimeout, clearTimeout,
     URLSearchParams,
     console,
     document: {
@@ -142,11 +143,46 @@ async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:
       return response;
     }
   };
+  Object.assign(context, runtime);
   vm.createContext(context);
   vm.runInContext(client.replace(/\ninit\(\);\s*$/, '\n'), context);
   await context.calculate();
-  return { elements, analytics, requestedUrl };
+  return { elements, analytics, requestedUrl, context };
 }
+
+test('client timeout is a single failed attempt and releases the UI', async () => {
+  let expire;
+  let cleared = false;
+  const result = await runCalculation(null, {}, undefined, {
+    setTimeout(fn, delay) { assert.equal(delay, 60_000); expire = fn; return 1; },
+    clearTimeout(id) { assert.equal(id, 1); cleared = true; },
+    fetch(_url, options) {
+      return new Promise((_resolve, reject) => {
+        options.signal.addEventListener('abort', () => reject(new Error('aborted')));
+        expire();
+      });
+    }
+  });
+  assert.deepEqual(result.analytics.map(x => x.name), ['tool_started', 'tool_failed']);
+  assert.equal(result.analytics[1].params.error_code, 'timeout');
+  assert.equal(result.elements.calcBtn.disabled, false);
+  assert.match(result.elements.error.textContent, /No result was received/);
+  assert.ok(cleared);
+});
+
+test('duplicate calls during a request do not create a second attempt', async () => {
+  const result = await runCalculation({ ok: false, status: 429, async json() { return {}; } });
+  result.analytics.length = 0;
+  let resolve;
+  let calls = 0;
+  result.context.fetch = () => { calls++; return new Promise(done => { resolve = done; }); };
+  const first = result.context.calculate();
+  await result.context.calculate();
+  assert.equal(calls, 1);
+  resolve({ ok: false, status: 429, async json() { return {}; } });
+  await first;
+  assert.deepEqual(result.analytics.map(x => x.name), ['tool_started', 'tool_failed']);
+});
 
 function calculatedBody() {
   return {
@@ -349,7 +385,8 @@ test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most mi
       assert.equal(result.requestedUrl, '', 'invalid entryAt must not delegate the request time to the API');
       assert.equal(result.elements.resultNumbers.style.display, 'none');
       assert.doesNotMatch(result.elements.rateDisplay.textContent, /\d/);
-      assert.ok(result.analytics.some(event => event.name === 'tool_failed'));
+      assert.ok(result.analytics.some(event => event.name === 'tool_validation_failed'));
+      assert.ok(!result.analytics.some(event => event.name === 'tool_failed'));
       assert.ok(!result.analytics.some(event => event.name === 'tool_started'));
     });
   }

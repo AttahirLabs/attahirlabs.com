@@ -11,6 +11,7 @@ const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-08-31T16:20:00Z";
 const RELEASE4_LINE_OPERATIONS = new Set(["add", "replace", "fill_to", "cap", "exempt"]);
 const RELEASE4_LINE_DISPOSITIONS = new Set(["applied", "zero", "exempt"]);
 let dutySubmission = 0;
+let dutyInFlight = false;
 
 function isRecord(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -327,6 +328,7 @@ function formValue(id) {
 }
 
 async function calculate() {
+  if (dutyInFlight) return;
   const actionKey = `duty:${++dutySubmission}`;
   const origin = formValue("origin").toUpperCase();
   const hts = formValue("hts");
@@ -365,7 +367,7 @@ async function calculate() {
     error.textContent = "Complete every required exact-input field.";
     error.style.display = "block";
     showUnavailable(null, "Indeterminate — required exact inputs are missing");
-    window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {
+    window.AttahirAnalytics?.once(`${actionKey}:validation`, "tool_validation_failed", {
       surface: "duty_calculator",
       tool_name: "duty_calculator",
       error_code: "validation"
@@ -374,6 +376,7 @@ async function calculate() {
   }
 
   const button = document.getElementById("calcBtn");
+  dutyInFlight = true;
   button.disabled = true;
   button.textContent = "Checking signed authority...";
   document.getElementById("placeholder").style.display = "none";
@@ -387,6 +390,8 @@ async function calculate() {
     tool_name: "duty_calculator"
   });
 
+  const controller = new AbortController();
+  const deadline = setTimeout(() => controller.abort(), 60_000);
   try {
     const params = new URLSearchParams({
       origin,
@@ -401,7 +406,7 @@ async function calculate() {
     if (origin === "BR") params.set("brazilHeading", brazilHeading);
     if (qspHeading) params.set("qspHeading", qspHeading);
     params.set("entryAt", normalizedEntryAt);
-    const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params);
+    const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params, { signal: controller.signal });
     let data = {};
     try {
       data = await response.json();
@@ -409,6 +414,7 @@ async function calculate() {
       data = {};
     }
 
+    if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
     if (!response.ok || data.status !== "calculated") {
       const code = isText(data.code) ? data.code : "UNAVAILABLE";
       error.textContent = isText(data.reason)
@@ -464,15 +470,19 @@ async function calculate() {
       result_band: resultBand
     });
   } catch (_) {
-    error.textContent = "Failed to connect to the signed tariff authority API.";
+    error.textContent = controller.signal.aborted
+      ? "The request timed out. No result was received; you can try again."
+      : "Failed to connect to the signed tariff authority API.";
     error.style.display = "block";
     showUnavailable(null, "Indeterminate — authority API unavailable");
     window.AttahirAnalytics?.once(`${actionKey}:outcome`, "tool_failed", {
       surface: "duty_calculator",
       tool_name: "duty_calculator",
-      error_code: "network"
+      error_code: controller.signal.aborted ? "timeout" : "network"
     });
   } finally {
+    clearTimeout(deadline);
+    dutyInFlight = false;
     button.disabled = false;
     button.textContent = "Calculate Duty";
   }

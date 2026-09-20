@@ -46,6 +46,22 @@ for (const file of files(root)) {
   if (!title || title.length > 200) throw new Error('Missing/bounded title: ' + relative);
   catalogue[publicPath] = { surface: surface(publicPath), title, ...(disabled ? { disabled: true } : {}) };
   let next = html.replace(/^[ \t]*<script\b[^>]*src=["'][^"']*(?:googletagmanager\.com\/gtag\/js|\/assets\/analytics\.js)[^"']*["'][^>]*>\s*<\/script>[ \t]*\n?/gim, '');
+  // Tag only deliberate public App Store handoffs, never internal navigation or JSON-LD.
+  next = next.replace(/(<a\b[^>]*\bhref=)(["'])([^"']+)(\2)/gi, (match, prefix, quote, href) => {
+    let url;
+    try { url = new URL(href.replaceAll('&amp;', '&')); } catch { return match; }
+    if (url.origin !== 'https://apps.shopify.com' || url.username || url.password) return match;
+    const app = url.pathname.replace(/^\//, '').replace(/\/$/, '');
+    if (!['shelflife', 'stockclearance', 'tariffshield'].includes(app)) return match;
+    const content = publicPath.startsWith('/blog/') ? 'blog_cta'
+      : ['/duty/', '/shipping/'].includes(publicPath) ? 'tool_cta'
+      : publicPath === '/' ? 'homepage_public_apps'
+      : publicPath === '/apps/' ? 'apps_hub_hero' : 'app_page_cta';
+    const defaults = { utm_source: 'attahirlabs', utm_medium: 'website', utm_campaign: app, utm_content: content };
+    let added = false;
+    for (const [key, value] of Object.entries(defaults)) if (!url.searchParams.has(key)) { url.searchParams.set(key, value); added = true; }
+    return added ? prefix + quote + url.href.replaceAll('&', '&amp;') + quote : match;
+  });
   next = next.replace(/^[ \t]*<script\b[^>]*>([\s\S]*?)<\/script>[ \t]*\n?/gim, (match, body) => /gtag\(['"]config['"],\s*['"]G-8QRJWWVMRZ/.test(body) ? '' : match);
   // Preserve existing API origins while allowing GA's documented non-ad collection endpoints.
   next = next.replace(/(<meta\b[^>]*http-equiv="Content-Security-Policy"[^>]*content=")([^"]+)("[^>]*>)/i, (match, start, policy, end) => {
