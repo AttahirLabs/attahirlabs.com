@@ -44,6 +44,14 @@ for (const file of files) {
 for (const family of ['index.html', 'apps', 'blog', 'duty', 'shipping', 'tools', 'analytics-preferences', 'contact.html', 'privacy.html', 'terms.html', 'review']) assert.ok(familyCounts[family], family);
 assert.deepEqual([...new Set(publicLinks.map(x => x.app))].sort(), ['shelflife', 'stockclearance', 'tariffshield']);
 assert.ok(publicLinks.length > 40, 'exercise the actual published App Store CTAs');
+for (const link of publicLinks) {
+  const url = new URL(link.href.replaceAll('&amp;', '&'));
+  for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']) {
+    assert.equal(url.searchParams.getAll(key).length, 1, link.publicPath + ' has one ' + key);
+  }
+  assert.equal(url.searchParams.get('utm_campaign'), link.app);
+  assert.equal(Object.keys(api.safeCampaign(url.search)).length, 4, link.publicPath + ' uses the approved campaign vocabulary');
+}
 
 function browser(options = {}) {
   const listeners = {};
@@ -91,6 +99,8 @@ const clean = browser({
 });
 assert.equal(clean.scripts.length, 1);
 assert.equal(clean.events().filter(x => x[1] === 'page_view').length, 1);
+assert.equal(clean.events()[0][2].environment, 'production');
+assert.equal(clean.events()[0][2].classification_source, 'unclassified');
 const context = clean.events()[0][2];
 assert.equal(context.page_location, 'https://attahirlabs.com/apps/shelflife/');
 assert.equal(context.page_referrer, 'https://www.google.com/');
@@ -118,6 +128,42 @@ assert.equal(clean.scripts.length, 1);
 assert.equal(clean.events().filter(x => x[1] === 'page_view').length, 1);
 assert.equal(clean.windowListeners.storage.length, 1, 'duplicate includes cannot bind opt-out synchronization twice');
 assert.equal(clean.windowListeners.pageshow.length, 1);
+
+for (const href of ['/contact.html', 'https://attahirlabs.com/contact', 'mailto:support@attahirlabs.com?subject=private@example.com']) {
+  const runtime = browser({ path: '/apps/storechronicle/' });
+  runtime.dispatch('click', { target: target(href, ['.hero'], { analyticsEvent: 'contact_intent' }) });
+  const events = runtime.events().filter(x => x[1] === 'contact_intent');
+  assert.equal(events.length, 1, 'annotated and unannotated contact intent emits once');
+  assert.equal(events[0][2].app_name, 'storechronicle');
+  assert.doesNotMatch(JSON.stringify(events), /private|subject=|mailto:/);
+}
+for (const href of ['https://evil.example/contact.html', 'mailto:someone@example.com', 'javascript:alert(1)']) {
+  const runtime = browser({ path: '/contact.html' });
+  runtime.dispatch('click', { target: target(href) });
+  assert.equal(runtime.events().filter(x => x[1] === 'contact_intent').length, 0);
+}
+for (const search of ['?from=access_checker&placement=result_cta', '?utm_source=attahirlabs&utm_medium=tool&utm_campaign=accessshield&utm_content=access_checker_result_cta']) {
+  const runtime = browser({ path: '/apps/accessshield/', search });
+  const landing = runtime.events().filter(x => x[1] === 'tool_referral_landed');
+  assert.equal(landing.length, 1);
+  assert.equal(landing[0][2].tool_name, 'access_checker');
+  assert.equal(landing[0][2].campaign_source, undefined, 'an internal tool referral is not a new acquisition campaign');
+  vm.runInContext(source, runtime.context);
+  assert.equal(runtime.events().filter(x => x[1] === 'tool_referral_landed').length, 1);
+}
+for (const search of ['?from=access_checker&from=other&placement=result_cta', '?from=other&placement=result_cta']) {
+  const runtime = browser({ path: '/apps/accessshield/', search });
+  assert.equal(runtime.events().filter(x => x[1] === 'tool_referral_landed').length, 0);
+}
+for (const classification of ['internal', 'development', 'review', 'monitoring']) {
+  const runtime = browser({ flags: { ATTAHIR_ANALYTICS_TRAFFIC_CLASS: classification } });
+  assert.equal(runtime.events()[0][2].traffic_class, classification);
+  assert.equal(runtime.events()[0][2].classification_source, 'browser_diagnostic_marker');
+}
+for (const classification of ['merchant', 'verified_merchant', 'private@example.com']) {
+  const runtime = browser({ flags: { ATTAHIR_ANALYTICS_TRAFFIC_CLASS: classification } });
+  assert.equal(runtime.events()[0][2].traffic_class, 'unclassified');
+}
 
 for (const link of publicLinks) {
   const runtime = browser({ path: link.publicPath });

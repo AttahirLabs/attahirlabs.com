@@ -9,7 +9,7 @@
 
   const MEASUREMENT_ID = 'G-8QRJWWVMRZ';
   const OPT_OUT_STORAGE_KEY = 'attahir.analytics.disabled';
-  const VERSION = 'website-v1';
+  const VERSION = 'website-v2';
   // BEGIN GENERATED PAGES (tools/sync-measurement.mjs)
   const pages = Object.freeze({
   "/analytics-preferences/": {
@@ -398,7 +398,7 @@
     utm_source: ['attahirlabs', 'newsletter', 'shopify', 'google', 'bing', 'chatgpt', 'claude', 'gemini', 'linkedin', 'reddit'],
     utm_medium: ['website', 'email', 'organic', 'referral', 'social', 'cpc', 'ai-assistant'],
     utm_campaign: ['tariffshield', 'stockclearance', 'shelflife', 'free-tools', 'blog', 'portfolio', 'launch'],
-    utm_content: ['homepage_public_apps', 'apps_hub_hero', 'app_page_hero', 'dead_stock_guide_cta', 'blog_cta', 'tool_cta', 'nav', 'footer']
+    utm_content: ['homepage_public_apps', 'apps_hub_hero', 'app_page_hero', 'app_page_cta', 'app_page_footer', 'dead_stock_guide_cta', 'dead_stock_guide_faq', 'blog_cta', 'tool_cta', 'nav', 'footer']
   });
   const campaignKeys = { utm_source: 'campaign_source', utm_medium: 'campaign_medium', utm_campaign: 'campaign_name', utm_content: 'campaign_content' };
   const referrerHosts = new Set(['attahirlabs.com', 'www.attahirlabs.com', 'apps.shopify.com', 'google.com', 'www.google.com', 'google.ca', 'www.google.ca', 'bing.com', 'www.bing.com', 'duckduckgo.com', 'search.yahoo.com', 'chatgpt.com', 'claude.ai', 'gemini.google.com', 'perplexity.ai', 'www.perplexity.ai', 'www.linkedin.com', 'www.reddit.com', 't.co']);
@@ -414,6 +414,9 @@
   function safeCampaign(search) {
     const clean = {};
     const query = new URLSearchParams(String(search || ''));
+    // This old first-party tool handoff is referral context, not a new acquisition campaign.
+    if (query.get('utm_source') === 'attahirlabs' && query.get('utm_medium') === 'tool'
+      && query.get('utm_campaign') === 'accessshield' && query.get('utm_content') === 'access_checker_result_cta') return clean;
     for (const [key, values] of Object.entries(campaignValues)) {
       const input = query.getAll(key);
       if (input.length === 1 && values.includes(input[0])) clean[campaignKeys[key]] = input[0];
@@ -427,6 +430,14 @@
       if (url.protocol !== 'https:' || url.username || url.password || url.port || !referrerHosts.has(url.hostname)) return '';
       return url.origin + '/';
     } catch (_) { return ''; }
+  }
+
+  function accessCheckerHandoff(search) {
+    const query = new URLSearchParams(String(search || ''));
+    const exact = (key, value) => query.getAll(key).length === 1 && query.get(key) === value;
+    return (exact('from', 'access_checker') && exact('placement', 'result_cta'))
+      || (exact('utm_source', 'attahirlabs') && exact('utm_medium', 'tool')
+        && exact('utm_campaign', 'accessshield') && exact('utm_content', 'access_checker_result_cta'));
   }
 
   function canonicalPath(pathname) {
@@ -444,13 +455,19 @@
     const path = canonicalPath(location.pathname);
     // Known public pages only; redirects/review artifacts and local QA never send.
     if (!path || pages[path].disabled || location.protocol !== 'https:' || !['attahirlabs.com', 'www.attahirlabs.com'].includes(location.hostname) || location.port || optedOut()) return;
+    // Owned browser QA can opt into a finite diagnostic class before bootstrap.
+    // No URL parameter, storage value or marker can establish merchant identity.
+    const diagnostic = ['internal', 'development', 'review', 'monitoring'].includes(root.ATTAHIR_ANALYTICS_TRAFFIC_CLASS)
+      ? root.ATTAHIR_ANALYTICS_TRAFFIC_CLASS : null;
     pageContext = {
       page_location: 'https://attahirlabs.com' + path,
       page_path: path,
       page_title: pages[path].title,
       page_referrer: safeReferrer(doc.referrer),
       surface: pages[path].surface,
-      traffic_class: 'unclassified',
+      traffic_class: diagnostic || 'unclassified',
+      environment: 'production',
+      classification_source: diagnostic ? 'browser_diagnostic_marker' : 'unclassified',
       measurement_version: VERSION,
       ...safeCampaign(location.search)
     };
@@ -475,8 +492,13 @@
     tool_started: { required: ['surface', 'tool_name'], optional: [] },
     tool_completed: { required: ['surface', 'tool_name', 'result_band'], optional: [] },
     tool_failed: { required: ['surface', 'tool_name', 'error_code'], optional: [] },
+    tool_validation_failed: { required: ['surface', 'tool_name', 'error_code'], optional: [] },
     contact_intent: { required: ['surface', 'placement'], optional: ['app_name'] },
     tool_to_app_referral: {
+      required: ['surface', 'placement', 'tool_name', 'app_name'],
+      optional: []
+    },
+    tool_referral_landed: {
       required: ['surface', 'placement', 'tool_name', 'app_name'],
       optional: []
     }
@@ -704,6 +726,23 @@
         });
         return; // One canonical event even when a legacy data attribute is present.
       }
+      if (anchor && pageContext) {
+        const href = anchor.getAttribute('href');
+        let contact = false;
+        try {
+          const url = new URL(href, 'https://attahirlabs.com');
+          contact = (url.protocol === 'mailto:' && url.pathname.toLowerCase() === 'support@attahirlabs.com')
+            || (url.origin === 'https://attahirlabs.com' && ['/contact', '/contact.html'].includes(url.pathname));
+        } catch (_) { /* An unrecognized link is not a contact intent. */ }
+        if (contact) {
+          const product = pageContext.page_path.match(/^\/apps\/([^/]+)\/$/)?.[1];
+          analytics.emit('contact_intent', {
+            surface: pageContext.surface, placement: placementFor(anchor, pageContext.surface),
+            ...(enums.app_name.has(product) ? { app_name: product } : {})
+          });
+          return; // Do not double-send annotated contact links; never send the mailto query.
+        }
+      }
       const element = event.target?.closest?.('[data-analytics-event]');
       if (!element) return;
       const name = element.dataset.analyticsEvent;
@@ -754,6 +793,11 @@
       if (event.persisted && optedOut()) analytics.disable();
     });
     bootstrap(root.document, root.location);
+    if (pageContext?.page_path === '/apps/accessshield/' && accessCheckerHandoff(root.location.search)) {
+      analytics.once('accesschecker:landing', 'tool_referral_landed', {
+        surface: 'app_page', placement: 'result_cta', tool_name: 'access_checker', app_name: 'accessshield'
+      });
+    }
     if (root.document.readyState === 'loading') {
       root.document.addEventListener('DOMContentLoaded', () => bindDom(root.document, root.location));
     } else {

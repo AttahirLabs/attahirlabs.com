@@ -14,7 +14,7 @@ function assertListingCta(relativePath, label) {
   const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   assert.match(
     html,
-    new RegExp(`<a[^>]+href="${listing}"[^>]*>${escapedLabel}</a>`),
+    new RegExp(`<a[^>]+href="${listing}(?:\\?[^"#]*)?"[^>]*>${escapedLabel}</a>`),
     `${relativePath} should send the ${label} CTA to the official ShelfLife listing`
   );
 }

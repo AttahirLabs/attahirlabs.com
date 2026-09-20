@@ -123,7 +123,7 @@ for (const slug of articleSlugs) {
 
   const directApps = publicEntries.filter(([, url]) => html.includes(url)).map(([app]) => app);
   if (Object.hasOwn(contract.publicApps, assigned)) {
-    const expectedUrl = contract.articleHrefOverrides?.[slug] || contract.publicApps[assigned];
+    const expectedUrl = contract.articleHrefOverrides?.[slug] || `${contract.publicApps[assigned]}?utm_source=attahirlabs&amp;utm_medium=website&amp;utm_campaign=${assigned}&amp;utm_content=blog_cta`;
     if (!html.includes(`data-app-cta="${assigned}"`)) fail(`${relative} lacks the ${assigned} CTA marker`);
     if (!html.includes(`href="${expectedUrl}"`)) fail(`${relative} lacks the exact ${assigned} listing CTA`);
     if (directApps.some((app) => app !== assigned)) fail(`${relative} contains a cross-app listing CTA: ${directApps.join(', ')}`);

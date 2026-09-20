@@ -79,6 +79,10 @@ assert.deepEqual(
 );
 
 const beforeOnce = sent.length;
+assert.ok(analytics.emit('tool_validation_failed', {
+  surface: 'shipping_calculator', tool_name: 'shipping_calculator', error_code: 'validation'
+}));
+const afterValidation = sent.length;
 assert.ok(analytics.once('shipping:1:outcome', 'tool_completed', {
   surface: 'shipping_calculator',
   tool_name: 'shipping_calculator',
@@ -89,7 +93,7 @@ assert.equal(analytics.once('shipping:1:outcome', 'tool_failed', {
   tool_name: 'shipping_calculator',
   error_code: 'unknown'
 }), null, 'one action may have only one terminal outcome');
-assert.equal(sent.length, beforeOnce + 1);
+assert.equal(sent.length, afterValidation + 1);
 
 const disabled = analyticsModule.createAnalytics({ transport: null });
 assert.doesNotThrow(() => disabled.emit('surface_viewed', {

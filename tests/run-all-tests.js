@@ -15,6 +15,7 @@ function runAllTests() {
     throw new Error('No tests/*.test.js files were discovered');
   }
 
+  const failures = [];
   for (const test of tests) {
     const relative = path.relative(process.cwd(), test);
     console.log(`\n==> ${relative}`);
@@ -22,8 +23,12 @@ function runAllTests() {
       cwd: path.resolve(__dirname, '..'),
       stdio: 'inherit'
     });
-    if (result.error) throw result.error;
-    if (result.status !== 0) process.exit(result.status ?? 1);
+    if (result.error) console.error(result.error);
+    if (result.error || result.status !== 0) failures.push(relative);
+  }
+  if (failures.length) {
+    console.error(`Failed tests: ${failures.join(", ")}`);
+    process.exitCode = 1;
   }
 }
 

@@ -177,6 +177,11 @@ function insertContractBlock(slug, html) {
     block = block.replace(`href="${contract.publicApps[assigned]}"`, `href="${hrefOverride}"`);
   }
   if (!block) return html;
+  if (!hrefOverride && contract.publicApps[assigned]) {
+    const trackedHref = `${contract.publicApps[assigned]}?utm_source=attahirlabs&amp;utm_medium=website&amp;utm_campaign=${assigned}&amp;utm_content=blog_cta`;
+    block = block.replace(`href="${contract.publicApps[assigned]}"`, `href="${trackedHref}"`);
+  }
+
   if (html.includes('href="#cta"')) {
     block = block.replace('<aside class=', '<aside id="cta" class=');
   }
