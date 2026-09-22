@@ -11,3 +11,9 @@ TariffShield and AccessShield decorative backgrounds were edited with built-in i
 > Edit this website decorative background only: preserve exact composition, objects, plants, architectural forms, lighting, generous empty center and landscape aspect ratio. Change purple/lavender glass to clean translucent blue-teal glass inspired by #087F8C and #DDEFEF, with navy #102A36 edges. Preserve natural green foliage and neutral ivory stone. Premium crisp professional SaaS visual, no extra objects, no text, no logo, no interface. The empty middle is essential for an HTML interface overlay. Color-only refinement.
 
 The existing product screenshots remain truthful examples of the apps; their interface colors are not recolored to imply an app UI release.
+
+## Mockup implementation refinement
+
+The homepage uses three translucent glass layers and a four-tier architectural frame around a semantic HTML inventory concept. Each moving layer responds to native scroll with a small, bounded translation; mobile and reduced-motion modes keep the layers still. The concept table is explicitly labelled as sample data.
+
+Larger approved app marks, compact editorial rows, and horizontal upcoming-product entries follow the selected composition. Detailed feature lists stay on the app hub and product pages. Install links, pricing summaries and acquisition tags remain present on the homepage. Free tools and guides use compact desktop layouts that stack on mobile. Dedicated product navigation highlights plans or launch notification, and ShelfLife uses the approved headline, “Know what expires next.”

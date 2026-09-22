@@ -293,7 +293,7 @@
       "listingName": "ShelfLife: Expiry Date Tracker",
       "icon": "/assets/icons/shelflife-suite.png",
       "iconAlt": "ShelfLife app icon showing product shelves inside a countdown ring",
-      "headline": "Know which batches need attention before they expire.",
+      "headline": "Know what expires next.",
       "description": "Keep expiry dates, batches, suppliers, and locations together. Review stock at risk, plan what to pick first, and keep traceability records close at hand.",
       "summary": "Track batches and expiry risk, with picking guidance and supplier records.",
       "homeFeatures": [
