@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const page = fs.readFileSync(path.join(root, 'apps/shelflife/index.html'), 'utf8');
-const iconUrl = '/assets/icons/shelflife-countdown-shelves-512.png';
+const iconUrl = '/assets/icons/shelflife-suite.png';
 const absoluteIconUrl = `https://attahirlabs.com${iconUrl}`;
 const iconPath = path.join(root, iconUrl.slice(1));
 
@@ -14,7 +14,7 @@ assert.ok(fs.existsSync(iconPath), 'ShelfLife should ship the selected Countdown
 const icon = fs.readFileSync(iconPath);
 assert.equal(
   crypto.createHash('sha256').update(icon).digest('hex'),
-  '356026fd2ffcf39074b687212e573cbce8b9be7e29da788f763b3c654d87c7ff',
+  '78ee2aa033f649d6b049c18fbdba7f6dbff54b62bcf0dfa1af48326643e7d5ab',
   'ShelfLife web icon should remain byte-for-byte pinned to the selected derivative'
 );
 assert.equal(icon.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', 'ShelfLife icon should be a PNG');
