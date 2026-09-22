@@ -34,5 +34,11 @@ const assert = require('node:assert/strict');
     assert.ok(tour.index >= 0 && tour.index < 4);
     assert.equal(new Set([0,1,2,3].map(i=>tour.offset(i))).size,4,'each pod has a distinct elevator position');
   }
+  const expanded=new CommerceTimeline(6,6,1.15);
+  for(let floor=0;floor<5;floor++)expanded.next(true);
+  expanded.next();
+  for(let i=0;i<120;i++)expanded.advance(.01);
+  assert.equal(expanded.index,0,'six-business rotation wraps to the first shop');
+  assert.equal(expanded.position,6,'absolute lap survives wrapping for alternate app panels');
   console.log('Commerce hero: dwell, pause, manual navigation, reduced-motion selection and seamless elevator wrap passed.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

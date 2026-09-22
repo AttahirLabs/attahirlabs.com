@@ -16,7 +16,7 @@ export function createCommerceWorld(host) {
   }
   try {
   renderer.setClearColor(0xf7f8f4, 0);
-  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 681 ? 1.25 : 1.6));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 681 ? 1.75 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = .95;
@@ -42,7 +42,7 @@ export function createCommerceWorld(host) {
   scene.add(key);
   const rim = new THREE.DirectionalLight(0xc4eef1, 1.3);rim.position.set(7,4,-6);scene.add(rim);
   const materials = {
-    glass: new THREE.MeshPhysicalMaterial({color:0xc7f0ee,metalness:0,roughness:.12,transmission:.96,thickness:.06,ior:1.45,transparent:true,opacity:.23,depthWrite:false,side:THREE.DoubleSide}),
+    glass: new THREE.MeshPhysicalMaterial({color:0xc7f0ee,metalness:0,roughness:.12,transmission:0,thickness:.06,ior:1.45,transparent:true,opacity:.10,depthWrite:false,side:THREE.DoubleSide}),
     floor: new THREE.MeshPhysicalMaterial({color:0xeff4ec,roughness:.3,metalness:.05}),
     edge: new THREE.MeshStandardMaterial({color:0x269ca8,roughness:.23,metalness:.3}),
     rim: new THREE.MeshStandardMaterial({color:0xaad8d8,roughness:.2,metalness:.25})
@@ -53,10 +53,6 @@ export function createCommerceWorld(host) {
     const outline=new THREE.LineSegments(new THREE.EdgesGeometry(p.geometry),new THREE.LineBasicMaterial({color:0x087f8c,transparent:true,opacity:.8}));p.add(outline);return p;
   }
   const architecture = new THREE.Group();scene.add(architecture);
-  for(let i=0;i<4;i++){
-    const p=pane(architecture,3.25,5.65,-1.25+i*.30,.75+i*.18,-.8+i*.37);
-    p.rotation.y=-.12;
-  }
   const plinth=block(architecture,6.3,.10,3.3,-.35,-2.4,.1,materials.glass);
   plinth.receiveShadow=true;
   const rooms=createRooms(THREE);
@@ -65,10 +61,10 @@ export function createCommerceWorld(host) {
     const floor=block(shell,3.85,.12,2.7,0,-.07,0,materials.floor);floor.receiveShadow=true;
     // Open fronts keep the people and work legible inside each glass enclosure.
     pane(shell,3.85,2.23,0,1.055,-1.36);
-    const side=pane(shell,2.7,2.23,1.925,1.055,0);side.rotation.y=Math.PI/2;
-    for(const x of [-1.925,1.925])for(const z of [-1.36,1.36])block(shell,.035,2.25,.035,x,1.07,z,materials.edge);
+    // Open side walls preserve a clear view of staff, aisles and storefront details.
+    for(const x of [-1.925,1.925])block(shell,.025,2.25,.025,x,1.07,-1.36,materials.edge);
     for(const y of [-.13,2.18]){
-      block(shell,3.9,.035,.035,0,y,1.36,materials.edge);
+      if(y<0)block(shell,3.9,.035,.035,0,y,1.36,materials.edge);
       block(shell,3.9,.035,.035,0,y,-1.36,materials.rim);
       block(shell,.035,.035,2.7,1.925,y,0,materials.edge);
     }

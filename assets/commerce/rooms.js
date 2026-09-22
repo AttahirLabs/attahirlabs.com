@@ -1,7 +1,8 @@
+import { sampleWalk } from './motion.mjs';
 const TAU = Math.PI * 2;
 
 /**
- * Build the four miniature commerce rooms used by the homepage tower.
+ * Build the six miniature commerce rooms used by the homepage tower.
  * The caller owns the renderer, floor slabs, glass shells, and animation loop.
  *
  * @param {typeof import("three")} THREE
@@ -268,6 +269,9 @@ export function createRooms(THREE) {
   function createPerson(parent, options = {}) {
     const person = group(parent, options.name ?? "person", options.position ?? [0, 0, 0]);
     if (options.rotationY) person.rotation.y = options.rotationY;
+    person.userData.person = true;
+    person.userData.floorRadius = .28;
+    person.position.y = .015;
     const skin = options.skin ?? C.skin1;
     const shirt = options.shirt ?? C.teal;
     const trousers = options.trousers ?? C.navy;
@@ -319,7 +323,7 @@ export function createRooms(THREE) {
         rightLeg.joint.rotation.set(0, 0, 0);
       },
       setWalk(stride, amount = 1) {
-        const swing = stride * 0.58 * amount;
+        const swing = stride * 0.42 * amount;
         leftLeg.pivot.rotation.x = swing;
         rightLeg.pivot.rotation.x = -swing;
         leftLeg.joint.rotation.x = Math.max(0, -swing) * 0.55;
@@ -330,15 +334,16 @@ export function createRooms(THREE) {
         rightArm.joint.rotation.x = -0.12;
       },
       setSeated() {
-        person.position.y = -0.18;
+        person.position.y = -0.25;
+        person.userData.seated = true;
         leftLeg.pivot.rotation.x = -1.34;
         rightLeg.pivot.rotation.x = -1.34;
         leftLeg.joint.rotation.x = 1.27;
         rightLeg.joint.rotation.x = 1.27;
-        leftArm.pivot.rotation.x = -0.28;
-        rightArm.pivot.rotation.x = -0.28;
-        leftArm.joint.rotation.x = -0.6;
-        rightArm.joint.rotation.x = -0.6;
+        leftArm.pivot.rotation.x = -0.45;
+        rightArm.pivot.rotation.x = -0.45;
+        leftArm.joint.rotation.x = -0.7;
+        rightArm.joint.rotation.x = -0.7;
       },
     };
     api.setNeutral();
@@ -357,34 +362,24 @@ export function createRooms(THREE) {
   function pulse(phase, start, end) {
     if (phase <= start || phase >= end) return 0;
     const local = (phase - start) / (end - start);
-    return Math.sin(local * Math.PI);
+    return Math.sin(local * Math.PI) ** 2;
   }
 
-  function route(t, period, outboundEnd = 0.34, returnStart = 0.62, returnEnd = 0.94) {
-    const phase = ((t % period) + period) % period / period;
-    let progress = 0;
-    let moving = false;
-    let direction = 1;
-    let local = 0;
-    if (phase < outboundEnd) {
-      local = phase / outboundEnd;
-      progress = smooth(local);
-      moving = true;
-    } else if (phase < returnStart) {
-      progress = 1;
-    } else if (phase < returnEnd) {
-      local = (phase - returnStart) / (returnEnd - returnStart);
-      progress = 1 - smooth(local);
-      moving = true;
-      direction = -1;
-    }
-    const envelope = Math.sin(clamp01(local) * Math.PI);
-    const stride = moving ? Math.sin(local * TAU * 2.25) * Math.min(1, envelope * 3) : 0;
-    return { phase, progress, moving, direction, stride };
+  function solid(object) { object.userData.solid = true; return object; }
+
+  function walk(person, t, options) {
+    const motion = sampleWalk(t, options);
+    person.setNeutral();
+    person.group.position.x = motion.x;
+    person.group.position.z = motion.z;
+    person.group.position.y = .015 + (motion.moving ? Math.abs(motion.stride)*.008 : 0);
+    person.group.rotation.y = motion.yaw;
+    person.setWalk(motion.stride, motion.moving ? 1 : 0);
+    return motion;
   }
 
   function addCafeTable(parent, x, z) {
-    cylinder(parent, 0.35, 0.045, [x, 0.58, z], C.woodLight, { segments: 24, receive: true });
+    solid(cylinder(parent, 0.29, 0.045, [x, 0.58, z], C.woodLight, { segments: 32, receive: true }));
     cylinder(parent, 0.055, 0.54, [x, 0.29, z], C.navySoft, { segments: 12 });
     cylinder(parent, 0.19, 0.035, [x, 0.025, z], C.navy, { segments: 20, receive: true });
   }
@@ -397,7 +392,7 @@ export function createRooms(THREE) {
     [-0.15, 0.15].forEach((legX) => {
       [-0.14, 0.14].forEach((legZ) => box(chair, [0.045, 0.38, 0.045], [legX, 0.19, legZ], C.navy, {}));
     });
-    return chair;
+    return solid(chair);
   }
 
   function makeCoffeeRoom() {
@@ -405,21 +400,21 @@ export function createRooms(THREE) {
     room.name = "coffee-room";
     addRearPanels(room, C.teal);
     addRug(room, [1.46, 0.92], [-0.72, 0.52], 0xdde8e4);
-    addLabel(room, "ESPRESSO", [0, 1.58, -1.095], [1.1, 0.35]);
+    addLabel(room, "NORTH / COFFEE", [0, 1.79, -1.095], [1.45, 0.3]);
 
     // Rear service counter and softly rounded display details.
-    box(room, [2.75, 0.68, 0.46], [0.18, 0.34, -0.78], C.wood, { receive: true });
-    box(room, [2.9, 0.08, 0.54], [0.18, 0.72, -0.75], C.ivory, { receive: true });
-    box(room, [0.86, 0.28, 0.12], [-0.83, 0.91, -0.77], C.navy, {});
+    solid(box(room, [1.65, 0.68, 0.46], [0.83, 0.34, -0.43], C.wood, { receive: true }));
+    solid(box(room, [1.75, 0.08, 0.5], [0.83, 0.72, -0.43], C.ivory, { receive: true }));
+    box(room, [0.46, 0.18, 0.12], [0.32, 0.85, -0.43], C.navy, {});
     [0, 1, 2].forEach((index) => {
-      sphere(room, 0.07, [-1.08 + index * 0.25, 0.88, -0.68], [C.pastry, C.cream, C.terracotta][index], {
+      sphere(room, 0.07, [0.18 + index * 0.14, 0.82, -0.32], [C.pastry, C.cream, C.terracotta][index], {
         scale: [1.25, 0.55, 0.9],
         widthSegments: 14,
         heightSegments: 8,
       });
     });
 
-    const machine = group(room, "espresso-machine", [0.58, 0.78, -0.79]);
+    const machine = group(room, "espresso-machine", [1.15, 0.78, -0.46]);
     box(machine, [0.64, 0.38, 0.32], [0, 0.19, 0], C.steel, {
       materialOptions: { metalness: 0.62, roughness: 0.3 },
     });
@@ -432,30 +427,28 @@ export function createRooms(THREE) {
       });
     });
     [ -0.2, 0, 0.2 ].forEach((x) => sphere(machine, 0.025, [x, 0.28, 0.181], x === 0 ? C.teal : C.ivory, { cast: false }));
-    addCup(room, [0.6, 0.76, -0.43], C.ivory, 0.92);
-    [0, 1, 2, 3].forEach((index) => addCup(room, [-0.2 + index * 0.16, 0.76, -0.78], index % 2 ? C.teal : C.ivory, 0.72));
+    addCup(room, [1.15, 0.76, -0.20], C.ivory, 0.92);
+    [0, 1, 2, 3].forEach((index) => addCup(room, [0.45 + index * 0.12, 0.76, -0.55], index % 2 ? C.teal : C.ivory, 0.72));
 
-    addCafeTable(room, -0.9, 0.32);
-    addChair(room, -1.32, 0.4, Math.PI / 2, C.teal);
-    addChair(room, -0.52, 0.3, -Math.PI / 2, C.tealLight);
-    addCafeTable(room, 0.65, 0.66);
-    addChair(room, 0.22, 0.72, Math.PI / 2, C.terracotta);
-    addChair(room, 1.08, 0.66, -Math.PI / 2, C.mustard);
+    addCafeTable(room, -0.79, 0.52);
+    addChair(room, -1.35, 0.52, Math.PI / 2, C.teal);
+    addChair(room, -0.23, 0.52, -Math.PI / 2, C.mustard);
+    addPlant(room, [-1.35, 0, -0.83], .65);
 
     const seatedA = createPerson(room, {
       name: "patron-lifting-cup",
-      position: [-1.31, 0, 0.4],
+      position: [-1.35, 0, 0.52],
       rotationY: Math.PI / 2,
       shirt: C.mustard,
       trousers: C.navy,
       skin: C.skin2,
     });
     seatedA.setSeated();
-    const heldCup = addCup(seatedA.rightArm.joint, [0, -0.25, 0.015], C.ivory, 0.72);
+    const heldCup = addCup(seatedA.rightArm.joint, [0, -0.215, 0.015], C.ivory, 0.72);
 
     const seatedB = createPerson(room, {
       name: "patron-chatting",
-      position: [1.08, 0, 0.66],
+      position: [-0.23, 0, 0.52],
       rotationY: -Math.PI / 2,
       shirt: C.lavender,
       trousers: C.navySoft,
@@ -466,7 +459,7 @@ export function createRooms(THREE) {
 
     const barista = createPerson(room, {
       name: "barista",
-      position: [0.08, 0, -0.95],
+      position: [0.68, 0, -1.0],
       shirt: C.teal,
       trousers: C.charcoal,
       skin: C.skin3,
@@ -476,7 +469,7 @@ export function createRooms(THREE) {
 
     const pickupCustomer = createPerson(room, {
       name: "pickup-customer",
-      position: [0.95, 0, 0.98],
+      position: [1.25, 0, 1.02],
       shirt: C.blush,
       trousers: C.navy,
       skin: C.skin1,
@@ -486,46 +479,39 @@ export function createRooms(THREE) {
         room,
         torusGeometry(0.035 + index * 0.007, 0.006, 6, 16),
         material(C.ivory, { transparent: true, opacity: 0.48, roughness: 1 }).clone(),
-        [0.6, 0.88 + index * 0.08, -0.43],
+        [1.15, 0.88 + index * 0.08, -0.20],
         { rotation: [Math.PI / 2, 0, 0], cast: false },
       );
+      ring.userData.animated=true;
       return ring;
     });
 
     function update(t) {
-      const customerRoute = route(t, 9.2, 0.35, 0.66, 0.96);
-      pickupCustomer.group.position.z = 0.98 - customerRoute.progress * 0.91;
-      pickupCustomer.group.rotation.y = customerRoute.moving
-        ? (customerRoute.direction > 0 ? Math.PI : 0)
-        : (customerRoute.progress > 0.5 ? Math.PI : 0);
-      pickupCustomer.setNeutral();
-      pickupCustomer.setWalk(customerRoute.stride, customerRoute.moving ? 1 : 0);
-      if (!customerRoute.moving && customerRoute.progress > 0.5) {
-        pickupCustomer.rightArm.pivot.rotation.x = -0.75;
-        pickupCustomer.rightArm.joint.rotation.x = -0.62;
-      }
+      const pickup = walk(pickupCustomer, t, {start:[1.25,1.02],end:[1.25,.23],endFacing:Math.PI,hold:2.7});
+      pickupCustomer.rightArm.pivot.rotation.x -= pickup.activity*.78;
+      pickupCustomer.rightArm.joint.rotation.x -= pickup.activity*.55;
 
       const baristaPhase = (t % 6.4) / 6.4;
       const reach = pulse(baristaPhase, 0.08, 0.42);
       const tamp = pulse(baristaPhase, 0.48, 0.75);
       barista.setNeutral();
-      barista.rightArm.pivot.rotation.x = -reach * 1.18 - tamp * 0.45;
+      barista.rightArm.pivot.rotation.x = -.65 - reach * .45 - tamp * .2;
       barista.rightArm.pivot.rotation.z = -reach * 0.25;
       barista.rightArm.joint.rotation.x = -0.45 - reach * 0.55;
-      barista.leftArm.pivot.rotation.x = -tamp * 0.82;
+      barista.leftArm.pivot.rotation.x = -.65 - tamp * .35;
       barista.leftArm.joint.rotation.x = -0.35 - tamp * 0.5;
 
       const sip = pulse((t % 7.4) / 7.4, 0.24, 0.57);
       seatedA.setSeated();
-      seatedA.rightArm.pivot.rotation.x = -0.28 - sip * 0.92;
+      seatedA.rightArm.pivot.rotation.x = -0.45 - sip * 0.8;
       seatedA.rightArm.pivot.rotation.z = -sip * 0.12;
-      seatedA.rightArm.joint.rotation.x = -0.6 - sip * 0.65;
-      heldCup.rotation.x = sip * 0.25;
+      seatedA.rightArm.joint.rotation.x = -0.7 - sip * 0.5;
+      heldCup.rotation.x = -seatedA.rightArm.pivot.rotation.x - seatedA.rightArm.joint.rotation.x + sip*.14;
 
       steam.forEach((ring, index) => {
         const phase = (t * 0.18 + index * 0.24) % 1;
         ring.position.y = 0.88 + phase * 0.26;
-        ring.position.x = 0.6 + Math.sin((phase + index) * Math.PI) * 0.018;
+        ring.position.x = 1.15 + Math.sin((phase + index) * Math.PI) * 0.018;
         ring.scale.setScalar(0.65 + phase * 0.55);
         ring.material.opacity = (1 - phase) * 0.42;
       });
@@ -549,7 +535,7 @@ export function createRooms(THREE) {
         addCarton(rack, [-0.88 + column * 0.44, 0.27 + row * 0.45, 0.02], [width, 0.27, 0.34], colors[(row + column) % colors.length]);
       });
     });
-    return rack;
+    return solid(rack);
   }
 
   function makeWarehouseRoom() {
@@ -561,21 +547,23 @@ export function createRooms(THREE) {
 
     // Conveyor runs across the open foreground.
     const belt = group(room, "conveyor", [-0.35, 0, 0.62]);
-    box(belt, [2.55, 0.12, 0.56], [0, 0.48, 0], C.navySoft, { receive: true });
-    [ -1.1, -0.55, 0, 0.55, 1.1 ].forEach((x) => {
+    solid(box(belt, [1.7, 0.12, 0.48], [-.3, 0.48, 0], C.navySoft, { receive: true }));
+    [ -1.05, -.7, -.35, 0, .35 ].forEach((x) => {
       cylinder(belt, 0.07, 0.53, [x, 0.55, 0], C.steel, {
         rotation: [Math.PI / 2, 0, 0],
         segments: 14,
         materialOptions: { metalness: 0.45, roughness: 0.4 },
       });
     });
-    [ -1.12, 1.12 ].forEach((x) => {
+    [ -1.03, .43 ].forEach((x) => {
       [ -0.2, 0.2 ].forEach((z) => box(belt, [0.07, 0.48, 0.07], [x, 0.24, z], C.darkSteel, {}));
     });
     const movingBoxes = [0, 1, 2].map((index) => addCarton(belt, [-1.05 + index * 0.8, 0.62, 0], [0.3, 0.22, 0.3], index === 1 ? C.tealLight : C.carton));
 
+    movingBoxes.forEach(box=>{box.userData.animated=true;});
+
     // Packing desk and shipping supplies to the right.
-    box(room, [0.85, 0.08, 0.64], [1.16, 0.75, -0.1], C.woodLight, { receive: true });
+    solid(box(room, [0.85, 0.08, 0.64], [1.16, 0.75, -0.1], C.woodLight, { receive: true }));
     [0.88, 1.44].forEach((x) => box(room, [0.07, 0.72, 0.07], [x, 0.36, -0.1], C.navy, {}));
     addCarton(room, [1.15, 0.79, -0.12], [0.34, 0.23, 0.3], C.cream);
     cylinder(room, 0.12, 0.09, [1.43, 0.84, -0.2], C.teal, {
@@ -597,7 +585,7 @@ export function createRooms(THREE) {
 
     const packer = createPerson(room, {
       name: "packer",
-      position: [1.12, 0, 0.48],
+      position: [1.25, 0, 0.61],
       rotationY: Math.PI,
       shirt: C.teal,
       trousers: C.charcoal,
@@ -608,25 +596,16 @@ export function createRooms(THREE) {
     function update(t) {
       movingBoxes.forEach((carton, index) => {
         const progress = (t * 0.115 + index / movingBoxes.length) % 1;
-        carton.position.x = -1.15 + progress * 2.3;
+        carton.position.x = -1.0 + progress * 1.42;
+        carton.scale.setScalar(Math.min(1,progress/.08,(1-progress)/.08));
         carton.rotation.y = Math.sin(progress * Math.PI) * 0.03;
       });
 
-      const pickerRoute = route(t + 1.1, 10.8, 0.3, 0.66, 0.95);
-      picker.group.position.x = -1.48 + pickerRoute.progress * 0.82;
-      picker.group.position.z = -0.22 - pickerRoute.progress * 0.31;
-      picker.group.rotation.y = pickerRoute.moving
-        ? (pickerRoute.direction > 0 ? 1.93 : -1.21)
-        : (pickerRoute.progress > 0.5 ? Math.PI : 0.25);
-      picker.setNeutral();
-      picker.setWalk(pickerRoute.stride, pickerRoute.moving ? 1 : 0);
-      pickedCarton.visible = pickerRoute.progress < 0.55;
-      if (!pickerRoute.moving && pickerRoute.progress > 0.5) {
-        const reach = pulse(pickerRoute.phase, 0.32, 0.62);
-        picker.rightArm.pivot.rotation.x = -0.35 - reach * 1.0;
-        picker.rightArm.joint.rotation.x = -0.35 - reach * 0.55;
-        picker.leftArm.pivot.rotation.x = -0.28 - reach * 0.7;
-      }
+      const pick = walk(picker, t, {start:[-1.2,-.22],end:[-.45,-.22],startFacing:0,endFacing:Math.PI,phase:1.1,hold:3});
+      pickedCarton.visible = pick.activity < .1;
+      picker.rightArm.pivot.rotation.x -= pick.activity*1.05;
+      picker.rightArm.joint.rotation.x -= pick.activity*.5;
+      picker.leftArm.pivot.rotation.x -= pick.activity*.7;
 
       const packPhase = (t % 5.8) / 5.8;
       const scan = pulse(packPhase, 0.08, 0.35);
@@ -664,7 +643,7 @@ export function createRooms(THREE) {
         }
       }
     });
-    return shelf;
+    return solid(shelf);
   }
 
   function addProduceTable(parent) {
@@ -681,7 +660,7 @@ export function createRooms(THREE) {
         });
       }
     }
-    return stand;
+    return solid(stand);
   }
 
   function makeGroceryRoom() {
@@ -694,14 +673,9 @@ export function createRooms(THREE) {
     addProduceTable(room);
     addRug(room, [1.1, 0.74], [0.9, 0.66], 0xdfe7d8);
 
-    // A small tasting console makes this room read as wellness retail.
-    cylinder(room, 0.34, 0.055, [0.92, 0.66, 0.48], C.ivory, { segments: 24, receive: true });
-    tapered(room, 0.09, 0.17, 0.6, [0.92, 0.34, 0.48], C.woodLight, { segments: 18 });
-    [ -0.13, 0, 0.13 ].forEach((offset, index) => addBottle(room, [0.92 + offset, 0.69, 0.48], [C.teal, C.terracotta, C.mustard][index], 0.78));
-
     const assistant = createPerson(room, {
       name: "restocking-assistant",
-      position: [0.38, 0, -0.4],
+      position: [0.28, 0, -0.18],
       rotationY: Math.PI,
       shirt: C.leaf,
       trousers: C.navy,
@@ -737,19 +711,9 @@ export function createRooms(THREE) {
       assistant.leftArm.joint.rotation.x = -0.25 - place * 0.4;
       restockBottle.position.y = -0.27 + (lift + place) * 0.03;
 
-      const browse = route(t + 2.0, 12.4, 0.3, 0.69, 0.96);
-      customer.group.position.x = 1.38 - browse.progress * 0.78;
-      customer.group.position.z = 0.8 - browse.progress * 0.52;
-      customer.group.rotation.y = browse.moving
-        ? (browse.direction > 0 ? -2.16 : 0.98)
-        : Math.PI;
-      customer.setNeutral();
-      customer.setWalk(browse.stride, browse.moving ? 0.86 : 0);
-      if (!browse.moving && browse.progress > 0.5) {
-        const inspect = pulse(browse.phase, 0.32, 0.66);
-        customer.rightArm.pivot.rotation.x = -0.4 - inspect * 0.82;
-        customer.rightArm.joint.rotation.x = -0.52;
-      }
+      const browse = walk(customer, t, {start:[1.2,.95],end:[1.2,-.12],endFacing:Math.PI,phase:2,hold:3});
+      customer.rightArm.pivot.rotation.x -= browse.activity*.85;
+      customer.rightArm.joint.rotation.x -= browse.activity*.5;
       customer.leftArm.pivot.rotation.x = -0.42;
       customer.leftArm.pivot.rotation.z = 0.22;
       customer.leftArm.joint.rotation.x = -0.45;
@@ -818,14 +782,14 @@ export function createRooms(THREE) {
       { p: [0.3, 0, -0.58], s: [0.48, 0.67, 0.46], c: C.ivory },
     ];
     plinths.forEach(({ p, s, c }, index) => {
-      box(room, s, [p[0], s[1] / 2, p[2]], c, { receive: true });
+      solid(box(room, s, [p[0], s[1] / 2, p[2]], c, { receive: true }));
       addCeramic(room, [p[0], s[1] + 0.015, p[2]], [C.teal, C.terracotta, C.navySoft][index], 0.86 + index * 0.08);
     });
-    addLamp(room, [1.2, 0, -0.52], C.mustard, 1.2);
-    addPlant(room, [-1.42, 0, 0.62], 1.08);
+    solid(addLamp(room, [1.40, 0, -.88], C.mustard, 1.1));
+    solid(addPlant(room, [-1.5, 0, -.48], .8));
 
     // Curved-looking lounge vignette made from upholstered volumes.
-    const bench = group(room, "display-bench", [0.65, 0, 0.58]);
+    const bench = solid(group(room, "display-bench", [-.9, 0, 0.58]));
     box(bench, [1.18, 0.3, 0.48], [0, 0.2, 0], C.teal, { receive: true });
     box(bench, [1.18, 0.44, 0.18], [0, 0.47, -0.17], C.teal, { rotation: [-0.12, 0, 0] });
     cylinder(bench, 0.13, 0.5, [-0.55, 0.42, -0.03], C.teal, { rotation: [Math.PI / 2, 0, 0], segments: 18 });
@@ -833,14 +797,14 @@ export function createRooms(THREE) {
     box(bench, [0.32, 0.24, 0.1], [-0.25, 0.42, 0.19], C.mustard, { rotation: [-0.18, 0.12, 0] });
     box(bench, [0.32, 0.24, 0.1], [0.22, 0.42, 0.19], C.blush, { rotation: [-0.18, -0.12, 0] });
 
-    const smallTable = group(room, "side-table", [-0.55, 0, 0.55]);
-    cylinder(smallTable, 0.27, 0.045, [0, 0.48, 0], C.woodLight, { segments: 24, receive: true });
+    const smallTable = solid(group(room, "side-table", [.1, 0, .75]));
+    cylinder(smallTable, 0.20, 0.045, [0, 0.48, 0], C.woodLight, { segments: 24, receive: true });
     cylinder(smallTable, 0.05, 0.45, [0, 0.245, 0], C.brass, { segments: 12, materialOptions: { metalness: 0.5, roughness: 0.35 } });
     addCeramic(smallTable, [0, 0.51, 0], C.blush, 0.55);
 
     const consultant = createPerson(room, {
       name: "design-consultant",
-      position: [-0.42, 0, 0.1],
+      position: [0.13, 0, 0.0],
       rotationY: Math.PI / 2,
       shirt: C.navySoft,
       trousers: C.charcoal,
@@ -870,30 +834,144 @@ export function createRooms(THREE) {
       consultant.leftArm.joint.rotation.x = -0.55;
       swatch.rotation.z = showSwatch * 0.12;
 
-      const browse = route(t + 0.8, 13.2, 0.32, 0.7, 0.96);
-      customer.group.position.x = 1.46 - browse.progress * 0.72;
-      customer.group.position.z = 0.9 - browse.progress * 0.64;
-      customer.group.rotation.y = browse.moving
-        ? (browse.direction > 0 ? -2.32 : 0.82)
-        : (browse.progress > 0.5 ? -2.8 : Math.PI);
-      customer.setNeutral();
-      customer.setWalk(browse.stride, browse.moving ? 0.82 : 0);
-      if (!browse.moving && browse.progress > 0.5) {
-        const examine = pulse(browse.phase, 0.34, 0.68);
-        customer.leftArm.pivot.rotation.x = -0.25 - examine * 0.64;
-        customer.leftArm.pivot.rotation.z = examine * 0.18;
-        customer.leftArm.joint.rotation.x = -0.52;
-      }
+      const browse = walk(customer, t, {start:[1.27,.98],end:[1.27,.02],endFacing:-Math.PI/2,phase:.8,hold:3});
+      customer.leftArm.pivot.rotation.x -= browse.activity*.6;
+      customer.leftArm.joint.rotation.x -= browse.activity*.45;
+
     }
 
     update(0);
     return { id: "homewares", group: room, update };
   }
 
-  return [
-    makeCoffeeRoom(),
-    makeWarehouseRoom(),
-    makeGroceryRoom(),
-    makeHomewaresRoom(),
-  ];
+  function makeBoutiqueRoom() {
+    const room = new THREE.Group();
+    room.name = 'fashion-boutique';
+    addRearPanels(room, C.navy);
+    addLabel(room, 'FORM / STUDIO', [0,1.85,-1.095], [1.5,.28]);
+    const rack = solid(group(room,'clothing-rail',[-.5,0,-.83]));
+    [-1.05,1.05].forEach(x=>cylinder(rack,.025,1.55,[x,.775,0],C.brass));
+    cylinder(rack,.025,2.15,[0,1.55,0],C.brass,{rotation:[0,0,Math.PI/2]});
+    [-.8,-.4,0,.4,.8].forEach((x,i)=>{
+      const garment=group(rack,'garment',[x,0,.05]);
+      const color=[C.cream,C.navySoft,C.blush,C.teal,C.ivory][i];
+      // Shoulders, sleeves and a flared hem give each hanging piece a clear silhouette.
+      box(garment,[.25,.46,.10],[0,1.05,0],color);
+      tapered(garment,.14,.19,.26,[0,.72,0],color,{segments:4,rotation:[0,Math.PI/4,0]});
+      [-1,1].forEach(side=>box(garment,[.10,.3,.09],[side*.15,1.16,0],color,{rotation:[0,0,side*.28]}));
+      mesh(garment,torusGeometry(.04,.009,6,12),material(C.brass),[0,1.5,0],{cast:false});
+    });
+    box(room,[.75,1.5,.035],[1.23,.85,-1.06],C.steel,{materialOptions:{metalness:.8,roughness:.18}});
+    const counter=solid(group(room,'boutique-checkout',[-1.02,0,.76]));
+    box(counter,[1.24,.7,.48],[0,.35,0],C.cream,{receive:true});
+    box(counter,[1.3,.055,.51],[0,.727,0],C.ivory,{receive:true});
+    box(counter,[.23,.16,.025],[-.37,.85,0],C.navy,{rotation:[-.25,0,0]});
+    [0,1,2].forEach(i=>box(counter,[.3,.035,.22],[.25,.78+i*.035,.02],[C.teal,C.blush,C.cream][i]));
+    const display=solid(group(room,'accessories-table',[.08,0,.55]));
+    cylinder(display,.26,.04,[0,.51,0],C.woodLight,{segments:28});
+    cylinder(display,.07,.5,[0,.25,0],C.brass);
+    box(display,[.19,.18,.1],[0,.63,0],C.blush);
+    const stylist=createPerson(room,{name:'stylist-folding',position:[-1.07,0,.18],shirt:C.navySoft,skin:C.skin3});
+    const folded=box(stylist.rightArm.joint,[.22,.035,.17],[0,-.22,.03],C.cream);
+    const shopper=createPerson(room,{name:'boutique-shopper',position:[1.04,0,1.03],shirt:C.ivory,trousers:C.teal,skin:C.skin2});
+    box(shopper.leftArm.joint,[.18,.23,.10],[0,-.33,0],C.woodLight);
+    function update(t){
+      stylist.setNeutral();
+      const fold=(1-Math.cos(t*1.35))/2;
+      stylist.rightArm.pivot.rotation.x=-.8-fold*.25;
+      stylist.rightArm.joint.rotation.x=-.35-fold*.2;
+      stylist.leftArm.pivot.rotation.x=-.85-fold*.15;
+      stylist.leftArm.joint.rotation.x=-.35;
+      folded.rotation.y=fold*.18;
+      const browse=walk(shopper,t,{start:[1.04,1.03],end:[1.04,-.18],endFacing:-Math.PI/2,phase:1.5,hold:2.8});
+      shopper.rightArm.pivot.rotation.x-=browse.activity*.6;
+      shopper.rightArm.joint.rotation.x-=browse.activity*.4;
+    }
+    update(0);
+    return {id:'boutique',group:room,update};
+  }
+
+  function addBouquet(parent,position,color,scale=1){
+    const bouquet=group(parent,'bouquet',position);
+    bouquet.scale.setScalar(scale);
+    [[-.11,.39,.02],[.1,.46,.01],[0,.56,-.02]].forEach(([x,y,z],i)=>{
+      cylinder(bouquet,.011,y,[x,y/2,z],C.leaf,{segments:8});
+      const leaf=sphere(bouquet,.07,[x+.045,y*.55,z],C.leafLight,{scale:[.45,1,.18],widthSegments:8,heightSegments:6});
+      leaf.rotation.z=-.65;
+      for(let j=0;j<5;j++){
+        const angle=j*TAU/5;
+        sphere(bouquet,.055,[x+Math.cos(angle)*.047,y+Math.sin(angle)*.047,z+.018],color,{scale:[1,1,.62],widthSegments:10,heightSegments:8});
+      }
+      sphere(bouquet,.027,[x,y,z+.055],i===1?C.mustard:C.cream,{widthSegments:10,heightSegments:8});
+    });
+    return bouquet;
+  }
+
+  function makeFloristRoom(){
+    const room=new THREE.Group();room.name='florist-studio';
+    addRearPanels(room,C.leaf);
+    addLabel(room,'STEM / FLORAL STUDIO',[0,1.83,-1.095],[1.85,.28],{border:'#79A86D'});
+    [-1.3,-.58,.18].forEach((x,i)=>{
+      const stand=solid(group(room,'flower-plinth',[x,0,-.84]));
+      const h=[.32,.55,.4][i];
+      box(stand,[.52,h,.38],[0,h/2,0],C.cream,{receive:true});
+      tapered(stand,.13,.10,.2,[0,h+.1,0],C.ivory,{segments:18});
+      addBouquet(stand,[0,h+.16,0],[C.blush,C.terracotta,C.mustard][i],1.12);
+    });
+    solid(addPlant(room,[1.38,0,-.87],1.05));
+    const bench=solid(group(room,'florist-workbench',[-.53,0,.64]));
+    box(bench,[1.42,.065,.51],[0,.72,0],C.woodLight,{receive:true});
+    [-.58,.58].forEach(x=>[-.18,.18].forEach(z=>box(bench,[.055,.69,.055],[x,.345,z],C.navy)));
+    box(bench,[.38,.009,.3],[.35,.761,0],C.cream,{rotation:[0,.15,0]});
+    addBouquet(bench,[-.46,.76,-.02],C.blush,.6);
+    cylinder(bench,.055,.07,[.02,.79,0],C.teal,{segments:14});
+    const florist=createPerson(room,{name:'florist-wrapping',position:[-.52,0,.04],shirt:C.leaf,trousers:C.navySoft,skin:C.skin2});
+    box(florist.group,[.31,.42,.03],[0,.96,.15],C.cream);
+    const bouquet=addBouquet(florist.leftArm.joint,[0,-.23,0],C.blush,.55);
+    const customer=createPerson(room,{name:'flower-customer',position:[1.13,0,1.02],shirt:C.blush,skin:C.skin1});
+    function update(t){
+      florist.setNeutral();const wrapping=(1-Math.cos(t*1.2))/2;
+      florist.leftArm.pivot.rotation.x=-.9-wrapping*.18;
+      florist.leftArm.joint.rotation.x=-.5;
+      florist.rightArm.pivot.rotation.x=-.78-wrapping*.3;
+      florist.rightArm.joint.rotation.x=-.35-wrapping*.2;
+      bouquet.rotation.z=wrapping*.15;
+      const pickup=walk(customer,t,{start:[1.13,1.02],end:[1.13,-.10],endFacing:-Math.PI/2,phase:.6,hold:3});
+      customer.rightArm.pivot.rotation.x-=pickup.activity*.65;
+      customer.rightArm.joint.rotation.x-=pickup.activity*.45;
+    }
+    update(0);return {id:'florist',group:room,update};
+  }
+
+  function prepareRoom(room){
+    room.group.updateMatrixWorld(true);
+    // Collider footprints are derived from the actual furniture geometry before batching.
+    const obstacles=[];
+    room.group.traverse(object=>{
+      if(!object.userData.solid)return;
+      const b=new THREE.Box3().setFromObject(object);
+      obstacles.push({name:object.name||'furniture',minX:b.min.x,maxX:b.max.x,minZ:b.min.z,maxZ:b.max.z});
+    });
+    room.group.userData.obstacles=obstacles;
+    const batches=new Map();
+    room.group.traverse(object=>{
+      if(!object.isMesh||object.material.transparent||object.material.map)return;
+      for(let parent=object;parent&&parent!==room.group;parent=parent.parent){
+        if(parent.userData.person||parent.userData.animated)return;
+      }
+      const key=`${object.geometry.uuid}:${object.material.uuid}:${object.castShadow}:${object.receiveShadow}`;
+      if(!batches.has(key))batches.set(key,[]);
+      batches.get(key).push(object);
+    });
+    for(const objects of batches.values()){
+      if(objects.length<3)continue;
+      const first=objects[0],batch=new THREE.InstancedMesh(first.geometry,first.material,objects.length);
+      batch.castShadow=first.castShadow;batch.receiveShadow=first.receiveShadow;
+      objects.forEach((object,i)=>{batch.setMatrixAt(i,object.matrixWorld);object.removeFromParent();});
+      batch.instanceMatrix.needsUpdate=true;room.group.add(batch);
+    }
+    return room;
+  }
+
+  return [makeCoffeeRoom(),makeWarehouseRoom(),makeBoutiqueRoom(),makeGroceryRoom(),makeFloristRoom(),makeHomewaresRoom()].map(prepareRoom);
 }
