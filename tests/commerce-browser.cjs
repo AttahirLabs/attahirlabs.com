@@ -24,9 +24,15 @@ let browser;
  await p.keyboard.press('Space');await p.evaluate(()=>document.activeElement.blur());
  await p.waitForFunction(()=>Number(document.querySelector('.commerce-panel-stack').style.opacity)<.8,{},{timeout:15000});
  await hero.focus();assert.equal(await p.locator('.commerce-panel-stack').evaluate(el=>el.style.opacity),'1','focus settles mid-transition to a readable panel');
- for(const width of [768,390,320]){
+ for(const width of [1100,1024,900,768,681,680,390,320]){
   await p.setViewportSize({width,height:1000});await p.waitForTimeout(150);
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  assert.ok(await p.evaluate(()=>{
+   const copy=document.querySelector('.hero-copy .lede').getBoundingClientRect();
+   const card=document.querySelector('.commerce-panel-stack').getBoundingClientRect();
+   return Math.max(0,Math.min(copy.right,card.right)-Math.max(copy.left,card.left)) *
+    Math.max(0,Math.min(copy.bottom,card.bottom)-Math.max(copy.top,card.top))===0;
+  }),`hero copy stays clear of its glass panel at ${width}px`);
   for(let scene=0;scene<6;scene++){
    await p.keyboard.press('ArrowRight');
    assert.ok(await p.evaluate(()=>{const panel=document.querySelector('.commerce-panel:not([hidden])').getBoundingClientRect();const frame=document.querySelector('[data-commerce-hero]').getBoundingClientRect();return panel.left>=-1&&panel.right<=innerWidth+1&&panel.bottom<frame.bottom-8;}),'each panel fits on every viewport');
@@ -35,7 +41,7 @@ let browser;
  await p.setViewportSize({width:1440,height:1000});await p.screenshot({path:'/tmp/commerce-refined-desktop.png'});
  await p.setViewportSize({width:390,height:1000});await hero.screenshot({path:'/tmp/commerce-refined-mobile.png'});await p.close();
  const r=await page({reducedMotion:'reduce'});await r.goto(base+'/');await r.waitForSelector('[data-commerce-state="ready"]');await r.locator('[data-commerce-hero]').focus();await r.keyboard.press('ArrowRight');await r.keyboard.press('ArrowRight');assert.ok(await r.locator('[data-commerce-panel="2"]').isVisible());await r.waitForTimeout(200);const reduced=r.locator('.commerce-canvas canvas'),reducedA=await reduced.screenshot();await r.waitForTimeout(450);assert.ok(reducedA.equals(await reduced.screenshot()),'reduced motion freezes all 3D movement');await r.close();
- const fallback=await page();await fallback.route('**/assets/commerce/world.js',route=>route.abort());await fallback.goto(base+'/');await fallback.waitForSelector('[data-commerce-state="fallback"]');assert.ok(await fallback.locator('.glass-artwork').isVisible());assert.ok(await fallback.getByRole('link',{name:'Build your website',exact:true}).isVisible());await fallback.close();
+ const fallback=await page();await fallback.route('**/assets/commerce/world.js*',route=>route.abort());await fallback.goto(base+'/');await fallback.waitForSelector('[data-commerce-state="fallback"]');assert.ok(await fallback.locator('.glass-artwork').isVisible());assert.ok(await fallback.getByRole('link',{name:'Build your website',exact:true}).isVisible());await fallback.close();
  const nojs=await page({javaScriptEnabled:false,viewport:{width:390,height:844}});await nojs.goto(base+'/');assert.ok(await nojs.locator('.glass-artwork').isVisible());assert.equal(await nojs.locator('.commerce-live').isVisible(),false);await nojs.close();
  assert.deepEqual(errors,[]);console.log('Commerce browser: six rooms, nine matching panels, upcoming app alternatives, animation, keyboard hold/restart, readable transition stops, responsive layouts, reduced motion and fallbacks passed.');
 })().catch(e=>{console.error(e);process.exitCode=1}).finally(()=>browser?.close());

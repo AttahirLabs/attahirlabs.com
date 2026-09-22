@@ -30,5 +30,5 @@ export function sampleWalk(time, {start, end, travel=2.8, hold=2.5, startFacing=
   if(step===4){progress=1;yaw=endFacing;activity=Math.sin(p*Math.PI)**2;}
   if(step===5){progress=1;yaw=turn(endFacing,returning,p);}
   if(step===7) yaw=turn(returning,startFacing,p);
-  return {x:start[0]+(end[0]-start[0])*progress,z:start[1]+(end[1]-start[1])*progress,yaw,stride,moving,activity};
+  return {x:start[0]+(end[0]-start[0])*progress,z:start[1]+(end[1]-start[1])*progress,yaw,stride,moving,activity,step,stepProgress:p};
 }

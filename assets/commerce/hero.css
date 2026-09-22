@@ -46,10 +46,18 @@
 .glass-scene[data-commerce-hero]>figcaption{bottom:1%;font-size:9px}.commerce-ready>.glass-artwork{visibility:hidden}
 .vector-home .hero-baseline{margin-top:0}
 @media(min-width:681px) and (max-width:1000px){
- .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86}.commerce-panel-stack{width:60%;left:-4%;top:25%}
+ .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86}.commerce-panel-stack{width:60%;left:1%;top:25%}
  .commerce-panel-head>small{font-size:6px}.commerce-panel{padding:10px}.commerce-panel h3{font-size:17px}
  .coffee-site,.storefront-site{padding:10px;min-height:168px}.commerce-panel .coffee-site h3,.commerce-panel .storefront-site h3{font-size:23px}
  .coffee-bag{height:90px;top:55px}.fashion-art{height:105px}.floral-art{height:95px}
+}
+/* Keep the opening message clear at tablet widths. The artwork can use the full
+   row here instead of projecting its glass card over the last line of copy. */
+@media(min-width:681px) and (max-width:1100px){
+ .vector-home .hero-layout{grid-template-columns:minmax(0,1fr);gap:0;min-height:0}
+ .vector-home .hero-copy{padding:35px 0 0}
+ .vector-home .hero-copy .lede{max-width:600px}
+ .vector-home .glass-scene[data-commerce-hero]{width:min(100%,700px);height:auto;margin:8px auto 0;aspect-ratio:1}
 }
 @media(max-width:680px){
  .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86;margin-top:15px}.commerce-canvas{inset:-4% -7% 0 -2%}

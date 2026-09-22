@@ -1,4 +1,4 @@
-import { sampleWalk } from './motion.mjs';
+import { sampleWalk } from './motion.mjs?v=20260922c';
 const TAU = Math.PI * 2;
 
 /**
@@ -365,6 +365,33 @@ export function createRooms(THREE) {
     return Math.sin(local * Math.PI) ** 2;
   }
 
+  function duringArrival(motion, start, end) {
+    return motion.step === 2 ? pulse(motion.stepProgress, start, end) : 0;
+  }
+
+  function duringVisit(motion, start, end) {
+    return motion.step === 4 ? pulse(motion.stepProgress, start, end) : 0;
+  }
+
+  function transferProgress(motion, start = .3, end = .7) {
+    if (motion.step < 4) return 0;
+    if (motion.step > 4) return 1;
+    return smooth((motion.stepProgress - start) / (end - start));
+  }
+
+  function handPosition(person, arm, parent) {
+    person.group.updateWorldMatrix(true, true);
+    const point = arm.joint.localToWorld(new THREE.Vector3(0, -.22, .03));
+    return parent.worldToLocal(point);
+  }
+
+  function betweenHands(prop, parent, fromPerson, fromArm, toPerson, toArm, progress) {
+    const from = handPosition(fromPerson, fromArm, parent);
+    const to = handPosition(toPerson, toArm, parent);
+    prop.position.copy(from.lerp(to, progress));
+    prop.position.y += Math.sin(progress * Math.PI) * .075;
+  }
+
   function solid(object) { object.userData.solid = true; return object; }
 
   function walk(person, t, options) {
@@ -474,6 +501,9 @@ export function createRooms(THREE) {
       trousers: C.navy,
       skin: C.skin1,
     });
+    const servedCup = addCup(room, [0, 0, 0], C.ivory);
+    servedCup.name = 'served-cup';
+    servedCup.userData.animated = true;
     const steam = [0, 1, 2].map((index) => {
       const ring = mesh(
         room,
@@ -488,18 +518,23 @@ export function createRooms(THREE) {
 
     function update(t) {
       const pickup = walk(pickupCustomer, t, {start:[1.25,1.02],end:[1.25,.23],endFacing:Math.PI,hold:2.7});
-      pickupCustomer.rightArm.pivot.rotation.x -= pickup.activity*.78;
-      pickupCustomer.rightArm.joint.rotation.x -= pickup.activity*.55;
-
-      const baristaPhase = (t % 6.4) / 6.4;
-      const reach = pulse(baristaPhase, 0.08, 0.42);
-      const tamp = pulse(baristaPhase, 0.48, 0.75);
+      const reach = duringVisit(pickup, .12, .84);
+      const tamp = duringArrival(pickup, .14, .86);
+      pickupCustomer.rightArm.pivot.rotation.x -= reach*.78;
+      pickupCustomer.rightArm.joint.rotation.x -= reach*.55;
       barista.setNeutral();
       barista.rightArm.pivot.rotation.x = -.65 - reach * .45 - tamp * .2;
       barista.rightArm.pivot.rotation.z = -reach * 0.25;
       barista.rightArm.joint.rotation.x = -0.45 - reach * 0.55;
       barista.leftArm.pivot.rotation.x = -.65 - tamp * .35;
       barista.leftArm.joint.rotation.x = -0.35 - tamp * 0.5;
+      const passed = transferProgress(pickup);
+      betweenHands(servedCup, room, barista, barista.rightArm, pickupCustomer, pickupCustomer.rightArm, passed);
+      // The next drink appears after the previous visitor has left the room.
+      const cupFade = pickup.step === 7 ? 1 - smooth(pickup.stepProgress) :
+        pickup.step === 0 ? smooth(pickup.stepProgress) : 1;
+      servedCup.scale.setScalar(.7 * cupFade);
+      room.userData.interaction = {visitorAtCounter:pickup.step === 4, handoff:reach, transfer:passed};
 
       const sip = pulse((t % 7.4) / 7.4, 0.24, 0.57);
       seatedA.setSeated();
@@ -607,9 +642,10 @@ export function createRooms(THREE) {
       picker.rightArm.joint.rotation.x -= pick.activity*.5;
       picker.leftArm.pivot.rotation.x -= pick.activity*.7;
 
-      const packPhase = (t % 5.8) / 5.8;
-      const scan = pulse(packPhase, 0.08, 0.35);
-      const fold = pulse(packPhase, 0.42, 0.83);
+      // Packing follows the carton on the desk: scan as the picker reaches the
+      // rack, then close the box while the picked order moves away.
+      const scan = duringVisit(pick, .12, .5);
+      const fold = duringVisit(pick, .48, .9);
       packer.setNeutral();
       packer.rightArm.pivot.rotation.x = -0.35 - scan * 0.82;
       packer.rightArm.pivot.rotation.z = -scan * 0.22;
@@ -700,9 +736,9 @@ export function createRooms(THREE) {
     });
 
     function update(t) {
-      const restockPhase = (t % 7.2) / 7.2;
-      const lift = pulse(restockPhase, 0.1, 0.48);
-      const place = pulse(restockPhase, 0.45, 0.79);
+      const browse = walk(customer, t, {start:[1.2,.95],end:[1.2,-.12],endFacing:Math.PI,phase:2,hold:3});
+      const lift = duringArrival(browse, .08, .52);
+      const place = duringArrival(browse, .48, .94);
       assistant.setNeutral();
       assistant.rightArm.pivot.rotation.x = -0.3 - lift * 1.22;
       assistant.rightArm.pivot.rotation.z = -lift * 0.18;
@@ -711,7 +747,6 @@ export function createRooms(THREE) {
       assistant.leftArm.joint.rotation.x = -0.25 - place * 0.4;
       restockBottle.position.y = -0.27 + (lift + place) * 0.03;
 
-      const browse = walk(customer, t, {start:[1.2,.95],end:[1.2,-.12],endFacing:Math.PI,phase:2,hold:3});
       customer.rightArm.pivot.rotation.x -= browse.activity*.85;
       customer.rightArm.joint.rotation.x -= browse.activity*.5;
       customer.leftArm.pivot.rotation.x = -0.42;
@@ -822,9 +857,9 @@ export function createRooms(THREE) {
     });
 
     function update(t) {
-      const gesturePhase = (t % 7.8) / 7.8;
-      const gesture = pulse(gesturePhase, 0.12, 0.5);
-      const showSwatch = pulse(gesturePhase, 0.48, 0.82);
+      const browse = walk(customer, t, {start:[1.27,.98],end:[.96,.02],endFacing:-Math.PI/2,phase:.8,hold:3});
+      const gesture = duringVisit(browse, .12, .5);
+      const showSwatch = duringVisit(browse, .48, .88);
       consultant.setNeutral();
       consultant.rightArm.pivot.rotation.x = -0.25 - gesture * 0.78;
       consultant.rightArm.pivot.rotation.z = -gesture * 0.8;
@@ -834,7 +869,6 @@ export function createRooms(THREE) {
       consultant.leftArm.joint.rotation.x = -0.55;
       swatch.rotation.z = showSwatch * 0.12;
 
-      const browse = walk(customer, t, {start:[1.27,.98],end:[1.27,.02],endFacing:-Math.PI/2,phase:.8,hold:3});
       customer.leftArm.pivot.rotation.x -= browse.activity*.6;
       customer.leftArm.joint.rotation.x -= browse.activity*.45;
 
@@ -871,21 +905,22 @@ export function createRooms(THREE) {
     cylinder(display,.26,.04,[0,.51,0],C.woodLight,{segments:28});
     cylinder(display,.07,.5,[0,.25,0],C.brass);
     box(display,[.19,.18,.1],[0,.63,0],C.blush);
-    const stylist=createPerson(room,{name:'stylist-folding',position:[-1.07,0,.18],shirt:C.navySoft,skin:C.skin3});
+    const stylist=createPerson(room,{name:'stylist-folding',position:[-.24,0,-.18],shirt:C.navySoft,skin:C.skin3});
     const folded=box(stylist.rightArm.joint,[.22,.035,.17],[0,-.22,.03],C.cream);
     const shopper=createPerson(room,{name:'boutique-shopper',position:[1.04,0,1.03],shirt:C.ivory,trousers:C.teal,skin:C.skin2});
     box(shopper.leftArm.joint,[.18,.23,.10],[0,-.33,0],C.woodLight);
     function update(t){
       stylist.setNeutral();
-      const fold=(1-Math.cos(t*1.35))/2;
+      const browse=walk(shopper,t,{start:[1.04,1.03],end:[.72,-.18],endFacing:-Math.PI/2,phase:1.5,hold:2.8});
+      const fold=duringArrival(browse,.1,.9);
+      const present=duringVisit(browse,.14,.82);
       stylist.rightArm.pivot.rotation.x=-.8-fold*.25;
       stylist.rightArm.joint.rotation.x=-.35-fold*.2;
-      stylist.leftArm.pivot.rotation.x=-.85-fold*.15;
+      stylist.leftArm.pivot.rotation.x=-.85-fold*.15-present*.35;
       stylist.leftArm.joint.rotation.x=-.35;
-      folded.rotation.y=fold*.18;
-      const browse=walk(shopper,t,{start:[1.04,1.03],end:[1.04,-.18],endFacing:-Math.PI/2,phase:1.5,hold:2.8});
-      shopper.rightArm.pivot.rotation.x-=browse.activity*.6;
-      shopper.rightArm.joint.rotation.x-=browse.activity*.4;
+      folded.rotation.y=fold*.18+present*.16;
+      shopper.rightArm.pivot.rotation.x-=present*.6;
+      shopper.rightArm.joint.rotation.x-=present*.4;
     }
     update(0);
     return {id:'boutique',group:room,update};
@@ -925,20 +960,30 @@ export function createRooms(THREE) {
     box(bench,[.38,.009,.3],[.35,.761,0],C.cream,{rotation:[0,.15,0]});
     addBouquet(bench,[-.46,.76,-.02],C.blush,.6);
     cylinder(bench,.055,.07,[.02,.79,0],C.teal,{segments:14});
-    const florist=createPerson(room,{name:'florist-wrapping',position:[-.52,0,.04],shirt:C.leaf,trousers:C.navySoft,skin:C.skin2});
+    const florist=createPerson(room,{name:'florist-wrapping',position:[-.2,0,.04],shirt:C.leaf,trousers:C.navySoft,skin:C.skin2});
     box(florist.group,[.31,.42,.03],[0,.96,.15],C.cream);
-    const bouquet=addBouquet(florist.leftArm.joint,[0,-.23,0],C.blush,.55);
+    const bouquet=addBouquet(room,[0,0,0],C.blush);
+    bouquet.name='handoff-bouquet';
+    bouquet.userData.animated=true;
     const customer=createPerson(room,{name:'flower-customer',position:[1.13,0,1.02],shirt:C.blush,skin:C.skin1});
     function update(t){
-      florist.setNeutral();const wrapping=(1-Math.cos(t*1.2))/2;
+      const pickup=walk(customer,t,{start:[1.13,1.02],end:[.68,.15],endFacing:-Math.PI/2,phase:.6,hold:3});
+      const wrapping=duringArrival(pickup,.12,.9);
+      const handoff=duringVisit(pickup,.12,.86);
+      florist.setNeutral();
       florist.leftArm.pivot.rotation.x=-.9-wrapping*.18;
       florist.leftArm.joint.rotation.x=-.5;
-      florist.rightArm.pivot.rotation.x=-.78-wrapping*.3;
-      florist.rightArm.joint.rotation.x=-.35-wrapping*.2;
+      florist.rightArm.pivot.rotation.x=-.78-wrapping*.3-handoff*.22;
+      florist.rightArm.pivot.rotation.z=-handoff*.48;
+      florist.rightArm.joint.rotation.x=-.35-wrapping*.2-handoff*.25;
+      customer.rightArm.pivot.rotation.x-=handoff*.65;
+      customer.rightArm.joint.rotation.x-=handoff*.45;
+      const passed=transferProgress(pickup);
+      betweenHands(bouquet,room,florist,florist.rightArm,customer,customer.rightArm,passed);
       bouquet.rotation.z=wrapping*.15;
-      const pickup=walk(customer,t,{start:[1.13,1.02],end:[1.13,-.10],endFacing:-Math.PI/2,phase:.6,hold:3});
-      customer.rightArm.pivot.rotation.x-=pickup.activity*.65;
-      customer.rightArm.joint.rotation.x-=pickup.activity*.45;
+      const bouquetFade=pickup.step===7?1-smooth(pickup.stepProgress):pickup.step===0?smooth(pickup.stepProgress):1;
+      bouquet.scale.setScalar(.55*bouquetFade);
+      room.userData.interaction={visitorAtCounter:pickup.step===4,handoff,transfer:passed};
     }
     update(0);return {id:'florist',group:room,update};
   }
