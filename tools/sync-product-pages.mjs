@@ -44,8 +44,15 @@ for(const p of catalog.products){
  write(relative,html);
 }
 const cards=catalog.products.map((p,i)=>`<article class="card app-card" data-reveal><span class="app-number">0${i+1}</span><div class="app-heading"><img class="app-icon" src="${p.icon}" alt="${p.slug==='shelflife'?'ShelfLife app icon':esc(p.iconAlt)}" width="48" height="48"><div><span class="tag tag-live">Shopify App Store</span><h3><a href="/apps/${p.slug}/">${p.name} <span class="row-arrow" aria-hidden="true">↗</span></a></h3></div></div><p>${esc(p.summary)}</p><div class="row-preview" aria-hidden="true"><img src="${p.screenshots[0].src}" alt="" width="1280" height="720" loading="lazy"></div>${list(p.homeFeatures)}<p class="home-plan-summary">${esc(p.priceSummary)}<br><span>${esc(p.trialSummary)}</span></p><div class="button-row"><a class="btn btn-dark" href="${esc(install(p,'homepage_public_apps'))}" rel="noopener" target="_blank">Install ${p.name}</a><a class="btn btn-light" href="/apps/${p.slug}/">Features &amp; pricing</a></div></article>`).join('\n');
+const homePreviews={
+ stockclearance:'<strong>Aging stock</strong><div class="sample-bar"><span>0–30 days</span><i style="--bar:25%"></i></div><div class="sample-bar"><span>31–60 days</span><i style="--bar:48%"></i></div><div class="sample-bar"><span>61–90 days</span><i style="--bar:65%"></i></div><div class="sample-bar"><span>90+ days</span><i style="--bar:88%"></i></div>',
+ tariffshield:'<strong>Import calculator</strong><div><span>Item cost</span><b>$10.00</b></div><div><span>Import duty</span><b>$2.40</b></div><div><span>Shipping</span><b>$1.60</b></div><div><span>Landed cost</span><b>$14.00</b></div>',
+ shelflife:'<strong>Batch overview</strong><div><span>Green tea capsules</span><b>120</b></div><div><span>Vitamin D3</span><b>56</b></div><div><span>Collagen powder</span><b>320</b></div><div><span>Next step</span><b>Review expiry</b></div>'
+};
+let previewIndex=0;
+const homeCards=cards.replace(/<div class="row-preview" aria-hidden="true">[\s\S]*?<\/div>/g,()=>`<div class="row-preview sample-preview" aria-hidden="true">${homePreviews[catalog.products[previewIndex++].slug]}<small>Illustrative data</small></div>`);
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-write('index.html',home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${cards}\n<!-- public-app-cards:end -->`));
+write('index.html',home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${homeCards}\n<!-- public-app-cards:end -->`));
 const hub=fs.readFileSync(path.join(root,'apps/index.html'),'utf8');
 const hubCards=cards.replaceAll('btn-dark','btn-primary').replaceAll('btn-light','btn-secondary').replaceAll('homepage_public_apps','apps_hub_hero');
 write('apps/index.html',hub.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${hubCards}\n<!-- public-app-cards:end -->`));

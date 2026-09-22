@@ -90,7 +90,7 @@ function readPngPixel(filePath, x, y) {
 
 assert.match(html, /<title>Attahir Labs \| Shopify Apps for Inventory, Tariffs, and Store Operations<\/title>/, 'homepage should use the problem-first SEO title');
 assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/, 'homepage canonical should include trailing slash');
-includes('<h1>Take control of stock, costs,<br>and expiry.</h1>', 'homepage should lead with the approved benefit statement');
+includes('<h1>Take control of<br>stock, costs,<br>and expiry.</h1>', 'homepage should lead with the approved benefit statement');
 includes('Explore the apps', 'homepage hero should have one clear primary routing CTA');
 includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
 includes('Install TariffShield', 'homepage should keep TariffShield as a public App Store app');
