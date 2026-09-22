@@ -43,7 +43,7 @@ if(hero) {
   async function load(){
     if(world||loading||failed||disposed)return;loading=true;
     try {
-      const {createCommerceWorld}=await import('./world.js?v=20260922d');
+      const {createCommerceWorld}=await import('./world.js?v=20260922e');
       if(disposed)return;
       live.hidden=false;world=createCommerceWorld(viewport);paint();
       hero.classList.add('commerce-ready');hero.dataset.commerceState='ready';poster.hidden=true;

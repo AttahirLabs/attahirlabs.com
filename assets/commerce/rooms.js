@@ -1,4 +1,4 @@
-import { sampleWalk } from './motion.mjs?v=20260922d';
+import { sampleWalk } from './motion.mjs?v=20260922e';
 const TAU = Math.PI * 2;
 
 /**
@@ -269,8 +269,10 @@ export function createRooms(THREE) {
   function createPerson(parent, options = {}) {
     const person = group(parent, options.name ?? "person", options.position ?? [0, 0, 0]);
     if (options.rotationY) person.rotation.y = options.rotationY;
+    const figureScale = options.scale ?? .9;
+    person.scale.setScalar(figureScale);
     person.userData.person = true;
-    person.userData.floorRadius = .28;
+    person.userData.floorRadius = .28 * figureScale;
     person.position.y = .015;
     const skin = options.skin ?? C.skin1;
     const shirt = options.shirt ?? C.teal;
@@ -278,41 +280,63 @@ export function createRooms(THREE) {
 
     const hips = group(person, "hips", [0, 0.7, 0]);
     sphere(hips, 0.13, [0, 0, 0], trousers, { scale: [1, 0.72, 0.82] });
-    tapered(person, 0.18, 0.22, 0.42, [0, 0.98, 0], shirt, { segments: 16 });
-    cylinder(person, 0.06, 0.07, [0, 1.23, 0], skin, { segments: 12 });
-    sphere(person, 0.14, [0, 1.38, 0], skin, { scale: [0.93, 1.06, 0.92] });
-    const hair = sphere(person, 0.143, [0, 1.415, -0.015], options.hair ?? C.hair, {
+    const chest = group(person, "upper-body", [0, .8, 0]);
+    tapered(chest, 0.18, 0.22, 0.42, [0, 0.18, 0], shirt, { segments: 16 });
+    cylinder(chest, 0.06, 0.07, [0, 0.43, 0], skin, { segments: 12 });
+    const head = group(chest, "head", [0, .58, 0]);
+    sphere(head, 0.14, [0, 0, 0], skin, { scale: [0.93, 1.06, 0.92] });
+    const hair = sphere(head, 0.143, [0, 0.035, -0.015], options.hair ?? C.hair, {
       scale: [0.96, 0.72, 0.96],
       widthSegments: 16,
       heightSegments: 10,
     });
     hair.rotation.x = -0.08;
-    sphere(person, 0.018, [-0.048, 1.395, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
-    sphere(person, 0.018, [0.048, 1.395, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
+    sphere(head, 0.018, [-0.048, .015, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
+    sphere(head, 0.018, [0.048, .015, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
 
-    const leftArm = createLimb(person, "left-arm", skin, 0.24, 0.22, 0.045);
-    const rightArm = createLimb(person, "right-arm", skin, 0.24, 0.22, 0.045);
-    leftArm.pivot.position.set(-0.205, 1.15, 0);
-    rightArm.pivot.position.set(0.205, 1.15, 0);
+    const leftArm = createLimb(chest, "left-arm", skin, 0.24, 0.22, 0.045);
+    const rightArm = createLimb(chest, "right-arm", skin, 0.24, 0.22, 0.045);
+    leftArm.pivot.position.set(-0.205, .35, 0);
+    rightArm.pivot.position.set(0.205, .35, 0);
     sphere(leftArm.pivot, 0.054, [0, 0.01, 0], shirt, { scale: [1, 0.95, 1] });
     sphere(rightArm.pivot, 0.054, [0, 0.01, 0], shirt, { scale: [1, 0.95, 1] });
     sphere(leftArm.joint, 0.052, [0, -0.22, 0], skin, { widthSegments: 10, heightSegments: 8 });
     sphere(rightArm.joint, 0.052, [0, -0.22, 0], skin, { widthSegments: 10, heightSegments: 8 });
 
-    const leftLeg = createLimb(person, "left-leg", trousers, 0.34, 0.33, 0.065);
-    const rightLeg = createLimb(person, "right-leg", trousers, 0.34, 0.33, 0.065);
+    const leftLeg = createLimb(person, "left-leg", trousers, 0.35, 0.35, 0.065);
+    const rightLeg = createLimb(person, "right-leg", trousers, 0.35, 0.35, 0.065);
     leftLeg.pivot.position.set(-0.095, 0.7, 0);
     rightLeg.pivot.position.set(0.095, 0.7, 0);
-    box(leftLeg.joint, [0.115, 0.06, 0.21], [0, -0.34, 0.055], options.shoes ?? C.charcoal, { receive: true });
-    box(rightLeg.joint, [0.115, 0.06, 0.21], [0, -0.34, 0.055], options.shoes ?? C.charcoal, { receive: true });
+    const leftFoot = group(leftLeg.joint, "left-foot", [0, -.35, 0]);
+    const rightFoot = group(rightLeg.joint, "right-foot", [0, -.35, 0]);
+    box(leftFoot, [0.115, 0.06, 0.21], [0, 0, 0.055], options.shoes ?? C.charcoal, { receive: true });
+    box(rightFoot, [0.115, 0.06, 0.21], [0, 0, 0.055], options.shoes ?? C.charcoal, { receive: true });
+
+    function poseLeg(leg, foot, phase, weight) {
+      const stance = phase < .5;
+      const swing = (phase - .5) * 2;
+      const z = (stance ? .17 - phase * .68 : -.17 + .34 * smooth(swing)) * weight;
+      const y = weight * (stance ? .04 : .04 + .10 * Math.sin(Math.PI * swing));
+      const down = .7 - y;
+      const distance = Math.min(.6999, Math.hypot(z, down));
+      const shoulder = Math.acos(clamp01((.35 ** 2 + distance ** 2 - .35 ** 2) / (.7 * distance)));
+      const bend = Math.PI - Math.acos(Math.max(-1, Math.min(1, (.35 ** 2 + .35 ** 2 - distance ** 2) / (2 * .35 ** 2))));
+      leg.pivot.rotation.x = -Math.atan2(z, down) - shoulder;
+      leg.joint.rotation.x = bend;
+      foot.rotation.x = -leg.pivot.rotation.x - bend;
+    }
 
     const api = {
       group: person,
+      chest,
+      head,
       leftArm,
       rightArm,
       leftLeg,
       rightLeg,
       setNeutral() {
+        chest.rotation.set(0, 0, 0);
+        head.rotation.set(0, 0, 0);
         leftArm.pivot.rotation.set(0, 0, 0.05);
         rightArm.pivot.rotation.set(0, 0, -0.05);
         leftArm.joint.rotation.set(0, 0, 0);
@@ -321,17 +345,23 @@ export function createRooms(THREE) {
         rightLeg.pivot.rotation.set(0, 0, 0);
         leftLeg.joint.rotation.set(0, 0, 0);
         rightLeg.joint.rotation.set(0, 0, 0);
+        leftFoot.rotation.set(0, 0, 0);
+        rightFoot.rotation.set(0, 0, 0);
       },
-      setWalk(stride, amount = 1) {
-        const swing = stride * 0.42 * amount;
-        leftLeg.pivot.rotation.x = swing;
-        rightLeg.pivot.rotation.x = -swing;
-        leftLeg.joint.rotation.x = Math.max(0, -swing) * 0.55;
-        rightLeg.joint.rotation.x = Math.max(0, swing) * 0.55;
+      setWalk(motion) {
+        const weight = motion.gaitWeight;
+        const phase = ((motion.gaitDistance / .64) % 1 + 1) % 1;
+        poseLeg(leftLeg, leftFoot, phase, weight);
+        poseLeg(rightLeg, rightFoot, (phase + .5) % 1, weight);
+        const swing = motion.stride * 0.34;
         leftArm.pivot.rotation.x = -swing * 0.72;
         rightArm.pivot.rotation.x = swing * 0.72;
         leftArm.joint.rotation.x = -0.12;
         rightArm.joint.rotation.x = -0.12;
+        chest.rotation.x = .055 * weight;
+        chest.rotation.z = .025 * motion.stride;
+        head.rotation.y = motion.headLead;
+        head.rotation.x = -.025 * weight;
       },
       setSeated() {
         person.position.y = -0.25;
@@ -344,6 +374,8 @@ export function createRooms(THREE) {
         rightArm.pivot.rotation.x = -0.45;
         leftArm.joint.rotation.x = -0.7;
         rightArm.joint.rotation.x = -0.7;
+        leftFoot.rotation.x = .07;
+        rightFoot.rotation.x = .07;
       },
     };
     api.setNeutral();
@@ -392,6 +424,31 @@ export function createRooms(THREE) {
     prop.position.y += Math.sin(progress * Math.PI) * .075;
   }
 
+  function visitorAttention(motion) {
+    if (motion.step === 2) return smooth((motion.stepProgress - .35) / .55);
+    if (motion.step === 3) return 1;
+    if (motion.step === 4) return 1 - smooth((motion.stepProgress - .78) / .22);
+    if (motion.step === 5) return 1 - smooth(motion.stepProgress);
+    return 0;
+  }
+
+  function meetingTurn(motion) {
+    if (motion.step === 3) return smooth(motion.stepProgress);
+    if (motion.step === 4) return 1;
+    if (motion.step === 5) return 1 - smooth(motion.stepProgress);
+    return 0;
+  }
+
+  function lookAt(person, other, weight) {
+    if (!weight) return;
+    const dx = other.group.position.x - person.group.position.x;
+    const dz = other.group.position.z - person.group.position.z;
+    const target = Math.atan2(dx, dz);
+    const relative = Math.atan2(Math.sin(target - person.group.rotation.y), Math.cos(target - person.group.rotation.y));
+    const clamped = Math.max(-.56, Math.min(.56, relative));
+    person.head.rotation.y += (clamped - person.head.rotation.y) * smooth(weight);
+  }
+
   function solid(object) { object.userData.solid = true; return object; }
 
   function walk(person, t, options) {
@@ -399,9 +456,9 @@ export function createRooms(THREE) {
     person.setNeutral();
     person.group.position.x = motion.x;
     person.group.position.z = motion.z;
-    person.group.position.y = .015 + (motion.moving ? Math.abs(motion.stride)*.008 : 0);
+    person.group.position.y = .015 + .012 * Math.abs(Math.sin(motion.gaitDistance * TAU / .64)) * motion.gaitWeight;
     person.group.rotation.y = motion.yaw;
-    person.setWalk(motion.stride, motion.moving ? 1 : 0);
+    person.setWalk(motion);
     return motion;
   }
 
@@ -491,8 +548,14 @@ export function createRooms(THREE) {
       trousers: C.charcoal,
       skin: C.skin3,
     });
-    const apron = box(barista.group, [0.31, 0.43, 0.035], [0, 0.96, 0.135], C.ivory, { cast: false });
+    const apron = box(barista.chest, [0.31, 0.43, 0.035], [0, 0.16, 0.135], C.ivory, { cast: false });
     apron.rotation.x = -0.03;
+
+    const cashier = createPerson(room, {
+      name: "cashier-taking-order", position: [-.08, 0, -.99],
+      shirt: C.navySoft, trousers: C.charcoal, skin: C.skin1,
+    });
+    box(cashier.leftArm.joint, [.12, .17, .025], [0, -.28, .025], C.navy, { cast: false });
 
     const pickupCustomer = createPerson(room, {
       name: "pickup-customer",
@@ -518,29 +581,44 @@ export function createRooms(THREE) {
 
     function update(t) {
       const pickup = walk(pickupCustomer, t, {start:[1.25,1.02],end:[1.25,.23],endFacing:Math.PI,hold:2.7});
-      const reach = duringVisit(pickup, .12, .84);
+      const offer = duringVisit(pickup, .07, .66);
+      const receive = duringVisit(pickup, .24, .88);
+      const nod = duringVisit(pickup, .65, .98);
       const tamp = duringArrival(pickup, .14, .86);
-      pickupCustomer.rightArm.pivot.rotation.x -= reach*.78;
-      pickupCustomer.rightArm.joint.rotation.x -= reach*.55;
+      pickupCustomer.rightArm.pivot.rotation.x -= receive*.85;
+      pickupCustomer.rightArm.joint.rotation.x -= receive*.6;
+      pickupCustomer.chest.rotation.x += receive*.07;
+      lookAt(pickupCustomer, barista, visitorAttention(pickup));
+      pickupCustomer.head.rotation.x += nod*.13;
       barista.setNeutral();
-      barista.rightArm.pivot.rotation.x = -.65 - reach * .45 - tamp * .2;
-      barista.rightArm.pivot.rotation.z = -reach * 0.25;
-      barista.rightArm.joint.rotation.x = -0.45 - reach * 0.55;
+      barista.rightArm.pivot.rotation.x = -.65 - offer * .52 - tamp * .2;
+      barista.rightArm.pivot.rotation.z = -offer * 0.25;
+      barista.rightArm.joint.rotation.x = -0.45 - offer * 0.55;
       barista.leftArm.pivot.rotation.x = -.65 - tamp * .35;
       barista.leftArm.joint.rotation.x = -0.35 - tamp * 0.5;
-      const passed = transferProgress(pickup);
+      barista.chest.rotation.x = offer*.07;
+      lookAt(barista, pickupCustomer, visitorAttention(pickup));
+      const order = duringArrival(pickup, .12, .8);
+      cashier.setNeutral();
+      cashier.rightArm.pivot.rotation.x = -.38 - order*.58;
+      cashier.rightArm.joint.rotation.x = -.35 - order*.3;
+      cashier.leftArm.pivot.rotation.x = -.45;
+      cashier.chest.rotation.x = order*.04;
+      lookAt(cashier, pickupCustomer, visitorAttention(pickup));
+      const passed = transferProgress(pickup, .38, .7);
       betweenHands(servedCup, room, barista, barista.rightArm, pickupCustomer, pickupCustomer.rightArm, passed);
       // The next drink appears after the previous visitor has left the room.
       const cupFade = pickup.step === 7 ? 1 - smooth(pickup.stepProgress) :
         pickup.step === 0 ? smooth(pickup.stepProgress) : 1;
       servedCup.scale.setScalar(.7 * cupFade);
-      room.userData.interaction = {visitorAtCounter:pickup.step === 4, handoff:reach, transfer:passed};
+      room.userData.interaction = {visitorAtCounter:pickup.step === 4, handoff:offer, transfer:passed};
 
       const sip = pulse((t % 7.4) / 7.4, 0.24, 0.57);
       seatedA.setSeated();
       seatedA.rightArm.pivot.rotation.x = -0.45 - sip * 0.8;
       seatedA.rightArm.pivot.rotation.z = -sip * 0.12;
       seatedA.rightArm.joint.rotation.x = -0.7 - sip * 0.5;
+      seatedA.head.rotation.x = -.08 * sip;
       heldCup.rotation.x = -seatedA.rightArm.pivot.rotation.x - seatedA.rightArm.joint.rotation.x + sip*.14;
 
       steam.forEach((ring, index) => {
@@ -615,7 +693,7 @@ export function createRooms(THREE) {
       trousers: C.navy,
       skin: C.skin2,
     });
-    box(picker.group, [0.13, 0.18, 0.035], [0, 1.04, 0.14], C.ivory, { cast: false });
+    box(picker.chest, [0.13, 0.18, 0.035], [0, .24, 0.14], C.ivory, { cast: false });
     const pickedCarton = addCarton(picker.rightArm.joint, [0, -0.28, 0.08], [0.19, 0.16, 0.16], C.carton);
     pickedCarton.name = 'picked-carton';
 
@@ -628,6 +706,11 @@ export function createRooms(THREE) {
       skin: C.skin3,
     });
     const scanner = box(packer.rightArm.joint, [0.07, 0.13, 0.05], [0, -0.27, 0.04], C.navy, {});
+    const checker = createPerson(room, {
+      name: 'quality-checker', position: [.37, 0, -.16], rotationY: -Math.PI/2,
+      shirt: C.navySoft, trousers: C.charcoal, skin: C.skin1,
+    });
+    box(checker.leftArm.joint, [.16, .23, .025], [0, -.3, .025], C.ivory, { cast: false });
 
     function update(t) {
       movingBoxes.forEach((carton, index) => {
@@ -644,6 +727,13 @@ export function createRooms(THREE) {
       picker.rightArm.pivot.rotation.x -= pick.activity*1.05;
       picker.rightArm.joint.rotation.x -= pick.activity*.5;
       picker.leftArm.pivot.rotation.x -= pick.activity*.7;
+      const inspect = pick.step === 6 ? pulse(pick.stepProgress, .15, .85) : 0;
+      checker.setNeutral();
+      checker.rightArm.pivot.rotation.x = -.45 - inspect*.5;
+      checker.rightArm.joint.rotation.x = -.32 - inspect*.38;
+      checker.leftArm.pivot.rotation.x = -.5;
+      checker.head.rotation.x = .1*inspect;
+      lookAt(checker, picker, pick.step === 6 ? inspect : 0);
 
       // Packing follows the carton on the desk: scan as the picker reaches the
       // rack, then close the box while the picked order moves away.
@@ -656,6 +746,8 @@ export function createRooms(THREE) {
       packer.leftArm.pivot.rotation.x = -0.25 - fold * 0.88;
       packer.leftArm.pivot.rotation.z = fold * 0.22;
       packer.leftArm.joint.rotation.x = -0.4 - fold * 0.5;
+      packer.chest.rotation.x = .06 * (scan + fold);
+      packer.head.rotation.x = .08 * scan;
       scanner.rotation.z = -scan * 0.22;
     }
 
@@ -720,7 +812,7 @@ export function createRooms(THREE) {
       trousers: C.navy,
       skin: C.skin3,
     });
-    box(assistant.group, [0.22, 0.29, 0.03], [0, 1.01, 0.14], C.ivory, { cast: false });
+    box(assistant.chest, [0.22, 0.29, 0.03], [0, .21, 0.14], C.ivory, { cast: false });
     const restockBottle = addBottle(assistant.rightArm.joint, [0, -0.27, 0.015], C.terracotta, 0.62);
 
     const customer = createPerson(room, {
@@ -737,17 +829,32 @@ export function createRooms(THREE) {
       rotation: [Math.PI / 2, 0, 0],
       cast: false,
     });
+    const produceShopper=createPerson(room,{
+      name:'produce-shopper',position:[-1.25,0,-.13],shirt:C.mustard,skin:C.skin2,
+    });
+    const selectedFruit=sphere(produceShopper.rightArm.joint,.06,[0,-.22,.05],C.terracotta,{widthSegments:12,heightSegments:8});
 
     function update(t) {
+      const choose=walk(produceShopper,t,{start:[-1.25,-.13],end:[-1.05,-.13],startFacing:0,endFacing:0,phase:4.1,hold:2.8});
+      const chooseReach=duringVisit(choose,.12,.68);
+      produceShopper.rightArm.pivot.rotation.x-=chooseReach*.9;
+      produceShopper.rightArm.joint.rotation.x-=chooseReach*.45;
+      produceShopper.chest.rotation.x+=chooseReach*.08;
+      const fruitHeld=choose.step<4?0:choose.step===4?smooth((choose.stepProgress-.4)/.2):
+        choose.step===7?1-smooth(choose.stepProgress):1;
+      selectedFruit.scale.setScalar(fruitHeld);
       const browse = walk(customer, t, {start:[1.2,.95],end:[1.2,-.12],endFacing:Math.PI,phase:2,hold:3});
       const lift = duringArrival(browse, .08, .52);
       const place = duringArrival(browse, .48, .94);
       assistant.setNeutral();
+      assistant.group.rotation.y = Math.PI - Math.PI/2 * meetingTurn(browse);
       assistant.rightArm.pivot.rotation.x = -0.3 - lift * 1.22;
       assistant.rightArm.pivot.rotation.z = -lift * 0.18;
       assistant.rightArm.joint.rotation.x = -0.28 - place * 0.72;
       assistant.leftArm.pivot.rotation.x = -0.2 - place * 0.72;
       assistant.leftArm.joint.rotation.x = -0.25 - place * 0.4;
+      assistant.chest.rotation.x = .045 * (lift + place);
+      lookAt(assistant, customer, visitorAttention(browse));
       restockBottle.position.y = -0.27 + (lift + place) * 0.03;
 
       customer.rightArm.pivot.rotation.x -= browse.activity*.85;
@@ -755,6 +862,7 @@ export function createRooms(THREE) {
       customer.leftArm.pivot.rotation.x = -0.42;
       customer.leftArm.pivot.rotation.z = 0.22;
       customer.leftArm.joint.rotation.x = -0.45;
+      lookAt(customer, assistant, duringVisit(browse, .18, .8));
     }
 
     update(0);
@@ -870,10 +978,13 @@ export function createRooms(THREE) {
       consultant.leftArm.pivot.rotation.x = -0.28 - showSwatch * 0.62;
       consultant.leftArm.pivot.rotation.z = showSwatch * 0.25;
       consultant.leftArm.joint.rotation.x = -0.55;
+      consultant.chest.rotation.x = .06 * gesture;
+      lookAt(consultant, customer, visitorAttention(browse));
       swatch.rotation.z = showSwatch * 0.12;
 
       customer.leftArm.pivot.rotation.x -= browse.activity*.6;
       customer.leftArm.joint.rotation.x -= browse.activity*.45;
+      lookAt(customer, consultant, visitorAttention(browse));
 
     }
 
@@ -910,6 +1021,8 @@ export function createRooms(THREE) {
     box(display,[.19,.18,.1],[0,.63,0],C.blush);
     const stylist=createPerson(room,{name:'stylist-folding',position:[-.24,0,-.18],shirt:C.navySoft,skin:C.skin3});
     const folded=box(stylist.rightArm.joint,[.22,.035,.17],[0,-.22,.03],C.cream);
+    const cashier=createPerson(room,{name:'boutique-cashier',position:[-1.18,0,.12],shirt:C.mustard,skin:C.skin1});
+    box(cashier.leftArm.joint,[.12,.14,.02],[0,-.28,.025],C.ivory,{cast:false});
     const shopper=createPerson(room,{name:'boutique-shopper',position:[1.04,0,1.03],shirt:C.ivory,trousers:C.teal,skin:C.skin2});
     box(shopper.leftArm.joint,[.18,.23,.10],[0,-.33,0],C.woodLight);
     function update(t){
@@ -917,13 +1030,23 @@ export function createRooms(THREE) {
       const browse=walk(shopper,t,{start:[1.04,1.03],end:[.72,-.18],endFacing:-Math.PI/2,phase:1.5,hold:2.8});
       const fold=duringArrival(browse,.1,.9);
       const present=duringVisit(browse,.14,.82);
+      stylist.group.rotation.y = .9 * meetingTurn(browse);
       stylist.rightArm.pivot.rotation.x=-.8-fold*.25;
       stylist.rightArm.joint.rotation.x=-.35-fold*.2;
       stylist.leftArm.pivot.rotation.x=-.85-fold*.15-present*.35;
       stylist.leftArm.joint.rotation.x=-.35;
+      stylist.chest.rotation.x=.045*present;
+      lookAt(stylist,shopper,visitorAttention(browse));
+      const ready=duringVisit(browse,.4,.9);
+      cashier.setNeutral();
+      cashier.rightArm.pivot.rotation.x=-.4-ready*.45;
+      cashier.rightArm.joint.rotation.x=-.28-ready*.3;
+      cashier.leftArm.pivot.rotation.x=-.5;
+      lookAt(cashier,shopper,visitorAttention(browse));
       folded.rotation.y=fold*.18+present*.16;
       shopper.rightArm.pivot.rotation.x-=present*.6;
       shopper.rightArm.joint.rotation.x-=present*.4;
+      lookAt(shopper,stylist,visitorAttention(browse));
     }
     update(0);
     return {id:'boutique',group:room,update};
@@ -964,29 +1087,46 @@ export function createRooms(THREE) {
     addBouquet(bench,[-.46,.76,-.02],C.blush,.6);
     cylinder(bench,.055,.07,[.02,.79,0],C.teal,{segments:14});
     const florist=createPerson(room,{name:'florist-wrapping',position:[-.2,0,.04],shirt:C.leaf,trousers:C.navySoft,skin:C.skin2});
-    box(florist.group,[.31,.42,.03],[0,.96,.15],C.cream);
+    box(florist.chest,[.31,.42,.03],[0,.16,.15],C.cream);
     const bouquet=addBouquet(room,[0,0,0],C.blush);
     bouquet.name='handoff-bouquet';
     bouquet.userData.animated=true;
     const customer=createPerson(room,{name:'flower-customer',position:[1.13,0,1.02],shirt:C.blush,skin:C.skin1});
+    const arranger=createPerson(room,{name:'floral-arranger',position:[-1.43,0,.08],rotationY:-.25,shirt:C.cream,trousers:C.navySoft,skin:C.skin3});
+    box(arranger.chest,[.31,.42,.03],[0,.16,.15],C.leafLight);
     function update(t){
       const pickup=walk(customer,t,{start:[1.13,1.02],end:[.68,.15],endFacing:-Math.PI/2,phase:.6,hold:3});
       const wrapping=duringArrival(pickup,.12,.9);
-      const handoff=duringVisit(pickup,.12,.86);
+      const offer=duringVisit(pickup,.08,.67);
+      const receive=duringVisit(pickup,.25,.9);
+      const nod=duringVisit(pickup,.66,.98);
       florist.setNeutral();
-      florist.leftArm.pivot.rotation.x=-.9-wrapping*.18;
+      florist.group.rotation.y=.78*meetingTurn(pickup);
+      florist.leftArm.pivot.rotation.x=-.55-wrapping*.52;
       florist.leftArm.joint.rotation.x=-.5;
-      florist.rightArm.pivot.rotation.x=-.78-wrapping*.3-handoff*.22;
-      florist.rightArm.pivot.rotation.z=-handoff*.48;
-      florist.rightArm.joint.rotation.x=-.35-wrapping*.2-handoff*.25;
-      customer.rightArm.pivot.rotation.x-=handoff*.65;
-      customer.rightArm.joint.rotation.x-=handoff*.45;
-      const passed=transferProgress(pickup);
+      florist.rightArm.pivot.rotation.x=-.62-wrapping*.32-offer*.38;
+      florist.rightArm.pivot.rotation.z=-offer*.48;
+      florist.rightArm.joint.rotation.x=-.35-wrapping*.2-offer*.3;
+      florist.chest.rotation.x=offer*.08;
+      lookAt(florist,customer,visitorAttention(pickup));
+      customer.rightArm.pivot.rotation.x-=receive*.72;
+      customer.rightArm.joint.rotation.x-=receive*.5;
+      customer.chest.rotation.x+=receive*.06;
+      lookAt(customer,florist,visitorAttention(pickup));
+      customer.head.rotation.x+=nod*.1;
+      arranger.setNeutral();
+      const arranging=.5+.5*Math.sin(t*.8);
+      arranger.group.rotation.y=-.25+arranging*.14;
+      arranger.head.rotation.y=-.13+arranging*.12;
+      arranger.leftArm.pivot.rotation.x=-.35-arranging*.38;
+      arranger.rightArm.pivot.rotation.x=-.44-(1-arranging)*.32;
+      arranger.leftArm.joint.rotation.x=-.26-arranging*.18;
+      const passed=transferProgress(pickup,.38,.72);
       betweenHands(bouquet,room,florist,florist.rightArm,customer,customer.rightArm,passed);
       bouquet.rotation.z=wrapping*.15;
       const bouquetFade=pickup.step===7?1-smooth(pickup.stepProgress):pickup.step===0?smooth(pickup.stepProgress):1;
       bouquet.scale.setScalar(.55*bouquetFade);
-      room.userData.interaction={visitorAtCounter:pickup.step===4,handoff,transfer:passed};
+      room.userData.interaction={visitorAtCounter:pickup.step===4,handoff:offer,transfer:passed};
     }
     update(0);return {id:'florist',group:room,update};
   }

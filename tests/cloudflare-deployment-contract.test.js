@@ -25,13 +25,13 @@ assert.match(workflow, /uses:\s*actions\/setup-node@[a-f0-9]{40}\s*$/m);
 assert.match(workflow, /uses:\s*actions\/upload-artifact@[a-f0-9]{40}\s*$/m);
 assert.doesNotMatch(workflow, /cloudflare\/wrangler-action@/);
 
-assert.match(workflow, /api\.cloudflare\.com\/client\/v4\/accounts\/\$CLOUDFLARE_ACCOUNT_ID\/pages\/projects\/attahirlabs\/deployments\?env=production/);
+assert.match(workflow, /api\.cloudflare\.com\/client\/v4\/accounts\/\$CLOUDFLARE_ACCOUNT_ID\/pages\/projects\/attahirlabs-site\/deployments\?env=production/);
 assert.doesNotMatch(workflow, /per_page=/, 'Cloudflare Pages deployment inventory must use the API-supported default page size');
 assert.match(workflow, /Authorization: Bearer \$CLOUDFLARE_PAGES_API_TOKEN/);
 assert.match(workflow, /working-directory:\s*\.github\/cloudflare-pages/);
 assert.match(workflow, /run:\s*npm ci --ignore-scripts/);
 assert.match(workflow, /\.github\/cloudflare-pages\/node_modules\/\.bin\/wrangler pages deploy _site/);
-assert.match(workflow, /--project-name=attahirlabs/);
+assert.match(workflow, /--project-name=attahirlabs-site/);
 assert.match(workflow, /--branch=main/);
 assert.match(workflow, /--commit-hash="\$GITHUB_SHA"/);
 assert.match(workflow, /--commit-dirty=false/);

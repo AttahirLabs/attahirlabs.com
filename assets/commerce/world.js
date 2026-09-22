@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
 import { RoomEnvironment } from './vendor/RoomEnvironment.js';
-import { createRooms } from './rooms.js?v=20260922d';
+import { createRooms } from './rooms.js?v=20260922e';
 
 export function createCommerceWorld(host) {
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });

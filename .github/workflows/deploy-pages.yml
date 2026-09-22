@@ -58,7 +58,7 @@ jobs:
           case "$source_tree_sha" in *[!0-9a-f]*) exit 1 ;; esac
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
           test -n "${CLOUDFLARE_PAGES_API_TOKEN:-}"
-          test "$CLOUDFLARE_ACCOUNT_ID" = "6f945ca08a01d636e0b02f37e859d4d5"
+          test "$CLOUDFLARE_ACCOUNT_ID" = "5528a2e45416ae7eb22b1320b49aa16a"
           echo "source_tree_sha=$source_tree_sha" >> "$GITHUB_OUTPUT"
 
       - name: Build exact static artifact
@@ -86,7 +86,7 @@ jobs:
           node .github/signups/verify.mjs
           curl --fail-with-body --silent --show-error \
             --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
-            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs-site" \
             > "$RUNNER_TEMP/cloudflare-pages-signup-config.json"
           node .github/signups/check-binding.cjs "$RUNNER_TEMP/cloudflare-pages-signup-config.json"
 
@@ -96,7 +96,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -euo pipefail
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs-site/deployments?env=production"
           curl --fail-with-body --silent --show-error \
             --retry 4 --retry-all-errors --connect-timeout 10 --max-time 30 \
             --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
@@ -112,7 +112,7 @@ jobs:
         run: |
           set -euo pipefail
           .github/cloudflare-pages/node_modules/.bin/wrangler pages deploy _site \
-            --project-name=attahirlabs \
+            --project-name=attahirlabs-site \
             --branch=main \
             --commit-hash="$GITHUB_SHA" \
             --commit-dirty=false
@@ -124,7 +124,7 @@ jobs:
           SOURCE_TREE_SHA: ${{ steps.release-inputs.outputs.source_tree_sha }}
         run: |
           set -euo pipefail
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs-site/deployments?env=production"
           after="$RUNNER_TEMP/cloudflare-pages-after.json"
           proof="$RUNNER_TEMP/cloudflare-pages-deployment-proof.json"
           test ! -e "$proof"
@@ -143,7 +143,7 @@ jobs:
                 --after "$RUNNER_TEMP/cloudflare-pages-after.json" \
                 --output "$RUNNER_TEMP/cloudflare-pages-deployment-proof.json" \
                 --account-id "$CLOUDFLARE_ACCOUNT_ID" \
-                --project-name attahirlabs \
+                --project-name attahirlabs-site \
                 --commit-sha "$GITHUB_SHA" \
                 --source-tree-sha "$SOURCE_TREE_SHA" \
                 --github-run-id "$GITHUB_RUN_ID" \

@@ -35,6 +35,8 @@ const assert=require('node:assert/strict');
   assert.ok(Math.hypot(sample.x-previous.x,sample.z-previous.z)<.002,'walk position is continuous');
   const angle=Math.atan2(Math.sin(sample.yaw-previous.yaw),Math.cos(sample.yaw-previous.yaw));
   assert.ok(Math.abs(angle)<.012,'turns are continuous, including loop boundaries');
+  assert.ok(Number.isFinite(sample.headLead) && Math.abs(sample.headLead)<=.52,'head anticipation stays bounded');
+  assert.ok(Math.abs(sample.headLead-previous.headLead)<.012,'head anticipation is continuous');
   previous=sample;
  }
  console.log(`Commerce geometry: ${checks} furniture-clearance checks across six animated rooms; people separation, floor bounds and smooth route continuity passed.`);

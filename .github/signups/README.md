@@ -6,29 +6,28 @@ version and creation time in D1. An atomic unique key deduplicates each app/emai
 pair. The same email can join multiple app lists. The endpoint has no read or
 export route. It never sends email on signup. No email enters analytics or URLs.
 
-## Activation gate (not yet completed)
+## Production activation
 
-Cloudflare CLI authentication was unavailable during implementation. Do not
-merge/publish until the following setup and a preview signup test are complete.
-The deployment workflow explicitly refuses a missing production binding.
+The site uses Cloudflare account `5528a2e45416ae7eb22b1320b49aa16a` and
+Pages project `attahirlabs-site`. Production binds `RELEASE_SIGNUPS` to the
+dedicated `attahirlabs-release-signups` D1 database. Preview uses a separate
+`attahirlabs-release-signups-preview` database. Both have the schema in
+`schema.sql`.
 
-1. Authenticate Wrangler to the existing Attahir Labs account
-   `6f945ca08a01d636e0b02f37e859d4d5`. Use the pinned CLI in
-   `.github/cloudflare-pages/node_modules/.bin/wrangler`.
-2. Create a dedicated D1 database: `wrangler d1 create attahirlabs-release-signups`.
-3. Initialize this new database:
-   `wrangler d1 execute attahirlabs-release-signups --remote --file .github/signups/schema.sql`.
-4. In Pages project `attahirlabs`, Settings > Bindings, bind the production
-   database as `RELEASE_SIGNUPS`. Use a separate initialized D1 database for
-   previews; never bind the production signup list to preview code.
-5. Deploy this branch to a preview. Submit a synthetic `example.com` email and
-   verify the actual D1 row, duplicate suppression, and app separation. Remove
-   those exact synthetic rows afterward. The deployment workflow's Pages API
-   token can remain limited to Pages; setup requires a separately authorized D1
-   operator. No API keys belong in source or public JavaScript.
-6. Follow the existing protected-main review/release process. Verify the three
-   live form pages and an actual stored test signup on apex and www. Delete only
-   the synthetic test records, and retain the normal deployment proof.
+The approved design was directly deployed to production on 2026-09-22 from
+commit `00babdce730e50c66610411aa8f11e86e3122c6b`. Synthetic submissions
+to the apex and www hosts stored one row each for AccessShield, StoreChronicle,
+and WarrantyTracker; a duplicate AccessShield submission did not add a row.
+The three synthetic rows were then deleted and a zero-row check confirmed
+cleanup. The repository's GitHub Actions workflow targets this account and
+project, but its existing Pages API token still needs validation in a real
+workflow run before CI deployment is considered proven.
+
+For subsequent releases, follow the protected-main review process, verify the
+three live form pages and a stored test signup, remove only the synthetic test
+records, and retain the workflow's deployment proof. The Pages API token can
+remain limited to Pages; D1 administration uses a separate authorized operator.
+No API keys belong in source or public JavaScript.
 
 Pages deploy compiles the root `functions/` directory. It is excluded from the
 static `_site` artifact; schema and operations files are under excluded `.github`.
