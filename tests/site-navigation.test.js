@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, '..');
 
 const appStylePages = [
   'index.html',
+  'web-design/index.html',
   'apps/index.html',
   'apps/stockclearance/index.html',
   'apps/tariffshield/index.html',
@@ -57,6 +58,7 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
   for (const [label, href] of [
     ['Apps', '/apps/'],
     ['Free tools', '/tools/'],
+    ['Web design', '/web-design/'],
     ['Blog', '/blog/'],
     ['Contact', '/contact.html'],
   ]) {

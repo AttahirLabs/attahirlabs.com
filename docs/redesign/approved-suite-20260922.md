@@ -24,3 +24,10 @@ The desktop hero now uses refractive glass artwork derived from the approved hom
 Assets: `assets/design/home-glass.webp` (1400px, 118 KB) and `assets/design/home-glass-small.webp` (720px, 44 KB). Generated with the built-in image-generation tool from `design/attahirlabs-unified-brand-20260922/homepage.png` in the parent workspace; resized and encoded with Sharp.
 
 Prompt: Recreate only the approved top-right architectural glass scene: overlapping transparent teal panes, a four-compartment shelving tower labelled Stock, Costs, Expiry, Growth, reflective glass plinths, and a floating inventory concept dashboard. Square composition with an off-white #F7F8F4 background fading at the edges. Preserve realistic refraction, crisp teal edges, and the reference composition; exclude page navigation, headlines, buttons, and app rows.
+
+## E-commerce suite and web design services
+The homepage now positions Attahir Labs as an e-commerce suite: “Build a better e-commerce business.” The approved glass artwork, palette, and hero layout are preserved. A new homepage section introduces website design, Shopify store setup, and storefront redesign, with a dedicated `/web-design/` page covering the services, process, FAQs, and project contact path. Themes are not advertised for sale.
+
+The services page uses a labelled HTML/CSS storefront concept and existing reduced-motion-aware scroll effects. Project inquiries open the visitor’s email application addressed to the established support inbox; no new form backend or email submission service is introduced. Costs and timing are scoped per project. The services footer labels the existing app agreement “App terms.”
+
+Shared site navigation now includes Web design; product navigation remains specific to each app, with Web design available in their footer. Metadata, sitemap, contact copy, and the bounded measurement catalogue include the new offering. Website measurement recognizes a `services` surface; contact intent excludes the email subject and does not establish that an enquiry was sent or received.

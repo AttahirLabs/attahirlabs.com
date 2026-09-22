@@ -88,9 +88,9 @@ function readPngPixel(filePath, x, y) {
   return colorType === 6 ? pixel : [...pixel, 255];
 }
 
-assert.match(html, /<title>Attahir Labs \| Shopify Apps for Inventory, Tariffs, and Store Operations<\/title>/, 'homepage should use the problem-first SEO title');
+assert.match(html, /<title>Attahir Labs \| E-commerce Apps, Web Design &amp; Shopify Setup<\/title>/, 'homepage should use the problem-first SEO title');
 assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/, 'homepage canonical should include trailing slash');
-includes('<h1>Take control of<br>stock, costs,<br>and expiry.</h1>', 'homepage should lead with the approved benefit statement');
+includes('<h1>Build a better<br>e-commerce<br>business.</h1>', 'homepage should lead with the approved benefit statement');
 includes('Explore the apps', 'homepage hero should have one clear primary routing CTA');
 includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
 includes('Install TariffShield', 'homepage should keep TariffShield as a public App Store app');
@@ -104,7 +104,7 @@ includes('https://apps.shopify.com/tariffshield', 'homepage should link to Tarif
 includes('https://apps.shopify.com/shelflife', 'homepage should link to ShelfLife App Store listing');
 includes('Install ShelfLife', 'homepage should expose the verified ShelfLife install CTA');
 includes('What problem are you trying to solve?', 'homepage should route by merchant problem');
-includes('Try a free tool', 'homepage hero should route to the tool chooser');
+includes('Build your website', 'homepage hero should route to web design services');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
 includes('Public Apps', 'homepage should separate public apps from supporting tools');
 includes('StoreChronicle', 'homepage should use current StoreChronicle product name');

@@ -363,7 +363,7 @@
   },
   "/": {
     "surface": "homepage",
-    "title": "Attahir Labs | Shopify Apps for Inventory, Tariffs, and Store Operations"
+    "title": "Attahir Labs | E-commerce Apps, Web Design &amp; Shopify Setup"
   },
   "/privacy.html": {
     "surface": "legal",
@@ -390,6 +390,10 @@
   "/tools/": {
     "surface": "tools_hub",
     "title": "Free Shopify Merchant Tools | Attahir Labs"
+  },
+  "/web-design/": {
+    "surface": "services",
+    "title": "Web Design &amp; Shopify Store Setup | Attahir Labs"
   }
 });
   // END GENERATED PAGES
@@ -505,7 +509,7 @@
   });
 
   const enums = Object.freeze({
-    surface: new Set(['homepage', 'apps_hub', 'app_page', 'blog_hub', 'blog_article', 'tools_hub', 'duty_rates', 'contact', 'legal', 'review', 'duty_calculator', 'shipping_calculator', 'access_checker']),
+    surface: new Set(['services', 'homepage', 'apps_hub', 'app_page', 'blog_hub', 'blog_article', 'tools_hub', 'duty_rates', 'contact', 'legal', 'review', 'duty_calculator', 'shipping_calculator', 'access_checker']),
     surface_group: new Set(['tool']),
     placement: new Set(['nav', 'hero', 'app_card', 'content', 'article_inline', 'article_footer', 'footer', 'result_cta', 'tool_result']),
     destination_type: new Set([

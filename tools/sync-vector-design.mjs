@@ -26,7 +26,8 @@ for(const file of walk(root)){
  let html=fs.readFileSync(file,'utf8');
  if(!html.includes('</head>')||!/<nav\b/.test(html))continue;
  const relative=path.relative(root,file);
- const type=/^apps\/[^/]+\/index.html$/.test(relative)?'product':relative==='blog/index.html'?'blog-index':relative.startsWith('blog/')?'article':relative==='index.html'?'home':'utility';
+ if(!html.includes('class="product-nav"'))html=html.replace(/<nav\b[\s\S]*?<\/nav>/,nav=>nav.includes('href="/web-design/"')?nav:nav.replace('<li><a href="/blog/">Blog</a></li>','<li><a href="/web-design/">Web design</a></li><li><a href="/blog/">Blog</a></li>'));
+ const type=/^apps\/[^/]+\/index.html$/.test(relative)?'product':relative==='blog/index.html'?'blog-index':relative.startsWith('blog/')?'article':relative==='index.html'?'home':relative==='web-design/index.html'?'services':'utility';
  html=html.replace(/<link rel="stylesheet" href="\/assets\/vector.css[^>]*>\s*/g,'').replace(/<script defer src="\/assets\/vector.js[^>]*><\/script>\s*/g,'');
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/vector.css?v=20260922">\n<script defer src="/assets/vector.js?v=20260922"></script>\n</head>');
  html=html.replace(/<body([^>]*)>/,(_,attrs)=>`<body${attrs.replace(/ data-page="[^"]*"/g,'')} data-page="${type}">`);
