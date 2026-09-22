@@ -83,6 +83,14 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
 }
 
 for (const page of appStylePages) {
+  if (/apps\/[^/]+\/index.html/.test(page)) {
+    const html = read(page);
+    const nav = primaryNav(html, page);
+    assert.match(nav, /class="product-brand"/);
+    for (const href of ['#features', '#setup', '/contact.html', '/apps/']) assert.ok(nav.includes(`href="${href}"`));
+    for (const href of ['/tools/', '/blog/', '/terms.html']) assert.ok(html.includes(`href="${href}"`));
+    continue;
+  }
   assertConsistentNav(page);
 }
 
