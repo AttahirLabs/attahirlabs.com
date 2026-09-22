@@ -369,6 +369,11 @@
     "surface": "legal",
     "title": "Privacy Policy | Attahir Labs"
   },
+  "/review/cafe-motion/": {
+    "surface": "review",
+    "title": "Café motion study | Attahir Labs",
+    "disabled": true
+  },
   "/review/japan-duty-image-candidates/": {
     "surface": "review",
     "title": "Japan duty image candidates",
