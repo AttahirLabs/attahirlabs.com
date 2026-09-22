@@ -43,7 +43,7 @@
 .floral-art i{position:absolute;width:43%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c9a136 12%,transparent 15%),radial-gradient(ellipse at 50% 25%,#e8a9a1 31%,transparent 33%),radial-gradient(ellipse at 25% 64%,#d78c89 36%,transparent 38%),radial-gradient(ellipse at 75% 64%,#f1c1b0 36%,transparent 38%);z-index:2}
 .floral-art i:nth-child(1){top:0;left:27%}.floral-art i:nth-child(2){top:20%;left:0;transform:rotate(-20deg)}.floral-art i:nth-child(3){top:25%;right:0;transform:rotate(20deg)}.floral-art i:nth-child(4){top:39%;left:22%;transform:scale(.9)}.floral-art i:nth-child(5){top:7%;right:0;transform:scale(.7)}
 .floral-art span{position:absolute;inset:30% 7% 0;background:linear-gradient(115deg,#789064 10%,#a6b293 32%,#ddd1b6 34%,#f2e9d5 55%,#cebd9a 85%);clip-path:polygon(0 0,50% 20%,100% 0,67% 100%,35% 100%);transform:rotate(-6deg)}
-.glass-scene[data-commerce-hero]>figcaption{bottom:1%;font-size:9px}.commerce-ready>.glass-artwork{visibility:hidden}
+.commerce-ready>.glass-artwork{visibility:hidden}
 .vector-home .hero-baseline{margin-top:0}
 @media(min-width:681px) and (max-width:1000px){
  .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86}.commerce-panel-stack{width:60%;left:1%;top:25%}
@@ -68,7 +68,6 @@
  .coffee-site,.storefront-site{padding:9px;min-height:158px}.storefront-nav{margin-bottom:13px}.storefront-nav b{font-size:7px}.storefront-nav span{font-size:4px}
  .commerce-panel .coffee-site h3,.commerce-panel .storefront-site h3{font-size:21px}.commerce-panel .coffee-site p,.commerce-panel .storefront-site p{font-size:6px}.storefront-cta{font-size:6px;margin-top:8px}
  .coffee-bag{top:54px;right:8px;height:80px}.coffee-bag::before{font-size:6px;padding:6px 0}.coffee-bag::after{font-size:5px}.fashion-art{height:92px;top:49px}.floral-art{height:90px;top:54px}
- .glass-scene[data-commerce-hero]>figcaption{font-size:8px}
 }
 @media(max-width:380px){.vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.78}.commerce-panel-stack{top:22%}.commerce-panel-head>small{font-size:5px}.commerce-panel-head{gap:4px;font-size:8px}.commerce-panel footer{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.commerce-panel-stack{will-change:auto}}
