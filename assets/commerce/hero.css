@@ -6,7 +6,7 @@
 .commerce-live{position:absolute;inset:0;perspective:1100px}
 .commerce-canvas{position:absolute;inset:-7% -7% 0 -3%;overflow:hidden;mask-image:linear-gradient(transparent,#000 6%,#000 84%,transparent 98%)}
 .commerce-canvas canvas{width:100%;height:100%;display:block}
-.commerce-panel-stack{position:absolute;z-index:3;left:1%;top:32%;width:56%;transform:perspective(900px) rotateY(var(--panel-turn,-8deg)) rotateZ(-2deg);transform-origin:70% 50%;will-change:transform;filter:drop-shadow(0 18px 18px #102a361b)}
+.commerce-panel-stack{position:absolute;z-index:3;left:1%;top:32%;width:50%;transform:perspective(900px) rotateY(var(--panel-turn,-8deg)) rotateZ(-2deg);transform-origin:70% 50%;will-change:transform;filter:drop-shadow(0 18px 18px #102a361b)}
 .commerce-panel{border:1px solid #73b8c599;background:linear-gradient(135deg,#fafffff7,#edf8f5ed);border-radius:10px;overflow:hidden;box-shadow:inset 2px 2px 2px #fff,0 1px 0 #fff;backdrop-filter:blur(12px);padding:12px}
 .commerce-panel-head{display:flex;align-items:center;gap:8px;border-bottom:1px solid #c7dfe0;padding-bottom:8px;margin-bottom:10px;font-size:11px;font-weight:600}
 .commerce-panel-head img{width:20px;height:20px;border-radius:5px;object-fit:contain}
@@ -43,7 +43,7 @@
 .floral-art i{position:absolute;width:43%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c9a136 12%,transparent 15%),radial-gradient(ellipse at 50% 25%,#e8a9a1 31%,transparent 33%),radial-gradient(ellipse at 25% 64%,#d78c89 36%,transparent 38%),radial-gradient(ellipse at 75% 64%,#f1c1b0 36%,transparent 38%);z-index:2}
 .floral-art i:nth-child(1){top:0;left:27%}.floral-art i:nth-child(2){top:20%;left:0;transform:rotate(-20deg)}.floral-art i:nth-child(3){top:25%;right:0;transform:rotate(20deg)}.floral-art i:nth-child(4){top:39%;left:22%;transform:scale(.9)}.floral-art i:nth-child(5){top:7%;right:0;transform:scale(.7)}
 .floral-art span{position:absolute;inset:30% 7% 0;background:linear-gradient(115deg,#789064 10%,#a6b293 32%,#ddd1b6 34%,#f2e9d5 55%,#cebd9a 85%);clip-path:polygon(0 0,50% 20%,100% 0,67% 100%,35% 100%);transform:rotate(-6deg)}
-.glass-scene[data-commerce-hero]>figcaption{bottom:1%;font-size:9px}.commerce-ready>.glass-artwork{visibility:hidden}
+.commerce-ready>.glass-artwork{visibility:hidden}
 .vector-home .hero-baseline{margin-top:0}
 @media(min-width:681px) and (max-width:1000px){
  .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86}.commerce-panel-stack{width:60%;left:1%;top:25%}
@@ -60,15 +60,15 @@
  .vector-home .glass-scene[data-commerce-hero]{width:min(100%,700px);height:auto;margin:8px auto 0;aspect-ratio:1}
 }
 @media(max-width:680px){
- .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.86;margin-top:15px}.commerce-canvas{inset:-4% -7% 0 -2%}
- .commerce-panel-stack{left:1%;top:24%;width:59%;transform:perspective(700px) rotateY(var(--panel-turn,-8deg)) rotateZ(-2deg)}
+ .vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.64;margin-top:15px}.commerce-canvas{inset:0;mask-image:linear-gradient(#000 0%,#000 47%,transparent 56%,transparent 100%)}
+ .commerce-panel-stack{left:3%;top:51%;width:94%;transform:perspective(700px) rotateY(var(--panel-turn,-8deg)) rotateZ(-2deg)}
  .commerce-panel{padding:9px;border-radius:7px}.commerce-panel-head{padding-bottom:6px;margin-bottom:8px;font-size:9px;gap:6px}.commerce-panel-head img{width:18px;height:18px}.commerce-panel-head>small{font-size:6px;letter-spacing:0}
  .commerce-panel h3{font-size:16px;line-height:1.2;margin-bottom:6px}.commerce-metric{font-size:8px;padding:5px 0}.commerce-table{font-size:8px}.commerce-table td,.commerce-table th{padding:5px 2px}.commerce-chip{font-size:7px;padding:3px}
  .commerce-panel-link{min-height:32px;margin-top:4px;font-size:8px;gap:8px}.commerce-panel footer{font-size:7px;padding-top:5px}
  .coffee-site,.storefront-site{padding:9px;min-height:158px}.storefront-nav{margin-bottom:13px}.storefront-nav b{font-size:7px}.storefront-nav span{font-size:4px}
  .commerce-panel .coffee-site h3,.commerce-panel .storefront-site h3{font-size:21px}.commerce-panel .coffee-site p,.commerce-panel .storefront-site p{font-size:6px}.storefront-cta{font-size:6px;margin-top:8px}
  .coffee-bag{top:54px;right:8px;height:80px}.coffee-bag::before{font-size:6px;padding:6px 0}.coffee-bag::after{font-size:5px}.fashion-art{height:92px;top:49px}.floral-art{height:90px;top:54px}
- .glass-scene[data-commerce-hero]>figcaption{font-size:8px}
 }
-@media(max-width:380px){.vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.78}.commerce-panel-stack{top:22%}.commerce-panel-head>small{font-size:5px}.commerce-panel-head{gap:4px;font-size:8px}.commerce-panel footer{font-size:6px}}
+@media(min-width:500px) and (max-width:680px){.vector-home .glass-scene[data-commerce-hero]{width:100%;margin:15px auto 0}}
+@media(max-width:380px){.vector-home .glass-scene[data-commerce-hero]{aspect-ratio:.56}.commerce-panel-stack{top:50%}.commerce-panel-head>small{font-size:5px}.commerce-panel-head{gap:4px;font-size:8px}.commerce-panel footer{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.commerce-panel-stack{will-change:auto}}

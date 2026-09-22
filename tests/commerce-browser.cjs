@@ -35,7 +35,7 @@ let browser;
   }),`hero copy stays clear of its glass panel at ${width}px`);
   for(let scene=0;scene<6;scene++){
    await p.keyboard.press('ArrowRight');
-   assert.ok(await p.evaluate(()=>{const panel=document.querySelector('.commerce-panel:not([hidden])').getBoundingClientRect();const frame=document.querySelector('[data-commerce-hero]').getBoundingClientRect();return panel.left>=-1&&panel.right<=innerWidth+1&&panel.bottom<frame.bottom-8;}),'each panel fits on every viewport');
+   assert.ok(await p.evaluate(()=>{const panel=document.querySelector('.commerce-panel:not([hidden])').getBoundingClientRect();const frame=document.querySelector('[data-commerce-hero]').getBoundingClientRect();return panel.left>=-1&&panel.right<=innerWidth+1&&panel.bottom<frame.bottom-8;}),`panel ${scene} fits at ${width}px`);
   }
  }
  await p.setViewportSize({width:1440,height:1000});await p.screenshot({path:'/tmp/commerce-refined-desktop.png'});

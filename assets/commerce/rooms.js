@@ -1,4 +1,4 @@
-import { sampleWalk } from './motion.mjs?v=20260922e';
+import { sampleWalk } from './motion.mjs?v=20260922g';
 const TAU = Math.PI * 2;
 
 /**
@@ -257,19 +257,21 @@ export function createRooms(THREE) {
     return bottle;
   }
 
-  function createLimb(parent, name, color, upperLength, lowerLength, radius) {
+  function createLimb(parent, name, upperColor, lowerColor, upperLength, lowerLength, upperRadius, lowerRadius) {
     const limb = group(parent, name);
-    cylinder(limb, radius, upperLength, [0, -upperLength / 2, 0], color, { segments: 10 });
-    sphere(limb, radius * 1.05, [0, -upperLength, 0], color, { widthSegments: 12, heightSegments: 8 });
+    tapered(limb, upperRadius, upperRadius * .82, upperLength, [0, -upperLength / 2, 0], upperColor, { segments: 12 });
     const joint = group(limb, `${name}-joint`, [0, -upperLength, 0]);
-    cylinder(joint, radius * 0.9, lowerLength, [0, -lowerLength / 2, 0], color, { segments: 10 });
+    sphere(joint, Math.max(upperRadius * .79, lowerRadius), [0, .008, 0], lowerColor, {
+      scale: [.85, .72, .85], widthSegments: 12, heightSegments: 8,
+    });
+    tapered(joint, lowerRadius, lowerRadius * .76, lowerLength, [0, -lowerLength / 2, 0], lowerColor, { segments: 12 });
     return { pivot: limb, joint };
   }
 
   function createPerson(parent, options = {}) {
     const person = group(parent, options.name ?? "person", options.position ?? [0, 0, 0]);
     if (options.rotationY) person.rotation.y = options.rotationY;
-    const figureScale = options.scale ?? .9;
+    const figureScale = options.scale ?? .7;
     person.scale.setScalar(figureScale);
     person.userData.person = true;
     person.userData.floorRadius = .28 * figureScale;
@@ -277,40 +279,80 @@ export function createRooms(THREE) {
     const skin = options.skin ?? C.skin1;
     const shirt = options.shirt ?? C.teal;
     const trousers = options.trousers ?? C.navy;
+    const appearance=[...(options.name??'person')].reduce((sum,ch)=>sum+ch.charCodeAt(0),0);
 
     const hips = group(person, "hips", [0, 0.7, 0]);
-    sphere(hips, 0.13, [0, 0, 0], trousers, { scale: [1, 0.72, 0.82] });
+    sphere(hips, 0.16, [0, .055, 0], trousers, { scale: [1, .7, .76] });
     const chest = group(person, "upper-body", [0, .8, 0]);
-    tapered(chest, 0.18, 0.22, 0.42, [0, 0.18, 0], shirt, { segments: 16 });
-    cylinder(chest, 0.06, 0.07, [0, 0.43, 0], skin, { segments: 12 });
-    const head = group(chest, "head", [0, .58, 0]);
-    sphere(head, 0.14, [0, 0, 0], skin, { scale: [0.93, 1.06, 0.92] });
-    const hair = sphere(head, 0.143, [0, 0.035, -0.015], options.hair ?? C.hair, {
-      scale: [0.96, 0.72, 0.96],
-      widthSegments: 16,
-      heightSegments: 10,
+    const torsoGeometry = geometry("tailored-torso", () => {
+      const profile = [[.15,0],[.175,.035],[.16,.1],[.175,.21],[.215,.33],[.19,.39],[.075,.43]].map(([r,y]) => new THREE.Vector2(r,y));
+      const shape = new THREE.LatheGeometry(profile, 18);
+      shape.scale(1,1,.77);
+      return shape;
     });
-    hair.rotation.x = -0.08;
-    sphere(head, 0.018, [-0.048, .015, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
-    sphere(head, 0.018, [0.048, .015, 0.124], C.charcoal, { cast: false, widthSegments: 8, heightSegments: 6 });
+    mesh(chest, torsoGeometry, material(shirt, { roughness: .88 }), [0,0,0]);
+    tapered(chest, .168, .157, .035, [0, .026, 0], shirt, { segments: 18 });
+    // Layered hems, seams and jackets break up the identical toy-like torso
+    // silhouette. All details use muted fabrics so the figures stay miniature.
+    if(appearance%5===0){
+      tapered(chest,.168,.205,.16,[0,-.035,0],shirt,{segments:18});
+      box(chest,[.025,.27,.008],[0,.24,.147],C.cream,{cast:false});
+    }else if(appearance%5===1){
+      for(const side of [-1,1]){
+        const panel=box(chest,[.08,.30,.028],[side*.13,.245,.11],options.trousers??C.navySoft,{cast:false});
+        panel.rotation.z=side*.06;
+        box(chest,[.07,.1,.015],[side*.067,.355,.147],C.cream,{rotation:[0,0,side*.28],cast:false});
+      }
+    }else if(appearance%5===2){
+      box(chest,[.33,.035,.023],[0,.12,.143],C.wood,{cast:false});
+      box(chest,[.038,.047,.028],[0,.12,.16],C.brass,{cast:false});
+    }else if(appearance%5===3){
+      tapered(chest,.17,.205,.15,[0,-.04,0],shirt,{segments:18});
+    }
+    cylinder(chest, 0.054, 0.085, [0, .44, 0], skin, { segments: 12 });
+    // A small collar and sculpted silhouette read as clothing even at diorama scale.
+    [-1,1].forEach(side => {
+      const collar = box(chest, [.08,.025,.055], [side*.067,.414,.082], C.ivory, { cast: false });
+      collar.rotation.z = side*.35;
+    });
+    const head = group(chest, "head", [0, .58, 0]);
+    sphere(head, .124, [0, .005, 0], skin, { scale: [.93,1.13,.88], widthSegments: 20, heightSegments: 14 });
+    sphere(head, .091, [0,-.064,.015], skin, { scale: [1.03,.64,.98], widthSegments: 16, heightSegments: 10 });
+    [-1,1].forEach(side => {
+      sphere(head,.024,[side*.118,-.018,-.005],skin,{scale:[.55,.9,.65],widthSegments:10,heightSegments:8});
+      sphere(head,.006,[side*.043,.012,.112],C.charcoal,{cast:false,widthSegments:8,heightSegments:6});
+      box(head,[.028,.005,.006],[side*.044,.047,.111],options.hair ?? C.hair,{cast:false});
+    });
+    sphere(head,.017,[0,-.027,.119],skin,{scale:[.7,1,1],widthSegments:10,heightSegments:8});
+    const hairColor = options.hair ?? C.hair;
+    sphere(head,.126,[0,.072,-.016],hairColor,{scale:[.98,.55,.96],widthSegments:18,heightSegments:12});
+    const hairVariant = appearance%4;
+    if(hairVariant===0) box(head,[.205,.035,.085],[0,.096,.034],hairColor,{rotation:[-.17,0,.08]});
+    if(hairVariant===1) [-1,1].forEach(side=>sphere(head,.05,[side*.092,.065,-.002],hairColor,{scale:[.72,1.2,.84],widthSegments:10,heightSegments:8}));
+    if(hairVariant===2) sphere(head,.065,[-.053,.105,.048],hairColor,{scale:[1,.52,.67],widthSegments:12,heightSegments:8});
+    if(hairVariant===3){
+      for(const side of [-1,1])sphere(head,.071,[side*.091,-.055,-.03],hairColor,{scale:[.72,1.6,.83],widthSegments:12,heightSegments:9});
+      sphere(head,.065,[0,.105,.045],hairColor,{scale:[1.55,.53,.75],widthSegments:12,heightSegments:8});
+    }
 
-    const leftArm = createLimb(chest, "left-arm", skin, 0.24, 0.22, 0.045);
-    const rightArm = createLimb(chest, "right-arm", skin, 0.24, 0.22, 0.045);
-    leftArm.pivot.position.set(-0.205, .35, 0);
-    rightArm.pivot.position.set(0.205, .35, 0);
-    sphere(leftArm.pivot, 0.054, [0, 0.01, 0], shirt, { scale: [1, 0.95, 1] });
-    sphere(rightArm.pivot, 0.054, [0, 0.01, 0], shirt, { scale: [1, 0.95, 1] });
-    sphere(leftArm.joint, 0.052, [0, -0.22, 0], skin, { widthSegments: 10, heightSegments: 8 });
-    sphere(rightArm.joint, 0.052, [0, -0.22, 0], skin, { widthSegments: 10, heightSegments: 8 });
+    const leftArm = createLimb(chest, "left-arm", shirt, skin, .24, .22, .077, .045);
+    const rightArm = createLimb(chest, "right-arm", shirt, skin, .24, .22, .077, .045);
+    leftArm.pivot.position.set(-.205,.35,0);
+    rightArm.pivot.position.set(.205,.35,0);
+    [leftArm,rightArm].forEach(arm => {
+      sphere(arm.joint,.047,[0,-.235,0],skin,{scale:[.72,1.3,.63],widthSegments:12,heightSegments:8});
+    });
 
-    const leftLeg = createLimb(person, "left-leg", trousers, 0.35, 0.35, 0.065);
-    const rightLeg = createLimb(person, "right-leg", trousers, 0.35, 0.35, 0.065);
+    const leftLeg = createLimb(person, "left-leg", trousers, trousers, .35, .35, .092, .067);
+    const rightLeg = createLimb(person, "right-leg", trousers, trousers, .35, .35, .092, .067);
     leftLeg.pivot.position.set(-0.095, 0.7, 0);
     rightLeg.pivot.position.set(0.095, 0.7, 0);
     const leftFoot = group(leftLeg.joint, "left-foot", [0, -.35, 0]);
     const rightFoot = group(rightLeg.joint, "right-foot", [0, -.35, 0]);
-    box(leftFoot, [0.115, 0.06, 0.21], [0, 0, 0.055], options.shoes ?? C.charcoal, { receive: true });
-    box(rightFoot, [0.115, 0.06, 0.21], [0, 0, 0.055], options.shoes ?? C.charcoal, { receive: true });
+    [leftFoot,rightFoot].forEach(foot => {
+      sphere(foot,.085,[0,.015,.066],options.shoes ?? C.charcoal,{scale:[.8,.4,1.52],widthSegments:14,heightSegments:8,receive:true});
+      box(foot,[.135,.018,.22],[0,-.018,.062],C.navy,{receive:true});
+    });
 
     function poseLeg(leg, foot, phase, weight) {
       const stance = phase < .5;
@@ -418,8 +460,10 @@ export function createRooms(THREE) {
   }
 
   function betweenHands(prop, parent, fromPerson, fromArm, toPerson, toArm, progress) {
-    const from = handPosition(fromPerson, fromArm, parent);
-    const to = handPosition(toPerson, toArm, parent);
+    // Props and actors share the scaled miniature interior. Resolve in the
+    // prop's own coordinate space so the handoff stays attached to both hands.
+    const from = handPosition(fromPerson, fromArm, prop.parent);
+    const to = handPosition(toPerson, toArm, prop.parent);
     prop.position.copy(from.lerp(to, progress));
     prop.position.y += Math.sin(progress * Math.PI) * .075;
   }
@@ -1131,7 +1175,183 @@ export function createRooms(THREE) {
     update(0);return {id:'florist',group:room,update};
   }
 
+  function completeStore(room){
+    const g=room.group;
+    // The scaled working scene leaves space for the perimeter of an entire
+    // business: doorway, wall fixtures, and stock that explains its footprint.
+    const entranceColor={coffee:C.leaf,warehouse:C.mustard,boutique:C.blush,grocery:C.leafLight,florist:C.leaf,homewares:C.teal}[room.id];
+    box(g,[.86,.009,.39],[.53,.006,1.08],entranceColor,{cast:false,receive:true,materialOptions:{roughness:1}});
+    if(room.id==='coffee'){
+      const shelf=solid(group(g,'coffee-wall-display',[1.48,0,-.85]));
+      box(shelf,[.58,.78,.3],[0,.39,0],C.woodLight,{receive:true});
+      [0,.3,.61].forEach(y=>box(shelf,[.62,.035,.34],[0,.22+y,0],C.navySoft,{receive:true}));
+      for(const x of [-.17,0,.17]){
+        addCup(shelf,[x,.86,.03],C.ivory,.7);
+        addCup(shelf,[x,.55,.03],C.teal,.65);
+      }
+      box(g,[.75,.4,.035],[-1.43,1.54,-1.18],C.navy,{cast:false});
+      for(let i=0;i<3;i++)box(g,[.55,.012,.008],[-1.43,1.65-i*.09,-1.153],C.cream,{cast:false});
+    }else if(room.id==='warehouse'){
+      const pallet=solid(group(g,'outbound-pallet',[1.46,0,-.78]));
+      box(pallet,[.64,.11,.58],[0,.07,0],C.wood,{receive:true});
+      for(const x of [-.17,.17])for(const z of [-.13,.13])addCarton(pallet,[x,.13,z],[.28,.26,.24],C.carton);
+      box(g,[.55,.04,.7],[1.45,.01,.84],C.mustard,{cast:false,receive:true});
+      for(let x=1.2;x<1.7;x+=.14)box(g,[.055,.006,.7],[x,.035,.84],C.navy,{cast:false});
+    }else if(room.id==='boutique'){
+      const fitting=solid(group(g,'fitting-room',[1.45,0,-.72]));
+      box(fitting,[.66,1.65,.045],[0,.83,-.23],C.cream,{cast:false});
+      box(fitting,[.05,1.7,.48],[-.3,.85,0],C.woodLight);
+      box(fitting,[.05,1.7,.48],[.3,.85,0],C.woodLight);
+      const curtain=box(fitting,[.48,1.42,.035],[.08,.74,.18],C.blush,{cast:false});
+      curtain.rotation.y=-.21;
+      box(g,[.54,.85,.025],[-1.47,1.05,-1.18],C.steel,{materialOptions:{metalness:.65,roughness:.16},cast:false});
+    }else if(room.id==='grocery'){
+      const chilled=solid(group(g,'chilled-products',[1.47,0,-.82]));
+      box(chilled,[.58,1.38,.29],[0,.69,0],C.ivory,{receive:true});
+      [ .32,.66,1 ].forEach(y=>box(chilled,[.53,.033,.34],[0,y,0],C.navySoft,{receive:true}));
+      [.35,.69,1.03].forEach((y,row)=>[-.17,0,.17].forEach((x,column)=>{
+        addBottle(chilled,[x,y,.08],[C.teal,C.terracotta,C.leaf][(row+column)%3],.54);
+      }));
+      const baskets=group(g,'entry-baskets',[-1.52,0,1.0]);
+      for(let i=0;i<3;i++)box(baskets,[.33,.08,.26],[0,.06+i*.085,0],C.woodLight,{cast:false});
+    }else if(room.id==='florist'){
+      const display=solid(group(g,'front-flower-display',[1.47,0,-.8]));
+      box(display,[.68,.25,.43],[0,.15,0],C.woodLight,{receive:true});
+      for(const [x,color] of [[-.2,C.blush],[0,C.mustard],[.2,C.terracotta]]){
+        tapered(display,.065,.09,.18,[x,.34,0],C.steel,{segments:12});
+        addBouquet(display,[x,.39,0],color,.52);
+      }
+      box(g,[.64,.08,.43],[-1.45,.38,1.0],C.wood,{receive:true});
+    }else if(room.id==='homewares'){
+      const gallery=solid(group(g,'homewares-side-gallery',[1.46,0,-.75]));
+      box(gallery,[.64,.85,.32],[0,.425,0],C.cream,{receive:true});
+      addCeramic(gallery,[-.18,.86,0],C.teal,.78);
+      addCeramic(gallery,[.17,.86,0],C.terracotta,.61);
+      box(g,[.54,.74,.03],[-1.47,1.05,-1.18],C.woodLight,{cast:false});
+      box(g,[.4,.61,.035],[-1.47,1.05,-1.15],C.blush,{cast:false});
+    }
+  }
+
+  const backgroundCast = {
+    coffee: [
+      ['window-reader',-1.3,-.74,C.cream,C.skin1,-.2,'browsing'],
+      ['cafe-server',-.73,-.55,C.teal,C.skin3,.3,'working'],
+      ['counter-guest',.41,.4,C.navySoft,C.skin2,Math.PI,'talking'],
+      ['waiting-guest',1.55,.4,C.terracotta,C.skin1,-1.2,'browsing'],
+      ['arrival-guest',-.73,.97,C.leaf,C.skin2,.8,'walking'],
+    ],
+    warehouse: [
+      ['inventory-clerk',-1.49,-.55,C.teal,C.skin2,.5,'working'],
+      ['rack-picker',.79,-.74,C.mustard,C.skin1,-.6,'browsing'],
+      ['loading-lead',1.55,.02,C.navySoft,C.skin3,1.5,'talking'],
+      ['dispatch-worker',-1.11,.97,C.mustard,C.skin1,-.6,'walking'],
+      ['carton-carrier',.03,.97,C.teal,C.skin3,.5,'carrying'],
+      ['dock-supervisor',1.17,.97,C.cream,C.skin2,-.3,'working'],
+    ],
+    boutique: [
+      ['fitting-stylist',-1.49,-.55,C.blush,C.skin3,.5,'working'],
+      ['rack-browser',.79,-.74,C.cream,C.skin1,-.6,'browsing'],
+      ['mirror-shopper',1.36,-.17,C.teal,C.skin2,1.5,'browsing'],
+      ['shop-associate',-1.68,.4,C.navySoft,C.skin1,.6,'talking'],
+      ['bag-customer',.22,.97,C.terracotta,C.skin3,-.4,'carrying'],
+      ['window-shopper',1.55,.97,C.mustard,C.skin2,-1.4,'walking'],
+    ],
+    grocery: [
+      ['shelf-clerk',-1.49,-.55,C.leaf,C.skin2,.7,'working'],
+      ['wellness-shopper',.79,-1.12,C.blush,C.skin1,-.6,'browsing'],
+      ['aisle-shopper',1.55,.21,C.navySoft,C.skin3,1.3,'walking'],
+      ['produce-clerk',-1.49,.4,C.cream,C.skin1,.6,'working'],
+      ['basket-shopper',.22,.59,C.mustard,C.skin2,-.7,'carrying'],
+      ['front-shopper',-.92,.97,C.teal,C.skin3,.3,'talking'],
+    ],
+    florist: [
+      ['flower-cutter',-1.49,-.55,C.leaf,C.skin1,.6,'working'],
+      ['bouquet-browser',.6,-.74,C.mustard,C.skin2,-.6,'browsing'],
+      ['gift-shopper',1.36,-.17,C.blush,C.skin3,1.4,'carrying'],
+      ['display-assistant',-1.49,.4,C.cream,C.skin2,.5,'working'],
+      ['garden-customer',.41,.78,C.navySoft,C.skin1,-.4,'talking'],
+      ['flower-arrival',1.55,.97,C.terracotta,C.skin3,-1.4,'walking'],
+    ],
+    homewares: [
+      ['gallery-curator',-1.49,-.74,C.cream,C.skin1,.5,'working'],
+      ['ceramic-browser',.22,-.93,C.navySoft,C.skin3,-.5,'browsing'],
+      ['lamp-shopper',1.55,-.36,C.mustard,C.skin2,1.5,'browsing'],
+      ['floor-associate',-1.49,.21,C.teal,C.skin2,.6,'talking'],
+      ['swatch-customer',1.36,.4,C.blush,C.skin1,-1.3,'carrying'],
+      ['entrance-visitor',.22,.97,C.leaf,C.skin3,.4,'walking'],
+    ],
+  };
+
+  function addBackgroundCast(room){
+    // These smaller figures occupy genuine circulation space around the
+    // primary interactions. Their feet stay on clear routes; paired gestures
+    // and pauses provide activity without people crossing furniture.
+    const walkingDestinations={
+      'arrival-guest':[-.45,.97],'dispatch-worker':[-.85,.97],
+      'window-shopper':[1.35,.97],'aisle-shopper':[1.55,.48],
+      'flower-arrival':[1.55,.72],'entrance-visitor':[.43,.97],
+    };
+    const cast=backgroundCast[room.id].map(([name,x,z,shirt,skin,yaw,role],index)=>{
+      const person=createPerson(room.group,{name,position:[x,0,z],rotationY:yaw,shirt,skin,
+        trousers:index%3===0?C.navySoft:C.charcoal,scale:.53,hair:index%4===0?0x655041:C.hair});
+      if(role==='carrying'){
+        if(room.id==='warehouse')addCarton(person.rightArm.joint,[0,-.29,.04],[.17,.13,.15]);
+        else if(room.id==='florist')addBouquet(person.rightArm.joint,[0,-.43,.03],C.blush,.32);
+        else box(person.rightArm.joint,[.18,.22,.08],[0,-.3,.03],room.id==='grocery'?C.woodLight:C.cream);
+      }
+      if(role==='working'){
+        const accent=room.id==='warehouse'?C.ivory:room.id==='florist'?C.leafLight:C.cream;
+        box(person.chest,[.19,.24,.018],[0,.22,.137],accent,{cast:false});
+      }
+      return {person,role,index,start:[x,z],destination:walkingDestinations[name]};
+    });
+    const updatePrimary=room.update;
+    room.update=(t)=>{
+      updatePrimary(t);
+      for(const {person,role,index,start,destination} of cast){
+        if(role==='walking'){
+          walk(person,t,{start,end:destination,phase:index*.73,hold:3.3});
+          continue;
+        }
+        const phase=t*(role==='working'?.9:.55)+index*.88;
+        const action=(Math.sin(phase)+1)*.5;
+        person.setNeutral();
+        person.chest.rotation.x=.025*Math.sin(phase*.8);
+        person.chest.rotation.y=.045*Math.sin(phase*.47);
+        person.head.rotation.y=.18*Math.sin(phase*.64);
+        person.head.rotation.x=.04*Math.sin(phase*.83);
+        if(role==='working'||role==='browsing'){
+          person.rightArm.pivot.rotation.x=-.25-action*.48;
+          person.rightArm.joint.rotation.x=-.18-action*.4;
+          person.leftArm.pivot.rotation.x=-.16-(1-action)*.24;
+        }else if(role==='talking'){
+          // The listener nods during the speaker's pause rather than both
+          // gesturing at once.
+          const gesture=pulse((t/5+index*.23)%1,.12,.5);
+          person.rightArm.pivot.rotation.x=-.2-gesture*.55;
+          person.rightArm.pivot.rotation.z=-gesture*.23;
+          person.head.rotation.x+=pulse((t/5+index*.23)%1,.55,.85)*.08;
+        }else if(role==='carrying'){
+          person.rightArm.pivot.rotation.x=-.53;
+          person.rightArm.joint.rotation.x=-.5;
+          person.leftArm.pivot.rotation.x=-.15;
+        }
+      }
+    };
+    room.update(0);
+  }
+
   function prepareRoom(room){
+    // The furniture and people form a complete scene inside a larger storefront
+    // shell. A small perimeter aisle leaves the entrances and rear wall visible.
+    const interior = new THREE.Group();
+    interior.name = `${room.id}-interior`;
+    while(room.group.children.length) interior.add(room.group.children[0]);
+    interior.scale.setScalar(.82);
+    room.group.add(interior);
+    room.group.userData.interiorScale=.82;
+    completeStore(room);
+    addBackgroundCast(room);
     room.group.updateMatrixWorld(true);
     // Collider footprints are derived from the actual furniture geometry before batching.
     const obstacles=[];

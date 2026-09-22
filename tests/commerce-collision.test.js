@@ -8,12 +8,19 @@ const assert=require('node:assert/strict');
  let checks=0;
  for(const room of rooms){
   const people=[];room.group.traverse(o=>{if(o.userData.person)people.push(o);});
-  assert.ok(people.length>=2);
+  assert.ok(people.length>=8&&people.length<=10,`${room.id} contains 8–10 people`);
+  const walkingNames={coffee:'arrival-guest',warehouse:'dispatch-worker',boutique:'window-shopper',grocery:'aisle-shopper',florist:'flower-arrival',homewares:'entrance-visitor'};
+  const walker=people.find(o=>o.name===walkingNames[room.id]);
+  assert.ok(walker,`${room.id} has an ambient walking route`);
+  const travel=[];
   assert.ok(room.group.userData.obstacles.length>0);
   for(let frame=0;frame<1800;frame++){
    room.update(frame/30);
+   const walkerPosition=walker.getWorldPosition(new THREE.Vector3());
+   travel.push([walkerPosition.x,walkerPosition.z]);
    for(const person of people){
-    const {x,z}=person.position,r=person.userData.floorRadius;
+    const position=person.getWorldPosition(new THREE.Vector3());
+    const {x,z}=position,r=person.userData.floorRadius*person.getWorldScale(new THREE.Vector3()).x/person.scale.x;
     assert.ok(Number.isFinite(x+z+person.rotation.y));
     if(person.userData.seated)continue;
     assert.ok(Math.abs(x)+r<1.91 && Math.abs(z)+r<1.36,`${room.id}/${person.name} stays on its floor`);
@@ -24,9 +31,13 @@ const assert=require('node:assert/strict');
     }
    }
    for(let i=0;i<people.length;i++)for(let j=i+1;j<people.length;j++){
-    assert.ok(Math.hypot(people[i].position.x-people[j].position.x,people[i].position.z-people[j].position.z)>.50,`${room.id}: people intersect`);
+    const a=people[i].getWorldPosition(new THREE.Vector3()),b=people[j].getWorldPosition(new THREE.Vector3());
+    const radius=o=>o.userData.floorRadius*o.getWorldScale(new THREE.Vector3()).x/o.scale.x;
+    const clearance=radius(people[i])+radius(people[j])-.01;
+    assert.ok(Math.hypot(a.x-b.x,a.z-b.z)>clearance,`${room.id}: people intersect`);
    }
   }
+  assert.ok(Math.hypot(Math.max(...travel.map(p=>p[0]))-Math.min(...travel.map(p=>p[0])),Math.max(...travel.map(p=>p[1]))-Math.min(...travel.map(p=>p[1])))>.15,`${room.id} walker actually traverses the store`);
  }
  const options={start:[1.2,1],end:[1.2,-.15],endFacing:-Math.PI/2};
  let previous=sampleWalk(0,options);
