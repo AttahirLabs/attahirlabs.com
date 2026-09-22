@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
 import { RoomEnvironment } from './vendor/RoomEnvironment.js';
-import { createRooms } from './rooms.js?v=20260922g';
+import { createRooms } from './rooms.js?v=20260922h';
 
 export function createCommerceWorld(host) {
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });
@@ -122,8 +122,8 @@ export function createCommerceWorld(host) {
     const {width,height}=host.getBoundingClientRect();
     if(!width||!height)return;
     mobile=innerWidth<681;
-    pods.forEach(pod=>{pod.position.x=mobile?0:2.55;});
-    const viewHeight=mobile?8.5:10.2;
+    pods.forEach(pod=>{pod.position.x=mobile?1.3:2.55;});
+    const viewHeight=mobile?8.8:10.2;
     camera.left=-viewHeight*width/height/2;camera.right=-camera.left;
     camera.top=viewHeight/2;camera.bottom=-viewHeight/2;camera.updateProjectionMatrix();
     renderer.setSize(width,height,false);
@@ -134,8 +134,8 @@ export function createCommerceWorld(host) {
   function render(t,timeline){
     pods.forEach((pod,i)=>{
       const offset=timeline.offset(i);
-      pod.position.y=(mobile?2:-.2)-offset*3.45;
-      pod.visible=mobile?Math.abs(offset)<.82:offset>-1.65&&offset<1.6;
+      pod.position.y=-.2-offset*(mobile?2.75:3.45);
+      pod.visible=offset>-1.65&&offset<1.6;
       if(pod.visible) rooms[i].update(t);
     });
     renderer.render(scene,camera);rendered=true;
