@@ -5,6 +5,18 @@ const assert = require('node:assert/strict');
   const {createRooms} = await import('../assets/commerce/rooms.js');
   const rooms = createRooms(THREE);
 
+  const warehouse = rooms.find(room => room.id === 'warehouse');
+  const pickedCarton = warehouse.group.getObjectByName('picked-carton');
+  assert.ok(pickedCarton);
+  warehouse.update(0);
+  assert.equal(pickedCarton.scale.x, 0, 'picker approaches the shelf empty handed');
+  warehouse.update(4.9);
+  assert.ok(pickedCarton.scale.x > .5, 'carton appears during pickup at the shelf');
+  warehouse.update(8.2);
+  assert.equal(pickedCarton.scale.x, 1, 'picker carries the order back');
+  warehouse.update(10.12);
+  assert.ok(pickedCarton.scale.x < .1, 'carton is set down before the next pick');
+
   for (const [roomId, propName] of [['coffee', 'served-cup'], ['florist', 'handoff-bouquet']]) {
     const room = rooms.find(candidate => candidate.id === roomId);
     const prop = room.group.getObjectByName(propName);
@@ -32,5 +44,5 @@ const assert = require('node:assert/strict');
     }
     assert.ok(approached > 20 && exchanged > 20 && departed > 20, `${roomId} completes the exchange and departure`);
   }
-  console.log('Commerce interactions: café and florist handoffs follow visitor arrival, move continuously, and depart with the visitor.');
+  console.log('Commerce interactions: café and florist handoffs wait for visitors and move continuously; warehouse pickup follows the reach and return.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

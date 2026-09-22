@@ -1,4 +1,4 @@
-import { sampleWalk } from './motion.mjs?v=20260922c';
+import { sampleWalk } from './motion.mjs?v=20260922d';
 const TAU = Math.PI * 2;
 
 /**
@@ -617,6 +617,7 @@ export function createRooms(THREE) {
     });
     box(picker.group, [0.13, 0.18, 0.035], [0, 1.04, 0.14], C.ivory, { cast: false });
     const pickedCarton = addCarton(picker.rightArm.joint, [0, -0.28, 0.08], [0.19, 0.16, 0.16], C.carton);
+    pickedCarton.name = 'picked-carton';
 
     const packer = createPerson(room, {
       name: "packer",
@@ -637,7 +638,9 @@ export function createRooms(THREE) {
       });
 
       const pick = walk(picker, t, {start:[-1.2,-.22],end:[-.45,-.22],startFacing:0,endFacing:Math.PI,phase:1.1,hold:3});
-      pickedCarton.visible = pick.activity < .1;
+      const cartonHeld = pick.step < 4 ? 0 : pick.step === 4 ? smooth((pick.stepProgress-.36)/.2) :
+        pick.step === 7 ? 1-smooth(pick.stepProgress) : 1;
+      pickedCarton.scale.setScalar(cartonHeld);
       picker.rightArm.pivot.rotation.x -= pick.activity*1.05;
       picker.rightArm.joint.rotation.x -= pick.activity*.5;
       picker.leftArm.pivot.rotation.x -= pick.activity*.7;

@@ -32,7 +32,7 @@ for(const file of walk(root)){
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/vector.css?v=20260922">\n<script defer src="/assets/vector.js?v=20260922"></script>\n</head>');
  if(relative==='index.html'&&html.includes('data-commerce-hero')){
   html=html.replace(/<link rel="stylesheet" href="\/assets\/commerce\/hero.css[^>]*>\s*/g,'');
-  html=html.replace('</head>','<link rel="stylesheet" href="/assets/commerce/hero.css?v=20260922c">\n</head>');
+  html=html.replace('</head>','<link rel="stylesheet" href="/assets/commerce/hero.css?v=20260922d">\n</head>');
  }
  html=html.replace(/<body([^>]*)>/,(_,attrs)=>`<body${attrs.replace(/ data-page="[^"]*"/g,'')} data-page="${type}">`);
  if(!html.includes('class="skip-link"')){
