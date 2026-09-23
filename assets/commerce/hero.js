@@ -26,8 +26,8 @@ if(hero) {
     panelShell.style.opacity=tour.traveling?String(.3+.7*Math.abs(2*p-1)):'1';
   }
   function playing(){return !userPaused&&!focusPaused&&!hoverPaused&&!reduced.matches&&visible&&!document.hidden;}
-  function stop(){cancelAnimationFrame(frame);frame=0;last=0;}
-  function paint(){showPanel();world?.render(sceneTime,tour);}
+  function stop(){cancelAnimationFrame(frame);frame=0;last=0;world?.pause();}
+  function paint(){showPanel();world?.render(sceneTime,tour,playing());}
   function settle(){if(tour.traveling){tour.select(tour.index,true);paint();}}
   function tick(now){
     frame=0;
@@ -43,12 +43,11 @@ if(hero) {
   async function load(){
     if(world||loading||failed||disposed)return;loading=true;
     try {
-      const {createCommerceWorld}=await import('./world.js?v=20260922h');
+      const {createCommerceWorld}=await import('./film-stack.js?v=20260923a');
       if(disposed)return;
       live.hidden=false;world=createCommerceWorld(viewport);paint();
       hero.classList.add('commerce-ready');hero.dataset.commerceState='ready';poster.hidden=true;
       hero.setAttribute('tabindex','0');hero.setAttribute('role','region');hero.setAttribute('aria-describedby','commerce-help');
-      world.canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fail();},{once:true});
       resume();
     }catch(error){fail();console.warn('Commerce scene unavailable; using the static artwork.',error);}
     loading=false;

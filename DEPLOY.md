@@ -1,6 +1,6 @@
 # Deploying attahirlabs.com
 
-Attahir Labs is a static site hosted by the Cloudflare Pages project `attahirlabs`.
+Attahir Labs is a static site hosted by the Cloudflare Pages project `attahirlabs-site`.
 The apex domain and `www` are production aliases for that project. GitHub Pages,
 Netlify, and Vercel are not production deployment targets.
 

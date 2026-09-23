@@ -369,6 +369,11 @@
     "surface": "legal",
     "title": "Privacy Policy | Attahir Labs"
   },
+  "/review/cafe-blender/": {
+    "surface": "review",
+    "title": "Blender café animation test | Attahir Labs",
+    "disabled": true
+  },
   "/review/cafe-motion/": {
     "surface": "review",
     "title": "Café motion study | Attahir Labs",
