@@ -183,7 +183,7 @@ assert.ok(
   'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-22<\/lastmod>/, 'sitemap homepage lastmod should reflect the current product update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-23<\/lastmod>/, 'sitemap homepage lastmod should reflect the current site update');
 
 includes('class="glass-scene"', 'approved homepage uses a layered glass scene');
 includes('class="upcoming-band"', 'unreleased apps have a separate band');

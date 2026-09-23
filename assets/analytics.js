@@ -169,7 +169,7 @@
   },
   "/blog/": {
     "surface": "blog_hub",
-    "title": "Blog — Attahir Labs | Import Duties, Tariffs &amp; Ecommerce Tools"
+    "title": "Shopify Merchant Guides: Inventory, Imports &amp; Operations | Attahir Labs"
   },
   "/blog/is-shopify-ada-compliant-2026/": {
     "surface": "blog_article",
@@ -351,7 +351,7 @@
   },
   "/contact.html": {
     "surface": "contact",
-    "title": "Contact Us | Attahir Labs"
+    "title": "Contact Attahir Labs | Web Design &amp; Shopify App Support"
   },
   "/duty/": {
     "surface": "duty_calculator",
