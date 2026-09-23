@@ -13,14 +13,14 @@ let browser;
  await hero.focus();await p.waitForTimeout(200);
  const stillA=await canvas.screenshot();await p.waitForTimeout(450);assert.ok(stillA.equals(await canvas.screenshot()),'keyboard focus holds the scene');
  // Two rounds exercise all six businesses and all three upcoming app alternatives.
- const expected=[0,1,2,3,4,5,0,6,7,3,4,8];
+ const expected=[5,0,1,2,3,4,8,0,6,7,3,4];
  for(let step=0;step<expected.length;step++){
   if(step)await p.keyboard.press('ArrowRight');
-  assert.equal(await hero.getAttribute('data-business'),String(step%6));
+  assert.equal(await hero.getAttribute('data-business'),String((step+5)%6));
   assert.ok(await p.locator(`[data-commerce-panel="${expected[step]}"]`).isVisible());
   if(step<6)await hero.screenshot({path:`/tmp/commerce-refined-${step}.png`});
  }
- await p.keyboard.press('ArrowRight');assert.equal(await hero.getAttribute('data-active-panel'),'0');
+ await p.keyboard.press('ArrowRight');assert.equal(await hero.getAttribute('data-active-panel'),'5');
  await p.keyboard.press('Space');await p.evaluate(()=>document.activeElement.blur());
  await p.waitForFunction(()=>Number(document.querySelector('.commerce-panel-stack').style.opacity)<.8,{},{timeout:15000});
  await hero.focus();assert.equal(await p.locator('.commerce-panel-stack').evaluate(el=>el.style.opacity),'1','focus settles mid-transition to a readable panel');
@@ -40,7 +40,7 @@ let browser;
  }
  await p.setViewportSize({width:1440,height:1000});await p.screenshot({path:'/tmp/commerce-refined-desktop.png'});
  await p.setViewportSize({width:390,height:1000});await hero.screenshot({path:'/tmp/commerce-refined-mobile.png'});await p.close();
- const r=await page({reducedMotion:'reduce'});await r.goto(base+'/');await r.waitForSelector('[data-commerce-state="ready"]');await r.locator('[data-commerce-hero]').focus();await r.keyboard.press('ArrowRight');await r.keyboard.press('ArrowRight');assert.ok(await r.locator('[data-commerce-panel="2"]').isVisible());await r.waitForTimeout(200);const reduced=r.locator('.commerce-canvas canvas'),reducedA=await reduced.screenshot();await r.waitForTimeout(450);assert.ok(reducedA.equals(await reduced.screenshot()),'reduced motion freezes all 3D movement');await r.close();
+ const r=await page({reducedMotion:'reduce'});await r.goto(base+'/');await r.waitForSelector('[data-commerce-state="ready"]');await r.locator('[data-commerce-hero]').focus();await r.keyboard.press('ArrowRight');await r.keyboard.press('ArrowRight');assert.ok(await r.locator('[data-commerce-panel="1"]').isVisible());await r.waitForTimeout(200);const reduced=r.locator('.commerce-canvas canvas'),reducedA=await reduced.screenshot();await r.waitForTimeout(450);assert.ok(reducedA.equals(await reduced.screenshot()),'reduced motion freezes all 3D movement');await r.close();
  const fallback=await page();await fallback.route('**/assets/commerce/world.js*',route=>route.abort());await fallback.goto(base+'/');await fallback.waitForSelector('[data-commerce-state="fallback"]');assert.ok(await fallback.locator('.glass-artwork').isVisible());assert.ok(await fallback.getByRole('link',{name:'Build your website',exact:true}).isVisible());await fallback.close();
  const nojs=await page({javaScriptEnabled:false,viewport:{width:390,height:844}});await nojs.goto(base+'/');assert.ok(await nojs.locator('.glass-artwork').isVisible());assert.equal(await nojs.locator('.commerce-live').isVisible(),false);await nojs.close();
  assert.deepEqual(errors,[]);console.log('Commerce browser: six rooms, nine matching panels, upcoming app alternatives, animation, keyboard hold/restart, readable transition stops, responsive layouts, reduced motion and fallbacks passed.');

@@ -11,7 +11,7 @@ if(hero) {
   const tour=new CommerceTimeline(count,6,1.15);
   let world,loading=false,failed=false,disposed=false,userPaused=false,focusPaused=false,hoverPaused=false,visible=true,frame=0,last=0,sceneTime=0,current;
   function showPanel(){
-    const index=tour.index;
+    const index=tour.topIndex;
     // A business can demonstrate more than one product without adding more floors.
     const options=panels.filter(p=>Number(p.dataset.commerceScene)===index);
     const lap=Math.floor(Math.round(tour.position)/count);

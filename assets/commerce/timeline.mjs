@@ -12,6 +12,7 @@ export class CommerceTimeline {
     this.traveling = false;
   }
   get index() { return ((Math.round(this.position) % this.count) + this.count) % this.count; }
+  get topIndex() { return (this.index + this.count - 1) % this.count; }
   get progress() { return this.traveling ? Math.min(1, this.elapsed / this.duration) : 0; }
   select(index, immediate = false) {
     const current = this.index;
