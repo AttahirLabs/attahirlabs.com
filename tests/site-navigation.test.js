@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, '..');
 
 const appStylePages = [
   'index.html',
+  'web-design/index.html',
   'apps/index.html',
   'apps/stockclearance/index.html',
   'apps/tariffshield/index.html',
@@ -57,6 +58,7 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
   for (const [label, href] of [
     ['Apps', '/apps/'],
     ['Free tools', '/tools/'],
+    ['Web design', '/web-design/'],
     ['Blog', '/blog/'],
     ['Contact', '/contact.html'],
   ]) {
@@ -83,6 +85,14 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
 }
 
 for (const page of appStylePages) {
+  if (/apps\/[^/]+\/index.html/.test(page)) {
+    const html = read(page);
+    const nav = primaryNav(html, page);
+    assert.match(nav, /class="product-brand"/);
+    for (const href of ['#features', '#setup', '/contact.html', '/apps/']) assert.ok(nav.includes(`href="${href}"`));
+    for (const href of ['/tools/', '/blog/', '/terms.html']) assert.ok(html.includes(`href="${href}"`));
+    continue;
+  }
   assertConsistentNav(page);
 }
 

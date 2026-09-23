@@ -88,10 +88,10 @@ function readPngPixel(filePath, x, y) {
   return colorType === 6 ? pixel : [...pixel, 255];
 }
 
-assert.match(html, /<title>Attahir Labs \| Shopify Apps for Inventory, Tariffs, and Store Operations<\/title>/, 'homepage should use the problem-first SEO title');
+assert.match(html, /<title>Attahir Labs \| E-commerce Apps, Web Design &amp; Shopify Setup<\/title>/, 'homepage should use the problem-first SEO title');
 assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/, 'homepage canonical should include trailing slash');
-includes('<h1>Attahir Labs</h1>', 'homepage hero should make the brand the first-viewport signal');
-includes('Find the right app', 'homepage hero should have one clear primary routing CTA');
+includes('<h1>Build a better<br>e-commerce<br>business.</h1>', 'homepage should lead with the approved benefit statement');
+includes('Explore the apps', 'homepage hero should have one clear primary routing CTA');
 includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
 includes('Install TariffShield', 'homepage should keep TariffShield as a public App Store app');
 includes('/apps/stockclearance/', 'homepage should route StockClearance through its app page');
@@ -104,7 +104,7 @@ includes('https://apps.shopify.com/tariffshield', 'homepage should link to Tarif
 includes('https://apps.shopify.com/shelflife', 'homepage should link to ShelfLife App Store listing');
 includes('Install ShelfLife', 'homepage should expose the verified ShelfLife install CTA');
 includes('What problem are you trying to solve?', 'homepage should route by merchant problem');
-includes('Use free tools', 'homepage hero should route to the tool chooser');
+includes('Build your website', 'homepage hero should route to web design services');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
 includes('Public Apps', 'homepage should separate public apps from supporting tools');
 includes('StoreChronicle', 'homepage should use current StoreChronicle product name');
@@ -112,14 +112,9 @@ includes('WarrantyTracker', 'homepage should use current WarrantyTracker product
 includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
-includes('/assets/home/merchant-operations-hero.jpg', 'homepage should use a relevant merchant-operations hero image');
-includes('/assets/home/merchant-operations-hero-mobile.jpg', 'homepage should use an optimized mobile hero image');
-includes('/assets/home/package-cost-desk.jpg', 'homepage should use a relevant package and cost-planning visual');
 includes('<section class="tool-section" id="tools">', 'homepage free-tools section should have a stable anchor for direct visual checks');
-includes('class="tool-intro-row"', 'homepage free-tools section should separate the intro/image row from the tool cards');
 includes('class="tool-grid tool-card-grid"', 'homepage free-tools section should give cards a full-width grid row');
 includes('Quick checks before you change a workflow.', 'homepage free-tools section should use tighter section copy');
-includes('class="tool-cta"', 'homepage free-tools cards should use button-like CTAs');
 includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 includes('3 public apps', 'homepage should summarize current public app status');
@@ -188,6 +183,8 @@ assert.ok(
   'StockClearance homepage card should use the boxes-and-tag logo, not the orange app icon'
 );
 
-assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-13<\/lastmod>/, 'sitemap homepage lastmod should reflect the current product update');
+assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-22<\/lastmod>/, 'sitemap homepage lastmod should reflect the current product update');
 
+includes('class="glass-scene"', 'approved homepage uses a layered glass scene');
+includes('class="upcoming-band"', 'unreleased apps have a separate band');
 console.log('homepage refresh tests passed');

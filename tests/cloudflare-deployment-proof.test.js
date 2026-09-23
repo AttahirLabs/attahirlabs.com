@@ -9,7 +9,7 @@ const deploymentId = '22222222-2222-4222-8222-222222222222';
 
 const oldDeployment = {
   id: oldId,
-  url: 'https://11111111.attahirlabs.pages.dev',
+  url: 'https://11111111.attahirlabs-site.pages.dev',
   environment: 'production',
   created_on: '2026-08-29T16:00:00.000Z',
   latest_stage: { name: 'deploy', status: 'success' },
@@ -20,7 +20,7 @@ const oldDeployment = {
 
 const newDeployment = {
   id: deploymentId,
-  url: 'https://22222222.attahirlabs.pages.dev',
+  url: 'https://22222222.attahirlabs-site.pages.dev',
   environment: 'production',
   created_on: '2026-08-29T17:00:00.000Z',
   latest_stage: { name: 'deploy', status: 'success' },
@@ -31,8 +31,8 @@ const newDeployment = {
 
 const response = (result) => ({ success: true, errors: [], messages: [], result });
 const expected = {
-  accountId: '6f945ca08a01d636e0b02f37e859d4d5',
-  projectName: 'attahirlabs',
+  accountId: '5528a2e45416ae7eb22b1320b49aa16a',
+  projectName: 'attahirlabs-site',
   commitSha,
   sourceTreeSha,
   githubRunId: '33270000000',
@@ -55,7 +55,7 @@ const expected = {
     version: 1,
     kind: 'cloudflare-pages-production-deployment',
     accountId: expected.accountId,
-    projectName: 'attahirlabs',
+    projectName: 'attahirlabs-site',
     environment: 'production',
     branch: 'main',
     status: 'success',
@@ -69,7 +69,7 @@ const expected = {
   });
 
   const fullUuidUrlFixture = structuredClone(newDeployment);
-  fullUuidUrlFixture.url = `https://${deploymentId}.attahirlabs.pages.dev`;
+  fullUuidUrlFixture.url = `https://${deploymentId}.attahirlabs-site.pages.dev`;
   assert.doesNotThrow(() => buildDeploymentProof({
     before: response([oldDeployment]),
     after: response([fullUuidUrlFixture, oldDeployment]),
@@ -148,22 +148,22 @@ const expected = {
     fixture.after.result[0].url = 'https://22222222.other.pages.dev';
   });
   rejects('wrong deployment URL prefix', (fixture) => {
-    fixture.after.result[0].url = 'https://99999999.attahirlabs.pages.dev';
+    fixture.after.result[0].url = 'https://99999999.attahirlabs-site.pages.dev';
   });
   rejects('deployment URL credentials', (fixture) => {
-    fixture.after.result[0].url = 'https://user:pass@22222222.attahirlabs.pages.dev';
+    fixture.after.result[0].url = 'https://user:pass@22222222.attahirlabs-site.pages.dev';
   });
   rejects('deployment URL port', (fixture) => {
-    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev:444';
+    fixture.after.result[0].url = 'https://22222222.attahirlabs-site.pages.dev:444';
   });
   rejects('deployment URL path', (fixture) => {
-    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/proof';
+    fixture.after.result[0].url = 'https://22222222.attahirlabs-site.pages.dev/proof';
   });
   rejects('deployment URL query', (fixture) => {
-    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/?proof=true';
+    fixture.after.result[0].url = 'https://22222222.attahirlabs-site.pages.dev/?proof=true';
   });
   rejects('deployment URL fragment', (fixture) => {
-    fixture.after.result[0].url = 'https://22222222.attahirlabs.pages.dev/#proof';
+    fixture.after.result[0].url = 'https://22222222.attahirlabs-site.pages.dev/#proof';
   });
   rejects('impossible deployment timestamp', (fixture) => {
     fixture.after.result[0].created_on = '2026-02-30T12:03:00.000Z';

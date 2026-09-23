@@ -13,7 +13,7 @@ assert.match(
   'the 720px mobile breakpoint should keep the apps hero H1 readable without breaking words'
 );
 
-const expectedDescription = 'Contact Attahir Labs for Shopify app support, product questions, beta access, and merchant workflow help.';
+const expectedDescription = 'Contact Attahir Labs for web design, Shopify store setup, app support, and product questions.';
 const descriptions = [...contactHtml.matchAll(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']\s*\/?\s*>/gi)];
 assert.equal(descriptions.length, 1, 'contact.html should have exactly one meta description');
 assert.equal(descriptions[0][1], expectedDescription, 'contact.html should use the approved meta description');
