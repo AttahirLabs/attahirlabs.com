@@ -16,8 +16,8 @@
         "Flash sales, bundles, and clearance collections",
         "Scheduled scans and inventory reporting"
       ],
-      "priceSummary": "Free plan · Paid plans from $9/month",
-      "trialSummary": "14-day free trial on Standard and Pro",
+      "priceSummary": "Free — all current features included",
+      "trialSummary": "No subscription required",
       "workflowTitle": "From inventory signal to clearance decision.",
       "features": [
         [
@@ -37,7 +37,7 @@
           "Configure automatic scans and optional weekly digest emails to keep inventory work visible."
         ],
         [
-          "Use custom rules on Pro",
+          "Use custom clearance rules",
           "Set clearance rules that reflect your own inventory and markdown decisions."
         ],
         [
@@ -52,11 +52,11 @@
         ],
         [
           "Run your first scan",
-          "Start with up to 25 products on Free. Review slow, dead, and seasonal stock and the available sales signals."
+          "Scan your full catalog. Review slow, dead, and seasonal stock and the available sales signals."
         ],
         [
           "Choose your next action",
-          "Review prices and margins, then use a paid plan for clearance actions across the catalog."
+          "Review prices and margins, then choose clearance actions across your catalog."
         ]
       ],
       "plans": [
@@ -67,34 +67,11 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Scan up to 25 products",
-            "Dead and slow stock review",
-            "Basic inventory reporting",
-            "Configurable automatic scans"
-          ]
-        },
-        {
-          "name": "Standard",
-          "price": 9,
-          "period": "month",
-          "alternate": 90,
-          "trialDays": 14,
-          "features": [
             "Full catalog scans",
             "Configurable automatic scans",
-            "Clearance actions",
-            "Flash sales and bulk discounts",
-            "Inventory health dashboard"
-          ]
-        },
-        {
-          "name": "Pro",
-          "price": 19,
-          "period": "month",
-          "alternate": 190,
-          "trialDays": 14,
-          "features": [
-            "Everything in Standard",
+            "Flash sales, bulk discounts, and clearance collections",
+            "Bundle opportunities",
+            "Inventory health dashboard",
             "Custom clearance rules",
             "Advanced clearance reporting"
           ]
@@ -103,7 +80,7 @@
       "faqs": [
         [
           "Can I start for free?",
-          "Yes. Free includes scans of up to 25 products and basic reporting. Standard and Pro have a 14-day free trial, with monthly or annual billing. Shopify displays the terms before you approve a subscription."
+          "Yes. All current StockClearance features are free, including full catalog scans, clearance actions, custom rules, and advanced reports. No subscription approval is required."
         ],
         [
           "What happens if order access is unavailable?",
@@ -111,15 +88,15 @@
         ],
         [
           "Will the app change my prices?",
-          "Clearance actions can change prices or create discounts and collections. Review the proposed action and your settings; Pro rules can automate the clearance decisions you configure."
+          "Clearance actions can change prices or create discounts and collections. Review the proposed action and your settings; custom rules can automate the clearance decisions you configure."
         ],
         [
           "What data does StockClearance use?",
           "Product and inventory records, prices, available unit costs, discount and action records, and order-line signals support the inventory workflow. See the StockClearance section of our privacy policy for collection, measurement, and deletion details."
         ],
         [
-          "How do I cancel?",
-          "Manage the subscription through Shopify. Uninstalling the app triggers account-data cleanup. Charges already incurred and any refunds are governed by the subscription terms shown by Shopify."
+          "How do I stop using StockClearance?",
+          "There is no subscription to cancel for free access. Review and end any active clearance actions before uninstalling; uninstalling the app triggers account-data cleanup."
         ]
       ],
       "guide": "/blog/dead-stock-clearance-q2-2026/",
@@ -142,7 +119,10 @@
           "alt": "Bundle suggestions for related slow movers",
           "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CJmqndamo5UDEAE=.png?height=720&width=1280"
         }
-      ]
+      ],
+      "pricingHeading": "All current features, free.",
+      "pricingDescription": "Full access to StockClearance without a subscription.",
+      "pricingChecked": "September 27, 2026"
     },
     {
       "slug": "tariffshield",
