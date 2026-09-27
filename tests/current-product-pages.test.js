@@ -34,8 +34,9 @@ const tariff = catalog.products.find(p => p.slug === 'tariffshield');
 assert.ok(tariff.plans.every(p => p.trialDays === 0));
 assert.equal(tariff.plans.find(p => p.name === 'Pro').period, 'year');
 assert.match(read('apps/tariffshield/index.html'), /U\.S\. quartz surface product scenarios/);
-assert.match(read('apps/tariffshield/index.html'), /exact calculations are temporarily unavailable/);
-assert.match(read('apps/tariffshield/index.html'), /unsupported or incomplete cases return no duty number/);
+assert.match(read('apps/tariffshield/index.html'), /Both Exact Duty and multi-market margin calculations are temporarily unavailable/);
+assert.match(read('apps/tariffshield/index.html'), /Unsupported or incomplete cases also return no duty number/);
+assert.match(read('apps/tariffshield/index.html'), /Current availability:/);
 for (const slug of ['stockclearance', 'shelflife']) {
   assert.ok(catalog.products.find(p => p.slug === slug).plans.filter(p => p.price > 0).every(p => p.trialDays === 14));
 }
