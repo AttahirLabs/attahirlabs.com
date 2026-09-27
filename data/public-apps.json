@@ -130,55 +130,55 @@
       "listingName": "TariffShield: Margin Analyzer",
       "icon": "/assets/icons/tariffshield-suite.png",
       "iconAlt": "TariffShield app icon",
-      "headline": "See how import costs affect your product margins.",
-      "description": "Review tariff exposure by product, compare origin-country scenarios, and approve price changes when you are ready.",
-      "summary": "Compare import-cost scenarios and review product margins before repricing.",
+      "headline": "TariffShield is temporarily limited while tariff data is reviewed.",
+      "description": "TariffShield is available to install, but current tariff and margin calculations, scenarios, alerts, exports, and price changes are paused while tariff data is reviewed. Historical records and account settings remain visible.",
+      "summary": "Current calculations and price actions are paused while tariff data is reviewed.",
       "homeFeatures": [
-        "Product-level tariff and margin analysis",
-        "Alternate sourcing scenarios",
-        "Merchant-approved price changes"
+        "View historical records",
+        "Review account settings",
+        "Current tariff calculations and price actions paused"
       ],
       "priceSummary": "Free plan · Standard $19/month · Pro $190/year",
-      "trialSummary": "Start with 10 SKUs on Free",
-      "workflowTitle": "From import assumptions to a pricing decision.",
+      "trialSummary": "Calculation features are currently paused on all plans",
+      "workflowTitle": "What is available while tariff data is reviewed.",
       "features": [
         [
-          "Review exposure by product",
-          "See how tariff assumptions affect your product costs and target margin."
+          "Historical records",
+          "Review previously saved product analysis. These results are historical and should not be used as current rates."
         ],
         [
-          "Check origin and classification",
-          "Use HS/HTS information, country-of-origin settings, and clearly reviewed fallback assumptions."
+          "Account settings",
+          "Review your saved configuration while calculation-dependent controls are paused."
         ],
         [
-          "Compare sourcing scenarios",
-          "Model an alternate origin before committing to a supplier change."
+          "Current calculations",
+          "Tariff margin analysis, origin scenarios, and Exact Duty return no current duty result."
         ],
         [
-          "Set custom rates",
-          "Use custom rate overrides when a product needs a different planning assumption."
+          "Alerts and exports",
+          "Rate-based alerts and CSV exports are paused."
         ],
         [
-          "Approve price changes",
-          "Review suggested prices and choose individual or bulk Shopify price updates."
+          "Price updates",
+          "Suggested prices and Shopify price changes are paused."
         ],
         [
-          "Export and compare on Pro",
-          "Use CSV exports and multi-market analysis for your sourcing and margin review."
+          "Next steps",
+          "Check back after the tariff authority review; verify shipment-specific treatment with a qualified source."
         ]
       ],
       "steps": [
         [
-          "Connect products",
-          "Install from Shopify and start with the free 10-SKU analysis."
+          "Install from Shopify",
+          "Open the app to review its current availability before selecting a paid plan."
         ],
         [
-          "Review your assumptions",
-          "Check product costs, origin, classification, and target margin before interpreting the result."
+          "Review historical data",
+          "Previously saved results may be visible, but they are not current tariff guidance."
         ],
         [
-          "Compare, then decide",
-          "Test sourcing scenarios and review suggested prices. Apply price changes only when you choose."
+          "Wait for verified data",
+          "Calculation-dependent features will remain paused until the tariff data review is complete."
         ]
       ],
       "plans": [
@@ -189,8 +189,8 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Analyze up to 10 SKUs",
-            "Review tariff margin risk"
+            "Current tariff calculations and price actions paused",
+            "Historical records and settings remain visible"
           ]
         },
         {
@@ -200,11 +200,8 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Unlimited product analysis",
-            "Negative-margin alerts",
-            "Alternate origin simulation",
-            "Built-in origin-country rates",
-            "Custom rate overrides"
+            "Current tariff calculations and price actions paused",
+            "Historical records and settings remain visible"
           ]
         },
         {
@@ -214,12 +211,16 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "CSV export",
-            "Multi-market analysis"
+            "Current tariff calculations and price actions paused",
+            "Historical records and settings remain visible"
           ]
         }
       ],
       "faqs": [
+        [
+          "Can I calculate current duties or export results?",
+          "No. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are paused while tariff data is reviewed. You can still view historical records and account settings."
+        ],
         [
           "What are the current billing options?",
           "The Shopify listing offers Free, Standard at $19 per month, and Pro at $190 per year. The annual option is listed as Pro. Review the features and subscription terms on Shopify before approving a plan."
@@ -230,15 +231,15 @@
         ],
         [
           "Will my prices change automatically?",
-          "TariffShield applies individual or bulk price updates when you approve them. Review your costs and margin targets before applying an update."
+          "No. Shopify price changes are paused while tariff data is under review. When available, price changes require your approval."
         ],
         [
           "Are these final customs charges?",
-          "Tariff and margin results support planning. Actual treatment depends on classification, origin, destination, eligibility, and the applicable rules. Verify shipment-specific charges before relying on an estimate."
+          "No current duty or margin calculation is available while tariff data is under review. Historical results are not current customs charges. Verify shipment-specific treatment with a qualified source."
         ],
         [
           "How does Exact Duty differ from margin analysis?",
-          "Exact Duty is a read-only workflow limited to a narrow set of U.S. quartz surface product scenarios. It uses the exact HTSUS number, origin, MFN rate, Chapter 99 facts, customs value, and entry time you supply. As checked September 13, 2026, exact calculations are temporarily unavailable while the tariff rules await review; the service returns no duty number. It does not classify goods or infer program eligibility; unsupported or incomplete cases return no duty number. Multi-market margin analysis is a separate planning feature."
+          "Exact Duty is a read-only workflow limited to narrow U.S. quartz surface product scenarios. Both Exact Duty and multi-market margin calculations are temporarily unavailable while tariff data is reviewed; the service returns no duty number. Unsupported or incomplete cases also return no duty number."
         ],
         [
           "What data does TariffShield use?",
@@ -252,20 +253,21 @@
       "screenshots": [
         {
           "src": "/assets/apps/tariffshield/screen-1.png",
-          "alt": "Product table with tariff exposure and prices",
+          "alt": "Historical product analysis with prior tariff results",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CMnEou_2mZUDEAE=.png?height=720&width=1280"
         },
         {
           "src": "/assets/apps/tariffshield/screen-2.png",
-          "alt": "Settings for margin, origin, alerts, and sync",
+          "alt": "Settings with alerts and sync currently paused",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CO3bq-_2mZUDEAE=.png?height=720&width=1280"
         },
         {
           "src": "/assets/apps/tariffshield/screen-3.png",
-          "alt": "Sourcing simulator for tariff cost scenarios",
+          "alt": "Historical sourcing simulator preview",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CN2Ete_2mZUDEAE=.png?height=720&width=1280"
         }
-      ]
+      ],
+      "availabilityNotice": "Tariff data needs review. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are unavailable. Historical records and account settings remain visible. No duty number is returned."
     },
     {
       "slug": "shelflife",

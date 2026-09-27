@@ -84,7 +84,7 @@ for (const [url, expected] of Object.entries({
 
 assert.ok(homepage.includes('3 public apps'), 'homepage should count ShelfLife as public');
 assert.ok(
-  ['StockClearance', 'TariffShield', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)),
+  ['StockClearance', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)) && homepage.includes('View TariffShield on Shopify'),
   'homepage public-app proof should name ShelfLife'
 );
 assert.match(
