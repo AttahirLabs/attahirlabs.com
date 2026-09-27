@@ -22,6 +22,7 @@ function assertListingCta(relativePath, label) {
 const homepage = read('index.html');
 const appsHub = read('apps/index.html');
 const appPage = read('apps/shelflife/index.html');
+const shelfLifeSource = JSON.parse(read('data/public-apps.json')).products.find((app) => app.slug === 'shelflife');
 const sitemap = read('sitemap.xml');
 const homepageJsonLd = [...homepage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
   .map((match) => JSON.parse(match[1]));
@@ -98,6 +99,11 @@ assertListingCta('apps/index.html', 'Install ShelfLife');
 assertListingCta('apps/shelflife/index.html', 'Install ShelfLife');
 assertListingCta('blog/product-expiry-date-management-shopify/index.html', 'Install ShelfLife');
 assertListingCta('blog/product-batch-tracking-and-fefo-for-shopify/index.html', 'Install ShelfLife');
+
+assert.equal(shelfLifeSource.plans.length, 1, 'ShelfLife should have one public plan in the website source');
+assert.equal(shelfLifeSource.plans[0].price, 0, 'ShelfLife public plan should be free');
+assert.equal((appPage.match(/class="card plan-card"/g) || []).length, 1, 'ShelfLife page should render one plan');
+assert.ok(!/\$14|\$29|Upgrade to Pro|14-day free trial/.test(appPage), 'ShelfLife page should not advertise retired paid pricing');
 
 for (const [relativePath, html] of [
   ['index.html', homepage],
