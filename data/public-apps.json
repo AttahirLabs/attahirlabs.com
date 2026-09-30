@@ -280,11 +280,11 @@
       "summary": "Track batches and expiry risk, with picking guidance and supplier records.",
       "homeFeatures": [
         "Batch, lot, and expiry tracking",
-        "Opt-in alerts and weekly digests on Standard",
-        "FEFO picking guidance and CSV tools on Pro"
+        "Opt-in alerts and weekly digests",
+        "FEFO picking guidance and CSV tools"
       ],
-      "priceSummary": "Free plan · Paid plans from $14/month",
-      "trialSummary": "14-day free trial on Standard and Pro",
+      "priceSummary": "Free to use · Unlimited batches",
+      "trialSummary": "All supported features included",
       "workflowTitle": "From batch records to the next stock decision.",
       "features": [
         [
@@ -297,19 +297,19 @@
         ],
         [
           "Choose optional alerts",
-          "Standard adds opt-in expiry emails and a weekly digest, with alert settings you control."
+          "Opt in to expiry emails and a weekly digest, with alert settings you control."
         ],
         [
           "Pick by earliest expiry",
-          "Pro provides location-aware first-expired, first-out (FEFO) picking guidance."
+          "Use location-aware first-expired, first-out (FEFO) picking guidance."
         ],
         [
           "Bring records in and out",
-          "Pro adds CSV import with preview and validation, plus inventory and supplier exports."
+          "Import CSV files with preview and validation, then export inventory and supplier records."
         ],
         [
           "Keep supplier and traceability records",
-          "Use Pro reports to review supplier shelf life and the batches relevant to a product or recall investigation."
+          "Review supplier shelf life and batches relevant to a product or recall investigation."
         ]
       ],
       "steps": [
@@ -334,45 +334,17 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Up to 25 batches or lots",
-            "Manual expiry checks and risk status",
-            "Waste and expiry activity",
-            "Search, filter, edit, mark sold, and delete"
-          ]
-        },
-        {
-          "name": "Standard",
-          "price": 14,
-          "period": "month",
-          "alternate": 140,
-          "trialDays": 14,
-          "features": [
-            "Everything in Free",
             "Unlimited batches and lots",
-            "Read-only expiry recommendations",
-            "Removal-from-sale reviews",
-            "Opt-in expiry emails and weekly digest"
-          ]
-        },
-        {
-          "name": "Pro",
-          "price": 29,
-          "period": "month",
-          "alternate": 290,
-          "trialDays": 14,
-          "features": [
-            "Everything in Standard",
-            "Location-aware FEFO picking guidance",
-            "CSV import preview and validation",
-            "Inventory and supplier CSV exports",
-            "Supplier shelf-life and traceability reports"
+            "Expiry checks, recommendations, and opt-in alerts",
+            "FEFO picking guidance and CSV import/export",
+            "Waste, supplier, compliance, and traceability reports"
           ]
         }
       ],
       "faqs": [
         [
-          "Is there a free plan and a trial?",
-          "Free supports up to 25 batches or lots. Standard and Pro each offer a 14-day free trial, with monthly and annual billing options. Shopify shows the terms before you approve a subscription."
+          "Is ShelfLife free to use?",
+          "Yes. ShelfLife is free to use with unlimited batches and its currently supported features."
         ],
         [
           "Does ShelfLife automatically maintain batch quantities?",
@@ -380,11 +352,11 @@
         ],
         [
           "What does FEFO do?",
-          "First-expired, first-out guidance helps you identify which batches to pick first by expiry date and location. It is available on Pro."
+          "First-expired, first-out guidance helps you identify which batches to pick first by expiry date and location. It is included in Free."
         ],
         [
           "Will it send emails as soon as I install?",
-          "ShelfLife expiry alerts and weekly digests are opt-in features on Standard and Pro. Configure an alert address and enable the notifications you want."
+          "ShelfLife expiry alerts and weekly digests are opt-in features included in Free. Configure an alert address and enable the notifications you want."
         ],
         [
           "Can I use ShelfLife during a recall?",
@@ -415,7 +387,10 @@
           "alt": "FEFO queue ranks earliest expiries for picking guidance",
           "source": "https://cdn.shopify.com/app-store/listing_images/9f075409fec94fc71617d972198910b1/desktop_screenshot/CO20iIjQnZYDEAE=.png?height=720&width=1280"
         }
-      ]
+      ],
+      "pricingHeading": "All supported features are free.",
+      "pricingDescription": "Use the available tools without a subscription charge.",
+      "pricingChecked": "September 30, 2026"
     }
   ],
   "unlistedApps": [
