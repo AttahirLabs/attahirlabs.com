@@ -315,7 +315,7 @@
       "steps": [
         [
           "Add your first batches",
-          "Install from Shopify and record up to 25 batches or lots on Free. Include quantity, location, and expiry date."
+          "Install from Shopify and record batches or lots without a plan limit. Include quantity, location, and expiry date."
         ],
         [
           "Check stock at risk",
@@ -323,7 +323,7 @@
         ],
         [
           "Choose the tools you need",
-          "Use Standard for unlimited batches and optional alerts, or Pro for FEFO guidance, CSV tools, and supplier reporting."
+          "Turn on optional alerts and explore FEFO guidance, CSV tools, and supplier reporting."
         ]
       ],
       "plans": [
