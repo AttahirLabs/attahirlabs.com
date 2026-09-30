@@ -38,9 +38,9 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
           test -n "${CLOUDFLARE_PAGES_API_TOKEN:-}"
-          test "$CLOUDFLARE_ACCOUNT_ID" = "6f945ca08a01d636e0b02f37e859d4d5"
+          test "$CLOUDFLARE_ACCOUNT_ID" = "5528a2e45416ae7eb22b1320b49aa16a"
 
-          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs/deployments?env=production"
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs-site/deployments?env=production"
           verified=false
           for attempt in $(seq 1 24); do
             response="$RUNNER_TEMP/cloudflare-pages-search-$attempt.json"

@@ -27,6 +27,13 @@ for (const page of pages) {
   assert.match(html, /href="\/tools\/"[^>]*>Free tools</, `${page} should link to the tools hub`);
   assert.match(html, /href="\/blog\/"[^>]*>Blog</, `${page} should keep Blog in the top nav`);
   assert.match(html, /href="\/contact\.html"[^>]*>Contact</, `${page} should keep Contact in the top nav`);
+  if (/apps\/[^/]+\/index.html/.test(page)) {
+    assert.match(html, /class="product-brand"/);
+    assert.match(html, /href="#features"/);
+    assert.match(html, /href="#setup"/);
+    assert.match(html, /href="\/apps\/"[^>]*>All apps/);
+    continue;
+  }
   const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
   assert.ok(nav.includes('class="nav-item-apps"'), `${page} should expose the Apps hover dropdown wrapper`);
   assert.ok(nav.includes('class="apps-dropdown"'), `${page} should expose the Apps hover dropdown`);

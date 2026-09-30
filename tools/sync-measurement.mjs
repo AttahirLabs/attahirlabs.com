@@ -14,6 +14,7 @@ function files(dir) {
 }
 function surface(p) {
   if (p === '/') return 'homepage';
+  if (p === '/web-design/') return 'services';
   if (p === '/apps/') return 'apps_hub';
   if (p.startsWith('/apps/')) return 'app_page';
   if (p === '/blog/') return 'blog_hub';

@@ -342,3 +342,11 @@ for (const [initial, failures, action] of [[undefined, ['get'], 'analytics-turn-
   assert.equal(runtime.events().length, 0);
 }
 console.log(`Website measurement: ${files.length} HTML pages and ${publicLinks.length} live CTA hrefs verified; privacy, QA, keyboard/nested clicks and duplication checks passed.`);
+
+const serviceVisit = browser({ path: '/web-design/' });
+assert.equal(serviceVisit.events()[0][2].surface, 'services');
+serviceVisit.dispatch('click', { target: target('mailto:support@attahirlabs.com?subject=Website%20project%20enquiry', ['.service-inquiry']) });
+const serviceIntent = serviceVisit.events().filter(x => x[1] === 'contact_intent');
+assert.equal(serviceIntent.length, 1);
+assert.equal(serviceIntent[0][2].surface, 'services');
+assert.ok(!JSON.stringify(serviceIntent).includes('Website%20project'), 'email subject stays out of event payloads');

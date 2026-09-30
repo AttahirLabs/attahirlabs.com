@@ -20,3 +20,6 @@ Meaningful tests cover every published App Store anchor and its campaign vocabul
 Use an owned classified or suppressed browser path. Match the deployment and then verify processed GA rows; no live traffic or conversion claim follows from tests alone. If the diagnostic marker cannot be injected before initialization, suppress browser QA and keep processed diagnostic acceptance pending rather than sending unlabeled QA.
 
 Rollback is a source revert and normal deployment. Preserve historical GA fields and destination IDs; version v1/v2 marks the semantics boundary. No key event, retention setting, customer data, database or billing behavior changes with this website release.
+
+## Web design surface
+`/web-design/` uses the finite `services` surface. Its project email link follows the existing `contact_intent` contract; subjects and message content are excluded. Tests cover the surface and one contact-intent event. A click is not a sent email, received inquiry, or paying project. No new analytics destination or data-collection backend is introduced.

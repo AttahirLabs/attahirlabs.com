@@ -9,8 +9,8 @@ const SHA_PATTERN = /^[0-9a-f]{40}$/;
 const ACCOUNT_ID_PATTERN = /^[0-9a-f]{32}$/;
 const SAFE_PROJECT_PATTERN = /^[a-z0-9](?:[a-z0-9-]{0,56}[a-z0-9])?$/;
 const POSITIVE_INTEGER_PATTERN = /^[1-9][0-9]*$/;
-const EXPECTED_ACCOUNT_ID = '6f945ca08a01d636e0b02f37e859d4d5';
-const EXPECTED_PROJECT_NAME = 'attahirlabs';
+const EXPECTED_ACCOUNT_ID = '5528a2e45416ae7eb22b1320b49aa16a';
+const EXPECTED_PROJECT_NAME = 'attahirlabs-site';
 
 function requireObject(value, label) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
