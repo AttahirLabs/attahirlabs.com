@@ -93,7 +93,7 @@ assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/,
 includes('<h1>Attahir Labs</h1>', 'homepage hero should make the brand the first-viewport signal');
 includes('Find the right app', 'homepage hero should have one clear primary routing CTA');
 includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
-includes('Install TariffShield', 'homepage should keep TariffShield as a public App Store app');
+includes('View TariffShield on Shopify', 'homepage should disclose TariffShield availability while keeping its listing link');
 includes('/apps/stockclearance/', 'homepage should route StockClearance through its app page');
 includes('/apps/tariffshield/', 'homepage should route TariffShield through its app page');
 includes('/apps/', 'homepage should include the scalable app hub');
