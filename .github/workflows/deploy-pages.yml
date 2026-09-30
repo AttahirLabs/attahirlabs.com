@@ -69,12 +69,26 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             --exclude 'tests' \
+            --exclude 'functions' \
             --exclude '_site' \
             ./ _site/
 
       - name: Install locked deployment tooling
         working-directory: .github/cloudflare-pages
         run: npm ci --ignore-scripts
+
+      - name: Verify signup runtime and production binding
+        env:
+          CLOUDFLARE_PAGES_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          node .github/signups/verify.mjs
+          curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_PAGES_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/attahirlabs" \
+            > "$RUNNER_TEMP/cloudflare-pages-signup-config.json"
+          node .github/signups/check-binding.cjs "$RUNNER_TEMP/cloudflare-pages-signup-config.json"
 
       - name: Snapshot current production deployment IDs
         env:
