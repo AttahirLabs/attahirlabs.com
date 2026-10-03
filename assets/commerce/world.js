@@ -15,11 +15,11 @@ export function createCommerceWorld(host) {
     env?.dispose();environment?.dispose();pmrem?.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();
   }
   try {
-  renderer.setClearColor(0xf7f8f4, 0);
+  renderer.setClearColor(0x102a36, 0);
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 681 ? 1.75 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = .84;
+  renderer.toneMappingExposure = .95;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.domElement.setAttribute('aria-hidden', 'true');
@@ -31,20 +31,20 @@ export function createCommerceWorld(host) {
   pmrem = new THREE.PMREMGenerator(renderer);
   env = pmrem.fromScene(environment, .045);
   scene.environment = env.texture;
-  scene.environmentIntensity=.72;
+  scene.environmentIntensity=.55;
   environment.dispose();environment=null;
   pmrem.dispose();pmrem=null;
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xa6c9c3, 1.05));
-  const key = new THREE.DirectionalLight(0xfff8eb, 2.25);
+  scene.add(new THREE.HemisphereLight(0xfaf1df, 0x143c49, .85));
+  const key = new THREE.DirectionalLight(0xffe0af, 2.55);
   key.position.set(-4, 10, 9); key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024);
   Object.assign(key.shadow.camera, {left:-8,right:8,top:10,bottom:-9,near:.5,far:35});
   key.shadow.bias = -.0005; key.shadow.normalBias = .025;
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0xc4eef1, .95);rim.position.set(7,4,-6);scene.add(rim);
+  const rim = new THREE.DirectionalLight(0x68e0e1, 1.45);rim.position.set(7,4,-6);scene.add(rim);
   const materials = {
     glass: new THREE.MeshPhysicalMaterial({color:0xc7f0ee,metalness:0,roughness:.12,transmission:0,thickness:.06,ior:1.45,transparent:true,opacity:.10,depthWrite:false,side:THREE.DoubleSide}),
-    edge: new THREE.MeshStandardMaterial({color:0x269ca8,roughness:.23,metalness:.3}),
+    edge: new THREE.MeshStandardMaterial({color:0x269ca8,roughness:.23,metalness:.3,emissive:0x087f8c,emissiveIntensity:.35}),
     rim: new THREE.MeshStandardMaterial({color:0xaad8d8,roughness:.2,metalness:.25})
   };
   function block(parent,w,h,d,x,y,z,material) {const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);parent.add(m);return m;}

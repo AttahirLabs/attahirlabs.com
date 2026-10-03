@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {productNav,productFooter,scene,walkthrough,escapeHTML as esc} from './design-components.mjs';
+import {storefrontShowcase} from './studio-components.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const check=process.argv.includes('--check');
 const products=[
@@ -28,12 +29,28 @@ for(const file of walk(root)){
  const relative=path.relative(root,file);
  if(!html.includes('class="product-nav"'))html=html.replace(/<nav\b[\s\S]*?<\/nav>/,nav=>nav.includes('href="/web-design/"')?nav:nav.replace('<li><a href="/blog/">Blog</a></li>','<li><a href="/web-design/">Web design</a></li><li><a href="/blog/">Blog</a></li>'));
  const type=/^apps\/[^/]+\/index.html$/.test(relative)?'product':relative==='blog/index.html'?'blog-index':relative.startsWith('blog/')?'article':relative==='index.html'?'home':relative==='web-design/index.html'?'services':'utility';
+ if(type==='home'){
+  html=html.replace('<h1>Build a better<br>e-commerce<br>business.</h1>','<h1>Better stores.<br>Smarter commerce.</h1>');
+  html=html.replace('Web design, Shopify store setup, and apps for inventory, imports, and expiry.</p>','Shopify apps, web design, and store setup for your next stage of growth.</p>');
+  html=html.replace('<h2>Better tools for the decisions that matter.</h2>','<h2>One suite. More possibilities.</h2>');
+  html=html.replace('<h2>Your next chapter.<br>Built around your brand.</h2>','<h2>Your brand.<br>Beautifully built.</h2>');
+  html=html.replace(/<div class="service-list">[\s\S]*?<\/div><\/div><\/section>/,`${storefrontShowcase()}<\/div><\/section>`);
+  if(!html.includes('class="studio-service-links"'))html=html.replace('Explore web design <span aria-hidden="true">↗</span></a></div>', 'Explore web design <span aria-hidden="true">↗</span></a><div class="studio-service-links"><a href="/web-design/#website-design">Website design</a><a href="/web-design/#shopify-setup">Shopify setup</a><a href="/web-design/#storefront-redesign">Storefront redesign</a></div></div>');
+  html=html.replace(/\/assets\/commerce\/hero.js\?v=[^"\s]+/g,'/assets/commerce/hero.js?v=20261003');
+ }
+ if(type==='services'){
+  html=html.replace(/<figure class="storefront-scene"[\s\S]*?<\/figure>/,storefrontShowcase(true));
+  html=html.replace('<h1>A website that<br>feels like you.<br>Ready for what’s next.</h1>','<h1>Your brand.<br>Beautifully built.</h1>');
+ }
+ if(type==='blog-index'&&!html.includes('class="studio-journal-head"'))html=html.replace(/(<h1>[\s\S]*?<\/h1>\s*<p class="subtitle">[\s\S]*?<\/p>)/, '<header class="studio-journal-head"><div class="section-kicker">The field notes</div>$1</header>');
+ html=html.replace(/<link rel="stylesheet" href="\/assets\/studio.css[^>]*>\s*/g,'').replace(/<link rel="preload" href="\/assets\/fonts\/manrope-latin.woff2"[^>]*>\s*/g,'');
  html=html.replace(/<link rel="stylesheet" href="\/assets\/vector.css[^>]*>\s*/g,'').replace(/<script defer src="\/assets\/vector.js[^>]*><\/script>\s*/g,'');
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/vector.css?v=20260922">\n<script defer src="/assets/vector.js?v=20260922"></script>\n</head>');
  if(relative==='index.html'&&html.includes('data-commerce-hero')){
   html=html.replace(/<link rel="stylesheet" href="\/assets\/commerce\/hero.css[^>]*>\s*/g,'');
   html=html.replace('</head>','<link rel="stylesheet" href="/assets/commerce/hero.css?v=20260922h">\n</head>');
  }
+ html=html.replace('</head>','<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="/assets/studio.css?v=20261003">\n</head>');
  html=html.replace(/<body([^>]*)>/,(_,attrs)=>`<body${attrs.replace(/ data-page="[^"]*"/g,'')} data-page="${type}">`);
  if(!html.includes('class="skip-link"')){
   const main=html.match(/<(main|article)\b([^>]*)>/);
