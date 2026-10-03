@@ -41,7 +41,17 @@ for (const page of manifest.pages) {
   assert.equal(page.schemaVersion, 1);
   assert.equal(page.publicationStatus, 'published');
   if (page.path === '/duty/') {
-    assert.equal(page.authorityState, 'release4_active_exact_qsp');
+    assert.equal(page.authorityState, 'release4_active_exact_qsp_ordinary_general_rev20');
+    assert.equal(page.verifiedThrough, '2026-10-01T13:05:00Z');
+    assert.equal(page.reviewAfter, '2026-10-08T13:05:00Z');
+    assert.equal(page.inputContract, 'us-qsp-ordinary-general-rev20/v3');
+    assert.equal(page.scheduleRevision, '2026HTSRev20');
+    assert.equal(page.rulesetVersion, "2026.10.01+release4.5");
+    assert.equal(page.rulesetPayloadHash, "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb");
+    assert.equal(page.releaseRecordHash, "fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77");
+    assert.equal(page.coverageSliceId, "slice:release4:exact-qsp-rev20-ordinary-general");
+    assert.deepEqual(page.supportedHts, ['6810990020', '6810990040', '7020006000']);
+    assert.equal(page.declarationVerification, 'unverified_caller_assumptions');
     assert.equal(page.failClosedWording, 'Unsupported or incomplete cases remain number-free.');
   } else {
     assert.equal(page.verifiedThrough, manifest.asOf);

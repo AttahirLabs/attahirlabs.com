@@ -140,10 +140,10 @@
     <p>Calculate a supported planning estimate using exact caller-supplied HTSUS, MFN, customs-value, and Chapter 99 inputs.</p>
 </div>
 
-<div class="container" data-tariff-authority-state="release-4-active">
+<div class="container" data-tariff-authority-state="release-4-active" data-duty-input-contract="us-qsp-ordinary-general-rev20/v3">
     <aside class="accuracy-panel" id="dutyAccuracyNotice" aria-labelledby="dutyAccuracyTitle">
         <h2 id="dutyAccuracyTitle">Signed authority, narrow scope</h2>
-        <p class="tariff-authority-warning"><strong>Release 4 exact-QSP calculation.</strong> A number is returned only when the signed reviewed authority matches every required input. Unsupported or incomplete cases remain number-free.</p>
+        <p class="tariff-authority-warning"><strong>Release 4 exact-QSP calculation. Rev20 ordinary General scope.</strong> A number is returned only when the signed reviewed authority matches every required input. Unsupported or incomplete cases remain number-free.</p>
         <p>You supply the HTSUS classification, base MFN rate, U.S. customs value, and applicable Chapter 99 headings. The tool does not choose or validate those filing facts for you.</p>
         <p>This is a planning estimate, not a customs classification, liquidation, or legal determination. The <a href="/duty/rates/">legacy country-level table</a> remains historical and contained.</p>
     </aside>
@@ -151,20 +151,47 @@
         <!-- FORM -->
         <div class="card">
             <h2>Enter exact US entry inputs</h2>
+            <p class="input-note">Supported scope: ordinary General entry for 6810990020, 6810990040, or 7020006000. Every legal and product fact below is your reviewed declaration.</p>
+            <label for="calculationBasis">Calculation basis *</label>
+            <select id="calculationBasis"><option value="entry">Whole subject-QSP entry</option><option value="per_unit">Per subject-QSP unit</option></select>
+            <p class="input-note">Use the selected basis consistently for customs value, shipping and insurance below.</p>
+            <label for="qspProductStatus">Reviewed Note 41(a) product scope *</label>
+            <select id="qspProductStatus" required><option value="">Select reviewed product status...</option><option value="subject_qsp">Subject QSP — reviewed Note 41(a)</option><option value="not_subject">Not subject QSP</option><option value="unknown">Unknown / review incomplete</option></select>
+            <p class="input-note">Subject QSP contains silica and resin, with silica greater than any other single material by actual weight; quarried stone is excluded. A code or origin alone does not establish product scope. Only reviewed subject QSP is supported.</p>
+            <label for="qspProductEvidenceRef">Product-scope and subject-QSP value review reference *</label>
+            <input type="text" id="qspProductEvidenceRef" placeholder="Reviewed entry/product evidence reference" required>
+            <p class="input-note">Each evidence reference must contain 8–300 Unicode code points after trimming. Reference the review for this entry, including Note 41(a) scope and the subject-QSP value portion.</p>
             <label for="origin">Origin country *</label>
             <select id="origin"><option value="">Loading countries...</option></select>
             <label for="destination">Destination</label>
             <input type="text" id="destination" value="United States (US)" disabled>
             <div class="row">
-                <div><label for="hts">8- or 10-digit HTSUS code *</label><input type="text" id="hts" placeholder="6810990020" inputmode="numeric" maxlength="12"></div>
-                <div><label for="mfnRate">Base MFN rate (%) *</label><input type="number" id="mfnRate" placeholder="5" min="0" max="100" step="0.000001"></div>
+                <div><label for="hts">10-digit supported HTSUS code *</label><input type="text" id="hts" placeholder="6810990020" inputmode="numeric" maxlength="12"></div>
+                <div><label for="mfnRate">Base MFN rate (%) *</label><input type="number" id="mfnRate" placeholder="5" min="0" max="500" step="0.000001"></div>
             </div>
-            <label for="customsValue">U.S. customs value (USD) *</label>
-            <input type="number" id="customsValue" placeholder="1000.00" min="0.01" max="100000000" step="0.01">
+            <label for="customsValue">Subject-QSP portion U.S. customs value (USD) *</label>
+            <input type="number" id="customsValue" placeholder="1000.00" min="0.01" max="10000000" step="0.01">
+            <p class="input-note">Declare only the subject-QSP customs value for the selected basis. Exclude accompanying non-subject goods, even when packaged or entered together.</p>
+            <label for="manufacturingOrigin">Original QSP slab manufacturing country code *</label>
+            <input type="text" id="manufacturingOrigin" placeholder="BR" maxlength="2" required>
+            <p class="input-note">Use the original slab manufacturing country before finishing or third-country processing. It must match the declared origin for this supported scope.</p>
+            <label for="thirdCountryProcessing">Third-country processing *</label>
+            <select id="thirdCountryProcessing" required><option value="">Select reviewed status...</option><option value="none">None</option><option value="processed">Processing occurred</option><option value="unknown">Unknown</option></select>
+            <label for="certificationDisposition">Certification disposition *</label>
+            <select id="certificationDisposition" required><option value="">Select reviewed disposition...</option><option value="not_required">Not required</option><option value="required">Required</option><option value="unknown">Unknown</option></select>
+            <label for="brokerEntryReference">Broker entry review reference *</label>
+            <input type="text" id="brokerEntryReference" placeholder="Original slab, processing and entry review" required>
+            <label for="adCvdStatus">Reviewed AD/CVD status *</label>
+            <select id="adCvdStatus" required><option value="">Select reviewed status...</option><option value="not_subject">Not subject</option><option value="subject">Subject</option><option value="unknown">Unknown</option></select>
+            <label for="adCvdEvidenceRef">AD/CVD review evidence reference *</label>
+            <input type="text" id="adCvdEvidenceRef" placeholder="This entry AD/CVD review reference" required>
+            <label for="entryTreatment">Entry treatment *</label>
+            <select id="entryTreatment" required><option value="">Select reviewed treatment...</option><option value="ordinary_general">Ordinary General</option><option value="special">Special or preferential treatment</option><option value="unknown">Unknown</option></select>
             <label for="forcedLaborCountryHeading">Forced-labor country Chapter 99 heading *</label>
             <input type="text" id="forcedLaborCountryHeading" placeholder="9903.05.27" maxlength="10">
             <label for="forcedLaborExceptionHeading">Forced-labor exception heading *</label>
-            <input type="text" id="forcedLaborExceptionHeading" value="NONE" placeholder="NONE or 9903.xx.xx" maxlength="10">
+            <input type="text" id="forcedLaborExceptionHeading" placeholder="NONE" maxlength="10">
+            <p class="input-note">Ordinary Brazil uses NONE for the exception and 9903.05.27 for the country heading. Using 9903.05.27 as an exception, other MFN thresholds or special treatment is outside this scope.</p>
             <div id="brazilFields" style="display:none">
                 <label for="brazilHeading">Brazil Section 301 Chapter 99 heading *</label>
                 <input type="text" id="brazilHeading" placeholder="9903.05.01" maxlength="10">
@@ -176,8 +203,15 @@
                 <option value="9903.45.31">9903.45.31 — covered over-quota entry</option>
             </select>
             <p class="input-note">Supply the heading from the filing facts. This tool does not determine quota status.</p>
+            <label for="qspQuotaStatus">Reviewed QSP quota disposition, when applicable</label>
+            <select id="qspQuotaStatus"><option value="">Not supplied / exempt origin</option><option value="allocated_in_quota">Allocated in quota (9903.45.30)</option><option value="confirmed_over_quota">Confirmed over quota (9903.45.31)</option><option value="unknown">Unknown</option></select>
+            <label for="qspQuotaEvidenceRef">Quota disposition evidence reference</label>
+            <input type="text" id="qspQuotaEvidenceRef" placeholder="This entry quota review reference">
+            <label for="qspQuotaReviewedAt">Quota review instant (UTC)</label>
+            <input type="text" id="qspQuotaReviewedAt" placeholder="YYYY-MM-DDTHH:mm:ssZ" maxlength="24">
+            <p class="input-note">Affected non-exempt entries require the matching disposition, reference and UTC review time at or after entry and no later than now. Exempt origins must omit the QSP heading and all quota fields. Product, provenance and AD/CVD review remain required for exempt origins.</p>
             <label for="entryAt">Entry instant (UTC) *</label>
-            <input type="text" id="entryAt" placeholder="2026-08-24T17:00:00Z" maxlength="24" required>
+            <input type="text" id="entryAt" placeholder="2026-10-03T12:00:00Z" maxlength="24" required>
             <p class="input-note">Use a UTC RFC 3339 instant ending in Z, with no more than three fractional digits.</p>
             <div class="row">
                 <div><label for="shippingCost">Shipping cost</label><input type="number" id="shippingCost" placeholder="0.00" min="0" step="0.01"></div>
@@ -230,6 +264,7 @@
     <h3>Fail-closed coverage</h3>
     <p>Incomplete, unsupported, expired, or non-matching inputs return an indeterminate response with no rate, duty, or subtotal. Canada, UAS, and unsupported product or tariff programs are intentionally outside this Release 4 coverage.</p>
     <h3>Signed reviewed authority</h3>
+    <p>Rev20 source evidence was verified as of October 1, 2026 at 13:05 UTC and expires October 8, 2026 at 13:05 UTC. Exact results require ordinary General entry, reviewed subject-QSP scope, original slab provenance, AD/CVD review and quota evidence when applicable. These are caller declarations, not an independent legal verification by this tool.</p>
     <p>Every calculated response identifies its ruleset, signed release record, evidence window, active coverage slices, and source-backed line items so the result can be traced to the exact authority used.</p>
     <p><a href="/duty/rates/">Browse the historical planning table →</a><br><a href="/blog/quartz-countertop-tariffs-2026/">Read the quartz safeguard guide →</a><br><a href="/blog/us-drone-tariffs-2026/">Read the UAS Section 232 guide →</a><br><a href="/blog/de-minimis-threshold-2026/">Read the US de minimis guide →</a></p>
 </div>
@@ -239,6 +274,6 @@
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 </footer>
 
-<script src="/duty/calculator.js?v=20260824-release4"></script>
+<script src="/duty/calculator.js?v=20261003-release4-5"></script>
 </body>
 </html>

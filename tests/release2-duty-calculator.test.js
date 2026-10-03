@@ -3,12 +3,17 @@ const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 const vm = require('node:vm');
+const { createHash, webcrypto } = require('node:crypto');
+// Synthetic signed-response fixtures test local validation only; production publication is not established by these tests.
 
 const html = fs.readFileSync(path.join(__dirname, '..', 'duty', 'index.html'), 'utf8');
 const client = fs.readFileSync(path.join(__dirname, '..', 'duty', 'calculator.js'), 'utf8');
 
 for (const id of [
   'origin',
+  'calculationBasis', 'manufacturingOrigin', 'thirdCountryProcessing', 'certificationDisposition',
+  'brokerEntryReference', 'adCvdStatus', 'adCvdEvidenceRef', 'entryTreatment', 'qspProductStatus',
+  'qspProductEvidenceRef', 'qspQuotaStatus', 'qspQuotaEvidenceRef', 'qspQuotaReviewedAt',
   'hts',
   'customsValue',
   'mfnRate',
@@ -32,9 +37,9 @@ assert.match(html, /shipping and insurance[^<]{0,160}outside[^<]{0,80}customs va
 assert.match(client, /status\s*!==\s*["']calculated["']|data\.status\s*===\s*["']indeterminate["']/, 'indeterminate responses must fail closed');
 assert.match(client, /clearNumericResult\(\)/, 'the client must clear old numeric output before every request');
 
-assert.match(client, /2026\.08\.24\+release4\.1/, 'the client must pin Release 4.1');
-assert.match(client, /e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8/);
-assert.match(client, /0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289/);
+assert.match(client, /2026\.10\.01\+release4\.5/, 'the client must pin signed Rev20 Release 4.5');
+assert.match(client, /1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb/);
+assert.match(client, /fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77/);
 assert.doesNotMatch(html, /id=["']uasHeading["']/i, 'unsupported UAS scope must not be offered');
 assert.doesNotMatch(client, /uasHeading/, 'unsupported UAS scope must not be submitted');
 
@@ -65,7 +70,20 @@ function makeElements() {
   return {
     origin: new FakeElement('BR'),
     destination: new FakeElement('United States (US)'),
-    hts: new FakeElement('61091000'),
+    hts: new FakeElement('7020006000'),
+    calculationBasis: new FakeElement('entry'),
+    manufacturingOrigin: new FakeElement('BR'),
+    thirdCountryProcessing: new FakeElement('none'),
+    certificationDisposition: new FakeElement('not_required'),
+    brokerEntryReference: new FakeElement('broker-entry-123'),
+    adCvdStatus: new FakeElement('not_subject'),
+    adCvdEvidenceRef: new FakeElement('ad-cvd-review-123'),
+    entryTreatment: new FakeElement('ordinary_general'),
+    qspProductStatus: new FakeElement('subject_qsp'),
+    qspProductEvidenceRef: new FakeElement('product-review-123'),
+    qspQuotaStatus: new FakeElement(''),
+    qspQuotaEvidenceRef: new FakeElement(''),
+    qspQuotaReviewedAt: new FakeElement(''),
     customsValue: new FakeElement('1000.00'),
     mfnRate: new FakeElement('5'),
     forcedLaborCountryHeading: new FakeElement('9903.05.27'),
@@ -97,7 +115,7 @@ function visibleText(element) {
   return [element.textContent, ...element.children.map(visibleText)].join(' ');
 }
 
-async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:00Z', runtime = {}) {
+async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:00Z', runtime = {}) {
   const elements = makeElements();
   for (const [id, value] of Object.entries(overrides)) {
     assert.ok(elements[id], `unexpected override #${id}`);
@@ -118,6 +136,7 @@ async function runCalculation(response, overrides = {}, now = '2026-08-24T17:30:
     Date: FixedDate,
     AbortController, setTimeout, clearTimeout,
     URLSearchParams,
+    TextEncoder, crypto: webcrypto,
     console,
     document: {
       createElement() {
@@ -175,29 +194,55 @@ test('duplicate calls during a request do not create a second attempt', async ()
   result.analytics.length = 0;
   let resolve;
   let calls = 0;
-  result.context.fetch = () => { calls++; return new Promise(done => { resolve = done; }); };
+  let requested;
+  const requestStarted = new Promise(done => { requested = done; });
+  result.context.fetch = () => { calls++; requested(); return new Promise(done => { resolve = done; }); };
   const first = result.context.calculate();
   await result.context.calculate();
+  await requestStarted;
   assert.equal(calls, 1);
   resolve({ ok: false, status: 429, async json() { return {}; } });
   await first;
   assert.deepEqual(result.analytics.map(x => x.name), ['tool_started', 'tool_failed']);
 });
 
-function calculatedBody() {
+function independentFingerprint(overrides = {}) {
+  const values = Object.fromEntries(Object.entries(makeElements()).map(([k, v]) => [k, v.value]));
+  Object.assign(values, overrides);
+  const optional = key => values[key].trim() || null;
+  const value = {
+    destination: 'US', basis: values.calculationBasis, origin: values.origin.trim().toUpperCase(),
+    manufacturingOrigin: values.manufacturingOrigin.trim().toUpperCase(),
+    thirdCountryProcessing: values.thirdCountryProcessing, certificationDisposition: values.certificationDisposition,
+    brokerEntryReference: values.brokerEntryReference.trim(), adCvdStatus: values.adCvdStatus,
+    adCvdEvidenceRef: values.adCvdEvidenceRef.trim(), entryTreatment: values.entryTreatment,
+    qspProductStatus: values.qspProductStatus, qspProductEvidenceRef: values.qspProductEvidenceRef.trim(),
+    hts: values.hts.replaceAll('.', ''), entryAt: new Date(values.entryAt).toISOString(),
+    customsValue: Number(values.customsValue).toFixed(2), mfnRate: values.mfnRate,
+    forcedLaborCountryHeading: values.forcedLaborCountryHeading, forcedLaborExceptionHeading: values.forcedLaborExceptionHeading,
+    brazilHeading: optional('brazilHeading'), qspHeading: optional('qspHeading'),
+    qspQuotaStatus: optional('qspQuotaStatus'), qspQuotaEvidenceRef: optional('qspQuotaEvidenceRef'),
+    qspQuotaReviewedAt: values.qspQuotaReviewedAt ? new Date(values.qspQuotaReviewedAt).toISOString() : null,
+    shippingCost: Number(values.shippingCost || 0).toFixed(2), insuranceCost: Number(values.insuranceCost || 0).toFixed(2),
+  };
+  return createHash('sha256').update(JSON.stringify(value)).digest('hex');
+}
+
+function calculatedBody(overrides = {}) {
   return {
     status: 'calculated',
+    inputFingerprint: independentFingerprint(overrides),
     authority: {
       state: 'active',
-      rulesetVersion: '2026.08.24+release4.1',
-      rulesetPayloadHash: 'e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8',
-      releaseRecordHash: '0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289',
+      rulesetVersion: '2026.10.01+release4.5',
+      rulesetPayloadHash: '1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb',
+      releaseRecordHash: 'fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77',
       resultContractVersion: 'tariff.result-contract/v3',
-      evidenceAsOf: '2026-08-24T16:20:00Z',
-      evidenceValidThrough: '2026-08-31T16:20:00Z',
-      activeCoverageSliceIds: ['slice:release4:exact-qsp-rev17'],
-      scheduleRevision: '2026HTSRev17',
-      inputContract: 'exact_caller_supplied_htsus_mfn_chapter99_release4_qsp_only'
+      evidenceAsOf: '2026-10-01T13:05:00Z',
+      evidenceValidThrough: '2026-10-08T13:05:00Z',
+      activeCoverageSliceIds: ['slice:release4:exact-qsp-rev20-ordinary-general'],
+      scheduleRevision: '2026HTSRev20',
+      inputContract: 'us-qsp-ordinary-general-rev20/v3'
     },
     calculation: {
       currency: 'USD',
@@ -257,7 +302,7 @@ test('calculated Release 4 response renders only after exact authority and arith
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
   assert.equal(elements.totalDisplay.textContent, '$1485.00');
-  assert.match(visibleText(elements.responseMetadata), /2026\.08\.24\+release4\.1/);
+  assert.match(visibleText(elements.responseMetadata), /2026\.10\.01\+release4\.5/);
   assert.ok(analytics.some(event => event.name === 'tool_completed'));
   assert.ok(!analytics.some(event => event.name === 'tool_failed'));
 });
@@ -315,7 +360,7 @@ test('valid zero, exempt, and negative cap lines reconcile and render under per-
   assert.equal(elements.dutyDisplay.textContent, '$250.00');
   assert.match(visibleText(elements.breakdown), /-\$750\.00/);
 
-  const halfEven = calculatedBody();
+  const halfEven = calculatedBody({ customsValue: '0.01', shippingCost: '0', insuranceCost: '0' });
   halfEven.calculation.customsValue.amount = '0.01';
   halfEven.calculation.shippingCost.amount = '0.00';
   halfEven.calculation.insuranceCost.amount = '0.00';
@@ -343,7 +388,7 @@ test('valid zero, exempt, and negative cap lines reconcile and render under per-
 test('the exact QSP scope fact is sent only when supplied', async () => {
   const qsp = await runCalculation(
     { ok: true, status: 200, async json() { return calculatedBody(); } },
-    { origin: 'CN', hts: '6810990020', brazilHeading: '', qspHeading: '9903.45.30' },
+    { origin: 'GB', manufacturingOrigin: 'GB', hts: '6810990020', mfnRate: '0', forcedLaborCountryHeading: '9903.05.81', brazilHeading: '', qspHeading: '9903.45.30', qspQuotaStatus: 'allocated_in_quota', qspQuotaEvidenceRef: 'quota-review-123', qspQuotaReviewedAt: '2026-08-17T13:30:00Z' },
   );
   assert.match(qsp.requestedUrl, /hts=6810990020/);
   assert.match(qsp.requestedUrl, /qspHeading=9903\.45\.30/);
@@ -352,17 +397,17 @@ test('the exact QSP scope fact is sent only when supplied', async () => {
 
 test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most millisecond precision, and is normalized', async t => {
   for (const [entryAt, encoded] of [
-    ['2026-09-03T04:01:00Z', '2026-09-03T04%3A01%3A00.000Z'],
-    ['2026-09-03T04:01:00.1Z', '2026-09-03T04%3A01%3A00.100Z'],
-    ['2026-09-03T04:01:00.12Z', '2026-09-03T04%3A01%3A00.120Z'],
-    ['2026-09-03T04:01:00.123Z', '2026-09-03T04%3A01%3A00.123Z'],
+    ['2026-08-17T04:01:00Z', '2026-08-17T04%3A01%3A00.000Z'],
+    ['2026-08-17T04:01:00.1Z', '2026-08-17T04%3A01%3A00.100Z'],
+    ['2026-08-17T04:01:00.12Z', '2026-08-17T04%3A01%3A00.120Z'],
+    ['2026-08-17T04:01:00.123Z', '2026-08-17T04%3A01%3A00.123Z'],
     ['2026-08-15T04:01:00Z', '2026-08-15T04%3A01%3A00.000Z'],
-    ['2026-09-03T04:00:59.999Z', '2026-09-03T04%3A00%3A59.999Z'],
-    ['2026-09-03T04:01:00.000Z', '2026-09-03T04%3A01%3A00.000Z'],
+    ['2026-08-17T04:00:59.999Z', '2026-08-17T04%3A00%3A59.999Z'],
+    ['2026-08-17T04:01:00.000Z', '2026-08-17T04%3A01%3A00.000Z'],
   ]) {
     await t.test(`normalizes ${entryAt}`, async () => {
       const result = await runCalculation(
-        { ok: true, status: 200, async json() { return calculatedBody(); } },
+        { ok: true, status: 200, async json() { return calculatedBody({ entryAt }); } },
         { entryAt },
       );
       assert.match(result.requestedUrl, new RegExp(`entryAt=${encoded.replaceAll('.', '\\.')}(?:&|$)`));
@@ -372,14 +417,14 @@ test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most mi
 
   for (const entryAt of [
     '',
-    '2026-09-03T04:01:00+00:00',
+    '2026-08-17T04:01:00+00:00',
     '2026-09-03T00:01:00-04:00',
-    '2026-09-03T04:01:00.1234Z',
+    '2026-08-17T04:01:00.1234Z',
     '2026-02-30T04:01:00Z',
   ]) {
     await t.test(`rejects ${entryAt || 'blank input'}`, async () => {
       const result = await runCalculation(
-        { ok: true, status: 200, async json() { return calculatedBody(); } },
+        { ok: true, status: 200, async json() { return calculatedBody({ entryAt }); } },
         { entryAt },
       );
       assert.equal(result.requestedUrl, '', 'invalid entryAt must not delegate the request time to the API');
@@ -403,16 +448,16 @@ test('Release 4 authority requires the exact result contract and live canonical 
     ['foreign schedule revision', body => { body.authority.scheduleRevision = '2026HTSRev16'; }],
     ['foreign input contract', body => { body.authority.inputContract = 'exact_caller_supplied_htsus_mfn_chapter99'; }],
     ['missing evidence start', body => { delete body.authority.evidenceAsOf; }],
-    ['foreign evidence start', body => { body.authority.evidenceAsOf = '2026-08-24T16:20:01Z'; }],
-    ['non-canonical evidence start', body => { body.authority.evidenceAsOf = '2026-08-24T16:20:00.000Z'; }],
+    ['foreign evidence start', body => { body.authority.evidenceAsOf = '2026-10-01T13:05:01Z'; }],
+    ['non-canonical evidence start', body => { body.authority.evidenceAsOf = '2026-10-01T13:05:00.000Z'; }],
     ['missing evidence end', body => { delete body.authority.evidenceValidThrough; }],
-    ['foreign evidence end', body => { body.authority.evidenceValidThrough = '2026-08-31T16:20:01Z'; }],
+    ['foreign evidence end', body => { body.authority.evidenceValidThrough = '2026-10-08T13:05:01Z'; }],
     ['invalid evidence end', body => { body.authority.evidenceValidThrough = 'not-an-instant'; }],
     ['reversed evidence window', body => {
-      body.authority.evidenceAsOf = '2026-08-31T16:20:00Z';
-      body.authority.evidenceValidThrough = '2026-08-24T16:20:00Z';
+      body.authority.evidenceAsOf = '2026-10-08T13:05:00Z';
+      body.authority.evidenceValidThrough = '2026-10-01T13:05:00Z';
     }],
-    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release4:exact-qsp-rev17'; }],
+    ['non-array slices', body => { body.authority.activeCoverageSliceIds = 'slice:release4:exact-qsp-rev20-ordinary-general'; }],
     ['empty slices', body => { body.authority.activeCoverageSliceIds = []; }],
     ['extra slice', body => { body.authority.activeCoverageSliceIds.push('slice:foreign'); }],
     ['foreign slice', body => { body.authority.activeCoverageSliceIds[0] = 'slice:foreign'; }],
@@ -444,7 +489,7 @@ test('Release 4 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-31T16:20:00.000Z',
+      '2026-10-08T13:05:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'none');
   });
@@ -454,7 +499,7 @@ test('Release 4 authority requires the exact result contract and live canonical 
     const result = await runCalculation(
       { ok: true, status: 200, async json() { return body; } },
       {},
-      '2026-08-24T16:20:00.000Z',
+      '2026-10-01T13:05:00.000Z',
     );
     assert.equal(result.elements.resultNumbers.style.display, 'block');
   });
@@ -552,4 +597,129 @@ test('indeterminate response clears stale numeric content and never renders inje
   assert.match(elements.resultState.textContent, /indeterminate/i);
   assert.ok(analytics.some(event => event.name === 'tool_failed'));
   assert.ok(!analytics.some(event => event.name === 'tool_completed'));
+});
+
+
+test('v3 requires explicit product, provenance and quota declarations without inference', async t => {
+  for (const overrides of [
+    { qspProductStatus: '' }, { qspProductStatus: 'not_subject' }, { qspProductStatus: 'unknown' },
+    { qspProductEvidenceRef: '😀'.repeat(7) }, { brokerEntryReference: 'x'.repeat(301) },
+    { adCvdEvidenceRef: '' }, { manufacturingOrigin: 'CN' }, { thirdCountryProcessing: 'processed' },
+    { certificationDisposition: 'required' }, { adCvdStatus: 'unknown' }, { entryTreatment: 'special' },
+    { qspQuotaStatus: 'allocated_in_quota' }, { qspQuotaEvidenceRef: 'quota-123' },
+    { qspQuotaReviewedAt: '2026-08-17T13:30:00Z' }, { qspHeading: '9903.45.30' },
+    { forcedLaborExceptionHeading: '9903.05.27' }, { hts: '68109900' }, { calculationBasis: 'bad' },
+  ]) await t.test(JSON.stringify(overrides), async () => {
+    const result = await runCalculation({ ok: true, json: async () => calculatedBody() }, overrides);
+    assert.equal(result.requestedUrl, '');
+    assert.equal(result.elements.resultNumbers.style.display, 'none');
+    assert.deepEqual(result.analytics.map(x => x.name), ['tool_validation_failed']);
+  });
+});
+
+test('v3 sends the normalized actual GET contract and binds its independent fingerprint', async () => {
+  const overrides = { hts: '7020.00.6000', customsValue: '1000', shippingCost: '50', insuranceCost: '10',
+    brokerEntryReference: '  broker-entry-123  ', qspProductEvidenceRef: '😀'.repeat(8), calculationBasis: 'per_unit' };
+  const result = await runCalculation({ ok: true, json: async () => calculatedBody(overrides) }, overrides);
+  const params = new URL(result.requestedUrl).searchParams;
+  for (const key of ['manufacturingOrigin', 'thirdCountryProcessing', 'certificationDisposition', 'brokerEntryReference',
+    'adCvdStatus', 'adCvdEvidenceRef', 'entryTreatment', 'qspProductStatus', 'qspProductEvidenceRef', 'calculationBasis'])
+    assert.equal(params.get(key), overrides[key]?.trim() || makeElements()[key].value);
+  assert.equal(params.get('hts'), '7020006000');
+  assert.equal(params.get('customsValue'), '1000.00');
+  assert.equal(result.elements.resultNumbers.style.display, 'block');
+});
+
+test('wrong or absent request fingerprint rejects valid authority and matching arithmetic', async t => {
+  for (const fingerprint of [undefined, 'a'.repeat(64), independentFingerprint({ calculationBasis: 'per_unit' }),
+    independentFingerprint({ brokerEntryReference: 'another-entry-123' }), independentFingerprint({ qspProductEvidenceRef: 'another-product-123' })]) {
+    await t.test(String(fingerprint), async () => {
+      const body = calculatedBody(); body.inputFingerprint = fingerprint;
+      const result = await runCalculation({ ok: true, json: async () => body });
+      assert.equal(result.elements.resultNumbers.style.display, 'none');
+      assert.ok(result.analytics.some(x => x.name === 'tool_failed'));
+      assert.ok(!result.analytics.some(x => x.name === 'tool_completed'));
+    });
+  }
+});
+
+
+test('subject-QSP status has distinct unselected subject, not-subject and unknown choices', () => {
+  const select = html.match(/<select id="qspProductStatus"[^>]*>(.*?)<\/select>/s)[1];
+  for (const value of ['subject_qsp', 'not_subject', 'unknown']) assert.match(select, new RegExp(`value="${value}"`));
+  assert.doesNotMatch(select, /selected/);
+  assert.match(html, /Exclude accompanying non-subject goods/);
+  assert.match(html, /original slab manufacturing country before finishing/i);
+});
+
+const gbQuota = { origin: 'GB', manufacturingOrigin: 'GB', brazilHeading: '', forcedLaborCountryHeading: '9903.05.81',
+  qspHeading: '9903.45.30', qspQuotaStatus: 'allocated_in_quota', qspQuotaEvidenceRef: 'quota-review-123',
+  qspQuotaReviewedAt: '2026-08-17T13:30:00Z' };
+
+test('every supported product wires matched in-quota and over-quota declarations', async t => {
+  for (const hts of ['6810990020', '6810990040', '7020006000']) for (const qspHeading of ['9903.45.30', '9903.45.31']) {
+    await t.test(`${hts}/${qspHeading}`, async () => {
+      const input = { ...gbQuota, hts, mfnRate: hts === '7020006000' ? '5' : '0', qspHeading,
+        qspQuotaStatus: qspHeading === '9903.45.30' ? 'allocated_in_quota' : 'confirmed_over_quota' };
+      const result = await runCalculation({ ok: false, status: 422, json: async () => ({ status: 'indeterminate' }) }, input);
+      const query = new URL(result.requestedUrl).searchParams;
+      assert.equal(query.get('qspHeading'), qspHeading);
+      assert.equal(query.get('qspQuotaStatus'), input.qspQuotaStatus);
+      assert.equal(query.get('qspQuotaReviewedAt'), '2026-08-17T13:30:00.000Z');
+    });
+  }
+});
+
+test('quota review requires matching disposition, code-point evidence and real UTC calendar/window', async t => {
+  for (const changes of [{ qspHeading: '' }, { qspQuotaStatus: '' }, { qspQuotaStatus: 'confirmed_over_quota' },
+    { qspQuotaEvidenceRef: '😀'.repeat(7) }, { qspQuotaEvidenceRef: '😀'.repeat(301) },
+    { qspQuotaReviewedAt: '' }, { qspQuotaReviewedAt: '2026-02-30T13:30:00Z' },
+    { qspQuotaReviewedAt: '2026-08-17T13:29:59.999Z' }, { qspQuotaReviewedAt: '2026-10-03T13:00:00.001Z' },
+    { qspQuotaReviewedAt: '2026-08-17T13:30:00+00:00' }]) {
+    await t.test(JSON.stringify(changes), async () => {
+      const result = await runCalculation({ ok: true, json: async () => calculatedBody() }, { ...gbQuota, ...changes });
+      assert.equal(result.requestedUrl, '');
+      assert.equal(result.elements.resultNumbers.style.display, 'none');
+    });
+  }
+  for (const length of [8, 300]) {
+    const input = { ...gbQuota, qspProductEvidenceRef: '😀'.repeat(length), brokerEntryReference: '😀'.repeat(length),
+      adCvdEvidenceRef: '😀'.repeat(length), qspQuotaEvidenceRef: '😀'.repeat(length) };
+    const result = await runCalculation({ ok: true, json: async () => calculatedBody(input) }, input);
+    assert.equal(result.elements.resultNumbers.style.display, 'block');
+  }
+});
+
+test('signed Rev20 authority expires at the exact review deadline', async () => {
+  const result = await runCalculation({ ok: true, json: async () => calculatedBody() }, {}, '2026-10-08T13:05:00Z');
+  assert.equal(result.elements.resultNumbers.style.display, 'none');
+  assert.ok(!result.analytics.some(x => x.name === 'tool_completed'));
+});
+
+
+test('browser fingerprint matches independently generated gateway golden fixtures', async () => {
+  // Generated by release4-engine.js exactInputFingerprint; these are local protocol fixtures, not authority.
+  const fixtures = [
+    [{}, '6ec076b888a6d419dbd555ee120f1451c37f2522051e31d6b468b43a8938720b'],
+    [{ calculationBasis: 'per_unit', qspProductEvidenceRef: '😀'.repeat(8) }, '7b5cc12dd19863c69af286609264cce225a5d550b9225f31b9439cd736f96899'],
+    [gbQuota, '4d1972d6592ea2378683fc1015169a5ec70774f4274701d373a9ea19da762dcc'],
+  ];
+  for (const [overrides, expected] of fixtures) {
+    assert.equal(independentFingerprint(overrides), expected);
+    const body = calculatedBody(overrides); body.inputFingerprint = expected;
+    const result = await runCalculation({ ok: true, json: async () => body }, overrides);
+    assert.equal(result.elements.resultNumbers.style.display, 'block');
+  }
+});
+
+test('input preflight rejects unsupported threshold, future entry and noncanonical money', async t => {
+  for (const input of [{ mfnRate: '15' }, { forcedLaborExceptionHeading: '9903.05.27' },
+    { customsValue: '10000000.01' }, { customsValue: '-1' }, { customsValue: '1e3' },
+    { shippingCost: '1000000.01' }, { insuranceCost: '01.00' }, { customsValue: '0' },
+    { entryAt: '2026-10-03T13:00:00.001Z' }, { entryAt: '2026-08-15T04:00:59.999Z' },
+    { qspProductEvidenceRef: '😀'.repeat(301) }]) await t.test(JSON.stringify(input), async () => {
+      const result = await runCalculation({ ok: true, json: async () => calculatedBody() }, input);
+      assert.equal(result.requestedUrl, '');
+      assert.equal(result.elements.resultNumbers.style.display, 'none');
+    });
 });

@@ -1,37 +1,65 @@
 #!/usr/bin/env node
 
+import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 const DEFAULT_ASSET_URL = 'https://attahirlabs.com/duty/calculator.js';
-const EXPECTED_RELEASE = '2026.08.24+release4.1';
+const EXPECTED_RELEASE = '2026.10.01+release4.5';
 const EXPECTED_CALCULATION_PATH = '/api/v2/us-duty';
 const LEGACY_CALCULATION_PATH = '/api/v1/landed-cost';
 
+const EXPECTED_DECLARATION_CONTRACT = 'us-qsp-ordinary-general-rev20/v3';
+const EXPECTED_AUTHORITY = Object.freeze({
+  "rulesetVersion": "2026.10.01+release4.5",
+  "rulesetPayloadHash": "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb",
+  "releaseRecordHash": "fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77",
+  "resultContractVersion": "tariff.result-contract/v3",
+  "scheduleRevision": "2026HTSRev20",
+  "inputContract": "us-qsp-ordinary-general-rev20/v3",
+  "evidenceAsOf": "2026-10-01T13:05:00Z",
+  "evidenceValidThrough": "2026-10-08T13:05:00Z",
+  "activeCoverageSliceIds": [
+    "slice:release4:exact-qsp-rev20-ordinary-general"
+  ]
+});
+// Signed Rev20 deployment smoke fixtures; local tests do not establish deployment.
+// These declarations are owned diagnostic fixtures, not customer filing facts.
+// Entry/review time lies inside source validity: Oct 1 13:05Z to Oct 8 13:05Z.
 const QSP_INPUT = Object.freeze({
-  origin: 'CN',
-  hts: '6810990020',
-  customsValue: '1000.00',
-  shippingCost: '50.00',
-  insuranceCost: '10.00',
-  mfnRate: '5',
-  entryAt: '2026-08-20T12:20:00.000Z',
-  qspHeading: '9903.45.30',
-  forcedLaborCountryHeading: '9903.05.31',
-  forcedLaborExceptionHeading: 'NONE'
+  calculationBasis: 'entry', origin: 'VN', manufacturingOrigin: 'VN',
+  thirdCountryProcessing: 'none', certificationDisposition: 'not_required',
+  brokerEntryReference: 'probe:this-entry-original-slab-processing-adcvd-review',
+  adCvdStatus: 'not_subject', adCvdEvidenceRef: 'probe:this-entry-adcvd-review',
+  entryTreatment: 'ordinary_general', qspProductStatus: 'subject_qsp',
+  qspProductEvidenceRef: 'probe:this-entry-note41a-scope-and-subject-qsp-value',
+  hts: '6810990020', customsValue: '1000.00', shippingCost: '50.00', insuranceCost: '10.00',
+  mfnRate: '0', entryAt: '2026-10-03T12:00:00.000Z',
+  qspHeading: '9903.45.30', qspQuotaStatus: 'allocated_in_quota',
+  qspQuotaEvidenceRef: 'probe:this-entry-quota-allocation-review',
+  qspQuotaReviewedAt: '2026-10-03T12:00:00.000Z',
+  forcedLaborCountryHeading: '9903.05.84', forcedLaborExceptionHeading: 'NONE'
 });
+const OVER_QUOTA_INPUT = Object.freeze({ ...QSP_INPUT, qspHeading: '9903.45.31', qspQuotaStatus: 'confirmed_over_quota' });
+const EXEMPT_INPUT = Object.freeze(Object.fromEntries(Object.entries({
+  ...QSP_INPUT, origin: 'BR', manufacturingOrigin: 'BR', forcedLaborCountryHeading: '9903.05.27', brazilHeading: '9903.05.01'
+}).filter(([key]) => !['qspHeading', 'qspQuotaStatus', 'qspQuotaEvidenceRef', 'qspQuotaReviewedAt'].includes(key))));
+const MISSING_PRODUCT_INPUT = Object.freeze(Object.fromEntries(Object.entries(QSP_INPUT).filter(([key]) => key !== 'qspProductStatus')));
+const CANADA_INPUT = Object.freeze({ ...QSP_INPUT, origin: 'CA', manufacturingOrigin: 'CA', forcedLaborCountryHeading: '9903.05.57' });
 
-const CANADA_INPUT = Object.freeze({
-  origin: 'CA',
-  hts: '6810990020',
-  customsValue: '1000.00',
-  shippingCost: '50.00',
-  insuranceCost: '10.00',
-  mfnRate: '5',
-  entryAt: '2026-08-20T12:20:00.000Z',
-  qspHeading: '9903.45.30',
-  forcedLaborCountryHeading: '9903.05.57',
-  forcedLaborExceptionHeading: 'NONE'
-});
+export function probeInputFingerprint(input) {
+  return createHash('sha256').update(JSON.stringify({
+    destination: 'US', basis: input.calculationBasis, origin: input.origin,
+    manufacturingOrigin: input.manufacturingOrigin, thirdCountryProcessing: input.thirdCountryProcessing,
+    certificationDisposition: input.certificationDisposition, brokerEntryReference: input.brokerEntryReference,
+    adCvdStatus: input.adCvdStatus, adCvdEvidenceRef: input.adCvdEvidenceRef, entryTreatment: input.entryTreatment,
+    qspProductStatus: input.qspProductStatus, qspProductEvidenceRef: input.qspProductEvidenceRef,
+    hts: input.hts, entryAt: input.entryAt, customsValue: input.customsValue, mfnRate: input.mfnRate,
+    forcedLaborCountryHeading: input.forcedLaborCountryHeading, forcedLaborExceptionHeading: input.forcedLaborExceptionHeading,
+    brazilHeading: input.brazilHeading ?? null, qspHeading: input.qspHeading ?? null,
+    qspQuotaStatus: input.qspQuotaStatus ?? null, qspQuotaEvidenceRef: input.qspQuotaEvidenceRef ?? null,
+    qspQuotaReviewedAt: input.qspQuotaReviewedAt ?? null, shippingCost: input.shippingCost, insuranceCost: input.insuranceCost
+  })).digest('hex');
+}
 
 function exactSingleMatch(source, pattern, label) {
   const matches = [...source.matchAll(pattern)];
@@ -65,6 +93,9 @@ export function inspectCalculatorAsset(source) {
     'Release 4 version'
   );
 
+  const declarationContract = exactSingleMatch(source, /const\s+DUTY_DECLARATION_CONTRACT\s*=\s*["']([^"']+)["']/g, 'declaration contract');
+  if (declarationContract !== EXPECTED_DECLARATION_CONTRACT) throw new Error(`Unexpected public declaration contract: ${declarationContract}`);
+
   if (calculationPath !== EXPECTED_CALCULATION_PATH) {
     throw new Error(`Unexpected public calculation path: ${calculationPath}`);
   }
@@ -72,7 +103,17 @@ export function inspectCalculatorAsset(source) {
     throw new Error(`Unexpected public Release 4 version: ${releaseVersion}`);
   }
 
-  return { apiBase, calculationPath, releaseVersion };
+  for (const [constant, field] of [
+    ['RELEASE4_PAYLOAD_HASH', 'rulesetPayloadHash'], ['RELEASE4_RECORD_HASH', 'releaseRecordHash'],
+    ['RELEASE4_RESULT_CONTRACT', 'resultContractVersion'], ['RELEASE4_SCHEDULE', 'scheduleRevision'],
+    ['RELEASE4_INPUT_CONTRACT', 'inputContract'], ['RELEASE4_EVIDENCE_AS_OF', 'evidenceAsOf'],
+    ['RELEASE4_EVIDENCE_VALID_THROUGH', 'evidenceValidThrough'], ['RELEASE4_SLICE_ID', 'activeCoverageSliceIds']
+  ]) {
+    const value = exactSingleMatch(source, new RegExp(`const\\s+${constant}\\s*=\\s*["']([^"']+)["']`, 'g'), constant);
+    const expected = field === 'activeCoverageSliceIds' ? EXPECTED_AUTHORITY[field][0] : EXPECTED_AUTHORITY[field];
+    if (value !== expected) throw new Error(`Public asset signed identity mismatch: ${constant}`);
+  }
+  return { apiBase, calculationPath, releaseVersion, declarationContract };
 }
 
 function buildUrl(apiBase, calculationPath, params) {
@@ -105,7 +146,8 @@ function numericResultKeys(value, path = []) {
 export async function runPublicDutyProbe({
   fetchImpl = globalThis.fetch,
   assetUrl = DEFAULT_ASSET_URL,
-  timeoutMs = 60_000
+  timeoutMs = 60_000,
+  now = Date.now
 } = {}) {
   if (typeof fetchImpl !== 'function') throw new Error('fetch is unavailable');
   const requestOptions = { signal: AbortSignal.timeout(timeoutMs) };
@@ -115,64 +157,52 @@ export async function runPublicDutyProbe({
     throw new Error(`Public calculator asset returned HTTP ${assetResponse.status}`);
   }
   const assetContract = inspectCalculatorAsset(await assetResponse.text());
+  const evaluationAt = now();
+  if (!Number.isFinite(evaluationAt) || evaluationAt < Date.parse(EXPECTED_AUTHORITY.evidenceAsOf) ||
+      evaluationAt >= Date.parse(EXPECTED_AUTHORITY.evidenceValidThrough)) {
+    throw new Error('Signed public authority is outside its evidence window');
+  }
 
-  const qspResponse = await fetchImpl(
-    buildUrl(assetContract.apiBase, assetContract.calculationPath, QSP_INPUT),
-    requestOptions
-  );
-  const qspBody = await responseJson(qspResponse, 'QSP smoke');
-  const qsp = {
-    httpStatus: qspResponse.status,
-    status: qspBody.status,
-    totalRatePercent: qspBody.calculation?.totalRatePercent,
-    dutyAmount: qspBody.calculation?.dutyAmount?.amount,
-    estimatedSubtotal: qspBody.calculation?.estimatedSubtotal?.amount
-  };
-  const expectedQsp = {
-    httpStatus: 200,
-    status: 'calculated',
-    totalRatePercent: '42.500000',
-    dutyAmount: '425.00',
-    estimatedSubtotal: '1485.00'
-  };
-  for (const [key, expected] of Object.entries(expectedQsp)) {
-    if (qsp[key] !== expected) {
-      throw new Error(`QSP smoke ${key} mismatch: expected ${expected}, got ${qsp[key]}`);
+  const results = {};
+  for (const [name, label, input, expected] of [
+    ['qsp', 'QSP in-quota smoke', QSP_INPUT, ['37.500000', '375.00', '1435.00']],
+    ['overQuota', 'QSP over-quota smoke', OVER_QUOTA_INPUT, ['62.500000', '625.00', '1685.00']],
+    ['exempt', 'QSP exempt Brazil smoke', EXEMPT_INPUT, ['37.500000', '375.00', '1435.00']],
+    ['missingProduct', 'Missing product scope', MISSING_PRODUCT_INPUT, 'QSP_PRODUCT_REVIEW_REQUIRED'],
+    ['canada', 'Canada', CANADA_INPUT, 'UNSUPPORTED_ORIGIN_OR_DESTINATION']
+  ]) {
+    const response = await fetchImpl(buildUrl(assetContract.apiBase, assetContract.calculationPath, input), requestOptions);
+    const body = await responseJson(response, label);
+    if (typeof expected === 'string') {
+      const numericKeys = numericResultKeys(body);
+      if (numericKeys.length) throw new Error(`${label} response exposed a numeric calculation: ${numericKeys.join(', ')}`);
+      if (response.status !== 422 || body.status !== 'indeterminate' || body.code !== expected) {
+        throw new Error(`${label} containment mismatch: HTTP ${response.status}, status ${body.status}, code ${body.code}`);
+      }
+      results[name] = { httpStatus: response.status, status: body.status, code: body.code, numberFree: true };
+      continue;
     }
-  }
-
-  const canadaResponse = await fetchImpl(
-    buildUrl(assetContract.apiBase, assetContract.calculationPath, CANADA_INPUT),
-    requestOptions
-  );
-  const canadaBody = await responseJson(canadaResponse, 'Canada containment smoke');
-  const exposedNumericKeys = numericResultKeys(canadaBody);
-  if (exposedNumericKeys.length > 0) {
-    throw new Error(`Canada response exposed a numeric calculation: ${exposedNumericKeys.join(', ')}`);
-  }
-  if (
-    canadaResponse.status !== 422 ||
-    canadaBody.status !== 'indeterminate' ||
-    canadaBody.code !== 'NO_ACTIVE_COVERAGE_MATCH'
-  ) {
-    throw new Error(
-      `Canada containment mismatch: HTTP ${canadaResponse.status}, status ${canadaBody.status}, code ${canadaBody.code}`
-    );
-  }
-
-  return {
-    ok: true,
-    assetUrl,
-    releaseVersion: assetContract.releaseVersion,
-    calculationPath: assetContract.calculationPath,
-    qsp,
-    canada: {
-      httpStatus: canadaResponse.status,
-      status: canadaBody.status,
-      code: canadaBody.code,
-      numberFree: true
+    const summary = { httpStatus: response.status, status: body.status,
+      totalRatePercent: body.calculation?.totalRatePercent,
+      dutyAmount: body.calculation?.dutyAmount?.amount,
+      estimatedSubtotal: body.calculation?.estimatedSubtotal?.amount };
+    const required = { httpStatus: 200, status: 'calculated', totalRatePercent: expected[0], dutyAmount: expected[1], estimatedSubtotal: expected[2] };
+    for (const [key, value] of Object.entries(required)) {
+      if (summary[key] !== value) throw new Error(`${label} ${key} mismatch: expected ${value}, got ${summary[key]}`);
     }
-  };
+    if (body.inputFingerprint !== probeInputFingerprint(input)) throw new Error(`${label} request fingerprint mismatch`);
+    if (body.authority?.state !== 'active') throw new Error(`${label} authority state mismatch`);
+    for (const [key, expected] of Object.entries(EXPECTED_AUTHORITY)) {
+      if (JSON.stringify(body.authority?.[key]) !== JSON.stringify(expected)) throw new Error(`${label} signed authority ${key} mismatch`);
+    }
+    for (const key of ['dutyAmount', 'estimatedSubtotal']) {
+      if (body.calculation[key]?.currency !== 'USD') throw new Error(`${label} ${key} currency mismatch`);
+    }
+    results[name] = summary;
+  }
+  return { ok: true, assetUrl, releaseVersion: assetContract.releaseVersion,
+    declarationContract: assetContract.declarationContract, calculationPath: assetContract.calculationPath, ...results };
+
 }
 
 async function main() {
