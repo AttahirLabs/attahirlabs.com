@@ -36,7 +36,9 @@ assert.equal(tariff.plans.find(p => p.name === 'Pro').period, 'year');
 assert.match(read('apps/tariffshield/index.html'), /U\.S\. quartz surface product scenarios/);
 assert.match(read('apps/tariffshield/index.html'), /Both Exact Duty and multi-market margin calculations are temporarily unavailable/);
 assert.match(read('apps/tariffshield/index.html'), /Unsupported or incomplete cases also return no duty number/);
-assert.match(read('apps/tariffshield/index.html'), /Current availability:/);
+for (const page of ['index.html', 'apps/index.html', 'apps/tariffshield/index.html']) {
+  assert.doesNotMatch(read(page), /class="availability-notice"/, `${page}: TariffShield notice banner should be hidden`);
+}
 for (const slug of ['stockclearance', 'shelflife']) {
   assert.ok(catalog.products.find(p => p.slug === slug).plans.filter(p => p.price > 0).every(p => p.trialDays === 14));
 }
