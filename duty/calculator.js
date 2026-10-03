@@ -1,13 +1,98 @@
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
-const RELEASE4_VERSION = "2026.08.24+release4.1";
-const RELEASE4_PAYLOAD_HASH = "e61284a4dcf171b9f8c12c49d60656715079d066d9f989ca2d2aa0948c3e9fe8";
-const RELEASE4_RECORD_HASH = "0d10de282bd2a7f1a5585957d7836785f8620c86348115dab6797124ae2ff289";
-const RELEASE4_SLICE_ID = "slice:release4:exact-qsp-rev17";
-const RELEASE4_SCHEDULE = "2026HTSRev17";
-const RELEASE4_INPUT_CONTRACT = "exact_caller_supplied_htsus_mfn_chapter99_release4_qsp_only";
+const RELEASE4_VERSION = "2026.10.01+release4.5";
+const RELEASE4_PAYLOAD_HASH = "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb";
+const RELEASE4_RECORD_HASH = "fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77";
+const RELEASE4_SLICE_ID = "slice:release4:exact-qsp-rev20-ordinary-general";
+const RELEASE4_SCHEDULE = "2026HTSRev20";
+const RELEASE4_INPUT_CONTRACT = "us-qsp-ordinary-general-rev20/v3";
 const RELEASE4_RESULT_CONTRACT = "tariff.result-contract/v3";
-const RELEASE4_EVIDENCE_AS_OF = "2026-08-24T16:20:00Z";
-const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-08-31T16:20:00Z";
+const RELEASE4_EVIDENCE_AS_OF = "2026-10-01T13:05:00Z";
+const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-10-08T13:05:00Z";
+// Caller declarations must match the pinned signed Rev20 ordinary General authority.
+const DUTY_DECLARATION_CONTRACT = "us-qsp-ordinary-general-rev20/v3";
+const ORDINARY_COUNTRY_HEADINGS = {
+  "AE": "9903.05.80",
+  "AO": "9903.05.21",
+  "AR": "9903.05.22",
+  "AT": "9903.05.39",
+  "AU": "9903.05.23",
+  "BD": "9903.05.26",
+  "BE": "9903.05.39",
+  "BG": "9903.05.39",
+  "BH": "9903.05.25",
+  "BR": "9903.05.27",
+  "BS": "9903.05.24",
+  "CH": "9903.05.74",
+  "CL": "9903.05.30",
+  "CO": "9903.05.32",
+  "CR": "9903.05.33",
+  "CY": "9903.05.39",
+  "CZ": "9903.05.39",
+  "DE": "9903.05.39",
+  "DK": "9903.05.39",
+  "DO": "9903.05.34",
+  "DZ": "9903.05.20",
+  "EC": "9903.05.35",
+  "EE": "9903.05.39",
+  "EG": "9903.05.36",
+  "ES": "9903.05.39",
+  "FI": "9903.05.39",
+  "FR": "9903.05.39",
+  "GB": "9903.05.81",
+  "GR": "9903.05.39",
+  "GT": "9903.05.40",
+  "GY": "9903.05.41",
+  "HK": "9903.05.43",
+  "HN": "9903.05.42",
+  "HR": "9903.05.39",
+  "HU": "9903.05.39",
+  "ID": "9903.05.45",
+  "IE": "9903.05.39",
+  "IL": "9903.05.47",
+  "IQ": "9903.05.46",
+  "IT": "9903.05.39",
+  "JO": "9903.05.50",
+  "JP": "9903.05.49",
+  "KH": "9903.05.28",
+  "KR": "9903.05.71",
+  "KW": "9903.05.52",
+  "KZ": "9903.05.51",
+  "LK": "9903.05.72",
+  "LT": "9903.05.39",
+  "LU": "9903.05.39",
+  "LV": "9903.05.39",
+  "LY": "9903.05.53",
+  "MA": "9903.05.56",
+  "MT": "9903.05.39",
+  "MX": "9903.05.55",
+  "NG": "9903.05.59",
+  "NL": "9903.05.39",
+  "NO": "9903.05.60",
+  "NZ": "9903.05.57",
+  "OM": "9903.05.61",
+  "PE": "9903.05.63",
+  "PH": "9903.05.64",
+  "PK": "9903.05.62",
+  "PL": "9903.05.39",
+  "PT": "9903.05.39",
+  "QA": "9903.05.65",
+  "RO": "9903.05.39",
+  "SA": "9903.05.67",
+  "SE": "9903.05.39",
+  "SG": "9903.05.68",
+  "SI": "9903.05.39",
+  "SK": "9903.05.39",
+  "SV": "9903.05.37",
+  "TH": "9903.05.77",
+  "TT": "9903.05.78",
+  "TW": "9903.05.76",
+  "UY": "9903.05.82",
+  "VE": "9903.05.83",
+  "VN": "9903.05.84",
+  "ZA": "9903.05.69"
+};
+const QSP_EXEMPT_ORIGINS = new Set(["AO","AU","BR","BS","CO","CR","DO","DZ","EC","EG","GT","GY","HN","ID","IL","IQ","JO","KH","KR","KZ","LK","MX","NG","PE","PH","PK","SG","SV","TT","ZA"]);
+const QSP_GENERAL_MFN = { "6810990020": 0, "6810990040": 0, "7020006000": 5 };
 const RELEASE4_LINE_OPERATIONS = new Set(["add", "replace", "fill_to", "cap", "exempt"]);
 const RELEASE4_LINE_DISPOSITIONS = new Set(["applied", "zero", "exempt"]);
 let dutySubmission = 0;
@@ -177,6 +262,8 @@ function release4AuthorityUsable(data) {
 }
 
 function normalizeRelease4Calculation(data, requestAmounts) {
+  if (!/^[a-f0-9]{64}$/.test(requestAmounts?.inputFingerprint || "") ||
+      data?.inputFingerprint !== requestAmounts.inputFingerprint) return null;
   if (data?.status !== "calculated" || !release4AuthorityUsable(data) || !isRecord(data.calculation)) return null;
   const calculation = data.calculation;
   if (
@@ -327,53 +414,122 @@ function formValue(id) {
   return document.getElementById(id).value.trim();
 }
 
+function validEvidenceReference(value) {
+  const length = Array.from(value.trim()).length;
+  return length >= 8 && length <= 300;
+}
+
+function canonicalInputMoney(value, required, maximum) {
+  if (!required && !value) return "0.00";
+  const cents = inputMoneyToCents(value);
+  if (cents === null || (required && cents <= 0n) || cents > BigInt(maximum) * 100n) {
+    throw new TypeError("Supply a canonical USD amount within the supported range.");
+  }
+  return `${cents / 100n}.${String(cents % 100n).padStart(2, "0")}`;
+}
+
+function readExactDutyInput() {
+  const input = {};
+  for (const key of ["calculationBasis", "origin", "manufacturingOrigin", "thirdCountryProcessing",
+    "certificationDisposition", "brokerEntryReference", "adCvdStatus", "adCvdEvidenceRef",
+    "entryTreatment", "qspProductStatus", "qspProductEvidenceRef", "hts", "entryAt", "customsValue",
+    "mfnRate", "forcedLaborCountryHeading", "forcedLaborExceptionHeading", "brazilHeading", "qspHeading",
+    "qspQuotaStatus", "qspQuotaEvidenceRef", "qspQuotaReviewedAt", "shippingCost", "insuranceCost"]) {
+    input[key] = formValue(key);
+  }
+  input.origin = input.origin.toUpperCase();
+  input.manufacturingOrigin = input.manufacturingOrigin.toUpperCase();
+  input.hts = input.hts.replaceAll(".", "");
+  input.forcedLaborExceptionHeading = input.forcedLaborExceptionHeading.toUpperCase();
+  if (!["entry", "per_unit"].includes(input.calculationBasis)) throw new TypeError("Select entry or per-unit calculation basis.");
+  if (!Object.hasOwn(QSP_GENERAL_MFN, input.hts)) throw new TypeError("This scope requires 6810990020, 6810990040, or 7020006000; an eight-digit parent is insufficient.");
+  if (!Object.hasOwn(ORDINARY_COUNTRY_HEADINGS, input.origin)) throw new TypeError("This origin is outside the supported ordinary General scope.");
+  if (input.qspProductStatus !== "subject_qsp" || !validEvidenceReference(input.qspProductEvidenceRef)) {
+    throw new TypeError("Declare reviewed Note 41(a) subject-QSP product scope and provide an 8–300 code-point evidence reference, including review of the subject-QSP customs value portion.");
+  }
+  if (input.manufacturingOrigin !== input.origin || input.thirdCountryProcessing !== "none" ||
+      input.certificationDisposition !== "not_required" || input.adCvdStatus !== "not_subject" ||
+      input.entryTreatment !== "ordinary_general" || !validEvidenceReference(input.brokerEntryReference) ||
+      !validEvidenceReference(input.adCvdEvidenceRef)) {
+    throw new TypeError("Explicit original slab origin, processing, certification, ordinary General treatment and AD/CVD review declarations are required, with 8–300 code-point references.");
+  }
+  if (!/^(?:0|[1-9]\d{0,2})(?:\.\d{1,6})?$/.test(input.mfnRate) ||
+      Number(input.mfnRate) !== QSP_GENERAL_MFN[input.hts] || input.forcedLaborExceptionHeading !== "NONE" ||
+      input.forcedLaborCountryHeading !== ORDINARY_COUNTRY_HEADINGS[input.origin] ||
+      (input.origin === "BR" ? input.brazilHeading !== "9903.05.01" : Boolean(input.brazilHeading))) {
+    throw new TypeError("Headings and MFN must match the supported ordinary General scope. NONE is allowed for ordinary Brazil; 9903.05.27 as an exception or other threshold/special treatment is unsupported.");
+  }
+  input.entryAt = normalizeEntryAt(input.entryAt);
+  const entry = input.entryAt ? Date.parse(input.entryAt) : NaN;
+  const now = Date.now();
+  if (!Number.isFinite(entry) || !Number.isFinite(now) || entry < Date.parse("2026-08-15T04:01:00Z") || entry > now) {
+    throw new TypeError("Supply a valid UTC entry instant within the supported entry window and no later than now.");
+  }
+  const exempt = QSP_EXEMPT_ORIGINS.has(input.origin);
+  if (exempt) {
+    if (input.qspHeading || input.qspQuotaStatus || input.qspQuotaEvidenceRef || input.qspQuotaReviewedAt) {
+      throw new TypeError("QSP-exempt origins must omit the QSP heading and all quota declarations.");
+    }
+  } else {
+    const expected = { "9903.45.30": "allocated_in_quota", "9903.45.31": "confirmed_over_quota" }[input.qspHeading];
+    const reviewed = normalizeEntryAt(input.qspQuotaReviewedAt);
+    if (!expected || input.qspQuotaStatus !== expected || !validEvidenceReference(input.qspQuotaEvidenceRef) ||
+        !reviewed || Date.parse(reviewed) < entry || Date.parse(reviewed) > now) {
+      throw new TypeError("Supply the matching QSP quota disposition and 8–300 code-point evidence, reviewed at or after entry and no later than now.");
+    }
+    input.qspQuotaReviewedAt = reviewed;
+  }
+  for (const key of ["brazilHeading", "qspHeading", "qspQuotaStatus", "qspQuotaEvidenceRef", "qspQuotaReviewedAt"]) {
+    if (!input[key]) delete input[key];
+  }
+  input.customsValue = canonicalInputMoney(input.customsValue, true, 10_000_000);
+  input.shippingCost = canonicalInputMoney(input.shippingCost, false, 1_000_000);
+  input.insuranceCost = canonicalInputMoney(input.insuranceCost, false, 1_000_000);
+  return input;
+}
+
+async function exactDutyInputFingerprint(input) {
+  // Property order and null optional fields match the gateway exactInputFingerprint.
+  const identity = {
+    destination: "US", basis: input.calculationBasis,
+    origin: input.origin, manufacturingOrigin: input.manufacturingOrigin,
+    thirdCountryProcessing: input.thirdCountryProcessing, certificationDisposition: input.certificationDisposition,
+    brokerEntryReference: input.brokerEntryReference, adCvdStatus: input.adCvdStatus,
+    adCvdEvidenceRef: input.adCvdEvidenceRef, entryTreatment: input.entryTreatment,
+    qspProductStatus: input.qspProductStatus, qspProductEvidenceRef: input.qspProductEvidenceRef,
+    hts: input.hts, entryAt: input.entryAt, customsValue: input.customsValue, mfnRate: input.mfnRate,
+    forcedLaborCountryHeading: input.forcedLaborCountryHeading, forcedLaborExceptionHeading: input.forcedLaborExceptionHeading,
+    brazilHeading: input.brazilHeading ?? null, qspHeading: input.qspHeading ?? null,
+    qspQuotaStatus: input.qspQuotaStatus ?? null, qspQuotaEvidenceRef: input.qspQuotaEvidenceRef ?? null,
+    qspQuotaReviewedAt: input.qspQuotaReviewedAt ?? null,
+    shippingCost: input.shippingCost, insuranceCost: input.insuranceCost,
+  };
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(JSON.stringify(identity)));
+  return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
+}
+
 async function calculate() {
   if (dutyInFlight) return;
   const actionKey = `duty:${++dutySubmission}`;
-  const origin = formValue("origin").toUpperCase();
-  const hts = formValue("hts");
-  const customsValue = formValue("customsValue");
-  const mfnRate = formValue("mfnRate");
-  const forcedLaborCountryHeading = formValue("forcedLaborCountryHeading");
-  const forcedLaborExceptionHeading = formValue("forcedLaborExceptionHeading").toUpperCase();
-  const brazilHeading = formValue("brazilHeading");
-  const qspHeading = formValue("qspHeading");
-  const entryAt = formValue("entryAt");
-  const normalizedEntryAt = normalizeEntryAt(entryAt);
-  const shippingCost = formValue("shippingCost") || "0";
-  const insuranceCost = formValue("insuranceCost") || "0";
   const error = document.getElementById("error");
   error.style.display = "none";
   clearNumericResult();
-
-  const compactHts = hts.replaceAll(".", "");
-  const customsValueCents = inputMoneyToCents(customsValue);
-  const shippingCostCents = inputMoneyToCents(shippingCost);
-  const insuranceCostCents = inputMoneyToCents(insuranceCost);
-  if (
-    !origin ||
-    !/^(?:0[1-9]|[1-8]\d|9[0-7])\d{6}(?:\d{2})?$/.test(compactHts) ||
-    customsValueCents === null ||
-    customsValueCents <= 0n ||
-    shippingCostCents === null ||
-    insuranceCostCents === null ||
-    !mfnRate ||
-    !forcedLaborCountryHeading ||
-    !forcedLaborExceptionHeading ||
-    (origin === "BR" && !brazilHeading) ||
-    (qspHeading && !/^9903\.45\.(?:30|31)$/.test(qspHeading)) ||
-    normalizedEntryAt === null
-  ) {
-    error.textContent = "Complete every required exact-input field.";
+  let input;
+  try {
+    input = readExactDutyInput();
+  } catch (validation) {
+    error.textContent = validation.message;
     error.style.display = "block";
-    showUnavailable(null, "Indeterminate — required exact inputs are missing");
+    showUnavailable(null, "Indeterminate — required exact inputs are missing or unsupported");
     window.AttahirAnalytics?.once(`${actionKey}:validation`, "tool_validation_failed", {
-      surface: "duty_calculator",
-      tool_name: "duty_calculator",
-      error_code: "validation"
+      surface: "duty_calculator", tool_name: "duty_calculator", error_code: "validation"
     });
     return;
   }
+  const { origin } = input;
+  const customsValueCents = inputMoneyToCents(input.customsValue);
+  const shippingCostCents = inputMoneyToCents(input.shippingCost);
+  const insuranceCostCents = inputMoneyToCents(input.insuranceCost);
 
   const button = document.getElementById("calcBtn");
   dutyInFlight = true;
@@ -393,19 +549,12 @@ async function calculate() {
   const controller = new AbortController();
   const deadline = setTimeout(() => controller.abort(), 60_000);
   try {
-    const params = new URLSearchParams({
-      origin,
-      hts,
-      customsValue,
-      mfnRate,
-      forcedLaborCountryHeading,
-      forcedLaborExceptionHeading,
-      shippingCost,
-      insuranceCost
-    });
-    if (origin === "BR") params.set("brazilHeading", brazilHeading);
-    if (qspHeading) params.set("qspHeading", qspHeading);
-    params.set("entryAt", normalizedEntryAt);
+    const inputFingerprint = await exactDutyInputFingerprint(input);
+    if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(input)) {
+      if (value !== undefined) params.set(key, value);
+    }
     const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params, { signal: controller.signal });
     let data = {};
     try {
@@ -434,6 +583,7 @@ async function calculate() {
     }
 
     const calculation = normalizeRelease4Calculation(data, {
+      inputFingerprint,
       customsValueCents,
       shippingCostCents,
       insuranceCostCents
