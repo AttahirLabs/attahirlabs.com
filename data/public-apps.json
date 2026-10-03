@@ -8,7 +8,7 @@
       "listingName": "StockClearance & Markdown",
       "icon": "/assets/icons/stockclearance-suite.png",
       "iconAlt": "StockClearance logo",
-      "headline": "Find aging stock. Make room for what sells.",
+      "headline": "Make room for what sells.",
       "description": "Review slow-moving, dead, and seasonal inventory, then choose markdowns, bundles, or clearance actions from your Shopify admin.",
       "summary": "Find aging inventory and turn the next clearance decision into action.",
       "homeFeatures": [
@@ -122,7 +122,8 @@
       ],
       "pricingHeading": "All current features, free.",
       "pricingDescription": "Full access to StockClearance without a subscription.",
-      "pricingChecked": "September 27, 2026"
+      "pricingChecked": "September 27, 2026",
+      "homeHeadline": "Make room for what sells."
     },
     {
       "slug": "tariffshield",
@@ -130,7 +131,7 @@
       "listingName": "TariffShield: Margin Analyzer",
       "icon": "/assets/icons/tariffshield-suite.png",
       "iconAlt": "TariffShield app icon",
-      "headline": "TariffShield is temporarily limited while tariff data is reviewed.",
+      "headline": "Keep your import history in view.",
       "description": "TariffShield is available to install, but current tariff and margin calculations, scenarios, alerts, exports, and price changes are paused while tariff data is reviewed. Historical records and account settings remain visible.",
       "summary": "Current calculations and price actions are paused while tariff data is reviewed.",
       "homeFeatures": [
@@ -268,7 +269,8 @@
         }
       ],
       "availabilityNotice": "Tariff data needs review. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are unavailable. Historical records and account settings remain visible. No duty number is returned.",
-      "showAvailabilityNotice": false
+      "showAvailabilityNotice": false,
+      "homeHeadline": "Your import workspace."
     },
     {
       "slug": "shelflife",
@@ -276,7 +278,7 @@
       "listingName": "ShelfLife: Expiry Date Tracker",
       "icon": "/assets/icons/shelflife-suite.png",
       "iconAlt": "ShelfLife app icon showing product shelves inside a countdown ring",
-      "headline": "Know what expires next.",
+      "headline": "Fresh stock. Clear priorities.",
       "description": "Keep expiry dates, batches, suppliers, and locations together. Review stock at risk, plan what to pick first, and keep traceability records close at hand.",
       "summary": "Track batches and expiry risk, with picking guidance and supplier records.",
       "homeFeatures": [
@@ -391,7 +393,8 @@
       ],
       "pricingHeading": "All supported features are free.",
       "pricingDescription": "Use the available tools without a subscription charge.",
-      "pricingChecked": "September 30, 2026"
+      "pricingChecked": "September 30, 2026",
+      "homeHeadline": "Know what expires next."
     }
   ],
   "unlistedApps": [
