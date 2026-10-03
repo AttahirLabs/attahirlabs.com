@@ -267,7 +267,8 @@
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CN2Ete_2mZUDEAE=.png?height=720&width=1280"
         }
       ],
-      "availabilityNotice": "Tariff data needs review. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are unavailable. Historical records and account settings remain visible. No duty number is returned."
+      "availabilityNotice": "Tariff data needs review. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are unavailable. Historical records and account settings remain visible. No duty number is returned.",
+      "showAvailabilityNotice": false
     },
     {
       "slug": "shelflife",
