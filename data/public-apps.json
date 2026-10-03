@@ -8,55 +8,55 @@
       "listingName": "StockClearance & Markdown",
       "icon": "/assets/icons/stockclearance-suite.png",
       "iconAlt": "StockClearance logo",
-      "headline": "Make room for what sells.",
-      "description": "Review slow-moving, dead, and seasonal inventory, then choose markdowns, bundles, or clearance actions from your Shopify admin.",
-      "summary": "Find aging inventory and turn the next clearance decision into action.",
+      "headline": "Give slow-moving stock a reviewed clearance plan.",
+      "description": "Find slow movers, choose individual SKUs, and preview staged markdowns before starting a campaign. Set price floors and discount caps, manage a supported market catalog, and review what happens next.",
+      "summary": "Review variant markdowns and manage staged inventory clearance campaigns.",
       "homeFeatures": [
-        "Dead and slow stock scans",
-        "Flash sales, bundles, and clearance collections",
-        "Scheduled scans and inventory reporting"
+        "Variant selection and staged markdowns",
+        "Supported catalog prices and Shopify Flow",
+        "Campaign outcomes and reusable policies"
       ],
       "priceSummary": "Free — all current features included",
-      "trialSummary": "No subscription required",
-      "workflowTitle": "From inventory signal to clearance decision.",
+      "trialSummary": "No app subscription charge",
+      "workflowTitle": "From stock review to a confirmed clearance plan.",
       "features": [
         [
-          "Find stock that needs attention",
-          "Review inventory age, stock value, and sales signals where order access is available."
+          "Find the SKUs to review",
+          "Scan inventory and available sales history. Rank opportunities, inspect freshness and cost coverage, and select individual variants."
         ],
         [
-          "Choose a clearance action",
-          "Launch a flash sale, apply bulk discounts, or organize products into a clearance collection."
+          "Set a staged markdown plan",
+          "Choose the age basis, stages, exclusions, price floor and discount cap. Optional gross-margin rules require verified costs in the selected currency."
         ],
         [
-          "Review bundle opportunities",
-          "Consider related slow movers together and review the discount before taking action."
+          "Choose the right price scope",
+          "Manage base prices or one supported geographic market catalog. Country prices and compare-at values must agree for a shared catalog markdown."
         ],
         [
-          "Build a regular review habit",
-          "Configure automatic scans and optional weekly digest emails to keep inventory work visible."
+          "Control how a campaign ends",
+          "Pause future changes, end and restore saved originals, or end and keep verified markdowns. Outside edits are flagged for review."
         ],
         [
-          "Use custom clearance rules",
-          "Set clearance rules that reflect your own inventory and markdown decisions."
+          "Prepare clearance merchandising",
+          "Apply campaign tags, prepare a selected manual clearance collection, and connect campaign events to Shopify Flow. Product-level actions can affect all variants."
         ],
         [
-          "Review the results",
-          "Use inventory health and clearance reports to follow activity and the sales data available to the app."
+          "Review results and prepare a handoff",
+          "Inspect allocated campaign sales, refunds and net units. Export audits, outcomes, recovery records and marketing briefs with current stock and price checks."
         ]
       ],
       "steps": [
         [
-          "Connect your catalog",
-          "Install from Shopify and review the requested product, inventory, order, and discount access."
+          "Scan and select",
+          "Review completed catalog and sales observations. Choose the variants that fit your clearance policy."
         ],
         [
-          "Run your first scan",
-          "Scan your full catalog. Review slow, dead, and seasonal stock and the available sales signals."
+          "Preview and confirm",
+          "Check target prices, currency, costs and exclusions. Confirm the reviewed campaign before markdowns start."
         ],
         [
-          "Choose your next action",
-          "Review prices and margins, then choose clearance actions across your catalog."
+          "Monitor and decide",
+          "Review the inbox, receipts and outcomes. Pause, restore or keep prices as your plan changes."
         ]
       ],
       "plans": [
@@ -67,63 +67,125 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Full catalog scans",
-            "Configurable automatic scans",
-            "Flash sales, bulk discounts, and clearance collections",
-            "Bundle opportunities",
-            "Inventory health dashboard",
-            "Custom clearance rules",
-            "Advanced clearance reporting"
+            "Inventory scans without a product-count plan limit",
+            "Staged variant markdowns",
+            "Supported market catalog pricing",
+            "Campaign tags, manual collections and Shopify Flow",
+            "Campaign outcomes and CSV exports",
+            "Reusable clearance policies",
+            "Curated quantity offers"
           ]
         }
       ],
       "faqs": [
         [
           "Can I start for free?",
-          "Yes. All current StockClearance features are free, including full catalog scans, clearance actions, custom rules, and advanced reports. No subscription approval is required."
+          "Yes. All current StockClearance features are included with no app subscription charge or product-count plan limit. Campaigns support up to 2,048 selected variants; large catalogs require a separate capacity check."
         ],
         [
-          "What happens if order access is unavailable?",
-          "StockClearance uses available inventory age and stock-level signals. Sales velocity and sales-based results depend on the order history Shopify makes available to the app."
+          "Can I clear selected sizes or colors?",
+          "Yes. Choose individual variants or all variants matching your filters. Product tags and collections still apply at product level."
         ],
         [
-          "Will the app change my prices?",
-          "Clearance actions can change prices or create discounts and collections. Review the proposed action and your settings; custom rules can automate the clearance decisions you configure."
+          "How do staged markdowns work?",
+          "Each stage uses the saved original price, with your floor and discount cap. The final stage holds its price; an end date or end action controls restoration."
+        ],
+        [
+          "Can it protect my margin?",
+          "Optional minimum gross-margin rules require a verified cost in the selected currency. The calculation excludes tax, shipping, fees, overhead and other discounts, so it does not guarantee final order profitability."
+        ],
+        [
+          "Which market catalogs are supported?",
+          "Base prices and supported geographic market catalogs can be managed separately. A catalog supports up to eight market contexts and eight active countries with matching effective prices and compare-at values. Competing catalogs, B2B company-location and retail contexts are blocked. Cross-currency inherited pricing requires Markets and publication read access; shop-currency costs remain unknown in another currency."
+        ],
+        [
+          "What happens when I stop a campaign?",
+          "Pause keeps prices and stops future changes. End and restore restores matching saved app-owned originals. End and keep retains verified markdowns and ends progression. Outside edits and uncertain operations require review."
+        ],
+        [
+          "Does it create bundle products?",
+          "Curated offers create quantity discounts on 2–5 selected variants. Repeated units of one eligible SKU can qualify. They do not create a new bundle product or require one of every item."
+        ],
+        [
+          "What do campaign outcomes measure?",
+          "Outcomes allocate observed order lines to campaign item windows and subtract refunded line quantities. They show coverage gaps and do not prove extra revenue caused by the app or physical returns. Gross-profit calculations require verified costs."
+        ],
+        [
+          "Does it send customer promotions?",
+          "Marketing briefs prepare editable draft copy after checking stock and prices. Exports and Flow events do not themselves send customer marketing or buy ads."
         ],
         [
           "What data does StockClearance use?",
-          "Product and inventory records, prices, available unit costs, discount and action records, and order-line signals support the inventory workflow. See the StockClearance section of our privacy policy for collection, measurement, and deletion details."
+          "Product, variant, inventory, price, available cost, market/catalog context, discount and campaign records, and order-line signals support the workflow. See the StockClearance privacy policy section."
         ],
         [
           "How do I stop using StockClearance?",
-          "There is no subscription to cancel for free access. Review and end any active clearance actions before uninstalling; uninstalling the app triggers account-data cleanup."
+          "Review and end active campaigns, recover pending operations, and deactivate offers before uninstalling. Free access has no app subscription to cancel. Uninstalling removes the access needed for further price restoration."
         ]
       ],
       "guide": "/blog/dead-stock-clearance-q2-2026/",
       "guideLabel": "Read the dead-stock guide",
-      "sourceRevision": "7abce2a407591e43b8ac7ccf622aff923d2f5383",
+      "sourceRevision": "239094269a1eb6915651c0471ed58167a73a9f74",
       "listing": "https://apps.shopify.com/stockclearance",
       "screenshots": [
         {
-          "src": "/assets/apps/stockclearance/screen-1.png",
-          "alt": "Dead and slow stock table with product level actions",
-          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CIysoe35pJUDEAE=.png?height=720&width=1280"
+          "src": "/assets/apps/stockclearance/01-variant-selection.jpg",
+          "alt": "Actual StockClearance campaign interface in an owned development store before the first scan",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/01-variant-selection.jpg",
+          "kind": "actual_app_ui",
+          "width": 1600,
+          "height": 900
         },
         {
-          "src": "/assets/apps/stockclearance/screen-2.png",
-          "alt": "Flash sale modal for applying product markdowns",
-          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CLrbk9amo5UDEAE=.png?height=720&width=1280"
+          "src": "/assets/apps/stockclearance/02-staged-markdowns.jpg",
+          "alt": "Explanatory staged markdown example with an original-price baseline, price floors and discount caps",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/02-staged-markdowns.jpg",
+          "kind": "explanatory_diagram",
+          "width": 1600,
+          "height": 900
         },
         {
-          "src": "/assets/apps/stockclearance/screen-3.png",
-          "alt": "Bundle suggestions for related slow movers",
-          "source": "https://cdn.shopify.com/app-store/listing_images/8e1f5e97a4675cbdcb8b56117327634f/desktop_screenshot/CJmqndamo5UDEAE=.png?height=720&width=1280"
+          "src": "/assets/apps/stockclearance/03-catalog-pricing.jpg",
+          "alt": "Explanatory pricing scope diagram for base prices or a supported geographic market catalog",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/03-catalog-pricing.jpg",
+          "kind": "explanatory_diagram",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "src": "/assets/apps/stockclearance/04-campaign-controls.jpg",
+          "alt": "Explanatory campaign controls for pause, end and restore, or end and keep",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/04-campaign-controls.jpg",
+          "kind": "explanatory_diagram",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "src": "/assets/apps/stockclearance/05-flow-merchandising.jpg",
+          "alt": "Explanatory diagram of supported StockClearance campaign events for Shopify Flow",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/05-flow-merchandising.jpg",
+          "kind": "explanatory_diagram",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "src": "/assets/apps/stockclearance/06-outcomes-handoff.jpg",
+          "alt": "Explanatory outcomes and export choices for campaign records and marketing briefs",
+          "source": "https://attahirlabs.com/assets/apps/stockclearance/06-outcomes-handoff.jpg",
+          "kind": "explanatory_diagram",
+          "width": 1600,
+          "height": 900
         }
       ],
       "pricingHeading": "All current features, free.",
-      "pricingDescription": "Full access to StockClearance without a subscription.",
-      "pricingChecked": "September 27, 2026",
-      "homeHeadline": "Make room for what sells."
+      "pricingDescription": "No app subscription charge or product-count plan limit. Campaigns support up to 2,048 selected variants; large catalogs need a separate capacity check.",
+      "pricingChecked": "October 3, 2026",
+      "homeHeadline": "Give slow-moving stock a reviewed clearance plan.",
+      "walkthroughScreenshotIndices": [
+        0,
+        1,
+        3
+      ]
     },
     {
       "slug": "tariffshield",
