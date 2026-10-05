@@ -33,9 +33,45 @@ for (const p of catalog.products) {
 const tariff = catalog.products.find(p => p.slug === 'tariffshield');
 assert.ok(tariff.plans.every(p => p.trialDays === 0));
 assert.equal(tariff.plans.find(p => p.name === 'Pro').period, 'year');
-assert.match(read('apps/tariffshield/index.html'), /U\.S\. quartz surface product scenarios/);
-assert.match(read('apps/tariffshield/index.html'), /Both Exact Duty and multi-market margin calculations are temporarily unavailable/);
-assert.match(read('apps/tariffshield/index.html'), /Unsupported or incomplete cases also return no duty number/);
+const tariffHtml = read('apps/tariffshield/index.html');
+assert.equal(tariff.headline, 'Review duties and margins for U.S. quartz surface products.');
+assert.match(tariffHtml, /Current coverage: ordinary General U.S. entries under HTSUS 6810990020, 6810990040 and 7020006000, from supported origins/);
+assert.match(tariffHtml, /Unsupported or incomplete inputs produce no estimate/);
+assert.match(tariffHtml, /Canada, China, Russia, India, Türkiye, Nicaragua and Malaysia are outside this authority slice/);
+assert.match(tariffHtml, /Every price update requires explicit confirmation of the displayed variant and amounts/);
+assert.match(tariffHtml, /Unknown estimates are blank/);
+assert.match(tariffHtml, /Current numeric guidance stops until a reviewed release is active/);
+assert.match(tariffHtml, /Custom rate overrides and broad multi-market analysis remain unavailable/);
+assert.equal(tariff.features.length, 6);
+assert.deepEqual(tariff.plans.map(({ name, price, period, alternate, trialDays }) => ({ name, price, period, alternate, trialDays })), [
+  { name: 'Free', price: 0, period: '', alternate: null, trialDays: 0 },
+  { name: 'Standard', price: 19, period: 'month', alternate: null, trialDays: 0 },
+  { name: 'Pro', price: 190, period: 'year', alternate: null, trialDays: 0 }
+]);
+assert.deepEqual(tariff.plans[0].features, [
+  'Track up to 10 variants.',
+  'Review supported U.S. QSP duties and margins.',
+  'Confirm individual suggested price changes.'
+]);
+assert.deepEqual(tariff.plans[1].features, [
+  'Track unlimited variants.',
+  'Compare unsaved scenarios with complete supported filing facts.',
+  'Confirm individual or page-level bulk price changes.',
+  'Opt into covered-margin alerts and weekly summaries.'
+]);
+assert.deepEqual(tariff.plans[2].features, [
+  'Includes Standard features.',
+  'Export current catalog CSV with coverage and authority evidence.'
+]);
+assert.ok(tariff.screenshots.every(s => s.alt.startsWith('Historical') && s.alt.includes('Not current guidance')));
+for (const page of ['index.html', 'apps/index.html']) {
+  const html = read(page);
+  const card = html.match(/<article[^>]*data-app="tariffshield"[\s\S]*?<\/article>/)[0];
+  assert.ok(card.includes(tariff.summary));
+  assert.doesNotMatch(card, /Paused|currently paused|data under review/i);
+  assert.match(card, /Complete reviewed filing facts are required/);
+}
+assert.doesNotMatch(tariffHtml, /currently paused|temporarily unavailable|wait for verified data|Calculation features shown are paused/i);
 for (const page of ['index.html', 'apps/index.html', 'apps/tariffshield/index.html']) {
   assert.doesNotMatch(read(page), /class="availability-notice"/, `${page}: TariffShield notice banner should be hidden`);
 }
