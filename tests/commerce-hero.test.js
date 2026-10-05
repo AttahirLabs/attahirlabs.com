@@ -1,4 +1,13 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const html = fs.readFileSync(require('node:path').join(__dirname, '..', 'index.html'), 'utf8');
+const tariffPanel = html.match(/<article[^>]*data-commerce-panel="5"[\s\S]*?<\/article>/)[0];
+assert.match(tariffPanel, /U\.S\. quartz surface/);
+assert.match(tariffPanel, /Complete reviewed facts/);
+assert.match(tariffPanel, /Confirm exact amounts/);
+assert.match(tariffPanel, /Illustrative workflow/);
+assert.doesNotMatch(tariffPanel, /Ceramic table lamp|Import duty|Landed cost|\$[0-9]/);
+
 (async () => {
   const {CommerceTimeline} = await import('../assets/commerce/timeline.mjs');
   const tour = new CommerceTimeline();

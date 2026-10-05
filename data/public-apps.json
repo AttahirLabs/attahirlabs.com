@@ -131,55 +131,55 @@
       "listingName": "TariffShield: Margin Analyzer",
       "icon": "/assets/icons/tariffshield-suite.png",
       "iconAlt": "TariffShield app icon",
-      "headline": "Keep your import history in view.",
-      "description": "TariffShield is available to install, but current tariff and margin calculations, scenarios, alerts, exports, and price changes are paused while tariff data is reviewed. Historical records and account settings remain visible.",
-      "summary": "Current calculations and price actions are paused while tariff data is reviewed.",
+      "headline": "Review duties and margins for U.S. quartz surface products.",
+      "description": "Scan your Shopify catalog, enter reviewed filing facts, and see duties and margins for supported U.S. quartz surface product entries. Unknown products show what needs review. Compare scenarios, receive opted-in summaries, and confirm price updates using the exact amounts displayed.",
+      "summary": "Supported U.S. quartz surface duty and margin review, catalog scans, scenarios and confirmed price updates. Complete reviewed filing facts are required.",
       "homeFeatures": [
-        "View historical records",
-        "Review account settings",
-        "Current tariff calculations and price actions paused"
+        "Catalog scans",
+        "Unsaved scenarios",
+        "Confirmed price updates"
       ],
       "priceSummary": "Free plan · Standard $19/month · Pro $190/year",
-      "trialSummary": "Calculation features are currently paused on all plans",
-      "workflowTitle": "What is available while tariff data is reviewed.",
+      "trialSummary": "Complete reviewed filing facts are required.",
+      "workflowTitle": "Review complete filing facts, then choose your next action.",
       "features": [
         [
-          "Historical records",
-          "Review previously saved product analysis. These results are historical and should not be used as current rates."
+          "Current catalog",
+          "Scan native Shopify product, variant, price, cost, origin and HS facts. Missing facts remain unknown."
         ],
         [
-          "Account settings",
-          "Review your saved configuration while calculation-dependent controls are paused."
+          "Reviewed duty and margin",
+          "Calculate supported per-unit economics from explicit filing facts and actual COGS. A customs value is separate from actual COGS."
         ],
         [
-          "Current calculations",
-          "Tariff margin analysis, origin scenarios, and Exact Duty return no current duty result."
+          "Unsaved scenarios",
+          "Standard and Pro can compare different supported filing facts without replacing saved analysis."
         ],
         [
-          "Alerts and exports",
-          "Rate-based alerts and CSV exports are paused."
+          "Confirmed price updates",
+          "Review each variant and the exact before-and-after price. Confirm individual changes, or page-level bulk changes on paid plans. Changed Shopify facts block stale requests."
         ],
         [
-          "Price updates",
-          "Suggested prices and Shopify price changes are paused."
+          "Opted-in notifications",
+          "Covered-margin alerts and weekly summaries include covered and unknown counts. Refresh uses the configured hourly worker and requires a valid Shopify connection."
         ],
         [
-          "Next steps",
-          "Check back after the tariff authority review; verify shipment-specific treatment with a qualified source."
+          "Current CSV export",
+          "Pro can download current catalog facts, covered estimates, coverage reasons and authority identities. Unknown estimates are blank."
         ]
       ],
       "steps": [
         [
-          "Install from Shopify",
-          "Open the app to review its current availability before selecting a paid plan."
+          "Scan your catalog",
+          "Scan native Shopify product, variant, price, cost, origin and HS facts. Missing facts remain unknown."
         ],
         [
-          "Review historical data",
-          "Previously saved results may be visible, but they are not current tariff guidance."
+          "Review complete filing facts and costs",
+          "Calculate supported per-unit economics from explicit filing facts and actual COGS. A customs value is separate from actual COGS."
         ],
         [
-          "Wait for verified data",
-          "Calculation-dependent features will remain paused until the tariff data review is complete."
+          "Calculate, compare or confirm an action",
+          "Compare scenarios, receive opted-in summaries, and confirm price updates using the exact amounts displayed."
         ]
       ],
       "plans": [
@@ -190,8 +190,9 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Current tariff calculations and price actions paused",
-            "Historical records and settings remain visible"
+            "Track up to 10 variants.",
+            "Review supported U.S. QSP duties and margins.",
+            "Confirm individual suggested price changes."
           ]
         },
         {
@@ -201,8 +202,10 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Current tariff calculations and price actions paused",
-            "Historical records and settings remain visible"
+            "Track unlimited variants.",
+            "Compare unsaved scenarios with complete supported filing facts.",
+            "Confirm individual or page-level bulk price changes.",
+            "Opt into covered-margin alerts and weekly summaries."
           ]
         },
         {
@@ -212,15 +215,35 @@
           "alternate": null,
           "trialDays": 0,
           "features": [
-            "Current tariff calculations and price actions paused",
-            "Historical records and settings remain visible"
+            "Includes Standard features.",
+            "Export current catalog CSV with coverage and authority evidence."
           ]
         }
       ],
       "faqs": [
         [
-          "Can I calculate current duties or export results?",
-          "No. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are paused while tariff data is reviewed. You can still view historical records and account settings."
+          "Can I calculate duties or export results?",
+          "Supported current U.S. QSP calculations are available while signed evidence is current. Pro includes current catalog CSV export. Unsupported and incomplete products have no duty or margin estimate."
+        ],
+        [
+          "Will my prices change automatically?",
+          "No. Every price update requires explicit confirmation of the displayed variant and amounts. Bulk confirmation is available on Standard and Pro."
+        ],
+        [
+          "What products and markets are supported?",
+          "Ordinary General U.S. entries under HTSUS 6810990020, 6810990040 and 7020006000, with supported origins and complete reviewed declarations. Canada, China, Russia, India, Türkiye, Nicaragua and Malaysia are outside this authority slice. Broad multi-market analysis remains unavailable."
+        ],
+        [
+          "Does the app classify my products or verify broker documents?",
+          "No. You supply reviewed classification, Note 41(a) product scope, original slab provenance, customs value, AD/CVD determination and quota evidence where applicable. The app checks whether those declarations match signed authority."
+        ],
+        [
+          "Are these final customs charges?",
+          "No. Results are planning estimates for the exact supplied facts, not customs classification, liquidation or legal determinations. Brokerage, taxes, processing fees and unsupported programs are excluded."
+        ],
+        [
+          "What happens when evidence expires?",
+          "Current numeric guidance stops until a reviewed release is active. Historical records remain labeled separately."
         ],
         [
           "What are the current billing options?",
@@ -231,46 +254,60 @@
           "The current listing offers a free plan for 10 SKUs and does not advertise a paid-plan free trial."
         ],
         [
-          "Will my prices change automatically?",
-          "No. Shopify price changes are paused while tariff data is under review. When available, price changes require your approval."
-        ],
-        [
-          "Are these final customs charges?",
-          "No current duty or margin calculation is available while tariff data is under review. Historical results are not current customs charges. Verify shipment-specific treatment with a qualified source."
-        ],
-        [
-          "How does Exact Duty differ from margin analysis?",
-          "Exact Duty is a read-only workflow limited to narrow U.S. quartz surface product scenarios. Both Exact Duty and multi-market margin calculations are temporarily unavailable while tariff data is reviewed; the service returns no duty number. Unsupported or incomplete cases also return no duty number."
-        ],
-        [
           "What data does TariffShield use?",
           "The app uses product, variant, inventory, price, available cost, origin, classification, and configuration data, along with saved analysis and price-action records. See the TariffShield section of our privacy policy."
         ]
       ],
       "guide": "/blog/shopify-import-duties/",
       "guideLabel": "Read the import duties guide",
-      "sourceRevision": "dbba709109ac4d78a6165c00b61109ff2cf5a612",
+      "sourceRevision": "85f14f1db4a1ce35b5c35e3e43ef2c55dd6296e8",
       "listing": "https://apps.shopify.com/tariffshield",
       "screenshots": [
         {
           "src": "/assets/apps/tariffshield/screen-1.png",
-          "alt": "Historical product analysis with prior tariff results",
+          "alt": "Historical product analysis with prior tariff results · Not current guidance",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CMnEou_2mZUDEAE=.png?height=720&width=1280"
         },
         {
           "src": "/assets/apps/tariffshield/screen-2.png",
-          "alt": "Settings with alerts and sync currently paused",
+          "alt": "Historical settings with prior alerts and sync controls · Not current guidance",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CO3bq-_2mZUDEAE=.png?height=720&width=1280"
         },
         {
           "src": "/assets/apps/tariffshield/screen-3.png",
-          "alt": "Historical sourcing simulator preview",
+          "alt": "Historical sourcing simulator preview · Not current guidance",
           "source": "https://cdn.shopify.com/app-store/listing_images/7db8e1619b935dab1efc3d6d26d5ae14/desktop_screenshot/CN2Ete_2mZUDEAE=.png?height=720&width=1280"
         }
       ],
-      "availabilityNotice": "Tariff data needs review. Current analysis, Exact Duty, simulations, alerts, CSV exports, and price updates are unavailable. Historical records and account settings remain visible. No duty number is returned.",
       "showAvailabilityNotice": false,
-      "homeHeadline": "Your import workspace."
+      "homeHeadline": "Review duties and margins for U.S. quartz surface products.",
+      "scopeNote": "Current coverage: ordinary General U.S. entries under HTSUS 6810990020, 6810990040 and 7020006000, from supported origins. Product scope, manufacturing origin, AD/CVD treatment and quota disposition must be reviewed. Unsupported or incomplete inputs produce no estimate.",
+      "homePreview": "<strong>Reviewed filing facts</strong><div><span>Catalog scan</span><b>Review facts</b></div><div><span>Unknown products</span><b>Need review</b></div><div><span>Scenarios</span><b>Unsaved</b></div><div><span>Price updates</span><b>Confirm amounts</b></div>",
+      "homePreviewLabel": "Illustrative workflow",
+      "planCoverageNote": "Plan benefits never expand tariff coverage. Custom rate overrides and broad multi-market analysis remain unavailable.",
+      "setupDescription": "Scan your catalog → review complete filing facts and costs → calculate, compare or confirm an action.",
+      "historicalScreenshots": true,
+      "screenshotNotice": "Historical interface examples · Not current guidance. These images show earlier broad-market workflows, rates and settings outside current coverage.",
+      "walkthroughTitle": "Historical interface preview",
+      "walkthroughDescription": "Historical interface examples · Not current guidance. Use the current features and supported scope described above.",
+      "demo": [
+        [
+          "Historical product analysis",
+          "Earlier broad-market example; not current guidance."
+        ],
+        [
+          "Historical account settings",
+          "Earlier settings example; not current supported controls."
+        ],
+        [
+          "Historical sourcing simulator",
+          "Earlier sourcing example; not current supported scenarios."
+        ]
+      ],
+      "previewCaption": "Historical illustrative workspace · Not current guidance.",
+      "copyApprovedAt": "2026-10-05",
+      "ctaLabel": "View TariffShield on Shopify",
+      "pricingChecked": "October 5, 2026"
     },
     {
       "slug": "shelflife",
