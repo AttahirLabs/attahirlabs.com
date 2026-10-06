@@ -31,7 +31,7 @@
   },
   "/apps/stockclearance/": {
     "surface": "app_page",
-    "title": "Shopify Dead Stock App and Markdown Workflow | StockClearance"
+    "title": "StockClearance: Shopify Dead Stock &amp; Staged Markdowns"
   },
   "/apps/storechronicle/": {
     "surface": "app_page",
