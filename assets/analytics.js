@@ -374,6 +374,11 @@
     "title": "Japan duty image candidates",
     "disabled": true
   },
+  "/review/stockclearance-chatgpt/": {
+    "surface": "review",
+    "title": "StockClearance ChatGPT review demo | Attahir Labs",
+    "disabled": true
+  },
   "/shipping/": {
     "surface": "shipping_calculator",
     "title": "Shipping Cost Calculator: Retail Benchmark Estimates | Attahir Labs"

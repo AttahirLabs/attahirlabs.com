@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/assets/analytics.js" data-analytics-transport="disabled"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>StockClearance ChatGPT review demo | Attahir Labs</title>
+    <meta name="description" content="An edited walkthrough of StockClearance's private ChatGPT connection and controlled development-store campaign workflow.">
+    <link rel="canonical" href="https://attahirlabs.com/review/stockclearance-chatgpt/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <style>
+        :root { color-scheme: light; font-family: system-ui, -apple-system, sans-serif; color: #142237; background: #f6f3eb; }
+        * { box-sizing: border-box; }
+        body { margin: 0; line-height: 1.65; }
+        header, main, footer { max-width: 1120px; margin: auto; padding: 1.5rem; }
+        header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; border-bottom: 1px solid #ccd1d4; }
+        a { color: #155e75; text-underline-offset: .2em; overflow-wrap: anywhere; }
+        a:focus-visible { outline: 3px solid #155e75; outline-offset: 4px; }
+        .skip-link { position: absolute; left: 1rem; top: -4rem; padding: .6rem; background: white; }
+        .skip-link:focus { top: .5rem; }
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.12; margin: 1rem 0; }
+        h2 { font-size: 1.4rem; }
+        .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; font-weight: 650; }
+        .context { max-width: 78ch; }
+        video { display: block; width: 100%; background: #142237; border-radius: .65rem; margin: 1.5rem 0 1rem; }
+        .actions { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+        .notes { max-width: 78ch; padding: 1rem 1.4rem; border-left: 4px solid #155e75; background: white; margin-top: 2rem; }
+        footer { border-top: 1px solid #ccd1d4; font-size: .95rem; }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header><a href="/">Attahir Labs</a><a href="/apps/stockclearance/">StockClearance product page</a></header>
+    <main id="main">
+        <p class="eyebrow">ChatGPT submission review · October 8, 2026</p>
+        <h1>StockClearance review demo</h1>
+        <p class="context" id="demo-context">An edited walkthrough built from still captures of the actual StockClearance and ChatGPT browser interfaces in the Attahir Labs development store. It shows the connected store, opportunity reads, campaign preview, merchant review, controlled application and restoration.</p>
+        <video controls preload="metadata" playsinline aria-label="StockClearance ChatGPT development-store walkthrough" aria-describedby="demo-context">
+            <source src="/assets/apps/stockclearance/chatgpt-review-demo-20261008.mp4" type="video/mp4">
+            <track src="/assets/apps/stockclearance/chatgpt-review-demo-20261008.vtt" kind="captions" srclang="en" label="English captions" default>
+            Your browser does not support the video player. <a href="/assets/apps/stockclearance/chatgpt-review-demo-20261008.mp4">Open the MP4 recording</a>.
+        </video>
+        <p class="actions"><a href="/assets/apps/stockclearance/chatgpt-review-demo-20261008.mp4">Open or download the recording</a><a href="#transcript">Read the walkthrough notes</a></p>
+        <section class="notes" aria-labelledby="testing-scope">
+            <h2 id="testing-scope">Development test scope</h2>
+            <p>The workflow uses a disposable product in a development store. Campaign application and the shown restoration batch were processed manually in StockClearance. This recording does not demonstrate unattended scheduled execution, sales or refunds.</p>
+            <p>ChatGPT tools prepare a preview and an expiring merchant review link. The merchant reviews and confirms the products, pricing scope and schedule in StockClearance before a campaign is created.</p>
+        </section>
+        <section class="context" aria-labelledby="transcript">
+            <h2 id="transcript">Walkthrough notes</h2>
+            <p>English captions explain the displayed browser stages. The recording presents development-store evidence; it does not promise financial outcomes or substitute test stock for evidence about aged merchant inventory.</p>
+            <ol>
+            <li><strong>Connected development store and saved catalogue context</strong> Actual ChatGPT response reports the connected store, scan completion and observed history coverage.</li>
+            <li><strong>Observed sample stock and default-policy eligibility</strong> The saved scan reports known and unknown costs; these new products fail the default age policy.</li>
+            <li><strong>Explicit day-zero preview with known-cost guardrails</strong> Two variants preview at $100 to $95 and $40 to $38. Previewing does not apply these prices.</li>
+            <li><strong>Precise exclusions remain visible in the preview</strong> Unknown cost and zero stock are excluded: unknown_cost and out_of_stock.</li>
+            <li><strong>Review continues inside the authenticated Shopify app</strong> The merchant reviews the store, prices, scope, schedule and policy before confirming.</li>
+            <li><strong>Campaign confirmation requires explicit merchant approval</strong> The unchecked approval box leaves Confirm and schedule campaign disabled. ChatGPT cannot confirm it.</li>
+            <li><strong>Mixed 90% margin selection shows the exact safe exclusion</strong> The $20-cost variant is excluded with price_floor_unavailable; the low-cost variant remains eligible.</li>
+            <li><strong>Separate bounded lifecycle test for one unpublished fixture</strong> The reviewed fixture uses preserved compare-at prices, no campaign tags, no collection and no Flow delivery.</li>
+            <li><strong>Confirmation schedules the reviewed fixture campaign</strong> Actual success state after the merchant&#x27;s explicit checkbox and confirmation in Shopify.</li>
+            <li><strong>Manual campaign processing on the development fixture</strong> The scoped manual Process step made this campaign active; separate API readback verified the $95 price.</li>
+            <li><strong>Manual End and restore returns the fixture to its original price</strong> This lifecycle test used an explicit early restore. It does not establish unattended maintenance execution.</li>
+            <li><strong>Results preserve the sales coverage limitation</strong> Sales coverage remains not_collected; unavailable values stay visible rather than being inferred.</li>
+            <li><strong>Verified manual lifecycle with explicit remaining limits</strong> Schedule bounds are not execution timestamps. Manual apply and restore do not prove unattended execution.</li>
+            </ol>
+        </section>
+    </main>
+    <footer><a href="/privacy#stockclearance-chatgpt">ChatGPT connection privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Support</a></footer>
+</body>
+</html>
