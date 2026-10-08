@@ -1,0 +1,66 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:08.000
+1. Connected development store and saved catalogue context
+Actual ChatGPT response reports the connected store, scan completion and observed history coverage.
+
+2
+00:00:08.000 --> 00:00:17.000
+2. Observed sample stock and default-policy eligibility
+The saved scan reports known and unknown costs; these new products fail the default age policy.
+
+3
+00:00:17.000 --> 00:00:26.000
+3. Explicit day-zero preview with known-cost guardrails
+Two variants preview at $100 to $95 and $40 to $38. Previewing does not apply these prices.
+
+4
+00:00:26.000 --> 00:00:34.000
+4. Precise exclusions remain visible in the preview
+Unknown cost and zero stock are excluded: unknown_cost and out_of_stock.
+
+5
+00:00:34.000 --> 00:00:42.000
+5. Review continues inside the authenticated Shopify app
+The merchant reviews the store, prices, scope, schedule and policy before confirming.
+
+6
+00:00:42.000 --> 00:00:51.000
+6. Campaign confirmation requires explicit merchant approval
+The unchecked approval box leaves Confirm and schedule campaign disabled. ChatGPT cannot confirm it.
+
+7
+00:00:51.000 --> 00:01:02.000
+7. Mixed 90% margin selection shows the exact safe exclusion
+The $20-cost variant is excluded with price_floor_unavailable; the low-cost variant remains eligible.
+
+8
+00:01:02.000 --> 00:01:10.000
+8. Separate bounded lifecycle test for one unpublished fixture
+The reviewed fixture uses preserved compare-at prices, no campaign tags, no collection and no Flow delivery.
+
+9
+00:01:10.000 --> 00:01:16.000
+9. Confirmation schedules the reviewed fixture campaign
+Actual success state after the merchant's explicit checkbox and confirmation in Shopify.
+
+10
+00:01:16.000 --> 00:01:24.000
+10. Manual campaign processing on the development fixture
+The scoped manual Process step made this campaign active; separate API readback verified the $95 price.
+
+11
+00:01:24.000 --> 00:01:33.000
+11. Manual End and restore returns the fixture to its original price
+This lifecycle test used an explicit early restore. It does not establish unattended maintenance execution.
+
+12
+00:01:33.000 --> 00:01:43.000
+12. Results preserve the sales coverage limitation
+Sales coverage remains not_collected; unavailable values stay visible rather than being inferred.
+
+13
+00:01:43.000 --> 00:01:55.000
+13. Verified manual lifecycle with explicit remaining limits
+Schedule bounds are not execution timestamps. Manual apply and restore do not prove unattended execution.
