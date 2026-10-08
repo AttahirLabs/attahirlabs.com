@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 
 const DEFAULT_ASSET_URL = 'https://attahirlabs.com/duty/calculator.js';
 const EXPECTED_RELEASE = '2026.10.01+release4.5';
-const EXPECTED_CALCULATION_PATH = '/api/v2/us-duty';
+const EXPECTED_CALCULATION_PATH = '/api/authority-duty';
 const LEGACY_CALCULATION_PATH = '/api/v1/landed-cost';
 
 const EXPECTED_DECLARATION_CONTRACT = 'us-qsp-ordinary-general-rev20/v3';
@@ -69,7 +69,7 @@ function exactSingleMatch(source, pattern, label) {
   return matches[0][1];
 }
 
-export function inspectCalculatorAsset(source) {
+export function inspectCalculatorAsset(source, assetUrl = DEFAULT_ASSET_URL) {
   if (typeof source !== 'string' || source.length === 0) {
     throw new Error('Public calculator asset is empty');
   }
@@ -77,16 +77,14 @@ export function inspectCalculatorAsset(source) {
     throw new Error(`Public calculator asset references legacy ${LEGACY_CALCULATION_PATH}`);
   }
 
-  const apiBase = exactSingleMatch(
-    source,
-    /const\s+DUTY_API\s*=\s*["'](https:\/\/[^"']+)["']/g,
-    'DUTY_API constant'
-  );
-  const calculationPath = exactSingleMatch(
-    source,
-    /fetch\(DUTY_API\s*\+\s*["'](\/api\/v\d+\/[^?"']+)\?/g,
-    'calculation fetch path'
-  );
+  const apiBase = new URL(assetUrl).origin;
+  const calculationPath = exactSingleMatch(source,
+    /const\s+DUTY_CALCULATION_API\s*=\s*["']([^"']+)["']/g, 'calculation relay path');
+  if (source.includes('/api/v2/us-duty') ||
+      !/fetch\(DUTY_CALCULATION_API,\s*\{\s*method:\s*["']POST["']/.test(source) ||
+      !/body:\s*JSON\.stringify\(input\)/.test(source)) {
+    throw new Error('Public calculator must use the source-gated POST relay without direct numeric fallback');
+  }
   const releaseVersion = exactSingleMatch(
     source,
     /const\s+RELEASE4_VERSION\s*=\s*["']([^"']+)["']/g,
@@ -114,12 +112,6 @@ export function inspectCalculatorAsset(source) {
     if (value !== expected) throw new Error(`Public asset signed identity mismatch: ${constant}`);
   }
   return { apiBase, calculationPath, releaseVersion, declarationContract };
-}
-
-function buildUrl(apiBase, calculationPath, params) {
-  const url = new URL(calculationPath, apiBase);
-  for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value);
-  return url.toString();
 }
 
 async function responseJson(response, label) {
@@ -156,7 +148,7 @@ export async function runPublicDutyProbe({
   if (!assetResponse.ok) {
     throw new Error(`Public calculator asset returned HTTP ${assetResponse.status}`);
   }
-  const assetContract = inspectCalculatorAsset(await assetResponse.text());
+  const assetContract = inspectCalculatorAsset(await assetResponse.text(), assetUrl);
   const evaluationAt = now();
   if (!Number.isFinite(evaluationAt) || evaluationAt < Date.parse(EXPECTED_AUTHORITY.evidenceAsOf) ||
       evaluationAt >= Date.parse(EXPECTED_AUTHORITY.evidenceValidThrough)) {
@@ -171,7 +163,10 @@ export async function runPublicDutyProbe({
     ['missingProduct', 'Missing product scope', MISSING_PRODUCT_INPUT, 'QSP_PRODUCT_REVIEW_REQUIRED'],
     ['canada', 'Canada', CANADA_INPUT, 'UNSUPPORTED_ORIGIN_OR_DESTINATION']
   ]) {
-    const response = await fetchImpl(buildUrl(assetContract.apiBase, assetContract.calculationPath, input), requestOptions);
+    const response = await fetchImpl(new URL(assetContract.calculationPath, assetContract.apiBase).toString(), {
+      ...requestOptions, method: 'POST', redirect: 'error',
+      headers: { 'Content-Type': 'application/json', Origin: assetContract.apiBase }, body: JSON.stringify(input)
+    });
     const body = await responseJson(response, label);
     if (typeof expected === 'string') {
       const numericKeys = numericResultKeys(body);

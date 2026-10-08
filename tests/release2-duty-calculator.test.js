@@ -29,7 +29,7 @@ for (const id of [
 }
 
 assert.match(html, /destination[^<]{0,80}United States/i, 'the supported destination must be fixed to the United States');
-assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 4 endpoint');
+assert.match(client, /\/api\/authority-duty/, 'the calculator must use the current-source server relay');
 assert.doesNotMatch(client, /\/api\/v1\/landed-cost/, 'the legacy origin-only calculator must stay contained');
 assert.match(html, /exact caller-supplied HTSUS, MFN,[^<]{0,40}and Chapter 99 inputs/i);
 assert.match(html, /not a customs classification, liquidation, or legal determination/i);
@@ -123,6 +123,7 @@ async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:
   }
   const analytics = [];
   let requestedUrl = '';
+  let requestedOptions;
   class FixedDate extends Date {
     constructor(...args) {
       super(...(args.length ? args : [now]));
@@ -157,8 +158,8 @@ async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:
         }
       }
     },
-    async fetch(url) {
-      requestedUrl = String(url);
+    async fetch(url, options) {
+      requestedUrl = String(url); requestedOptions = options;
       return response;
     }
   };
@@ -166,7 +167,7 @@ async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:
   vm.createContext(context);
   vm.runInContext(client.replace(/\ninit\(\);\s*$/, '\n'), context);
   await context.calculate();
-  return { elements, analytics, requestedUrl, context };
+  return { elements, analytics, requestedUrl, requestedOptions, context };
 }
 
 test('client timeout is a single failed attempt and releases the UI', async () => {
@@ -286,18 +287,22 @@ test('entryAt is visibly required in the exact-input UI', () => {
 });
 
 test('calculated Release 4 response renders only after exact authority and arithmetic validation', async () => {
-  const { elements, analytics, requestedUrl } = await runCalculation({
+  const { elements, analytics, requestedUrl, requestedOptions } = await runCalculation({
     ok: true,
     status: 200,
     async json() {
       return calculatedBody();
     }
   });
-  assert.match(requestedUrl, /\/api\/v2\/us-duty\?/);
-  assert.match(requestedUrl, /origin=BR/);
-  assert.match(requestedUrl, /brazilHeading=9903\.05\.01/);
-  assert.match(requestedUrl, /entryAt=2026-08-17T13%3A30%3A00\.000Z/);
-  assert.doesNotMatch(requestedUrl, /destination=/);
+  assert.equal(requestedUrl, '/api/authority-duty');
+  assert.equal(requestedOptions.method, 'POST');
+  assert.equal(requestedOptions.credentials, 'omit');
+  assert.equal(requestedOptions.cache, 'no-store');
+  const sent = JSON.parse(requestedOptions.body);
+  assert.equal(sent.origin, 'BR');
+  assert.equal(sent.brazilHeading, '9903.05.01');
+  assert.equal(sent.entryAt, '2026-08-17T13:30:00.000Z');
+  assert.ok(!Object.hasOwn(sent, 'destination'));
   assert.equal(elements.resultNumbers.style.display, 'block');
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
@@ -390,9 +395,10 @@ test('the exact QSP scope fact is sent only when supplied', async () => {
     { ok: true, status: 200, async json() { return calculatedBody(); } },
     { origin: 'GB', manufacturingOrigin: 'GB', hts: '6810990020', mfnRate: '0', forcedLaborCountryHeading: '9903.05.81', brazilHeading: '', qspHeading: '9903.45.30', qspQuotaStatus: 'allocated_in_quota', qspQuotaEvidenceRef: 'quota-review-123', qspQuotaReviewedAt: '2026-08-17T13:30:00Z' },
   );
-  assert.match(qsp.requestedUrl, /hts=6810990020/);
-  assert.match(qsp.requestedUrl, /qspHeading=9903\.45\.30/);
-  assert.doesNotMatch(qsp.requestedUrl, /uasHeading=/);
+  const sent = JSON.parse(qsp.requestedOptions.body);
+  assert.equal(sent.hts, '6810990020');
+  assert.equal(sent.qspHeading, '9903.45.30');
+  assert.ok(!Object.hasOwn(sent, 'uasHeading'));
 });
 
 test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most millisecond precision, and is normalized', async t => {
@@ -410,7 +416,7 @@ test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most mi
         { ok: true, status: 200, async json() { return calculatedBody({ entryAt }); } },
         { entryAt },
       );
-      assert.match(result.requestedUrl, new RegExp(`entryAt=${encoded.replaceAll('.', '\\.')}(?:&|$)`));
+      assert.equal(JSON.parse(result.requestedOptions.body).entryAt, decodeURIComponent(encoded));
       assert.equal(result.elements.resultNumbers.style.display, 'block');
     });
   }
@@ -617,11 +623,11 @@ test('v3 requires explicit product, provenance and quota declarations without in
   });
 });
 
-test('v3 sends the normalized actual GET contract and binds its independent fingerprint', async () => {
+test('v3 sends the normalized actual POST contract and binds its independent fingerprint', async () => {
   const overrides = { hts: '7020.00.6000', customsValue: '1000', shippingCost: '50', insuranceCost: '10',
     brokerEntryReference: '  broker-entry-123  ', qspProductEvidenceRef: '😀'.repeat(8), calculationBasis: 'per_unit' };
   const result = await runCalculation({ ok: true, json: async () => calculatedBody(overrides) }, overrides);
-  const params = new URL(result.requestedUrl).searchParams;
+  const params = new URLSearchParams(JSON.parse(result.requestedOptions.body));
   for (const key of ['manufacturingOrigin', 'thirdCountryProcessing', 'certificationDisposition', 'brokerEntryReference',
     'adCvdStatus', 'adCvdEvidenceRef', 'entryTreatment', 'qspProductStatus', 'qspProductEvidenceRef', 'calculationBasis'])
     assert.equal(params.get(key), overrides[key]?.trim() || makeElements()[key].value);
@@ -662,7 +668,7 @@ test('every supported product wires matched in-quota and over-quota declarations
       const input = { ...gbQuota, hts, mfnRate: hts === '7020006000' ? '5' : '0', qspHeading,
         qspQuotaStatus: qspHeading === '9903.45.30' ? 'allocated_in_quota' : 'confirmed_over_quota' };
       const result = await runCalculation({ ok: false, status: 422, json: async () => ({ status: 'indeterminate' }) }, input);
-      const query = new URL(result.requestedUrl).searchParams;
+      const query = new URLSearchParams(JSON.parse(result.requestedOptions.body));
       assert.equal(query.get('qspHeading'), qspHeading);
       assert.equal(query.get('qspQuotaStatus'), input.qspQuotaStatus);
       assert.equal(query.get('qspQuotaReviewedAt'), '2026-08-17T13:30:00.000Z');
