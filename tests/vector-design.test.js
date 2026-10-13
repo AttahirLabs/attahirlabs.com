@@ -17,7 +17,8 @@ for(const slug of products){
  assert.ok(html.indexOf('/assets/vector.css')>html.indexOf('/apps/product-pages.css'),'theme overrides load last');
 }
 const privacy=fs.readFileSync('privacy.html','utf8');
-for(const text of ['App measurement:', 'off by default', 'independent deletion log', 'Downgrade export grace.']) assert.ok(privacy.includes(text),`Preserve live StoreChronicle disclosure: ${text}`);
+for(const text of ['App measurement:', 'off by default', 'independent deletion log', 'The current Free plan has no automatic age-based expiry', 'up to 120 days']) assert.ok(privacy.includes(text),`Preserve live StoreChronicle disclosure: ${text}`);
 const content=fs.readFileSync('data/storechronicle-details.inc','utf8');
-for(const text of ['not a whole-store backup','up to 120 days','seven-day read-only'])assert.ok(content.includes(text));
+for(const text of ['not a whole-store backup','up to 120 days','Free includes all available supported features','no automatic age-based expiry while installed'])assert.ok(content.includes(text));
+assert.doesNotMatch(content,/\b(?:Standard|Pro)\b|seven-day read-only|\$9|\$19/);
 console.log('Vector pages: generator consistency, distinct product navigation, asset and anchor integrity, newer live disclosures preserved');

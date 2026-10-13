@@ -5,6 +5,13 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const write = process.argv.includes('--write');
 const ignored = new Set(['.git', '.github', 'node_modules', 'tests', '_site']);
+// Website product slugs can differ from their verified Shopify listing handles.
+const catalog = JSON.parse(fs.readFileSync(path.join(root, 'data/public-apps.json'), 'utf8'));
+const listingApps = new Map(catalog.products.map(product => {
+  const listing = new URL(product.listing);
+  if (listing.origin !== 'https://apps.shopify.com' || listing.username || listing.password || !/^\/[a-z0-9-]+$/.test(listing.pathname)) throw new Error('Invalid public listing: ' + product.slug);
+  return [listing.pathname, product.slug];
+}));
 function files(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).flatMap(entry => {
     if (ignored.has(entry.name) || entry.name.startsWith('.')) return [];
@@ -52,8 +59,8 @@ for (const file of files(root)) {
     let url;
     try { url = new URL(href.replaceAll('&amp;', '&')); } catch { return match; }
     if (url.origin !== 'https://apps.shopify.com' || url.username || url.password) return match;
-    const app = url.pathname.replace(/^\//, '').replace(/\/$/, '');
-    if (!['shelflife', 'stockclearance', 'tariffshield'].includes(app)) return match;
+    const app = listingApps.get(url.pathname.replace(/\/$/, ''));
+    if (!app) return match;
     const content = publicPath.startsWith('/blog/') ? 'blog_cta'
       : ['/duty/', '/shipping/'].includes(publicPath) ? 'tool_cta'
       : publicPath === '/' ? 'homepage_public_apps'
@@ -84,6 +91,9 @@ for (const file of files(root)) {
 }
 const assetPath = path.join(root, 'assets/analytics.js');
 const asset = fs.readFileSync(assetPath, 'utf8');
-update(assetPath, asset.replace(/  \/\/ BEGIN GENERATED PAGES[^\n]*\n[\s\S]*?  \/\/ END GENERATED PAGES/, '  // BEGIN GENERATED PAGES (tools/sync-measurement.mjs)\n  const pages = Object.freeze(' + JSON.stringify(catalogue, null, 2) + ');\n  // END GENERATED PAGES'));
+const publicListings = Object.fromEntries([...listingApps].map(([pathname, slug]) => [pathname.slice(1), slug]));
+update(assetPath, asset
+  .replace(/  \/\/ BEGIN GENERATED PAGES[^\n]*\n[\s\S]*?  \/\/ END GENERATED PAGES/, '  // BEGIN GENERATED PAGES (tools/sync-measurement.mjs)\n  const pages = Object.freeze(' + JSON.stringify(catalogue, null, 2) + ');\n  // END GENERATED PAGES')
+  .replace(/  \/\/ BEGIN GENERATED LISTINGS[^\n]*\n[\s\S]*?  \/\/ END GENERATED LISTINGS/, '  // BEGIN GENERATED LISTINGS (tools/sync-measurement.mjs)\n  const listingApps = Object.freeze(' + JSON.stringify(publicListings, null, 2) + ');\n  // END GENERATED LISTINGS'));
 if (changed && !write) process.exitCode = 1;
 console.log(`${Object.keys(catalogue).length} HTML pages checked; ${changed} files ${write ? 'updated' : 'need updates'}.`);

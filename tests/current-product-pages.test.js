@@ -8,7 +8,7 @@ const catalog = JSON.parse(read('data/public-apps.json'));
 // A pricing or FAQ edit must update all rendered surfaces, not only one page.
 const sync = spawnSync(process.execPath, ['tools/sync-product-pages.mjs', '--check'], { cwd: root, encoding: 'utf8' });
 assert.equal(sync.status, 0, sync.stdout + sync.stderr);
-assert.deepEqual(catalog.products.map(p => p.slug).sort(), ['shelflife', 'stockclearance', 'tariffshield']);
+assert.deepEqual(catalog.products.map(p => p.slug).sort(), ['shelflife', 'stockclearance', 'storechronicle', 'tariffshield']);
 const privacy = read('privacy.html');
 const stockImages = ['01-variant-selection.jpg','02-staged-markdowns.jpg','03-catalog-pricing.jpg','04-campaign-controls.jpg','05-flow-merchandising.jpg','06-outcomes-handoff.jpg'];
 function jpegSize(image) {
@@ -30,11 +30,11 @@ function jpegSize(image) {
 for (const p of catalog.products) {
   const html = read(`apps/${p.slug}/index.html`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  for (const id of ['features', 'screenshots', 'setup', 'pricing', 'faq']) {
+  for (const id of ['features', ...(p.screenshots?.length ? ['screenshots'] : []), 'setup', 'pricing', 'faq']) {
     assert.ok(html.includes(`id="${id}"`), `${p.name}: missing ${id} destination`);
   }
   assert.ok(privacy.includes(`id="${p.slug}"`), `${p.name}: privacy anchor must resolve`);
-  for (const s of p.screenshots) {
+  for (const s of p.screenshots || []) {
     const image = fs.readFileSync(path.join(root, s.src.slice(1)));
     if (p.slug === 'stockclearance') {
       const index = p.screenshots.indexOf(s);
@@ -59,6 +59,28 @@ for (const p of catalog.products) {
   assert.ok(offer.offers.every(x => x.priceCurrency === 'USD' && x.url === p.listing));
 }
 const stockPage = read('apps/stockclearance/index.html');
+const chronicle = catalog.products.find(p => p.slug === 'storechronicle');
+assert.equal(chronicle.listing, 'https://apps.shopify.com/storechangelog');
+assert.equal(chronicle.plans.length, 1);
+assert.equal(chronicle.plans[0].name, 'Free');
+assert.equal(chronicle.plans[0].price, 0);
+assert.equal(chronicle.plans[0].trialDays, 0);
+const chroniclePage = read('apps/storechronicle/index.html');
+assert.match(chroniclePage, /Free — all available features included/);
+assert.match(chroniclePage, /no automatic age-based expiry while installed/);
+assert.match(chroniclePage, /up to 120 days/);
+assert.match(chroniclePage, /100 requests per hour per installation/);
+assert.match(chroniclePage, /Illustrative overview · Example data/);
+assert.doesNotMatch(chroniclePage, /data-release-signup|App Store listing in preparation|Get notified|\$9|\$19|\$90|\$190|seven-day read-only|ChatGPT/);
+for (const page of ['index.html', 'apps/index.html']) {
+  const html = read(page);
+  const card = html.match(/<article[^>]*data-app="storechronicle"[\s\S]*?<\/article>/)?.[0];
+  assert.ok(card, `${page}: StoreChronicle belongs in the public-app cards`);
+  assert.match(card, /apps\.shopify\.com\/storechangelog\?/);
+  assert.match(card, /utm_campaign=storechronicle/);
+  assert.match(card, /Install StoreChronicle/);
+  assert.doesNotMatch(card, /Listing in preparation|Get notified/);
+}
 assert.match(stockPage, /actual app interface from an owned development store/);
 assert.match(stockPage, /remaining graphics are labelled explanatory diagrams/);
 assert.match(stockPage, /Built for reviewed variant clearance/);

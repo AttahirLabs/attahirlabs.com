@@ -42,7 +42,7 @@ for (const file of files) {
   }
 }
 for (const family of ['index.html', 'apps', 'blog', 'duty', 'shipping', 'tools', 'analytics-preferences', 'contact.html', 'privacy.html', 'terms.html', 'review']) assert.ok(familyCounts[family], family);
-assert.deepEqual([...new Set(publicLinks.map(x => x.app))].sort(), ['shelflife', 'stockclearance', 'tariffshield']);
+assert.deepEqual([...new Set(publicLinks.map(x => x.app))].sort(), ['shelflife', 'stockclearance', 'storechronicle', 'tariffshield']);
 assert.ok(publicLinks.length > 40, 'exercise the actual published App Store CTAs');
 for (const link of publicLinks) {
   const url = new URL(link.href.replaceAll('&amp;', '&'));
@@ -171,7 +171,26 @@ for (const link of publicLinks) {
   assert.equal(runtime.events().filter(x => x[1] === 'app_store_outbound').length, 1, link.publicPath + ' actual CTA emits once');
   assert.equal(runtime.events().at(-1)[2].app_name, link.app);
 }
-for (const href of ['http://apps.shopify.com/shelflife', 'https://apps.shopify.com.evil.example/shelflife', 'https://secret@apps.shopify.com/shelflife', 'https://apps.shopify.com/shelflife/reviews', 'https://apps.shopify.com/accessshield', 'javascript:alert(1)']) {
+// The public product and the Shopify listing handle have different names.
+const chronicleLinks = publicLinks.filter(link => link.app === 'storechronicle');
+assert.ok(chronicleLinks.some(link => link.publicPath === '/'));
+assert.ok(chronicleLinks.some(link => link.publicPath === '/apps/'));
+assert.ok(chronicleLinks.some(link => link.publicPath === '/apps/storechronicle/'));
+for (const link of chronicleLinks) {
+  const url = new URL(link.href.replaceAll('&amp;', '&'));
+  assert.equal(url.pathname, '/storechangelog');
+  assert.equal(url.searchParams.get('utm_campaign'), 'storechronicle');
+}
+assert.equal(api.appFromLink('https://apps.shopify.com/storechangelog/'), 'storechronicle');
+const chronicle = browser({ path: '/apps/storechronicle/', search: '?utm_source=attahirlabs&utm_medium=website&utm_campaign=storechronicle&utm_content=app_page_hero' });
+chronicle.dispatch('click', { detail: 0, target: target(chronicleLinks.find(link => link.publicPath === '/apps/storechronicle/').href.replaceAll('&amp;', '&'), ['.hero']) });
+const chronicleEvents = chronicle.events().filter(event => event[1] === 'app_store_outbound');
+assert.equal(chronicleEvents.length, 1);
+assert.equal(chronicleEvents[0][2].app_name, 'storechronicle');
+assert.equal(chronicleEvents[0][2].campaign_name, 'storechronicle');
+assert.equal(chronicleEvents[0][2].destination_type, 'shopify_app_store');
+assert.equal(api.safeCampaign('?utm_campaign=storechangelog').campaign_name, undefined, 'listing handles do not create an alias acquisition campaign');
+for (const href of ['http://apps.shopify.com/shelflife', 'https://apps.shopify.com.evil.example/shelflife', 'https://secret@apps.shopify.com/shelflife', 'https://apps.shopify.com/shelflife/reviews', 'https://apps.shopify.com/accessshield', 'https://apps.shopify.com/storechronicle', 'https://apps.shopify.com/storechangelog/reviews', 'https://apps.shopify.com/storechangelog-other', 'https://apps.shopify.com/%73torechangelog', 'https://apps.shopify.com.evil.example/storechangelog', 'https://secret@apps.shopify.com/storechangelog', 'https://apps.shopify.com:8443/storechangelog', 'javascript:alert(1)']) {
   assert.equal(api.appFromLink(href), null);
   clean.dispatch('click', { target: target(href) });
 }

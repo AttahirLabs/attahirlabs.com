@@ -518,17 +518,149 @@
       "pricingDescription": "Use the available tools without a subscription charge.",
       "pricingChecked": "September 30, 2026",
       "homeHeadline": "Know what expires next."
+    },
+    {
+      "slug": "storechronicle",
+      "name": "StoreChronicle",
+      "listingName": "StoreChronicle",
+      "listing": "https://apps.shopify.com/storechangelog",
+      "icon": "/assets/icons/storechronicle-suite.png",
+      "iconAlt": "StoreChronicle logo",
+      "headline": "Your store changes. Keep the context.",
+      "description": "Review supported Shopify store changes, retained before-and-after values, and the evidence available for selective restoration. All available features are free; additional access, configuration, and confirmation still apply.",
+      "summary": "Keep supported store change history, review retained values, and assess selective restoration.",
+      "homeHeadline": "Keep the context.",
+      "homeFeatures": [
+        "Supported store change history",
+        "Review rules and selective restoration",
+        "CSV export and a read-only API"
+      ],
+      "priceSummary": "Free — all available features included",
+      "trialSummary": "No app subscription charge",
+      "workflowTitle": "Every change has a story.",
+      "features": [
+        [
+          "Find the change",
+          "Search and filter supported product, price, collection, and other configured store records. Tracking starts after setup and cannot recreate missing earlier history."
+        ],
+        [
+          "Understand the context",
+          "Inspect retained before-and-after values and flag matching changes with review rules. Optional Shopify-reported activity labels are not verified staff identities."
+        ],
+        [
+          "Assess selective restoration",
+          "Review the retained evidence and eligibility before explicitly confirming supported field restoration. Not every change can be reversed."
+        ],
+        [
+          "Configure wider coverage",
+          "Inventory, order summaries, pages, and themes require the relevant Shopify access, privacy admission, or configured observations. Delays and gaps remain visible."
+        ],
+        [
+          "Export retained history",
+          "Use formula-safe CSV exports or the read-only API. The API shares a limit of 100 requests per hour per installation."
+        ],
+        [
+          "Choose optional notifications",
+          "Configure supported monitoring, review rules, email, Slack, Discord, and summaries where available. Notifications require service setup and merchant opt-in."
+        ]
+      ],
+      "steps": [
+        [
+          "Install from Shopify",
+          "Install StoreChronicle from its Shopify App Store listing. All available features are included with no app subscription charge."
+        ],
+        [
+          "Configure your coverage",
+          "Review Shopify permissions and privacy settings, then enable the supported tracking and observations your store needs."
+        ],
+        [
+          "Review and decide",
+          "Inspect recorded changes and gaps. Confirm any eligible restoration separately, and deliberately opt in to optional notifications."
+        ]
+      ],
+      "demo": [
+        [
+          "Find the change",
+          "Review supported events in your store history."
+        ],
+        [
+          "Understand the context",
+          "Inspect retained before-and-after values where available."
+        ],
+        [
+          "Assess recovery",
+          "Review eligibility and the available values before deciding what to restore. Not every change can be reversed."
+        ]
+      ],
+      "walkthroughDescription": "Illustrative workflow · Example data. Review the released app for the available controls.",
+      "plans": [
+        {
+          "name": "Free",
+          "price": 0,
+          "period": "",
+          "alternate": null,
+          "trialDays": 0,
+          "features": [
+            "All available supported features included",
+            "Store history and review rules",
+            "Selective restoration with retained evidence",
+            "Configured content monitoring and optional notifications",
+            "CSV export and read-only API: 100 requests/hour",
+            "Ordinary history has no automatic age expiry while installed",
+            "Activity and restoration evidence: up to 120 days"
+          ]
+        }
+      ],
+      "pricingHeading": "All available features, free.",
+      "pricingDescription": "No app subscription charge. Shopify access, privacy settings, service configuration, merchant opt-in, and explicit restoration confirmations still apply.",
+      "pricingChecked": "October 13, 2026",
+      "faqs": [
+        [
+          "Is StoreChronicle available on the Shopify App Store?",
+          "Yes. Install StoreChronicle from its Shopify App Store listing. All available supported features are free."
+        ],
+        [
+          "What does Free include?",
+          "All available supported features, including store history, review rules, CSV export, a read-only API, selective restoration, configured content monitoring, and optional notifications. Required access, privacy setup, service configuration, opt-in, and staff confirmations still apply."
+        ],
+        [
+          "Does StoreChronicle identify exactly who made a change?",
+          "No. It can show optional Shopify-reported activity labels where available. These labels are not verified staff identities, and related activity is not proof of who caused a specific recorded change. Unknown attribution stays unknown."
+        ],
+        [
+          "Can I roll back my entire Shopify store?",
+          "No. StoreChronicle is not a whole-store backup or disaster-recovery service. Selective restoration is limited to eligible retained fields, requires Shopify permissions and explicit confirmation, and cannot reverse every downstream effect. Order and theme restoration are not offered."
+        ],
+        [
+          "Does it record every change in real time?",
+          "No. Supported Shopify events and configured observations provide evidence, but delays, outages, access restrictions, and observation intervals can leave gaps. Tracking starts after setup; missing history is not presented as complete."
+        ],
+        [
+          "How long is history retained?",
+          "Ordinary history has no automatic age-based expiry while installed. Activity and restoration evidence are retained for up to 120 days. Shorter store settings, uninstall cleanup, and privacy erasure take precedence; expired evidence cannot be restored."
+        ],
+        [
+          "Can I export my history?",
+          "Free includes formula-safe CSV export and a read-only API with a shared limit of 100 requests per hour per installation. Exports cover available retained records; a multi-part export is not an atomic whole-store snapshot."
+        ],
+        [
+          "What happens when I uninstall?",
+          "Authenticated Shopify uninstall and shop-deletion notifications trigger store-data cleanup. Reinstalling does not guarantee recovery of deleted history. See the StoreChronicle privacy disclosure for backup and external-recipient handling."
+        ]
+      ],
+      "guide": "/blog/shopify-changelog-best-practices/",
+      "guideLabel": "Read the change-history guide",
+      "previewTitle": "Store change history",
+      "previewCaption": "Illustrative overview · Example data.",
+      "homePreview": "<strong>Store change history</strong><div><span>Product price</span><b>Review values</b></div><div><span>Collections</span><b>View changes</b></div><div><span>Recovery</span><b>Check eligibility</b></div>",
+      "termsLabel": "app terms",
+      "detailsFile": "data/storechronicle-details.inc"
     }
   ],
   "unlistedApps": [
     {
       "name": "AccessShield",
       "path": "/apps/accessshield/",
-      "status": "App Store listing in preparation"
-    },
-    {
-      "name": "StoreChronicle",
-      "path": "/apps/storechronicle/",
       "status": "App Store listing in preparation"
     },
     {
