@@ -22,16 +22,15 @@ function assertListingCta(relativePath, label) {
 const homepage = read('index.html');
 const appsHub = read('apps/index.html');
 const appPage = read('apps/shelflife/index.html');
-const shelfLifeSource = JSON.parse(read('data/public-apps.json')).products.find((app) => app.slug === 'shelflife');
+const publicCatalog = JSON.parse(read('data/public-apps.json'));
+const shelfLifeSource = publicCatalog.products.find((app) => app.slug === 'shelflife');
 const sitemap = read('sitemap.xml');
 const homepageJsonLd = [...homepage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
   .map((match) => JSON.parse(match[1]));
 const organization = homepageJsonLd.find((entry) => entry['@type'] === 'Organization');
-const publicApps = [
-  { name: 'StockClearance', url: 'https://apps.shopify.com/stockclearance', price: '0', priceCurrency: 'USD' },
-  { name: 'TariffShield', url: 'https://apps.shopify.com/tariffshield', price: '0', priceCurrency: 'USD' },
-  { name: 'ShelfLife', url: listing, price: '0', priceCurrency: 'USD' }
-];
+const publicApps = publicCatalog.products.map(app => ({
+  name:app.name,url:app.listing,price:String(Math.min(...app.plans.map(plan => plan.price))),priceCurrency:publicCatalog.currency
+}));
 
 assert.ok(organization, 'homepage should expose parseable Organization JSON-LD');
 assert.deepEqual(
@@ -83,7 +82,7 @@ for (const [url, expected] of Object.entries({
   assert.deepEqual(sitemapMetadata(url), expected, `${url} sitemap metadata should reflect the ShelfLife launch`);
 }
 
-assert.ok(homepage.includes('3 public apps'), 'homepage should count ShelfLife as public');
+assert.match(homepage, /<article\b[^>]*\bdata-app="shelflife"[^>]*>/, 'homepage should include ShelfLife among the public app cards');
 assert.ok(
   ['StockClearance', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)) && homepage.includes('View TariffShield on Shopify'),
   'homepage public-app proof should name ShelfLife'

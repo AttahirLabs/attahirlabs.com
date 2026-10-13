@@ -117,7 +117,23 @@ includes('class="tool-grid tool-card-grid"', 'homepage free-tools section should
 includes('Quick checks before you change a workflow.', 'homepage free-tools section should use tighter section copy');
 includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
-includes('3 public apps', 'homepage should summarize current public app status');
+const publicAppCardCount = [...html.matchAll(/<article\b[^>]*\bdata-app=["'][^"']+["'][^>]*>/g)].length;
+includes(`${publicAppCardCount} public apps`, 'homepage public-app summary should agree with its actual rendered app cards');
+const publicCatalog = JSON.parse(fs.readFileSync(path.join(root, 'data/public-apps.json'), 'utf8'));
+const organizationSchemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  .map(match => JSON.parse(match[1])).filter(schema => schema['@type'] === 'Organization');
+assert.equal(organizationSchemas.length, 1);
+const organization = organizationSchemas[0];
+assert.equal(organization.name, 'Attahir Labs');
+assert.equal(organization.url, 'https://attahirlabs.com/');
+assert.equal(organization.logo, 'https://attahirlabs.com/icon-512.png');
+assert.deepEqual(organization.sameAs, publicCatalog.products.map(product => product.listing), 'homepage listing metadata should include every public app with its verified listing handle');
+assert.equal(organization.makesOffer.length, publicAppCardCount, 'homepage offers should agree with actual public app cards');
+assert.deepEqual(organization.makesOffer.map(offer => ({name:offer.itemOffered.name,url:offer.url,price:offer.price,currency:offer.priceCurrency})),
+  publicCatalog.products.map(product => ({name:product.name,url:product.listing,price:String(Math.min(...product.plans.map(plan => plan.price))),currency:publicCatalog.currency})));
+const chronicleOffer = organization.makesOffer.find(offer => offer.itemOffered.name === 'StoreChronicle');
+assert.equal(chronicleOffer.url, 'https://apps.shopify.com/storechangelog');
+assert.equal(chronicleOffer.price, '0');
 includes('3 free tools', 'homepage should summarize live tool status');
 includes('/blog/dead-stock-clearance-q2-2026/', 'homepage should feature current inventory content');
 includes('/blog/import-duty-from-vietnam-to-us/', 'homepage should feature current tariff content');

@@ -59,8 +59,24 @@ const homePreviews={
 };
 let previewIndex=0;
 const homeCards=cards.replace('<p class="section-copy">Historical interface · Not current guidance.</p>','').replace(/<div class="row-preview" aria-hidden="true">[\s\S]*?<\/div>/g,()=>`<div class="row-preview sample-preview" aria-hidden="true">${cardProducts[previewIndex].homePreview || homePreviews[cardProducts[previewIndex].slug]}<small>${cardProducts[previewIndex++].homePreviewLabel || 'Illustrative data'}</small></div>`);
+function syncHomeOrganization(html){
+ let organizationCount=0;
+ const next=html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g,(match,open,body,close)=>{
+  const schema=JSON.parse(body);
+  if(schema['@type']!=='Organization')return match;
+  organizationCount++;
+  schema.sameAs=catalog.products.map(p=>p.listing);
+  schema.makesOffer=catalog.products.map(p=>({
+   '@type':'Offer',itemOffered:{'@type':'SoftwareApplication',name:p.name,applicationCategory:'BusinessApplication',operatingSystem:'Shopify'},
+   url:p.listing,price:String(Math.min(...p.plans.map(plan=>plan.price))),priceCurrency:catalog.currency
+  }));
+  return open+'\n'+JSON.stringify(schema,null,2).split('\n').map(line=>'    '+line).join('\n')+'\n    '+close;
+ });
+ if(organizationCount!==1)throw new Error('Homepage must have exactly one Organization schema');
+ return next;
+}
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-write('index.html',home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${homeCards}\n<!-- public-app-cards:end -->`));
+write('index.html',syncHomeOrganization(home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${homeCards}\n<!-- public-app-cards:end -->`).replace(/\b\d+ public apps\b/g,`${catalog.products.length} public apps`)));
 const hub=fs.readFileSync(path.join(root,'apps/index.html'),'utf8');
 const hubCards=cards.replaceAll('btn-dark','btn-primary').replaceAll('btn-light','btn-secondary').replaceAll('homepage_public_apps','apps_hub_hero');
 write('apps/index.html',hub.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${hubCards}\n<!-- public-app-cards:end -->`));
