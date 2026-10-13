@@ -402,11 +402,19 @@
   }
 });
   // END GENERATED PAGES
-  const publicApps = new Set(['tariffshield', 'stockclearance', 'shelflife']);
+  // BEGIN GENERATED LISTINGS (tools/sync-measurement.mjs)
+  const listingApps = Object.freeze({
+  "stockclearance": "stockclearance",
+  "tariffshield": "tariffshield",
+  "shelflife": "shelflife",
+  "storechangelog": "storechronicle"
+});
+  // END GENERATED LISTINGS
+  const publicApps = new Set(Object.values(listingApps));
   const campaignValues = Object.freeze({
     utm_source: ['attahirlabs', 'newsletter', 'shopify', 'google', 'bing', 'chatgpt', 'claude', 'gemini', 'linkedin', 'reddit'],
     utm_medium: ['website', 'email', 'organic', 'referral', 'social', 'cpc', 'ai-assistant'],
-    utm_campaign: ['tariffshield', 'stockclearance', 'shelflife', 'free-tools', 'blog', 'portfolio', 'launch'],
+    utm_campaign: ['tariffshield', 'stockclearance', 'shelflife', 'storechronicle', 'free-tools', 'blog', 'portfolio', 'launch'],
     utm_content: ['homepage_public_apps', 'apps_hub_hero', 'app_page_hero', 'app_page_cta', 'app_page_footer', 'dead_stock_guide_cta', 'dead_stock_guide_faq', 'blog_cta', 'tool_cta', 'nav', 'footer']
   });
   const campaignKeys = { utm_source: 'campaign_source', utm_medium: 'campaign_medium', utm_campaign: 'campaign_name', utm_content: 'campaign_content' };
@@ -696,8 +704,8 @@
     try {
       const url = new URL(href, 'https://attahirlabs.com');
       if (url.protocol !== 'https:' || url.hostname !== 'apps.shopify.com' || url.port || url.username || url.password) return null;
-      const app = url.pathname.replace(/^\//, '').replace(/\/$/, '');
-      return publicApps.has(app) ? app : null;
+      const handle = url.pathname.replace(/^\//, '').replace(/\/$/, '');
+      return Object.prototype.hasOwnProperty.call(listingApps, handle) ? listingApps[handle] : null;
     } catch (_) { return null; }
   }
 
@@ -707,7 +715,7 @@
     if (anchor.closest('nav, header')) return 'nav';
     if (anchor.closest('footer')) return 'footer';
     if (anchor.closest('.blog-app-cta, [data-app-cta]')) return 'article_footer';
-    if (anchor.closest('.hero')) return 'hero';
+    if (anchor.closest('.hero, .page-hero, .product-hero')) return 'hero';
     if (anchor.closest('.app-card, .product-card')) return 'app_card';
     return surface === 'blog_article' ? 'article_inline' : 'content';
   }

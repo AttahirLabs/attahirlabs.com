@@ -23,3 +23,9 @@ Rollback is a source revert and normal deployment. Preserve historical GA fields
 
 ## Web design surface
 `/web-design/` uses the finite `services` surface. Its project email link follows the existing `contact_intent` contract; subjects and message content are excluded. Tests cover the surface and one contact-intent event. A click is not a sent email, received inquiry, or paying project. No new analytics destination or data-collection backend is introduced.
+
+## StoreChronicle launch
+
+The public product slug is `storechronicle`; its verified Shopify listing is `https://apps.shopify.com/storechangelog`. The public-app catalogue supplies the exact listing-handle mapping generated into the analytics asset. Recognized listing clicks emit `app_store_outbound` with `app_name=storechronicle`, and website listing links carry `utm_campaign=storechronicle`. Incoming StoreChronicle campaigns use that same allowed name. A similarly named path, nested listing path, alternate host, credential-bearing URL, or custom port is not a recognized referral.
+
+The homepage, app hub, and product page advertise the verified Free launch. Launch-notification forms are removed from the product page. Offline regression checks exercise the actual rendered listing anchors and bounded event payloads. Deployment and processed destination receipt still need separate verification; an outbound click remains listing intent, not an install or activation.

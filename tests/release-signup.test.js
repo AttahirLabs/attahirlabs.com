@@ -23,14 +23,14 @@ const fs = require('node:fs');
   assert.equal((await submit({}, {}, {})).status, 503);
   assert.equal((await onRequest({ request: new Request('https://attahirlabs.com/api/release-signup'), env })).status, 405);
   assert.equal(writes, 1, 'Rejected submissions must never be stored');
-  for (const app of ['accessshield', 'storechronicle', 'warrantytracker']) {
+  for (const app of ['accessshield', 'warrantytracker']) {
     const html = fs.readFileSync(`apps/${app}/index.html`, 'utf8');
     assert.match(html, /data-release-signup/);
     assert.ok(html.includes(`name="app" value="${app}"`));
     assert.match(html, /type="email"[^>]+required/);
     assert.match(html, /role="status"/);
   }
-  for (const app of ['shelflife', 'tariffshield', 'stockclearance']) {
+  for (const app of ['shelflife', 'tariffshield', 'stockclearance', 'storechronicle']) {
     assert.doesNotMatch(fs.readFileSync(`apps/${app}/index.html`, 'utf8'), /data-release-signup/);
   }
   console.log('Release signup validation and page coverage passed');

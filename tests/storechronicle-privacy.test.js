@@ -8,7 +8,7 @@ const section = privacy.match(/<section aria-labelledby="storechronicle">([\s\S]
 assert.ok(section, 'StoreChronicle must have its own scoped privacy disclosure');
 assert.match(privacy, /href="#storechronicle"/);
 assert.match(product, /href="\/privacy\.html#storechronicle"/);
-for (const phrase of ['pre-release testing', 'free-text', '7 days', '90 days', 'no automatic age-based expiry',
+for (const phrase of ['Free', 'free-text', 'no automatic age-based expiry', '120 days',
   'up to 30 days', '6 days', '27 days', 'manual recovery points', 'explicit opt-in',
   'provider and recipient copies', 'not proof that an entire privacy request is complete']) {
   assert.ok(section.includes(phrase), `Missing scoped disclosure: ${phrase}`);

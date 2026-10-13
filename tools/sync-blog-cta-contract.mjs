@@ -53,11 +53,11 @@ const resourceBlocks = {
 </aside>
 `,
   'storechronicle-preview': `
-<aside class="blog-resource-cta" data-resource-cta="storechronicle-preview" data-app-availability="in-preparation">
-<p class="blog-cta-eyebrow">Product status: in preparation</p>
-<h2>Use the change-log workflow now</h2>
-<p>StoreChronicle is not available to install from the Shopify App Store yet. Use this article's field-level change-log and incident-review process now, and check the product page for current release status.</p>
-<a data-resource-link href="/apps/storechronicle/">View StoreChronicle release status →</a>
+<aside class="blog-resource-cta" data-resource-cta="storechronicle-preview" data-app-availability="public">
+<p class="blog-cta-eyebrow">StoreChronicle · Available on Shopify</p>
+<h2>Keep the context of store changes</h2>
+<p>StoreChronicle is free to install from the Shopify App Store. Review supported change history, retained values, review rules, and selective restoration. Coverage depends on access, configuration, and available evidence.</p>
+<a data-resource-link href="/apps/storechronicle/">Explore StoreChronicle →</a>
 </aside>
 `,
   'warrantytracker-preview': `
