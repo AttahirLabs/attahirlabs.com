@@ -182,13 +182,30 @@ for (const link of chronicleLinks) {
   assert.equal(url.searchParams.get('utm_campaign'), 'storechronicle');
 }
 assert.equal(api.appFromLink('https://apps.shopify.com/storechangelog/'), 'storechronicle');
+const chroniclePage = fs.readFileSync(path.join(root, 'apps/storechronicle/index.html'), 'utf8');
+const chronicleHero = chroniclePage.match(/<section\b[^>]*class="([^"]*\bproduct-hero\b[^"]*)"[^>]*>([\s\S]*?)<\/section>/);
+assert.ok(chronicleHero, 'exercise the actual generated product hero');
+const chronicleHeroAncestors = chronicleHero[1].split(/\s+/).map(className => '.' + className);
+assert.ok(!chronicleHeroAncestors.includes('.hero'), 'product hero must not rely on an invented .hero ancestor');
+const chronicleHeroHref = [...chronicleHero[2].matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)]
+  .map(match => match[1].replaceAll('&amp;', '&')).find(href => api.appFromLink(href) === 'storechronicle');
+assert.ok(chronicleHeroHref, 'the rendered hero must include the actual StoreChronicle listing CTA');
+const chronicleHeroUrl = new URL(chronicleHeroHref);
+assert.equal(chronicleHeroUrl.searchParams.get('utm_content'), 'app_page_hero');
 const chronicle = browser({ path: '/apps/storechronicle/', search: '?utm_source=attahirlabs&utm_medium=website&utm_campaign=storechronicle&utm_content=app_page_hero' });
-chronicle.dispatch('click', { detail: 0, target: target(chronicleLinks.find(link => link.publicPath === '/apps/storechronicle/').href.replaceAll('&amp;', '&'), ['.hero']) });
+chronicle.dispatch('click', { detail: 0, target: target(chronicleHeroHref, chronicleHeroAncestors) });
 const chronicleEvents = chronicle.events().filter(event => event[1] === 'app_store_outbound');
 assert.equal(chronicleEvents.length, 1);
 assert.equal(chronicleEvents[0][2].app_name, 'storechronicle');
 assert.equal(chronicleEvents[0][2].campaign_name, 'storechronicle');
 assert.equal(chronicleEvents[0][2].destination_type, 'shopify_app_store');
+assert.equal(chronicleEvents[0][2].placement, 'hero');
+assert.equal(chronicleEvents[0][2].campaign_content, chronicleHeroUrl.searchParams.get('utm_content'));
+for (const [ancestors, placement] of [[['nav', '.page-hero'], 'nav'], [['footer'], 'footer'], [['.blog-app-cta'], 'article_footer'], [['.app-card'], 'app_card'], [[], 'content']]) {
+  const runtime = browser({ path: '/apps/storechronicle/' });
+  runtime.dispatch('click', { target: target(chronicleHeroHref, ancestors) });
+  assert.equal(runtime.events().find(event => event[1] === 'app_store_outbound')[2].placement, placement);
+}
 assert.equal(api.safeCampaign('?utm_campaign=storechangelog').campaign_name, undefined, 'listing handles do not create an alias acquisition campaign');
 for (const href of ['http://apps.shopify.com/shelflife', 'https://apps.shopify.com.evil.example/shelflife', 'https://secret@apps.shopify.com/shelflife', 'https://apps.shopify.com/shelflife/reviews', 'https://apps.shopify.com/accessshield', 'https://apps.shopify.com/storechronicle', 'https://apps.shopify.com/storechangelog/reviews', 'https://apps.shopify.com/storechangelog-other', 'https://apps.shopify.com/%73torechangelog', 'https://apps.shopify.com.evil.example/storechangelog', 'https://secret@apps.shopify.com/storechangelog', 'https://apps.shopify.com:8443/storechangelog', 'javascript:alert(1)']) {
   assert.equal(api.appFromLink(href), null);

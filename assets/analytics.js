@@ -715,7 +715,7 @@
     if (anchor.closest('nav, header')) return 'nav';
     if (anchor.closest('footer')) return 'footer';
     if (anchor.closest('.blog-app-cta, [data-app-cta]')) return 'article_footer';
-    if (anchor.closest('.hero')) return 'hero';
+    if (anchor.closest('.hero, .page-hero, .product-hero')) return 'hero';
     if (anchor.closest('.app-card, .product-card')) return 'app_card';
     return surface === 'blog_article' ? 'article_inline' : 'content';
   }
