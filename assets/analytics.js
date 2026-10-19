@@ -235,14 +235,14 @@
     "surface": "blog_article",
     "title": "Shopify Benchmark Comparisons Are Going Away. Save This Data Now. | Attahir Labs"
   },
-  "/blog/shopify-changelog-best-practices/": {
-    "surface": "blog_article",
-    "title": "Shopify Changelog Best Practices: Build a Change Log That Helps During Incidents | Attahir Labs"
-  },
   "/blog/shopify-changelog-best-practices-storechangelog-tie-in/": {
     "surface": "blog_article",
     "title": "Redirecting to Shopify Changelog Best Practices | Attahir Labs",
     "disabled": true
+  },
+  "/blog/shopify-changelog-best-practices/": {
+    "surface": "blog_article",
+    "title": "Shopify Changelog Best Practices: Build a Change Log That Helps During Incidents | Attahir Labs"
   },
   "/blog/shopify-food-recall-batch-tracking-bulk-salmonella-2026/": {
     "surface": "blog_article",
@@ -264,14 +264,14 @@
     "surface": "blog_article",
     "title": "Shopify HS Codes and Country of Origin: Setup Checklist for Duties at Checkout | Attahir Labs"
   },
-  "/blog/shopify-import-duties/": {
-    "surface": "blog_article",
-    "title": "Shopify Import Duties in 2026: Use a Source-and-Status Workflow | Attahir Labs"
-  },
   "/blog/shopify-import-duties-cross-border-guide/": {
     "surface": "blog_article",
     "title": "Redirecting to Shopify Import Duties Guide | Attahir Labs",
     "disabled": true
+  },
+  "/blog/shopify-import-duties/": {
+    "surface": "blog_article",
+    "title": "Shopify Import Duties in 2026: Use a Source-and-Status Workflow | Attahir Labs"
   },
   "/blog/shopify-payments-payout-currency-bank-accounts-2026/": {
     "surface": "blog_article",
@@ -368,16 +368,6 @@
   "/privacy.html": {
     "surface": "legal",
     "title": "Privacy Policy | Attahir Labs"
-  },
-  "/review/japan-duty-image-candidates/": {
-    "surface": "review",
-    "title": "Japan duty image candidates",
-    "disabled": true
-  },
-  "/review/stockclearance-chatgpt/": {
-    "surface": "review",
-    "title": "StockClearance ChatGPT review demo | Attahir Labs",
-    "disabled": true
   },
   "/shipping/": {
     "surface": "shipping_calculator",

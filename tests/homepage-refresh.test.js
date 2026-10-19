@@ -90,7 +90,13 @@ function readPngPixel(filePath, x, y) {
 
 assert.match(html, /<title>Attahir Labs \| E-commerce Apps, Web Design &amp; Shopify Setup<\/title>/, 'homepage should use the problem-first SEO title');
 assert.match(html, /<link rel="canonical" href="https:\/\/attahirlabs\.com\/">/, 'homepage canonical should include trailing slash');
-includes('<h1>Better stores.<br>Smarter commerce.</h1>', 'homepage should lead with the approved navy studio benefit statement');
+assert.match(html, /<body\b[^>]*\bdata-design="cinematic-commerce"/, 'homepage should use the approved cinematic-commerce design');
+const headings = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)];
+assert.equal(headings.length, 1, 'homepage should expose one primary heading');
+assert.equal(headings[0][1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(),
+  'Build a better e-commerce business.', 'homepage should lead with the approved business benefit');
+assert.match(html, /<a\b[^>]*class="skip-link"[^>]*href="#main"[^>]*>Skip to content<\/a>/);
+assert.match(html, /<main\b[^>]*id="main"/, 'the keyboard skip link must have a main-content destination');
 includes('Explore the apps', 'homepage hero should have one clear primary routing CTA');
 includes('Install StockClearance', 'homepage should prioritize the newly public inventory app');
 includes('View TariffShield on Shopify', 'homepage should disclose TariffShield availability while keeping its listing link');
@@ -104,7 +110,8 @@ includes('https://apps.shopify.com/tariffshield', 'homepage should link to Tarif
 includes('https://apps.shopify.com/shelflife', 'homepage should link to ShelfLife App Store listing');
 includes('Install ShelfLife', 'homepage should expose the verified ShelfLife install CTA');
 includes('What problem are you trying to solve?', 'homepage should route by merchant problem');
-includes('Build your website', 'homepage hero should route to web design services');
+includes('Start a project', 'homepage hero should route to web design services');
+includes('href="/web-design/#start"', 'project CTAs should retain the existing web-design enquiry destination');
 includes('Shipping calculator', 'homepage should keep the shipping calculator visible');
 includes('Public Apps', 'homepage should separate public apps from supporting tools');
 includes('StoreChronicle', 'homepage should use current StoreChronicle product name');
@@ -112,14 +119,34 @@ includes('WarrantyTracker', 'homepage should use current WarrantyTracker product
 includes('StockClearance', 'homepage should include StockClearance');
 includes('ShelfLife', 'homepage should include ShelfLife');
 includes('AccessShield', 'homepage should include AccessShield');
-includes('<section class="tool-section" id="tools">', 'homepage free-tools section should have a stable anchor for direct visual checks');
-includes('class="tool-grid tool-card-grid"', 'homepage free-tools section should give cards a full-width grid row');
+assert.match(html, /<section\b(?=[^>]*\bclass="[^"]*\btool-section\b)(?=[^>]*\bid="tools")[^>]*>/,
+  'homepage free-tools section should retain its stable anchor');
+assert.match(html, /class="[^"]*\btool-grid\b[^\"]*\btool-card-grid\b[^\"]*"/,
+  'homepage free-tools section should retain its tool-card grid');
 includes('Quick checks before you change a workflow.', 'homepage free-tools section should use tighter section copy');
-includes('StockClearance logo', 'homepage should show the correct public inventory app logo');
+includes('/assets/icons/stockclearance-suite.png', 'homepage should show the current catalog inventory app icon');
 includes('TariffShield app icon', 'homepage should show the public tariff app visually');
 const publicAppCardCount = [...html.matchAll(/<article\b[^>]*\bdata-app=["'][^"']+["'][^>]*>/g)].length;
 includes(`${publicAppCardCount} public apps`, 'homepage public-app summary should agree with its actual rendered app cards');
 const publicCatalog = JSON.parse(fs.readFileSync(path.join(root, 'data/public-apps.json'), 'utf8'));
+const publicCards = [...html.matchAll(/<article\b[^>]*\bdata-app=["']([^"']+)["'][^>]*>[\s\S]*?<\/article>/g)];
+assert.deepEqual(publicCards.map(card => card[1]).sort(), publicCatalog.products.map(product => product.slug).sort(),
+  'only catalog-confirmed public apps may have installable cards');
+for (const product of publicCatalog.products) {
+  const card = publicCards.find(card => card[1] === product.slug)[0];
+  assert.ok(card.includes(`href="/apps/${product.slug}/"`), `${product.name}: retain app-page route`);
+  assert.ok(card.includes(`href="${product.listing}?`), `${product.name}: use its exact public Shopify listing`);
+  assert.ok(card.includes(product.icon), `${product.name}: use its current catalog icon`);
+  assert.ok(fs.existsSync(path.join(root, product.icon.slice(1))), `${product.name}: icon must exist locally`);
+  assert.ok(card.includes('Shopify App Store'), `${product.name}: preserve public status`);
+}
+const upcoming = html.match(/<!-- upcoming-apps:start -->([\s\S]*?)<!-- upcoming-apps:end -->/)?.[1];
+assert.ok(upcoming, 'upcoming apps must remain separate from public app cards');
+for (const app of publicCatalog.unlistedApps) {
+  assert.ok(upcoming.includes(`href="${app.path}"`), `${app.name}: retain upcoming app-page route`);
+  assert.ok(upcoming.includes(`<span>${app.name}</span><small>${app.status}</small>`), `${app.name}: preserve catalog availability`);
+  assert.ok(!upcoming.includes(`Install ${app.name}`), `${app.name}: no premature installation claim`);
+}
 const organizationSchemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
   .map(match => JSON.parse(match[1])).filter(schema => schema['@type'] === 'Organization');
 assert.equal(organizationSchemas.length, 1);
@@ -136,7 +163,7 @@ assert.equal(chronicleOffer.url, 'https://apps.shopify.com/storechangelog');
 assert.equal(chronicleOffer.price, '0');
 includes('3 free tools', 'homepage should summarize live tool status');
 includes('/blog/dead-stock-clearance-q2-2026/', 'homepage should feature current inventory content');
-includes('/blog/import-duty-from-vietnam-to-us/', 'homepage should feature current tariff content');
+includes('href="/blog/"', 'homepage should retain access to the full guide library');
 includes('/blog/product-expiry-date-management-shopify/', 'homepage should feature ShelfLife-aligned content');
 
 const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
@@ -145,6 +172,8 @@ assert.ok(!nav.includes('href="#pipeline"'), 'homepage top nav should not link t
 assert.ok(!nav.includes('href="#resources"'), 'homepage top nav should not link to internal resources section');
 assert.match(nav, /href="\/apps\/"[^>]*>Apps</i, 'homepage top nav should link to app hub');
 assert.match(nav, /href="\/tools\/"[^>]*>Free tools</i, 'homepage top nav should link to free-tools hub');
+assert.match(nav, /href="\/web-design\/"[^>]*>Web design</i, 'homepage top nav should retain web-design services');
+assert.match(nav, /href="\/web-design\/#start"[^>]*>Start a project/i, 'homepage top nav should retain project enquiries');
 assert.match(nav, /href="\/blog\/"[^>]*>Blog</i, 'homepage top nav should keep Blog');
 assert.match(nav, /href="\/contact\.html"[^>]*>Contact</i, 'homepage top nav should keep Contact');
 assert.ok(nav.includes('class="nav-item-apps"'), 'homepage top nav should expose an Apps hover dropdown wrapper');
@@ -201,6 +230,23 @@ assert.ok(
 
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>2026-09-23<\/lastmod>/, 'sitemap homepage lastmod should reflect the current site update');
 
-includes('class="glass-scene"', 'approved homepage uses a layered glass scene');
-includes('class="upcoming-band"', 'unreleased apps have a separate band');
+includes('data-cinematic-depth', 'approved homepage should retain layered cinematic scenes');
+includes('class="portfolio-note"', 'unreleased apps should remain in their separate portfolio band');
+includes('Illustrative scene', 'the commerce world must not imply client proof');
+includes('Illustrative website concept', 'the storefront must remain clearly illustrative');
+includes('data-cinema-toggle', 'visitors must have a visible motion control');
+assert.match(html, /<button\b[^>]*data-cinema-toggle[^>]*aria-pressed="(?:true|false)"/, 'motion control must expose its state');
+assert.match(html, /<dialog\b[^>]*id="cafe-dialog"[^>]*aria-labelledby="cafe-title"/, 'world viewer must have an accessible title');
+includes('aria-label="Close world viewer"', 'world viewer must have an accessible close control');
+const cinemaVideos = [...html.matchAll(/<video\b[^>]*data-cinema-video[^>]*>/g)];
+assert.ok(cinemaVideos.length > 0, 'cinematic homepage should contain its native scenes');
+for (const [tag] of cinemaVideos) {
+  for (const attribute of ['muted', 'loop', 'playsinline', 'preload="none"']) {
+    assert.ok(tag.includes(attribute), `native scene should retain ${attribute}`);
+  }
+  assert.ok(!tag.includes('autoplay'), 'runtime must respect motion preferences before playing media');
+}
+const cinemaAssets = [...new Set([...html.matchAll(/(?:src|data-src|poster)="(\/assets\/cinema\/[^"?]+)(?:\?[^\"]*)?"/g)].map(match => match[1]))];
+const missingCinemaAssets = cinemaAssets.filter(asset => !fs.existsSync(path.join(root, asset.slice(1))));
+assert.deepEqual(missingCinemaAssets, [], 'all referenced cinematic posters and videos must exist before release');
 console.log('homepage refresh tests passed');

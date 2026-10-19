@@ -1,6 +1,7 @@
 /* Progressive enhancement: HTML remains complete with scripting disabled. */
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const cinematic = Boolean(document.querySelector('script[src^="/assets/cinema/motion.js"]'));
   const nav = document.querySelector('body > nav');
   if (nav) {
     const links = nav.querySelector('.nav-links');
@@ -28,7 +29,7 @@
   }
   // Animate on entry, never hide content while waiting for JavaScript or observation.
   const animations = new Set();
-  if ('IntersectionObserver' in window && Element.prototype.animate) {
+  if (!cinematic && 'IntersectionObserver' in window && Element.prototype.animate) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if(!entry.isIntersecting) return;
       observer.unobserve(entry.target);
@@ -48,7 +49,7 @@
       button.addEventListener('keydown', e => { if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(e.key)) return; e.preventDefault(); const next=e.key==='Home'?0:e.key==='End'?buttons.length-1:(i+(['ArrowRight','ArrowDown'].includes(e.key)?1:buttons.length-1))%buttons.length; select(next); buttons[next].focus(); });
     });
   });
-  const scenes=[...document.querySelectorAll('[data-depth-scene]')];
+  const scenes=cinematic?[]:[...document.querySelectorAll('[data-depth-scene]')];
   let progress;
   if(document.body.dataset.page==='article') { progress=document.createElement('div');progress.className='reading-progress';progress.setAttribute('aria-hidden','true');document.body.append(progress); }
   let frame=0;

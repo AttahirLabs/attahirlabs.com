@@ -11,10 +11,15 @@ function read(relativePath) {
 
 function assertListingCta(relativePath, label) {
   const html = read(relativePath);
-  const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  assert.match(
-    html,
-    new RegExp(`<a[^>]+href="${listing}(?:\\?[^"#]*)?"[^>]*>${escapedLabel}</a>`),
+  const anchors = [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  const matching = anchors.filter(([, href, contents]) => {
+    const text = contents.replace(/<svg\b[\s\S]*?<\/svg>/gi, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    if (text !== label) return false;
+    const url = new URL(href.replaceAll('&amp;', '&'), 'https://attahirlabs.com');
+    return url.origin + url.pathname === listing && !url.username && !url.password && !url.hash;
+  });
+  assert.ok(
+    matching.length > 0,
     `${relativePath} should send the ${label} CTA to the official ShelfLife listing`
   );
 }
@@ -109,6 +114,10 @@ for (const [relativePath, html] of [
   ['apps/index.html', appsHub],
   ['apps/shelflife/index.html', appPage]
 ]) {
+  // Other upcoming app cards correctly retain their own preparation status.
+  const shelfLifeSurface = relativePath === 'apps/shelflife/index.html' ? html
+    : html.match(/<article\b[^>]*\bdata-app="shelflife"[^>]*>[\s\S]*?<\/article>/)?.[0];
+  assert.ok(shelfLifeSurface, `${relativePath} must expose a ShelfLife public surface`);
   for (const stale of [
     '2 public apps',
     'App Store listing in preparation',
@@ -119,7 +128,7 @@ for (const [relativePath, html] of [
     'ShelfLife once it is public',
     'ShelfLife when it is public'
   ]) {
-    assert.ok(!html.includes(stale), `${relativePath} should not retain stale ShelfLife launch copy: ${stale}`);
+    assert.ok(!shelfLifeSurface.includes(stale), `${relativePath} should not retain stale ShelfLife launch copy: ${stale}`);
   }
 }
 

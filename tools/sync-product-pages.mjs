@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import {productNav, productFooter, scene, walkthrough} from './design-components.mjs';
 import {studioPreview} from './studio-components.mjs';
+import {applyCinematic} from './cinematic-components.mjs';
+import {cinematicHomeCards,cinematicUpcomingApps} from './cinematic-home-components.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -31,7 +33,7 @@ function schemas(p){return [
  {'@context':'https://schema.org','@type':'SoftwareApplication',name:p.listingName,applicationCategory:'BusinessApplication',operatingSystem:'Shopify',url:`https://attahirlabs.com/apps/${p.slug}/`,description:p.description,...(p.slug==='stockclearance'?{publisher:{'@type':'Organization',name:'Attahir Labs',url:'https://attahirlabs.com/'}}:{}),offers:p.plans.flatMap(plan=>[{name:plan.name,'@type':'Offer',price:String(plan.price),priceCurrency:catalog.currency,url:p.listing,description:plan.price===0?'Free plan':`${plan.period==='year'?'Annual':'Monthly'} billing${plan.trialDays?`; ${plan.trialDays}-day free trial`:''}`},...(plan.alternate?[{'@type':'Offer',name:`${plan.name} annual`,price:String(plan.alternate),priceCurrency:catalog.currency,url:p.listing,description:`Annual billing; ${plan.trialDays}-day free trial`}]:[])])},
  {'@context':'https://schema.org','@type':'FAQPage',mainEntity:p.faqs.map(([name,text])=>({'@type':'Question',name,acceptedAnswer:{'@type':'Answer',text}}))}
  ].map(s=>`<script type="application/ld+json">\n${JSON.stringify(s,null,2)}\n</script>`).join('\n');}
-function write(relative,content){const file=path.join(root,relative);const before=fs.readFileSync(file,'utf8');if(content===before)return;if(check){console.error(`${relative} differs from the product reference; run node tools/sync-product-pages.mjs`);process.exitCode=1;}else fs.writeFileSync(file,content);}
+function write(relative,content){const file=path.join(root,relative);const before=fs.readFileSync(file,'utf8');content=applyCinematic(content,relative);if(content===before)return;if(check){console.error(`${relative} differs from the product reference; run node tools/sync-product-pages.mjs`);process.exitCode=1;}else fs.writeFileSync(file,content);}
 for(const p of catalog.products){
  const relative=`apps/${p.slug}/index.html`;let html=fs.readFileSync(path.join(root,relative),'utf8');
  html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\s*/g,'');
@@ -76,7 +78,12 @@ function syncHomeOrganization(html){
  return next;
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-write('index.html',syncHomeOrganization(home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${homeCards}\n<!-- public-app-cards:end -->`).replace(/\b\d+ public apps\b/g,`${catalog.products.length} public apps`)));
+if(home.includes('data-design="cinematic-commerce"')){
+ const updated=home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${cinematicHomeCards(catalog.products)}\n<!-- public-app-cards:end -->`).replace(/<!-- upcoming-apps:start -->[\s\S]*?<!-- upcoming-apps:end -->/,`<!-- upcoming-apps:start -->\n${cinematicUpcomingApps(catalog.unlistedApps || [])}\n<!-- upcoming-apps:end -->`).replace(/\b\d+ public apps\b/g,`${catalog.products.length} public apps`);
+ write('index.html',syncHomeOrganization(updated));
+}else if(process.argv.includes('--legacy-home')){
+ write('index.html',syncHomeOrganization(home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${homeCards}\n<!-- public-app-cards:end -->`).replace(/\b\d+ public apps\b/g,`${catalog.products.length} public apps`)));
+}
 const hub=fs.readFileSync(path.join(root,'apps/index.html'),'utf8');
 const hubCards=cards.replaceAll('btn-dark','btn-primary').replaceAll('btn-light','btn-secondary').replaceAll('homepage_public_apps','apps_hub_hero');
 write('apps/index.html',hub.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${hubCards}\n<!-- public-app-cards:end -->`));

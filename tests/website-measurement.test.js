@@ -3,20 +3,17 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const { spawnSync } = require('node:child_process');
+const {pathToFileURL} = require('node:url');
 const root = path.resolve(__dirname, '..');
+(async () => {
+const {publicPages} = await import(pathToFileURL(path.join(root,'tools/build-static.mjs')));
 const source = fs.readFileSync(path.join(root, 'assets/analytics.js'), 'utf8');
 const api = require('../assets/analytics.js');
 const sync = spawnSync(process.execPath, ['tools/sync-measurement.mjs'], { cwd: root, encoding: 'utf8' });
 assert.equal(sync.status, 0, sync.stdout + sync.stderr);
 
-function htmlFiles(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
-    if (entry.name.startsWith('.') || ['node_modules', '_site', 'tests'].includes(entry.name)) return [];
-    const file = path.join(dir, entry.name);
-    return entry.isDirectory() ? htmlFiles(file) : entry.name.endsWith('.html') ? [file] : [];
-  });
-}
-const files = htmlFiles(root);
+const files = publicPages(root);
+assert.ok(files.every(file => !/(?:^|\/)(?:review|prototypes|releases|tests|data)(?:\/|$)/.test(path.relative(root,file).split(path.sep).join('/'))), 'measurement walks exactly the published pages');
 assert.ok(files.length > 80, 'exercise every actual HTML family, not a fixed sample');
 const familyCounts = {};
 const publicLinks = [];
@@ -41,7 +38,7 @@ for (const file of files) {
     if (app) publicLinks.push({ app, href: match[1], publicPath });
   }
 }
-for (const family of ['index.html', 'apps', 'blog', 'duty', 'shipping', 'tools', 'analytics-preferences', 'contact.html', 'privacy.html', 'terms.html', 'review']) assert.ok(familyCounts[family], family);
+for (const family of ['index.html', 'apps', 'blog', 'duty', 'shipping', 'tools', 'analytics-preferences', 'contact.html', 'privacy.html', 'terms.html', 'web-design']) assert.ok(familyCounts[family], family);
 assert.deepEqual([...new Set(publicLinks.map(x => x.app))].sort(), ['shelflife', 'stockclearance', 'storechronicle', 'tariffshield']);
 assert.ok(publicLinks.length > 40, 'exercise the actual published App Store CTAs');
 for (const link of publicLinks) {
@@ -386,3 +383,5 @@ const serviceIntent = serviceVisit.events().filter(x => x[1] === 'contact_intent
 assert.equal(serviceIntent.length, 1);
 assert.equal(serviceIntent[0][2].surface, 'services');
 assert.ok(!JSON.stringify(serviceIntent).includes('Website%20project'), 'email subject stays out of event payloads');
+
+})().catch(error => { console.error(error);process.exitCode=1; });

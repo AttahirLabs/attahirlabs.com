@@ -193,6 +193,7 @@ function insertContractBlock(slug, html) {
   );
   if (/<\/article>/i.test(html)) return html.replace(/\s*<\/article>/i, `\n${normalizedBlock}</article>`);
   if (/<\/main>/i.test(html)) return html.replace(/\s*<\/main>/i, `\n${normalizedBlock}</main>`);
+  if (/<\/div>\s*<aside class="cinema-footer-controls"/i.test(html)) return html.replace(/\s*<\/div>(\s*<aside class="cinema-footer-controls")/i, `\n${normalizedBlock}</div>$1`);
   if (/<\/div>\s*<\/body>/i.test(html)) return html.replace(/\s*<\/div>\s*<\/body>/i, `\n${normalizedBlock}</div>\n</body>`);
   return html.replace(/\s*<\/body>/i, `\n${normalizedBlock}</body>`);
 }

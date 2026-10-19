@@ -88,8 +88,10 @@ for (const page of manifest.pages) {
   );
 
   if (page.contentRole === 'event_canonical') {
-    assert.ok(
-      html.includes(`<h1>${page.title}</h1>`),
+    const visibleTitles = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)];
+    assert.equal(visibleTitles.length, 1, `${page.path} must have one visible primary title`);
+    assert.equal(
+      visibleTitles[0][1], page.title,
       `${page.path} visible title differs from manifest`,
     );
     assert.ok(
