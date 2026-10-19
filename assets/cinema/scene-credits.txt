@@ -1,0 +1,30 @@
+AttahirLabs miniature commerce films
+
+Original miniature architecture, set dressing, lighting, camera animation and composition created for AttahirLabs. NORTH., ALDER and DISPATCH are illustrative scene identities.
+
+Snow
+Snow Rig (CC) Blender Foundation | studio.blender.org
+Source: https://studio.blender.org/characters/snow/v4/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Rain
+Rain Rig (CC) Blender Foundation | studio.blender.org
+Source: https://studio.blender.org/characters/rain/v3/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Rex
+Rex character, Blender Foundation / Blender Studio (CC BY 4.0) | studio.blender.org
+Source: https://studio.blender.org/characters/rex/v1/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Character adaptations include Unreal conversion, skeleton retargeting, posing, scale, material and wardrobe variations, and simplified shaders, hair and facial deformation. The original downloaded assets remain unchanged.
+
+Animation clips: Universal Animation Library by Quaternius.
+Source: https://quaternius.com/packs/universalanimationlibrary.html
+License: CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+
+The films are illustrative business scenes, with rendered camera and character animation. Their example interfaces and scene identities do not represent client work or merchant data.

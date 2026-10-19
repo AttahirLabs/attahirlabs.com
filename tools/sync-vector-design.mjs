@@ -3,13 +3,15 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {productNav,productFooter,scene,walkthrough,escapeHTML as esc} from './design-components.mjs';
 import {storefrontShowcase} from './studio-components.mjs';
+import {applyCinematic} from './cinematic-components.mjs';
+import {publicPages} from './build-static.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const check=process.argv.includes('--check');
 const products=[
  {slug:'accessshield',name:'AccessShield',headline:'Make your storefront easier to use.',description:'Turn accessibility findings into a practical review and remediation workflow. Start with a free storefront check today.',kicker:'Accessibility for Shopify',title:'Accessibility review',rows:[['Missing form label','Review finding'],['Low contrast text','Check context'],['Theme remediation','Plan next step']],demo:[['Find accessibility issues','Start with a storefront scan and review individual findings.'],['Review the context','Understand where an issue appears and who it may affect.'],['Plan the next fix','Connect findings to a practical theme remediation workflow.']]},
  {slug:'warrantytracker',name:'WarrantyTracker',headline:'Care that continues after checkout.',description:'Keep warranty registrations, coverage checks, and claims connected to the products and customers behind them.',kicker:'Warranty operations for Shopify',title:'Warranty workspace',rows:[['Product registration','Registered'],['Coverage lookup','Review coverage'],['Customer claim','Follow progress']],demo:[['Keep registrations together','Connect a product registration with its customer and purchase context.'],['Review coverage','Look up the warranty details relevant to a support request.'],['Follow the claim','Keep the associated claim record and its progress organized.']]}
 ].map(p=>({...p,icon:`/assets/icons/${p.slug}${p.slug==='storechronicle'?'-suite.png':'-suite.svg'}`}));
-function write(file,s){if(fs.readFileSync(file,'utf8')===s)return;if(check){console.error(`${path.relative(root,file)} needs vector sync`);process.exitCode=1;}else fs.writeFileSync(file,s);}
+function write(file,s){s=applyCinematic(s,path.relative(root,file));if(fs.readFileSync(file,'utf8')===s)return;if(check){console.error(`${path.relative(root,file)} needs vector sync`);process.exitCode=1;}else fs.writeFileSync(file,s);}
 for(const p of products){
  const file=path.join(root,`apps/${p.slug}/index.html`);let html=fs.readFileSync(file,'utf8');
  const form=html.match(/<form class="release-signup"[\s\S]*?<\/form>/)?.[0];
@@ -20,11 +22,11 @@ for(const p of products){
  if(!html.includes('/apps/product-pages.css'))html=html.replace('</head>','<link rel="stylesheet" href="/apps/product-pages.css?v=20260913">\n</head>');
  write(file,html);
 }
-function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>{if(e.name.startsWith('.')||['node_modules','tests','review','_site'].includes(e.name))return[];const f=path.join(dir,e.name);return e.isDirectory()?walk(f):e.name.endsWith('.html')?[f]:[];});}
-for(const file of walk(root)){
+for(const file of publicPages(root)){
  let html=fs.readFileSync(file,'utf8');
  if(!html.includes('</head>')||!/<nav\b/.test(html))continue;
  const relative=path.relative(root,file);
+ if(relative==='index.html')continue;
  if(!html.includes('class="product-nav"'))html=html.replace(/<nav\b[\s\S]*?<\/nav>/,nav=>nav.includes('href="/web-design/"')?nav:nav.replace('<li><a href="/blog/">Blog</a></li>','<li><a href="/web-design/">Web design</a></li><li><a href="/blog/">Blog</a></li>'));
  const type=/^apps\/[^/]+\/index.html$/.test(relative)?'product':relative==='blog/index.html'?'blog-index':relative.startsWith('blog/')?'article':relative==='index.html'?'home':relative==='web-design/index.html'?'services':'utility';
  if(type==='home'){

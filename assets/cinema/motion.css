@@ -1,0 +1,35 @@
+/* One progressive motion system for all public pages. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:cinema-page-out .24s ease both}
+::view-transition-new(root){animation:cinema-page-in .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes cinema-page-out{to{opacity:0;transform:translateY(-5px)}}
+@keyframes cinema-page-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+[data-cinema-stage]{position:relative;isolation:isolate}
+[data-cinema-video]{display:block;max-width:100%}
+[data-cinema-stage]>[data-cinema-video]{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;pointer-events:none}
+[data-cinema-stage][data-cinema-ready='true']>[data-cinema-video]{opacity:1}
+[data-cinema-stage]>[data-cinema-poster]{transition:opacity .8s ease}
+[data-cinema-stage][data-cinema-ready='true']>[data-cinema-poster]{opacity:0}
+.cinema-ready [data-cinematic-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.cinema-ready [data-cinematic-reveal][data-cinematic-visible='true']{opacity:1;transform:translateY(0)}
+[data-cinematic-depth]{--cinema-x:0;--cinema-y:0;--cinema-scroll:0}
+[data-cinema-toggle]{cursor:pointer}
+[data-cinema-toggle]:disabled{cursor:default;opacity:.7}
+body[data-cinema-motion='paused'] .cinema-ambient{animation-play-state:paused!important}
+body[data-cinema-motion='paused'] [data-cinematic-reveal]{transition:none}
+body[data-cinema-motion='paused'] [data-cinematic-depth]{--cinema-x:0!important;--cinema-y:0!important;--cinema-scroll:0!important}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  .cinema-ready [data-cinematic-reveal]{opacity:1;transform:none;transition:none}
+  [data-cinema-stage]>[data-cinema-video]{display:none!important}
+  [data-cinema-stage]>[data-cinema-poster]{opacity:1!important}
+  [data-cinematic-depth]{--cinema-x:0!important;--cinema-y:0!important;--cinema-scroll:0!important}
+  .cinema-ambient{animation:none!important}
+}
+
+html[data-cinema-motion="paused"]{view-transition-name:none}
+html[data-cinema-motion="paused"]::view-transition-old(root),html[data-cinema-motion="paused"]::view-transition-new(root){animation:none!important}
+/* Keep the matching poster underneath until the first video fade is complete. */
+[data-cinema-stage]>[data-cinema-poster]{opacity:1;transition:none}
+[data-cinema-stage][data-cinema-ready='true']>[data-cinema-poster]{opacity:0;transition:opacity 0s .8s}

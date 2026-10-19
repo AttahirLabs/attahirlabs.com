@@ -64,14 +64,7 @@ jobs:
       - name: Build exact static artifact
         run: |
           set -euo pipefail
-          mkdir _site
-          rsync -a \
-            --exclude '.git' \
-            --exclude '.github' \
-            --exclude 'tests' \
-            --exclude 'functions' \
-            --exclude '_site' \
-            ./ _site/
+          node tools/build-static.mjs
 
       - name: Install locked deployment tooling
         working-directory: .github/cloudflare-pages

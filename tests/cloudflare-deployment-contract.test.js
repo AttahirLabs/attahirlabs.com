@@ -67,9 +67,10 @@ assert.equal(packageJson.dependencies.wrangler, '4.127.1', 'Wrangler must be pin
 assert.equal(packageLock.lockfileVersion, 3);
 assert.equal(packageLock.packages[''].dependencies.wrangler, '4.127.1');
 
-for (const excluded of ['.git', '.github', 'tests', '_site']) {
-  assert.ok(workflow.includes(`--exclude '${excluded}'`), `${excluded} must be excluded from the artifact`);
-}
+assert.match(workflow, /- name: Build exact static artifact\s*\n\s+run: \|\s*\n\s+set -euo pipefail\s*\n\s+node tools\/build-static\.mjs/);
+assert.doesNotMatch(workflow, /rsync\s|cp -[a-z]*r[a-z]*\s/, 'deploy uses the reviewed public allowlist, not a repository copy');
+assert.doesNotMatch(workflow, /working-directory:\s*_site/, 'Wrangler must discover and compile functions from the repository root');
+assert.match(workflow, /test "\$CLOUDFLARE_ACCOUNT_ID" = "5528a2e45416ae7eb22b1320b49aa16a"/);
 assert.doesNotMatch(workflow, /actions\/(?:configure-pages|upload-pages-artifact|deploy-pages)@/);
 
 console.log('Cloudflare Pages deployment workflow contract passed');

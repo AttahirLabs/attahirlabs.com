@@ -2,9 +2,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {publicPages} from './build-static.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const write = process.argv.includes('--write');
-const ignored = new Set(['.git', '.github', 'node_modules', 'tests', '_site']);
 // Website product slugs can differ from their verified Shopify listing handles.
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'data/public-apps.json'), 'utf8'));
 const listingApps = new Map(catalog.products.map(product => {
@@ -12,13 +12,6 @@ const listingApps = new Map(catalog.products.map(product => {
   if (listing.origin !== 'https://apps.shopify.com' || listing.username || listing.password || !/^\/[a-z0-9-]+$/.test(listing.pathname)) throw new Error('Invalid public listing: ' + product.slug);
   return [listing.pathname, product.slug];
 }));
-function files(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).flatMap(entry => {
-    if (ignored.has(entry.name) || entry.name.startsWith('.')) return [];
-    const file = path.join(dir, entry.name);
-    return entry.isDirectory() ? files(file) : entry.name.endsWith('.html') ? [file] : [];
-  });
-}
 function surface(p) {
   if (p === '/') return 'homepage';
   if (p === '/web-design/') return 'services';
@@ -44,7 +37,7 @@ function update(file, next) {
   if (write) fs.writeFileSync(file, next);
   else console.error('Measurement sync needed: ' + path.relative(root, file));
 }
-for (const file of files(root)) {
+for (const file of publicPages(root)) {
   const relative = path.relative(root, file).split(path.sep).join('/');
   const publicPath = '/' + relative.replace(/(^|\/)index\.html$/, '$1');
   const html = fs.readFileSync(file, 'utf8');
