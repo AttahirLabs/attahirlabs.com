@@ -66,7 +66,8 @@ for (const label of ['Ruleset', 'Evidence valid through', 'Authority state', 'Co
 for (const label of ['Dataset updated', 'Evidence verified through', 'Provenance', 'State']) {
   assert.match(rates, new RegExp(label, 'i'), `rates table must render the ${label} response label`);
 }
-assert.match(dutyClient, /\/api\/v2\/us-duty/);
+assert.match(dutyClient, /\/api\/authority-duty/);
+assert.doesNotMatch(dutyClient, /\/api\/v2\/us-duty/, 'numeric calculations must pass the current-source relay');
 assert.doesNotMatch(dutyClient, /\/api\/v1\/landed-cost/);
 assert.match(dutyClient, /if\s*\(\s*!response\.ok\s*\|\|\s*data\.status\s*!==\s*"calculated"\s*\)/, 'calculator must reject non-calculated responses');
 assert.match(rates, /if\s*\(\s*!rr\.ok\s*\|\|\s*!mr\.ok\s*\)/, 'rates page must reject non-2xx responses');
