@@ -124,3 +124,9 @@ body[data-design="navy-district"] .storefront-stage figcaption { font-size: .812
   body[data-design="navy-district"] h1 { font-size: 2.75rem; }
   body[data-design="navy-district"] .hero .actions { grid-template-columns: 1fr; }
 }
+
+/* Without a pause control, decorative drift settles after one short pass. */
+body[data-design="navy-district"] .ambient {
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+}

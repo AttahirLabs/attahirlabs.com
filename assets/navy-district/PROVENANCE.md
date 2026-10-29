@@ -12,7 +12,9 @@ unchanged copies of the previously rendered 12-second Unreal cafe detail.
 The approved scene runtime was promoted byte for byte. The approved homepage CSS
 retains the selected layout, with appended rules for current app-listing links
 and an October 29 typography pass that enlarges reading text, actions, labels
-and illustrative interfaces. All
+and illustrative interfaces. The subsequent homepage cleanup removes auxiliary
+scene labels, controls and the café viewer. Decorative drift now settles after
+one four-second pass because the pause control was removed. All
 public paths are under `assets/navy-district/`; developer prototypes, Unreal
 sources and private review material remain outside the public static artifact.
 
@@ -29,5 +31,5 @@ cd0e146905df61891d919d20ab0c96472fb92eb9d99e388927846afb8f121b77  cafe-poster.jp
 6b5f440fdf400a69c7e505f3d7aca5283681fc85af74ddc56e5be7d12679ba20  scene.js
 449afcec3bfa994e3c4a4028e415e503ded900b82054d84dd225ee50738ca067  shelflife.webp
 57c8633a2bc8da2650c52892c5b0d6b241a0239899f2a5a46fc9898133f45455  stockclearance.webp
-117027b9d54ef659812ba3a211be9cada996a9e88d0ebdb2befc82f1f79c1df4  style.css
+99200f85585849aa72b4c105f1348fb115dad7c22b0e9cb9f047945c78b958b2  style.css
 ```
