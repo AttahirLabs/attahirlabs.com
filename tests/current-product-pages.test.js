@@ -5,6 +5,7 @@ const { spawnSync } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const catalog = JSON.parse(read('data/public-apps.json'));
+const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
 // A pricing or FAQ edit must update all rendered surfaces, not only one page.
 const sync = spawnSync(process.execPath, ['tools/sync-product-pages.mjs', '--check'], { cwd: root, encoding: 'utf8' });
 assert.equal(sync.status, 0, sync.stdout + sync.stderr);
@@ -87,7 +88,7 @@ assert.doesNotMatch(chronicleTerms, /\bStandard\b|\bPro\b|paid plans|downgrade|g
 assert.match(terms, /Last updated: October 13, 2026/);
 for (const page of ['index.html', 'apps/index.html']) {
   const html = read(page);
-  const card = html.match(/<article[^>]*data-app="storechronicle"[\s\S]*?<\/article>/)?.[0];
+  const card = elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'storechronicle')?.html;
   assert.ok(card, `${page}: StoreChronicle belongs in the public-app cards`);
   assert.match(card, /apps\.shopify\.com\/storechangelog\?/);
   assert.match(card, /utm_campaign=storechronicle/);
@@ -138,7 +139,8 @@ assert.deepEqual(tariff.plans[2].features, [
 assert.ok(tariff.screenshots.every(s => s.alt.startsWith('Historical') && s.alt.includes('Not current guidance')));
 for (const page of ['index.html', 'apps/index.html']) {
   const html = read(page);
-  const card = html.match(/<article[^>]*data-app="tariffshield"[\s\S]*?<\/article>/)[0];
+  const card = elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'tariffshield')?.html;
+  assert.ok(card, `${page}: retain a public TariffShield surface`);
   assert.ok(card.includes(tariff.summary));
   assert.doesNotMatch(card, /Paused|currently paused|data under review/i);
   assert.match(card, /Complete reviewed filing facts are required/);

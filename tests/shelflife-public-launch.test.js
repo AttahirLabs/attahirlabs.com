@@ -4,6 +4,7 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const listing = 'https://apps.shopify.com/shelflife';
+const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
 
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), 'utf8');
@@ -87,7 +88,7 @@ for (const [url, expected] of Object.entries({
   assert.deepEqual(sitemapMetadata(url), expected, `${url} sitemap metadata should reflect the ShelfLife launch`);
 }
 
-assert.match(homepage, /<article\b[^>]*\bdata-app="shelflife"[^>]*>/, 'homepage should include ShelfLife among the public app cards');
+assert.ok(elementsWithAttribute(homepage, 'data-app').some(entry => entry.value === 'shelflife'), 'homepage should retain ShelfLife in the public app showcase');
 assert.ok(
   ['StockClearance', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)) && homepage.includes('View TariffShield on Shopify'),
   'homepage public-app proof should name ShelfLife'
@@ -116,7 +117,7 @@ for (const [relativePath, html] of [
 ]) {
   // Other upcoming app cards correctly retain their own preparation status.
   const shelfLifeSurface = relativePath === 'apps/shelflife/index.html' ? html
-    : html.match(/<article\b[^>]*\bdata-app="shelflife"[^>]*>[\s\S]*?<\/article>/)?.[0];
+    : elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'shelflife')?.html;
   assert.ok(shelfLifeSurface, `${relativePath} must expose a ShelfLife public surface`);
   for (const stale of [
     '2 public apps',

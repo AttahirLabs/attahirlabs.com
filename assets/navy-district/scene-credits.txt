@@ -1,0 +1,48 @@
+AttahirLabs miniature commerce district — scene credits
+
+Illustrations
+The district, warehouse and specialty food shop illustrations were generated
+for AttahirLabs on October 19, 2026 using the built-in OpenAI image generation
+tool. They are illustrative scenes, not photographs or depictions of verified
+clients, premises or operating businesses. The illustration files were promoted
+unchanged from the approved homepage design. Their characters are part of still
+artwork; the webpage provides ambient compositional movement.
+
+The NORTH coffee storefront is an illustrative website concept using the
+existing AttahirLabs coffee-editorial asset.
+
+Cafe film
+The cafe detail uses the existing 12-second local Unreal rendering, encoded
+unchanged for this homepage. Character attribution and adaptation notes follow.
+
+AttahirLabs local cafe business cast — character attribution
+
+Snow
+Snow Rig (CC) Blender Foundation | studio.blender.org
+Source: https://studio.blender.org/characters/snow/v4/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Rain
+Rain Rig (CC) Blender Foundation | studio.blender.org
+Source: https://studio.blender.org/characters/rain/v3/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Rex
+Rex character, Blender Foundation / Blender Studio (CC BY 4.0) | studio.blender.org
+Source: https://studio.blender.org/characters/rex/v1/
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Snow and Rain credit lines reproduce the publisher's required wording. The saved Rex credit identifies the character and its Blender Foundation/Studio source; the public Rex page states CC-BY without prescribing a separate credit sentence.
+
+Adaptations for this local prototype
+
+The characters are modified asset copies used in an Unreal cafe prototype. Their deformation skeletons were reorganized into anatomical hierarchies with global bind poses preserved, and an unweighted identity root was added for retargeting. Local cast instances use retargeted motion, posing, scale and material/wardrobe variations. These changes do not alter the downloaded original blend files.
+
+Snow and Rain: supplied image textures adapted to standard PBR. Body skin UDIM tiles explicitly split into ordinary per-tile materials and UV offsets to preserve complete face/body geometry. Clothing, hair, eyes and original skin weights retained. Snow's tooth/gum surfaces use documented rigid tooth-centre bindings; custom Blender shaders, rig UI, facial controls and corrective/lattice behavior are not reproduced.
+
+Rex: original authored modeled, weighted hair replaces legacy script-driven particle fibres. Original procedural clothing base colors were baked offline into textures, retaining the authored knit pattern and trim. Fine fibres, advanced bump/displacement/roughness/anisotropy and facial corrective/lattice controls are simplified or omitted. Tooth/gum surfaces use rigid head/jaw bindings in place of SurfaceDeform. Eleven verified unweighted DCC helper joints were removed from the skin; positive-weight bone bindings and weight values are preserved. The publisher supports the original rig in Blender 3.3–3.6; the separately audited asset-only conversion used Blender 5.2 without executing embedded source scripts.
+
+Detailed source provenance, conversion changes and validation reports remain beside each model in SourceAssets/Snow, SourceAssets/Rain and SourceAssets/Rex. Rendered appearance, deformation and contact quality are separate Unreal validation results.

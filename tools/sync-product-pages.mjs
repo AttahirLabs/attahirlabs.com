@@ -3,6 +3,7 @@ import {productNav, productFooter, scene, walkthrough} from './design-components
 import {studioPreview} from './studio-components.mjs';
 import {applyCinematic} from './cinematic-components.mjs';
 import {cinematicHomeCards,cinematicUpcomingApps} from './cinematic-home-components.mjs';
+import {syncNavyHome} from './navy-home-components.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -78,7 +79,9 @@ function syncHomeOrganization(html){
  return next;
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-if(home.includes('data-design="cinematic-commerce"')){
+if(home.includes('data-design="navy-district"')){
+ write('index.html',syncHomeOrganization(syncNavyHome(home,catalog)));
+}else if(home.includes('data-design="cinematic-commerce"')){
  const updated=home.replace(/<!-- public-app-cards:start -->[\s\S]*?<!-- public-app-cards:end -->/,`<!-- public-app-cards:start -->\n${cinematicHomeCards(catalog.products)}\n<!-- public-app-cards:end -->`).replace(/<!-- upcoming-apps:start -->[\s\S]*?<!-- upcoming-apps:end -->/,`<!-- upcoming-apps:start -->\n${cinematicUpcomingApps(catalog.unlistedApps || [])}\n<!-- upcoming-apps:end -->`).replace(/\b\d+ public apps\b/g,`${catalog.products.length} public apps`);
  write('index.html',syncHomeOrganization(updated));
 }else if(process.argv.includes('--legacy-home')){

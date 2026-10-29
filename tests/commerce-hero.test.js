@@ -1,14 +1,15 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const html = fs.readFileSync(require('node:path').join(__dirname, '..', 'index.html'), 'utf8');
-// The native cinematic homepage replaces the elevator pod markup. Preserve
-// the supported-scope checks on the actual public TariffShield card.
-const tariffPanel = html.match(/<article\b[^>]*data-app="tariffshield"[\s\S]*?<\/article>/)?.[0];
-assert.ok(tariffPanel, 'homepage must retain the current public TariffShield card');
+// The selected district uses two large app cards and two compact entries.
+// Supported tariff scope is equally required in either presentation.
+const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
+const tariffPanel = elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'tariffshield')?.html;
+assert.ok(tariffPanel, 'homepage must retain the current public TariffShield entry');
 assert.match(tariffPanel, /U\.S\. quartz surface/);
 assert.match(tariffPanel, /Complete reviewed filing facts are required\./);
 assert.match(tariffPanel, /Unsupported or incomplete inputs produce no estimate\./);
-assert.match(tariffPanel, /Confirmed price updates/);
+assert.match(tariffPanel, /Confirmed price updates/i);
 assert.match(tariffPanel, /href="\/apps\/tariffshield\/"/);
 const tariffScope = tariffPanel.match(/<p\b[^>]*class="app-scope"[^>]*>([\s\S]*?)<\/p>/)?.[1];
 assert.ok(tariffScope, 'homepage must show the supported tariff scope');
