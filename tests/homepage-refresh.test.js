@@ -206,26 +206,13 @@ assert.ok(logoPixel[0] < 40 && logoPixel[1] > 120 && logoPixel[2] > 120 && logoP
   'retain the current boxes-and-tag inventory logo');
 assert.match(sitemap, /<loc>https:\/\/attahirlabs\.com\/<\/loc>\s*<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
 
-includes('Illustrative scene');
 includes('Illustrative website concept');
 includes('Illustrative data');
 includes('data-parallax', 'retain bounded ambient art motion');
-includes('data-motion-toggle', 'visitors can pause ambient motion');
-assert.match(html, /<button\b[^>]*data-motion-toggle[^>]*aria-pressed="(?:true|false)"/);
-assert.match(html, /<dialog\b[^>]*id="cafe-dialog"[^>]*aria-labelledby="cafe-title"/);
-assert.ok(ids.includes('cafe-title'));
-assert.match(html, /<button\b[^>]*data-scene-open[^>]*aria-haspopup="dialog"[^>]*aria-controls="cafe-dialog"/);
-assert.match(html, /<button\b[^>]*data-scene-close[^>]*aria-label="Close caf[ée] scene"/);
-const cafeVideos = [...html.matchAll(/<video\b[^>]*data-cafe-video[^>]*>/g)];
-assert.equal(cafeVideos.length, 1, 'only the intentional café viewer contains character video');
-for (const [tag] of cafeVideos) {
-  for (const attribute of ['controls', 'muted', 'loop', 'playsinline', 'preload="none"']) assert.ok(tag.includes(attribute));
-  assert.ok(!tag.includes('autoplay'), 'the viewer respects preferences before playback');
-  assert.ok(!/\ssrc=/.test(tag), 'café video remains lazy until intentionally opened');
-}
+excludes(/A world of commerce|Illustrative scene|Step (?:inside|into) the caf[ée]|Take a look around|Pause motion|Scene credits|Analytics preferences/i, 'removed homepage labels stay absent');
+excludes(/data-motion-toggle|data-scene-open|id="cafe-dialog"|data-cafe-video/, 'removed controls do not leave an unreachable café viewer');
 assert.doesNotMatch(html, /\/assets\/cinema\/(?:home\.css|motion\.js)|data-cinema-video/, 'do not retain the replaced full-website cinematic homepage runtime');
 const localAssets = [...new Set([...html.matchAll(/(?:src|data-src|poster|href)="(\/assets\/[^"?#]+)(?:\?[^\"]*)?"/g)].map(match => match[1]))];
 assert.ok(localAssets.includes('/assets/navy-district/district.webp'));
-assert.ok(localAssets.some(asset => asset.endsWith('scene-credits.txt')), 'native character credits remain discoverable');
 assert.deepEqual(localAssets.filter(asset => !fs.existsSync(path.join(root, asset.slice(1)))), [], 'every homepage media, font and runtime dependency exists locally');
-console.log('Navy district homepage: selected layout, full public catalog, exact listing/SEO metadata, honest scope and accessible lazy café passed');
+console.log('Navy district homepage: selected layout, public catalog, listing/SEO metadata and simplified homepage controls passed');
