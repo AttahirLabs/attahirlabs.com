@@ -57,11 +57,10 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
 
   if (relativePath === 'index.html' && html.includes('data-design="navy-district"')) {
     assert.match(nav, /aria-label="Main navigation"/);
-    for (const [label, fragment] of [['Apps', 'apps'], ['Free tools', 'tools'], ['Web design', 'web-design'], ['Guides', 'guides']]) {
-      assert.match(nav, new RegExp(`href="#${fragment}"[^>]*>${label}<`), `${label} remains in the homepage menu`);
-      assert.ok(html.includes(`id="${fragment}"`), `${label} links to a real homepage section`);
+    for (const [label, route] of [['Apps', '/apps/'], ['Free tools', '/tools/'], ['Web design', '/web-design/'], ['Guides', '/blog/']]) {
+      assert.match(nav, new RegExp(`href="${route}"[^>]*>${label}<`), `${label} opens its destination page`);
     }
-    assert.match(nav, /href="\/web-design\/#start"[^>]*>Start a project/);
+    assert.match(nav, /href="\/web-design\/start\/"[^>]*>Start a project/);
     for (const route of [...expectedDropdownRoutes, '/apps/', '/tools/', '/blog/', '/contact.html']) {
       assert.ok(html.includes(`href="${route}"`), `the selected homepage keeps ${route} discoverable`);
     }

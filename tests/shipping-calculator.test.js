@@ -77,7 +77,7 @@ const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.match(home, /href="\/shipping\/"/i, 'homepage should link to the shipping calculator');
 assert.match(home, /href="\/tools\/"/i, 'homepage should link to the free-tools hub');
 const homeNav = home.match(/<nav\b[^>]*data-menu[^>]*>[\s\S]*?<\/nav>/i)?.[0] || '';
-assert.match(homeNav, /href="#tools"[^>]*>Free tools</i, 'the selected homepage menu routes to its tools section');
+assert.match(homeNav, /href="\/tools\/"[^>]*>Free tools</i, 'the homepage menu opens the tools page');
 const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
 const homeTools = elementsWithAttribute(home, 'id').find(entry => entry.value === 'tools')?.html;
 assert.ok(homeTools, 'the homepage tools menu has a real destination');

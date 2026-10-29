@@ -389,6 +389,10 @@
   "/web-design/": {
     "surface": "services",
     "title": "Web Design &amp; Shopify Store Setup | Attahir Labs"
+  },
+  "/web-design/start/": {
+    "surface": "services",
+    "title": "Start a Website Project | Attahir Labs"
   }
 });
   // END GENERATED PAGES

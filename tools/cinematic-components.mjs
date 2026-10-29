@@ -1,10 +1,11 @@
 // Progressive presentation only: application logic, copy and form contracts stay in their owners.
-const VERSION = '20261019';
+import {applyCTAContract} from './cta-components.mjs';
+const VERSION = '20261029-actions';
 const TYPOGRAPHY_VERSION = '20261029-type';
 const poster = kind => `/assets/cinema/${kind === 'warehouse' ? 'warehouse' : kind === 'retail' ? 'retail' : 'district'}-poster.webp`;
 const video = kind => `/assets/cinema/${kind === 'warehouse' ? 'warehouse' : kind === 'retail' ? 'retail' : 'district'}-loop.mp4`;
 const media = kind => `<img class="cinema-scene-poster" data-cinema-poster src="${poster(kind)}" alt="" width="1280" height="720" decoding="async"><video class="cinema-scene-video" data-cinema-video data-src="${video(kind)}" poster="${poster(kind)}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>`;
-const toggle = `<div class="cinema-motion-control"><button type="button" data-cinema-toggle aria-pressed="false"><span class="cinema-motion-symbol" aria-hidden="true">Ⅱ</span><span data-cinema-label>Pause motion</span></button><span class="cinema-motion-note">Motion follows your device preferences. <a href="/assets/cinema/scene-credits.txt">Scene credits</a></span></div>`;
+const credits = `<div class="cinema-motion-control"><span class="cinema-motion-note"><a href="/assets/cinema/scene-credits.txt">Scene credits</a></span></div>`;
 
 function attr(tag, name, value = '') {
   return new RegExp(`\\s${name}(?:\\s|=|>)`).test(tag) ? tag : tag.replace(/>$/, ` ${name}${value ? `="${value}"` : ''}>`);
@@ -16,6 +17,8 @@ export function cinematicRoute(relative) {
 }
 
 export function applyCinematic(html, relative) {
+  html = applyCTAContract(html, relative);
+  if (relative === 'web-design/start/index.html') return html;
   if (relative === 'index.html' || /^(?:prototypes|releases|review|_site)\//.test(relative) || !html.includes('</head>') || !/<nav\b/.test(html)) return html;
   const route = cinematicRoute(relative);
   html = html.replaceAll('/assets/cinema/district.webp', '/assets/cinema/district-poster.webp').replaceAll('/assets/cinema/stockclearance.webp', '/assets/cinema/warehouse-poster.webp').replaceAll('/assets/cinema/shelflife.webp', '/assets/cinema/retail-poster.webp');
@@ -40,7 +43,8 @@ export function applyCinematic(html, relative) {
   if (route === 'contact' && !/<main\b/.test(html)) {
     html = html.replace(/(<\/nav>\s*)(<div class="container">[\s\S]*?)(\s*<footer\b)/, '$1<main id="main" class="cinema-contact">$2</main>$3');
   }
-  html = html.replace(/<(?:div|figure) class="cinema-(?:product-scene|hub-stage)"[^>]*>/g, tag => attr(tag, 'data-cinema-stage'));
+  // Decorative scenes remain still when there is no visible playback control.
+  html = html.replace(/<(?:div|figure) class="cinema-(?:product-scene|hub-stage)"[^>]*>/g, tag => attr(attr(tag, 'data-cinema-stage'), 'data-cinema-static'));
   if (!/<(?:main|article)\b/.test(html) && !/\bid="main"/.test(html)) html = html.replace(/<div class="container"([^>]*)>/, '<div class="container"$1 id="main" role="main">');
   if (!html.includes('class="skip-link"') && /<(?:main|article)\b[^>]*id="main"/.test(html)) html = html.replace(/(<body[^>]*>)/, '$1\n<a class="skip-link" href="#main">Skip to content</a>');
 
@@ -51,7 +55,8 @@ export function applyCinematic(html, relative) {
   });
   html = html.replace(/(<h2\b[^>]*?) data-cinematic-reveal(?:="[^"]*")?/g, '$1');
   html = html.replace(/<h1\b[^>]*>/g, tag => attr(tag, 'data-cinematic-reveal'));
-  if (html.includes('class="cinema-motion-note"') && !html.includes('/assets/cinema/scene-credits.txt')) html = html.replace('Motion follows your device preferences.</span>', 'Motion follows your device preferences. <a href="/assets/cinema/scene-credits.txt">Scene credits</a></span>');
-  if (!html.includes('data-cinema-toggle')) html = html.includes('</footer>') ? html.replace(/<\/footer>/, `${toggle}</footer>`) : html.replace('</body>', `<aside class="cinema-footer-controls" aria-label="Motion settings">${toggle}</aside>\n</body>`);
+  html = html.replace(/<aside\b[^>]*class="cinema-footer-controls"[^>]*>[\s\S]*?<\/aside>\s*/g, '')
+    .replace(/<div\b[^>]*class="cinema-motion-control"[^>]*>[\s\S]*?<\/div>/g, '');
+  html = html.includes('</footer>') ? html.replace(/<\/footer>/, `${credits}</footer>`) : html.replace('</body>', `<aside class="cinema-footer-controls" aria-label="Scene attribution">${credits}</aside>\n</body>`);
   return html;
 }

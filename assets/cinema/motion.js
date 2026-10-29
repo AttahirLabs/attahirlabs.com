@@ -12,7 +12,8 @@
     const depth = [...document.querySelectorAll('[data-cinematic-depth]')];
     const journeys = [...document.querySelectorAll('[data-cinema-journey]')];
     const toggles = [...document.querySelectorAll('[data-cinema-toggle]')];
-    const videos = [...document.querySelectorAll('[data-cinema-video]')].map(video => ({
+    const videos = [...document.querySelectorAll('[data-cinema-video]')]
+      .filter(video => !video.closest('[data-cinema-static]')).map(video => ({
       video, failed: false, playBlocked: false, playing: false, manual: false, internalPause: false,
     }));
     const observers = [];

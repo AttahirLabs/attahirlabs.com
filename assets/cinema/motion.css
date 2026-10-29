@@ -33,3 +33,6 @@ html[data-cinema-motion="paused"]::view-transition-old(root),html[data-cinema-mo
 /* Keep the matching poster underneath until the first video fade is complete. */
 [data-cinema-stage]>[data-cinema-poster]{opacity:1;transition:none}
 [data-cinema-stage][data-cinema-ready='true']>[data-cinema-poster]{opacity:0;transition:opacity 0s .8s}
+/* Static decorative stages never need an ambient pause button or video request. */
+[data-cinema-stage][data-cinema-static]>[data-cinema-video]{display:none}
+[data-cinema-stage][data-cinema-static]>[data-cinema-poster]{opacity:1;transition:none}
