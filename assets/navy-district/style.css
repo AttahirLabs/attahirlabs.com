@@ -21,3 +21,106 @@
 /* Current catalog routing below the preserved selected hero. */
 .upcoming-links a{display:flex;flex-direction:column;white-space:normal;max-width:100%}.upcoming-links small{display:block;font-size:10px;font-weight:400;line-height:1.6;color:#8ea9b3}
 .app-info .listing-link{margin-left:20px}.portfolio-app-link{display:inline-flex;gap:12px;align-items:center;color:#d0dddd;font-size:14px;font-weight:650;margin-bottom:8px}.portfolio-app-link img{width:24px;height:24px;object-fit:contain}.portfolio-note .listing-link{margin-top:6px;font-size:11px}.portfolio-note .upcoming-label{margin-top:20px}@media(max-width:700px){.app-info .listing-link{margin-left:15px}.portfolio-app-link{font-size:13px}}
+
+/* Reading, navigation and supporting text share a deliberate, responsive scale. */
+body[data-design="navy-district"] { font-size: 1rem; line-height: 1.65; }
+body[data-design="navy-district"] h1 { letter-spacing: -.055em; line-height: 1.08; }
+body[data-design="navy-district"] h2 { letter-spacing: -.045em; line-height: 1.16; }
+body[data-design="navy-district"] h3 { letter-spacing: -.025em; }
+body[data-design="navy-district"] .eyebrow { font-size: .75rem; letter-spacing: .11em; line-height: 1.65; }
+body[data-design="navy-district"] .site-menu { font-size: .9375rem; gap: 28px; }
+body[data-design="navy-district"] .button { font-size: .9375rem; line-height: 1.45; min-height: 48px; }
+body[data-design="navy-district"] .text-link { font-size: .9375rem; line-height: 1.5; min-height: 44px; }
+body[data-design="navy-district"] .hero-description { font-size: 1.125rem; line-height: 1.65; max-width: 38ch; }
+body[data-design="navy-district"] .hero-baseline { font-size: .875rem; line-height: 1.6; color: #afc5cd; }
+body[data-design="navy-district"] .motion-toggle { font-size: .875rem; line-height: 1.5; min-height: 44px; }
+body[data-design="navy-district"] .scene-button { font-size: .875rem; line-height: 1.5; min-height: 44px; padding: 10px 16px; }
+body[data-design="navy-district"] .district figcaption { font-size: .75rem; line-height: 1.5; letter-spacing: .045em; color: #c5d4d9; }
+body[data-design="navy-district"] .section-aside,
+body[data-design="navy-district"] .app-info > p,
+body[data-design="navy-district"] .design-copy > p:not(.eyebrow) { font-size: 1.0625rem; line-height: 1.7; }
+body[data-design="navy-district"] .section-aside,
+body[data-design="navy-district"] .app-info > p { color: #b8cbd1; }
+body[data-design="navy-district"] .app-info > p { max-width: 44ch; }
+body[data-design="navy-district"] .app-title h3 { font-size: clamp(1.5rem, 2.25vw, 2rem); line-height: 1.25; }
+body[data-design="navy-district"] .status { font-size: .75rem; line-height: 1.5; letter-spacing: .045em; color: #bfd0d5; }
+body[data-design="navy-district"] .app-actions { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 14px; }
+body[data-design="navy-district"] .app-actions .text-link { margin: 0; }
+body[data-design="navy-district"] .portfolio-note { font-size: 1rem; line-height: 1.7; gap: 44px; color: #b5c8cf; }
+body[data-design="navy-district"] .portfolio-note > div { min-width: 0; }
+body[data-design="navy-district"] .small-label { font-size: .75rem; line-height: 1.6; letter-spacing: .085em; color: #bfd0d5; }
+body[data-design="navy-district"] .portfolio-app-link { font-size: 1.125rem; line-height: 1.4; }
+body[data-design="navy-district"] .portfolio-note .listing-link { font-size: .9375rem; }
+body[data-design="navy-district"] .portfolio-note .app-scope { font-size: .875rem; line-height: 1.7; margin-top: 12px; }
+body[data-design="navy-district"] .upcoming-links { gap: 16px 24px; }
+body[data-design="navy-district"] .upcoming-links a { font-size: 1rem; }
+body[data-design="navy-district"] .upcoming-links small { font-size: .8125rem; line-height: 1.6; color: #b5c8cf; }
+body[data-design="navy-district"] .service-list { max-width: 380px; }
+body[data-design="navy-district"] .service-list a { font-size: 1rem; line-height: 1.5; min-height: 52px; }
+body[data-design="navy-district"] .tool-number,
+body[data-design="navy-district"] .guide > span { font-size: .75rem; line-height: 1.6; letter-spacing: .09em; color: #b5c8cf; }
+body[data-design="navy-district"] .tool h3 { font-size: clamp(1.375rem, 1.8vw, 1.625rem); line-height: 1.3; }
+body[data-design="navy-district"] .tool > p { font-size: 1rem; line-height: 1.65; max-width: 32ch; color: #b5c8cf; }
+body[data-design="navy-district"] .tool-bottom,
+body[data-design="navy-district"] .guide > div { font-size: .9375rem; line-height: 1.5; }
+body[data-design="navy-district"] .guide h3 { font-size: clamp(1.75rem, 2.5vw, 2.25rem); line-height: 1.2; }
+body[data-design="navy-district"] .closing-secondary { font-size: .9375rem; line-height: 1.65; }
+body[data-design="navy-district"] .footer-top > p,
+body[data-design="navy-district"] .footer-top > a:last-child,
+body[data-design="navy-district"] .footer-bottom { font-size: .875rem; line-height: 1.65; }
+body[data-design="navy-district"] .footer-top > p,
+body[data-design="navy-district"] .footer-bottom { color: #a7bec7; }
+body[data-design="navy-district"] .footer-bottom { align-items: flex-start; flex-wrap: wrap; }
+body[data-design="navy-district"] .footer-bottom nav { flex-wrap: wrap; gap: 12px 20px; }
+body[data-design="navy-district"] .dialog-heading h2 { font-size: clamp(1.5rem, 3vw, 1.875rem); line-height: 1.25; }
+body[data-design="navy-district"] .dialog-heading > p:last-child { font-size: 1rem; line-height: 1.65; }
+body[data-design="navy-district"] .dialog-caption { font-size: .8125rem; line-height: 1.65; color: #b5c8cf; }
+/* The HTML examples remain readable at their actual displayed size. */
+body[data-design="navy-district"] .sample-panel { width: min(15rem, calc(100% - 16px)); max-width: calc(100% - 16px); padding: 16px; font-size: .8125rem; transform: none; }
+body[data-design="navy-district"] .sample-heading { font-size: .875rem; line-height: 1.4; gap: 8px; }
+body[data-design="navy-district"] .sample-heading img { width: 20px; height: 20px; }
+body[data-design="navy-district"] .sample-panel > p { font-size: .9375rem; line-height: 1.4; letter-spacing: -.015em; }
+body[data-design="navy-district"] .sample-panel small { font-size: .75rem; line-height: 1.5; color: #445e68; }
+body[data-design="navy-district"] .age-row { font-size: .75rem; line-height: 1.5; grid-template-columns: 80px 1fr; }
+body[data-design="navy-district"] .batch-row { font-size: .75rem; line-height: 1.5; gap: 8px; }
+body[data-design="navy-district"] .browser-chrome span { font-size: .75rem; line-height: 1.4; }
+body[data-design="navy-district"] .storefront-nav { font-size: .75rem; line-height: 1.5; gap: 12px; }
+body[data-design="navy-district"] .storefront-hero > div > span:first-child { font-size: .75rem; line-height: 1.5; letter-spacing: .065em; }
+body[data-design="navy-district"] .storefront-link { font-size: .8125rem; line-height: 1.5; }
+body[data-design="navy-district"] .storefront-bottom { font-size: .75rem; line-height: 1.5; flex-wrap: wrap; }
+body[data-design="navy-district"] .phone-frame > b { font-size: .875rem; line-height: 1.4; }
+body[data-design="navy-district"] .phone-frame h3 { font-size: 1.125rem; line-height: 1.2; }
+body[data-design="navy-district"] .phone-frame > span { font-size: .75rem; line-height: 1.5; }
+body[data-design="navy-district"] .storefront-stage figcaption { font-size: .8125rem; line-height: 1.5; }
+@media (max-width: 900px) {
+  body[data-design="navy-district"] .site-menu { gap: 18px; font-size: .875rem; }
+}
+@media (max-width: 700px) {
+  body[data-design="navy-district"] .site-menu { font-size: 1rem; }
+  body[data-design="navy-district"] .hero-copy { padding-top: 36px; }
+  body[data-design="navy-district"] .hero-copy .eyebrow { max-width: none; letter-spacing: .075em; margin-bottom: 22px; }
+  body[data-design="navy-district"] .hero-description { font-size: 1.0625rem; max-width: 34ch; }
+  body[data-design="navy-district"] .hero .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  body[data-design="navy-district"] .hero .button { font-size: .875rem; padding: 12px 10px; gap: 8px; }
+  body[data-design="navy-district"] .district { margin-top: 14px; }
+  body[data-design="navy-district"] .district figcaption { left: 8%; right: 8%; bottom: 72px; justify-content: center; flex-wrap: wrap; gap: 4px 7px; }
+  body[data-design="navy-district"] .scene-button { bottom: 8px; right: 14%; }
+  body[data-design="navy-district"] .hero-baseline { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; font-size: .8125rem; }
+  body[data-design="navy-district"] .hero-baseline > span { max-width: none; }
+  body[data-design="navy-district"] .section-aside,
+  body[data-design="navy-district"] .app-info > p,
+  body[data-design="navy-district"] .design-copy > p:not(.eyebrow) { font-size: 1rem; }
+  body[data-design="navy-district"] .app-art { width: 100%; height: 320px; min-height: 0; aspect-ratio: auto; }
+  body[data-design="navy-district"] .portfolio-note { gap: 32px; }
+  body[data-design="navy-district"] .service-list { max-width: none; }
+  body[data-design="navy-district"] .storefront-stage figcaption { left: 4%; right: 4%; }
+  body[data-design="navy-district"] .guides-section .section-heading { flex-wrap: wrap; align-items: flex-start; gap: 16px; }
+  body[data-design="navy-district"] .guides-section .section-heading > div { flex: 1 1 200px; min-width: 0; }
+  body[data-design="navy-district"] .guides-section .section-heading .text-link { font-size: .9375rem; white-space: normal; }
+  body[data-design="navy-district"] .footer-top { gap: 24px; }
+  body[data-design="navy-district"] .footer-bottom nav { gap: 12px 18px; }
+}
+@media (max-width: 360px) {
+  body[data-design="navy-district"] h1 { font-size: 2.75rem; }
+  body[data-design="navy-district"] .hero .actions { grid-template-columns: 1fr; }
+}

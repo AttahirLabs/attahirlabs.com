@@ -1,5 +1,6 @@
 // Progressive presentation only: application logic, copy and form contracts stay in their owners.
 const VERSION = '20261019';
+const TYPOGRAPHY_VERSION = '20261029-type';
 const poster = kind => `/assets/cinema/${kind === 'warehouse' ? 'warehouse' : kind === 'retail' ? 'retail' : 'district'}-poster.webp`;
 const video = kind => `/assets/cinema/${kind === 'warehouse' ? 'warehouse' : kind === 'retail' ? 'retail' : 'district'}-loop.mp4`;
 const media = kind => `<img class="cinema-scene-poster" data-cinema-poster src="${poster(kind)}" alt="" width="1280" height="720" decoding="async"><video class="cinema-scene-video" data-cinema-video data-src="${video(kind)}" poster="${poster(kind)}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>`;
@@ -20,7 +21,7 @@ export function applyCinematic(html, relative) {
   html = html.replaceAll('/assets/cinema/district.webp', '/assets/cinema/district-poster.webp').replaceAll('/assets/cinema/stockclearance.webp', '/assets/cinema/warehouse-poster.webp').replaceAll('/assets/cinema/shelflife.webp', '/assets/cinema/retail-poster.webp');
   html = html.replace(/<body([^>]*)>/, (_, attrs) => `<body${attrs.replace(/ data-cinematic-(?:site|route)(?:="[^"]*")?/g, '')} data-cinematic-site data-cinematic-route="${route}">`);
   html = html.replace(/<link[^>]*href="\/assets\/cinematic-site\.css[^>]*>\s*/g, '').replace(/<link[^>]*href="\/assets\/cinema\/motion\.css[^>]*>\s*/g, '').replace(/<script[^>]*src="\/assets\/cinema\/motion\.js[^>]*><\/script>\s*/g, '');
-  html = html.replace('</head>', `<link rel="stylesheet" href="/assets/cinema/motion.css?v=${VERSION}">\n<link rel="stylesheet" href="/assets/cinematic-site.css?v=${VERSION}">\n<script defer src="/assets/cinema/motion.js?v=${VERSION}"></script>\n</head>`);
+  html = html.replace('</head>', `<link rel="stylesheet" href="/assets/cinema/motion.css?v=${VERSION}">\n<link rel="stylesheet" href="/assets/cinematic-site.css?v=${TYPOGRAPHY_VERSION}">\n<script defer src="/assets/cinema/motion.js?v=${VERSION}"></script>\n</head>`);
 
   // Real HTML interfaces sit over a moving illustrative miniature stage.
   if (route === 'product') {
