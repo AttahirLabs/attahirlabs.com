@@ -26,7 +26,7 @@ for(const file of publicPages(root)){
  let html=fs.readFileSync(file,'utf8');
  if(!html.includes('</head>')||!/<nav\b/.test(html))continue;
  const relative=path.relative(root,file);
- if(relative==='index.html')continue;
+ if(relative==='index.html'||relative==='web-design/start/index.html')continue;
  if(!html.includes('class="product-nav"'))html=html.replace(/<nav\b[\s\S]*?<\/nav>/,nav=>nav.includes('href="/web-design/"')?nav:nav.replace('<li><a href="/blog/">Blog</a></li>','<li><a href="/web-design/">Web design</a></li><li><a href="/blog/">Blog</a></li>'));
  const type=/^apps\/[^/]+\/index.html$/.test(relative)?'product':relative==='blog/index.html'?'blog-index':relative.startsWith('blog/')?'article':relative==='index.html'?'home':relative==='web-design/index.html'?'services':'utility';
  if(type==='home'){

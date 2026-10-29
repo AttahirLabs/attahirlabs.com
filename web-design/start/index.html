@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061823">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com;">
+    <script src="/assets/analytics.js"></script>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Start a Website Project | Attahir Labs</title>
+  <meta name="description" content="Tell Attahir Labs about your website design, Shopify setup or storefront redesign project. Prepare a project enquiry with your goals and details.">
+  <link rel="canonical" href="https://attahirlabs.com/web-design/start/">
+  <meta property="og:title" content="Start a Website Project | Attahir Labs">
+  <meta property="og:description" content="Share your goals, your business and what you would like to build with Attahir Labs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://attahirlabs.com/web-design/start/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/project-inquiry.css?v=20261029">
+  <script defer src="/assets/project-inquiry.js?v=20261029"></script>
+</head>
+<body data-page="services">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="inquiry-header">
+    <nav class="inquiry-nav" aria-label="Primary">
+      <a class="inquiry-brand nav-logo" href="/" aria-label="AttahirLabs home">Attahir<span>Labs</span><i aria-hidden="true"></i></a>
+      <ul class="nav-links">
+        <li><a href="/apps/">Apps</a></li>
+        <li><a href="/web-design/">Web design</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="inquiry-main" id="main">
+    <div class="inquiry-intro">
+      <a class="inquiry-back" href="/web-design/">← Web design &amp; Shopify setup</a>
+      <h1>Tell us about your project.</h1>
+      <p>A few details will help us understand what you need. Required fields are marked below.</p>
+    </div>
+    <form class="project-inquiry" data-project-inquiry action="mailto:support@attahirlabs.com?subject=Website%20project%20enquiry" method="post" enctype="text/plain" aria-describedby="inquiry-delivery-note">
+      <div class="inquiry-grid">
+        <div class="inquiry-field">
+          <label for="project-name">Your name <span>(required)</span></label>
+          <input id="project-name" name="name" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="inquiry-field">
+          <label for="project-email">Email address <span>(required)</span></label>
+          <input id="project-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="inquiry-field">
+          <label for="project-service">What do you need? <span>(required)</span></label>
+          <select id="project-service" name="service" required>
+            <option value="">Choose a service</option>
+            <option value="website-design">Website design</option>
+            <option value="shopify-setup">Shopify store setup</option>
+            <option value="storefront-redesign">Storefront redesign</option>
+            <option value="other">Something else / help choosing</option>
+          </select>
+        </div>
+        <div class="inquiry-field">
+          <label for="project-business">Business name <span>(optional)</span></label>
+          <input id="project-business" name="business" autocomplete="organization" maxlength="120">
+        </div>
+      </div>
+      <div class="inquiry-field">
+        <label for="project-brief">What would you like to build or improve? <span>(required)</span></label>
+        <p class="field-hint" id="project-brief-hint">Tell us about your business, your goals and any features you have in mind.</p>
+        <textarea id="project-brief" name="brief" rows="5" maxlength="1500" required aria-describedby="project-brief-hint"></textarea>
+      </div>
+      <details class="inquiry-options">
+        <summary>Add your website, budget or timing <span>(optional)</span></summary>
+        <div class="inquiry-field">
+          <label for="project-website">Current website</label>
+          <input id="project-website" name="website" type="url" autocomplete="url" placeholder="https://yourwebsite.com" maxlength="400">
+        </div>
+        <div class="inquiry-grid">
+          <div class="inquiry-field">
+            <label for="project-budget">Budget range</label>
+            <input id="project-budget" name="budget" placeholder="Amount and currency, or not sure yet" maxlength="100">
+          </div>
+          <div class="inquiry-field">
+            <label for="project-timeline">Ideal timing</label>
+            <input id="project-timeline" name="timeline" placeholder="A target date, or flexible" maxlength="100">
+          </div>
+        </div>
+      </details>
+      <div class="inquiry-delivery">
+        <p id="inquiry-delivery-note">This prepares an email to <a href="mailto:support@attahirlabs.com">support@attahirlabs.com</a>. Your email app opens a draft for you to review and send. Nothing is submitted or stored by this form.</p>
+        <div class="inquiry-actions">
+          <button class="inquiry-submit" type="submit">Open project email <span aria-hidden="true">↗</span></button>
+          <button class="inquiry-copy" data-inquiry-copy type="button" hidden>Copy enquiry instead</button>
+        </div>
+        <p class="inquiry-status" data-inquiry-status role="status" aria-live="polite"></p>
+        <div class="inquiry-manual-copy" data-inquiry-manual hidden>
+          <label for="project-copy-text">Your enquiry</label>
+          <p class="field-hint">Select this text and copy it into an email to support@attahirlabs.com.</p>
+          <textarea id="project-copy-text" data-inquiry-copy-text rows="8" readonly></textarea>
+        </div>
+        <p class="inquiry-privacy">By sending your email, you share these details with Attahir Labs so we can respond to your enquiry. <a href="/privacy.html">Read our privacy policy</a>.</p>
+      </div>
+    </form>
+  </main>
+  <footer class="inquiry-footer">
+    <p>© 2026 Attahir Labs.</p>
+    <nav aria-label="Footer navigation"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:support@attahirlabs.com">Email support</a></nav>
+  </footer>
+</body>
+</html>

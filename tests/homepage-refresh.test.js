@@ -106,8 +106,8 @@ assert.match(html, /<a\b[^>]*class="skip-link"[^>]*href="#main"[^>]*>Skip to con
 assert.match(html, /<main\b[^>]*id="main"/);
 includes('Explore the apps');
 includes('Start a project');
-includes('href="/web-design/#start"');
-for (const route of ['/apps/', '/tools/', '/web-design/#start', '/blog/', '/contact.html', '/privacy.html', '/terms.html']) {
+includes('href="/web-design/start/"');
+for (const route of ['/apps/', '/tools/', '/web-design/start/', '/blog/', '/contact.html', '/privacy.html', '/terms.html']) {
   includes(`href="${route}"`, `homepage retains the ${route} destination`);
 }
 
@@ -176,11 +176,10 @@ includes('/blog/product-expiry-date-management-shopify/');
 const nav = html.match(/<nav\b[^>]*data-menu[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert.ok(nav, 'retain a labelled primary menu for the selected layout');
 assert.match(nav, /aria-label="Main navigation"/);
-for (const [label, target] of [['Apps','#apps'], ['Web design','#web-design'], ['Free tools','#tools'], ['Guides','#guides']]) {
+for (const [label, target] of [['Apps','/apps/'], ['Web design','/web-design/'], ['Free tools','/tools/'], ['Guides','/blog/']]) {
   assert.match(nav, new RegExp(`href="${target}"[^>]*>${label}<`));
-  assert.ok(ids.includes(target.slice(1)), `${label}: the navigation fragment resolves`);
 }
-assert.match(nav, /href="\/web-design\/#start"[^>]*>Start a project/);
+assert.match(nav, /href="\/web-design\/start\/"[^>]*>Start a project/);
 const menuButton = html.match(/<button\b[^>]*data-menu-toggle[^>]*>/)?.[0];
 assert.ok(menuButton);
 assert.match(menuButton, /aria-expanded="false"/);

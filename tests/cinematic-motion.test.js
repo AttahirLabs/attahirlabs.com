@@ -33,6 +33,7 @@ function harness(options={}){
   const stage=new Element();const world=new Element();world.dataset.cinemaActive='true';
   const video=new Element(options.videoOffscreen?{top:2200,left:0,width:600,height:300}:undefined);
   video.parentElement=stage;video.ancestors['[data-cinema-stage]']=stage;video.ancestors['[data-cinema-world]']=world;
+  if(options.staticStage)video.ancestors['[data-cinema-static]']=stage;
   video.dataset.src=options.mediaURL || '/assets/cinema/district-loop.mp4';if(options.mobileSrc)video.dataset.mobileSrc=options.mobileSrc;
   video.controls=Boolean(options.controls);video.paused=true;video.loads=0;video.plays=0;video.pauses=0;
   Object.defineProperty(video,'src',{get(){return this.attributes.src;},set(value){this.attributes.src=value;}});
@@ -43,7 +44,7 @@ function harness(options={}){
   const worlds=[new Element(),new Element()];worlds.forEach((el,i)=>{el.dataset.cinemaWorld=String(i);});
   const steps=[new Element(),new Element(),new Element()];steps.forEach((el,i)=>{el.dataset.cinemaStepLabel=String(i);});
   journey.children['[data-cinema-world]']=worlds;journey.children['[data-cinema-step-label]']=steps;
-  const nodes={'[data-cinematic-reveal]':[reveal],'[data-cinematic-depth]':[depth],'[data-cinema-toggle]':[button],'[data-cinema-video]':[video],'[data-cinema-journey]':[journey]};
+  const nodes={'[data-cinematic-reveal]':[reveal],'[data-cinematic-depth]':[depth],'[data-cinema-toggle]':options.noToggle?[]:[button],'[data-cinema-video]':[video],'[data-cinema-journey]':[journey]};
   document.querySelectorAll=selector=>nodes[selector] || [];
   document.querySelector=selector=>document.querySelectorAll(selector)[0] || null;
   const storage=new Map(options.savedPreference?[['attahirlabs-motion',options.savedPreference]]:[]);
@@ -75,6 +76,14 @@ function harness(options={}){
 }
 
 (async()=>{
+  const still=harness({staticStage:true,noToggle:true});
+  for(const event of ['scroll','resize','pagehide','pageshow'])still.event(event);
+  still.reduced(true);still.reduced(false);still.visibility(true);still.visibility(false);
+  assert.equal(still.video.loads,0,'static decorative scenes never download video without playback controls');
+  assert.equal(still.video.plays,0,'scroll, lifecycle and preference changes do not start static scenes');
+  assert.equal(still.stage.dataset.cinemaReady,undefined,'the poster stays visible without a pause control');
+  assert.equal(still.reveal.dataset.cinematicVisible,'true','removing motion controls preserves readable content');
+
   const normal=harness();
   assert.equal(normal.document.body.dataset.cinemaMotion,'playing');
   assert.equal(normal.video.loads,1,'visible same-origin media loads once');
