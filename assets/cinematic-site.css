@@ -149,3 +149,129 @@ body[data-cinematic-site] .cinema-motion-control button{position:fixed;right:max
  body[data-cinematic-site]>nav.site-nav .menu-toggle{flex:0 0 auto;margin-left:auto;align-self:center;min-height:44px}
  body[data-cinematic-site]>nav.site-nav .nav-links{flex:0 0 100%;width:100%;flex-direction:column;align-items:stretch;white-space:normal;overflow:visible;gap:3px;padding:12px 0 0}
 }
+
+/* Reading scale: large display type, comfortable prose, and legible supporting UI. */
+body[data-cinematic-site]{font-size:1.0625rem;line-height:1.65}
+body[data-cinematic-site] h2{letter-spacing:-.035em}
+body[data-cinematic-site] h3{letter-spacing:-.025em}
+body[data-cinematic-site] :is(.section-copy,.lede){font-size:1.0625rem;line-height:1.7}
+body[data-cinematic-site] .product-page .hero-copy .lede,
+body[data-cinematic-route='apps'] .page-hero .lede,
+body[data-cinematic-route='tools'] .page-hero .lede,
+body[data-cinematic-route='services'] .service-hero .lede{font-size:1.125rem;line-height:1.65}
+body[data-cinematic-site] :is(.section-kicker,.eyebrow,.tag),
+body[data-cinematic-site] .product-page .hero-copy .eyebrow,
+body[data-cinematic-route='journal'] .studio-journal-head .section-kicker{font-size:.75rem;line-height:1.5;letter-spacing:.1em}
+body[data-cinematic-site] .product-page .product-heading{font-size:1rem;line-height:1.4}
+body[data-cinematic-site] .product-page :is(.feature-grid .card p,.setup-grid .card p,.faq-list p,.plan-card ul),
+body[data-cinematic-route='apps'] .app-card .app-description,
+body[data-cinematic-site] :is(.services-grid p,.services-grid li,.service-list p,.service-faq details p,.upcoming-grid p,.tool-grid .card p){font-size:1rem;line-height:1.7}
+body[data-cinematic-site] .product-page .faq-list summary,
+body[data-cinematic-site] .service-faq summary{font-size:1.0625rem;line-height:1.5}
+body[data-cinematic-site] .product-page .plan-summary,
+body[data-cinematic-route='apps'] .app-card .home-plan-summary{font-size:.9375rem;line-height:1.65}
+body[data-cinematic-site] .product-page .plan-summary span,
+body[data-cinematic-site] .product-page .pricing-source{font-size:.875rem;line-height:1.65}
+body[data-cinematic-site] .availability-notice{font-size:.9375rem;line-height:1.65}
+body[data-cinematic-site] .product-links{font-size:.875rem;gap:.5rem 1.5rem}
+body[data-cinematic-site] :is(.btn,.text-link,.cta-link),
+body[data-cinematic-route='apps'] .app-card .button-row .btn,
+body[data-cinematic-site] .product-page .hero-copy .btn{font-size:.9375rem;line-height:1.45}
+body[data-cinematic-site] .button-row{flex-wrap:wrap}
+
+/* Navigation and supporting copy remain readable without competing with headings. */
+body[data-cinematic-site]>nav .nav-links a{font-size:.9375rem;line-height:1.5}
+body[data-cinematic-site]>nav :is(.apps-dropdown strong,.tools-dropdown strong){font-size:.875rem;line-height:1.5}
+body[data-cinematic-site]>nav :is(.apps-dropdown span,.tools-dropdown span){font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site]>footer :is(p,small,.footer-copy,.footer-links a){font-size:.875rem;line-height:1.65}
+body[data-cinematic-site] :is(.hero-note,.service-baseline,.studio-service-links a,.storefront-note,.service-inquiry .inquiry-note,.mini-caption){font-size:.875rem;line-height:1.65}
+body[data-cinematic-site] :is(.screenshot-grid figcaption,.studio-storefront figcaption),
+body[data-cinematic-site] .product-page figcaption,
+body[data-cinematic-site] .product-page .studio-dashboard figcaption{font-size:.8125rem;line-height:1.6}
+body[data-cinematic-site] .cinema-motion-control button{font-size:.875rem;line-height:1.4;min-height:44px;white-space:normal}
+body[data-cinematic-site] .cinema-motion-note{font-size:.8125rem;line-height:1.6}
+body[data-cinematic-route='contact'] .cinema-contact .note{font-size:.9375rem;line-height:1.7}
+body[data-cinematic-route='contact'] .contact-info strong,
+body[data-cinematic-route='contact'] .back-link{font-size:.875rem;line-height:1.6}
+
+/* Editorial and legal content use a reading measure rather than a display grid. */
+body[data-cinematic-route='article']>:is(article,.container) :is(p,li),
+body[data-cinematic-route='legal'] main :is(p,li),
+body[data-cinematic-route='preferences'] main :is(p,li){font-size:1.0625rem;line-height:1.8;max-width:70ch}
+body[data-cinematic-route='article']>:is(article,.container) :is(ul,ol),
+body[data-cinematic-route='legal'] main :is(ul,ol){max-width:70ch}
+body[data-cinematic-route='article'] :is(.breadcrumb,.meta,.post-meta),
+body[data-cinematic-route='journal'] :is(.post-meta,.post-tag,.read-more,.featured-label,.tag-filter-title,.tag-filter-count){font-size:.875rem;line-height:1.6}
+body[data-cinematic-route='journal'] :is(.post-excerpt,.post-card p,.featured-copy){font-size:1rem;line-height:1.7}
+body[data-cinematic-route='journal'] .tag-filter-select{font-size:1rem}
+
+/* Real controls and financial/context labels should never look like miniature UI. */
+body[data-cinematic-site] :is(input,select,textarea),
+body[data-cinematic-site] .release-signup .signup-row input{font-size:1rem;line-height:1.5;min-width:0;max-width:100%}
+body[data-cinematic-site] label,
+body[data-cinematic-site] .release-signup .signup-consent{font-size:.875rem;line-height:1.6}
+body[data-cinematic-site] .release-signup .signup-row .btn{font-size:1rem}
+body[data-cinematic-site] :is(.helper,.input-note,.error,.disclaimer,.note,.source-note,.accuracy-panel p,.result-status,.count,.country-code,.region,.summary-box span,.stat .label,.margin-box .title,.margin-box .desc,.estimate p){font-size:.875rem;line-height:1.65}
+body[data-cinematic-site] .response-metadata span{font-size:.8125rem;line-height:1.6}
+body[data-cinematic-site] :is(.breakdown,.coverage-table table){font-size:.9375rem;line-height:1.6;font-variant-numeric:tabular-nums}
+body[data-cinematic-route='rates'] .table-wrap{overflow-x:auto}
+body[data-cinematic-route='rates'] table{font-size:.9375rem;line-height:1.6;font-variant-numeric:tabular-nums}
+body[data-cinematic-route='rates'] :is(th,td){font-size:.875rem;line-height:1.6}
+body[data-cinematic-route='rates'] .status-tag{font-size:.75rem;line-height:1.5;white-space:normal}
+
+/* The illustrative dashboards stay compact, while their labels remain decipherable. */
+body[data-cinematic-site] .studio-dash-top{font-size:.875rem;line-height:1.5;flex-wrap:wrap}
+body[data-cinematic-site] .studio-dash-heading{flex-wrap:wrap;gap:.5rem}
+body[data-cinematic-site] .studio-dash-heading>span,
+body[data-cinematic-site] .studio-dash-metric>span{font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site] .studio-dashboard table{font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site] .studio-dashboard :is(th,td){font-size:.75rem;line-height:1.5;white-space:normal;overflow-wrap:anywhere;padding:10px 4px}
+body[data-cinematic-site] .studio-status{font-size:.75rem;line-height:1.5;white-space:normal}
+body[data-cinematic-site] .cinema-hub-stage .shot-pill{font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site] .demo-controls button>span>span{font-size:.875rem;line-height:1.65}
+body[data-cinematic-site] .demo-controls strong{font-size:1rem;line-height:1.45}
+
+@media(max-width:1100px){
+ body[data-cinematic-site]>nav .nav-links a{font-size:.875rem}
+}
+@media(max-width:680px){
+ body[data-cinematic-site]>nav .nav-links a{font-size:1rem;line-height:1.5}
+ body[data-cinematic-site] .product-links{justify-content:flex-start;gap:.25rem 1.25rem}
+ body[data-cinematic-site] .cinema-motion-control{align-items:flex-start;flex-wrap:wrap}
+ body[data-cinematic-site] .product-page .hero-copy .lede{font-size:1.0625rem}
+ body[data-cinematic-site] .studio-dash-metric{flex-wrap:wrap;gap:.5rem}
+}
+
+/* Small interface labels still carry meaning, including inside storefront examples. */
+body[data-cinematic-site] .product-brand small,
+body[data-cinematic-site] .demo-number{font-size:.75rem;line-height:1.5}
+body[data-cinematic-site] :is(.status,.service-index){font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site] .studio-shop-nav{font-size:.75rem;line-height:1.5;letter-spacing:.03em;flex-wrap:wrap;align-items:center;gap:.5rem .75rem}
+body[data-cinematic-site] .studio-shop-nav strong{font-size:.875rem;letter-spacing:.15em}
+body[data-cinematic-site] .studio-shop-nav>span,
+body[data-cinematic-site] .studio-shop-hero>div>span:first-child,
+body[data-cinematic-site] .studio-shop-button,
+body[data-cinematic-site] .studio-shop-baseline{font-size:.75rem;line-height:1.5}
+body[data-cinematic-site] .studio-shop-button{padding:.5rem .75rem}
+body[data-cinematic-site] .studio-shop-baseline{flex-wrap:wrap;gap:.5rem 1rem}
+body[data-cinematic-site] .concept-dashboard .dash-top{font-size:.875rem;line-height:1.5;flex-wrap:wrap}
+body[data-cinematic-site] .concept-dashboard .dash-top span:last-child{font-size:.75rem;line-height:1.5}
+body[data-cinematic-site] .concept-dashboard .dash-row{font-size:.875rem;line-height:1.5;flex-wrap:wrap}
+body[data-cinematic-site] .concept-dashboard .dash-row span:last-child{font-size:.8125rem;line-height:1.5}
+body[data-cinematic-site] .concept-step p{font-size:1rem;line-height:1.7}
+body[data-cinematic-route='article']>:is(article,.container) :is(.breadcrumb,.meta,.post-meta){font-size:.875rem;line-height:1.6}
+
+/* Match the journal's full-bleed header to its actual container inset. */
+body[data-cinematic-route='journal']>.container{--journal-inset:2.5rem;padding-inline:var(--journal-inset)}
+body[data-cinematic-route='journal'] .studio-journal-head{margin-inline:calc(-1 * var(--journal-inset));padding-inline:var(--journal-inset)}
+@media(max-width:1100px){
+ body[data-cinematic-route='journal']>.container{--journal-inset:2rem}
+}
+@media(max-width:680px){
+ body[data-cinematic-route='journal']>.container{--journal-inset:1.375rem}
+ body[data-cinematic-site] .studio-shop-hero{aspect-ratio:auto;min-height:17rem}
+}
+/* Long identifiers and links in reading copy must fit a narrow text column. */
+body[data-cinematic-site] .menu-toggle{font-size:.875rem;line-height:1.4;min-height:44px}
+body[data-cinematic-site]:is([data-cinematic-route="legal"],[data-cinematic-route="preferences"],[data-cinematic-route="article"]) :is(p,li){overflow-wrap:anywhere}
+body[data-cinematic-site]:is([data-cinematic-route="legal"],[data-cinematic-route="preferences"],[data-cinematic-route="article"]) :is(p,li) code{white-space:normal;overflow-wrap:anywhere}
