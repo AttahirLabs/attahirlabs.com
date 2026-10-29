@@ -55,6 +55,22 @@ function assertConsistentNav(relativePath, { requiresSiteNavCss = false } = {}) 
   const html = read(relativePath);
   const nav = primaryNav(html, relativePath);
 
+  if (relativePath === 'index.html' && html.includes('data-design="navy-district"')) {
+    assert.match(nav, /aria-label="Main navigation"/);
+    for (const [label, fragment] of [['Apps', 'apps'], ['Free tools', 'tools'], ['Web design', 'web-design'], ['Guides', 'guides']]) {
+      assert.match(nav, new RegExp(`href="#${fragment}"[^>]*>${label}<`), `${label} remains in the homepage menu`);
+      assert.ok(html.includes(`id="${fragment}"`), `${label} links to a real homepage section`);
+    }
+    assert.match(nav, /href="\/web-design\/#start"[^>]*>Start a project/);
+    for (const route of [...expectedDropdownRoutes, '/apps/', '/tools/', '/blog/', '/contact.html']) {
+      assert.ok(html.includes(`href="${route}"`), `the selected homepage keeps ${route} discoverable`);
+    }
+    assert.match(html, /<button\b[^>]*data-menu-toggle[^>]*aria-expanded="false"[^>]*aria-controls="site-menu"/);
+    assert.match(nav, /id="site-menu"/);
+    assert.doesNotMatch(nav, />Home<\/a>|Install StockClearance/);
+    return;
+  }
+
   for (const [label, href] of [
     ['Apps', '/apps/'],
     ['Free tools', '/tools/'],

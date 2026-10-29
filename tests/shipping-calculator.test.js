@@ -76,13 +76,14 @@ for (const service of ['Economy', 'Standard', 'Express']) {
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.match(home, /href="\/shipping\/"/i, 'homepage should link to the shipping calculator');
 assert.match(home, /href="\/tools\/"/i, 'homepage should link to the free-tools hub');
-const homeNav = home.match(/<ul class="nav-links">[\s\S]*?<\/ul>/i)?.[0] || '';
-assert.match(homeNav, /href="\/tools\/"[^>]*>Free tools</i, 'homepage top nav should route calculators through the free-tools hub');
-assert.ok(homeNav.includes('class="tools-dropdown"'), 'homepage top nav should expose individual calculators inside the Free tools dropdown');
-assert.ok(homeNav.includes('href="/shipping/"'), 'homepage Free tools dropdown should link to the shipping calculator');
-assert.ok(!homeNav.includes('<li><a href="/shipping/">Shipping calculator</a></li>'), 'homepage top nav should not make individual calculators top-level items');
-for (const sectionLink of ['#apps', '#problems', '#about']) {
-  assert.ok(!homeNav.includes(`href="${sectionLink}"`), `homepage top nav should not link to ${sectionLink}`);
+const homeNav = home.match(/<nav\b[^>]*data-menu[^>]*>[\s\S]*?<\/nav>/i)?.[0] || '';
+assert.match(homeNav, /href="#tools"[^>]*>Free tools</i, 'the selected homepage menu routes to its tools section');
+const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
+const homeTools = elementsWithAttribute(home, 'id').find(entry => entry.value === 'tools')?.html;
+assert.ok(homeTools, 'the homepage tools menu has a real destination');
+for (const route of ['/tools/', '/shipping/', '/duty/', '/tools/access-checker/']) {
+  assert.ok(homeTools.includes(`href="${route}"`), `the homepage tools section keeps ${route} discoverable`);
 }
+assert.ok(!homeNav.includes('href="/shipping/"'), 'individual calculators stay grouped in the homepage tools section');
 
 console.log('shipping calculator tests passed');

@@ -17,6 +17,7 @@ const publicExtensions = new Set([
 ]);
 const publicNotices = new Set([
   'assets/commerce/vendor/THREE-LICENSE.txt', 'assets/fonts/Manrope-OFL.txt', 'assets/cinema/scene-credits.txt',
+  'assets/navy-district/cafe-credits.txt', 'assets/navy-district/scene-credits.txt',
 ]);
 const privateDirectories = new Set([
   'sourceassets', 'prototypes', 'releases', 'review', 'tests', 'node_modules', 'data', 'functions', '_site',
