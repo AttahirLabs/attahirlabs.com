@@ -90,7 +90,7 @@ for (const [url, expected] of Object.entries({
 
 assert.ok(elementsWithAttribute(homepage, 'data-app').some(entry => entry.value === 'shelflife'), 'homepage should retain ShelfLife in the public app showcase');
 assert.ok(
-  ['StockClearance', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)) && homepage.includes('View TariffShield on Shopify'),
+  ['StockClearance', 'ShelfLife'].every(name => homepage.includes(`Install ${name}`)) && homepage.includes('aria-label="View on Shopify: TariffShield"'),
   'homepage public-app proof should name ShelfLife'
 );
 assert.match(

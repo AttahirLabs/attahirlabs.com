@@ -7,7 +7,7 @@ export function navyHomeAppInfo(product) {
   const listing = `${p.listing}?utm_source=attahirlabs&utm_medium=website&utm_campaign=${p.slug}&utm_content=homepage_public_apps`;
   const fullLabel = p.ctaLabel || (p.availabilityNotice ? `View ${p.name} on Shopify` : `Install ${p.name}`);
   const label = p.homeCtaLabel || fullLabel;
-  const install = `<a class="text-link listing-link" href="${esc(listing)}" target="_blank" rel="noopener"${label !== fullLabel ? ` aria-label="${esc(fullLabel)}"` : ''}>${esc(label)} ${arrow('diagonal')}</a>`;
+  const install = `<a class="text-link listing-link" href="${esc(listing)}" target="_blank" rel="noopener"${label !== fullLabel ? ` aria-label="${esc(label)}: ${esc(p.name)}"` : ''}>${esc(label)} ${arrow('diagonal')}</a>`;
   const summary = p.homeSummary || p.summary;
   const actions = `<div class="app-actions"><a class="text-link" href="${route}">Explore ${esc(p.name)} ${arrow('arrow')}</a>${install}</div>`;
   if (['stockclearance', 'shelflife'].includes(p.slug)) {
