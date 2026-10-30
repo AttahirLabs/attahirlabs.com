@@ -6,7 +6,19 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'assets/project-inquiry.js'), 'utf8');
 const html = fs.readFileSync(path.join(root, 'web-design/start/index.html'), 'utf8');
-const { projectDraft } = require('../assets/project-inquiry.js');
+const { projectDraft, serviceFromSearch } = require('../assets/project-inquiry.js');
+
+const serviceEntries = {
+  'website-design': 'Website design',
+  'shopify-setup': 'Shopify store setup',
+  'storefront-redesign': 'Storefront redesign',
+};
+for (const service of [...Object.keys(serviceEntries), 'other']) {
+  assert.equal(serviceFromSearch(`?service=${service}`), service, `${service}: a service link selects its intended option`);
+}
+for (const search of [undefined, '', '?source=homepage', '?service=', '?service=unknown', '?service=constructor', '?service=__proto__', '?service=website-design&service=shopify-setup', '?service=website-design&service=website-design', '?service=website-design%0Aother']) {
+  assert.equal(serviceFromSearch(search), '', `${String(search)}: invalid or ambiguous service intent is ignored`);
+}
 
 function readDraft(values) {
   const draft = projectDraft(values);
@@ -80,7 +92,7 @@ assert.ok(html.includes('Your email app opens a draft for you to review and send
 assert.ok(html.includes('Nothing is submitted or stored by this form.'));
 assert.doesNotMatch(source, /\bfetch\s*\(|\b(?:localStorage|sessionStorage|dataLayer|AttahirAnalytics)\b/, 'inquiry values have no network, analytics or browser-storage path');
 
-function browser({ values = {}, nativeValid = true, clipboard = 'success' } = {}) {
+function browser({ values = {}, nativeValid = true, clipboard = 'success', search = '' } = {}) {
   const events = {};
   const buttonEvents = {};
   const fields = {};
@@ -102,7 +114,7 @@ function browser({ values = {}, nativeValid = true, clipboard = 'success' } = {}
   };
   const navigations = [];
   const writes = [];
-  const location = {};
+  const location = { search };
   Object.defineProperty(location, 'href', { set(value) { navigations.push(value); } });
   const trap = () => { throw new Error('Unexpected network, analytics or storage access'); };
   const window = { location, fetch: trap, AttahirAnalytics: { emit: trap }, dataLayer: { push: trap } };
@@ -113,7 +125,7 @@ function browser({ values = {}, nativeValid = true, clipboard = 'success' } = {}
   class FormData {
     *[Symbol.iterator]() { for (const [name, field] of Object.entries(fields)) yield [name, field.value]; }
   }
-  vm.runInNewContext(source, { document: { querySelector: selector => selector === '[data-project-inquiry]' ? form : null }, window, navigator, FormData, fetch: trap });
+  vm.runInNewContext(source, { document: { querySelector: selector => selector === '[data-project-inquiry]' ? form : null }, window, navigator, FormData, URLSearchParams, fetch: trap });
   return {
     fields, status, copyButton, manualCopy, copyText, navigations, writes,
     validityChecks: () => validityChecks,
@@ -124,6 +136,30 @@ function browser({ values = {}, nativeValid = true, clipboard = 'success' } = {}
 }
 
 (async () => {
+  for (const [service, label] of Object.entries(serviceEntries)) {
+    const b = browser({ values: { service: '' }, search: `?service=${service}&name=Injected&email=other%40example.com` });
+    assert.equal(b.fields.service.value, service, `${service}: clicking its entry opens an already-selected form`);
+    assert.equal(b.fields.name.value, 'Visitor', 'only the service field is eligible for URL prefilling');
+    assert.equal(b.fields.email.value, 'visitor@example.com');
+    b.submit();
+    const draft = new URL(b.navigations[0]);
+    assert.equal(draft.searchParams.get('subject'), `Website project enquiry — ${label}`);
+    assert.ok(draft.searchParams.get('body').includes(`Service: ${label}`), 'the selected service reaches the prepared enquiry');
+  }
+  const editable = browser({ values: { service: '' }, search: '?service=website-design' });
+  editable.fields.service.value = 'storefront-redesign';
+  editable.input('service');
+  editable.submit();
+  assert.ok(new URL(editable.navigations[0]).searchParams.get('body').includes('Service: Storefront redesign'), 'visitors can change the preselected option before continuing');
+
+  const retained = browser({ values: { service: 'storefront-redesign' }, search: '?service=shopify-setup' });
+  assert.equal(retained.fields.service.value, 'storefront-redesign', 'initialization does not overwrite a restored or user-selected value');
+  for (const search of ['', '?service=unknown', '?service=constructor', '?service=website-design&service=shopify-setup']) {
+    const b = browser({ values: { service: '' }, search });
+    assert.equal(b.fields.service.value, '', 'generic and invalid links leave the service available for an explicit choice');
+    assert.equal(b.navigations.length + b.writes.length, 0, 'prefilling never submits or copies an enquiry');
+  }
+
   for (const values of [{ name: '  ' }, { brief: '\n\t ' }]) {
     const b = browser({ values });
     assert.equal(b.submit(), true);
@@ -170,5 +206,5 @@ function browser({ values = {}, nativeValid = true, clipboard = 'success' } = {}
     assert.match(b.status.textContent, /could not copy/);
     assert.doesNotMatch(b.status.textContent, /Enquiry copied/);
   }
-  console.log('Project enquiry: validated email drafts, fixed recipient, safe fields, native fallback, clipboard states and privacy passed');
+  console.log('Project enquiry: service prefilling, editable intent, validated drafts, fixed recipient, native fallback, clipboard states and privacy passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });

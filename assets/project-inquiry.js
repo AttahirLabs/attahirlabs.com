@@ -9,6 +9,11 @@
   });
   const limits = Object.freeze({ name: 100, email: 254, business: 120, website: 400, budget: 100, timeline: 100, brief: 1500 });
 
+  function serviceFromSearch(search) {
+    const values = new URLSearchParams(search || '').getAll('service');
+    return values.length === 1 && Object.prototype.hasOwnProperty.call(services, values[0]) ? values[0] : '';
+  }
+
   function uriComponent(value) {
     // A length bound can cut a surrogate pair; replace isolated halves before encoding.
     let safe = '';
@@ -46,11 +51,14 @@
     };
   }
 
-  if (typeof module === 'object' && module.exports) module.exports = { projectDraft };
+  if (typeof module === 'object' && module.exports) module.exports = { projectDraft, serviceFromSearch };
   if (typeof document === 'undefined') return;
 
   const form = document.querySelector('[data-project-inquiry]');
   if (!form) return;
+  const serviceField = form.elements.namedItem('service');
+  const requestedService = serviceFromSearch(window.location.search);
+  if (serviceField && !serviceField.value && requestedService) serviceField.value = requestedService;
   const status = form.querySelector('[data-inquiry-status]');
   const copyButton = form.querySelector('[data-inquiry-copy]');
   const manualCopy = form.querySelector('[data-inquiry-manual]');

@@ -44,6 +44,19 @@ const {pathToFileURL} = require('node:url');
     }
   }
   assert.ok(projectLinks >= 5, 'cover all project-entry placements');
+  const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const serviceLinks = home.match(/<div class="service-list">([\s\S]*?)<\/div>/)?.[1];
+  assert.ok(serviceLinks, 'the homepage exposes the three service choices');
+  const serviceChoices = [...serviceLinks.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  assert.equal(serviceChoices.length, 3);
+  for (const [label, service] of [['Website design', 'website-design'], ['Shopify store setup', 'shopify-setup'], ['Storefront redesign', 'storefront-redesign']]) {
+    const choice = serviceChoices.find(m => m[2].replace(/<[^>]*>/g, '').trim() === label);
+    assert.ok(choice, `${label}: retain its service entry`);
+    const url = new URL(choice[1], 'https://attahirlabs.com');
+    assert.equal(url.pathname, '/web-design/start/', `${label}: open the actual form directly`);
+    assert.deepEqual(url.searchParams.getAll('service'), [service], `${label}: carry the selected service`);
+    assert.equal(url.hash, '');
+  }
   const formPage = fs.readFileSync(path.join(root, 'web-design/start/index.html'), 'utf8');
   assert.match(formPage, /<form\b[^>]*data-project-inquiry/);
   for (const name of ['name', 'email', 'service', 'brief']) assert.match(formPage, new RegExp(`<(?:input|select|textarea)\\b[^>]*name="${name}"[^>]*required`));
