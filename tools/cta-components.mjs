@@ -5,6 +5,8 @@ export function applyCTAContract(html, relative) {
   html = html.replace(/<a\b([^>]*\bhref=")([^"]*)("[^>]*)>([\s\S]*?)<\/a>/gi, (tag, before, href, after, content) => {
     const label = content.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
     let target = href;
+    const service = href.match(/^\/web-design\/#(website-design|shopify-setup|storefront-redesign)$/)?.[1];
+    if (service) target = `${PROJECT_FORM_PATH}?service=${service}`;
     if (href === '/web-design/#start' || (relative === 'web-design/index.html' && href === '#start')
       || /^(?:Start a project|Let[’']s (?:talk about your project|build your next chapter)|Tell us what you[’']re building)(?:\s*[↗→])?$/i.test(label)) target = PROJECT_FORM_PATH;
     if (/^Explore (?:all |the )?apps(?:\s*[↗→])?$/i.test(label)) target = '/apps/';
