@@ -141,10 +141,14 @@ for (const page of ['index.html', 'apps/index.html']) {
   const html = read(page);
   const card = elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'tariffshield')?.html;
   assert.ok(card, `${page}: retain a public TariffShield surface`);
-  assert.ok(card.includes(tariff.summary));
+  assert.ok(card.includes(page === 'index.html' ? tariff.homeSummary : tariff.summary));
   assert.doesNotMatch(card, /Paused|currently paused|data under review/i);
-  assert.match(card, /Complete reviewed filing facts are required/);
+  if (page === 'index.html') {
+    assert.doesNotMatch(card, /HTSUS|app-scope/, 'the homepage stays a concise app introduction');
+    assert.match(card, /Explore TariffShield/);
+  } else assert.match(card, /Complete reviewed filing facts are required/);
 }
+assert.ok(tariffHtml.includes(tariff.scopeNote), 'full current coverage stays on the detailed app page');
 assert.doesNotMatch(tariffHtml, /currently paused|temporarily unavailable|wait for verified data|Calculation features shown are paused/i);
 for (const page of ['index.html', 'apps/index.html', 'apps/tariffshield/index.html']) {
   assert.doesNotMatch(read(page), /class="availability-notice"/, `${page}: TariffShield notice banner should be hidden`);

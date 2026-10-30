@@ -2,17 +2,18 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const html = fs.readFileSync(require('node:path').join(__dirname, '..', 'index.html'), 'utf8');
 // The selected district uses two large app cards and two compact entries.
-// Supported tariff scope is equally required in either presentation.
+// The homepage introduces the supported product; the app page keeps full coverage.
 const {elementsWithAttribute} = require('./helpers/html-elements.cjs');
 const tariffPanel = elementsWithAttribute(html, 'data-app').find(entry => entry.value === 'tariffshield')?.html;
 assert.ok(tariffPanel, 'homepage must retain the current public TariffShield entry');
 assert.match(tariffPanel, /U\.S\. quartz surface/);
-assert.match(tariffPanel, /Complete reviewed filing facts are required\./);
-assert.match(tariffPanel, /Unsupported or incomplete inputs produce no estimate\./);
-assert.match(tariffPanel, /Confirmed price updates/i);
 assert.match(tariffPanel, /href="\/apps\/tariffshield\/"/);
-const tariffScope = tariffPanel.match(/<p\b[^>]*class="app-scope"[^>]*>([\s\S]*?)<\/p>/)?.[1];
-assert.ok(tariffScope, 'homepage must show the supported tariff scope');
+assert.match(tariffPanel, /Explore TariffShield/);
+const tariffDetails = fs.readFileSync(require('node:path').join(__dirname, '..', 'apps/tariffshield/index.html'), 'utf8');
+assert.match(tariffDetails, /Complete reviewed filing facts are required\./);
+assert.match(tariffDetails, /Unsupported or incomplete inputs produce no estimate\./);
+const tariffScope = require('../data/public-apps.json').products.find(product => product.slug === 'tariffshield').scopeNote;
+assert.ok(tariffDetails.includes(tariffScope), 'the directly linked app page retains full supported tariff scope');
 assert.doesNotMatch(tariffScope, /Ceramic table lamp|\$[0-9]/, 'coverage disclosure must not contain invented duty results');
 
 (async () => {

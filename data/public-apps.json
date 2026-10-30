@@ -213,6 +213,8 @@
     },
     {
       "slug": "tariffshield",
+      "homeSummary": "Review duties and margins for supported U.S. quartz surface imports.",
+      "homeCtaLabel": "View on Shopify",
       "name": "TariffShield",
       "listingName": "TariffShield: Margin Analyzer",
       "icon": "/assets/icons/tariffshield-suite.png",

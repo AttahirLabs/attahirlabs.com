@@ -5,13 +5,15 @@ export function navyHomeAppInfo(product) {
   const p = product;
   const route = `/apps/${p.slug}/`;
   const listing = `${p.listing}?utm_source=attahirlabs&utm_medium=website&utm_campaign=${p.slug}&utm_content=homepage_public_apps`;
-  const label = p.ctaLabel || (p.availabilityNotice ? `View ${p.name} on Shopify` : `Install ${p.name}`);
-  const install = `<a class="text-link listing-link" href="${esc(listing)}" target="_blank" rel="noopener">${esc(label)} ${arrow('diagonal')}</a>`;
-  const scope = p.scopeNote ? `<p class="app-scope">${esc(p.scopeNote)}</p>` : '';
+  const fullLabel = p.ctaLabel || (p.availabilityNotice ? `View ${p.name} on Shopify` : `Install ${p.name}`);
+  const label = p.homeCtaLabel || fullLabel;
+  const install = `<a class="text-link listing-link" href="${esc(listing)}" target="_blank" rel="noopener"${label !== fullLabel ? ` aria-label="${esc(label)}: ${esc(p.name)}"` : ''}>${esc(label)} ${arrow('diagonal')}</a>`;
+  const summary = p.homeSummary || p.summary;
+  const actions = `<div class="app-actions"><a class="text-link" href="${route}">Explore ${esc(p.name)} ${arrow('arrow')}</a>${install}</div>`;
   if (['stockclearance', 'shelflife'].includes(p.slug)) {
-    return `<div class="app-info" data-app="${esc(p.slug)}"><div class="app-title"><h3><a href="${route}">${esc(p.name)}</a></h3><span class="status">Shopify App Store</span></div><p>${esc(p.summary)}</p><div class="app-actions"><a class="text-link" href="${route}">Explore ${esc(p.name)} ${arrow('arrow')}</a>${install}</div></div>`;
+    return `<div class="app-info" data-app="${esc(p.slug)}"><div class="app-title"><h3><a href="${route}">${esc(p.name)}</a></h3><span class="status">Shopify App Store</span></div><p>${esc(summary)}</p>${actions}</div>`;
   }
-  return `<div data-app="${esc(p.slug)}"><span class="small-label">Also in the suite · Shopify App Store</span><a class="portfolio-app-link" href="${route}"><img src="${esc(p.icon)}" width="24" height="24" alt="${esc(p.iconAlt)}">${esc(p.name)} ${arrow('diagonal')}</a><p>${esc(p.summary)}</p>${scope}${install}</div>`;
+  return `<div data-app="${esc(p.slug)}"><span class="small-label">Also in the suite · Shopify App Store</span><a class="portfolio-app-link" href="${route}"><img src="${esc(p.icon)}" width="24" height="24" alt="${esc(p.iconAlt)}">${esc(p.name)} ${arrow('diagonal')}</a><p>${esc(summary)}</p>${actions}</div>`;
 }
 
 export function navyUpcomingApps(products) {
