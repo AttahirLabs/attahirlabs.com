@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:10.000
+1. App-owned reviewer login
+App-owned sign-in is limited to the development store; the credential fields are empty.
+
+2
+00:00:10.000 --> 00:00:20.000
+2. Connected development store and saved scan
+The review account shows the USD development store and a completed saved inventory scan.
+
+3
+00:00:20.000 --> 00:00:30.000
+3. Actual ChatGPT inventory reads
+ChatGPT reports three in-stock variants and six units; one variant has unavailable cost.
+
+4
+00:00:30.000 --> 00:00:40.000
+4. Separate unconfirmed ChatGPT price preview
+Separate unconfirmed ChatGPT preview: $95/$38 and two exclusions. This handoff is not the bounded fixture.
+
+5
+00:00:40.000 --> 00:00:50.000
+5. Separate bounded fixture: merchant review
+In the separate bounded fixture, merchant review shows $95/$38 and exact stock/cost exclusions.
+
+6
+00:00:50.000 --> 00:01:00.000
+6. Explicit human approval before confirmation
+The approval box is checked before confirming the reviewed development-store clearance.
+
+7
+00:01:00.000 --> 00:01:10.000
+7. Scheduled result and private duplicate-ID check
+A scheduled result is visible; private receipts verify both confirmation forms returned the same campaign ID.
+
+8
+00:01:10.000 --> 00:01:20.000
+8. Ended before the configured start
+Completed before its future start; dates remain configured. Private readback verifies zero price-write audits.
+
+9
+00:01:20.000 --> 00:01:30.000
+9. Unsupported requests are refused
+ChatGPT refuses direct markdowns, launching without review, and customer email.
+
+10
+00:01:30.000 --> 00:01:40.000
+10. Unverifiable scope fails closed
+ChatGPT reports an unverifiable requested scope; no fallback pricing or review link is provided.
+
+11
+00:01:40.000 --> 00:01:50.000
+11. Signed-out access is denied
+Signed-out access cannot be verified; the screen asks the reviewer to sign in again.
