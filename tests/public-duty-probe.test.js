@@ -7,6 +7,7 @@ const probeModuleUrl = pathToFileURL(path.join(__dirname, '..', 'tools', 'probe-
 // Signed identity response fixtures only. No test below fetches the public asset or API.
 const plannedAsset = `
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
+const DUTY_CALCULATION_API = "/api/authority-duty";
 const RELEASE4_VERSION = "2026.10.01+release4.5";
 const DUTY_DECLARATION_CONTRACT = "us-qsp-ordinary-general-rev20/v3";
 const RELEASE4_PAYLOAD_HASH = "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb";
@@ -17,7 +18,7 @@ const RELEASE4_INPUT_CONTRACT = "us-qsp-ordinary-general-rev20/v3";
 const RELEASE4_EVIDENCE_AS_OF = "2026-10-01T13:05:00Z";
 const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-10-08T13:05:00Z";
 const RELEASE4_SLICE_ID = "slice:release4:exact-qsp-rev20-ordinary-general";
-async function calculate() { const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params); }
+async function calculate() { const response = await fetch(DUTY_CALCULATION_API, { method: "POST", body: JSON.stringify(input) }); }
 `;
 const authority = { state: "active", ...{
   "rulesetVersion": "2026.10.01+release4.5",
@@ -44,11 +45,14 @@ function fingerprint(input) {
   return createHash('sha256').update(JSON.stringify(identity)).digest('hex');
 }
 function harness(mutate = (_input, _body, _status) => {}, asset = plannedAsset) {
-  const requests = [];
-  const fetchImpl = async url => {
+  const requests = [], inputs = [];
+  const fetchImpl = async (url, options) => {
     requests.push(String(url));
     if (url === 'https://attahirlabs.com/duty/calculator.js') return response(200, asset);
-    const input = Object.fromEntries(new URL(url).searchParams);
+    assert.equal(options.method, 'POST');
+    assert.equal(options.headers.Origin, 'https://attahirlabs.com');
+    assert.equal(new URL(url).search, '');
+    const input = JSON.parse(options.body); inputs.push(input);
     let status = 200;
     let body;
     if (input.origin === 'CA') { status = 422; body = { status: 'indeterminate', code: 'UNSUPPORTED_ORIGIN_OR_DESTINATION' }; }
@@ -64,12 +68,12 @@ function harness(mutate = (_input, _body, _status) => {}, asset = plannedAsset) 
     mutate(input, body, status);
     return response(status, body);
   };
-  return { requests, fetchImpl, now: () => Date.parse("2026-10-03T15:10:00Z") };
+  return { requests, inputs, fetchImpl, now: () => Date.parse("2026-10-03T15:10:00Z") };
 }
 
 test('signed Rev20 probe validates five smoke scenarios and actual v3 wire declarations', async () => {
   const { inspectCalculatorAsset, runPublicDutyProbe } = await import(probeModuleUrl);
-  assert.deepEqual(inspectCalculatorAsset(plannedAsset), { apiBase: 'https://duty-calc-api-production.up.railway.app', calculationPath: '/api/v2/us-duty', releaseVersion: authority.rulesetVersion, declarationContract: authority.inputContract });
+  assert.deepEqual(inspectCalculatorAsset(plannedAsset), { apiBase: 'https://attahirlabs.com', calculationPath: '/api/authority-duty', releaseVersion: authority.rulesetVersion, declarationContract: authority.inputContract });
   const mock = harness();
   const result = await runPublicDutyProbe(mock);
   assert.equal(result.ok, true);
@@ -80,7 +84,7 @@ test('signed Rev20 probe validates five smoke scenarios and actual v3 wire decla
   assert.equal(result.canada.numberFree, true);
   assert.equal(result.missingProduct.numberFree, true);
   assert.equal(mock.requests.length, 6);
-  const inputs = mock.requests.slice(1).map(url => Object.fromEntries(new URL(url).searchParams));
+  const inputs = mock.inputs;
   const [vn, over, br, missing, ca] = inputs;
   for (const input of inputs) {
     assert.equal(input.calculationBasis, 'entry');
@@ -109,7 +113,7 @@ test('signed Rev20 probe validates five smoke scenarios and actual v3 wire decla
 test('legacy version, endpoint and absent/wrong v3 contract stop before API requests', async t => {
   const { runPublicDutyProbe } = await import(probeModuleUrl);
   for (const asset of [plannedAsset.replace('2026.10.01+release4.5', '2026.08.24+release4.1'),
-    plannedAsset.replace('/api/v2/us-duty', '/api/v1/landed-cost'),
+    plannedAsset.replace('/api/authority-duty', '/api/v1/landed-cost'),
     plannedAsset.replace(/const DUTY_DECLARATION_CONTRACT[^;]+;/, ''),
     plannedAsset.replace('rev20/v3', 'rev20/v2')]) await t.test(asset.slice(0, 65), async () => {
       const mock = harness(undefined, asset);

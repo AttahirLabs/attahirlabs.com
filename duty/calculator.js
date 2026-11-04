@@ -1,4 +1,5 @@
 const DUTY_API = "https://duty-calc-api-production.up.railway.app";
+const DUTY_CALCULATION_API = "/api/authority-duty";
 const RELEASE4_VERSION = "2026.10.01+release4.5";
 const RELEASE4_PAYLOAD_HASH = "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb";
 const RELEASE4_RECORD_HASH = "fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77";
@@ -551,11 +552,8 @@ async function calculate() {
   try {
     const inputFingerprint = await exactDutyInputFingerprint(input);
     if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
-    const params = new URLSearchParams();
-    for (const [key, value] of Object.entries(input)) {
-      if (value !== undefined) params.set(key, value);
-    }
-    const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params, { signal: controller.signal });
+    const response = await fetch(DUTY_CALCULATION_API, { method: "POST", credentials: "omit", cache: "no-store",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify(input), signal: controller.signal });
     let data = {};
     try {
       data = await response.json();
