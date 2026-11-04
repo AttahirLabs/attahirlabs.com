@@ -80,6 +80,8 @@
         .breakdown .row-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, max-content); column-gap: 0.75rem; align-items: start; padding: 0.5rem 0; border-bottom: 1px solid #d5e2e3; }
         .breakdown .row-item > span { min-width: 0; overflow-wrap: anywhere; }
         .breakdown .row-item > span:last-child { text-align: right; }
+        .breakdown .row-item.provenance { grid-template-columns: minmax(0, 1fr); row-gap: 0.25rem; }
+        .breakdown .row-item.provenance > span:last-child { text-align: left; }
         .breakdown .row-item.duty { color: #9f1c1c; }
         .breakdown .row-item.total { font-weight: 700; font-size: 1.05rem; border-bottom: none; padding-top: 0.75rem; }
         .breakdown .total .green { color: #075c67; }
@@ -245,6 +247,7 @@
                     <span><strong>Authority state:</strong> Awaiting response</span>
                     <span><strong>Coverage:</strong> Awaiting response</span>
                 </div>
+                <div class="breakdown" id="rev22Evidence" hidden></div>
                 <div id="resultNumbers">
                     <div class="stat-grid">
                         <div class="stat"><div class="num indigo" id="rateDisplay">—</div><div class="label">Supported total rate</div></div>
@@ -283,6 +286,7 @@
     <p style="margin-top:0.5rem"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:support@attahirlabs.com">Contact</a></p>
 <div class="cinema-motion-control"><span class="cinema-motion-note"><a href="/assets/cinema/scene-credits.txt">Scene credits</a></span></div></footer>
 
-<script src="/duty/calculator.js?v=20261003-release4-5"></script>
+<script src="/duty/rev22-quote.js?v=rev22-unbound-preparation"></script>
+<script src="/duty/calculator.js?v=20261031-rev22-preparation"></script>
 </body>
 </html>

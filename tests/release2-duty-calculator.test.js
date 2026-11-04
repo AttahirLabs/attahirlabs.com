@@ -29,7 +29,7 @@ for (const id of [
 }
 
 assert.match(html, /destination[^<]{0,80}United States/i, 'the supported destination must be fixed to the United States');
-assert.match(client, /\/api\/v2\/us-duty/, 'the calculator must use the signed Release 4 endpoint');
+assert.match(client, /\/api\/authority-duty/, 'the calculator must use the source-admitted relay');
 assert.doesNotMatch(client, /\/api\/v1\/landed-cost/, 'the legacy origin-only calculator must stay contained');
 assert.match(html, /exact caller-supplied HTSUS, MFN,[^<]{0,40}and Chapter 99 inputs/i);
 assert.match(html, /not a customs classification, liquidation, or legal determination/i);
@@ -122,7 +122,7 @@ async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:
     elements[id].value = value;
   }
   const analytics = [];
-  let requestedUrl = '';
+  let requestedUrl = ''; let postedInput;
   class FixedDate extends Date {
     constructor(...args) {
       super(...(args.length ? args : [now]));
@@ -157,16 +157,24 @@ async function runCalculation(response, overrides = {}, now = '2026-10-03T13:00:
         }
       }
     },
-    async fetch(url) {
+    async fetch(url, options) {
       requestedUrl = String(url);
-      return response;
+      assert.equal(requestedUrl,"/api/authority-duty"); assert.equal(options.method,"POST"); assert.equal(options.credentials,"omit");
+      postedInput=JSON.parse(options.body);
+      if (!response || !response.json) return response;
+      return { ...response, json: async () => {
+        const body = await response.json();
+        // A valid upstream reply binds the actual wire request. Leave incorrect test digests untouched.
+        return body?.inputFingerprint === independentFingerprint(overrides)
+          ? {...body, inputFingerprint: independentFingerprint({...overrides, ...postedInput})} : body;
+      } };
     }
   };
   Object.assign(context, runtime);
   vm.createContext(context);
   vm.runInContext(client.replace(/\ninit\(\);\s*$/, '\n'), context);
   await context.calculate();
-  return { elements, analytics, requestedUrl, context };
+  return { elements, analytics, requestedUrl, postedInput, context };
 }
 
 test('client timeout is a single failed attempt and releases the UI', async () => {
@@ -279,6 +287,24 @@ function calculatedBody(overrides = {}) {
   };
 }
 
+test('unapproved Rev22 JSON cannot replace the compiled legacy authority or display numbers', async () => {
+  const overrides = { entryAt: '2026-10-31T16:00:00Z' };
+  const body = calculatedBody(overrides);
+  Object.assign(body.authority, {
+    rulesetVersion: '2026.10.31+release4.6', rulesetPayloadHash: 'a'.repeat(64),
+    releaseRecordHash: 'b'.repeat(64), scheduleRevision: '2026HTSRev22',
+    inputContract: 'us-qsp-ordinary-general-rev22/v3',
+    activeCoverageSliceIds: ['slice:release4:exact-qsp-rev22-ordinary-general'],
+    evidenceAsOf: '2026-10-31T15:28:10Z', evidenceValidThrough: '2026-11-01T15:28:10Z'
+  });
+  body.pendingAuthority = { candidateId: 'authority-candidate:release-4-rev22-materialization-2026-10-31', binding: body.authority };
+  const { elements, analytics } = await runCalculation({ ok: true, status: 200, async json() { return body; } }, overrides, '2026-10-31T17:00:00Z');
+  assert.equal(elements.resultNumbers.style.display, 'none');
+  assert.equal(elements.rateDisplay.textContent, '—');
+  assert.ok(analytics.some(event => event.name === 'tool_failed'));
+  assert.ok(!analytics.some(event => event.name === 'tool_completed'));
+});
+
 test('entryAt is visibly required in the exact-input UI', () => {
   assert.match(html, /<input[^>]+id=["']entryAt["'][^>]+required/i);
   assert.match(html, /Entry instant[^<]{0,80}\*/i);
@@ -286,18 +312,16 @@ test('entryAt is visibly required in the exact-input UI', () => {
 });
 
 test('calculated Release 4 response renders only after exact authority and arithmetic validation', async () => {
-  const { elements, analytics, requestedUrl } = await runCalculation({
+  const { elements, analytics, requestedUrl, postedInput } = await runCalculation({
     ok: true,
     status: 200,
     async json() {
       return calculatedBody();
     }
   });
-  assert.match(requestedUrl, /\/api\/v2\/us-duty\?/);
-  assert.match(requestedUrl, /origin=BR/);
-  assert.match(requestedUrl, /brazilHeading=9903\.05\.01/);
-  assert.match(requestedUrl, /entryAt=2026-08-17T13%3A30%3A00\.000Z/);
-  assert.doesNotMatch(requestedUrl, /destination=/);
+  assert.equal(requestedUrl,'/api/authority-duty');
+  assert.equal(postedInput.origin,'BR'); assert.equal(postedInput.brazilHeading,'9903.05.01');
+  assert.equal(postedInput.entryAt,'2026-08-17T13:30:00.000Z');assert.equal(Object.hasOwn(postedInput,'destination'),false);
   assert.equal(elements.resultNumbers.style.display, 'block');
   assert.equal(elements.rateDisplay.textContent, '42.500000%');
   assert.equal(elements.dutyDisplay.textContent, '$425.00');
@@ -390,9 +414,7 @@ test('the exact QSP scope fact is sent only when supplied', async () => {
     { ok: true, status: 200, async json() { return calculatedBody(); } },
     { origin: 'GB', manufacturingOrigin: 'GB', hts: '6810990020', mfnRate: '0', forcedLaborCountryHeading: '9903.05.81', brazilHeading: '', qspHeading: '9903.45.30', qspQuotaStatus: 'allocated_in_quota', qspQuotaEvidenceRef: 'quota-review-123', qspQuotaReviewedAt: '2026-08-17T13:30:00Z' },
   );
-  assert.match(qsp.requestedUrl, /hts=6810990020/);
-  assert.match(qsp.requestedUrl, /qspHeading=9903\.45\.30/);
-  assert.doesNotMatch(qsp.requestedUrl, /uasHeading=/);
+  assert.equal(qsp.postedInput.hts,'6810990020');assert.equal(qsp.postedInput.qspHeading,'9903.45.30');assert.equal(Object.hasOwn(qsp.postedInput,'uasHeading'),false);
 });
 
 test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most millisecond precision, and is normalized', async t => {
@@ -410,7 +432,7 @@ test('entryAt is required, accepts only canonical UTC Z RFC 3339 with at most mi
         { ok: true, status: 200, async json() { return calculatedBody({ entryAt }); } },
         { entryAt },
       );
-      assert.match(result.requestedUrl, new RegExp(`entryAt=${encoded.replaceAll('.', '\\.')}(?:&|$)`));
+      assert.equal(result.postedInput.entryAt,decodeURIComponent(encoded));
       assert.equal(result.elements.resultNumbers.style.display, 'block');
     });
   }
@@ -617,14 +639,15 @@ test('v3 requires explicit product, provenance and quota declarations without in
   });
 });
 
-test('v3 sends the normalized actual GET contract and binds its independent fingerprint', async () => {
+test('v3 sends the normalized same-origin POST contract and binds its independent fingerprint', async () => {
   const overrides = { hts: '7020.00.6000', customsValue: '1000', shippingCost: '50', insuranceCost: '10',
     brokerEntryReference: '  broker-entry-123  ', qspProductEvidenceRef: '😀'.repeat(8), calculationBasis: 'per_unit' };
   const result = await runCalculation({ ok: true, json: async () => calculatedBody(overrides) }, overrides);
-  const params = new URL(result.requestedUrl).searchParams;
+  const params = new URLSearchParams(result.postedInput);
   for (const key of ['manufacturingOrigin', 'thirdCountryProcessing', 'certificationDisposition', 'brokerEntryReference',
     'adCvdStatus', 'adCvdEvidenceRef', 'entryTreatment', 'qspProductStatus', 'qspProductEvidenceRef', 'calculationBasis'])
-    assert.equal(params.get(key), overrides[key]?.trim() || makeElements()[key].value);
+    if (['brokerEntryReference','adCvdEvidenceRef','qspProductEvidenceRef'].includes(key)) assert.match(params.get(key), /^tsref:v1:[0-9a-f]{64}$/);
+    else assert.equal(params.get(key), overrides[key]?.trim() || makeElements()[key].value);
   assert.equal(params.get('hts'), '7020006000');
   assert.equal(params.get('customsValue'), '1000.00');
   assert.equal(result.elements.resultNumbers.style.display, 'block');
@@ -662,7 +685,7 @@ test('every supported product wires matched in-quota and over-quota declarations
       const input = { ...gbQuota, hts, mfnRate: hts === '7020006000' ? '5' : '0', qspHeading,
         qspQuotaStatus: qspHeading === '9903.45.30' ? 'allocated_in_quota' : 'confirmed_over_quota' };
       const result = await runCalculation({ ok: false, status: 422, json: async () => ({ status: 'indeterminate' }) }, input);
-      const query = new URL(result.requestedUrl).searchParams;
+      const query = new URLSearchParams(result.postedInput);
       assert.equal(query.get('qspHeading'), qspHeading);
       assert.equal(query.get('qspQuotaStatus'), input.qspQuotaStatus);
       assert.equal(query.get('qspQuotaReviewedAt'), '2026-08-17T13:30:00.000Z');
@@ -722,4 +745,20 @@ test('input preflight rejects unsupported threshold, future entry and noncanonic
       assert.equal(result.requestedUrl, '');
       assert.equal(result.elements.resultNumbers.style.display, 'none');
     });
+});
+
+test('per-request field commitments keep private originals out of URLs, bodies and analytics', async () => {
+  const raw='private-original-not-for-proxy-or-analytics';
+  const values={brokerEntryReference:raw,adCvdEvidenceRef:raw,qspProductEvidenceRef:raw};
+  const a=await runCalculation({ok:false,json:async()=>({status:'indeterminate'})},values);
+  const b=await runCalculation({ok:false,json:async()=>({status:'indeterminate'})},values);
+  assert.equal(a.requestedUrl,'/api/authority-duty');
+  assert.equal(new Set(Object.keys(values).map(k=>a.postedInput[k])).size,3);
+  for(const field of Object.keys(values)){
+    assert.match(a.postedInput[field],/^tsref:v1:[0-9a-f]{64}$/);
+    assert.notEqual(a.postedInput[field],b.postedInput[field]);
+  }
+  assert.ok(!JSON.stringify([a.postedInput,a.analytics,a.requestedUrl]).includes(raw));
+  const unavailable=await runCalculation({ok:true,json:async()=>calculatedBody()},values,undefined,{crypto:{}});
+  assert.equal(unavailable.requestedUrl,''); assert.equal(unavailable.elements.resultNumbers.style.display,'none');
 });

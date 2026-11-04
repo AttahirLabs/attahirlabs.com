@@ -128,7 +128,12 @@
       "declarationVerification": "unverified_caller_assumptions",
       "rulesetPayloadHash": "1a83e4cc04e4ff5b42a87e8db3e0493277ac4f684dc89b0041dc579dae0c5feb",
       "releaseRecordHash": "fe51ed4b906c37c768f8fe560a5efd267b1126852acc6a67cb49c78b9ae5ed77",
-      "coverageSliceId": "slice:release4:exact-qsp-rev20-ordinary-general"
+      "coverageSliceId": "slice:release4:exact-qsp-rev20-ordinary-general",
+      "pendingAuthority": {
+        "candidateId": "authority-candidate:release-4-rev22-retained26-materialization-20261103-newproposal-2",
+        "binding": null,
+        "state": "not_approved"
+      }
     },
     {
       "schemaVersion": 1,

@@ -1,0 +1,2716 @@
+{
+  "schema": "tariff.rev22-public-software-quotes/v1",
+  "fixtureOnly": true,
+  "sourceLabSha256": "02f930d4b86843bd3b2c523d2f7296f6fd3fa4dfab4ee39c7ce94c9b3d824f9a",
+  "coreCompiledSha256": "e0a31a7fdfe1d460488f4b1153938491aee69718e17b281f4069d359112e4278",
+  "noCanonicalRecordOrSignaturesCreated": true,
+  "samples": [
+    {
+      "requestId": "TEST_ONLY_AU_7020006000_EXEMPT",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "AU",
+        "manufacturingOrigin": "AU",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "7020006000",
+        "entryAt": "2026-10-31T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "5",
+        "forcedLaborCountryHeading": "9903.05.23",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "inputFingerprint": "927a844c4084b83dfd22f76a33987cb4f7341eadced2e1b3ede6813bd46dce5b"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "calculated",
+        "evaluatedEntryAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "927a844c4084b83dfd22f76a33987cb4f7341eadced2e1b3ede6813bd46dce5b",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "complete",
+          "reasonCodes": [],
+          "sourceStages": {
+            "captured": "source_identity_bound",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "5"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "AU",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "AU",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "7020006000"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.23",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "legal.applicability",
+              "value": [
+                "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+              ],
+              "origin": "derived",
+              "verificationState": "not_a_legal_determination",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "fact": "ruleset.source_documents",
+              "value": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "origin": "authority_bound",
+              "verificationState": "source_identity_bound",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [
+            "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+          ],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NOT_A_CUSTOMS_LIQUIDATION"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "caller_assumption",
+              "basis": "core_fact_ledger",
+              "lineIndexes": [
+                0
+              ],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "not_applicable",
+              "basis": "bound_policy_qsp_exempt_origin",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "qsp-exempt-origins"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                1
+              ],
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        },
+        "calculation": {
+          "currency": "USD",
+          "customsValue": {
+            "amount": "1000.00",
+            "currency": "USD"
+          },
+          "shippingCost": {
+            "amount": "50.00",
+            "currency": "USD"
+          },
+          "insuranceCost": {
+            "amount": "10.00",
+            "currency": "USD"
+          },
+          "totalRatePercent": "17.500000",
+          "dutyAmount": {
+            "amount": "175.00",
+            "currency": "USD"
+          },
+          "estimatedSubtotal": {
+            "amount": "1235.00",
+            "currency": "USD"
+          },
+          "lineItems": [
+            {
+              "layer": "base.mfn",
+              "authority": "mfn",
+              "operation": "replace",
+              "disposition": "applied",
+              "ratePercent": "5.000000",
+              "dutyAmount": {
+                "amount": "50.00",
+                "currency": "USD"
+              },
+              "ruleIds": [],
+              "sourceDocumentIds": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "authority": "section_301",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "12.500000",
+              "dutyAmount": {
+                "amount": "125.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_BR_7020006000_EXEMPT",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "BR",
+        "manufacturingOrigin": "BR",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "7020006000",
+        "entryAt": "2026-10-31T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "5",
+        "forcedLaborCountryHeading": "9903.05.27",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "brazilHeading": "9903.05.01",
+        "inputFingerprint": "98a371708b2d7ac813566e32f661cef8bc74a36baeebe9b4221303617fcc2a92"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "calculated",
+        "evaluatedEntryAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "98a371708b2d7ac813566e32f661cef8bc74a36baeebe9b4221303617fcc2a92",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "complete",
+          "reasonCodes": [],
+          "sourceStages": {
+            "captured": "source_identity_bound",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "5"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "BR",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "BR",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "7020006000"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section301.brazil.heading",
+              "value": "9903.05.01",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.27",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "legal.applicability",
+              "value": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25",
+                "rule:us.section301.release2.forced-labor.9903-05-27.assessed"
+              ],
+              "origin": "derived",
+              "verificationState": "not_a_legal_determination",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "fact": "ruleset.source_documents",
+              "value": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "origin": "authority_bound",
+              "verificationState": "source_identity_bound",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [
+            "rule:us.section301.release2.brazil.9903-05-01.add-25",
+            "rule:us.section301.release2.forced-labor.9903-05-27.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+          ],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NOT_A_CUSTOMS_LIQUIDATION"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "caller_assumption",
+              "basis": "core_fact_ledger",
+              "lineIndexes": [
+                0
+              ],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "not_applicable",
+              "basis": "bound_policy_qsp_exempt_origin",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "qsp-exempt-origins"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                1
+              ],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                2
+              ],
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-27.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        },
+        "calculation": {
+          "currency": "USD",
+          "customsValue": {
+            "amount": "1000.00",
+            "currency": "USD"
+          },
+          "shippingCost": {
+            "amount": "50.00",
+            "currency": "USD"
+          },
+          "insuranceCost": {
+            "amount": "10.00",
+            "currency": "USD"
+          },
+          "totalRatePercent": "42.500000",
+          "dutyAmount": {
+            "amount": "425.00",
+            "currency": "USD"
+          },
+          "estimatedSubtotal": {
+            "amount": "1485.00",
+            "currency": "USD"
+          },
+          "lineItems": [
+            {
+              "layer": "base.mfn",
+              "authority": "mfn",
+              "operation": "replace",
+              "disposition": "applied",
+              "ratePercent": "5.000000",
+              "dutyAmount": {
+                "amount": "50.00",
+                "currency": "USD"
+              },
+              "ruleIds": [],
+              "sourceDocumentIds": []
+            },
+            {
+              "layer": "special.section301.brazil",
+              "authority": "section_301",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "25.000000",
+              "dutyAmount": {
+                "amount": "250.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "authority": "section_301",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "12.500000",
+              "dutyAmount": {
+                "amount": "125.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-27.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_AE_7020006000_9903.45.30",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "AE",
+        "manufacturingOrigin": "AE",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "7020006000",
+        "entryAt": "2026-10-31T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "5",
+        "forcedLaborCountryHeading": "9903.05.80",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "qspHeading": "9903.45.30",
+        "qspQuotaStatus": "allocated_in_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "7b5a4dab64cea80276023fa4017d7f6d96aa5d4c125fccdbdc983a8f684f2b9d"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "calculated",
+        "evaluatedEntryAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "7b5a4dab64cea80276023fa4017d7f6d96aa5d4c125fccdbdc983a8f684f2b9d",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "complete",
+          "reasonCodes": [],
+          "sourceStages": {
+            "captured": "source_identity_bound",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "5"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "AE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaEvidenceRef",
+              "value": "test-only:actual-entry-quota-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaReviewedAt",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaStatus",
+              "value": "allocated_in_quota",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "AE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "7020006000"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section203.qsp.heading",
+              "value": "9903.45.30",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.80",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "legal.applicability",
+              "value": [
+                "rule:us.section203.qsp.9903-45-30.period-1",
+                "rule:us.section203.qsp.9903-45-31.period-1",
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "origin": "derived",
+              "verificationState": "not_a_legal_determination",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "fact": "ruleset.source_documents",
+              "value": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "origin": "authority_bound",
+              "verificationState": "source_identity_bound",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [
+            "rule:us.section203.qsp.9903-45-30.period-1",
+            "rule:us.section203.qsp.9903-45-31.period-1",
+            "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+          ],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NOT_A_CUSTOMS_LIQUIDATION"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "caller_assumption",
+              "basis": "core_fact_ledger",
+              "lineIndexes": [
+                0
+              ],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                1
+              ],
+              "ruleIds": [
+                "rule:us.section203.qsp.9903-45-30.period-1"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                2
+              ],
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        },
+        "calculation": {
+          "currency": "USD",
+          "customsValue": {
+            "amount": "1000.00",
+            "currency": "USD"
+          },
+          "shippingCost": {
+            "amount": "50.00",
+            "currency": "USD"
+          },
+          "insuranceCost": {
+            "amount": "10.00",
+            "currency": "USD"
+          },
+          "totalRatePercent": "42.500000",
+          "dutyAmount": {
+            "amount": "425.00",
+            "currency": "USD"
+          },
+          "estimatedSubtotal": {
+            "amount": "1485.00",
+            "currency": "USD"
+          },
+          "lineItems": [
+            {
+              "layer": "base.mfn",
+              "authority": "mfn",
+              "operation": "replace",
+              "disposition": "applied",
+              "ratePercent": "5.000000",
+              "dutyAmount": {
+                "amount": "50.00",
+                "currency": "USD"
+              },
+              "ruleIds": [],
+              "sourceDocumentIds": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "authority": "other",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "25.000000",
+              "dutyAmount": {
+                "amount": "250.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section203.qsp.9903-45-30.period-1"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "authority": "section_301",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "12.500000",
+              "dutyAmount": {
+                "amount": "125.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_AE_6810990020_9903.45.31",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "AE",
+        "manufacturingOrigin": "AE",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "6810990020",
+        "entryAt": "2026-10-31T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "0",
+        "forcedLaborCountryHeading": "9903.05.80",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "qspHeading": "9903.45.31",
+        "qspQuotaStatus": "confirmed_over_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "cf7f72ac96b7e863db53930b8ea006d5beb0ce0e1891295b46f4c097be80a220"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "calculated",
+        "evaluatedEntryAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "cf7f72ac96b7e863db53930b8ea006d5beb0ce0e1891295b46f4c097be80a220",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "complete",
+          "reasonCodes": [],
+          "sourceStages": {
+            "captured": "source_identity_bound",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "0"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "AE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaEvidenceRef",
+              "value": "test-only:actual-entry-quota-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaReviewedAt",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaStatus",
+              "value": "confirmed_over_quota",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "AE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "6810990020"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section203.qsp.heading",
+              "value": "9903.45.31",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.80",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "legal.applicability",
+              "value": [
+                "rule:us.section203.qsp.9903-45-30.period-1",
+                "rule:us.section203.qsp.9903-45-31.period-1",
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "origin": "derived",
+              "verificationState": "not_a_legal_determination",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "fact": "ruleset.source_documents",
+              "value": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "origin": "authority_bound",
+              "verificationState": "source_identity_bound",
+              "provenance": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [
+            "rule:us.section203.qsp.9903-45-30.period-1",
+            "rule:us.section203.qsp.9903-45-31.period-1",
+            "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+          ],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NOT_A_CUSTOMS_LIQUIDATION"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "caller_assumption",
+              "basis": "core_fact_ledger",
+              "lineIndexes": [
+                0
+              ],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                1
+              ],
+              "ruleIds": [
+                "rule:us.section203.qsp.9903-45-31.period-1"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "applied",
+              "basis": "core_line",
+              "lineIndexes": [
+                2
+              ],
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [],
+              "reasonCodes": []
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        },
+        "calculation": {
+          "currency": "USD",
+          "customsValue": {
+            "amount": "1000.00",
+            "currency": "USD"
+          },
+          "shippingCost": {
+            "amount": "50.00",
+            "currency": "USD"
+          },
+          "insuranceCost": {
+            "amount": "10.00",
+            "currency": "USD"
+          },
+          "totalRatePercent": "62.500000",
+          "dutyAmount": {
+            "amount": "625.00",
+            "currency": "USD"
+          },
+          "estimatedSubtotal": {
+            "amount": "1685.00",
+            "currency": "USD"
+          },
+          "lineItems": [
+            {
+              "layer": "base.mfn",
+              "authority": "mfn",
+              "operation": "replace",
+              "disposition": "zero",
+              "ratePercent": "0.000000",
+              "dutyAmount": {
+                "amount": "0.00",
+                "currency": "USD"
+              },
+              "ruleIds": [],
+              "sourceDocumentIds": []
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "authority": "other",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "50.000000",
+              "dutyAmount": {
+                "amount": "500.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section203.qsp.9903-45-31.period-1"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "authority": "section_301",
+              "operation": "add",
+              "disposition": "applied",
+              "ratePercent": "12.500000",
+              "dutyAmount": {
+                "amount": "125.00",
+                "currency": "USD"
+              },
+              "ruleIds": [
+                "rule:us.section301.release2.forced-labor.9903-05-80.assessed"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_ENTRY_BEFORE",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "VN",
+        "manufacturingOrigin": "VN",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "6810990020",
+        "entryAt": "2026-10-31T15:28:09.999999Z",
+        "customsValue": "1000.00",
+        "mfnRate": "0",
+        "forcedLaborCountryHeading": "9903.05.84",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "qspHeading": "9903.45.30",
+        "qspQuotaStatus": "allocated_in_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-10-31T15:28:09.999999Z",
+        "inputFingerprint": "9c681819b64f150523eeca87eba2781abb7be2f83aaaae0f3d79d1f3cd2d8364"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "indeterminate",
+        "evaluatedEntryAt": "2026-10-31T15:28:09.999999Z",
+        "inputFingerprint": "9c681819b64f150523eeca87eba2781abb7be2f83aaaae0f3d79d1f3cd2d8364",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "incomplete",
+          "reasonCodes": [
+            "CORE_FACT_OR_LAYER_UNRESOLVED",
+            "CORE_RESULT_INDETERMINATE",
+            "REQUIRED_LAYER_DETERMINATION_MISSING",
+            "SOURCE_OR_APPLICABILITY_LEDGER_UNRESOLVED"
+          ],
+          "sourceStages": {
+            "captured": "unknown",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "0"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:09.999999Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaEvidenceRef",
+              "value": "test-only:actual-entry-quota-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaReviewedAt",
+              "value": "2026-10-31T15:28:09.999999Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaStatus",
+              "value": "allocated_in_quota",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "6810990020"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section203.qsp.heading",
+              "value": "9903.45.30",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.84",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [],
+          "sourceDocumentIds": [],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NO_EXACT_TOTAL"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_EVALUATION_BEFORE",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "VN",
+        "manufacturingOrigin": "VN",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "6810990020",
+        "entryAt": "2026-10-31T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "0",
+        "forcedLaborCountryHeading": "9903.05.84",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "qspHeading": "9903.45.30",
+        "qspQuotaStatus": "allocated_in_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "339d771784590318966c5f532eb87923c948c8b9eed975121e30603ed144b53b"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "indeterminate",
+        "evaluatedEntryAt": "2026-10-31T15:28:10Z",
+        "inputFingerprint": "339d771784590318966c5f532eb87923c948c8b9eed975121e30603ed144b53b",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "incomplete",
+          "reasonCodes": [
+            "CORE_FACT_OR_LAYER_UNRESOLVED",
+            "CORE_RESULT_INDETERMINATE",
+            "REQUIRED_LAYER_DETERMINATION_MISSING",
+            "SOURCE_OR_APPLICABILITY_LEDGER_UNRESOLVED"
+          ],
+          "sourceStages": {
+            "captured": "unknown",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "0"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaEvidenceRef",
+              "value": "test-only:actual-entry-quota-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaReviewedAt",
+              "value": "2026-10-31T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaStatus",
+              "value": "allocated_in_quota",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "6810990020"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section203.qsp.heading",
+              "value": "9903.45.30",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.84",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [],
+          "sourceDocumentIds": [],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NO_EXACT_TOTAL"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        }
+      }
+    },
+    {
+      "requestId": "TEST_ONLY_EXPIRY_AT",
+      "input": {
+        "calculationBasis": "entry",
+        "origin": "VN",
+        "manufacturingOrigin": "VN",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "entryTreatment": "ordinary_general",
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "hts": "6810990020",
+        "entryAt": "2026-11-01T15:28:10Z",
+        "customsValue": "1000.00",
+        "mfnRate": "0",
+        "forcedLaborCountryHeading": "9903.05.84",
+        "forcedLaborExceptionHeading": "NONE",
+        "shippingCost": "50.00",
+        "insuranceCost": "10.00",
+        "qspHeading": "9903.45.30",
+        "qspQuotaStatus": "allocated_in_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-11-01T15:28:10Z",
+        "inputFingerprint": "e9ee99b72ef5d54361d270e69a37fbbbf733c8d37a64575acf154e44e42c6467"
+      },
+      "response": {
+        "fixtureOnly": true,
+        "status": "indeterminate",
+        "evaluatedEntryAt": "2026-11-01T15:28:10Z",
+        "inputFingerprint": "e9ee99b72ef5d54361d270e69a37fbbbf733c8d37a64575acf154e44e42c6467",
+        "planningScope": "planning_only",
+        "authority": {
+          "state": "software_fixture_only",
+          "rulesetVersion": "2026.10.31+release4.6",
+          "rulesetPayloadHash": "e559543c4760c0d12738e4b72abff4eb76471e47ca1b447abab046a4b183f24f"
+        },
+        "quote": {
+          "schemaVersion": "tariff.rev22-quote-projection/v1",
+          "resultContractVersion": "tariff.result-contract/v3",
+          "sourceUse": "software_fixture_only",
+          "planningScope": "planning_only",
+          "completeness": "incomplete",
+          "reasonCodes": [
+            "CORE_FACT_OR_LAYER_UNRESOLVED",
+            "CORE_RESULT_INDETERMINATE",
+            "REQUIRED_LAYER_DETERMINATION_MISSING",
+            "SOURCE_OR_APPLICABILITY_LEDGER_UNRESOLVED"
+          ],
+          "sourceStages": {
+            "captured": "unknown",
+            "reviewed": "not_asserted_by_quote",
+            "approvedForUse": "requires_compiled_signed_target"
+          },
+          "factLedger": [
+            {
+              "fact": "base.mfn.rate",
+              "value": {
+                "kind": "ad_valorem",
+                "percent": "0"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "customs.currency",
+              "value": "USD",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.currency"
+              ]
+            },
+            {
+              "fact": "customs.value",
+              "value": "1000.00",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.customsValue.amount"
+              ]
+            },
+            {
+              "fact": "destination.country",
+              "value": "US",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.destination.country"
+              ]
+            },
+            {
+              "fact": "entry.adCvdEvidenceRef",
+              "value": "test-only:not-subject-broker-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.adCvdStatus",
+              "value": "not_subject",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.basis",
+              "value": "entry_for_consumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.basis"
+              ]
+            },
+            {
+              "fact": "entry.brokerEntryReference",
+              "value": "test-only:original-slab-processing-adcvd",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.certificationDisposition",
+              "value": "not_required",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.instant",
+              "value": "2026-11-01T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.entry.at"
+              ]
+            },
+            {
+              "fact": "entry.manufacturingOrigin",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductEvidenceRef",
+              "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspProductStatus",
+              "value": "subject_qsp",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaEvidenceRef",
+              "value": "test-only:actual-entry-quota-assumption",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaReviewedAt",
+              "value": "2026-11-01T15:28:10Z",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.qspQuotaStatus",
+              "value": "allocated_in_quota",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.thirdCountryProcessing",
+              "value": "none",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "entry.treatment",
+              "value": "ordinary_general",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "origin.country",
+              "value": "VN",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.origin.country"
+              ]
+            },
+            {
+              "fact": "product.classification",
+              "value": {
+                "schedule": "HTSUS",
+                "scheduleRevision": "2026HTSRev22",
+                "code": "6810990020"
+              },
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "request.product.classification"
+              ]
+            },
+            {
+              "fact": "program.section203.qsp.heading",
+              "value": "9903.45.30",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.countryHeading",
+              "value": "9903.05.84",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            },
+            {
+              "fact": "program.section301.forcedLabor.exceptionHeading",
+              "value": "NONE",
+              "origin": "user_supplied",
+              "verificationState": "unverified_user_supplied",
+              "provenance": [
+                "caller:TEST_ONLY_UNVERIFIED_ASSUMPTION"
+              ]
+            }
+          ],
+          "resolvedDecisions": [],
+          "coverageEvidence": [],
+          "consideredRuleIds": [],
+          "sourceDocumentIds": [],
+          "warnings": [
+            "FIXTURE_ONLY_RESULT",
+            "NO_EXACT_TOTAL"
+          ],
+          "layerDeterminations": [
+            {
+              "layer": "base.mfn",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section203.qsp_safeguard",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            },
+            {
+              "layer": "special.section301.brazil",
+              "status": "not_applicable",
+              "basis": "bound_rule_explicit_brazil_origin_scope",
+              "lineIndexes": [],
+              "ruleIds": [
+                "rule:us.section301.release2.brazil.9903-05-01.add-25"
+              ],
+              "sourceDocumentIds": [
+                "doc:sha256:8d20d45238d47b86eb45d7ffbafa46bba59bc704df1effbb5dc967ac59f154ff"
+              ],
+              "claimIds": [
+                "brazil-ordinary-exclusions"
+              ],
+              "reasonCodes": []
+            },
+            {
+              "layer": "special.section301.forced_labor",
+              "status": "unknown",
+              "basis": "unresolved",
+              "lineIndexes": [],
+              "ruleIds": [],
+              "sourceDocumentIds": [],
+              "claimIds": [],
+              "reasonCodes": [
+                "REQUIRED_LAYER_DETERMINATION_MISSING"
+              ]
+            }
+          ]
+        },
+        "reviewedEntryDeclarations": {
+          "verificationState": "unverified_caller_assumptions"
+        }
+      }
+    }
+  ]
+}
