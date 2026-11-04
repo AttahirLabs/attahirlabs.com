@@ -10,6 +10,12 @@ const RELEASE4_EVIDENCE_AS_OF = "2026-10-01T13:05:00Z";
 const RELEASE4_EVIDENCE_VALID_THROUGH = "2026-10-08T13:05:00Z";
 // Caller declarations must match the pinned signed Rev20 ordinary General authority.
 const DUTY_DECLARATION_CONTRACT = "us-qsp-ordinary-general-rev20/v3";
+// A future reviewed source projection must supply this immutable literal.
+// API JSON, DOM attributes and browser globals cannot configure it. NULL keeps
+// Rev22 input preparation unavailable and grants no new numeric recognition.
+const REV22_COMPILED_BINDING = null;
+const REV22_MATERIALIZATION_ID = "authority-candidate:release-4-rev22-retained26-materialization-20261103-newproposal-2";
+const REV22_DECLARATION_CONTRACT = "us-qsp-ordinary-general-rev22/v3";
 const ORDINARY_COUNTRY_HEADINGS = {
   "AE": "9903.05.80",
   "AO": "9903.05.21",
@@ -172,6 +178,56 @@ function parseCanonicalUtcInstant(value) {
 function normalizeEntryAt(value) {
   const millis = parseCanonicalUtcInstant(value);
   return millis === null ? null : new Date(millis).toISOString();
+}
+
+// Rev22 retains the gateway's full microsecond identity. Rev20 keeps its
+// existing millisecond-only normalization and comparisons.
+function rev22InstantMicros(value) {
+  if (typeof value !== "string") return null;
+  const match = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d{1,6}))?Z$/.exec(value);
+  if (!match) return null;
+  const milliseconds = Date.parse(match[1] + "Z");
+  if (!Number.isFinite(milliseconds) || new Date(milliseconds).toISOString().slice(0, 19) !== match[1]) return null;
+  return BigInt(milliseconds) * 1000n + BigInt((match[2] || "").padEnd(6, "0"));
+}
+
+function normalizeRev22EntryAt(value) {
+  if (rev22InstantMicros(value) === null) return null;
+  const fraction = /\.(\d+)Z$/.exec(value)?.[1] || "";
+  const base = new Date(value).toISOString();
+  return fraction.length > 3 && /[1-9]/.test(fraction.slice(3))
+    ? `${base.slice(0, 19)}.${fraction.padEnd(6, "0")}Z` : base;
+}
+
+function configuredRev22PublicBinding() {
+  const binding = REV22_COMPILED_BINDING;
+  const keys = [
+    "schemaVersion", "candidateId", "rulesetVersion", "rulesetPayloadHash",
+    "releaseRecordHash", "candidateRawSha256", "candidatePayloadSha256",
+    "exactInputPolicyHash", "resultContractVersion", "scheduleRevision",
+    "inputContract", "coverageSliceId", "evidenceAsOf", "evidenceValidThrough",
+    "earliestEntryAt"
+  ];
+  if (!isRecord(binding) || !Object.isFrozen(binding) ||
+      Reflect.ownKeys(binding).length !== keys.length ||
+      keys.some(key => !Object.hasOwn(binding, key) || typeof binding[key] !== "string")) return null;
+  if (binding.schemaVersion !== "tariff.public-rev22-binding/v1" ||
+      !((binding.candidateId === REV22_MATERIALIZATION_ID && binding.rulesetVersion === "2026.11.03+release4.rev22.retained26.newproposal.2") ||
+        (binding.candidateId === "authority-candidate:release-4-rev22-hk-primary-materialization-20261104" && binding.rulesetVersion === "2026.11.04+release4.rev22.hk.primary.1")) ||
+      binding.resultContractVersion !== "tariff.result-contract/v3" ||
+      binding.scheduleRevision !== "2026HTSRev22" ||
+      binding.inputContract !== REV22_DECLARATION_CONTRACT ||
+      binding.coverageSliceId !== "slice:release4:exact-qsp-rev22-ordinary-general") return null;
+  for (const key of ["rulesetPayloadHash", "releaseRecordHash", "candidateRawSha256",
+    "candidatePayloadSha256", "exactInputPolicyHash"]) {
+    if (!/^[a-f0-9]{64}$/.test(binding[key])) return null;
+  }
+  const evidence = rev22InstantMicros(binding.evidenceAsOf);
+  const through = rev22InstantMicros(binding.evidenceValidThrough);
+  const earliest = rev22InstantMicros(binding.earliestEntryAt);
+  if (evidence === null || through === null || earliest === null ||
+      earliest < rev22InstantMicros("2026-08-15T04:01:00Z") || earliest > evidence || evidence >= through) return null;
+  return binding;
 }
 
 function inputMoneyToCents(value) {
@@ -428,7 +484,7 @@ function canonicalInputMoney(value, required, maximum) {
   return `${cents / 100n}.${String(cents % 100n).padStart(2, "0")}`;
 }
 
-function readExactDutyInput() {
+function readExactDutyInput(normalizeInputInstant = normalizeEntryAt) {
   const input = {};
   for (const key of ["calculationBasis", "origin", "manufacturingOrigin", "thirdCountryProcessing",
     "certificationDisposition", "brokerEntryReference", "adCvdStatus", "adCvdEvidenceRef",
@@ -459,7 +515,7 @@ function readExactDutyInput() {
       (input.origin === "BR" ? input.brazilHeading !== "9903.05.01" : Boolean(input.brazilHeading))) {
     throw new TypeError("Headings and MFN must match the supported ordinary General scope. NONE is allowed for ordinary Brazil; 9903.05.27 as an exception or other threshold/special treatment is unsupported.");
   }
-  input.entryAt = normalizeEntryAt(input.entryAt);
+  input.entryAt = normalizeInputInstant(input.entryAt);
   const entry = input.entryAt ? Date.parse(input.entryAt) : NaN;
   const now = Date.now();
   if (!Number.isFinite(entry) || !Number.isFinite(now) || entry < Date.parse("2026-08-15T04:01:00Z") || entry > now) {
@@ -472,7 +528,7 @@ function readExactDutyInput() {
     }
   } else {
     const expected = { "9903.45.30": "allocated_in_quota", "9903.45.31": "confirmed_over_quota" }[input.qspHeading];
-    const reviewed = normalizeEntryAt(input.qspQuotaReviewedAt);
+    const reviewed = normalizeInputInstant(input.qspQuotaReviewedAt);
     if (!expected || input.qspQuotaStatus !== expected || !validEvidenceReference(input.qspQuotaEvidenceRef) ||
         !reviewed || Date.parse(reviewed) < entry || Date.parse(reviewed) > now) {
       throw new TypeError("Supply the matching QSP quota disposition and 8–300 code-point evidence, reviewed at or after entry and no later than now.");
@@ -486,6 +542,91 @@ function readExactDutyInput() {
   input.shippingCost = canonicalInputMoney(input.shippingCost, false, 1_000_000);
   input.insuranceCost = canonicalInputMoney(input.insuranceCost, false, 1_000_000);
   return input;
+}
+
+function rev22NormalizedInputHasExactShape(input) {
+  if (!isRecord(input)) return false;
+  const required = ["calculationBasis", "origin", "manufacturingOrigin", "thirdCountryProcessing",
+    "certificationDisposition", "brokerEntryReference", "adCvdStatus", "adCvdEvidenceRef",
+    "entryTreatment", "qspProductStatus", "qspProductEvidenceRef", "hts", "entryAt", "customsValue",
+    "mfnRate", "forcedLaborCountryHeading", "forcedLaborExceptionHeading", "shippingCost", "insuranceCost"];
+  if (input.origin === "BR") required.push("brazilHeading");
+  if (!QSP_EXEMPT_ORIGINS.has(input.origin)) {
+    required.push("qspHeading", "qspQuotaStatus", "qspQuotaEvidenceRef", "qspQuotaReviewedAt");
+  }
+  return Reflect.ownKeys(input).length === required.length &&
+    required.every(key => Object.hasOwn(input, key) && typeof input[key] === "string");
+}
+
+// Separate, dormant Rev22 form helper. It never calls the API or the legacy
+// numeric normalizer. Actual numeric response admission needs its own genuine
+// signed-target projection and review; filling an input binding alone is not it.
+function readRev22ExactDutyInput() {
+  const binding = configuredRev22PublicBinding();
+  const unavailable = code => {
+    const error = new TypeError("Updated tariff authority is unavailable for this request.");
+    error.code = code;
+    throw error;
+  };
+  if (!binding) unavailable("REV22_BINDING_NOT_CONFIGURED");
+  const milliseconds = Date.now();
+  if (!Number.isFinite(milliseconds)) unavailable("REV22_BINDING_OUTSIDE_REVIEW_WINDOW");
+  const now = BigInt(milliseconds) * 1000n;
+  if (now < rev22InstantMicros(binding.evidenceAsOf) ||
+      now >= rev22InstantMicros(binding.evidenceValidThrough)) unavailable("REV22_BINDING_OUTSIDE_REVIEW_WINDOW");
+  // The existing v3 declarations retain all original product, origin, MFN,
+  // processing, certification, AD/CVD, forced-labor, Brazil and quota checks.
+  const input = readExactDutyInput(normalizeRev22EntryAt);
+  if (!rev22NormalizedInputHasExactShape(input)) unavailable("REV22_INPUT_SHAPE_INVALID");
+  const entry = rev22InstantMicros(input.entryAt);
+  if (entry < rev22InstantMicros(binding.earliestEntryAt)) {
+    unavailable("REV22_ENTRY_BEFORE_REVIEWED_COVERAGE");
+  }
+  if (entry >= rev22InstantMicros(binding.evidenceValidThrough) || entry > now) unavailable("REV22_ENTRY_OUTSIDE_REVIEWED_COVERAGE");
+  if (input.qspQuotaReviewedAt) {
+    const reviewed = rev22InstantMicros(input.qspQuotaReviewedAt);
+    if (reviewed === null || reviewed < entry || reviewed > now) unavailable("REV22_QUOTA_REVIEW_OUTSIDE_ENTRY_WINDOW");
+  }
+  return Object.freeze(input);
+}
+
+// Dormant response projection. Only the immutable compiled target can admit a
+// production quote; API JSON, browser globals and fixture targets cannot do so.
+function projectRev22PublicResponse(data, normalizedInput, inputFingerprint) {
+  const binding = configuredRev22PublicBinding();
+  const presenter = globalThis.AttahirRev22Quote;
+  if (!binding || !presenter) return null;
+  return presenter.projectQuote(data, { ...normalizedInput, inputFingerprint },
+    Object.freeze({ kind: "compiled_signed_authority", binding }));
+}
+
+function renderRev22PublicResponse(data, normalizedInput, inputFingerprint) {
+  const model = projectRev22PublicResponse(data, normalizedInput, inputFingerprint);
+  clearNumericResult();
+  const evidence = document.getElementById("rev22Evidence");
+  if (evidence) { evidence.replaceChildren(); evidence.hidden = true; }
+  const presenter = globalThis.AttahirRev22Quote;
+  if (!model || !presenter) {
+    document.getElementById("resultState").textContent = "Updated tariff authority is not approved for use. No duty total is available.";
+    return null;
+  }
+  const elements = Object.fromEntries(["resultNumbers", "rateDisplay", "dutyDisplay", "totalDisplay", "resultState", "breakdown", "rev22Evidence"].map(id => [id, document.getElementById(id)]));
+  presenter.renderQuote(model, elements, tag => document.createElement(tag));
+  return model;
+}
+
+// Each submission gets a non-exportable browser key. Only field-bound commitments leave this page.
+async function commitDutyReferences(input) {
+  const key = await crypto.subtle.generateKey({name:"HMAC",hash:"SHA-256",length:256}, false, ["sign"]);
+  const wire = { ...input }, encoder = new TextEncoder();
+  for (const field of ["brokerEntryReference", "adCvdEvidenceRef", "qspProductEvidenceRef", "qspQuotaEvidenceRef"]) {
+    if (field === "qspQuotaEvidenceRef" && input[field] === undefined) continue;
+    if (typeof input[field] !== "string" || !validEvidenceReference(input[field])) throw new Error("INVALID_REFERENCE");
+    const encoded = encoder.encode(JSON.stringify(["tariffshield:entry-reference:v1", field, input[field].trim()]));
+    const bytes = new Uint8Array(await crypto.subtle.sign("HMAC", key, encoded));
+    wire[field] = "tsref:v1:" + Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
+  }
+  return Object.freeze(wire);
 }
 
 async function exactDutyInputFingerprint(input) {
@@ -508,8 +649,14 @@ async function exactDutyInputFingerprint(input) {
   return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
 }
 
+function requestAdmittedDuty(input, signal) {
+  return fetch("/api/authority-duty", { method: "POST", credentials: "omit", cache: "no-store", redirect: "error",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(input), signal });
+}
+
 async function calculate() {
   if (dutyInFlight) return;
+  if (REV22_COMPILED_BINDING !== null) return calculateRev22();
   const actionKey = `duty:${++dutySubmission}`;
   const error = document.getElementById("error");
   error.style.display = "none";
@@ -549,13 +696,10 @@ async function calculate() {
   const controller = new AbortController();
   const deadline = setTimeout(() => controller.abort(), 60_000);
   try {
+    input = await commitDutyReferences(input);
     const inputFingerprint = await exactDutyInputFingerprint(input);
     if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
-    const params = new URLSearchParams();
-    for (const [key, value] of Object.entries(input)) {
-      if (value !== undefined) params.set(key, value);
-    }
-    const response = await fetch(DUTY_API + "/api/v2/us-duty?" + params, { signal: controller.signal });
+    const response = await requestAdmittedDuty(input, controller.signal);
     let data = {};
     try {
       data = await response.json();
@@ -630,6 +774,59 @@ async function calculate() {
       tool_name: "duty_calculator",
       error_code: controller.signal.aborted ? "timeout" : "network"
     });
+  } finally {
+    clearTimeout(deadline);
+    dutyInFlight = false;
+    button.disabled = false;
+    button.textContent = "Calculate Duty";
+  }
+}
+
+async function calculateRev22() {
+  if (dutyInFlight) return;
+  clearNumericResult();
+  const evidence = document.getElementById("rev22Evidence");
+  if (evidence) { evidence.replaceChildren(); evidence.hidden = true; }
+  const error = document.getElementById("error");
+  error.style.display = "none";
+  let input;
+  try {
+    input = readRev22ExactDutyInput();
+  } catch (failure) {
+    error.textContent = failure.message;
+    error.style.display = "block";
+    document.getElementById("resultState").textContent = "Incomplete — updated authority or a required declaration is unavailable. No duty total is available.";
+    return;
+  }
+  dutyInFlight = true;
+  const button = document.getElementById("calcBtn");
+  button.disabled = true;
+  button.textContent = "Checking declared inputs...";
+  document.getElementById("placeholder").style.display = "none";
+  document.getElementById("results").style.display = "block";
+  document.getElementById("route").textContent = `${input.origin} → United States`;
+  const controller = new AbortController();
+  const deadline = setTimeout(() => controller.abort(), 60_000);
+  try {
+    input = await commitDutyReferences(input);
+    const fingerprint = await exactDutyInputFingerprint(input);
+    if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
+    const response = await requestAdmittedDuty(input, controller.signal);
+    let data = {};
+    try { data = await response.json(); } catch (_) { /* Incomplete below. */ }
+    if (controller.signal.aborted) throw new Error("CLIENT_TIMEOUT");
+    const model = renderRev22PublicResponse(response.ok ? data : {}, input, fingerprint);
+    if (model?.completeness !== "complete") {
+      error.textContent = "A required fact, tariff layer or approved authority binding remains unresolved.";
+      error.style.display = "block";
+    }
+    document.getElementById("disclaimerText").textContent =
+      "Estimate under declared inputs. MFN, classification, origin, quota and broker declarations remain unverified. Not a customs classification, liquidation, or legal determination.";
+  } catch (_) {
+    clearNumericResult();
+    error.textContent = controller.signal.aborted ? "The request timed out. No duty total is available." : "The quote service is unavailable. No duty total is available.";
+    error.style.display = "block";
+    document.getElementById("resultState").textContent = "Incomplete — no complete duty estimate is available.";
   } finally {
     clearTimeout(deadline);
     dutyInFlight = false;

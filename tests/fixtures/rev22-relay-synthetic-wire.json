@@ -1,0 +1,1007 @@
+{
+  "purpose": "SYNTHETIC HTTP contract fixture. No signatures, active record, source approval or production authority. Numeric AU example derives from the reviewed software fixture. Its fabricated record digest is mocked only inside the test.",
+  "testBinding": {
+    "candidateId": "authority-candidate:release-4-rev22-retained26-materialization-20261103-newproposal-2",
+    "rulesetVersion": "2026.11.03+release4.rev22.retained26.newproposal.2",
+    "rulesetPayloadHash": "c197654ed22aececc1ff020879fb246fc0b4c0714424b97d2e02073f15219c2f",
+    "releaseRecordHash": "13d973f0db95c64579c416ec6492296b2d0bd7e988193a8b227dc24291325042",
+    "inputContract": "us-qsp-ordinary-general-rev22/v3",
+    "resultContractVersion": "tariff.result-contract/v3",
+    "scheduleRevision": "2026HTSRev22",
+    "evidenceAsOf": "2026-11-03T14:55:12.540526Z",
+    "evidenceValidThrough": "2026-11-06T14:55:12.540526Z",
+    "earliestEntryAt": "2026-11-03T14:55:12.540526Z",
+    "activeCoverageSliceIds": [
+      "slice:release4:exact-qsp-rev22-ordinary-general"
+    ]
+  },
+  "input": {
+    "origin": "AU",
+    "manufacturingOrigin": "AU",
+    "thirdCountryProcessing": "none",
+    "certificationDisposition": "not_required",
+    "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+    "adCvdStatus": "not_subject",
+    "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+    "entryTreatment": "ordinary_general",
+    "qspProductStatus": "subject_qsp",
+    "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+    "hts": "7020006000",
+    "entryAt": "2026-11-04T12:00:00.000Z",
+    "customsValue": "1000.00",
+    "mfnRate": "5",
+    "forcedLaborCountryHeading": "9903.05.23",
+    "forcedLaborExceptionHeading": "NONE",
+    "shippingCost": "50.00",
+    "insuranceCost": "10.00"
+  },
+  "response": {
+    "status": "calculated",
+    "evaluatedEntryAt": "2026-11-04T12:00:00.000Z",
+    "inputFingerprint": "927a844c4084b83dfd22f76a33987cb4f7341eadced2e1b3ede6813bd46dce5b",
+    "planningScope": "planning_only",
+    "authority": {
+      "state": "active",
+      "rulesetVersion": "2026.11.03+release4.rev22.retained26.newproposal.2",
+      "rulesetPayloadHash": "c197654ed22aececc1ff020879fb246fc0b4c0714424b97d2e02073f15219c2f",
+      "releaseRecordHash": "13d973f0db95c64579c416ec6492296b2d0bd7e988193a8b227dc24291325042",
+      "inputContract": "us-qsp-ordinary-general-rev22/v3",
+      "resultContractVersion": "tariff.result-contract/v3",
+      "scheduleRevision": "2026HTSRev22",
+      "evidenceAsOf": "2026-11-03T14:55:12.540526Z",
+      "evidenceValidThrough": "2026-11-06T14:55:12.540526Z",
+      "activeCoverageSliceIds": [
+        "slice:release4:exact-qsp-rev22-ordinary-general"
+      ]
+    },
+    "quote": {
+      "schemaVersion": "tariff.rev22-quote-projection/v1",
+      "resultContractVersion": "tariff.result-contract/v3",
+      "sourceUse": "requires_compiled_signed_target",
+      "planningScope": "planning_only",
+      "completeness": "complete",
+      "reasonCodes": [],
+      "sourceStages": {
+        "captured": "source_identity_bound",
+        "reviewed": "not_asserted_by_quote",
+        "approvedForUse": "requires_compiled_signed_target"
+      },
+      "factLedger": [
+        {
+          "fact": "base.mfn.rate",
+          "value": {
+            "kind": "ad_valorem",
+            "percent": "5"
+          },
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:entry-classification"
+          ]
+        },
+        {
+          "fact": "customs.currency",
+          "value": "USD",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.customsValue.currency"
+          ]
+        },
+        {
+          "fact": "customs.value",
+          "value": "1000.00",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.customsValue.amount"
+          ]
+        },
+        {
+          "fact": "destination.country",
+          "value": "US",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.destination.country"
+          ]
+        },
+        {
+          "fact": "entry.adCvdEvidenceRef",
+          "value": "test-only:not-subject-broker-assumption",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.adCvdStatus",
+          "value": "not_subject",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.basis",
+          "value": "entry_for_consumption",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.entry.basis"
+          ]
+        },
+        {
+          "fact": "entry.brokerEntryReference",
+          "value": "test-only:original-slab-processing-adcvd",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.certificationDisposition",
+          "value": "not_required",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.instant",
+          "value": "2026-11-04T12:00:00.000Z",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.entry.at"
+          ]
+        },
+        {
+          "fact": "entry.manufacturingOrigin",
+          "value": "AU",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.qspProductEvidenceRef",
+          "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.qspProductStatus",
+          "value": "subject_qsp",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.thirdCountryProcessing",
+          "value": "none",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "entry.treatment",
+          "value": "ordinary_general",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "origin.country",
+          "value": "AU",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.origin.country"
+          ]
+        },
+        {
+          "fact": "product.classification",
+          "value": {
+            "schedule": "HTSUS",
+            "scheduleRevision": "2026HTSRev22",
+            "code": "7020006000"
+          },
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "request.product.classification"
+          ]
+        },
+        {
+          "fact": "program.section301.forcedLabor.countryHeading",
+          "value": "9903.05.23",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "program.section301.forcedLabor.exceptionHeading",
+          "value": "NONE",
+          "origin": "user_supplied",
+          "verificationState": "unverified_user_supplied",
+          "provenance": [
+            "caller:chapter99-filing"
+          ]
+        },
+        {
+          "fact": "legal.applicability",
+          "value": [
+            "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+          ],
+          "origin": "derived",
+          "verificationState": "not_a_legal_determination",
+          "provenance": [
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ]
+        },
+        {
+          "fact": "ruleset.source_documents",
+          "value": [
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ],
+          "origin": "authority_bound",
+          "verificationState": "source_identity_bound",
+          "provenance": [
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ]
+        }
+      ],
+      "resolvedDecisions": [],
+      "coverageEvidence": [
+        {
+          "sliceId": "slice:release4:exact-qsp-rev22-ordinary-general",
+          "evidenceAsOf": "2026-11-03T14:55:12.540526Z",
+          "evidenceValidThrough": "2026-11-06T14:55:12.540526Z",
+          "effectiveFrom": "2026-11-03T14:55:12.540526Z",
+          "effectiveTo": "2026-11-06T14:55:12.540526Z",
+          "numericCoveragePermitted": true,
+          "fixtureSemantics": "authoritative_legal_coverage",
+          "sourceDocumentIds": [
+            "doc:sha256:09e51816e89b0cf33550eb466fa6560e848aba6ded332ddd66126503748d8d0f",
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:1b11cfc5316dbafe8851d1171605c88528cc65ea709140530610c0062eaf3c27",
+            "doc:sha256:2684027ebb4d14ad6380bd5f561266958e37e07a3693a5be2a6095326684239c",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+            "doc:sha256:2cadf67b974ba1a07cb6cbc9a5a6b9b8a47fdc8f7c6891ac0644c525c7593875",
+            "doc:sha256:317069ee9cafc87267c7b64ba3235ee2ff9f6dede1c41cb9841a666582515be3",
+            "doc:sha256:393d00d50ab20399e56363760ae224de05675521f9952ef3cc5bd2575c38ae98",
+            "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+            "doc:sha256:449edabaee6e0375099ddd40e1e639cae3bfbf602f4dd780fa6766ed13f82f2b",
+            "doc:sha256:4b2e9146e05d935d394104c32920c087b4db0dfbb6bc5a0a602d8ce0a71d9f64",
+            "doc:sha256:5050e58d625248245405117749f0652fe0daffbe51541f84a487e9722504dc28",
+            "doc:sha256:68e2f9f83e24c334f2015e6cd7ef45941cfb61c3305fed51c5f9f55476162ce6",
+            "doc:sha256:762153fd444623dccd9d22b9252584577b8104f9fc5376ea7a66788e517941b1",
+            "doc:sha256:7b21fe291c51ef5f0a5ad0fa3f95170e5ad9079b030210600a2ee6e2bb1da72b",
+            "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+            "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d",
+            "doc:sha256:913272ff3b01947326ae7e3045c666d4dd7e88273cee01237f08e5692bca7f5f",
+            "doc:sha256:915cc49ba053de2506e9c67f3117337001ce3e5d8c2204b5eb7082f128061d0a",
+            "doc:sha256:93f41eb290722882ae5d7b5cb252958b9517324745425d9be4d7c40a3b348daa",
+            "doc:sha256:b79a56a554c8001949d8e60bbbf72227b6c6640fab48e84802946c604079c169",
+            "doc:sha256:c674958a630fb3fcf4695e2919e9437caf29f10a0d76be90d9352a977239a9f0",
+            "doc:sha256:c9b7bd7329a4407253b0f9bf9a264c2e0c8b95e09267b014e0a7c64f60096d5f",
+            "doc:sha256:ced76c1867a90f83887f3f3e28587ca8d51b1224ca33d80a543994b1d8ad4233",
+            "doc:sha256:d9628617d64a9919a4e1d307757c1912da4e8b422d4def256ac2597fa76d4dd7",
+            "doc:sha256:fde8a2d2f987d397ed665926e1bdfe6bda91577e367becab78a9a5d99a9e58e7"
+          ]
+        }
+      ],
+      "consideredRuleIds": [
+        "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+      ],
+      "sourceDocumentIds": [
+        "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+        "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+      ],
+      "warnings": [
+        "NOT_A_CUSTOMS_LIQUIDATION"
+      ],
+      "layerDeterminations": [
+        {
+          "layer": "base.mfn",
+          "status": "caller_assumption",
+          "basis": "core_fact_ledger",
+          "lineIndexes": [
+            0
+          ],
+          "ruleIds": [],
+          "sourceDocumentIds": [],
+          "claimIds": [],
+          "reasonCodes": []
+        },
+        {
+          "layer": "special.section203.qsp_safeguard",
+          "status": "not_applicable",
+          "basis": "bound_policy_qsp_exempt_origin",
+          "lineIndexes": [],
+          "ruleIds": [],
+          "sourceDocumentIds": [
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ],
+          "claimIds": [
+            "qsp-exempt-origins"
+          ],
+          "reasonCodes": []
+        },
+        {
+          "layer": "special.section301.brazil",
+          "status": "not_applicable",
+          "basis": "bound_rule_explicit_brazil_origin_scope",
+          "lineIndexes": [],
+          "ruleIds": [
+            "rule:us.section301.release2.brazil.9903-05-01.add-25"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+            "doc:sha256:915cc49ba053de2506e9c67f3117337001ce3e5d8c2204b5eb7082f128061d0a"
+          ],
+          "claimIds": [
+            "brazil-ordinary-exclusions"
+          ],
+          "reasonCodes": []
+        },
+        {
+          "layer": "special.section301.forced_labor",
+          "status": "applied",
+          "basis": "core_line",
+          "lineIndexes": [
+            1
+          ],
+          "ruleIds": [
+            "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ],
+          "claimIds": [],
+          "reasonCodes": []
+        }
+      ]
+    },
+    "reviewedEntryDeclarations": {
+      "qspProductStatus": "subject_qsp",
+      "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+      "manufacturingOrigin": "AU",
+      "thirdCountryProcessing": "none",
+      "certificationDisposition": "not_required",
+      "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+      "adCvdStatus": "not_subject",
+      "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+      "qspQuotaStatus": null,
+      "qspQuotaEvidenceRef": null,
+      "qspQuotaReviewedAt": null,
+      "qspProductDefinition": "note41a_silica_and_resin_silica_greater_than_any_other_single_material_by_actual_weight_excludes_quarried_stone",
+      "customsValueScope": "subject_qsp_portion_only_excludes_accompanying_non_subject_goods",
+      "manufacturingOriginMeaning": "original_qsp_slab_manufacturing_country",
+      "verificationState": "unverified_caller_assumptions"
+    },
+    "calculation": {
+      "currency": "USD",
+      "customsValue": {
+        "amount": "1000.00",
+        "currency": "USD"
+      },
+      "shippingCost": {
+        "amount": "50.00",
+        "currency": "USD"
+      },
+      "insuranceCost": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "totalRatePercent": "17.500000",
+      "dutyAmount": {
+        "amount": "175.00",
+        "currency": "USD"
+      },
+      "estimatedSubtotal": {
+        "amount": "1235.00",
+        "currency": "USD"
+      },
+      "lineItems": [
+        {
+          "layer": "base.mfn",
+          "authority": "mfn",
+          "operation": "replace",
+          "disposition": "applied",
+          "ratePercent": "5.000000",
+          "dutyAmount": {
+            "amount": "50.00",
+            "currency": "USD"
+          },
+          "ruleIds": [],
+          "sourceDocumentIds": []
+        },
+        {
+          "layer": "special.section301.forced_labor",
+          "authority": "section_301",
+          "operation": "add",
+          "disposition": "applied",
+          "ratePercent": "12.500000",
+          "dutyAmount": {
+            "amount": "125.00",
+            "currency": "USD"
+          },
+          "ruleIds": [
+            "rule:us.section301.release2.forced-labor.9903-05-23.assessed"
+          ],
+          "sourceDocumentIds": [
+            "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+            "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2"
+          ]
+        }
+      ]
+    },
+    "warnings": [
+      "NOT_A_CUSTOMS_LIQUIDATION"
+    ]
+  },
+  "topUp": {
+    "input": {
+      "origin": "AT",
+      "manufacturingOrigin": "AT",
+      "thirdCountryProcessing": "none",
+      "certificationDisposition": "not_required",
+      "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+      "adCvdStatus": "not_subject",
+      "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+      "entryTreatment": "ordinary_general",
+      "qspProductStatus": "subject_qsp",
+      "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+      "hts": "7020006000",
+      "entryAt": "2026-11-04T12:00:00.000Z",
+      "customsValue": "1000.00",
+      "mfnRate": "5",
+      "forcedLaborCountryHeading": "9903.05.39",
+      "forcedLaborExceptionHeading": "NONE",
+      "shippingCost": "50.00",
+      "insuranceCost": "10.00",
+      "qspHeading": "9903.45.30",
+      "qspQuotaStatus": "allocated_in_quota",
+      "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+      "qspQuotaReviewedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "response": {
+      "status": "calculated",
+      "evaluatedEntryAt": "2026-11-04T12:00:00.000Z",
+      "inputFingerprint": "fe69cc8eb159699f3b07bf18cab1d83afa6109f62d3bfd2e68e3810e79aa245a",
+      "planningScope": "planning_only",
+      "authority": {
+        "state": "active",
+        "rulesetVersion": "2026.11.03+release4.rev22.retained26.newproposal.2",
+        "rulesetPayloadHash": "c197654ed22aececc1ff020879fb246fc0b4c0714424b97d2e02073f15219c2f",
+        "releaseRecordHash": "13d973f0db95c64579c416ec6492296b2d0bd7e988193a8b227dc24291325042",
+        "inputContract": "us-qsp-ordinary-general-rev22/v3",
+        "resultContractVersion": "tariff.result-contract/v3",
+        "scheduleRevision": "2026HTSRev22",
+        "evidenceAsOf": "2026-11-03T14:55:12.540526Z",
+        "evidenceValidThrough": "2026-11-06T14:55:12.540526Z",
+        "activeCoverageSliceIds": [
+          "slice:release4:exact-qsp-rev22-ordinary-general"
+        ]
+      },
+      "quote": {
+        "schemaVersion": "tariff.rev22-quote-projection/v1",
+        "resultContractVersion": "tariff.result-contract/v3",
+        "sourceUse": "requires_compiled_signed_target",
+        "planningScope": "planning_only",
+        "completeness": "complete",
+        "reasonCodes": [],
+        "sourceStages": {
+          "captured": "source_identity_bound",
+          "reviewed": "not_asserted_by_quote",
+          "approvedForUse": "requires_compiled_signed_target"
+        },
+        "factLedger": [
+          {
+            "fact": "base.mfn.rate",
+            "value": {
+              "kind": "ad_valorem",
+              "percent": "5"
+            },
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:entry-classification"
+            ]
+          },
+          {
+            "fact": "customs.currency",
+            "value": "USD",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.customsValue.currency"
+            ]
+          },
+          {
+            "fact": "customs.value",
+            "value": "1000.00",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.customsValue.amount"
+            ]
+          },
+          {
+            "fact": "destination.country",
+            "value": "US",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.destination.country"
+            ]
+          },
+          {
+            "fact": "entry.adCvdEvidenceRef",
+            "value": "test-only:not-subject-broker-assumption",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.adCvdStatus",
+            "value": "not_subject",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.basis",
+            "value": "entry_for_consumption",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.entry.basis"
+            ]
+          },
+          {
+            "fact": "entry.brokerEntryReference",
+            "value": "test-only:original-slab-processing-adcvd",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.certificationDisposition",
+            "value": "not_required",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.instant",
+            "value": "2026-11-04T12:00:00.000Z",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.entry.at"
+            ]
+          },
+          {
+            "fact": "entry.manufacturingOrigin",
+            "value": "AT",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.qspProductEvidenceRef",
+            "value": "test-only:note41a-silica-resin-weight-and-product-scope",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.qspProductStatus",
+            "value": "subject_qsp",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.qspQuotaEvidenceRef",
+            "value": "test-only:actual-entry-quota-assumption",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.qspQuotaReviewedAt",
+            "value": "2026-11-04T12:00:00.000Z",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.qspQuotaStatus",
+            "value": "allocated_in_quota",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.thirdCountryProcessing",
+            "value": "none",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "entry.treatment",
+            "value": "ordinary_general",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "origin.country",
+            "value": "AT",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.origin.country"
+            ]
+          },
+          {
+            "fact": "product.classification",
+            "value": {
+              "schedule": "HTSUS",
+              "scheduleRevision": "2026HTSRev22",
+              "code": "7020006000"
+            },
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "request.product.classification"
+            ]
+          },
+          {
+            "fact": "program.section203.qsp.heading",
+            "value": "9903.45.30",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "program.section301.forcedLabor.countryHeading",
+            "value": "9903.05.39",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "program.section301.forcedLabor.exceptionHeading",
+            "value": "NONE",
+            "origin": "user_supplied",
+            "verificationState": "unverified_user_supplied",
+            "provenance": [
+              "caller:chapter99-filing"
+            ]
+          },
+          {
+            "fact": "legal.applicability",
+            "value": [
+              "rule:us.section203.qsp.9903-45-30.period-1",
+              "rule:us.section203.qsp.9903-45-31.period-1",
+              "rule:us.section301.release2.forced-labor.9903-05-39.assessed"
+            ],
+            "origin": "derived",
+            "verificationState": "not_a_legal_determination",
+            "provenance": [
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+            ]
+          },
+          {
+            "fact": "ruleset.source_documents",
+            "value": [
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+            ],
+            "origin": "authority_bound",
+            "verificationState": "source_identity_bound",
+            "provenance": [
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+            ]
+          }
+        ],
+        "resolvedDecisions": [],
+        "coverageEvidence": [
+          {
+            "sliceId": "slice:release4:exact-qsp-rev22-ordinary-general",
+            "evidenceAsOf": "2026-11-03T14:55:12.540526Z",
+            "evidenceValidThrough": "2026-11-06T14:55:12.540526Z",
+            "effectiveFrom": "2026-11-03T14:55:12.540526Z",
+            "effectiveTo": "2026-11-06T14:55:12.540526Z",
+            "numericCoveragePermitted": true,
+            "fixtureSemantics": "authoritative_legal_coverage",
+            "sourceDocumentIds": [
+              "doc:sha256:09e51816e89b0cf33550eb466fa6560e848aba6ded332ddd66126503748d8d0f",
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:1b11cfc5316dbafe8851d1171605c88528cc65ea709140530610c0062eaf3c27",
+              "doc:sha256:2684027ebb4d14ad6380bd5f561266958e37e07a3693a5be2a6095326684239c",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:2cadf67b974ba1a07cb6cbc9a5a6b9b8a47fdc8f7c6891ac0644c525c7593875",
+              "doc:sha256:317069ee9cafc87267c7b64ba3235ee2ff9f6dede1c41cb9841a666582515be3",
+              "doc:sha256:393d00d50ab20399e56363760ae224de05675521f9952ef3cc5bd2575c38ae98",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:449edabaee6e0375099ddd40e1e639cae3bfbf602f4dd780fa6766ed13f82f2b",
+              "doc:sha256:4b2e9146e05d935d394104c32920c087b4db0dfbb6bc5a0a602d8ce0a71d9f64",
+              "doc:sha256:5050e58d625248245405117749f0652fe0daffbe51541f84a487e9722504dc28",
+              "doc:sha256:68e2f9f83e24c334f2015e6cd7ef45941cfb61c3305fed51c5f9f55476162ce6",
+              "doc:sha256:762153fd444623dccd9d22b9252584577b8104f9fc5376ea7a66788e517941b1",
+              "doc:sha256:7b21fe291c51ef5f0a5ad0fa3f95170e5ad9079b030210600a2ee6e2bb1da72b",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d",
+              "doc:sha256:913272ff3b01947326ae7e3045c666d4dd7e88273cee01237f08e5692bca7f5f",
+              "doc:sha256:915cc49ba053de2506e9c67f3117337001ce3e5d8c2204b5eb7082f128061d0a",
+              "doc:sha256:93f41eb290722882ae5d7b5cb252958b9517324745425d9be4d7c40a3b348daa",
+              "doc:sha256:b79a56a554c8001949d8e60bbbf72227b6c6640fab48e84802946c604079c169",
+              "doc:sha256:c674958a630fb3fcf4695e2919e9437caf29f10a0d76be90d9352a977239a9f0",
+              "doc:sha256:c9b7bd7329a4407253b0f9bf9a264c2e0c8b95e09267b014e0a7c64f60096d5f",
+              "doc:sha256:ced76c1867a90f83887f3f3e28587ca8d51b1224ca33d80a543994b1d8ad4233",
+              "doc:sha256:d9628617d64a9919a4e1d307757c1912da4e8b422d4def256ac2597fa76d4dd7",
+              "doc:sha256:fde8a2d2f987d397ed665926e1bdfe6bda91577e367becab78a9a5d99a9e58e7"
+            ]
+          }
+        ],
+        "consideredRuleIds": [
+          "rule:us.section203.qsp.9903-45-30.period-1",
+          "rule:us.section203.qsp.9903-45-31.period-1",
+          "rule:us.section301.release2.forced-labor.9903-05-39.assessed"
+        ],
+        "sourceDocumentIds": [
+          "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+          "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+          "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+          "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021",
+          "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+        ],
+        "warnings": [
+          "NOT_A_CUSTOMS_LIQUIDATION"
+        ],
+        "layerDeterminations": [
+          {
+            "layer": "base.mfn",
+            "status": "caller_assumption",
+            "basis": "core_fact_ledger",
+            "lineIndexes": [
+              0
+            ],
+            "ruleIds": [],
+            "sourceDocumentIds": [],
+            "claimIds": [],
+            "reasonCodes": []
+          },
+          {
+            "layer": "special.section203.qsp_safeguard",
+            "status": "applied",
+            "basis": "core_line",
+            "lineIndexes": [
+              1
+            ],
+            "ruleIds": [
+              "rule:us.section203.qsp.9903-45-30.period-1"
+            ],
+            "sourceDocumentIds": [
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+            ],
+            "claimIds": [],
+            "reasonCodes": []
+          },
+          {
+            "layer": "special.section301.brazil",
+            "status": "not_applicable",
+            "basis": "bound_rule_explicit_brazil_origin_scope",
+            "lineIndexes": [],
+            "ruleIds": [
+              "rule:us.section301.release2.brazil.9903-05-01.add-25"
+            ],
+            "sourceDocumentIds": [
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:915cc49ba053de2506e9c67f3117337001ce3e5d8c2204b5eb7082f128061d0a"
+            ],
+            "claimIds": [
+              "brazil-ordinary-exclusions"
+            ],
+            "reasonCodes": []
+          },
+          {
+            "layer": "special.section301.forced_labor",
+            "status": "applied",
+            "basis": "core_line",
+            "lineIndexes": [
+              2
+            ],
+            "ruleIds": [
+              "rule:us.section301.release2.forced-labor.9903-05-39.assessed"
+            ],
+            "sourceDocumentIds": [
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021"
+            ],
+            "claimIds": [],
+            "reasonCodes": [],
+            "operationEvidence": {
+              "kind": "fill_to",
+              "targetRatePercent": "10",
+              "referenceLayers": [
+                "base.mfn"
+              ],
+              "referenceRatePercent": "5.000000",
+              "effectiveComponentRatePercent": "5.000000"
+            }
+          }
+        ]
+      },
+      "reviewedEntryDeclarations": {
+        "qspProductStatus": "subject_qsp",
+        "qspProductEvidenceRef": "test-only:note41a-silica-resin-weight-and-product-scope",
+        "manufacturingOrigin": "AT",
+        "thirdCountryProcessing": "none",
+        "certificationDisposition": "not_required",
+        "brokerEntryReference": "test-only:original-slab-processing-adcvd",
+        "adCvdStatus": "not_subject",
+        "adCvdEvidenceRef": "test-only:not-subject-broker-assumption",
+        "qspQuotaStatus": "allocated_in_quota",
+        "qspQuotaEvidenceRef": "test-only:actual-entry-quota-assumption",
+        "qspQuotaReviewedAt": "2026-11-04T12:00:00.000Z",
+        "qspProductDefinition": "note41a_silica_and_resin_silica_greater_than_any_other_single_material_by_actual_weight_excludes_quarried_stone",
+        "customsValueScope": "subject_qsp_portion_only_excludes_accompanying_non_subject_goods",
+        "manufacturingOriginMeaning": "original_qsp_slab_manufacturing_country",
+        "verificationState": "unverified_caller_assumptions"
+      },
+      "calculation": {
+        "currency": "USD",
+        "customsValue": {
+          "amount": "1000.00",
+          "currency": "USD"
+        },
+        "shippingCost": {
+          "amount": "50.00",
+          "currency": "USD"
+        },
+        "insuranceCost": {
+          "amount": "10.00",
+          "currency": "USD"
+        },
+        "totalRatePercent": "35.000000",
+        "dutyAmount": {
+          "amount": "350.00",
+          "currency": "USD"
+        },
+        "estimatedSubtotal": {
+          "amount": "1410.00",
+          "currency": "USD"
+        },
+        "lineItems": [
+          {
+            "layer": "base.mfn",
+            "authority": "mfn",
+            "operation": "replace",
+            "disposition": "applied",
+            "ruleIds": [],
+            "sourceDocumentIds": [],
+            "reasonCodes": [],
+            "ratePercent": "5.000000",
+            "dutyAmount": {
+              "amount": "50.00",
+              "currency": "USD"
+            }
+          },
+          {
+            "layer": "special.section203.qsp_safeguard",
+            "authority": "other",
+            "operation": "add",
+            "disposition": "applied",
+            "ruleIds": [
+              "rule:us.section203.qsp.9903-45-30.period-1"
+            ],
+            "sourceDocumentIds": [
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:90ee41046286cedc6463bd780684f4095e93963a5066b4b7c0ca1faefd923a4d"
+            ],
+            "reasonCodes": [],
+            "ratePercent": "25.000000",
+            "dutyAmount": {
+              "amount": "250.00",
+              "currency": "USD"
+            }
+          },
+          {
+            "layer": "special.section301.forced_labor",
+            "authority": "section_301",
+            "operation": "fill_to",
+            "disposition": "applied",
+            "ruleIds": [
+              "rule:us.section301.release2.forced-labor.9903-05-39.assessed"
+            ],
+            "sourceDocumentIds": [
+              "doc:sha256:19addcaf235d695d06663dddc1dd27e637e9504b8020ae55514a011134004fc0",
+              "doc:sha256:290eee3d064837a003c8ee7daffebb8f5c44cdd96af4349fed40851f5c317fc2",
+              "doc:sha256:3b716be01cb5a0a1b1851370b0ac5e49771e89226bb05bc1e21aef8fee338bf9",
+              "doc:sha256:7f40e093bbddb74376295f910adb33d88cf76d82e35e9ef8c18dafefdec42021"
+            ],
+            "reasonCodes": [],
+            "ratePercent": "5.000000",
+            "dutyAmount": {
+              "amount": "50.00",
+              "currency": "USD"
+            }
+          }
+        ]
+      },
+      "warnings": [
+        "NOT_A_CUSTOMS_LIQUIDATION"
+      ]
+    }
+  }
+}
