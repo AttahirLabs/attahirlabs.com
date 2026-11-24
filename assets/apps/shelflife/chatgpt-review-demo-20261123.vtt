@@ -1,0 +1,63 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.000
+The private ShelfLife plugin offers expiry, stock and pick
+previews. The recording uses an owned development store.
+
+00:00:06.000 --> 00:00:10.000
+Shopify confirms the development store approved read access.
+
+00:00:10.000 --> 00:00:13.000
+Choose Continue to ChatGPT to finish connecting.
+
+00:00:13.000 --> 00:00:17.000
+The connected-store tool succeeds. The response identifies
+a live ShelfLife connection.
+
+00:00:17.000 --> 00:00:20.000
+The changesStock field is false.
+
+00:00:20.000 --> 00:00:26.000
+The user asks which lots need attention in the next 14 days
+and requests that stock stay unchanged.
+
+00:00:26.000 --> 00:00:30.000
+The expiry brief found no expired or upcoming lots
+from October 8 through October 22.
+
+00:00:30.000 --> 00:00:34.000
+It returned zero units at expiry risk and zero lots
+with missing expiry dates.
+
+00:00:34.000 --> 00:00:38.000
+The batch search returned The Complete Snowboard, Dawn,
+with an expiry date of January 31, 2027.
+
+00:00:38.000 --> 00:00:41.000
+The result contained two units, with zero on hold.
+
+00:00:41.000 --> 00:00:45.000
+The variant stock report found one batch and two pickable units.
+
+00:00:45.000 --> 00:00:48.000
+Both units had an unknown cost, so no monetary value was reported.
+
+00:00:48.000 --> 00:00:55.000
+The batch history returned zero recorded movements.
+The history covers stock operations recorded in ShelfLife.
+
+00:00:55.000 --> 00:00:59.000
+A three-unit pick preview allocated the two available units
+at the requested location.
+
+00:00:59.000 --> 00:01:03.000
+The shortage was one unit. The preview returned
+changesStock false, and stock stayed unchanged.
+
+00:01:03.000 --> 00:01:07.000
+ShelfLife settings show the approved ChatGPT connection
+and a Disconnect control.
+
+00:01:07.000 --> 00:01:10.000
+Disconnecting ends future reads. This recorded connection
+remained active at the end of the demonstration.
